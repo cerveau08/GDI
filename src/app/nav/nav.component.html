@@ -1,142 +1,43 @@
 <nav>
-    <li class="ho">
-        <a class="nav-link" routerLink="/" routerLinkActive="active" routerLinkActiveOptions="{exact: true}" style="text-decoration: none;">
-            <div class="grid-container">
-                <div class="item1">
-                    <div class="bar"></div>
-                </div>
-                <div class="item2"> 
-                    <mat-icon fontSet="material-icons-outlined">home</mat-icon>
-                </div> 
-                <div class="item3"> 
-                    <p>Tableau de bord</p>
-                </div>
-              </div>
-            </a>
-    </li>
-    <li>
-        <a class="nav-link" routerLink="/privacy-policy" routerLinkActive="active" routerLinkActiveOptions="{exact: true}" style="text-decoration: none;">
-        <div class="grid-container">
-            <div class="item1">
-                <div class="bar"></div>
-            </div>
-            <div class="item2"> 
-                <mat-icon fontSet="material-icons-outlined" >person</mat-icon>
-            </div> 
-            <div class="item3"> 
-                <p>Interimaires</p>
-            </div>
-          </div>
-        </a>
-    </li>
-    <li>
-        <a class="nav-link" routerLink="/privacy-policy" routerLinkActive="active" routerLinkActiveOptions="{exact: true}" style="text-decoration: none;">
-        <div class="grid-container">
-            <div class="item1">
-                <div class="bar"></div>
-            </div>
-            <div class="item2"> 
-                <mat-icon fontSet="material-icons-outlined" >local_mall</mat-icon>
-            </div> 
-            <div class="item3"> 
-                <p>Agence d'interim</p>
-            </div>
-          </div>
-        </a>
-    </li>
-    <li>
-        <a class="nav-link" routerLink="/privacy-policy" [routerLinkActive]="['active']" style="text-decoration: none;">
-        <div class="grid-container">
-            <div class="item1">
-                <div class="bar"></div>
-            </div>
-            <div class="item2"> 
-                <mat-icon fontSet="material-icons-outlined" >grade</mat-icon>
-            </div> 
-            <div class="item3"> 
-                <p>Attestations Présence</p>
-            </div>
-          </div>
-        </a>
-    </li>
-    <li>
-        <a class="nav-link" routerLink="/privacy-policy" [routerLinkActive]="['active']" style="text-decoration: none;">
-        <div class="grid-container">
-            <div class="item1">
-                <div class="bar"></div>
-            </div>
-            <div class="item2"> 
-                <mat-icon fontSet="material-icons-outlined" >query_builder</mat-icon>
-            </div> 
-            <div class="item3"> 
-                <p>Alertes</p>
-            </div>
-          </div>
-        </a>
-    </li>
-
-    
-    <li class="compte">
-        <a class="nav-link" routerLink="/privacy-policy" [routerLinkActive]="['active']" style="text-decoration: none;">
-        <div class="grid-container">
-            <div class="item1">
-                <div class="bar"></div>
-            </div>
-            <div class="item2"> 
-                <mat-icon fontSet="material-icons-outlined" >folder_shared</mat-icon>
-            </div> 
-            <div class="item3"> 
-                <p>Mon Compte</p>
-            </div>
-          </div>
-        </a>
-    </li>
-    <li>
-        <a class="nav-link" routerLink="/privacy-policy" [routerLinkActive]="['active']" style="text-decoration: none;">
-        <div class="grid-container">
-            <div class="item1">
-                <div class="bar"></div>
-            </div>
-            <div class="item2"> 
-                <mat-icon fontSet="material-icons-outlined" >leaderboard</mat-icon>
-            </div> 
-            <div class="item3"> 
-                <p> Statistiques </p>
-            </div>
-          </div>
-        </a>
-    </li>
-    <li>
-        <a class="nav-link" routerLink="/privacy-policy" [routerLinkActive]="['active']" style="text-decoration: none;">
-        <div class="grid-container">
-            <div class="item1">
-                <div class="bar" [style.background]="selected==8?'red':'grey'" (click)="selected=8"></div>
-            </div>
-            <div class="item2"> 
-                <mat-icon fontSet="material-icons-outlined" >settings</mat-icon>
-            </div> 
-            <div class="item3"> 
-                <p> Paramètres </p>
-            </div>
-          </div>
-        </a>
-    </li>  
-
     <div *ngFor="let p of eventSources ;let i = index" 
          [style.background]="selected==i?'red':'grey'" (click)="selected=i">
          <li [style.marginTop.px]="getMargin(p)">
-         <a class="nav-link" [routerLink]="p.path" [routerLinkActive]="['active']" style="text-decoration: none;">
-            <div class="grid-container">
-                <div class="item1" [style.background]="selected==i?'#ff7900':'white'" (click)="selected=i">
-                    
+            <a class="nav-link" [routerLink]="p.path" (click)="updown(p)" [routerLinkActive]="['active']" style="text-decoration: none;">
+                <div class="grid-container">
+                    <div *ngIf="!p.liste" class="item1" [style.background]="selected==i?'#ff7900':'white'" (click)="selected=i">
+                    </div>
+                    <div *ngIf="p.liste" class="item1" [style.background]="selected==i?'white':'white'" (click)="selected=i">
+                    </div>
+                    <div class="item2"> 
+                        <mat-icon fontSet="material-icons-outlined" [style.color]="selected==i?'#ff7900':'#979797'" (click)="selected=i" [style.-webkit-text-stroke]="selected==i?' #ff7900':'#979797'" (click)="selected=i">{{p.icon}}</mat-icon>
+                    </div> 
+                    <div class="item3"> 
+                        <p [style.color]="selected==i?'#ff7900':'#979797'" (click)="selected=i" [style.-webkit-text-stroke]="selected==i?' #ff7900':'#979797'" (click)="selected=i"> {{p.title}} </p>
+                    </div>
+                    <div *ngIf="selected!=i" class="item2"> 
+                        <mat-icon fontSet="material-icons-outlined" [style.color]="selected==i?'#ff7900':'#979797'" (click)="selected=i" [style.-webkit-text-stroke]="selected==i?' #ff7900':'#979797'" (click)="selected=i">{{p.icon2}}</mat-icon>
+                        
+                    </div>
+                    <div *ngIf="selected==i" class="item2"> 
+                        <mat-icon (click)="updown(p)" *ngIf="!click" fontSet="material-icons-outlined" [style.color]="selected==i?'#ff7900':'#979797'" (click)="selected=i" [style.-webkit-text-stroke]="selected==i?' #ff7900':'#979797'" (click)="selected=i">{{p.icon3}}</mat-icon>
+                        <mat-icon (click)="updown(p)" *ngIf="click" fontSet="material-icons-outlined" [style.color]="selected==i?'#ff7900':'#979797'" (click)="selected=i" [style.-webkit-text-stroke]="selected==i?' #ff7900':'#979797'" (click)="selected=i">{{p.icon2}}</mat-icon>
+                    </div>
                 </div>
-                <div class="item2"> 
-                    <mat-icon fontSet="material-icons-outlined" [style.color]="selected==i?'#ff7900':'#979797'" (click)="selected=i" [style.-webkit-text-stroke]="selected==i?' #ff7900':'#979797'" (click)="selected=i">{{p.icon}}</mat-icon>
-                </div> 
-                <div class="item3"> 
-                    <p [style.color]="selected==i?'#ff7900':'#979797'" (click)="selected=i" [style.-webkit-text-stroke]="selected==i?' #ff7900':'#979797'" (click)="selected=i"> {{p.title}} </p>
+                <div *ngIf="selected==i && click==1">
+                    <div *ngIf="p.liste">
+                        <div *ngFor="let pl of p.liste; let j = index;" [class.active]="eventSources[i].activeChoice === j" (click)="onClick(i, j)" >
+                            <a class="nav-link" [routerLink]="pl.path" [routerLinkActive]="['active']" style="text-decoration: none;">
+                                <div class="grid-container1">
+                                    <div class="item1" [style.background]="selected1==j?'#ff7900':'white'" (click)="selected1=j">
+                                    </div>
+                                    <div class="item4">
+                                        <p *ngIf="selected==i" [style.color]="selected==i?'#ff7900':'#979797'" (click)="selected=i" [style.-webkit-text-stroke]="selected==i?' #ff7900':'#979797'" (click)="selected=i"> {{pl.title}} </p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
                 </div>
-              </div>
             </a>
         </li>
     </div>
