@@ -1,0 +1,30 @@
+<body>
+    <img class="imagebg" src="assets/images/rectangle.png" alt="" srcset="">
+    <div class="block-img">
+        <div class="orange">
+            
+            <img class="elmt" src="assets/images/group.png" alt="">
+            <div class="logo">
+                <img  class="image-logo" src="assets/images/logo.svg.webp" alt="">
+                <span>Gestion des <br> Interimaires</span>
+            </div>
+        </div>
+        <div>
+            <div class="form">
+            <form [formGroup]="loginForm">
+                <h3 class="title-form">Connexion</h3>
+                <div class="fiel">
+                    <label class="label"for="fullname">Nom d’utilisateur</label>
+                    <input formControlName="username"  class="input-text" type="text" name="fullname" id="fullname" >
+                </div>
+                <div class="field">
+                    <label class="label" for="fullname">Mot de Passe</label>
+                    <input formControlName="password" class="input-text" type="text" name="fullname" id="fullname">
+                </div>
+                <button (click)="onSubmit()" class="button">Se connecter</button>
+                <p class="">Mot de passe oublié?</p>
+            </form>
+        </div>
+        </div>
+    </div>
+</body>

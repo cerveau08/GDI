@@ -1,0 +1,68 @@
+<div class="chiffre" style="margin-left: auto;margin-right: 0;">
+    <div class="elmt" >
+        <div href="">
+            <span class="titre">Présents</span>
+            <br>
+            <p class="nombre">820</p>
+        </div>
+    </div>
+    <div class="elmt1" title="messages">
+        <div href="">
+            <span class="titre">Malades</span>
+            <br>
+            <p class="nombre">11</p>
+        </div>
+    </div>
+    <div class="elmt2" >
+        <div href="">
+            <span class="titre">Congés</span>
+            <br>
+            <p class="nombre">04</p>
+        </div>
+    </div>
+</div>
+
+
+<div class="interi">
+    <p class="dernier">Nos dernières recrues</p>
+    <div *ngFor="let p of data | slice:0:4; let i = index">
+        <div class="list">
+            <div class="grid-container" [ngStyle]="{'border-bottom' : ((i > 2) ? 'none' : '1px solid #f5f6f9') }">
+                <div  class="item4" >
+                    <img class="photo" src="../assets/images/{{p.photo}}">
+                </div>
+                <div  class="item4" >
+                    <p class="prenom"> {{p.prenom}} </p>
+                    <p class="poste"> {{p.poste}} </p>
+                </div>
+                <div  class="item4"> 
+                    <p class="tmp" >{{p.matricule}}</p> 
+                </div>
+            </div>
+        </div>
+    </div>
+    <button  class="button">Voir le liste</button>
+</div>
+
+<div class="annonce">
+    <p class="dernier">Avis de recrutement</p>
+    <div *ngFor="let p of data | slice:0:4; let i = index">
+        <div class="list">
+            <div class="grid-container1" [ngStyle]="{'border-bottom' : ((i > 2) ? 'none' : '1px solid #f5f6f9') }">
+                <div  class="item4" >
+                    <p class="prenom"> {{p.poste}} </p>
+                    <div class="dep">
+                        <p class="serv"> {{p.direction}}/ </p>
+                        <p class="serv"> {{p.pole}}/ </p>
+                        <p class="serv"> {{p.departement}}/ </p>
+                        <p class="serv"> {{p.service}} </p>
+                    </div>
+                </div>
+                <div  class="item4"> 
+                    <p class="tmp1" >{{p.dateFin}}</p> 
+                </div>
+            </div>
+        </div>
+    </div>
+    <button  class="button1">Voir le liste</button>
+</div>

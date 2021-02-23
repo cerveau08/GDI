@@ -1,0 +1,45 @@
+<nav class="nav-global">
+    <div href class="logo">
+      <img class="img-logo" src="../assets/icones/images-logo-orange.png" alt="">
+      <div class="title-logo">
+        <span>Gestion des <br> Interimaires</span>
+      </div>
+    </div>
+    <div class="search">
+        <mat-icon fontSet="material-icons-outlined" >search</mat-icon>
+        <input class="input-search" type="text" name="" id="" placeholder="Rechercher interimaires, Agences et Manager">
+    </div>
+    <div class="notif-chat-profil" style="margin-left: auto;margin-right: 0;">
+        <div style="cursor: pointer;" class="elmt notif" title="notifications">
+            <div href="">
+               <mat-icon class="icon" fontSet="material-icons-outlined" >notifications</mat-icon>
+               <span class="info-notif">notif</span>
+            </div>
+        </div>
+        <div style="cursor: pointer;" class="elmt1 chat" title="messages">
+            <div href="">
+              <mat-icon class="icon" fontSet="material-icons-outlined" >forum</mat-icon>
+            </div>
+        </div>
+        <div style="cursor: pointer;" class="profil d-flex">
+          <div (click)="updown()">
+            <img class="img-profil" src="../assets/icones/Oval.png" alt="">
+            <span class="info-status">on line</span>
+          </div>
+          <div (click)="updown()" class="nom d-flex" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="10,20">
+            Serigne
+          </div>
+          <div class="updown" (click)="updown()">
+            <mat-icon *ngIf="!click" fontSet="material-icons-outlined" >expand_more</mat-icon>
+            <mat-icon *ngIf="click" fontSet="material-icons-outlined" >expand_less</mat-icon>
+          </div>
+        </div>
+        <div  *ngIf="click" class="profilinfo" style="cursor: pointer;">
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset" style="will-change: transform;">
+            <p class="profi" href="#">profil</p>
+            <br>
+            <p class="deconnecte" href="#">déconnexion</p>
+          </div>
+        </div>
+    </div>
+</nav>
