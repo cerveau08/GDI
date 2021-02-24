@@ -15,6 +15,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularMaterialModule } from './angular-material.module';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CompteComponent } from './pages/compte/compte.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     AsideComponent,
     HeaderComponent,
     ManagerComponent,
-    InterimaireComponent
+    InterimaireComponent,
+    CompteComponent
   ],
   imports: [
     BrowserModule,

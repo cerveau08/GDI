@@ -33,7 +33,7 @@ getScreenSize(event?) {
     return this.restant;
   }
   getposition() {
-    let left1 = this.nombre - 2;
+    let left1 = this.nombre - 1;
     this.left = left1 + "%";
     return this.left;
   }

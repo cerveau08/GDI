@@ -116,7 +116,7 @@ export class NavComponent implements OnInit {
     {
       id: 7,
       title: 'Mon Compte',
-      path: '/',
+      path: 'compte',
       icon: "folder_shared",
       color: 'primary'
     },
