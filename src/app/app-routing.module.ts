@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { DefaultComponent } from './layout/default/default.component';
 import { LoginComponent } from './login/login.component';
 import { CompteComponent } from './pages/compte/compte.component';
+import { DemandeComponent } from './pages/demande/demande.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ManagerComponent } from './pages/manager/manager.component';
 
@@ -16,11 +17,15 @@ const routes: Routes = [
       {path: 'home', component: HomeComponent},
       { path: 'manager',
         component: ManagerComponent,
-     //   canActivate: [AuthGuard]
+       //   canActivate: [AuthGuard]
       },
       { path: 'compte',
         component: CompteComponent,
-     //   canActivate: [AuthGuard]
+       //   canActivate: [AuthGuard]
+      },
+      { path: 'demande',
+        component: DemandeComponent,
+       //   canActivate: [AuthGuard]
       },
       {
         path: '',

@@ -16,6 +16,8 @@ import { AngularMaterialModule } from './angular-material.module';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CompteComponent } from './pages/compte/compte.component';
+import { DemandeComponent } from './pages/demande/demande.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,8 @@ import { CompteComponent } from './pages/compte/compte.component';
     HeaderComponent,
     ManagerComponent,
     InterimaireComponent,
-    CompteComponent
+    CompteComponent,
+    DemandeComponent
   ],
   imports: [
     BrowserModule,
@@ -37,6 +40,7 @@ import { CompteComponent } from './pages/compte/compte.component';
     AngularMaterialModule,
     HttpClientModule,
     ReactiveFormsModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

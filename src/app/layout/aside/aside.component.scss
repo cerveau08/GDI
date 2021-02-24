@@ -196,6 +196,37 @@
     text-align: right;
     color: #009393;
 }
+.manager {
+    margin: 0 auto;
+    width: 140px;
+    img{
+        width: 139px;
+        height: 139px;
+    }
+    
+}
+.nom {
+    font-size: 24px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.13px;
+    text-align: center;
+    color: #222222;
+    margin-bottom: 0;
+}
+.postem{
+    font-size: 18px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: italic;
+    line-height: normal;
+    letter-spacing: -0.1px;
+    text-align: center;
+    color: #222222;
+    margin-top: 5px;
+}
 @media (max-width: 991px) {
     .chiffre {
         display: grid;

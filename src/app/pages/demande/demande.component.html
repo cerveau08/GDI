@@ -1,0 +1,43 @@
+<div class="demande">
+    <p class="detail">Mes demandes</p>
+    <div>
+        <button  class="button1">Congés Maladie</button>
+    <button  class="button2">Convenance perso</button>
+    <button  class="button3">Mission</button>
+    <button  class="button4">Congés Annuels</button>
+    </div>
+</div>
+    <div class="tableau">
+        <p class="detail">Liste des interimaires sous contrat</p>
+        <div class="exporter">
+            <p class="export">Exporter</p>
+            <div class="csv">
+                <p class="csv1">CSV</p>
+                <mat-icon fontSet="material-icons-outlined">unfold_more</mat-icon>
+            </div>
+            <div class="filtrer">
+                <p class="filtre">Filtre</p>
+                <mat-icon fontSet="material-icons-outlined">tune</mat-icon>
+            </div>
+        </div>
+        <table style="overflow-x:auto;">
+            <tr class="head">
+                    <th>#</th>
+                    <th>type</th>
+                    <th>Etat</th>
+                    <th>Date début</th>
+                    <th>Date fin</th>
+            </tr>
+            <tbody>
+            <tr *ngFor="let p of data | paginate: { itemsPerPage: 5, currentPage: p }; let i = index">
+                <td>{{p.id}}</td>
+                <td>{{p.prenom}}</td>
+                <td>{{p.nom}}</td>
+                <td>{{p.dateDebut}}</td>
+                <td>{{p.dateFin}}</td>
+              </tr>
+              </tbody>
+              <pagination-controls (pageChange)="p = $event"></pagination-controls>
+        </table>
+    </div>
+

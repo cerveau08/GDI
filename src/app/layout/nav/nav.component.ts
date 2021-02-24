@@ -87,6 +87,13 @@ export class NavComponent implements OnInit {
     },
     {
       id: 5,
+      title: 'Mes Demandes',
+      path: 'demande',
+      icon: "local_mall",
+      color: 'primary'
+    },
+    {
+      id: 6,
       title: 'Manager',
      // path: '/',
       icon: "grade",
@@ -107,28 +114,28 @@ export class NavComponent implements OnInit {
       ]
     },
     {
-      id: 6,
+      id: 7,
       title: 'Alertes',
       path: '/',
       icon: "query_builder",
       color: 'primary'
     },
     {
-      id: 7,
+      id: 8,
       title: 'Mon Compte',
       path: 'compte',
       icon: "folder_shared",
       color: 'primary'
     },
     {
-      id: 8,
+      id: 9,
       title: 'Statistiques',
       path: '/',
       icon: "leaderboard",
       color: 'primary'
     },
     {
-      id: 9,
+      id: 10,
       title: 'Statistiques',
       path: '/',
       icon: "settings",
@@ -189,7 +196,7 @@ export class NavComponent implements OnInit {
     let margin = 10;
     if (event.id == 1) {
       margin = 50;
-    } else if (event.id == 7) {
+    } else if (event.id == 8) {
       margin = 80;
     } else  {
       margin = 1;

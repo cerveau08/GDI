@@ -26,6 +26,7 @@ export class DataService {
       departement: "DASI",
       service: "PMA",
       manager: "Madiagne SYLLA",
+      postem: "Chef de Services Production et Maintenance Applicatif",
       email: "amadou.dieye.leye@orange-sonatel.com",
       telephone: "+ 221 33 824 91 31",
       adresse: "mbour",
@@ -53,6 +54,7 @@ export class DataService {
       departement: "DASI",
       service: "PMA",
       manager: "Madiagne SYLLA",
+      postem: "Chef de Services Production et Maintenance Applicatif",
       email: "amadou.dieye.leye@orange-sonatel.com",
       telephone: "+ 221 33 824 91 31",
       adresse: "mbour",
@@ -70,6 +72,7 @@ export class DataService {
       tmp: "tmp_0254",
       agence: "Set Interim",
       dateNais: "10/12/1992",
+      postem: "Chef de Services Production et Maintenance Applicatif",
       lieuNais: "Mbour",
       genre: "masculin",
       cni: "1 619 1992 2154",
@@ -112,6 +115,7 @@ export class DataService {
       adresse: "mbour",
       photo: "inter.png",
       matricule: "060210",
+      postem: "Chef de Services Production et Maintenance Applicatif",
       nomInt: "4"
     },
     {
@@ -138,6 +142,7 @@ export class DataService {
       telephone: "+ 221 33 824 91 31",
       adresse: "mbour",
       photo: "inter.png",
+      postem: "Chef de Services Production et Maintenance Applicatif",
       matricule: "060210",
       nomInt: "5"
     },
@@ -162,6 +167,7 @@ export class DataService {
       service: "PMA",
       manager: "Madiagne SYLLA",
       email: "amadou.dieye.leye@orange-sonatel.com",
+      postem: "Chef de Services Production et Maintenance Applicatif",
       telephone: "+ 221 33 824 91 31",
       adresse: "mbour",
       photo: "inter.png",
@@ -192,6 +198,7 @@ export class DataService {
       telephone: "+ 221 33 824 91 31",
       adresse: "mbour",
       photo: "inter.png",
+      postem: "Chef de Services Production et Maintenance Applicatif",
       matricule: "060210",
       nomInt: "5"
     },
@@ -220,7 +227,8 @@ export class DataService {
       adresse: "mbour",
       photo: "inter.png",
       matricule: "060210",
-      nomInt: "4"
+      nomInt: "4",
+      postem: "Chef de Services Production et Maintenance Applicatif",
     },
     {
       id: 9,
@@ -246,6 +254,7 @@ export class DataService {
       telephone: "+ 221 33 824 91 31",
       adresse: "mbour",
       photo: "inter.png",
+      postem: "Chef de Services Production et Maintenance Applicatif",
       matricule: "060210",
       nomInt: "5"
     },
@@ -269,6 +278,7 @@ export class DataService {
       departement: "DASI",
       service: "PMA",
       manager: "Madiagne SYLLA",
+      postem: "Chef de Services Production et Maintenance Applicatif",
       email: "amadou.dieye.leye@orange-sonatel.com",
       telephone: "+ 221 33 824 91 31",
       adresse: "mbour",
@@ -301,6 +311,7 @@ export class DataService {
       adresse: "mbour",
       photo: "manager.png",
       matricule: "060210",
+      postem: "Chef de Services Production et Maintenance Applicatif",
       nomInt: "5"
     },
     {
@@ -327,6 +338,7 @@ export class DataService {
       telephone: "+ 221 33 824 91 31",
       adresse: "mbour",
       photo: "manager.png",
+      postem: "Chef de Services Production et Maintenance Applicatif",
       matricule: "060210",
       nomInt: "4"
     },
@@ -355,6 +367,7 @@ export class DataService {
       adresse: "mbour",
       photo: "manager.png",
       matricule: "060210",
+      postem: "Chef de Services Production et Maintenance Applicatif",
       nomInt: "5"
     },
     {
@@ -379,6 +392,7 @@ export class DataService {
       manager: "Madiagne SYLLA",
       email: "amadou.dieye.leye@orange-sonatel.com",
       telephone: "+ 221 33 824 91 31",
+      postem: "Chef de Services Production et Maintenance Applicatif",
       adresse: "mbour",
       photo: "manager.png",
       matricule: "060210",
@@ -407,6 +421,7 @@ export class DataService {
       email: "amadou.dieye.leye@orange-sonatel.com",
       telephone: "+ 221 33 824 91 31",
       adresse: "mbour",
+      postem: "Chef de Services Production et Maintenance Applicatif",
       photo: "manager.png",
       matricule: "060210",
       nomInt: "5"
@@ -435,6 +450,7 @@ export class DataService {
       telephone: "+ 221 33 824 91 31",
       adresse: "mbour",
       photo: "manager.png",
+      postem: "Chef de Services Production et Maintenance Applicatif",
       matricule: "060210",
       nomInt: "4"
     },
@@ -460,6 +476,7 @@ export class DataService {
       manager: "Madiagne SYLLA",
       email: "amadou.dieye.leye@orange-sonatel.com",
       telephone: "+ 221 33 824 91 31",
+      postem: "Chef de Services Production et Maintenance Applicatif",
       adresse: "mbour",
       photo: "manager.png",
       matricule: "060210",
@@ -488,6 +505,7 @@ export class DataService {
       email: "amadou.dieye.leye@orange-sonatel.com",
       telephone: "+ 221 33 824 91 31",
       adresse: "mbour",
+      postem: "Chef de Services Production et Maintenance Applicatif",
       photo: "manager.png",
       matricule: "060210",
       nomInt: "4"
@@ -517,6 +535,7 @@ export class DataService {
       adresse: "mbour",
       photo: "manager.png",
       matricule: "060210",
+      postem: "Chef de Services Production et Maintenance Applicatif",
       nomInt: "5"
     },
     {
@@ -543,13 +562,14 @@ export class DataService {
       telephone: "+ 221 33 824 91 31",
       adresse: "mbour",
       photo: "manager.png",
+      postem: "Chef de Services Production et Maintenance Applicatif",
       matricule: "060210",
       nomInt: "4"
     },
   ]
   constructor() { }
 
-  public getEvents() {
+  public getData() {
     return this.data;
   }
 }

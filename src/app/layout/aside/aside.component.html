@@ -44,6 +44,16 @@
     <button  class="button">Voir le liste</button>
 </div>
 
+<div class="annonce" *ngFor="let p of donnee">
+    <p class="dernier">Manager</p>
+    <div class="manager">
+       <img src="../assets/images/manager.png" alt="">
+    </div>
+    <p class="nom">{{p.manager}}</p>
+    <p class="postem">{{p.postem}}</p>
+    <button  class="button">Afficher</button>
+</div>
+
 <div class="annonce">
     <p class="dernier">Avis de recrutement</p>
     <div *ngFor="let p of data | slice:0:4; let i = index">
