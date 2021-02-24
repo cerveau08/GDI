@@ -1,8 +1,62 @@
 <main>
-    <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        Nullam dolor velit, suscipit vel ultricies id, ultrices in
-        augue. Aliquam volutpat, nunc id pulvinar tincidunt, leo nunc
-        feugiat libero, quis luctus lectus ipsum et enim.
-    </p>
+    <p class="bien">Bienvenue Amadou!</p>
+    <p class="alert">Vous n’avez pas encore fait votre demande de suvention restauration. <span style="cursor: pointer;">Je fais ma demande</span></p>
+    <div class="progres">
+        <p class="duree">Contrat <span>5 mois ( 35 jours</span> restant )</p>
+        <div class="bar">
+            <div id="progress_bar">
+                <div id="green_bar" [style.width]="getwidth()">&nbsp;</div>
+            </div>
+            <div class="position" [style.left]="getposition()">
+            </div>
+        </div>
+        <p class="datefin">12 Dec 2020</p>
+    </div>
+    <div class="detail">
+            <div class="elmt" >
+                <div class="tit">
+                    <div class="titre">
+                        <img src="../assets/images/restaurant.png">
+                        <p>Restaurant</p>
+                    </div>
+                </div>
+                <div class="nombre">
+                    <img src="../assets/images/delete.svg">
+                </div>
+                <p class="mois">Novembre</p>
+                <div class="bouton">
+                    <button  class="button">Demander</button>
+                </div>
+            </div>
+            <div class="elmt1" title="messages">
+                <div class="tit1">
+                    <div class="titre1">
+                        <img src="../assets/images/guide.png">
+                        <p>Demandes</p>
+                    </div>
+                </div>
+                <div class="nombre1">
+                    <p class="chiffr">5</p>
+                </div>
+                <p class="mois1">En attentes</p>
+                <div class="bouton">
+                    <button  class="button">Détails</button>
+                </div>
+            </div>
+            <div class="elmt2" >
+                <div class="tit2">
+                    <div class="titre2">
+                        <img src="../assets/images/file.png">
+                        <p>Attestations</p>
+                    </div>
+                </div>
+                <div class="nombre2">
+                    <p class="chiffr">1</p>
+                </div>
+                <p class="mois2">Disponible</p>
+                <div class="bouton">
+                    <button  class="button">Voir</button>
+                </div>
+            </div>
+        </div>
 </main>
