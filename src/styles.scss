@@ -58,6 +58,22 @@ app-header {
     display: inline-block;
     margin-bottom: 15px;
   }
+  .ngx-pagination {
+    padding-left: 0px !important;
+    outline: none !important;
+  }
+  
+  .ngx-pagination .current,
+  .btn-info {
+    background: #f16e00 !important;
+    outline: none !important;
+  }
+  
+  .ngx-pagination .current:hover {
+    background: #f5f6f9 !important;
+    outline: none !important;
+  }
+
   @media (max-width: 991px) {
     app-nav{
       height: 70px;

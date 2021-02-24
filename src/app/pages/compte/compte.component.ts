@@ -31,6 +31,7 @@ export class CompteComponent implements OnInit {
     departement: "DASI",
     service: "PMA",
     manager: "Madiagne SYLLA",
+    postem: "Chef de Services Production et Maintenance Applicatif",
     email: "amadou.dieye.leye@orange-sonatel.com",
     telephone: "+ 221 33 824 91 31",
     adresse: "mbour",

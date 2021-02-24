@@ -9,25 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DemandeComponent implements OnInit {
 
-  public data: any;
+  public datas: any;
   // pager object
   pager: any = {};
-
+  filterterm: string;
   // paged items
   pagedItems: any[];
   constructor(private dataService: DataService,
     private pagerService: PaginationService,) { }
 
   ngOnInit() {
-    this.data = this.dataService.getData();
-    this.setPage(1);
-  }
-  
-  setPage(page: number) {
-    // get pager object from service
-    this.pager = this.pagerService.getPager(this.data.length, page);
-
-    // get current page of items
-    this.pagedItems = this.data.slice(this.pager.startIndex, this.pager.endIndex + 1);
+    this.datas = this.dataService.getData();
   }
 }

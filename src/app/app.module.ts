@@ -18,6 +18,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CompteComponent } from './pages/compte/compte.component';
 import { DemandeComponent } from './pages/demande/demande.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { FormsModule } from '@angular/forms';
+import { RestaurationComponent } from './pages/restauration/restauration.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +34,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     ManagerComponent,
     InterimaireComponent,
     CompteComponent,
-    DemandeComponent
+    DemandeComponent,
+    RestaurationComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +44,9 @@ import { NgxPaginationModule } from 'ngx-pagination';
     AngularMaterialModule,
     HttpClientModule,
     ReactiveFormsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    Ng2SearchPipeModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

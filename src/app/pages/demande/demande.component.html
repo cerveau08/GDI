@@ -15,29 +15,37 @@
                 <p class="csv1">CSV</p>
                 <mat-icon fontSet="material-icons-outlined">unfold_more</mat-icon>
             </div>
-            <div class="filtrer">
-                <p class="filtre">Filtre</p>
+            <div class="filtrer" >
+                <p class="filtre" [(ngModel)]="filterterm">Filtre</p>
                 <mat-icon fontSet="material-icons-outlined">tune</mat-icon>
             </div>
         </div>
         <table style="overflow-x:auto;">
-            <tr class="head">
-                    <th>#</th>
-                    <th>type</th>
+            <thead>
+                <tr class="head">
+                    <th class="id1">#</th>
+                    <th class="typ">
+                        <div class="type">
+                            <p>type</p> 
+                            <mat-icon class="updown" fontSet="material-icons-outlined">unfold_more</mat-icon>
+                        </div>
+                    </th>
                     <th>Etat</th>
                     <th>Date début</th>
                     <th>Date fin</th>
             </tr>
+            </thead>
             <tbody>
-            <tr *ngFor="let p of data | paginate: { itemsPerPage: 5, currentPage: p }; let i = index">
-                <td>{{p.id}}</td>
-                <td>{{p.prenom}}</td>
-                <td>{{p.nom}}</td>
-                <td>{{p.dateDebut}}</td>
-                <td>{{p.dateFin}}</td>
-              </tr>
-              </tbody>
-              <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                <tr *ngFor="let p of datas | filter:filterterm | paginate: { itemsPerPage: 8, currentPage: p }; let i = index">
+                    <td class="id1">{{p.id}}</td>
+                    <td>{{p.prenom}}</td>
+                    <td>{{p.nom}}</td>
+                    <td>{{p.dateDebut}}</td>
+                    <td>{{p.dateFin}}</td>
+                </tr>
+            </tbody>
+            
         </table>
+        <pagination-controls (pageChange)="p = $event" previousLabel="Prcédent" nextLabel="Suivant"></pagination-controls>
     </div>
 

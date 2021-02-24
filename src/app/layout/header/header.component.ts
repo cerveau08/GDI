@@ -8,6 +8,7 @@ import { Component, HostListener, OnInit } from '@angular/core';
 export class HeaderComponent implements OnInit {
 
   public click: any;
+  filterterm: string;
 
   scrHeight:any;
   scrWidth:any;

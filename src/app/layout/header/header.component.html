@@ -7,7 +7,7 @@
     </div>
     <div class="search">
         <mat-icon fontSet="material-icons-outlined" >search</mat-icon>
-        <input class="input-search" type="text" name="" id="" placeholder="Rechercher interimaires, Agences et Manager">
+        <input [(ngModel)]="filterterm" class="input-search" type="text"  name="search" id="" placeholder="Rechercher interimaires, Agences et Manager">
     </div>
     <div class="notif-chat-profil" style="margin-left: auto;margin-right: 0;">
         <div style="cursor: pointer;" class="elmt notif" title="notifications">

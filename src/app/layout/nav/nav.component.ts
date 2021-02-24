@@ -93,9 +93,16 @@ export class NavComponent implements OnInit {
       color: 'primary'
     },
     {
+      id: 4,
+      title: 'Mon Manager',
+      path: 'manager',
+      icon: "grade",
+      color: 'primary'
+    },
+    {
       id: 6,
       title: 'Manager',
-     // path: '/',
+     // path: '',
       icon: "grade",
       icon2: "expand_more",
       icon3: "expand_less",

@@ -171,6 +171,18 @@ table {
     letter-spacing: normal;
     color: #000000;
   }
+  .type {
+    display: flex;
+    width: 50px;
+    margin: 0 auto;
+    p {
+        text-align: center;
+    }
+  }
+  .updown {
+    margin-top: 10px;
+    margin-left: 20px;
+  }
   tr {
     height: 50px;
     border: 1px solid #f5f6f9;
@@ -180,3 +192,7 @@ table {
   .head{
       background-color: #f5f6f9;
   }
+  .id {
+      width: 50px;
+  }
+  
