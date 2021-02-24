@@ -1,7 +1,7 @@
 <nav class="nav-global">
     <div href class="logo">
       <img class="img-logo" src="../assets/icones/images-logo-orange.png" alt="">
-      <div class="title-logo">
+      <div class="title-logo" *ngIf="scrWidth>991">
         <span>Gestion des <br> Interimaires</span>
       </div>
     </div>
@@ -26,7 +26,7 @@
             <img class="img-profil" src="../assets/icones/Oval.png" alt="">
             <span class="info-status">on line</span>
           </div>
-          <div (click)="updown()" class="nom d-flex" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="10,20">
+          <div (click)="updown()" *ngIf="scrWidth>991" class="nom d-flex" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="10,20">
             Serigne
           </div>
           <div class="updown" (click)="updown()">

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-home',
@@ -10,7 +10,20 @@ export class HomeComponent implements OnInit {
   public restant: any;
   public nombre = 99;
   public left: any;
-  constructor() { }
+
+  // Declare height and width variables
+scrHeight:any;
+scrWidth:any;
+
+@HostListener('window:resize', ['$event'])
+getScreenSize(event?) {
+      this.scrHeight = window.innerHeight;
+      this.scrWidth = window.innerWidth;
+      console.log(this.scrHeight, this.scrWidth);
+}
+  constructor() {
+    this.getScreenSize();
+  }
 
   ngOnInit() {
   }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { DataService } from 'src/app/service/data.service';
@@ -134,7 +134,17 @@ export class NavComponent implements OnInit {
       icon: "settings",
       color: 'Paramètres'
     },
-  ]
+  ];
+
+  scrHeight:any;
+  scrWidth:any;
+
+  @HostListener('window:resize', ['$event'])
+  getScreenSize(event?) {
+        this.scrHeight = window.innerHeight;
+        this.scrWidth = window.innerWidth;
+        console.log(this.scrHeight, this.scrWidth);
+  }
   constructor(
     private matIconRegistry: MatIconRegistry,
     private domSanitizer: DomSanitizer,
@@ -145,6 +155,7 @@ export class NavComponent implements OnInit {
       "musicon",
       this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/headphone.svg")
     );
+    this.getScreenSize();
   }
 
   ngOnInit() {
