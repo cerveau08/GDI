@@ -27,7 +27,7 @@
     <p class="dernier">Nos dernières recrues</p>
     <div *ngFor="let p of data | slice:0:4; let i = index">
         <div class="list">
-            <div class="grid-container" [ngStyle]="{'border-bottom' : ((i > 2) ? 'none' : '1px solid #f5f6f9') }">
+            <div style="cursor: pointer;" class="grid-container" [ngStyle]="{'border-bottom' : ((i > 2) ? 'none' : '1px solid #f5f6f9') }">
                 <div  class="item4" >
                     <img class="photo" src="../assets/images/{{p.photo}}">
                 </div>
@@ -58,7 +58,7 @@
     <p class="dernier">Avis de recrutement</p>
     <div *ngFor="let p of data | slice:0:4; let i = index">
         <div class="list">
-            <div class="grid-container1" [ngStyle]="{'border-bottom' : ((i > 2) ? 'none' : '1px solid #f5f6f9') }">
+            <div style="cursor: pointer;" class="grid-container1" [ngStyle]="{'border-bottom' : ((i > 2) ? 'none' : '1px solid #f5f6f9') }">
                 <div  class="item4" >
                     <p class="prenom"> {{p.poste}} </p>
                     <div class="dep">

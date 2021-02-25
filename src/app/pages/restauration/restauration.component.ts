@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from 'src/app/service/data.service';
+import { PaginationService } from 'src/app/service/pagination.service';
 
 @Component({
   selector: 'app-restauration',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RestaurationComponent implements OnInit {
 
-  constructor() { }
+  public datas: any;
+  // pager object
+  pager: any = {};
+  filterterm: string;
+  // paged items
+  pagedItems: any[];
+  constructor(private dataService: DataService,
+    private pagerService: PaginationService,) { }
 
   ngOnInit() {
+    this.datas = this.dataService.getData();
   }
-
 }

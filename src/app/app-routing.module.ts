@@ -6,6 +6,7 @@ import { CompteComponent } from './pages/compte/compte.component';
 import { DemandeComponent } from './pages/demande/demande.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ManagerComponent } from './pages/manager/manager.component';
+import { RestaurationComponent } from './pages/restauration/restauration.component';
 
 
 const routes: Routes = [
@@ -25,6 +26,10 @@ const routes: Routes = [
       },
       { path: 'demande',
         component: DemandeComponent,
+       //   canActivate: [AuthGuard]
+      },
+      { path: 'restauration',
+        component: RestaurationComponent,
        //   canActivate: [AuthGuard]
       },
       {

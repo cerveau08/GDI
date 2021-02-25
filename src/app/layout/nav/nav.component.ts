@@ -26,6 +26,13 @@ export class NavComponent implements OnInit {
     },
     {
       id: 2,
+      title: 'Ma Restauration',
+      path: 'restauration',
+      icon: "person",
+      color: 'primary'
+    },
+    {
+      id: 2,
       title: 'Interimaires',
     //  path: '/privacy-policy',
       icon: "person",
