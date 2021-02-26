@@ -27,7 +27,7 @@ export class HomedrhComponent implements OnInit {
     const getDownloadProgress = () => {
       console.log("getDownload", this);
       if (this.progress <= 99) {
-        this.progress = 20;
+        this.progress = 30;
         console.log("inside if", this.progress);
         this.progress = this.progress - 2;
       } else {

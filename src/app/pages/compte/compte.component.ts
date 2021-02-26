@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class CompteComponent implements OnInit {
 
   public restant: any;
-  public nombre = 69;
+  public nombre = 29;
   public left: any;
 
   data = [{

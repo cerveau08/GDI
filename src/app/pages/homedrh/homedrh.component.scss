@@ -118,7 +118,7 @@ main{
 .femmes {
     position: absolute;
     right: 10px;
-    top: 40px;
+    top: 10px;
     p {
         margin: 0;
     }
@@ -141,10 +141,80 @@ main{
         color: #222222;
     }
 }
+#square {
+    position: absolute;
+    top: 30px;
+    right: 80px;
+    width:50px;
+    height:30px;
+    display:block;
+    //background-color:red;
+    border-top: 5px solid #f5f6f9;
+    border-left: 5px solid #f5f6f9;
+    overflow:hidden;
+    -ms-transform: skew(-20deg); /* IE 9 */
+    -webkit-transform: skew(-20deg); /* Chrome, Safari, Opera */
+    transform: skew(-20deg); /* Standard syntax */
+    transform-origin: bottom left; /* Prevent the bottom from shifting */
+}
+.fl1 {
+    position: absolute;
+    top: 16px;
+    right: 62px;
+    color: #f5f6f9;
+    mat-icon {
+        font-size: 35px;
+    }
+}
+.point1 {
+    background-color: white;
+    border-radius: 50%;
+    border: 6px solid #f3a45e;
+    position: absolute;
+    top: 60px;
+    right: 125px;
+    height: 8px;
+    width: 8px;
+}
+#square1 {
+    position: absolute;
+    top: 95px;
+    left: 73px;
+    width:30px;
+    height:20px;
+    display:block;
+    //background-color:red;
+    border-top: 5px solid #f5f6f9;
+    border-right: 5px solid #f5f6f9;
+    overflow:hidden;
+    -ms-transform: skew(20deg); /* IE 9 */
+    -webkit-transform: skew(20deg); /* Chrome, Safari, Opera */
+    transform: skew(20deg); /* Standard syntax */
+    transform-origin: bottom left; /* Prevent the bottom from shifting */
+}
+.fl2 {
+    position: absolute;
+    top: 80px;
+    left: 45px;
+    color: #f5f6f9;
+    mat-icon {
+        font-size: 35px;
+    }
+}
+.point2 {
+    background-color: white;
+    border-radius: 50%;
+    border: 5px solid #abd6d6;
+    position: absolute;
+    top: 110px;
+    left: 97px;
+    height: 5px;
+    width: 5px;
+}
 .hommes {
     position: absolute;
     left: 10px;
-    bottom: 40px;
+    top: 80px;
     p {
         margin: 0;
     }
@@ -166,6 +236,7 @@ main{
         letter-spacing: normal;
         color: #222222;
     }
+    
 }
 .lesbouton1 {
     width: 330px;
@@ -234,7 +305,53 @@ main{
         margin-top: 9px;
     }
 }
+.diagra {
+    height: 170px;
+    width: 400px;
+    margin: 0 auto;
+    margin-top: 65px;
+}
+.no {
+    width: 50px;
+    margin-left: 20px;
+    p {
+        margin: 20px;
+        margin-left: 5px;
+        font-size: 11px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        text-align: right;
+        line-height: 1.09;
+        letter-spacing: 0.17px;
+        color: #a4a4a4;
+    }
+}
+.moi {
+    display: flex;
+    margin-top: -10px;
+    margin-left: 40px;
+    p {
+        margin-bottom: 0;
+        margin-top: 0;
+        margin-left: 8px;
+        font-size: 11px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.09;
+        letter-spacing: 0.17px;
+        text-align: center;
+        color: #a4a4a4;
+    }
+}
+.lesbouton2 {
+    width: 330px;
+    margin: 20px auto;
+    display: flex;
+}
 .button3 {
+   // margin-top: 20px;
     display: flex;
     width: 114px;
     height: 35px;
@@ -244,7 +361,6 @@ main{
     outline: none;
     border: 3px solid #f5f6f9;
     border-radius: 5px;
-    margin-left: 15px;
     .color {
         height: 12px;
         width: 12px;

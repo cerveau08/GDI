@@ -8,7 +8,7 @@ import { Component, HostListener, OnInit } from '@angular/core';
 export class HomeComponent implements OnInit {
 
   public restant: any;
-  public nombre = 99;
+  public nombre = 29;
   public left: any;
 
   // Declare height and width variables
