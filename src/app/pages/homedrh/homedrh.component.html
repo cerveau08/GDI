@@ -1,0 +1,126 @@
+<main>
+    <p routerLink="/accueil/home" class="bien">Bienvenue Amadou!</p>
+    <p class="alert">Le contrat de <span class="inter" style="cursor: pointer;">Lamine MBODJI</span>  fini dans 10 jours.  <span class="alertes" style="cursor: pointer;">Voir les autres alertes</span></p>
+    <div class="detail1">
+        <div class="elmt" >
+            <div class="tit">
+                <p class="total">Total Interimaires</p>
+                <p class="totaln">835</p>
+            </div>
+            <div class="per">
+                <div class="cercle">
+                    <circle-progress
+                    [percent]="progress"
+                    [radius]="60"
+                    [outerStrokeWidth]="40"
+                    [innerStrokeWidth]="20"
+                    [space] = "-32"
+                    [outerStrokeColor]="'#ff7900'"
+                    [innerStrokeColor]="'#009393'"
+                    [outerStrokeLinecap]= "'square'"
+                    [showTitle]="false"
+                    [showUnits]="false"
+                    [showSubtitle] = "false"
+                    [animation]="true"
+                    [animationDuration]="300"
+                    [startFromZero]="false"
+                    [responsive]="false"
+                    ></circle-progress>
+                </div>
+                <div class="femmes">
+                    <p class="fn">315</p>
+                    <p class="fe">Femmes</p>
+                </div>
+                <div class="hommes">
+                    <p class="hn">520</p>
+                    <p class="ho">Hommes</p>
+                </div>
+            </div>
+            <div class="lesbouton1">
+                <div  class="button1"> 
+                    <div class="color"></div> 
+                    <p>Homme</p>
+                </div>
+                <div  class="button2"> 
+                    <div class="color"></div> 
+                    <p>Femme</p>
+                </div>
+            </div>
+
+            <!--DIAGRAMME-->
+
+            <!--DIAGRAMME-->
+        </div>
+        <div class="elmt1" title="messages">
+            <div class="tit">
+                <p class="total">Variation de l’effectif</p>
+            </div>
+            <div class="filt">
+                <div class="filtrer1" style="cursor: pointer;">
+                    <mat-icon class="i1" fontSet="material-icons-outlined">date_range</mat-icon>
+                    <p class="filtre" [(ngModel)]="filterterm">Mois</p>
+                    <mat-icon class="i2" fontSet="material-icons-outlined">expand_more</mat-icon>
+                </div>
+            </div>
+            <div class="per">
+                <div class="ho">
+                   
+                </div>
+            </div>
+            <div class="lesbouton1">
+                <div  class="button3"> 
+                    <div class="color"></div> 
+                    <p>Finis</p>
+                </div>
+                <div  class="button4"> 
+                    <div class="color"></div> 
+                    <p>Nouveaux</p>
+                </div>
+                <div  class="button5"> 
+                    <div class="color"></div> 
+                    <p>Total</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="tableau">
+        <p class="1">En fin de contrat ce mois</p>
+        <div class="exporter">
+            <div class="filtrer" style="cursor: pointer;">
+                <p class="filtre" [(ngModel)]="filterterm">Filtre</p>
+                <mat-icon fontSet="material-icons-outlined">tune</mat-icon>
+            </div>
+        </div>
+        <table style="overflow-x:auto;">
+            <thead>
+                <tr class="head">
+                    <th class="id1">#</th>
+                    <th class="typ">
+                        <div class="type">
+                            <p>Nom</p> 
+                            <mat-icon class="updown" fontSet="material-icons-outlined">unfold_more</mat-icon>
+                        </div>
+                    </th>
+                    <th>Manager</th>
+                    <th>Direction</th>
+                    <th>Agence</th>
+                    <th>Réintégrable</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let p of datas | filter:filterterm | paginate: { itemsPerPage: 8, currentPage: p } | slice:0:3; let i = index">
+                    <td class="id1">{{p.id}}</td>
+                    <td>{{p.prenom}} {{p.nom}}</td>
+                    <td>{{p.manager}}</td>
+                    <td>{{p.direction}}</td>
+                    <td>{{p.agence}}</td>
+                    <td> <div [style.background]="getColor(p)" class="statut"></div> <p class="stat"> {{p.statut}}</p></td>
+                </tr>
+            </tbody>
+            
+        </table>
+        <div class="button">
+            <button  class="button6">Voir tout</button>
+        </div>
+    </div>
+</main>

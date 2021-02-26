@@ -26,6 +26,13 @@ export class NavComponent implements OnInit {
     },
     {
       id: 2,
+      title: 'Tableau de bord drh',
+      path: 'homedrh',
+      icon: "home",
+      color: 'primary'
+    },
+    {
+      id: 2,
       title: 'Ma Restauration',
       path: 'restauration',
       icon: "person",

@@ -32,6 +32,7 @@ export class DataService {
       adresse: "mbour",
       photo: "inter.png",
       matricule: "060210",
+      statut: "oui",
       nomInt: "5"
     },
     {
@@ -60,6 +61,7 @@ export class DataService {
       adresse: "mbour",
       photo: "inter.png",
       matricule: "060210",
+      statut: "non",
       nomInt: "4"
     },
     {
@@ -88,6 +90,7 @@ export class DataService {
       adresse: "mbour",
       photo: "inter.png",
       matricule: "060210",
+      statut: "oui",
       nomInt: "5"
     },
     {
@@ -115,6 +118,7 @@ export class DataService {
       adresse: "mbour",
       photo: "inter.png",
       matricule: "060210",
+      statut: "non",
       postem: "Chef de Services Production et Maintenance Applicatif",
       nomInt: "4"
     },
@@ -144,6 +148,7 @@ export class DataService {
       photo: "inter.png",
       postem: "Chef de Services Production et Maintenance Applicatif",
       matricule: "060210",
+      statut: "non",
       nomInt: "5"
     },
     {
@@ -172,6 +177,7 @@ export class DataService {
       adresse: "mbour",
       photo: "inter.png",
       matricule: "060210",
+      statut: "non",
       nomInt: "4"
     },
     {
@@ -200,6 +206,7 @@ export class DataService {
       photo: "inter.png",
       postem: "Chef de Services Production et Maintenance Applicatif",
       matricule: "060210",
+      statut: "oui",
       nomInt: "5"
     },
     {
@@ -228,6 +235,7 @@ export class DataService {
       photo: "inter.png",
       matricule: "060210",
       nomInt: "4",
+      statut: "oui",
       postem: "Chef de Services Production et Maintenance Applicatif",
     },
     {
@@ -256,6 +264,7 @@ export class DataService {
       photo: "inter.png",
       postem: "Chef de Services Production et Maintenance Applicatif",
       matricule: "060210",
+      statut: "oui",
       nomInt: "5"
     },
     {
@@ -284,6 +293,7 @@ export class DataService {
       adresse: "mbour",
       photo: "inter.png",
       matricule: "060210",
+      statut: "oui",
       nomInt: "4"
     },
     {
@@ -311,6 +321,7 @@ export class DataService {
       adresse: "mbour",
       photo: "manager.png",
       matricule: "060210",
+      statut: "oui",
       postem: "Chef de Services Production et Maintenance Applicatif",
       nomInt: "5"
     },
@@ -340,6 +351,7 @@ export class DataService {
       photo: "manager.png",
       postem: "Chef de Services Production et Maintenance Applicatif",
       matricule: "060210",
+      statut: "oui",
       nomInt: "4"
     },
     {
@@ -367,6 +379,7 @@ export class DataService {
       adresse: "mbour",
       photo: "manager.png",
       matricule: "060210",
+      statut: "non",
       postem: "Chef de Services Production et Maintenance Applicatif",
       nomInt: "5"
     },
@@ -396,6 +409,7 @@ export class DataService {
       adresse: "mbour",
       photo: "manager.png",
       matricule: "060210",
+      statut: "non",
       nomInt: "4"
     },
     {
@@ -424,6 +438,7 @@ export class DataService {
       postem: "Chef de Services Production et Maintenance Applicatif",
       photo: "manager.png",
       matricule: "060210",
+      statut: "non",
       nomInt: "5"
     },
     {
@@ -452,6 +467,7 @@ export class DataService {
       photo: "manager.png",
       postem: "Chef de Services Production et Maintenance Applicatif",
       matricule: "060210",
+      statut: "non",
       nomInt: "4"
     },
     {
@@ -480,6 +496,7 @@ export class DataService {
       adresse: "mbour",
       photo: "manager.png",
       matricule: "060210",
+      statut: "oui",
       nomInt: "5"
     },
     {
@@ -508,6 +525,7 @@ export class DataService {
       postem: "Chef de Services Production et Maintenance Applicatif",
       photo: "manager.png",
       matricule: "060210",
+      statut: "oui",
       nomInt: "4"
     },
     {
@@ -535,6 +553,7 @@ export class DataService {
       adresse: "mbour",
       photo: "manager.png",
       matricule: "060210",
+      statut: "non",
       postem: "Chef de Services Production et Maintenance Applicatif",
       nomInt: "5"
     },
@@ -564,6 +583,7 @@ export class DataService {
       photo: "manager.png",
       postem: "Chef de Services Production et Maintenance Applicatif",
       matricule: "060210",
+      statut: "oui",
       nomInt: "4"
     },
   ]

@@ -21,6 +21,11 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { FormsModule } from '@angular/forms';
 import { RestaurationComponent } from './pages/restauration/restauration.component';
+import { ModalModule } from './_modal';
+import { PasswordforgetComponent } from './passwordforget/passwordforget.component';
+import { PasswordforgetMailComponent } from './passwordforget-mail/passwordforget-mail.component';
+import { HomedrhComponent } from './pages/homedrh/homedrh.component';
+import { NgCircleProgressModule } from 'ng-circle-progress';
 
 @NgModule({
   declarations: [
@@ -35,7 +40,10 @@ import { RestaurationComponent } from './pages/restauration/restauration.compone
     InterimaireComponent,
     CompteComponent,
     DemandeComponent,
-    RestaurationComponent
+    RestaurationComponent,
+    PasswordforgetComponent,
+    PasswordforgetMailComponent,
+    HomedrhComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +54,9 @@ import { RestaurationComponent } from './pages/restauration/restauration.compone
     ReactiveFormsModule,
     NgxPaginationModule,
     Ng2SearchPipeModule,
-    FormsModule
+    FormsModule,
+    ModalModule,
+    NgCircleProgressModule.forRoot({})
   ],
   providers: [],
   bootstrap: [AppComponent]

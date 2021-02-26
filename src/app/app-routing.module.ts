@@ -5,8 +5,11 @@ import { LoginComponent } from './login/login.component';
 import { CompteComponent } from './pages/compte/compte.component';
 import { DemandeComponent } from './pages/demande/demande.component';
 import { HomeComponent } from './pages/home/home.component';
+import { HomedrhComponent } from './pages/homedrh/homedrh.component';
 import { ManagerComponent } from './pages/manager/manager.component';
 import { RestaurationComponent } from './pages/restauration/restauration.component';
+import { PasswordforgetMailComponent } from './passwordforget-mail/passwordforget-mail.component';
+import { PasswordforgetComponent } from './passwordforget/passwordforget.component';
 
 
 const routes: Routes = [
@@ -15,7 +18,14 @@ const routes: Routes = [
     component: DefaultComponent,
    // canActivate: [AuthGuard],
     children: [
-      {path: 'home', component: HomeComponent},
+      {
+        path: 'home', 
+        component: HomeComponent
+      },
+      {
+        path: 'homedrh', 
+        component: HomedrhComponent
+      },
       { path: 'manager',
         component: ManagerComponent,
        //   canActivate: [AuthGuard]
@@ -40,7 +50,18 @@ const routes: Routes = [
       { path: '**', redirectTo: 'accueil/home' },
     ]
   },
-  { path: 'login', component: LoginComponent},
+  { 
+    path: 'passwordforgetmail', 
+    component: PasswordforgetMailComponent
+  },
+  { 
+    path: 'passwordforget', 
+    component: PasswordforgetComponent
+  },
+  { 
+    path: 'login', 
+    component: LoginComponent
+  },
   {
     path: '',
     redirectTo: 'accueil/home',

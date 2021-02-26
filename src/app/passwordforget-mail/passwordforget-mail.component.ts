@@ -3,11 +3,11 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  selector: 'app-passwordforget-mail',
+  templateUrl: './passwordforget-mail.component.html',
+  styleUrls: ['./passwordforget-mail.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class PasswordforgetMailComponent implements OnInit {
 
   loginForm: FormGroup;
   constructor(private route: Router) {
@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.loginForm = new FormGroup({
       username: new FormControl (''),
-      password: new FormControl('')
+    //  password: new FormControl('')
     });
   }
   
@@ -34,9 +34,9 @@ export class LoginComponent implements OnInit {
     const user =
     {
       username: this.loginForm.value.username,
-      password: this.loginForm.value.password
+     // password: this.loginForm.value.password
     } 
     console.log(user);
-    this.route.navigate(['accueil/home']);
+    this.route.navigate(['passwordforget']);
   }
 }
