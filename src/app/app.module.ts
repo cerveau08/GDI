@@ -26,6 +26,7 @@ import { PasswordforgetComponent } from './passwordforget/passwordforget.compone
 import { PasswordforgetMailComponent } from './passwordforget-mail/passwordforget-mail.component';
 import { HomedrhComponent } from './pages/homedrh/homedrh.component';
 import { NgCircleProgressModule } from 'ng-circle-progress';
+import { NgApexchartsModule } from 'ng-apexcharts';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
     Ng2SearchPipeModule,
     FormsModule,
     ModalModule,
+    NgApexchartsModule,
     NgCircleProgressModule.forRoot({})
   ],
   providers: [],
