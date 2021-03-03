@@ -108,6 +108,9 @@
             
         </div>
     </div>
+    <div class="buttons1">
+        <button  class="button7">Voir les statistiques</button>
+    </div>
     <div class="tableau">
         <p class="1">En fin de contrat ce mois</p>
         <div class="exporter">
@@ -136,7 +139,7 @@
                 <tr *ngFor="let p of datas | filter:filterterm | paginate: { itemsPerPage: 8, currentPage: p } | slice:0:3; let i = index">
                     <td class="id1">{{p.id}}</td>
                     <td>{{p.prenom}} {{p.nom}}</td>
-                    <td>{{p.manager}}</td>
+                    <td><img class="photo" src="../assets/images/{{p.photo}}"></td>
                     <td>{{p.direction}}</td>
                     <td>{{p.agence}}</td>
                     <td> <div [style.background]="getColor(p)" class="statut"></div> <p class="stat"> {{p.statut}}</p></td>

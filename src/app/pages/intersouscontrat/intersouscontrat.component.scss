@@ -1,28 +1,3 @@
-.demande {
-    background-color: white;
-    margin-top: 10px;
-    padding: 10px 20px;
-    display: grid;
-    grid-template-columns: 35px 1fr 130px;
-}
-.image {
-    img {
-        height: 29px;
-        width: 29px;
-        margin-top: 10px;
-    }
-}
-.detail{
-    font-size: 16px;
-    font-weight: normal;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: normal;
-    letter-spacing: normal;
-    color: #222222;
-    margin-top: 15px;
-    margin-left: 20px;
-}
 .detail1 {
     font-size: 18px;
     font-weight: bold;
@@ -32,23 +7,6 @@
     letter-spacing: -0.1px;
     color: #222222;
     margin: 0;
-}
-.button1 {
-    width: 122px;
-    height: 50px;
-    background-color: #f16e00;
-    border: none;
-    color: white;
-    font-size: 18px;
-    font-weight: bold;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: 1.11;
-    letter-spacing: -0.2px;
-    color: #ffffff;
-    cursor: pointer;
-    outline: none;
-   // margin-top: 10px;
 }
 .tableau {
     margin-top: 20px;
@@ -165,7 +123,11 @@ table {
   .id {
       width: 50px;
   }
-
+.photo {
+    width: 33px;
+    height: 33px;
+    border-radius: 50%;
+}
   jw-modal {
       position: relative;
       h1{

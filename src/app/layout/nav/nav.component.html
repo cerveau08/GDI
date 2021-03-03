@@ -1,5 +1,5 @@
 <nav *ngIf="scrWidth>991">
-    <div *ngFor="let p of eventSources ;let i = index" 
+    <div *ngFor="let p of menus ;let i = index" 
          [style.background]="selected==i?'red':'grey'" (click)="selected=i">
          <li [style.marginTop.px]="getMargin(p)">
             <a class="nav-link" [routerLink]="p.path"  [routerLinkActive]="['active']" style="text-decoration: none;">

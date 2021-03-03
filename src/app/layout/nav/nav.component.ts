@@ -16,154 +16,220 @@ export class NavComponent implements OnInit {
   public click: any;
   public click1: any;
   public click2: any;
+  public role: any;
+  public menus: any;
   public eventSources = [
     {
-      id: 1,
-      title: 'Tableau de bord',
-      path: '/',
-      icon: "home",
-      color: 'primary'
-    },
-    {
-      id: 2,
-      title: 'Tableau de bord drh',
+      id: 1, title: 'Tableau de bord',
+      path: '/', icon: "home",
+    },{
+      id: 2, title: 'Tableau de bord drh',
       path: 'homedrh',
       icon: "home",
-      color: 'primary'
-    },
-    {
-      id: 2,
-      title: 'Ma Restauration',
-      path: 'restauration',
-      icon: "person",
-      color: 'primary'
-    },
-    {
-      id: 2,
-      title: 'Interimaires',
-    //  path: '/privacy-policy',
-      icon: "person",
-      icon2: "expand_more",
-      icon3: "expand_less",
-      click: 0,
-      color: 'primary',
-      activeChoice: -1,
-      liste: [
-        {
-          id: 1,
-          title: 'Liste sous contrat',
-          path: '/',
-        },
-        {
-          id: 2,
-          title: 'Liste en fin de contrat',
-          path: '/privacy-policy',
-        },
-        {
-          id: 3,
-          title: 'restauration',
-          path: '/',
-        },
-        {
-          id: 4,
-          title: 'Ajouter',
-          path: '/privacy-policy',
+    },{
+      id: 2, title: 'Ma Restauration',
+      path: 'restauration',icon: "person",
+    },{
+      id: 2,  title: 'Interimaires',
+      icon: "person",  icon2: "expand_more", icon3: "expand_less",
+      click: 0,  activeChoice: -1,
+      liste: [{
+          id: 1,  title: 'Liste sous contrat',  path: '/',
+        }, {
+          id: 2, title: 'Liste en fin de contrat',  path: '/privacy-policy',
+        },{
+          id: 3,  title: 'restauration',  path: '/',
+        },{
+          id: 4,  title: 'Ajouter',  path: '/privacy-policy',
         },
       ]
-    },
-    {
-      id: 3,
-      title: 'Agence d\'interim',
-     // path: '/',
-      icon: "local_mall",
-      icon2: "expand_more",
-      icon3: "expand_less",
-      click: false,
-      color: 'primary',
-      activeChoice: -1,
+    }, {
+      id: 3,  title: 'Agence d\'interim',
+      icon: "local_mall",  icon2: "expand_more",  icon3: "expand_less",
+      click: false,  activeChoice: -1,
       liste: [
         {
-          title: 'Liste Agence',
-          path: '/',
-        },
-        {
-          title: 'Ajouter Agence',
-          path: '/privacy-policy',
+          title: 'Liste Agence',  path: '/',
+        },{
+          title: 'Ajouter Agence',  path: '/privacy-policy',
         },
       ]
-    },
-    {
-      id: 4,
-      title: 'Attestations Présence',
-      path: '/',
-      icon: "grade",
-      color: 'primary'
-    },
-    {
-      id: 5,
-      title: 'Mes Demandes',
-      path: 'demande',
-      icon: "local_mall",
-      color: 'primary'
-    },
-    {
-      id: 4,
-      title: 'Mon Manager',
-      path: 'manager',
-      icon: "grade",
-      color: 'primary'
-    },
-    {
-      id: 6,
-      title: 'Manager',
-     // path: '',
-      icon: "grade",
-      icon2: "expand_more",
-      icon3: "expand_less",
-      click: false,
-      color: 'primary',
-      activeChoice: -1,
-      liste: [
-        {
-          title: 'Liste',
-          path: '/privacy-policy',
-        },
-        {
-          title: 'Ajouter',
-          path: '/',
+    },{
+      id: 4,  title: 'Attestations Présence',
+      path: '/',  icon: "grade",
+    }, {
+      id: 5,  title: 'Mes Demandes',
+      path: 'demande',  icon: "local_mall",
+    },{
+      id: 4,  title: 'Mon Manager',
+      path: 'manager',  icon: "grade",
+    },{
+      id: 6,  title: 'Manager',  icon: "grade",
+      icon2: "expand_more",  icon3: "expand_less",
+      click: false,  activeChoice: -1,
+      liste: [  {
+          title: 'Liste',  path: '/privacy-policy',
+        },  {
+          title: 'Ajouter',  path: '/',
         },
       ]
-    },
-    {
-      id: 7,
-      title: 'Alertes',
-      path: '/',
-      icon: "query_builder",
-      color: 'primary'
-    },
-    {
-      id: 8,
-      title: 'Mon Compte',
-      path: 'compte',
-      icon: "folder_shared",
-      color: 'primary'
-    },
-    {
-      id: 9,
-      title: 'Statistiques',
-      path: '/',
-      icon: "leaderboard",
-      color: 'primary'
-    },
-    {
-      id: 10,
-      title: 'Statistiques',
-      path: '/',
-      icon: "settings",
-      color: 'Paramètres'
+    },{
+      id: 7,  title: 'Alertes',
+      path: '/',  icon: "query_builder",
+    },{
+      id: 8,  title: 'Mon Compte',
+      path: 'compte',  icon: "folder_shared",
+    },{
+      id: 9,  title: 'Statistiques',
+      path: '/',  icon: "leaderboard",
+    },{
+      id: 10,  title: 'Statistiques',
+      path: '/',  icon: "settings",
     },
   ];
 
+  public internav = [
+    {
+      id: 1, title: 'Tableau de bord',
+      path: '/', icon: "home",
+    }, {
+      id: 5,  title: 'Mes Demandes',
+      path: 'demande',  icon: "local_mall",
+    },{
+      id: 4,  title: 'Mon Manager',
+      path: 'manager',  icon: "grade",
+    },
+    {
+      id: 3,  title: 'Mon Agence d\'interim',
+      icon: "local_mall",  path: 'monagence',
+      click: false,  activeChoice: -1,
+    },{
+      id: 8,  title: 'Mon Compte',
+      path: 'compte',  icon: "folder_shared",
+    }
+  ];
+
+  public drhnav = [
+    {
+      id: 1, title: 'Tableau de bord',
+      path: 'homedrh',
+      icon: "home",
+    },{
+      id: 3,  title: 'Interimaires',
+      icon: "person",  icon2: "expand_more", icon3: "expand_less",
+      click: 0,  activeChoice: -1,
+      liste: [{
+          id: 1,  title: 'Liste sous contrat',  path: 'souscontrat',
+        }, {
+          id: 2, title: 'Liste en fin de contrat',  path: 'fincontrat',
+        },{
+          id: 3,  title: 'restauration',  path: 'restauration',
+        },{
+          id: 4,  title: 'Ajouter',  path: 'ajouterinter',
+        },
+      ]
+    }, {
+      id: 4,  title: 'Agence d\'interim',
+      icon: "local_mall",  icon2: "expand_more",  icon3: "expand_less",
+      click: false,  activeChoice: -1,
+      liste: [
+        {
+          title: 'Liste Agence',  path: 'listagence',
+        },{
+          title: 'Ajouter Agence',  path: 'ajouteragence',
+        },
+      ]
+    },{
+      id: 5,  title: 'Manager',  icon: "grade",
+      icon2: "expand_more",  icon3: "expand_less",
+      click: false,  activeChoice: -1,
+      liste: [  {
+          title: 'Liste',  path: 'listmanager',
+        }, {
+          title: 'Ajouter',  path: 'ajoutermanager',
+        },
+      ]
+    },{
+      id: 6,  title: 'Alertes',
+      path: 'alertes',  icon: "query_builder",
+    },{
+      id: 8,  title: 'Mon Compte',
+      path: 'compte',  icon: "folder_shared",
+    },{
+      id: 9,  title: 'Statistiques',
+      path: 'statistique',  icon: "leaderboard",
+    },{
+      id: 10,  title: 'Paramètres',
+      path: 'parametre',  icon: "settings",
+    },
+  ];
+
+  public agencenav = [
+    {
+      id: 1, title: 'Tableau de bord',
+      path: 'homedrh',
+      icon: "home",
+    },{
+      id: 3,  title: 'Interimaires',
+      icon: "person",  icon2: "expand_more", icon3: "expand_less",
+      click: 0,  activeChoice: -1,
+      liste: [{
+        id: 1,  title: 'Liste sous contrat',  path: 'souscontrat',
+      }, {
+        id: 2, title: 'Liste en fin de contrat',  path: 'fincontrat',
+      },{
+        id: 4,  title: 'Ajouter',  path: 'ajouterinter',
+      },
+      ]
+    }, {
+      id: 4,  title: 'Agence d\'interim',
+      icon: "local_mall",  path: 'listagence',  
+    }, {
+      id: 4,  title: 'Attestation de Présence',
+      icon: "grade", path: 'attestation',   
+    },{
+      id: 6,  title: 'Alertes',
+      path: 'alertes',  icon: "query_builder",
+    },{
+      id: 8,  title: 'Mon Compte',
+      path: 'compte',  icon: "folder_shared",
+    },{
+      id: 9,  title: 'Statistiques',
+      path: 'statistique',  icon: "leaderboard",
+    },{
+      id: 10,  title: 'Paramètres',
+      path: 'parametre',  icon: "settings",
+    },
+  ];
+  
+  public managernav = [
+    {
+      id: 1, title: 'Tableau de bord',
+      path: '/', icon: "home",
+    }, {
+      id: 5,  title: 'Interimaire',
+      path: 'listinter',  icon: "person",
+    },{
+      id: 3,  title: 'Agence d\'interim',
+      icon: "local_mall",  path: 'listagence',
+    },{
+      id: 4,  title: 'Attestations Présence',
+      path: 'attestation',  icon: "grade",
+    },{
+      id: 6,  title: 'Alertes',
+      path: '/',  icon: "query_builder",
+    }
+    ,{
+      id: 8,  title: 'Mon Compte',
+      path: 'compte',  icon: "folder_shared",
+    },{
+      id: 9,  title: 'Statistiques',
+      path: 'statistique',  icon: "leaderboard",
+    },{
+      id: 10,  title: 'Paramètres',
+      path: 'parametre',  icon: "settings",
+    },
+  ];
   scrHeight:any;
   scrWidth:any;
 
@@ -187,6 +253,19 @@ export class NavComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.role = localStorage.getItem('user')
+    if(this.role == "inter") {
+      this.menus = this.internav;
+    } else if(this.role == "drh") {
+      this.menus = this.drhnav;
+    } else if(this.role == "agence") {
+      this.menus = this.agencenav;
+    } else if(this.role == "manager") {
+      this.menus = this.managernav;
+    } else {
+      this.menus = this.eventSources
+    }
+    return this.menus;
   }
   onClick(i: number, j: number) {
     this.eventSources[i].activeChoice = j;
@@ -224,15 +303,7 @@ export class NavComponent implements OnInit {
     } 
     return margin;
   }
- /* getHeight(event) {
-    let height = 10;
-    if (event.liste) {
-      height = 50;
-    }  else  {
-      height = 1;
-    } 
-    return height;
-  } */
+
   getColor(event) {
     let color = "#ff7900";
     if (event.liste) {
@@ -241,6 +312,22 @@ export class NavComponent implements OnInit {
       color = "#ff7900";
     } 
     return color;
+  }
+
+  getNav() {
+    this.role = localStorage.getItem('user')
+    if(this.role == "inter") {
+      this.menus = this.internav;
+    } else if(this.role == "drh") {
+      this.menus = this.drhnav;
+    } else if(this.role == "agence") {
+      this.menus = this.agencenav;
+    } else if(this.role == "manager") {
+      this.menus = this.managernav;
+    } else {
+      this.menus = this.eventSources
+    }
+    return this.menus;
   }
 }
 

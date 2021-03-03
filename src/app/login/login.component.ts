@@ -36,6 +36,7 @@ export class LoginComponent implements OnInit {
       username: this.loginForm.value.username,
       password: this.loginForm.value.password
     } 
+    localStorage.setItem('user', this.loginForm.value.username);
     console.log(user);
     this.route.navigate(['accueil/home']);
   }

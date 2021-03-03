@@ -27,6 +27,21 @@ import { PasswordforgetMailComponent } from './passwordforget-mail/passwordforge
 import { HomedrhComponent } from './pages/homedrh/homedrh.component';
 import { NgCircleProgressModule } from 'ng-circle-progress';
 import { NgApexchartsModule } from 'ng-apexcharts';
+import { IntersouscontratComponent } from './pages/intersouscontrat/intersouscontrat.component';
+import { InterfincontratComponent } from './pages/interfincontrat/interfincontrat.component';
+import { AjouterinterComponent } from './pages/ajouterinter/ajouterinter.component';
+import { ListermanagerComponent } from './pages/listermanager/listermanager.component';
+import { AddmanagerComponent } from './pages/addmanager/addmanager.component';
+import { AlertComponent } from './pages/alert/alert.component';
+import { StatistiquesComponent } from './pages/statistiques/statistiques.component';
+import { ParametreComponent } from './pages/parametre/parametre.component';
+import { AddagenceComponent } from './pages/addagence/addagence.component';
+import { ListeragenceComponent } from './pages/listeragence/listeragence.component';
+import { AttestationpresenceComponent } from './pages/attestationpresence/attestationpresence.component';
+import { MonagenceComponent } from './pages/monagence/monagence.component';
+import { DetailmanagerComponent } from './pages/detailmanager/detailmanager.component';
+import { DetailinterComponent } from './pages/detailinter/detailinter.component';
+import { DetailagenceComponent } from './pages/detailagence/detailagence.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +59,22 @@ import { NgApexchartsModule } from 'ng-apexcharts';
     RestaurationComponent,
     PasswordforgetComponent,
     PasswordforgetMailComponent,
-    HomedrhComponent
+    HomedrhComponent,
+    IntersouscontratComponent,
+    InterfincontratComponent,
+    AjouterinterComponent,
+    ListermanagerComponent,
+    AddmanagerComponent,
+    AlertComponent,
+    StatistiquesComponent,
+    ParametreComponent,
+    AddagenceComponent,
+    ListeragenceComponent,
+    AttestationpresenceComponent,
+    MonagenceComponent,
+    DetailmanagerComponent,
+    DetailinterComponent,
+    DetailagenceComponent
   ],
   imports: [
     BrowserModule,
