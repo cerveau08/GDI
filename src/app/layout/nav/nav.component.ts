@@ -123,7 +123,7 @@ export class NavComponent implements OnInit {
         }, {
           id: 2, title: 'Liste en fin de contrat',  path: 'fincontrat',
         },{
-          id: 3,  title: 'restauration',  path: 'restauration',
+          id: 3,  title: 'restauration',  path: 'restaurationdrh',
         },{
           id: 4,  title: 'Ajouter',  path: 'ajouterinter',
         },

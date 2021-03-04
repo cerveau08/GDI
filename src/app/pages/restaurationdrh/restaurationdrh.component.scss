@@ -1,3 +1,47 @@
+.progres {
+    background-color: white;
+    height: 82px;
+    padding: 5px 40px;
+    margin-top: 10px;
+}
+.duree{
+    font-size: 18px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.1px;
+    color: #222222;
+    margin-top: 5px;
+    margin-bottom: 0;
+}
+.bar{
+    width: 100%;
+    position: relative;
+    margin-top: 15px;
+}
+#progress_bar{
+    margin-bottom: 20px;
+    height:30px;
+    background-color: #f5f6f9;
+}
+
+#green_bar{
+    height:30px;
+    float:left;
+    overflow:hidden;
+    background:#009393;
+}
+.per{
+    height: 25px;
+    position: absolute;
+    top: -10px;
+    left: 190px;
+    color: white;
+}
+.datefin {
+    text-align: right;
+}
 .detail1 {
     font-size: 18px;
     font-weight: bold;
@@ -50,6 +94,43 @@
         margin-right: 5px;
         margin-bottom: 0;
     }
+}
+.bouton1{
+    margin-top: 5px;
+}
+.button1 {
+    width: 92px;
+    height: 40px;
+    background-color: #f16e00;
+    border: none;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.11;
+    letter-spacing: -0.2px;
+    color: #ffffff;
+    cursor: pointer;
+    outline: none;
+    margin-left: 20px;
+}
+.button2 {
+    width: 92px;
+    height: 40px;
+    background-color: #f16e00;
+    border: none;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.11;
+    letter-spacing: -0.2px;
+    color: #ffffff;
+    cursor: pointer;
+    outline: none;
+    margin-left: 20px;
 }
 .filtrer {
     display: flex;
@@ -206,7 +287,14 @@ table {
     height: 20px;
     border-radius: 50%;
     margin: 0 auto;
-   // background-color: red;
+}
+input[type="checkbox"] {
+    height: 15px;
+    width: 15px;
+}
+input:checked:after {
+    background-color: #f3aa21;
+    color: #f16e00;
 }
   @media (max-width: 991px) {
     .exporter{
@@ -217,4 +305,3 @@ table {
         top: 60px;
     }
 }
-  

@@ -25,6 +25,7 @@ import { ManagerComponent } from './pages/manager/manager.component';
 import { RestaurationComponent } from './pages/restauration/restauration.component';
 import { PasswordforgetMailComponent } from './passwordforget-mail/passwordforget-mail.component';
 import { PasswordforgetComponent } from './passwordforget/passwordforget.component';
+import { RestaurationdrhComponent } from './pages/restaurationdrh/restaurationdrh.component';
 
 
 const routes: Routes = [
@@ -55,6 +56,10 @@ const routes: Routes = [
       },
       { path: 'restauration',
         component: RestaurationComponent,
+       //   canActivate: [AuthGuard]
+      },
+      { path: 'restaurationdrh',
+        component: RestaurationdrhComponent,
        //   canActivate: [AuthGuard]
       },
       { path: 'souscontrat',

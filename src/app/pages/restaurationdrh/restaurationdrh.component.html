@@ -1,14 +1,24 @@
+<div class="progres">
+    <p class="duree">Taux de demande de restauration</p>
+    <div class="bar">
+        <div id="progress_bar">
+            <div id="green_bar" [style.width]="getwidth()">&nbsp;</div>
+        </div>
+        <div class="per"><p>92% demandes Effectuées</p></div>
+    </div>
+</div>
+<form [formGroup]="form">
 <div class="tableau">
-    <p class="detail1">Liste des interimaires sous contrat</p>
+    <p class="detail1">Liste des interimaires fin de contrat</p>
     <div class="exporter">
         <p class="export">Exporter</p>
         <div class="csv" style="cursor: pointer;">
             <p class="csv1">CSV</p>
             <mat-icon fontSet="material-icons-outlined">unfold_more</mat-icon>
         </div>
-        <div class="filtrer" style="cursor: pointer;">
-            <p class="filtre" [(ngModel)]="filterterm">Filtre</p>
-            <mat-icon fontSet="material-icons-outlined">tune</mat-icon>
+        <div class="bouton1">
+            <button  class="button1" (click)="submitForm()" >Valider</button>
+            <button  class="button2" (click)="annuler1()">Annuler</button>
         </div>
     </div>
     <table style="overflow-x:auto;">
@@ -27,21 +37,23 @@
                         <mat-icon class="updown" fontSet="material-icons-outlined">unfold_more</mat-icon>
                     </div>
                 </th>
-                <th>Manager</th>
+                <th>Somme</th>
                 <th>Direction</th>
-                <th>Agence</th>
-                <th>Fin de Contrat</th>
+                <th>Etat</th>
+                <th>Date</th>
+                <th><input [checked]="parentCk" (change)="parentcheck($event)" type="checkbox"/></th>
         </tr>
         </thead>
         <tbody>
-            <tr (click)="openDetail(p)" style="cursor: pointer;" *ngFor="let p of datas | filter:filterterm | paginate: { itemsPerPage: 8, currentPage: p }; let i = index">
+            <tr *ngFor="let p of datas | filter:filterterm | paginate: { itemsPerPage: 8, currentPage: p }; let i = index">
                 <td class="id1">{{p.id}}</td>
                 <td>{{p.prenom}}</td>
                 <td>{{p.nom}}</td>
-                <td> <img class="photo" src="../assets/images/{{p.photo}}"></td>
+                <td> {{p.dateDebut | date: 'yyyydd'}}</td>
                 <td>{{p.direction}}</td>
-                <td>{{p.agence}}</td>
-                <td> <p [style.color]="getcolor(p)">{{p.dateFin  | date:'dd/MM/yyyy'}}</p> </td>
+                <td>{{p.statut}}</td>
+                <td>{{p.dateFin | date: 'dd/MM/yyyy'}}</td>
+                <td> <input [checked]="ck" type="checkbox" [value]="p.id" (change)="onCheckboxChange($event)"/></td>
             </tr>
         </tbody>
         
@@ -50,3 +62,4 @@
         <pagination-controls (pageChange)="p = $event" previousLabel="Prcédent" nextLabel="Suivant"></pagination-controls>
     </div>
 </div>
+</form>

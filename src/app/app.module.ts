@@ -42,6 +42,9 @@ import { MonagenceComponent } from './pages/monagence/monagence.component';
 import { DetailmanagerComponent } from './pages/detailmanager/detailmanager.component';
 import { DetailinterComponent } from './pages/detailinter/detailinter.component';
 import { DetailagenceComponent } from './pages/detailagence/detailagence.component';
+import { DatePipe } from '@angular/common';
+import { RestaurationdrhComponent } from './pages/restaurationdrh/restaurationdrh.component';
+import { NgxFileSaverModule } from '@clemox/ngx-file-saver';
 
 @NgModule({
   declarations: [
@@ -74,7 +77,8 @@ import { DetailagenceComponent } from './pages/detailagence/detailagence.compone
     MonagenceComponent,
     DetailmanagerComponent,
     DetailinterComponent,
-    DetailagenceComponent
+    DetailagenceComponent,
+    RestaurationdrhComponent
   ],
   imports: [
     BrowserModule,
@@ -88,9 +92,10 @@ import { DetailagenceComponent } from './pages/detailagence/detailagence.compone
     FormsModule,
     ModalModule,
     NgApexchartsModule,
+    NgxFileSaverModule,
     NgCircleProgressModule.forRoot({})
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
