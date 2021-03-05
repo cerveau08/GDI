@@ -45,6 +45,7 @@ import { DetailagenceComponent } from './pages/detailagence/detailagence.compone
 import { DatePipe } from '@angular/common';
 import { RestaurationdrhComponent } from './pages/restaurationdrh/restaurationdrh.component';
 import { NgxFileSaverModule } from '@clemox/ngx-file-saver';
+import { NgxDocViewerModule } from 'ngx-doc-viewer';
 
 @NgModule({
   declarations: [
@@ -93,6 +94,7 @@ import { NgxFileSaverModule } from '@clemox/ngx-file-saver';
     ModalModule,
     NgApexchartsModule,
     NgxFileSaverModule,
+    NgxDocViewerModule,
     NgCircleProgressModule.forRoot({})
   ],
   providers: [DatePipe],

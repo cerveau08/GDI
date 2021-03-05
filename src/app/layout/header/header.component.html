@@ -8,6 +8,7 @@
     <div class="search">
         <mat-icon fontSet="material-icons-outlined" >search</mat-icon>
         <input [(ngModel)]="filterterm" class="input-search" type="text"  name="search" id="" placeholder="Rechercher interimaires, Agences et Manager">
+        <button  class="buttona" (click)="openModal('custom-modal-50');">Recherche avancée</button>
     </div>
     <div class="notif-chat-profil" style="margin-left: auto;margin-right: 0;">
         <div style="cursor: pointer;" class="elmt notif" title="notifications">
@@ -43,3 +44,32 @@
         </div>
     </div>
 </nav>
+
+<!--modal-->
+<div class="modal">
+  <jw-modal id="custom-modal-50">
+      <h1>Demande restauration</h1>
+      <mat-icon style="cursor: pointer;" (click)="closeModal('custom-modal-50');" class="clear">clear</mat-icon>
+      <div>
+          <form [formGroup]="demandeForm">
+              <div class="forms">
+                  <div class="mois">
+                      <select class="custom-select" formControlName="moi">
+                          <option value="" disabled selected hidden>Mois...</option>
+                          <option *ngFor="let moi of mois" [ngValue]="moi">{{moi}}</option>
+                       </select>
+                  </div>
+                  <div class="sommes">
+                      <select class="custom-select" formControlName="somme">
+                          <option value="" disabled selected hidden>Somme...</option>
+                          <option *ngFor="let som of sommes" [ngValue]="som">{{som}}</option>
+                      </select>
+                  </div>
+                  <div class="bouton">
+                      <button (click)="onSubmit()" class="button">valider</button>
+                  </div>
+              </div>
+          </form>
+      </div>
+  </jw-modal>
+</div>

@@ -66,9 +66,6 @@ export class RestaurationComponent implements OnInit {
     console.log(demande);
   }
 
-  registrationForm = this.fb.group({
-    moisSelect: ['']
-  })
 
   openModal(id: string) {
     this.modalService.open(id);

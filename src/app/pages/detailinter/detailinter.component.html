@@ -47,16 +47,35 @@
     </div>
     <div class="lesbouton">
         <button  class="button1" (click)="openModal('custom-modal-1')">Contrat</button>
-        <button  class="button2" (click)="openModal('custom-modal-1')">Attestations de présence</button>
-        <button  class="button3" (click)="openModal('custom-modal-1')">Fiche de poste</button>
+        <button  class="button2" (click)="openModal('custom-modal-2')">Attestations de présence</button>
+        <button  class="button3" (click)="openModal('custom-modal-3')">Fiche de poste</button>
         <button  class="button4" (click)="openModal('custom-modal-1')">Objectifs</button>
     </div>
 </div>
-
+<!--modal1-->
 <div class="modal">
     <jw-modal id="custom-modal-1">
         <div class="tableau">
             <mat-icon style="cursor: pointer;" (click)="closeModal('custom-modal-1');" class="clear">clear</mat-icon>
+            <p class="dtl1">contrat {{item.prenom}} {{item.nom}}</p>
+            <ngx-doc-viewer 
+               [url]="DemoDoc1" 
+               [viewer]="viewer" 
+               style="width:100%;height:70vh;">
+            </ngx-doc-viewer>
+            <div class="btns2">
+                <button (click)="getfilemodal()"  class="btn2">Télécharger</button>
+                <button   class="btn2a">Arrêter contrat</button>
+            </div>
+        </div>
+    </jw-modal>
+</div>
+
+<!--modal2-->
+<div class="modal">
+    <jw-modal id="custom-modal-2">
+        <div class="tableau">
+            <mat-icon style="cursor: pointer;" (click)="closeModal('custom-modal-2');" class="clear">clear</mat-icon>
             <p class="dtl1">Liste des Attestions de présence</p>
             <div class="grid" *ngFor="let p of donnees">
                <div>
@@ -68,6 +87,24 @@
                <div>
                 <button (click)="get(p)"  class="btn1">Télécharger PDF</button>
                </div>
+            </div>
+        </div>
+    </jw-modal>
+</div>
+
+<!--modal3-->
+<div class="modal">
+    <jw-modal id="custom-modal-3">
+        <div class="tableau">
+            <mat-icon style="cursor: pointer;" (click)="closeModal('custom-modal-3');" class="clear">clear</mat-icon>
+            <p class="dtl1">Fiche de Poste Développeur web</p>
+            <ngx-doc-viewer 
+               [url]="DemoDoc1" 
+               [viewer]="viewer" 
+               style="width:100%;height:70vh;">
+            </ngx-doc-viewer>
+            <div class="btns3">
+                <button (click)="getfilemodal()"  class="btn2">Télécharger</button>
             </div>
         </div>
     </jw-modal>

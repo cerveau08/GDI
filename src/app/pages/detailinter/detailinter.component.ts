@@ -44,6 +44,11 @@ export class DetailinterComponent implements OnInit {
     matricule: "060210",
     nomInt: "5"
   }];
+  viewer = 'google';  
+  selectedType = 'docx';   
+  DemoDoc="http://www.africau.edu/images/default/sample.pdf" 
+  DemoDoc1="https://file-examples.com/wp-content/uploads/2017/02/file-sample_100kB.doc"
+  DemoDoc2="https://www.le.ac.uk/oerresources/bdra/html/resources/example.txt" 
   constructor(private activeroute: ActivatedRoute,
               private modalService: ModalService,
               private dataService: DataService,
@@ -60,6 +65,9 @@ export class DetailinterComponent implements OnInit {
 
   public get(p) {
     this.fileSaver.saveUrl(p.pathfile, p.file);
+  }
+  public getfilemodal() {
+    this.fileSaver.saveUrl(this.DemoDoc, 'contrat');
   }
 
   getwidth() {
