@@ -1,0 +1,36 @@
+<form [formGroup]="infoForm">
+    <div formGroupName="contrat">
+      <p class="matri">Matricule: <span>{{matricule}}</span> </p>
+      <div class="grid">
+        <div class="photo">
+          <img *ngIf="!url1==true" src="/assets/images/upload.png">
+          <img [src]="url1" height="60">
+          <input formControlName="filecontrat"  class="button" type="file" (change)="readUrl($event)" >
+        </div>
+        <div class="others">
+          <div class="input2">
+            <input type="text" formControlName="type" placeholder="type de contrat">
+            <input class="input3" type="text" formControlName="agence" placeholder="Agence d'interim">
+          </div>
+          <div class="input2">
+            <input type="text" formControlName="dateDebut" placeholder="Date Début">
+            <input class="input3" type="text" formControlName="dateFin" placeholder="Date Fin">
+          </div> 
+          <div class="input2">
+            <input type="text" formControlName="categorie" placeholder="Catégorie">
+            <input class="input3" type="text" formControlName="salaire" placeholder="Montant Salaire Brut">
+          </div>
+          <div class="input2">
+            <input type="text" formControlName="structure" placeholder="Structure">
+            <input class="input3" type="text" formControlName="direction" placeholder="Direction">
+          </div>
+          <div class="input2">
+            <input type="text" formControlName="departement" placeholder="Département">
+            <input class="input3" type="text" formControlName="service" placeholder="Service">
+          </div>
+      </div>
+      </div>
+    </div>
+    <button class="button1"  type="button" mat-button matStepperPrevious>Back</button>
+    <button class="button2"  type="button" (click)="submitted2()" mat-button matStepperNext>Suivant</button>
+</form>

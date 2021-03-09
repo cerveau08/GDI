@@ -1,0 +1,42 @@
+<form [formGroup]="infoForm">
+  <div formGroupName="infopersonnel">
+    <p class="matri">Matricule: <span>{{matricule}}</span> </p>
+    <div class="grid">
+      <div class="photo">
+        <img *ngIf="!url1==true" src="/assets/images/upload.png">
+        <img [src]="url1" height="60">
+        <input formControlName="photo" class="button" type="file" (change)="readUrl($event)" >
+      </div>
+      <div class="others">
+        <div class="input1">
+          <input type="text" formControlName="numeroCni" placeholder="Numero CNI">
+        </div>
+        <div class="input2">
+          <input type="text" formControlName="prenom" placeholder="Prenom">
+          <input class="input3" type="text" formControlName="nom" placeholder="Nom">
+        </div>
+        <div class="input1">
+          <input type="text" formControlName="email" placeholder="Email">
+        </div>
+        <div class="input2">
+          <input type="text" formControlName="dateNais" placeholder="Date de Naissance">
+          <input class="input3" type="text" formControlName="lieuNais" placeholder="Lieu de Naissance">
+        </div>
+        <div class="input2">
+          <input type="text" formControlName="genre" placeholder="Genre">
+          <input class="input3" type="text" formControlName="situationmatri" placeholder="Situation Matrimoniale">
+        </div>
+        <div class="input2">
+          <input type="text" formControlName="diplome" placeholder="Diplome">
+          <input class="input3" type="text" formControlName="ecole" placeholder="Université et Ecole">
+        </div>
+      </div>
+    </div>
+    <div >
+    </div>
+  </div>
+  <div class="buttons">
+    <button class="button1" type="button">Annuler</button>
+    <button class="button2" (click)="submitted1()" type="button" mat-button matStepperNext>Suivant</button>
+  </div>
+</form>

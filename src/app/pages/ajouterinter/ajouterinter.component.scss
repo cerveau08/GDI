@@ -1,0 +1,75 @@
+.all {
+    background-color: white;
+    margin-top: 10px;
+    padding: 30px;  
+}
+.all1 {
+  width: 720px;
+  margin: 0 auto;
+}
+.ajouter {
+    font-size: 34px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: 0.7px;
+    color: #222222;
+    margin-top: 0;
+    margin-left: 10px;
+}
+.titre {
+    font-size: 14px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.14;
+    letter-spacing: -0.1px;
+    text-align: center;
+    color: #ffffff;
+    margin-top: 8px;
+}
+.form {
+  position: relative;
+}
+.triangle1 {
+  position: absolute;
+  top: 0;
+  left: 232px;
+  width: 0; 
+  height: 0; 
+  border-top: 20px solid transparent;
+  border-bottom: 21px solid transparent;
+//  border-left: 20px solid green;
+}
+.triangle2 {
+  position: absolute;
+  top: 0;
+  left: 464px;
+  width: 0; 
+  height: 0; 
+  border-top: 20px solid transparent;
+  border-bottom: 21px solid transparent;
+//  border-left: 20px solid green;
+}
+.triangle3 {
+  position: absolute;
+  top: 0;
+  left: 696px;
+  width: 0; 
+  height: 0; 
+  border-top: 20px solid transparent;
+  border-bottom: 21px solid transparent;
+//  border-left: 20px solid green;
+}
+.head {
+    width: 232px;
+    position: relative;
+}
+.header {
+  padding-top: 5px;
+  width: 232px;
+  height: 36px;
+  background: #000000;
+  position: relative;
+}

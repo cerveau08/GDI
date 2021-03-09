@@ -1,0 +1,9 @@
+<form [formGroup]="infoForm">
+    <div formGroupName="poste">
+      <input type="text" formControlName="titre" placeholder="Titre du Poste">
+      <input type="text" formControlName="matriculemanager" placeholder="Matricule manageur">
+      <input type="text" formControlName="ficheposte" placeholder="Nom">
+    </div>
+    <button mat-button matStepperPrevious>Précédent</button>
+    <button type="button" (click)="submit()" matSteppperNext>Enregistrer</button>
+  </form>

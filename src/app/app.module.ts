@@ -46,6 +46,10 @@ import { DatePipe } from '@angular/common';
 import { RestaurationdrhComponent } from './pages/restaurationdrh/restaurationdrh.component';
 import { NgxFileSaverModule } from '@clemox/ngx-file-saver';
 import { NgxDocViewerModule } from 'ngx-doc-viewer';
+import { InfopersonnelComponent } from './pages/ajouterinter/infopersonnel/infopersonnel.component';
+import { ContratComponent } from './pages/ajouterinter/contrat/contrat.component';
+import { PostaComponent } from './pages/ajouterinter/posta/posta.component';
+import { MatButtonModule, MatInputModule, MatSidenavModule, MatStepperModule, MatToolbarModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -79,7 +83,10 @@ import { NgxDocViewerModule } from 'ngx-doc-viewer';
     DetailmanagerComponent,
     DetailinterComponent,
     DetailagenceComponent,
-    RestaurationdrhComponent
+    RestaurationdrhComponent,
+    InfopersonnelComponent,
+    ContratComponent,
+    PostaComponent
   ],
   imports: [
     BrowserModule,
@@ -95,6 +102,11 @@ import { NgxDocViewerModule } from 'ngx-doc-viewer';
     NgApexchartsModule,
     NgxFileSaverModule,
     NgxDocViewerModule,
+    MatStepperModule,
+    MatToolbarModule, 
+    MatButtonModule, 
+    MatSidenavModule,
+    MatInputModule,
     NgCircleProgressModule.forRoot({})
   ],
   providers: [DatePipe],
