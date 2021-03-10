@@ -1,1 +1,56 @@
-<p>addagence works!</p>
+<div class="all">
+    <div class="all1">
+        <p class="p1">Ajouter une Agence</p>
+        <div class="form">
+            <form [formGroup]="infoForm">
+                <div >
+                  <div class="grid">
+                    <div class="photo">
+                      <img *ngIf="!url1==true" src="../assets/images/default.png">
+                      <img [src]="url1" height="60">
+                      <input formControlName="photo" class="button" type="file" (change)="readUrl($event)" >
+                    </div>
+                    <div class="others">
+                      <div class="input1">
+                        <input type="text" formControlName="nom" placeholder="Nom entreprise">
+                      </div>
+                      <div class="input2">
+                        <input type="text" formControlName="directeur" placeholder="Nom Directeur Général">
+                        <input class="input3" type="text" formControlName="numerodg" placeholder="Numéro DG">
+                      </div>
+                      <div class="input1">
+                        <input type="text" formControlName="email" placeholder="Email">
+                      </div>
+                      <div class="input2">
+                        <input type="text" formControlName="mobile" placeholder="Numéro téléphone Mobile">
+                        <input class="input3"  type="text" formControlName="fixe" placeholder="Numéro Fixe">
+                      </div>
+                      <div class="input1">
+                        <input type="text" formControlName="website" placeholder="Site web">
+                      </div>
+                      <div class="input4">
+                        <textarea type="textarea" formControlName="adresse" placeholder="Adresse"></textarea>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="trait"></div>
+                    <div class="boutons">
+                        <p class="p2">Documents Entreprise</p>
+                        <div class="buttons1">
+                            <input formControlName="ninea" class="button3" type="file" (change)="readUrl1($event)" >
+                            <input formControlName="rccm" class="button4" type="file" (change)="readUrl1($event)" >
+                            <input formControlName="contrat" class="button5" type="file" (change)="readUrl1($event)" >
+                            <input formControlName="cnidg" class="button6" type="file" (change)="readUrl1($event)" >
+                        </div>
+                    </div>
+                  <div >
+                  </div>
+                </div>
+                <div class="buttons">
+                  <button class="button2" (click)="submitted1()" type="button">Enregistrer</button>
+                </div>
+              </form>
+              
+        </div>
+    </div>
+</div>

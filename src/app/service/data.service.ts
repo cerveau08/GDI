@@ -34,6 +34,7 @@ export class DataService {
       matricule: "060210",
       statut: "non",
       file: "3.pdf",
+      agentimg: "oval1.png",
       pathfile: "../assets/doc/3.pdf",
       nomInt: "4"
     },
@@ -65,6 +66,7 @@ export class DataService {
       matricule: "060210",
       statut: "non",
       file: "1.pdf",
+      agentimg: "oval.png",
       pathfile: "../assets/doc/1.pdf",
       nomInt: "4"
     },
@@ -96,6 +98,7 @@ export class DataService {
       matricule: "060210",
       statut: "non",
       file: "4.pdf",
+      agentimg: "oval1.png",
       pathfile: "../assets/doc/4.pdf",
       nomInt: "5"
     },
@@ -126,6 +129,7 @@ export class DataService {
       matricule: "060210",
       statut: "non",
       file: "5.pdf",
+      agentimg: "oval.png",
       pathfile: "../assets/doc/5.pdf",
       postem: "Chef de Services Production et Maintenance Applicatif",
       nomInt: "4"
@@ -158,6 +162,7 @@ export class DataService {
       matricule: "060210",
       statut: "non",
       file: "2.pdf",
+      agentimg: "oval1.png",
       pathfile: "../assets/doc/2.pdf",
       nomInt: "5"
     },
@@ -189,6 +194,7 @@ export class DataService {
       matricule: "060210",
       statut: "non",
       file: "1.pdf",
+      agentimg: "oval.png",
       pathfile: "../assets/doc/1.pdf",
       nomInt: "4"
     },
@@ -220,6 +226,7 @@ export class DataService {
       matricule: "060210",
       statut: "non",
       file: "3.pdf",
+      agentimg: "oval1.png",
       pathfile: "../assets/doc/3.pdf",
       nomInt: "5"
     },
@@ -251,6 +258,7 @@ export class DataService {
       statut: "non",
       nomInt: "4",
       file: "1.pdf",
+      agentimg: "oval.png",
       pathfile: "../assets/doc/1.pdf",
       postem: "Chef de Services Production et Maintenance Applicatif",
     },
@@ -282,6 +290,7 @@ export class DataService {
       matricule: "060210",
       statut: "non",
       file: "4.pdf",
+      agentimg: "oval1.png",
       pathfile: "../assets/doc/4.pdf",
       nomInt: "4"
     },
@@ -313,6 +322,7 @@ export class DataService {
       matricule: "060210",
       statut: "non",
       file: "5.pdf",
+      agentimg: "oval.png",
       pathfile: "../assets/doc/5.pdf",
       nomInt: "4"
     },
@@ -344,6 +354,7 @@ export class DataService {
       statut: "non",
       nomInt: "4",
       file: "2.pdf",
+      agentimg: "oval1.png",
       pathfile: "../assets/doc/2.pdf",
       postem: "Chef de Services Production et Maintenance Applicatif",
     },
@@ -375,6 +386,7 @@ export class DataService {
       matricule: "060210",
       statut: "non",
       file: "5.pdf",
+      agentimg: "oval.png",
       pathfile: "../assets/doc/5.pdf",
       nomInt: "4"
     },
@@ -406,6 +418,7 @@ export class DataService {
       statut: "non",
       nomInt: "4",
       file: "3.pdf",
+      agentimg: "oval1.png",
       pathfile: "../assets/doc/3.pdf",
       postem: "Chef de Services Production et Maintenance Applicatif",
     },
@@ -437,6 +450,7 @@ export class DataService {
       matricule: "060210",
       statut: "non",
       file: "2.pdf",
+      agentimg: "oval.png",
       pathfile: "../assets/doc/1.pdf",
       nomInt: "4"
     },
@@ -468,6 +482,7 @@ export class DataService {
       matricule: "060210",
       statut: "non",
       file: "3.pdf",
+      agentimg: "oval1.png",
       nomInt: "4"
     },
     {
@@ -498,6 +513,7 @@ export class DataService {
       matricule: "060210",
       statut: "non",
       file: "5.pdf",
+      agentimg: "oval.png",
       pathfile: "../assets/doc/1.pdf",
       nomInt: "4"
     },
@@ -529,6 +545,7 @@ export class DataService {
       matricule: "060210",
       statut: "non",
       file: "2.pdf",
+      agentimg: "oval1.png",
       nomInt: "4"
     },
     {
@@ -559,6 +576,7 @@ export class DataService {
       matricule: "060210",
       statut: "non",
       file: "5.pdf",
+      agentimg: "oval.png",
       pathfile: "../assets/doc/1.pdf",
       nomInt: "4"
     },
@@ -589,6 +607,7 @@ export class DataService {
       matricule: "060210",
       statut: "non",
       file: "1.pdf",
+      agentimg: "oval1.png",
       pathfile: "../assets/doc/1.pdf",
       postem: "Chef de Services Production et Maintenance Applicatif",
       nomInt: "5"
@@ -622,6 +641,7 @@ export class DataService {
       statut: "non",
       nomInt: "4",
       file: "4.pdf",
+      agentimg: "oval.png",
       pathfile: "../assets/doc/1.pdf",
     },
   ];

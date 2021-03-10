@@ -1,1 +1,39 @@
-<p>listeragence works!</p>
+<div class="all">
+    <div class="">
+        <p class="p1">Liste des Agences d’interim</p>
+        <div class="liste">
+            <div class="item" *ngFor="let p of datas | paginate: { itemsPerPage: 4, currentPage: p }; let i = index">
+                <div class="image">
+                    <img src="../assets/images/{{p.agentimg}}" alt="">
+                </div>
+                <div class="info">
+                    <p class="nom">{{p.agence}}</p>
+                    <div class="user">
+                        <mat-icon >person</mat-icon>
+                        <p class="username">{{p.prenom}} {{p.nom}}</p>
+                    </div>
+                    <div class="contact">
+                        <div class="phone">
+                            <mat-icon >local_phone</mat-icon>
+                            <p class="telephone">{{p.telephone}}</p>
+                        </div>
+                        <div class="mail">
+                            <mat-icon >mail</mat-icon>
+                            <p class="email">{{p.email}}</p>
+                        </div>
+                    </div>
+                    <div class="adresse">
+                        <mat-icon >room</mat-icon>
+                        <p class="adres">{{p.adresse}}</p>
+                    </div>
+                </div>
+                <div class="boutons">
+                    <button class="button1">Modifier</button>
+                    <button class="button2">Afficher</button>
+                    <button class="button3">+ Utilisateurs</button>
+                </div>
+            </div>
+            <pagination-controls (pageChange)="p = $event" previousLabel="Prcédent" nextLabel="Suivant"></pagination-controls>
+        </div>
+    </div>
+</div>

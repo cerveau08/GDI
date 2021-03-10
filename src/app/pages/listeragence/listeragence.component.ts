@@ -1,3 +1,4 @@
+import { DataService } from 'src/app/service/data.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListeragenceComponent implements OnInit {
 
-  constructor() { }
+  datas: any;
+  constructor(private dataService: DataService) { }
 
   ngOnInit() {
+    this.datas = this.dataService.getData();
   }
 
 }

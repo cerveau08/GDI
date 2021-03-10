@@ -1,9 +1,34 @@
-<form [formGroup]="infoForm">
+<div *ngIf="!submited">
+  <form [formGroup]="infoForm">
     <div formGroupName="poste">
-      <input type="text" formControlName="titre" placeholder="Titre du Poste">
-      <input type="text" formControlName="matriculemanager" placeholder="Matricule manageur">
-      <input type="text" formControlName="ficheposte" placeholder="Nom">
+      <div class="center">
+        <div class="input2">
+          <input type="text" formControlName="titre" placeholder="Titre du Poste">
+          <input class="input3" type="text" formControlName="matriculemanager" placeholder="Matricule manageur">
+        </div>
+        <div class="photo">
+          <img *ngIf="!url1==true" src="/assets/images/upload.png">
+          <img [src]="url1" height="60">
+          <input formControlName="ficheposte" class="button" type="file" (change)="readUrl($event)" >
+        </div>
+      </div>
     </div>
-    <button mat-button matStepperPrevious>Précédent</button>
-    <button type="button" (click)="submit()" matSteppperNext>Enregistrer</button>
-  </form>
+    <button class="button1" mat-button matStepperPrevious>Précédent</button>
+    <button class="button2" type="button" (click)="submit()" matSteppperNext>Enregistrer</button>
+</form>
+</div>
+<div class="message" *ngIf="submited">
+  <div class="grid1">
+    <div class="image">
+      <img src="../assets/images/valide.png">
+    </div>
+    <div class="text">
+      <p class="p1">
+        L’agent <span>Mouhamadou Lamine MBODJI</span>  a été ajouté avec succès à la liste des interimaires pour une durée de <span>7 mois</span>. <br> Une notification sera envoyée à <span>son manageur</span> et à l’<span>agence d’interim</span>.
+      </p>
+    </div>
+  </div>
+  <button class="button3" (click)="removeItem()" routerLink="/accueil/ajouterinter">Ajouter un autre</button>
+  <button class="button4" (click)="removeItem()" routerLink="/accueil/souscontrat">Liste interimaires</button>
+  <button class="button5" (click)="removeItem()" routerLink="/accueil/homedrh">Tableau de bord</button>
+</div>

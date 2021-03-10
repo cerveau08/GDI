@@ -1,0 +1,156 @@
+.all {
+    background: white;
+    margin-top: 10px;
+    padding-top: 30px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.p1 {
+    font-size: 18px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.1px;
+    color: #222222;
+    margin-top: 0px;
+    margin-bottom: 0;
+}
+.liste {
+    padding: 10px 0;
+}
+.item {
+    border: 2px solid #979797;
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: 140px 1fr 130px;
+}
+.image img {
+    width: 128px;
+    height: 128px;
+    margin-top: 20px;
+    margin-left: 10px;
+}
+.nom {
+    font-size: 24px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.13px;
+    color: #ff7900;
+    margin: 10px 20px 0 20px;
+}
+.user {
+    display: flex;
+    mat-icon {
+       color: #009393;
+       font-size: 30px;
+       margin-left: 15px;
+       margin-top: 5px;
+    }
+    .username {
+        font-size: 14px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: -0.08px;
+        color: #000000;
+        margin-top: 10px;
+        margin-left: 20px;
+    }
+}
+.contact {
+    display: flex;
+    .phone {
+        display: flex;
+        mat-icon {
+            color: #009393;
+            font-size: 30px;
+            margin-left: 15px;
+            margin-top: 5px;
+        }
+        .telephone {
+            font-size: 14px;
+            font-weight: normal;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: normal;
+            letter-spacing: -0.08px;
+            color: #000000;
+            margin-top: 10px;
+            margin-left: 20px;
+        }
+    }
+    .mail {
+        display: flex;
+        margin-left: 30px;
+        mat-icon {
+            color: #009393;
+            font-size: 30px;
+            margin-left: 15px;
+            margin-top: 5px;
+        }
+        .email {
+            font-size: 14px;
+            font-weight: normal;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: normal;
+            letter-spacing: -0.08px;
+            color: #000000;
+            margin-top: 10px;
+            margin-left: 20px;
+        }
+    }
+}
+.adresse {
+    display: flex;
+    mat-icon {
+       color: #009393;
+       font-size: 30px;
+       margin-left: 15px;
+       margin-top: 5px;
+    }
+    .adres {
+        font-size: 14px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: -0.08px;
+        color: #000000;
+        margin-top: 10px;
+        margin-left: 20px;
+    }
+}
+.button1 {
+    width: 85px;
+    height: 30px;
+    padding: 5px 15px 9px;
+    border: solid 2px #000000;
+    color: #000;
+    background: white;
+    margin-top: 20px;
+    margin-left: 30px;
+}
+.button2 {
+    width: 85px;
+    height: 30px;
+    padding: 8px 15px 9px;
+    border: none;
+    color: white;
+    background: #f16e00;
+    margin-top: 20px;
+    margin-left: 30px;
+}
+.button3 {
+    width: 117px;
+    height: 30px;
+    padding: 5px 15px 9px;
+    border: solid 2px #000000;
+    color: #000;
+    background: white;
+    margin-top: 20px;
+}
