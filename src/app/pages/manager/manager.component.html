@@ -57,16 +57,17 @@
                         </div>
                     </th>
                     <th>Agence</th>
-                    
+                    <th>Fin de contrat</th>
                     <th>Action</th>
             </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let p of datas | filter:filterterm | paginate: { itemsPerPage: 8, currentPage: p }; let i = index">
+                <tr *ngFor="let p of datas | filter:filterterm | paginate: { itemsPerPage: 5, currentPage: p }; let i = index">
                     <td class="id1">{{p.id}}</td>
                     <td>{{p.prenom}}</td>
                     <td>{{p.nom}}</td>
-                    <td>{{p.dateDebut}}</td>
+                    <td>{{p.agence}}</td>
+                    <td>{{p.dateFin | date: "dd/MM/yyyy"}}</td>
                     <td><button  class="button1">Afficher</button></td>
                 </tr>
             </tbody>
