@@ -31,11 +31,13 @@ export class ListeragenceComponent implements OnInit {
       website: new FormControl (''),
       adresse: new FormControl(''),
       photo: new FormControl (''),
+      contrat: new FormControl(''),
+      cnidg: new FormControl (''),
     });
   }
 
   openDetail(data) {
-    this.router.navigate(['/accueil/detailinter'], {
+    this.router.navigate(['/accueil/detailagence'], {
       queryParams: {
         user: JSON.stringify(data)
       }
@@ -53,7 +55,8 @@ export class ListeragenceComponent implements OnInit {
         website: this.agenceForm.value.website,
         adresse: this.agenceForm.value.adresse,
         photo: this.agenceForm.value.photo,
-
+        contrat: this.agenceForm.value.contrat,
+        cnidg: this.agenceForm.value.cnidg,
     } 
     console.log(info);
     return info;

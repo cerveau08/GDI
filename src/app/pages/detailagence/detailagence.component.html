@@ -1,1 +1,150 @@
-<p>detailagence works!</p>
+<div class="all2" >
+    <div class="grid2">
+        <div class="img">
+            <img src="../assets/images/{{item.agentimg}}" alt="">
+        </div>
+        <div class="agence">
+            <p class="nom2">{{item.agence}}</p>
+            <div class="nombre">
+                <div class="total">
+                    <p class="title">Total</p>
+                    <p class="libelle">{{item.dateDebut | date: "Mdd"}}</p>
+                </div>
+                <div class="actif">
+                    <p class="title">Actifs</p>
+                    <p class="libelle">{{item.dateFin | date: "Mdd"}}</p>
+                </div>
+                <div class="archiv">
+                    <p class="title">Archivés</p>
+                    <p class="libelle">{{item.dateDebut | date: "Mdd"}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="info">
+        <div class="pes">
+            <div class="prenom">
+                <mat-icon >person</mat-icon>
+                <p>{{item.prenom}} {{item.nom}}</p>
+            </div>
+            <div class="email2">
+                <mat-icon >mail</mat-icon>
+                <p>{{item.email}}</p>
+            </div>
+            <div class="siteweb">
+                <mat-icon >language</mat-icon>
+                <p>{{item.site}}</p>
+            </div>
+        </div>
+        <div class="pa">
+            <div class="phone2">
+                <mat-icon >local_phone</mat-icon>
+                <p>{{item.telephone}}</p>
+            </div>
+            <div class="adresse2">
+                <mat-icon >room</mat-icon>
+                <p>{{item.adagen}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="trait"></div>
+    <p class="utilisateur">Liste des utilisateurs</p>
+    <div class="users">
+        <div class="user1">
+            <div class="photo1">
+                <img src="../assets/images/{{item.photo}}" alt="">
+            </div>
+            <div class="profil">
+                <p class="profil1">{{item.manager}}</p>
+                <p class="profil2">{{item.poste}}</p>
+            </div>
+        </div>
+        <div class="user2">
+            <div class="photo1">
+                <img src="../assets/images/{{item.photo}}" alt="">
+            </div>
+            <div class="profil">
+                <p class="profil1">{{item.manager}}</p>
+                <p class="profil2">{{item.poste}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="btns">
+        <button class="buttonaffi" (click)="openModal('custom-modal-1')" type="button">Afficher contrat</button>
+        <button class="buttonmodif" (click)="openModal('custom-modal-2')" type="button">Modifier</button>
+        <button class="buttonsupp" (click)="delete()" type="button">Supprimer</button>
+    </div>
+</div>
+
+<!--modal-1-->
+<div class="modal">
+    <jw-modal id="custom-modal-1">
+        <div class="tableau">
+            <mat-icon style="cursor: pointer;" (click)="closeModal('custom-modal-1');" class="clear">clear</mat-icon>
+            <p class="dtl1">contrat {{item.agence}}</p>
+            <ngx-doc-viewer 
+               [url]="DemoDoc" 
+               [viewer]="viewer" 
+               style="width:100%;height:70vh;">
+            </ngx-doc-viewer>
+            <div class="btns2">
+                <button (click)="getfilemodal()"  class="btn2">Télécharger</button>
+                <button   class="btn2a">Arrêter contrat</button>
+            </div>
+        </div>
+    </jw-modal>
+</div>
+
+ <!--modal-2-->
+ <div class="modal">
+    <jw-modal id="custom-modal-2">
+        <h1>Modification</h1>
+        <mat-icon style="cursor: pointer;" (click)="closeModal('custom-modal-2');" class="clear">clear</mat-icon>
+        <div class="form">
+            <form [formGroup]="agenceForm">
+                <div >
+                <div class="grid">
+                    <div class="photo">
+                    <img *ngIf="!url1==true" src="../assets/images/{{item.agentimg}}">
+                    <img *ngIf="url1" [src]="url1" height="60">
+                    <input formControlName="photo" class="button" type="file" (change)="readUrl($event)" >
+                    </div>
+                    <div class="others">
+                        <div class="input1">
+                        <input type="text" [value]="item.agence" formControlName="nom" placeholder="Nom entreprise">
+                        </div>
+                        <div class="input2">
+                            <input type="text" [value]="item.manager" formControlName="directeur" placeholder="Nom Directeur Général">
+                            <input class="input3" [value]="item.telephone"  type="text" formControlName="numerodg" placeholder="Numéro DG">
+                        </div>
+                        <div class="input1">
+                            <input type="text" [value]="item.email"  formControlName="email" placeholder="Email">
+                        </div>
+                        <div class="input2">
+                            <input type="text" [value]="item.telephone" formControlName="mobile" placeholder="Numéro téléphone Mobile">
+                            <input class="input3" [value]="item.telephone"  type="text" formControlName="fixe" placeholder="Numéro Fixe">
+                        </div>
+                        <div class="input1">
+                            <input type="text" [value]="item.site" formControlName="website" placeholder="Site web">
+                        </div>
+                        <div class="input4">
+                            <textarea type="textarea" [value]="item.adagen" formControlName="adresse" placeholder="Adresse"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="trait"></div>
+                <div class="boutons">
+                    <p class="p2">Documents Entreprise</p>
+                    <div class="buttons1">
+                        <input formControlName="contrat" class="button5" type="file" (change)="readUrl1($event)" >
+                        <input formControlName="cnidg" class="button6" type="file" (change)="readUrl1($event)" >
+                    </div>
+                </div>
+                <div class="buttons">
+                <button class="buttonenregistrer" (click)="submitted1()" type="button">Valider</button>
+                </div>
+                </div>
+            </form>
+        </div>
+    </jw-modal>
+</div>
