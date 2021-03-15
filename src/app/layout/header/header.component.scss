@@ -195,3 +195,97 @@
    background-color: #009393;
 }
 } 
+//modal 
+jw-modal {
+   position: relative;
+}
+.clear {
+   width: 16px;
+   height: 16px;
+   font-weight: bold;
+   position: absolute;
+   right: 70px;
+   top: 50px;
+}
+.all{
+   width: 550px;
+   margin: 20px auto;
+}
+h1 {
+   font-size: 21px;
+   font-weight: bold;
+   font-stretch: normal;
+   font-style: normal;
+   line-height: normal;
+   letter-spacing: -0.12px;
+   color: #222222;
+}
+input {
+   padding-left: 10px;
+   outline: none;
+}
+.input2 input {
+   width: 245px;
+   height: 41px;
+   background-color: #f5f6f9;
+   border-radius: 1px;
+   border: solid 1px #d8d8d8;
+   margin-bottom: 20px;
+}
+.input3 {
+   margin-left: 20px;
+}
+.sele {
+   display: flex;
+   margin-top: 0px;
+}
+select {
+   width: 166px;
+   height: 41px;
+   margin-bottom: 20px;
+   background-color: #f5f6f9;
+   outline: none;
+   border: 1px solid #d8d8d8;
+   option {
+       font-size: 14px;
+       font-weight: normal;
+       font-stretch: normal;
+       font-style: normal;
+       line-height: 10px;
+       letter-spacing: 0.07px;
+       color: #8e8e8e;
+       margin-top: 10px;
+       text-align: center;
+   }
+}
+.sele2 {
+   margin-left: 20px;
+}
+.sele3 {
+   margin-left: 20px;
+}
+.input2 .input4 {
+   width: 155px;
+   height: 35px;
+   background-color: #f5f6f9;
+   border-radius: 1px;
+   border: solid 1px #d8d8d8;
+   margin-bottom: 20px;
+   margin-left: 20px;
+}
+.boutonsea {
+   width: 140px;
+   margin: 10px auto;
+}
+.buttonsea {
+   font-size: 18px;
+   font-weight: bold;
+   font-stretch: normal;
+   font-style: normal;
+   line-height: 1.11;
+   letter-spacing: -0.2px;
+   color: #ffffff;
+   background-color: #000000;
+   width: 139px;
+   height: 50px;
+}

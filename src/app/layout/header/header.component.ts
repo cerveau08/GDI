@@ -60,17 +60,33 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.demandeForm = new FormGroup({
-      moi: new FormControl (''),
-      somme: new FormControl('')
+      prenom: new FormControl (''),
+      nom: new FormControl(''),
+      matricule: new FormControl (''),
+      email: new FormControl(''),
+      direction: new FormControl (''),
+      departement: new FormControl(''),
+      service: new FormControl (''),
+      agence: new FormControl(''),
+      annee: new FormControl (''),
+      poste: new FormControl(''),
     });
   }
   onSubmit(id: string) {
-    const demande =
-    {
-      moi: this.demandeForm.value.moi,
-      somme: this.demandeForm.value.somme
-    } 
-    console.log(demande);
+    const info = {
+      prenom: this.demandeForm.value.prenom,
+      nom: this.demandeForm.value.nom,
+      matricule: this.demandeForm.value.matricule,
+      email: this.demandeForm.value.email,
+      direction: this.demandeForm.value.direction,
+      departement: this.demandeForm.value.departement,
+      service: this.demandeForm.value.service,
+      agence: this.demandeForm.value.agence,
+      annee: this.demandeForm.value.annee,
+      poste: this.demandeForm.value.poste,
+  } 
+  console.log(info);
+  return info;
   }
   updown(item) {
       if (!this.click) {

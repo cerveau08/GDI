@@ -16,6 +16,16 @@ export class DetailinterComponent implements OnInit {
   public nombre = 29;
   public left: any;
   donnees: any;
+  objetctis = [
+    {
+      title: "Objectif 1",
+      libelle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+    },
+    {
+      title: "Objectif 2",
+      libelle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+    },
+  ];
   datas = [{
     id: 1,
     prenom: "Amadou Dieye",

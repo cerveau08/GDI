@@ -11,10 +11,11 @@ import { Router } from '@angular/router';
 })
 export class ListeragenceComponent implements OnInit {
 
-  url1="../assets/images/default.png";
+  url1;
   url3;
   datas: any;
   agenceForm: FormGroup;
+  userForm: FormGroup;
   constructor(private dataService: DataService,
     private modalService: ModalService,
     public router: Router) { }
@@ -33,6 +34,14 @@ export class ListeragenceComponent implements OnInit {
       photo: new FormControl (''),
       contrat: new FormControl(''),
       cnidg: new FormControl (''),
+    });
+    this.userForm = new FormGroup({
+      prenom: new FormControl (''),
+      nom: new FormControl(''),
+      email: new FormControl(''),
+      telephone: new FormControl (''),
+      profil: new FormControl(''),
+      photo: new FormControl (''),
     });
   }
 
@@ -62,11 +71,20 @@ export class ListeragenceComponent implements OnInit {
     return info;
   }
 
-  openModal(id: string) {
-    this.modalService.open(id);
+  submitted2() {
+    const info = {
+        prenom: this.userForm.value.prenom,
+        nom: this.userForm.value.nom,
+        email: this.userForm.value.email,
+        telephone: this.userForm.value.telephone,
+        profil: this.userForm.value.profil,
+        photot: this.userForm.value.photo,
+    } 
+    console.log(info);
+    return info;
   }
 
-  openModal1(id: string) {
+  openModal(id: string) {
     this.modalService.open(id);
   }
 

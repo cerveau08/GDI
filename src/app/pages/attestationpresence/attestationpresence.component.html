@@ -1,1 +1,39 @@
-<p>attestationpresence works!</p>
+<div class="demande">
+    <div class="tableau">
+        <p class="detail1">Liste des Intérimaires</p>
+        <table style="overflow-x:auto;">
+            <thead>
+                <tr class="head">
+                    <th class="id1">#</th>
+                    <th class="typ">
+                        <div class="type">
+                            <p>Prénom</p> 
+                            <mat-icon class="updown" fontSet="material-icons-outlined">unfold_more</mat-icon>
+                        </div>
+                    </th>
+                    <th class="typ">
+                        <div class="type">
+                            <p>Nom</p> 
+                            <mat-icon class="updown" fontSet="material-icons-outlined">unfold_more</mat-icon>
+                        </div>
+                    </th>
+                    <th>Date Début</th>
+                    <th>Date Fin</th>
+                    <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let p of datas | filter:filterterm | paginate: { itemsPerPage: 12, currentPage: p }; let i = index">
+                    <td class="id1">{{p.id}}</td>
+                    <td>{{p.prenom}}</td>
+                    <td>{{p.nom}}</td>
+                    <td>{{p.dateDebut | date: "dd/MM/yyyy"}}</td>
+                    <td>{{p.dateFin | date: "dd/MM/yyyy"}}</td>
+                    <td><button  class="button1">Valider</button></td>
+                </tr>
+            </tbody>
+            
+        </table>
+        <pagination-controls (pageChange)="p = $event" previousLabel="Prcédent" nextLabel="Suivant"></pagination-controls>
+    </div>
+</div>

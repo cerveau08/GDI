@@ -24,49 +24,49 @@
                     </div>
                     <div class="adresse">
                         <mat-icon >room</mat-icon>
-                        <p class="adres">{{p.adresse}}</p>
+                        <p class="adres">{{p.adagen}}</p>
                     </div>
                 </div>
                 <div class="boutons">
-                    <button class="button1" (click)="openModal('custom-modale-'+p.id)">Modifier</button>
+                    <button class="button1" (click)="openModal('custom-modal-'+p.id)">Modifier</button>
                     <button class="button2" (click)="openDetail(p)">Afficher</button>
-                    <button class="button3">+ Utilisateurs</button>
+                    <button class="button3" (click)="openModal('custom-modale-'+p.id)">+ Utilisateurs</button>
                 </div>
 
                  <!--modal-1-->
-                <div class="modal">
-                    <jw-modal id="custom-modale-{{p.id}}">
+                 <div class="modal">
+                    <jw-modal id="custom-modal-{{p.id}}">
                         <h1>Modification</h1>
-                        <mat-icon style="cursor: pointer;" (click)="closeModal('custom-modale-'+p.id);" class="clear">clear</mat-icon>
+                        <mat-icon style="cursor: pointer;" (click)="closeModal('custom-modal-'+p.id);" class="clear">clear</mat-icon>
                         <div class="form">
                             <form [formGroup]="agenceForm">
                                 <div >
                                 <div class="grid">
                                     <div class="photo">
-                                    <img *ngIf="!url1==true" src="../assets/images/default.png">
-                                    <img [src]="url1" height="60">
+                                    <img *ngIf="!url1==true" src="../assets/images/{{p.agentimg}}">
+                                    <img *ngIf="url1" [src]="url1" height="60">
                                     <input formControlName="photo" class="button" type="file" (change)="readUrl($event)" >
                                     </div>
                                     <div class="others">
                                         <div class="input1">
-                                        <input type="text" formControlName="nom" placeholder="Nom entreprise">
+                                        <input type="text" [value]="p.agence" formControlName="nom" placeholder="Nom entreprise">
                                         </div>
                                         <div class="input2">
-                                            <input type="text" formControlName="directeur" placeholder="Nom Directeur Général">
-                                            <input class="input3" type="text" formControlName="numerodg" placeholder="Numéro DG">
+                                            <input type="text" [value]="p.manager" formControlName="directeur" placeholder="Nom Directeur Général">
+                                            <input class="input3" [value]="p.telephone"  type="text" formControlName="numerodg" placeholder="Numéro DG">
                                         </div>
                                         <div class="input1">
-                                            <input type="text" formControlName="email" placeholder="Email">
+                                            <input type="text" [value]="p.email"  formControlName="email" placeholder="Email">
                                         </div>
                                         <div class="input2">
-                                            <input type="text" formControlName="mobile" placeholder="Numéro téléphone Mobile">
-                                            <input class="input3"  type="text" formControlName="fixe" placeholder="Numéro Fixe">
+                                            <input type="text" [value]="p.telephone" formControlName="mobile" placeholder="Numéro téléphone Mobile">
+                                            <input class="input3" [value]="p.telephone"  type="text" formControlName="fixe" placeholder="Numéro Fixe">
                                         </div>
                                         <div class="input1">
-                                            <input type="text" formControlName="website" placeholder="Site web">
+                                            <input type="text" [value]="p.site" formControlName="website" placeholder="Site web">
                                         </div>
                                         <div class="input4">
-                                            <textarea type="textarea" formControlName="adresse" placeholder="Adresse"></textarea>
+                                            <textarea type="textarea" [value]="p.adagen" formControlName="adresse" placeholder="Adresse"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -87,6 +87,67 @@
                     </jw-modal>
                 </div>
             <!--modal-1-->
+
+            <!--modal-2-->
+            <div class="modal">
+                <jw-modal id="custom-modale-{{p.id}}">
+                    <div class="grid2">
+                        <div class="img">
+                            <img src="../assets/images/{{p.agentimg}}" alt="">
+                        </div>
+                        <div class="agence">
+                            <p class="nom2">{{p.agence}}</p>
+                            <div class="nombre">
+                                <div class="total">
+                                    <p class="title">Total</p>
+                                    <p class="libelle">{{p.dateDebut | date: "Mdd"}}</p>
+                                </div>
+                                <div class="actif">
+                                    <p class="title">Actifs</p>
+                                    <p class="libelle">{{p.dateFin | date: "Mdd"}}</p>
+                                </div>
+                                <div class="archiv">
+                                    <p class="title">Archivés</p>
+                                    <p class="libelle">{{p.dateDebut | date: "Mdd"}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="trait"></div>
+                    <h1>Ajouter nouvel utilisateur</h1>
+                    <mat-icon style="cursor: pointer;" (click)="closeModal('custom-modale-'+p.id);" class="clear">clear</mat-icon>
+                    <div class="formad">
+                        <form [formGroup]="userForm">
+                            <div >
+                            <div class="gridad">
+                                <div class="photoad">
+                                <img class="imgad"  *ngIf="!url1==true" src="../assets/images/default.png">
+                                <img class="imgad" *ngIf="url1" [src]="url1" height="60">
+                                <input formControlName="photo" class="buttonad" type="file" (change)="readUrl($event)" >
+                                </div>
+                                <div class="othersad">
+                                    <div class="input2ad">
+                                        <input type="text" formControlName="prenom" placeholder="Prenom">
+                                        <input class="input3ad"  type="text" formControlName="nom" placeholder="Nom">
+                                    </div>
+                                    <div class="input1ad">
+                                        <input type="text"  formControlName="email" placeholder="Email">
+                                    </div>
+                                    <div class="input2ad">
+                                        <input type="text" formControlName="telephone" placeholder="Téléphone">
+                                        <input class="input3ad"  type="text" formControlName="profil" placeholder="Profil">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="buttonsad">
+                               <button class="buttonenregistrerad" (click)="submitted2()" type="button">Ajouter</button>
+                            </div>
+                            </div>
+                        </form>
+                    </div>
+                </jw-modal>
+            </div>
+        <!--modal-2-->
              </div>
             <pagination-controls (pageChange)="p = $event" previousLabel="Prcédent" nextLabel="Suivant"></pagination-controls>
         </div>

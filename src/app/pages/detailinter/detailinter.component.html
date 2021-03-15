@@ -109,3 +109,22 @@
         </div>
     </jw-modal>
 </div>
+
+<!--modal4-->
+<div class="modal">
+    <jw-modal id="custom-modal-4">
+        <div class="tableau">
+            <mat-icon style="cursor: pointer;" (click)="closeModal('custom-modal-4');" class="clear">clear</mat-icon>
+            <p class="listeo">Liste des objectifs du contrat</p>
+            <div class="objet" *ngFor="let p of objetctis">
+               <div>
+                   <p class="title">{{p.title}}:</p>
+                   <p class="libelle">{{p.libelle}}</p>
+               </div>
+            </div>
+            <div class="btnso">
+                <button  class="btno">Modifier</button>
+            </div>
+        </div>
+    </jw-modal>
+</div>

@@ -1,3 +1,5 @@
+import { PresenceComponent } from './pages/presence/presence.component';
+import { InterimaireComponent } from './pages/interimaire/interimaire.component';
 import { DetailmanagerComponent } from './pages/detailmanager/detailmanager.component';
 import { DetailagenceComponent } from './pages/detailagence/detailagence.component';
 import { DetailinterComponent } from './pages/detailinter/detailinter.component';
@@ -58,8 +60,16 @@ const routes: Routes = [
         component: RestaurationComponent,
        //   canActivate: [AuthGuard]
       },
+      { path: 'presence',
+        component: PresenceComponent,
+       //   canActivate: [AuthGuard]
+      },
       { path: 'restaurationdrh',
         component: RestaurationdrhComponent,
+       //   canActivate: [AuthGuard]
+      },
+      { path: 'listinter',
+        component: InterimaireComponent,
        //   canActivate: [AuthGuard]
       },
       { path: 'souscontrat',

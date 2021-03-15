@@ -271,7 +271,7 @@
     position: absolute;
     right: 20px;
     top: -10px;
-  }
+}
 .grid {
     display: grid;
     grid-template-columns: 130px 1fr 160px;
@@ -323,4 +323,54 @@
 .btns3{
     width: 150px;
     margin: 0 auto;
+}
+//modal-4
+.listeo {
+    font-size: 21px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.12px;
+    color: #222222;
+    margin-left: 30px;
+}
+.objet {
+    width: 650px;
+    margin: 20px auto;
+    .title {
+        font-size: 21px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: -0.12px;
+        color: #222222;
+        margin-top: 20px;
+        margin-bottom: 0;
+    }
+    .libelle {
+        font-size: 16px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: -0.09px;
+        text-align: justify;
+        color: #222222;
+        margin-top: 2px;
+    }
+}
+.btnso {
+    width: 115px;
+    margin: 40px auto;
+}
+.btno {
+    margin-top: 30px;
+    width: 111px;
+    height: 50px;
+    font-weight: bold;
+    font-size: 18px;
+    color: white;
+    background-color: #000000;
 }

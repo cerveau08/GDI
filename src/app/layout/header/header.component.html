@@ -48,28 +48,65 @@
 <!--modal-->
 <div class="modal">
   <jw-modal id="custom-modal-50">
-      <h1>Demande restauration</h1>
       <mat-icon style="cursor: pointer;" (click)="closeModal('custom-modal-50');" class="clear">clear</mat-icon>
-      <div>
+      <div class="all">
+        <h1>Recherche avancée</h1>
+        <div>
           <form [formGroup]="demandeForm">
               <div class="forms">
-                  <div class="mois">
-                      <select class="custom-select" formControlName="moi">
-                          <option value="" disabled selected hidden>Mois...</option>
-                          <option *ngFor="let moi of mois" [ngValue]="moi">{{moi}}</option>
-                       </select>
-                  </div>
-                  <div class="sommes">
-                      <select class="custom-select" formControlName="somme">
-                          <option value="" disabled selected hidden>Somme...</option>
-                          <option *ngFor="let som of sommes" [ngValue]="som">{{som}}</option>
-                      </select>
-                  </div>
-                  <div class="bouton">
-                      <button (click)="onSubmit()" class="button">valider</button>
+                  <div>
+                    <div class="input2">
+                      <input type="text" formControlName="prenom" placeholder="Prenom">
+                      <input class="input3" type="text" formControlName="nom" placeholder="Nom">
+                    </div>
+                    <div class="input2">
+                      <input type="text" formControlName="matricule" placeholder="Matricule">
+                      <input class="input3" type="text" formControlName="email" placeholder="Email">
+                    </div>
+                    <div class="sele">
+                      <div class="sele1">
+                        <select class="custom-select" formControlName="direction">
+                            <option value="" disabled selected hidden>Direction</option>
+                            <option *ngFor="let moi of mois" [ngValue]="moi">{{moi}}</option>
+                         </select>
+                      </div>
+                      <div class="sele2">
+                        <select class="custom-select" formControlName="departement">
+                            <option value="" disabled selected hidden>Département</option>
+                            <option *ngFor="let som of sommes" [ngValue]="som">{{som}}</option>
+                        </select>
+                      </div>
+                      <div class="sele3">
+                        <select class="custom-select" formControlName="service">
+                            <option value="" disabled selected hidden>Services</option>
+                            <option *ngFor="let som of sommes" [ngValue]="som">{{som}}</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="sele">
+                      <div class="sele1">
+                        <select class="custom-select" formControlName="agence">
+                            <option value="" disabled selected hidden>Agence</option>
+                            <option *ngFor="let moi of mois" [ngValue]="moi">{{moi}}</option>
+                         </select>
+                      </div>
+                      <div class="sele2">
+                        <select class="custom-select" formControlName="annee">
+                            <option value="" disabled selected hidden>Année</option>
+                            <option *ngFor="let som of sommes" [ngValue]="som">{{som}}</option>
+                        </select>
+                      </div>
+                      <div class="input2">
+                        <input class="input4" type="text" formControlName="poste" placeholder="Poste">
+                      </div>
+                    </div>
+                    <div class="boutonsea">
+                        <button (click)="onSubmit()" class="buttonsea">Rechercher</button>
+                    </div>
                   </div>
               </div>
           </form>
+      </div>
       </div>
   </jw-modal>
 </div>

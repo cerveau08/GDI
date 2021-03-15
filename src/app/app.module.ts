@@ -50,6 +50,7 @@ import { InfopersonnelComponent } from './pages/ajouterinter/infopersonnel/infop
 import { ContratComponent } from './pages/ajouterinter/contrat/contrat.component';
 import { PostaComponent } from './pages/ajouterinter/posta/posta.component';
 import { MatButtonModule, MatInputModule, MatSidenavModule, MatStepperModule, MatToolbarModule } from '@angular/material';
+import { PresenceComponent } from './pages/presence/presence.component';
 
 @NgModule({
   declarations: [
@@ -86,7 +87,8 @@ import { MatButtonModule, MatInputModule, MatSidenavModule, MatStepperModule, Ma
     RestaurationdrhComponent,
     InfopersonnelComponent,
     ContratComponent,
-    PostaComponent
+    PostaComponent,
+    PresenceComponent
   ],
   imports: [
     BrowserModule,

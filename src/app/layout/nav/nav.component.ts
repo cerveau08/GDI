@@ -185,8 +185,8 @@ export class NavComponent implements OnInit {
       id: 4,  title: 'Agence d\'interim',
       icon: "local_mall",  path: 'listagence',  
     }, {
-      id: 4,  title: 'Attestation de Présence',
-      icon: "grade", path: 'attestation',   
+      id: 4,  title: 'Présence',
+      icon: "grade", path: 'presence',   
     },{
       id: 6,  title: 'Alertes',
       path: 'alertes',  icon: "query_builder",
@@ -221,7 +221,7 @@ export class NavComponent implements OnInit {
     }
     ,{
       id: 8,  title: 'Mon Compte',
-      path: 'compte',  icon: "folder_shared",
+      path: 'manager',  icon: "folder_shared",
     },{
       id: 9,  title: 'Statistiques',
       path: 'statistique',  icon: "leaderboard",
