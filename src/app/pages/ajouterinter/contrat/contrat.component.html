@@ -9,8 +9,14 @@
         </div>
         <div class="others">
           <div class="input2">
-            <input type="text" formControlName="type" placeholder="type de contrat">
-            <input class="input3" type="text" formControlName="agence" placeholder="Agence d'interim">
+            <select class="select5" formControlName="type">
+              <option class="option" value="" disabled selected hidden>type de contrat</option>
+              <option *ngFor="let som of sommes" [ngValue]="som">{{som}}</option>
+            </select>
+            <select class="select6" formControlName="agence">
+              <option class="option" value="" disabled selected hidden>Agence d'interim</option>
+              <option *ngFor="let som of sommes" [ngValue]="som">{{som}}</option>
+            </select>
           </div>
           <div class="input2">
             <input type="text" formControlName="dateDebut" placeholder="Date Début">
@@ -21,12 +27,24 @@
             <input class="input3" type="text" formControlName="salaire" placeholder="Montant Salaire Brut">
           </div>
           <div class="input2">
-            <input type="text" formControlName="structure" placeholder="Structure">
-            <input class="input3" type="text" formControlName="direction" placeholder="Direction">
+            <select class="select5" formControlName="structure">
+              <option class="option" value="" disabled selected hidden>Structure</option>
+              <option *ngFor="let som of sommes" [ngValue]="som">{{som}}</option>
+            </select>
+            <select class="select6" formControlName="direction">
+              <option class="option" value="" disabled selected hidden>Direction</option>
+              <option *ngFor="let som of sommes" [ngValue]="som">{{som}}</option>
+            </select>
           </div>
           <div class="input2">
-            <input type="text" formControlName="departement" placeholder="Département">
-            <input class="input3" type="text" formControlName="service" placeholder="Service">
+            <select class="select5" formControlName="departement">
+              <option class="option" value="" disabled selected hidden>Département</option>
+              <option *ngFor="let som of sommes" [ngValue]="som">{{som}}</option>
+            </select>
+            <select class="select6" formControlName="service">
+              <option class="option" value="" disabled selected hidden>Service</option>
+              <option *ngFor="let som of sommes" [ngValue]="som">{{som}}</option>
+            </select>
           </div>
       </div>
       </div>

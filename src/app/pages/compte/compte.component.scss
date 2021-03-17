@@ -215,3 +215,163 @@
     margin-top: 20px;
     margin-bottom: 20px;
 }
+
+// modal 1
+.btns2{
+    width: 350px;
+    margin: 0 auto;
+}
+.btn2 {
+    width: 142px;
+    height: 50px;
+    font-size: 16px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.14;
+    letter-spacing: -0.1px;
+    text-align: center;
+    color: #000000;
+    border: none;
+    background-color: #32c832;
+    margin-top: 7px;
+}
+.btn2a {
+    width: 166px;
+    height: 50px;
+    font-size: 16px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.14;
+    letter-spacing: -0.1px;
+    text-align: center;
+    color: #ffffff;
+    border: none;
+    background-color: #cd3c14;
+    margin-top: 7px;
+    margin-left: 30px;
+}
+//modal 2
+.tableau {
+    position: relative;
+}
+.dtl1{
+    font-size: 21px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.12px;
+    color: #222222;
+}
+.clear {
+    width: 16px;
+    height: 16px;
+    font-weight: bold;
+    position: absolute;
+    right: 20px;
+    top: -10px;
+}
+.grid {
+    display: grid;
+    grid-template-columns: 130px 1fr 160px;
+    border-radius: 1px;
+    border: solid 1px #979797;
+    margin-top: 5px;
+}
+.date {
+    font-size: 18px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.12px;
+    color: #222222;
+    margin-left: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.user {
+    font-size: 18px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.12px;
+    color: #222222;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.btn1 {
+    width: 140px;
+    height: 30px;
+    font-size: 14px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.14;
+    letter-spacing: -0.1px;
+    text-align: center;
+    color: #000000;
+    background-color: white;
+    border: 3px solid black;
+    margin-top: 7px;
+    margin-right: 20px;
+}
+
+//modal 3
+.btns3{
+    width: 150px;
+    margin: 0 auto;
+}
+//modal-4
+.listeo {
+    font-size: 21px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.12px;
+    color: #222222;
+    margin-left: 30px;
+}
+.objet {
+    width: 650px;
+    margin: 20px auto;
+    .title {
+        font-size: 21px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: -0.12px;
+        color: #222222;
+        margin-top: 20px;
+        margin-bottom: 0;
+    }
+    .libelle {
+        font-size: 16px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: -0.09px;
+        text-align: justify;
+        color: #222222;
+        margin-top: 2px;
+    }
+}
+.btnso {
+    width: 115px;
+    margin: 40px auto;
+}
+.btno {
+    margin-top: 30px;
+    width: 111px;
+    height: 50px;
+    font-weight: bold;
+    font-size: 18px;
+    color: white;
+    background-color: #000000;
+}

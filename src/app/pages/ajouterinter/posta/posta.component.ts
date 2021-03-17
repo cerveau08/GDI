@@ -12,6 +12,15 @@ export class PostaComponent implements OnInit {
   url2;
   submited = false;
   @Input() infoForm: FormGroup;
+  sommes: any = [
+    '20.000f', 
+    '30.000f', 
+    '40.000f', 
+    '50.000f',
+    '60.000f',
+    '70.000f',
+    '80.000f', 
+  ];
   constructor() { }
 
   ngOnInit() {

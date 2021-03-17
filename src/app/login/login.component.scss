@@ -1,115 +1,108 @@
-.imagebg{
-  position: fixed; 
-  top: 0; 
-  left: 0; 
+.all {
+  background-image: url("/./assets/images/rectangle.png");
   width: 100%;
   height: 100%;
-}
-
-body{
-  overflow-x: hidden;
-  position: relative;
-}
-.block-img{
-  margin-top: 5%;
-  margin-left: 15%;
-  position: relative;
- // background-color: rgba(0, 0, 0, 0.473);
-  height: 80% !important;
-  width: 70%;
-  display: grid;
-  grid-template-columns: 50% 50%;
-  grid-gap: 1px;
- // background-color: rgb(255, 255, 255);
-  padding: 0px;
-}
-.orange {
-  padding: 0%;
-  width: 100%;
- // background: url('/assets/images/group.png') no-repeat center center fixed;
+  background-repeat: no-repeat;
   background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
 }
-.elmt{
-  margin-left: 11%;
-  width: 100%;
-  height: 750px;
+.all2{
+  position: relative;
+  height: 563px;
+  width: 846px;
+  margin: 0 auto;
 }
-.logo{
+.login {
   position: absolute;
-  top: 40%;
-  left: 20%;
-  width: 90px;
-  height: 90px; 
-}
-.image-logo {
-  width: 90px;
-  height: 90px;
-  margin-left: 5px;
-  display : block;
-}
-span {
-  position: absolute;
-  top: 95px;
-  bottom : 0;
-  margin-top: 15px;
-  margin-left: -10px;
-  font-family: HelveticaNeue;
-  font-size: 24px;
-  font-weight: bold;
-  line-height: 0.88;
-  letter-spacing: normal;
-  text-align: justify;
-  color: #ffffff;
+  top: 150px;
+  height: 563px;
+  width: 846px;
+ // background-color: rgba(255, 255, 255, 0.116);
+  display: grid;
+  grid-template-columns: 423px 423px;
 }
 .logo {
-  img, span {
-      display: inline-block;
-      vertical-align: bottom;
+  background-image: url("/./assets/images/group.png");
+  width: 483px;
+  height: 740px;
+  background-size: cover;
+  margin-top: -65px;
+  margin-left: -60px;
+  position: relative;
+}
+.img {
+  position: absolute;
+  top: 280px;
+  left: 150px;
+  img {
+    width: 90px;
+    height: 90px;
+  }
+  p {
+    width: 184px;
+    font-size: 24px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 0.98;
+    letter-spacing: 1px;
+    color: #ffffff;
+    margin-left: -25px;
+    margin-top: 10px;
   }
 }
-
-.form{
-  margin-top: 66px;
-  height: 510px;
-  width: 400px;
-
-  padding: 108px 20px 0px 50px; 
-  background-color: rgba(232, 233, 234, 0.75); 
+.forms {
+  background-color: rgba(232, 233, 234, 0.75);
+  height: 610px;
 }
-h3{
-  font-size: 24px;
+.passe {
+  width: 200px;
+  margin-top: 100px;
+  margin-left: 50px;
+  font-size: 26px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.19px;
   color: #009393;
-  margin-bottom: 20px;
 }
 .fiel{
+  width: 200px;
+  margin-left: 50px;
   margin-top: 50px;
-  margin-bottom: 20px;
-}
-.field {
-  margin-bottom: 30px;
+  margin-bottom: 10px;
 }
 .label{
   font-weight: normal !important;
   margin-bottom: 15px;
-  font-size: 12px;
+  font-size: 14px;
   font-family: Montserrat;
-  font-size: 12px;
   font-stretch: normal;
   font-style: normal;
   line-height: normal;
   letter-spacing: -0.18px;
   color: #000000;
+  margin-top: 0;
 }
 .input-text{
-  margin-top: 12px;
-  width: 347px;
+  margin-top: 14px;
+  width: 300px;
   border: none;
   border-bottom: solid 1px;
   outline: none;
   background-color: transparent;
 }
+.field{
+  width: 200px;
+  margin-left: 50px;
+  margin-top: 5px;
+  margin-bottom: 20px;
+}
+
 .button {
-  width: 347px;
+  width: 307px;
   height: 61px;
   background-color: #009393;
   border: none;
@@ -120,37 +113,12 @@ h3{
   font-family: bold;
   display: inline-block;
   font-size: 16px;
-  margin: 4px 0px;
+  margin: 30px 50px;
   cursor: pointer;
   outline: none;
-}
-.input-text.active{
-  border-color: #009393;
-}
-.mat-content{
-  width: 100%;
-  height: 55px;
-  border: 1px black solid;
-  position: relative;
-  border: solid 2px lightgray;
-  border-radius: 5px;
-  transition:all 0.5s;
-}
-.mat-content .input-mat{
-  position: absolute;
-  border: none;
-  height: 100%;
-  width: 100%;
-  padding: 0;
-  margin: 0;
-  top:0;
-  left:0;
-  background-color: rgba(0,0,0,0);
-  z-index: 998;
-  padding-left: 10px;
-  font-size: 18px;
 }
  
 .forget {
   outline: none;
+  margin: 20px 50px;
 }

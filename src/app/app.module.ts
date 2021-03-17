@@ -51,6 +51,8 @@ import { ContratComponent } from './pages/ajouterinter/contrat/contrat.component
 import { PostaComponent } from './pages/ajouterinter/posta/posta.component';
 import { MatButtonModule, MatInputModule, MatSidenavModule, MatStepperModule, MatToolbarModule } from '@angular/material';
 import { PresenceComponent } from './pages/presence/presence.component';
+import { AgenceComponent } from './pages/agence/agence.component';
+import { OffreComponent } from './pages/offre/offre.component';
 
 @NgModule({
   declarations: [
@@ -88,7 +90,9 @@ import { PresenceComponent } from './pages/presence/presence.component';
     InfopersonnelComponent,
     ContratComponent,
     PostaComponent,
-    PresenceComponent
+    PresenceComponent,
+    AgenceComponent,
+    OffreComponent
   ],
   imports: [
     BrowserModule,

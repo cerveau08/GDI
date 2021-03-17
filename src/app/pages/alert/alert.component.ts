@@ -1,4 +1,6 @@
+import { DataService } from './../../service/data.service';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-alert',
@@ -6,10 +8,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./alert.component.scss']
 })
 export class AlertComponent implements OnInit {
-
-  constructor() { }
+  
+  data: any;
+  constructor(public router: Router,
+    private dataService: DataService) { }
 
   ngOnInit() {
+    this.data = this.dataService.getData();
   }
-
+  
+  openDetail(data) {
+    this.router.navigate(['/accueil/detailinter'], {
+      queryParams: {
+        user: JSON.stringify(data)
+      }
+    })
+  }
 }

@@ -1,17 +1,15 @@
-<body>
-    <img class="imagebg" src="assets/images/rectangle.png" alt="" srcset="">
-    <div class="block-img">
-        <div class="orange" *ngIf="scrWidth>991">
-            <img class="elmt" src="assets/images/group.png" alt="">
+<div class="all">
+    <div class="all2">
+        <div class="login">
             <div class="logo">
-                <img  class="image-logo" src="assets/images/logo.svg.webp" alt="">
-                <span>Gestion des <br> Interimaires</span>
+                <div class="img">
+                    <img src="assets/images/logo.svg.webp" alt="">
+                    <p>Gestion des Interimaires</p>
+                </div>
             </div>
-        </div>
-        <div>
-            <div class="form">
+            <div class="forms">
                 <form [formGroup]="loginForm">
-                    <h3 class="title-form">Connexion</h3>
+                    <h3 class="passe">Connexion</h3>
                     <div class="fiel">
                         <label class="label"for="fullname">Nom d’utilisateur</label>
                         <input formControlName="username"  class="input-text" type="text" name="fullname" id="fullname" >
@@ -26,5 +24,6 @@
             </div>
         </div>
     </div>
-</body>
+</div>
+
 

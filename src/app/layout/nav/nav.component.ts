@@ -192,7 +192,7 @@ export class NavComponent implements OnInit {
       path: 'alertes',  icon: "query_builder",
     },{
       id: 8,  title: 'Mon Compte',
-      path: 'compte',  icon: "folder_shared",
+      path: 'agence',  icon: "folder_shared",
     },{
       id: 9,  title: 'Statistiques',
       path: 'statistique',  icon: "leaderboard",

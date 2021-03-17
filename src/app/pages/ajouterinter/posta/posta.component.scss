@@ -95,6 +95,29 @@ input {
 .input3 {
     margin-left: 10px;
 }
+select {
+    width: 200px;
+    height: 45px;
+    margin-bottom: 20px;
+    background-color: #f5f6f9;
+    outline: none;
+    border: 1px solid #d8d8d8;
+    padding: 5px;
+    option {
+        font-size: 14px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 10px;
+        letter-spacing: 0.07px;
+        color: #8e8e8e;
+        margin-top: 10px;
+        text-align: center;
+    }
+}
+.select6 {
+    margin-left: 10px;
+}
 .button1 {
     width: 126px;
     height: 50px;

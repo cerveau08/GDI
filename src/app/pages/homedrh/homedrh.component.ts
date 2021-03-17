@@ -36,15 +36,10 @@ export class HomedrhComponent implements OnInit {
   public datas: any;
   public diagrammes: any;
   jan: any;
-  // pager object
   pager: any = {};
   filterterm: string;
-  // paged items
   pagedItems: any[];
   progress = 0;
-  /*constructor(private dataService: DataService,
-    private pagerService: PaginationService,) { } */
-
   progressBar = document.querySelector(".progress-bar");
   intervalId;
   ngOnInit() {

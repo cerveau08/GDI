@@ -1,6 +1,6 @@
 <main>
     <p routerLink="/accueil/home" class="bien">Bienvenue Amadou!</p>
-    <p class="alert">Le contrat de <span class="inter" style="cursor: pointer;">Lamine MBODJI</span>  fini dans 10 jours.  <span class="alertes" style="cursor: pointer;">Voir les autres alertes</span></p>
+    <p class="alert">Le contrat de <span class="inter" style="cursor: pointer;">Lamine MBODJI</span>  fini dans 10 jours.  <span class="alertes" style="cursor: pointer; outline: none;" routerLink="/accueil/alertes">Voir les autres alertes</span></p>
     <div class="detail1">
         <div class="elmt" >
             <div class="tit">
@@ -109,7 +109,7 @@
         </div>
     </div>
     <div class="buttons1">
-        <button  class="button7">Voir les statistiques</button>
+        <button  class="button7" routerLink="/accueil/statistique">Voir les statistiques</button>
     </div>
     <div class="tableau">
         <p class="1">En fin de contrat ce mois</p>
@@ -148,7 +148,7 @@
             
         </table>
         <div class="button">
-            <button  class="button6">Voir tout</button>
+            <button  class="button6" routerLink="/accueil/fincontrat">Voir tout</button>
         </div>
     </div>
 </main>

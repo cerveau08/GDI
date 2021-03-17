@@ -11,6 +11,15 @@ export class ContratComponent implements OnInit {
   matricule = "Tmp_02568";
   url1="../assets/images/default.png";
   url2;
+  sommes: any = [
+    '20.000f', 
+    '30.000f', 
+    '40.000f', 
+    '50.000f',
+    '60.000f',
+    '70.000f',
+    '80.000f', 
+  ];
   @Input() infoForm: FormGroup;
   constructor() { }
 

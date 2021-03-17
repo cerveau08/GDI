@@ -4,7 +4,10 @@
       <div class="center">
         <div class="input2">
           <input type="text" formControlName="titre" placeholder="Titre du Poste">
-          <input class="input3" type="text" formControlName="matriculemanager" placeholder="Matricule manageur">
+          <select class="select6" formControlName="matriculemanager">
+            <option class="option" value="" disabled selected hidden>Matricule manageur</option>
+            <option *ngFor="let som of sommes" [ngValue]="som">{{som}}</option>
+          </select>
         </div>
         <div class="photo">
           <img *ngIf="!url1==true" src="/assets/images/upload.png">

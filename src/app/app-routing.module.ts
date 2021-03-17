@@ -1,3 +1,4 @@
+import { AgenceComponent } from './pages/agence/agence.component';
 import { PresenceComponent } from './pages/presence/presence.component';
 import { InterimaireComponent } from './pages/interimaire/interimaire.component';
 import { DetailmanagerComponent } from './pages/detailmanager/detailmanager.component';
@@ -130,6 +131,10 @@ const routes: Routes = [
       },
       { path: 'detailmanager',
         component: DetailmanagerComponent,
+       //   canActivate: [AuthGuard]
+      },
+      { path: 'agence',
+        component: AgenceComponent,
        //   canActivate: [AuthGuard]
       },
       {

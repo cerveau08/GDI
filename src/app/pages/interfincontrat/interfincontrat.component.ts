@@ -19,6 +19,7 @@ export class InterfincontratComponent implements OnInit {
   public p: any;
   pagedItems: any[];
   date: any;
+  dateFin;
   mois: any = [
     'Janvier', 
     'Février', 
@@ -56,8 +57,7 @@ export class InterfincontratComponent implements OnInit {
       moi: new FormControl (''),
       somme: new FormControl('')
     });
-    this.datas = this.dataService.getData();
-    this.getcolor(this.p);
+    this.datas = this.dataService.getData();;
   }
 
   openDetail(data) {
@@ -89,12 +89,8 @@ export class InterfincontratComponent implements OnInit {
     let color = "#ff0000"
     let d = new Date();
     var g1 = new Date(d.getFullYear(), d.getMonth()+1, d.getDate());
-    let date = new Date(p.dateFin);
     let now = this.datepipe.transform(g1, 'yyyyMMdd');
-    let dates = this.datepipe.transform(date, 'yyyyMMdd');
-    console.log(date);
-    console.log(now);
-    console.log(dates);
+    let dates = this.datepipe.transform(p.dateFin, 'yyyyMMdd');
     if(now > dates) {
       color = "#ff0000"
     } else {
@@ -109,9 +105,6 @@ export class InterfincontratComponent implements OnInit {
     let date = new Date(p.dateFin);
     let now = this.datepipe.transform(g1, 'yyyyMMdd');
     let dates = this.datepipe.transform(date, 'yyyyMMdd');
-    console.log(date);
-    console.log(now);
-    console.log(dates);
     if(now > dates) {
       color = "#ff0000"
     } else {

@@ -1,0 +1,41 @@
+.all {
+    margin-top: 10px;
+    background-color: white;
+    padding: 30px;
+}
+.detail {
+    font-size: 36px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.2px;
+    color: #222222;
+    margin-top: 0;
+}
+.bouton {
+    width: 320px;
+    margin: 50px auto;
+}
+.button {
+    display: flex;
+    width: 319px;
+    height: 50px;
+    margin-top: 60px;
+    mat-icon {
+        margin-top: 10px;
+    }
+    background: white;
+    border: 3px solid #000000;
+    p {
+        font-size: 18px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.11;
+        letter-spacing: -0.2px;
+        color: #000000;
+        margin-top: 12px;
+        margin-left: 10px;
+    }
+}

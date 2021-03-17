@@ -1,0 +1,50 @@
+.all {
+    background-color: white;
+    margin-top: 10px;
+    padding: 20px;
+}
+.list1 {
+    display: grid;
+    grid-template-columns: 40% 60%;
+    background: #f5f6f9;
+    padding-left: 20px;
+}
+.list2 {
+    display: grid;
+    grid-template-columns: 40% 60%;
+    border-top: 3px solid #f5f6f9;
+}
+.alert1 {
+    display: grid;
+    grid-template-columns: 45% 55%;
+}
+.alert2 {
+    display: grid;
+    grid-template-columns: 70% 15%;
+}
+.title {
+    font-size: 16px;
+    font-weight: 700;
+}
+.titls {
+    font-size: 16px;
+    font-weight: 700;
+}
+.heure {
+    font-size: 12px;
+}
+.sujet {
+    font-size: 14px;
+    font-weight: 500;
+}
+.libele {
+    font-size: 14px;
+    font-weight: 500;
+}
+.ser {
+    font-size: 11px;
+    font-weight: 400;
+}
+pagination-controls {
+    outline: none;
+}
