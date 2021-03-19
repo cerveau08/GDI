@@ -1,5 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { MatStepper } from '@angular/material';
+import { Subscription } from 'rxjs';
+import { DataService } from 'src/app/service/data.service';
 
 @Component({
   selector: 'app-posta',
@@ -10,7 +13,8 @@ export class PostaComponent implements OnInit {
 
   url1="../assets/images/default.png";
   url2;
-  submited = false;
+  @Input() submited = false;
+  @Input() childMessage ;
   @Input() infoForm: FormGroup;
   sommes: any = [
     '20.000f', 
@@ -21,11 +25,20 @@ export class PostaComponent implements OnInit {
     '70.000f',
     '80.000f', 
   ];
+  @ViewChild('stepper', { static: false }) stepper: MatStepper;
   constructor() { }
+  message = "ok"
 
+  @Output() messageEvent = new EventEmitter<string>();
+  sendMessage() {
+    this.messageEvent.emit(this.message)
+  }
   ngOnInit() {
   }
-
+  move(index: number) {
+    localStorage.removeItem('reset');
+    this.stepper.selectedIndex = index;
+  }
   readUrl(event: any) {
     console.log('readUrl');
       if (event.target.files && event.target.files[0]) {
@@ -38,12 +51,14 @@ export class PostaComponent implements OnInit {
         reader.readAsDataURL(event.target.files[0]);
       }
   }
-  
+
   submit() {
     console.log(this.infoForm.value);
     localStorage.setItem('color3', "20px solid #f16e00");
     localStorage.setItem('colorc', "#f16e00");
     this.submited = true;
+    this.childMessage = "oui";
+    this.messageEvent.emit(this.message);
   }
 
   removeItem() {

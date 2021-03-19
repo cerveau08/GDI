@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { MatStepper } from '@angular/material';
+import { DataService } from 'src/app/service/data.service';
+import { PostaComponent } from './posta/posta.component';
 
 @Component({
   selector: 'app-ajouterinter',
@@ -12,9 +15,37 @@ export class AjouterinterComponent implements OnInit {
   color2 = "#f16e00";
   color3 = "#ff7900";
   interForm: FormGroup;
-  constructor() { }
+  reset;
+  submited;
+  username = 'Onejohi Tony';
+ // parentMessage = "message from parent"
+  @ViewChild('stepper', { static: false }) stepper: MatStepper;
+  constructor() {
+    
+  }
+  move(index: number) {
+    this.reset = 'ok';
+    this.submited = false;
+    this.message = null;
+    this.stepper.selectedIndex = index;
+    localStorage.removeItem('color1');
+    localStorage.removeItem('color2');
+    localStorage.removeItem('color3');
+    localStorage.removeItem('colora');
+    localStorage.removeItem('colorb');
+    localStorage.removeItem('colorc');
+    console.log(this.reset);
+    console.log(this.submited);
+    console.log(this.message);
+  }
+  message:string;
 
+  receiveMessage($event) {
+    this.message = $event
+    console.log(this.message);
+  }
   ngOnInit() {
+    console.log(this.reset);
     this.interForm = new FormGroup({
       infopersonnel: new FormGroup({
         numeroCni: new FormControl(''),
@@ -47,7 +78,7 @@ export class AjouterinterComponent implements OnInit {
         matriculemanager: new FormControl(''),
         ficheposte: new FormControl(''),
       })
-    })
+    });
   }
   colors1() {
     let colora = "#ff7900";
@@ -90,5 +121,13 @@ export class AjouterinterComponent implements OnInit {
       color = localStorage.getItem('color3');
     } 
     return color;
+  }
+  removeItem() {
+    localStorage.removeItem('color1');
+    localStorage.removeItem('color2');
+    localStorage.removeItem('color3');
+    localStorage.removeItem('colora');
+    localStorage.removeItem('colorb');
+    localStorage.removeItem('colorc');
   }
 }

@@ -53,6 +53,7 @@ import { MatButtonModule, MatInputModule, MatSidenavModule, MatStepperModule, Ma
 import { PresenceComponent } from './pages/presence/presence.component';
 import { AgenceComponent } from './pages/agence/agence.component';
 import { OffreComponent } from './pages/offre/offre.component';
+import { NewinterComponent } from './pages/newinter/newinter.component';
 
 @NgModule({
   declarations: [
@@ -92,7 +93,8 @@ import { OffreComponent } from './pages/offre/offre.component';
     PostaComponent,
     PresenceComponent,
     AgenceComponent,
-    OffreComponent
+    OffreComponent,
+    NewinterComponent
   ],
   imports: [
     BrowserModule,

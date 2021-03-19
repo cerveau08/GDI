@@ -2,15 +2,13 @@ import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataService } from 'src/app/service/data.service';
-import { PaginationService } from 'src/app/service/pagination.service';
-import { ModalService } from 'src/app/_modal';
 
 @Component({
-  selector: 'app-intersouscontrat',
-  templateUrl: './intersouscontrat.component.html',
-  styleUrls: ['./intersouscontrat.component.scss']
+  selector: 'app-newinter',
+  templateUrl: './newinter.component.html',
+  styleUrls: ['./newinter.component.scss']
 })
-export class IntersouscontratComponent implements OnInit {
+export class NewinterComponent implements OnInit {
 
   public datas: any;
   pager: any = {};
@@ -19,8 +17,6 @@ export class IntersouscontratComponent implements OnInit {
   pagedItems: any[];
   date: any;
   constructor(private dataService: DataService,
-    private pagerService: PaginationService,
-    private modalService: ModalService,
     public datepipe: DatePipe,
     public router: Router
     ) { }
@@ -55,4 +51,5 @@ export class IntersouscontratComponent implements OnInit {
     }  
     return color; 
   } 
+
 }

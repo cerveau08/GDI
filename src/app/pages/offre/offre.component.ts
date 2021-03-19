@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { DataService } from 'src/app/service/data.service';
 
 @Component({
   selector: 'app-offre',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OffreComponent implements OnInit {
 
-  constructor() { }
+  data: any;
+  constructor(public router: Router,
+    private dataService: DataService) { }
 
   ngOnInit() {
+    this.data = this.dataService.getData();
   }
 
 }

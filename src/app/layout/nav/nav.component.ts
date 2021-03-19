@@ -117,7 +117,7 @@ export class NavComponent implements OnInit {
     },{
       id: 3,  title: 'Interimaires',
       icon: "person",  icon2: "expand_more", icon3: "expand_less",
-      click: 0,  activeChoice: -1,
+    //  click: 0,  activeChoice: -1,
       liste: [{
           id: 1,  title: 'Liste sous contrat',  path: 'souscontrat',
         }, {
@@ -131,7 +131,7 @@ export class NavComponent implements OnInit {
     }, {
       id: 4,  title: 'Agence d\'interim',
       icon: "local_mall",  icon2: "expand_more",  icon3: "expand_less",
-      click: false,  activeChoice: -1,
+     // click: false,  activeChoice: -1,
       liste: [
         {
           title: 'Liste Agence',  path: 'listagence',
@@ -142,7 +142,7 @@ export class NavComponent implements OnInit {
     },{
       id: 5,  title: 'Manager',  icon: "grade",
       icon2: "expand_more",  icon3: "expand_less",
-      click: false,  activeChoice: -1,
+    //  click: false,  activeChoice: -1,
       liste: [  {
           title: 'Liste',  path: 'listmanager',
         }, {
@@ -240,16 +240,9 @@ export class NavComponent implements OnInit {
         console.log(this.scrHeight, this.scrWidth);
   }
   constructor(
-    private matIconRegistry: MatIconRegistry,
-    private domSanitizer: DomSanitizer,
     private dataService: DataService
   ) {
-    
-    this.matIconRegistry.addSvgIcon(
-      "musicon",
-      this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/headphone.svg")
-    );
-    this.getScreenSize();
+    this.getScreenSize(); 
   }
 
   ngOnInit() {
@@ -269,27 +262,6 @@ export class NavComponent implements OnInit {
   }
   onClick(i: number, j: number) {
     this.eventSources[i].activeChoice = j;
-  }
-  
-  updown(item) {
-    console.log(this.selected);
-  //  if (this.selected == 1) {
-      if (!this.click) {
-        this.click = 1;
-        return this.click;
-      } else if (this.click = 1) {
-        this.click = null;
-        return this.click;
-      }
-  }
-  updown2(item) {
-    if (!this.click1) {
-      this.click1 = 1;
-      return this.click1;
-    } else if (this.click1 = 1) {
-      this.click = null;
-      return this.click1;
-    }
   }
 
   getMargin(event) {

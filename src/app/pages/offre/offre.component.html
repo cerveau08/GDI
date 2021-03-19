@@ -1,1 +1,43 @@
-<p>offre works!</p>
+<div class="all">
+    <div class="liste" >
+        <div class="list1">
+            <div class="alert1">
+                <div class="date">
+                    <p class="title">Service</p>
+                </div>
+                <div class="title">
+                    <p class="title">Poste</p>
+                </div>
+            </div>
+            <div class="alert2">
+                <div class="content">
+                    <p class="titlet">Type de Contrat</p>
+                </div>
+                <div class="ser">
+                    <p class="titled">Date de cloture</p>
+                </div>
+            </div>
+        </div>
+        <div class="list2" style="cursor: pointer;" *ngFor="let p of data | paginate: { itemsPerPage: 12, currentPage: p }; let i = index">
+            <div class="alert1" >
+                <div class="date">
+                    <p class="heure"> {{p.direction}}/{{p.pole}}/{{p.departement}}/{{p.service}}</p>
+                </div>
+                <div class="theme">
+                    <p class="sujet">{{p.poste}}</p>
+                </div>
+            </div>
+            <div class="alert2">
+                <div class="content">
+                    <p class="libele">{{p.pole}}</p>
+                </div>
+                <div class="ser">
+                    <p class="dire">{{p.dateFin | date: "dd/MM/yyyy"}} </p>
+                </div>
+            </div>
+        </div>
+        <div class="pagination">
+            <pagination-controls (pageChange)="p = $event" previousLabel="Prcédent" nextLabel="Suivant"></pagination-controls>
+        </div>
+    </div>
+</div>

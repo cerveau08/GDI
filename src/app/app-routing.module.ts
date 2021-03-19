@@ -1,3 +1,5 @@
+import { NewinterComponent } from './pages/newinter/newinter.component';
+import { OffreComponent } from './pages/offre/offre.component';
 import { AgenceComponent } from './pages/agence/agence.component';
 import { PresenceComponent } from './pages/presence/presence.component';
 import { InterimaireComponent } from './pages/interimaire/interimaire.component';
@@ -135,6 +137,14 @@ const routes: Routes = [
       },
       { path: 'agence',
         component: AgenceComponent,
+       //   canActivate: [AuthGuard]
+      },
+      { path: 'offre',
+        component: OffreComponent,
+       //   canActivate: [AuthGuard]
+      },
+      { path: 'newinter',
+        component: NewinterComponent,
        //   canActivate: [AuthGuard]
       },
       {
