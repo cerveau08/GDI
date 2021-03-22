@@ -115,7 +115,7 @@
         <p class="1">En fin de contrat ce mois</p>
         <div class="exporter">
             <div class="filtrer" style="cursor: pointer;">
-                <p class="filtre" [(ngModel)]="filterterm">Filtre</p>
+                <input class="filtre" type="text" [(ngModel)]="filterterm" placeholder="Filtre">
                 <mat-icon fontSet="material-icons-outlined">tune</mat-icon>
             </div>
         </div>
@@ -136,7 +136,7 @@
             </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let p of datas | filter:filterterm | paginate: { itemsPerPage: 8, currentPage: p } | slice:0:3; let i = index">
+                <tr *ngFor="let p of datas | filter:filterterm | slice:0:3; let i = index">
                     <td class="id1">{{p.id}}</td>
                     <td>{{p.prenom}} {{p.nom}}</td>
                     <td><img class="photo" src="../assets/images/{{p.photo}}"></td>

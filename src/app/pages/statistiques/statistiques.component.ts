@@ -16,6 +16,19 @@ export type ChartOptions = {
   fill: ApexFill;
   colors: string[],
 };
+export type ChartOptions1 = {
+  series: ApexAxisChartSeries;
+  chart: ApexChart;
+  dataLabels: ApexDataLabels;
+  plotOptions: ApexPlotOptions;
+  responsive: ApexResponsive[];
+  xaxis: ApexXAxis;
+  yaxis: ApexYAxis;
+  datalabels: ApexDataLabels,
+  legend: ApexLegend;
+  fill: ApexFill;
+  colors: string[],
+};
 
 var $primary = "#ff7900",
   $success = "#009393",
@@ -83,9 +96,8 @@ export class StatistiquesComponent implements OnInit {
 
   /*@ViewChild("chart")*/ chart: ChartComponent;
   public chartOptions: Partial<ChartOptions>;
-
-  constructor(private dataService: DataService,
-    private pagerService: PaginationService,) {
+  public chartOptions1: Partial<ChartOptions>;
+  constructor(private dataService: DataService,) {
     this.chartOptions = {
       series: [
         {
@@ -276,6 +288,249 @@ export class StatistiquesComponent implements OnInit {
       fill: {
         opacity: 2,
       //  shown: 
+      },
+    };
+
+
+    this.chartOptions1 = {
+      series: [
+        {
+          name: "Finis",
+          data: [
+            {
+              x: "DASI", y: 64,
+              fillColor: "#ff0000", strokeColor: "#009393"
+            },{
+              x: "DD", y: 84,
+              fillColor: "#ff0000", strokeColor: "#009393"
+            },{
+              x: "DST", y: 94,
+              fillColor: "#ff0000", strokeColor: "#009393"
+            },{
+              x: "DSD", y: 64,
+              fillColor: "#ff0000", strokeColor: "#009393"
+            },{
+              x: "DRH", y: 84,
+              fillColor: "#ff0000", strokeColor: "#009393"
+            },{
+              x: "DRJ",  y: 94,
+              fillColor: "#ff0000", strokeColor: "#009393"
+            },{
+              x: "RAP",  y: 64,
+              fillColor: "#ff0000", strokeColor: "#009393"
+            },{
+              x: "DV", y: 84,
+              fillColor: "#ff0000", strokeColor: "#009393"
+            },{
+              x: "DSI", y: 94,
+              fillColor: "#ff0000", strokeColor: "#009393"
+            },{
+              x: "DMPJ",  y: 94,
+              fillColor: "#ff0000", strokeColor: "#009393"
+            },{
+              x: "DA",  y: 64,
+              fillColor: "#ff0000", strokeColor: "#009393"
+            }, {
+              x: "DEO", y: 84,
+              fillColor: "#ff0000", strokeColor: "#009393"
+            },{
+              x: "PMA", y: 94,
+              fillColor: "#ff0000", strokeColor: "#009393"
+            },{
+              x: "DSN", y: 64,
+              fillColor: "#ff0000", strokeColor: "#009393"
+            },{
+              x: "DIS", y: 84,
+              fillColor: "#ff0000", strokeColor: "#009393"
+            }, {
+              x: "DEP",  y: 94,
+              fillColor: "#ff0000", strokeColor: "#009393"
+            },{
+              x: "DRA",  y: 64,
+              fillColor: "#ff0000", strokeColor: "#009393"
+            },
+          ] 
+        },
+        {
+          name: "Nouveaux",
+          data: [
+            {
+              x: "DASI", y: 134,
+              fillColor: "#009393", strokeColor: "#009393"
+            },{
+              x: "DD", y: 284,
+              fillColor: "#009393", strokeColor: "#009393"
+            }, {
+              x: "DST",  y: 124,
+              fillColor: "#009393", strokeColor: "#009393"
+            },{
+              x: "DSD",  y: 274,
+              fillColor: "#009393", strokeColor: "#009393"
+            }, {
+              x: "DRH", y: 184,
+              fillColor: "#009393", strokeColor: "#009393"
+            },{
+              x: "DRJ", y: 194,
+              fillColor: "#009393", strokeColor: "#009393"
+            },{
+              x: "RAP", y: 264,
+              fillColor: "#009393", strokeColor: "#009393"
+            },{
+              x: "DV", y: 104,
+              fillColor: "#009393", strokeColor: "#009393"
+            },{
+              x: "DSI",  y: 124,
+              fillColor: "#009393", strokeColor: "#009393"
+            },{
+              x: "DMPJ",  y: 264,
+              fillColor: "#009393", strokeColor: "#009393"
+            }, {
+              x: "DA", y: 165,
+              fillColor: "#009393", strokeColor: "#009393"
+            },{
+              x: "DEO", y: 294,
+              fillColor: "#009393", strokeColor: "#009393"
+            },{
+              x: "PMA",  y: 274,
+              fillColor: "#009393", strokeColor: "#009393"
+            }, {
+              x: "DSN", y: 184,
+              fillColor: "#009393", strokeColor: "#009393"
+            },{
+              x: "DASDISI", y: 194,
+              fillColor: "#009393", strokeColor: "#009393"
+            },{
+              x: "DEP", y: 264,
+              fillColor: "#009393", strokeColor: "#009393"
+            },{
+              x: "DRA", y: 104,
+              fillColor: "#009393", strokeColor: "#009393"
+            },
+          ]
+        },
+        {
+          name: "Total",
+          data: [
+            {
+              x: "DASI", y: 464,
+              fillColor: "#000000", strokeColor: "#009393"
+            },{
+              x: "DD", y: 684,
+              fillColor: "#000000", strokeColor: "#009393"
+            }, {
+              x: "DST",  y: 694,
+              fillColor: "#000000", strokeColor: "#009393"
+            },{
+              x: "DSD",  y: 764,
+              fillColor: "#000000", strokeColor: "#009393"
+            }, {
+              x: "DRH", y: 484,
+              fillColor: "#000000", strokeColor: "#009393"
+            },{
+              x: "DRJ", y: 794,
+              fillColor: "#000000", strokeColor: "#009393"
+            },{
+              x: "RAP", y: 764,
+              fillColor: "#000000", strokeColor: "#009393"
+            },{
+              x: "DV", y: 684,
+              fillColor: "#000000", strokeColor: "#009393"
+            },{
+              x: "DSI",  y: 594,
+              fillColor: "#000000", strokeColor: "#009393"
+            },{
+              x: "DMPJ",  y: 664,
+              fillColor: "#000000", strokeColor: "#009393"
+            },{
+              x: "DA", y: 484,
+              fillColor: "#000000", strokeColor: "#009393"
+            },{
+              x: "DEO", y: 594,
+              fillColor: "#000000", strokeColor: "#009393"
+            },{
+              x: "PMA",  y: 764,
+              fillColor: "#000000", strokeColor: "#009393"
+            }, {
+              x: "DSN", y: 484,
+              fillColor: "#000000", strokeColor: "#009393"
+            },{
+              x: "DIS", y: 794,
+              fillColor: "#000000", strokeColor: "#009393"
+            },{
+              x: "DEP", y: 764,
+              fillColor: "#000000", strokeColor: "#009393"
+            },{
+              x: "DRA", y: 684,
+              fillColor: "#000000", strokeColor: "#009393"
+            },
+          ]
+        }, 
+      ],
+      chart: {
+        type: "bar",
+        height: 400,
+        width: 700,
+        stacked: true,
+        toolbar: {
+          show: false
+        },
+        zoom: {
+          enabled: false
+        }
+      },
+      responsive: [
+        {
+          breakpoint: 480,
+          options: {
+            legend: {
+              show: false,
+              position: "bottom",
+              offsetX: -10,
+              offsetY: 0
+            }
+          }
+        }
+      ],
+      plotOptions: {
+        bar: {
+          horizontal: false,
+          columnWidth: "30px",
+          endingShape: "rounded",
+        },
+      },
+      dataLabels: {
+        enabled: false,
+        style: {
+          colors: ['#f3f4f5', '#fff']
+        }
+      },
+      xaxis: {
+        type: "category",
+        categories: [
+          "DASI",
+          "DD",
+          "DST",
+          "DSD",
+          "DRH",
+          "DRJ",
+          "RAP",
+          "DV",
+          "DSI",
+          "DMPJ",
+          "DA",
+          "DEO",
+          "PMA",
+          "DSN",
+          "DIS",
+          "DEP",
+          "DRA",
+        ]
+      },
+      legend: {
+        show: false,
+      },
+      fill: {
+        opacity: 2,
       },
     };
   }

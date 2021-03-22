@@ -16,19 +16,16 @@ export class PresenceComponent implements OnInit {
   public nombre = 69;
   public left: any;
   public datas: any;
-  // pager object
   pager: any = {};
   filterterm: string;
   public p: any;
-  // paged items
   pagedItems: any[];
   date: any;
   tempArr: any = { "brands": [] };
   form: FormGroup;
   parentCk=false;
   ck=false;
- // check: any = {};
- viewer = 'google';  
+  viewer = 'google';  
   selectedType = 'docx';   
   DemoDoc="http://www.africau.edu/images/default/sample.pdf" 
   DemoDoc1="https://file-examples.com/wp-content/uploads/2017/02/file-sample_100kB.doc"

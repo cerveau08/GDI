@@ -38,7 +38,6 @@ import { ParametreComponent } from './pages/parametre/parametre.component';
 import { AddagenceComponent } from './pages/addagence/addagence.component';
 import { ListeragenceComponent } from './pages/listeragence/listeragence.component';
 import { AttestationpresenceComponent } from './pages/attestationpresence/attestationpresence.component';
-import { MonagenceComponent } from './pages/monagence/monagence.component';
 import { DetailmanagerComponent } from './pages/detailmanager/detailmanager.component';
 import { DetailinterComponent } from './pages/detailinter/detailinter.component';
 import { DetailagenceComponent } from './pages/detailagence/detailagence.component';
@@ -54,6 +53,7 @@ import { PresenceComponent } from './pages/presence/presence.component';
 import { AgenceComponent } from './pages/agence/agence.component';
 import { OffreComponent } from './pages/offre/offre.component';
 import { NewinterComponent } from './pages/newinter/newinter.component';
+import { ListeattestationComponent } from './pages/listeattestation/listeattestation.component';
 
 @NgModule({
   declarations: [
@@ -83,7 +83,6 @@ import { NewinterComponent } from './pages/newinter/newinter.component';
     AddagenceComponent,
     ListeragenceComponent,
     AttestationpresenceComponent,
-    MonagenceComponent,
     DetailmanagerComponent,
     DetailinterComponent,
     DetailagenceComponent,
@@ -94,7 +93,8 @@ import { NewinterComponent } from './pages/newinter/newinter.component';
     PresenceComponent,
     AgenceComponent,
     OffreComponent,
-    NewinterComponent
+    NewinterComponent,
+    ListeattestationComponent
   ],
   imports: [
     BrowserModule,

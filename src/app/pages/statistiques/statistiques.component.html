@@ -58,34 +58,76 @@
                     <p>Femme</p>
                 </div>
             </div>
-
-            <!--DIAGRAMME-->
-
-            <!--DIAGRAMME-->
         </div>
-        <div class="elmt1" title="messages">
+        <div class="elmt1" title="messages1">
+            <div class="graph1">
+                <div class="tit">
+                    <p class="total">Variation de l’effectif</p>
+                </div>
+                <div class="filt">
+                    <div class="filtrer1" style="cursor: pointer;">
+                        <mat-icon class="i1" fontSet="material-icons-outlined">date_range</mat-icon>
+                        <p class="filtre" [(ngModel)]="filterterm">Mois</p>
+                        <mat-icon class="i2" fontSet="material-icons-outlined">expand_more</mat-icon>
+                    </div>
+                </div>
+                <div class="diagra">
+                    <div id="chart">
+                        <apx-chart
+                          [series]="chartOptions.series"
+                          [chart]="chartOptions.chart"
+                          [dataLabels]="chartOptions.dataLabels"
+                          [plotOptions]="chartOptions.plotOptions"
+                          [responsive]="chartOptions.responsive"
+                          [xaxis]="chartOptions.xaxis"
+                          [legend]="chartOptions.legend"
+                          [fill]="chartOptions.fill"
+                          [dataLabels]="chartOptions.dataLabels"
+                        ></apx-chart>
+                    </div>
+                </div>
+                <div class="lesbouton2">
+                    <div  class="button3"> 
+                        <div class="color"></div> 
+                        <p>Finis</p>
+                    </div>
+                    <div  class="button4"> 
+                        <div class="color"></div> 
+                        <p>Nouveaux</p>
+                    </div>
+                    <div  class="button5"> 
+                        <div class="color"></div> 
+                        <p>Total</p>
+                    </div>
+                </div> 
+            </div>
+        </div>
+    </div>
+
+    <div class="stat">
+        <div class="elmt2" title="messages2">
             <div class="tit">
                 <p class="total">Variation de l’effectif</p>
             </div>
-            <div class="filt">
-                <div class="filtrer1" style="cursor: pointer;">
+            <div class="filt2">
+                <div class="filtrer2" style="cursor: pointer;">
                     <mat-icon class="i1" fontSet="material-icons-outlined">date_range</mat-icon>
-                    <p class="filtre" [(ngModel)]="filterterm">Mois</p>
+                    <p class="filtre" [(ngModel)]="filterterm">Services</p>
                     <mat-icon class="i2" fontSet="material-icons-outlined">expand_more</mat-icon>
                 </div>
             </div>
-            <div class="diagra">
-                <div id="chart">
+            <div class="diagra1">
+                <div id="chart1">
                     <apx-chart
-                      [series]="chartOptions.series"
-                      [chart]="chartOptions.chart"
-                      [dataLabels]="chartOptions.dataLabels"
-                      [plotOptions]="chartOptions.plotOptions"
-                      [responsive]="chartOptions.responsive"
-                      [xaxis]="chartOptions.xaxis"
-                      [legend]="chartOptions.legend"
-                      [fill]="chartOptions.fill"
-                      [dataLabels]="chartOptions.dataLabels"
+                      [series]="chartOptions1.series"
+                      [chart]="chartOptions1.chart"
+                      [dataLabels]="chartOptions1.dataLabels"
+                      [plotOptions]="chartOptions1.plotOptions"
+                      [responsive]="chartOptions1.responsive"
+                      [xaxis]="chartOptions1.xaxis"
+                      [legend]="chartOptions1.legend"
+                      [fill]="chartOptions1.fill"
+                      [dataLabels]="chartOptions1.dataLabels"
                     ></apx-chart>
                 </div>
             </div>
@@ -102,48 +144,8 @@
                     <div class="color"></div> 
                     <p>Total</p>
                 </div>
-            </div>
-            
+            </div> 
         </div>
     </div>
-    <div class="tableau">
-        <p class="1">En fin de contrat ce mois</p>
-        <div class="exporter">
-            <div class="filtrer" style="cursor: pointer;">
-                <p class="filtre" [(ngModel)]="filterterm">Filtre</p>
-                <mat-icon fontSet="material-icons-outlined">tune</mat-icon>
-            </div>
-        </div>
-        <table style="overflow-x:auto;">
-            <thead>
-                <tr class="head">
-                    <th class="id1">#</th>
-                    <th class="typ">
-                        <div class="type">
-                            <p>Nom</p> 
-                            <mat-icon class="updown" fontSet="material-icons-outlined">unfold_more</mat-icon>
-                        </div>
-                    </th>
-                    <th>Manager</th>
-                    <th>Direction</th>
-                    <th>Agence</th>
-                    <th>Réintégrable</th>
-            </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let p of datas | filter:filterterm | paginate: { itemsPerPage: 6, currentPage: p } ; let i = index">
-                    <td class="id1">{{p.id}}</td>
-                    <td>{{p.prenom}} {{p.nom}}</td>
-                    <td><img class="photo" src="../assets/images/{{p.photo}}"></td>
-                    <td>{{p.direction}}</td>
-                    <td>{{p.agence}}</td>
-                    <td> <div [style.background]="getColor(p)" class="statut"></div> <p class="stat"> {{p.statut}}</p></td>
-                </tr>
-            </tbody>
-            
-        </table>
-        <div class="pagination">
-            <pagination-controls (pageChange)="p = $event" previousLabel="Prcédent" nextLabel="Suivant"></pagination-controls>
-        </div>
-    </div>
+
 </main>

@@ -1,3 +1,4 @@
+import { ListeattestationComponent } from './pages/listeattestation/listeattestation.component';
 import { NewinterComponent } from './pages/newinter/newinter.component';
 import { OffreComponent } from './pages/offre/offre.component';
 import { AgenceComponent } from './pages/agence/agence.component';
@@ -6,7 +7,6 @@ import { InterimaireComponent } from './pages/interimaire/interimaire.component'
 import { DetailmanagerComponent } from './pages/detailmanager/detailmanager.component';
 import { DetailagenceComponent } from './pages/detailagence/detailagence.component';
 import { DetailinterComponent } from './pages/detailinter/detailinter.component';
-import { MonagenceComponent } from './pages/monagence/monagence.component';
 import { ParametreComponent } from './pages/parametre/parametre.component';
 import { StatistiquesComponent } from './pages/statistiques/statistiques.component';
 import { AttestationpresenceComponent } from './pages/attestationpresence/attestationpresence.component';
@@ -119,10 +119,6 @@ const routes: Routes = [
         component: ParametreComponent,
        //   canActivate: [AuthGuard]
       },
-      { path: 'monagence',
-        component: MonagenceComponent,
-       //   canActivate: [AuthGuard]
-      },
       { path: 'detailagence',
         component: DetailagenceComponent,
        //   canActivate: [AuthGuard]
@@ -145,6 +141,10 @@ const routes: Routes = [
       },
       { path: 'newinter',
         component: NewinterComponent,
+       //   canActivate: [AuthGuard]
+      },
+      { path: 'listeattestation',
+        component: ListeattestationComponent,
        //   canActivate: [AuthGuard]
       },
       {

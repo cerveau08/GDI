@@ -522,11 +522,14 @@ main{
     padding: 0px;
     height: 40px;
     border-radius: 5px;
-    p {
-        margin-top: 12px;
-        margin-right: 30px;
+    .filtre {
+        width: 90px;
+        margin-top: 1px;
         margin-bottom: 0;
         margin-left: 10px;
+        border: none;
+        font-size: 16px;
+        outline: none;
     }
     mat-icon{
         margin-top: 10px;

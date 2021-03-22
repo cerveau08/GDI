@@ -1,5 +1,7 @@
 import { DataService } from './../../service/data.service';
 import { Component, OnInit } from '@angular/core';
+import { NgxFileSaverService } from '@clemox/ngx-file-saver';
+import { ModalService } from 'src/app/_modal/modal.service';
 
 @Component({
   selector: 'app-manager',
@@ -36,12 +38,29 @@ export class ManagerComponent implements OnInit {
     matricule: "060210",
     nomInt: "5"
   }];
+  viewer = 'google';   
+  DemoDoc="http://www.africau.edu/images/default/sample.pdf" 
+  DemoDoc1="https://file-examples.com/wp-content/uploads/2017/02/file-sample_100kB.doc"
+  DemoDoc2="https://www.le.ac.uk/oerresources/bdra/html/resources/example.txt" 
   filterterm: string;
   datas: any;
-  constructor(private dataService: DataService) { }
+  constructor(private dataService: DataService,
+    private modalService: ModalService,
+    private fileSaver: NgxFileSaverService,) { }
 
   ngOnInit() {
      this.datas = this.dataService.getData();
+  }
+
+  openModal(id: string) {
+    this.modalService.open(id);
+  }
+
+  closeModal(id: string) {
+    this.modalService.close(id);
+  }
+  public getfilemodal() {
+    this.fileSaver.saveUrl(this.DemoDoc, 'contrat');
   }
 
 }

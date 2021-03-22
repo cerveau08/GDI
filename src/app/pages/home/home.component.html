@@ -1,6 +1,6 @@
 <main>
     <p routerLink="/accueil/homedrh" class="bien">Bienvenue Amadou!</p>
-    <p class="alert">Vous n’avez pas encore fait votre demande de suvention restauration. <span style="cursor: pointer;">Je fais ma demande</span></p>
+    <p class="alert">Vous n’avez pas encore fait votre demande de suvention restauration. <span routerLink="/accueil/alertes" style="cursor: pointer; outline: none;">Je fais ma demande</span></p>
     <div class="progres">
         <p class="duree">Contrat <span>5 mois ( 35 jours</span> restant )</p>
         <div class="bar">
@@ -40,7 +40,7 @@
                 </div>
                 <p class="mois1">En attentes</p>
                 <div class="bouton">
-                    <button  class="button">Détails</button>
+                    <button routerLink="/accueil/demande" class="button">Détails</button>
                 </div>
             </div>
             <div class="elmt2" >
@@ -55,7 +55,7 @@
                 </div>
                 <p class="mois2">Disponible</p>
                 <div class="bouton">
-                    <button  class="button">Voir</button>
+                    <button routerLink="/accueil/listeattestation" class="button">Voir</button>
                 </div>
             </div>
         </div>

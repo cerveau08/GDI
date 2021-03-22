@@ -101,7 +101,7 @@ export class NavComponent implements OnInit {
     },
     {
       id: 3,  title: 'Mon Agence d\'interim',
-      icon: "local_mall",  path: 'monagence',
+      icon: "local_mall",  path: 'agence',
       click: false,  activeChoice: -1,
     },{
       id: 8,  title: 'Mon Compte',
