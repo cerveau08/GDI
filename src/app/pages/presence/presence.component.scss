@@ -305,7 +305,6 @@ table {
 .status {
     width: 13px;
     height: 13px;
-   // border-radius: 50%;
     margin-left: 10px;
 }
 input[type="checkbox"] {
@@ -318,6 +317,8 @@ input:checked:after {
 }
 .etat {
     display: flex;
+    width: 90px;
+    margin: 0 auto;
 }
 .etat1 {
     margin-left: 10px;

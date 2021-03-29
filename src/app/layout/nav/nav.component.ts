@@ -217,7 +217,7 @@ export class NavComponent implements OnInit {
       path: 'attestation',  icon: "grade",
     },{
       id: 6,  title: 'Alertes',
-      path: '/',  icon: "query_builder",
+      path: 'alertes',  icon: "query_builder",
     }
     ,{
       id: 8,  title: 'Mon Compte',
