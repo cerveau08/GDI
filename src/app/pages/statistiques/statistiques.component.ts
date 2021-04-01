@@ -468,7 +468,7 @@ export class StatistiquesComponent implements OnInit {
       ],
       chart: {
         type: "bar",
-        height: 400,
+        height: 350,
         width: 700,
         stacked: true,
         toolbar: {

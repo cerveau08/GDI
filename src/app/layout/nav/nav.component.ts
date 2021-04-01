@@ -55,25 +55,6 @@ export class NavComponent implements OnInit {
         },
       ]
     },{
-      id: 4,  title: 'Attestations Présence',
-      path: '/',  icon: "grade",
-    }, {
-      id: 5,  title: 'Mes Demandes',
-      path: 'demande',  icon: "local_mall",
-    },{
-      id: 4,  title: 'Mon Manager',
-      path: 'manager',  icon: "grade",
-    },{
-      id: 6,  title: 'Manager',  icon: "grade",
-      icon2: "expand_more",  icon3: "expand_less",
-      click: false,  activeChoice: -1,
-      liste: [  {
-          title: 'Liste',  path: '/privacy-policy',
-        },  {
-          title: 'Ajouter',  path: '/',
-        },
-      ]
-    },{
       id: 7,  title: 'Alertes',
       path: '/',  icon: "query_builder",
     },{
@@ -124,11 +105,9 @@ export class NavComponent implements OnInit {
           id: 2, title: 'Liste en fin de contrat',  path: 'fincontrat',
         },{
           id: 3,  title: 'restauration',  path: 'restaurationdrh',
-        },{
-          id: 4,  title: 'Ajouter',  path: 'ajouterinter',
         },
         {
-          id: 4,  title: 'Add',  path: 'addinter',
+          id: 4,  title: 'Ajouter',  path: 'addinter',
         },
       ]
     }, {
@@ -181,7 +160,7 @@ export class NavComponent implements OnInit {
       }, {
         id: 2, title: 'Liste en fin de contrat',  path: 'fincontrat',
       },{
-        id: 4,  title: 'Ajouter',  path: 'ajouterinter',
+        id: 4,  title: 'Ajouter',  path: 'addinter',
       },
       ]
     }, {
