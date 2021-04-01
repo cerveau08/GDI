@@ -9,7 +9,6 @@ import { FormGroup } from '@angular/forms';
 export class InfopersonnelComponent implements OnInit {
 
   matricule = "Tmp_02568";
-  url: any;
   url1="../assets/images/default.png";
   url2;
   constructor() { }

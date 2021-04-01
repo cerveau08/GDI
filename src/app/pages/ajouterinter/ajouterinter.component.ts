@@ -17,6 +17,7 @@ export class AjouterinterComponent implements OnInit {
   interForm: FormGroup;
   reset;
   submited;
+  message:string;
   username = 'Onejohi Tony';
  // parentMessage = "message from parent"
   @ViewChild('stepper', { static: false }) stepper: MatStepper;
@@ -24,7 +25,6 @@ export class AjouterinterComponent implements OnInit {
     
   }
   move(index: number) {
-    this.reset = 'ok';
     this.submited = false;
     this.message = null;
     this.stepper.selectedIndex = index;
@@ -34,11 +34,9 @@ export class AjouterinterComponent implements OnInit {
     localStorage.removeItem('colora');
     localStorage.removeItem('colorb');
     localStorage.removeItem('colorc');
-    console.log(this.reset);
     console.log(this.submited);
     console.log(this.message);
   }
-  message:string;
 
   receiveMessage($event) {
     this.message = $event

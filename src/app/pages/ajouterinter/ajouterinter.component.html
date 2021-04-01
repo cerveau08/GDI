@@ -35,13 +35,13 @@
                           </div>
                       </div>
                   </ng-template>
-                  <app-posta [childMessage]="reset" [submited]="submited" (messageEvent)="receiveMessage($event)" [infoForm]="interForm"></app-posta>
+                  <app-posta [submited]="submited" (messageEvent)="receiveMessage($event)" [infoForm]="interForm"></app-posta>
                 </mat-step>
               </mat-horizontal-stepper>
         </form>
           <div *ngIf="message == 'ok'">
             <button class="button3" (click)="move(0)">Ajouter un autre</button>
-            <button class="button4" (click)="removeItem()" >Liste interimaires</button>
+            <button class="button4" mat-button (click)="stepper.reset()" >Liste interimaires</button>
             <button class="button5" (click)="removeItem()" >Tableau de bord</button>
           </div>
         <div [style.border-left]="getcolor1()" class="triangle1"></div>

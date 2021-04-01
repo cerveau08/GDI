@@ -127,11 +127,14 @@ select {
 .select6 {
     margin-left: 10px;
 }
+.mat-button, .mat-flat-button, .mat-icon-button, .mat-stroked-button {
+    border-radius: 0;
+}
 .button1 {
     width: 126px;
     height: 50px;
     border: solid 2px #000000;
-    background: white;
+    background: white !important;
     font-size: 18px;
     font-weight: bold;
     font-stretch: normal;
@@ -140,6 +143,9 @@ select {
     letter-spacing: -0.2px;
     color: #000000;
     margin-left: 110px;
+}
+.button1:hover {
+    background-color: white !important;
 }
 .button2 {
     width: 106px;

@@ -127,6 +127,9 @@ export class NavComponent implements OnInit {
         },{
           id: 4,  title: 'Ajouter',  path: 'ajouterinter',
         },
+        {
+          id: 4,  title: 'Add',  path: 'addinter',
+        },
       ]
     }, {
       id: 4,  title: 'Agence d\'interim',

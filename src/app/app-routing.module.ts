@@ -31,6 +31,7 @@ import { RestaurationComponent } from './pages/restauration/restauration.compone
 import { PasswordforgetMailComponent } from './passwordforget-mail/passwordforget-mail.component';
 import { PasswordforgetComponent } from './passwordforget/passwordforget.component';
 import { RestaurationdrhComponent } from './pages/restaurationdrh/restaurationdrh.component';
+import { AddinterComponent } from './pages/addinter/addinter.component';
 
 
 const routes: Routes = [
@@ -85,6 +86,10 @@ const routes: Routes = [
       },
       { path: 'ajouterinter',
         component: AjouterinterComponent,
+       //   canActivate: [AuthGuard]
+      },
+      { path: 'addinter',
+        component: AddinterComponent,
        //   canActivate: [AuthGuard]
       },
       { path: 'listagence',

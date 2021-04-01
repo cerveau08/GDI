@@ -118,6 +118,9 @@ select {
 .select6 {
     margin-left: 10px;
 }
+.mat-button, .mat-flat-button, .mat-icon-button, .mat-stroked-button {
+    border-radius: 0;
+}
 .button1 {
     width: 126px;
     height: 50px;
@@ -132,6 +135,9 @@ select {
     color: #000000;
     margin-left: 110px;
     outline: none;
+}
+button {
+    cursor: pointer;
 }
 .button2 {
     width: 126px;
@@ -149,6 +155,7 @@ select {
     margin-top: 30px;
     outline: none;
     border: none;
+    cursor: pointer;
 }
 .message {
     margin-top: 90px;

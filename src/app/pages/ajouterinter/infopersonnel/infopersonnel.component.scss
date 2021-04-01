@@ -112,6 +112,12 @@ input {
 .input3 {
     margin-left: 10px;
 }
+.mat-button, .mat-flat-button, .mat-icon-button, .mat-stroked-button {
+    border-radius: 0;
+}
+button {
+    cursor: pointer;
+}
 .button1 {
     width: 106px;
     height: 50px;
@@ -138,7 +144,7 @@ input {
     letter-spacing: -0.2px;
     color: white;
     margin-left: 190px;
-    border-radius: none;
+    border-radius: none !important;
     margin-top: 30px;
-    border: none;
+    border: none !important;
 }

@@ -57,7 +57,6 @@ export class PostaComponent implements OnInit {
     localStorage.setItem('color3', "20px solid #f16e00");
     localStorage.setItem('colorc', "#f16e00");
     this.submited = true;
-    this.childMessage = "oui";
     this.messageEvent.emit(this.message);
   }
 

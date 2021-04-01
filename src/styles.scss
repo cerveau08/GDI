@@ -69,7 +69,12 @@ app-header {
     height:auto;
     padding: 0;
 }
- 
+.mat-stepper-label-position-bottom .mat-horizontal-stepper-header {
+  padding: 0 !important;
+}
+.mat-stepper-label-position-bottom .mat-horizontal-stepper-header .mat-step-label {
+  padding: 0 !important;
+}
 .mat-step-header .mat-step-icon {
   display: none !important;
 }

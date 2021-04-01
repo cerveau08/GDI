@@ -54,6 +54,7 @@ import { AgenceComponent } from './pages/agence/agence.component';
 import { OffreComponent } from './pages/offre/offre.component';
 import { NewinterComponent } from './pages/newinter/newinter.component';
 import { ListeattestationComponent } from './pages/listeattestation/listeattestation.component';
+import { AddinterComponent } from './pages/addinter/addinter.component';
 
 @NgModule({
   declarations: [
@@ -94,7 +95,8 @@ import { ListeattestationComponent } from './pages/listeattestation/listeattesta
     AgenceComponent,
     OffreComponent,
     NewinterComponent,
-    ListeattestationComponent
+    ListeattestationComponent,
+    AddinterComponent
   ],
   imports: [
     BrowserModule,

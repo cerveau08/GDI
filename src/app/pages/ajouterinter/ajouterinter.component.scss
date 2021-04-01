@@ -73,6 +73,12 @@
   background: #000000;
   position: relative;
 }
+button {
+  cursor: pointer;
+}
+.mat-button, .mat-flat-button, .mat-icon-button, .mat-stroked-button {
+  border-radius: 0;
+}
 .button3 {
   width: 177px;
   height: 50px;
