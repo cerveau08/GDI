@@ -37,7 +37,7 @@ pipeline {
 
         stage('Deploy IN Dev') {
             steps {
-                sh 'docker run --name=${NAME} -d --restart=always --memory-reservation=256M --memory=512M -p 2051:22 -p 8051:80 ${IMAGE}:${VERSION}'
+                sh 'docker run --name=${NAME} -d --restart=always --memory-reservation=256M --memory=512M -p 2052:22 -p 8052:80 ${IMAGE}:${VERSION}'
             }
         }
     }
