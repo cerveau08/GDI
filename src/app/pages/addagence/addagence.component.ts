@@ -1,3 +1,4 @@
+import { DataService } from './../../service/data.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
@@ -12,10 +13,12 @@ export class AddagenceComponent implements OnInit {
   url2;
   url3;
   url4;
-  constructor() { }
+  datas: any;
+  constructor(private dataService: DataService) { }
 
   infoForm: FormGroup;
   ngOnInit() {
+    this.datas = this.dataService.getData();
     this.infoForm = new FormGroup({
       nom: new FormControl (''),
       directeur: new FormControl(''),

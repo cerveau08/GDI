@@ -747,7 +747,7 @@ export class DataService {
     },
   ];
 
-  public diagrammes = [
+ /* public diagrammes = [
     {
       id: 1,
       mois: "Janvier",
@@ -832,7 +832,7 @@ export class DataService {
       nouveaux: 286,
       total: 789
     },
-  ];
+  ]; */
 
   private messageSource = new BehaviorSubject('default message');
   currentMessage = this.messageSource.asObservable();
@@ -845,10 +845,10 @@ export class DataService {
   public getData() {
     return this.data;
   }
-
+  /*
   public getDiagramme() {
     return this.diagrammes;
-  }
+  }  */
 
-
+  
 }

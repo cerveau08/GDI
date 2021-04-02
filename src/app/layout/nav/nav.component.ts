@@ -103,8 +103,6 @@ export class NavComponent implements OnInit {
           id: 1,  title: 'Liste sous contrat',  path: 'souscontrat',
         }, {
           id: 2, title: 'Liste en fin de contrat',  path: 'fincontrat',
-        },{
-          id: 3,  title: 'restauration',  path: 'restaurationdrh',
         },
         {
           id: 4,  title: 'Ajouter',  path: 'addinter',

@@ -14,7 +14,6 @@ import { AlertComponent } from './pages/alert/alert.component';
 import { ListermanagerComponent } from './pages/listermanager/listermanager.component';
 import { AddmanagerComponent } from './pages/addmanager/addmanager.component';
 import { AddagenceComponent } from './pages/addagence/addagence.component';
-import { AjouterinterComponent } from './pages/ajouterinter/ajouterinter.component';
 import { ListeragenceComponent } from './pages/listeragence/listeragence.component';
 import { InterfincontratComponent } from './pages/interfincontrat/interfincontrat.component';
 import { IntersouscontratComponent } from './pages/intersouscontrat/intersouscontrat.component';
@@ -30,7 +29,6 @@ import { ManagerComponent } from './pages/manager/manager.component';
 import { RestaurationComponent } from './pages/restauration/restauration.component';
 import { PasswordforgetMailComponent } from './passwordforget-mail/passwordforget-mail.component';
 import { PasswordforgetComponent } from './passwordforget/passwordforget.component';
-import { RestaurationdrhComponent } from './pages/restaurationdrh/restaurationdrh.component';
 import { AddinterComponent } from './pages/addinter/addinter.component';
 
 
@@ -68,10 +66,6 @@ const routes: Routes = [
         component: PresenceComponent,
        //   canActivate: [AuthGuard]
       },
-      { path: 'restaurationdrh',
-        component: RestaurationdrhComponent,
-       //   canActivate: [AuthGuard]
-      },
       { path: 'listinter',
         component: InterimaireComponent,
        //   canActivate: [AuthGuard]
@@ -82,10 +76,6 @@ const routes: Routes = [
       },
       { path: 'fincontrat',
         component: InterfincontratComponent,
-       //   canActivate: [AuthGuard]
-      },
-      { path: 'ajouterinter',
-        component: AjouterinterComponent,
        //   canActivate: [AuthGuard]
       },
       { path: 'addinter',

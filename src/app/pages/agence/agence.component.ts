@@ -58,6 +58,7 @@ export class AgenceComponent implements OnInit {
     private dataService: DataService,) { }
 
   ngOnInit() {
+    this.datas = this.dataService.getData();
     this.agenceForm = new FormGroup({
       nom: new FormControl (''),
       directeur: new FormControl(''),

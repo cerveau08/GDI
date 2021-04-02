@@ -32,6 +32,36 @@ var themeColors = [$primary, $warning, $success, $danger, $info];
 })
 export class HomedrhComponent implements OnInit {
 
+  public data; any;
+
+  donnee = [{
+    id: 1,
+    prenom: "Amadou Dieye",
+    nom: "LEYE",
+    poste: "Développeur Web",
+    dateDebut: "25/12/2020",
+    dateFin: "25/12/2022",
+    tmp: "tmp_0254",
+    agence: "Set Interim",
+    dateNais: "10/12/1992",
+    lieuNais: "Mbour",
+    genre: "masculin",
+    cni: "1 619 1992 2154",
+    categorie: "Cadre C1C",
+    structure: "Sonatel SA",
+    direction: "DST",
+    pole: "DD",
+    departement: "DASI",
+    service: "PMA",
+    manager: "Madiagne SYLLA",
+    postem: "Chef de Services Production et Maintenance Applicatif",
+    email: "amadou.dieye.leye@orange-sonatel.com",
+    telephone: "+ 221 33 824 91 31",
+    adresse: "mbour",
+    photo: "inter.png",
+    matricule: "060210",
+    nomInt: "5"
+  }];
   color: any;
   public datas: any;
   public diagrammes: any;
@@ -44,7 +74,6 @@ export class HomedrhComponent implements OnInit {
   intervalId;
   ngOnInit() {
     this.datas = this.dataService.getData();
-    this.diagrammes = this.dataService.getDiagramme();
     console.log(this.diagrammes);
     const getDownloadProgress = () => {
       console.log("getDownload", this);
@@ -57,7 +86,7 @@ export class HomedrhComponent implements OnInit {
       }
     };
     this.intervalId = setInterval(getDownloadProgress, 1000);
-   // this.getHeight1(p);
+    this.data = this .dataService.getData();
   }
 
   ngOnDestroy() {

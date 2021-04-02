@@ -32,6 +32,7 @@ export class DetailagenceComponent implements OnInit {
     }
 
   ngOnInit() {
+    this.datas = this.dataService.getData();
     this.agenceForm = new FormGroup({
       nom: new FormControl (''),
       directeur: new FormControl(''),

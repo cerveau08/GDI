@@ -7,7 +7,7 @@ body {
 }
 .container {
     display: grid;
-    grid-template-columns: 300px 1fr 350px;
+    grid-template-columns: 300px 1fr /*350px */;
     grid-template-rows: auto 1fr auto;
     grid-gap: 12px;
     grid-template-areas:

@@ -56,8 +56,6 @@ export class StatistiquesComponent implements OnInit {
   intervalId;
   ngOnInit() {
     this.datas = this.dataService.getData();
-    this.diagrammes = this.dataService.getDiagramme();
-    console.log(this.diagrammes);
     const getDownloadProgress = () => {
       console.log("getDownload", this);
       if (this.progress <= 99) {
@@ -69,7 +67,6 @@ export class StatistiquesComponent implements OnInit {
       }
     };
     this.intervalId = setInterval(getDownloadProgress, 1000);
-   // this.getHeight1(p);
   }
 
   ngOnDestroy() {
@@ -299,55 +296,55 @@ export class StatistiquesComponent implements OnInit {
           data: [
             {
               x: "DASI", y: 64,
-              fillColor: "#ff0000", strokeColor: "#009393"
+              fillColor: "#ff0000", strokeColor: "#ff0000"
             },{
               x: "DD", y: 84,
-              fillColor: "#ff0000", strokeColor: "#009393"
+              fillColor: "#ff0000", strokeColor: "#ff0000"
             },{
               x: "DST", y: 94,
-              fillColor: "#ff0000", strokeColor: "#009393"
+              fillColor: "#ff0000", strokeColor: "#ff0000"
             },{
               x: "DSD", y: 64,
-              fillColor: "#ff0000", strokeColor: "#009393"
+              fillColor: "#ff0000", strokeColor: "#ff0000"
             },{
               x: "DRH", y: 84,
-              fillColor: "#ff0000", strokeColor: "#009393"
+              fillColor: "#ff0000", strokeColor: "#ff0000"
             },{
               x: "DRJ",  y: 94,
-              fillColor: "#ff0000", strokeColor: "#009393"
+              fillColor: "#ff0000", strokeColor: "#ff0000"
             },{
               x: "RAP",  y: 64,
-              fillColor: "#ff0000", strokeColor: "#009393"
+              fillColor: "#ff0000", strokeColor: "#ff0000"
             },{
               x: "DV", y: 84,
-              fillColor: "#ff0000", strokeColor: "#009393"
+              fillColor: "#ff0000", strokeColor: "#ff0000"
             },{
               x: "DSI", y: 94,
-              fillColor: "#ff0000", strokeColor: "#009393"
+              fillColor: "#ff0000", strokeColor: "#ff0000"
             },{
               x: "DMPJ",  y: 94,
-              fillColor: "#ff0000", strokeColor: "#009393"
+              fillColor: "#ff0000", strokeColor: "#ff0000"
             },{
               x: "DA",  y: 64,
-              fillColor: "#ff0000", strokeColor: "#009393"
+              fillColor: "#ff0000", strokeColor: "#ff0000"
             }, {
               x: "DEO", y: 84,
-              fillColor: "#ff0000", strokeColor: "#009393"
+              fillColor: "#ff0000", strokeColor: "#ff0000"
             },{
               x: "PMA", y: 94,
-              fillColor: "#ff0000", strokeColor: "#009393"
+              fillColor: "#ff0000", strokeColor: "#ff0000"
             },{
               x: "DSN", y: 64,
-              fillColor: "#ff0000", strokeColor: "#009393"
+              fillColor: "#ff0000", strokeColor: "#ff0000"
             },{
               x: "DIS", y: 84,
-              fillColor: "#ff0000", strokeColor: "#009393"
+              fillColor: "#ff0000", strokeColor: "#ff0000"
             }, {
               x: "DEP",  y: 94,
-              fillColor: "#ff0000", strokeColor: "#009393"
+              fillColor: "#ff0000", strokeColor: "#ff0000"
             },{
               x: "DRA",  y: 64,
-              fillColor: "#ff0000", strokeColor: "#009393"
+              fillColor: "#ff0000", strokeColor: "#ff0000"
             },
           ] 
         },
@@ -413,62 +410,62 @@ export class StatistiquesComponent implements OnInit {
           data: [
             {
               x: "DASI", y: 464,
-              fillColor: "#000000", strokeColor: "#009393"
+              fillColor: "#000000", strokeColor: "#000000"
             },{
               x: "DD", y: 684,
-              fillColor: "#000000", strokeColor: "#009393"
+              fillColor: "#000000", strokeColor: "#000000"
             }, {
               x: "DST",  y: 694,
-              fillColor: "#000000", strokeColor: "#009393"
+              fillColor: "#000000", strokeColor: "#000000"
             },{
               x: "DSD",  y: 764,
-              fillColor: "#000000", strokeColor: "#009393"
+              fillColor: "#000000", strokeColor: "#000000"
             }, {
               x: "DRH", y: 484,
-              fillColor: "#000000", strokeColor: "#009393"
+              fillColor: "#000000", strokeColor: "#000000"
             },{
               x: "DRJ", y: 794,
-              fillColor: "#000000", strokeColor: "#009393"
+              fillColor: "#000000", strokeColor: "#000000"
             },{
               x: "RAP", y: 764,
-              fillColor: "#000000", strokeColor: "#009393"
+              fillColor: "#000000", strokeColor: "#000000"
             },{
               x: "DV", y: 684,
-              fillColor: "#000000", strokeColor: "#009393"
+              fillColor: "#000000", strokeColor: "#000000"
             },{
               x: "DSI",  y: 594,
-              fillColor: "#000000", strokeColor: "#009393"
+              fillColor: "#000000", strokeColor: "#000000"
             },{
               x: "DMPJ",  y: 664,
-              fillColor: "#000000", strokeColor: "#009393"
+              fillColor: "#000000", strokeColor: "#000000"
             },{
               x: "DA", y: 484,
-              fillColor: "#000000", strokeColor: "#009393"
+              fillColor: "#000000", strokeColor: "#000000"
             },{
               x: "DEO", y: 594,
-              fillColor: "#000000", strokeColor: "#009393"
+              fillColor: "#000000", strokeColor: "#000000"
             },{
               x: "PMA",  y: 764,
-              fillColor: "#000000", strokeColor: "#009393"
+              fillColor: "#000000", strokeColor: "#000000"
             }, {
               x: "DSN", y: 484,
-              fillColor: "#000000", strokeColor: "#009393"
+              fillColor: "#000000", strokeColor: "#000000"
             },{
               x: "DIS", y: 794,
-              fillColor: "#000000", strokeColor: "#009393"
+              fillColor: "#000000", strokeColor: "#000000"
             },{
               x: "DEP", y: 764,
-              fillColor: "#000000", strokeColor: "#009393"
+              fillColor: "#000000", strokeColor: "#000000"
             },{
               x: "DRA", y: 684,
-              fillColor: "#000000", strokeColor: "#009393"
+              fillColor: "#000000", strokeColor: "#000000"
             },
           ]
         }, 
       ],
       chart: {
         type: "bar",
-        height: 350,
+        height: 320,
         width: 700,
         stacked: true,
         toolbar: {

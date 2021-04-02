@@ -9,12 +9,12 @@ import { Router } from '@angular/router';
 })
 export class AlertComponent implements OnInit {
   
-  data: any;
+  datas: any;
   constructor(public router: Router,
     private dataService: DataService) { }
 
   ngOnInit() {
-    this.data = this.dataService.getData();
+    this.datas = this.dataService.getData();
   }
   
   openDetail(data) {

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { DataService } from 'src/app/service/data.service';
 
 @Component({
   selector: 'app-addinter',
@@ -28,7 +29,10 @@ export class AddinterComponent implements OnInit {
   contactForm : FormGroup;
   posteForm : FormGroup;
   formPhoneGroup : FormGroup;
-  constructor(private fb: FormBuilder) { }
+  datas: any;
+  constructor(private fb: FormBuilder,private dataService: DataService,) {
+    this.datas = this.dataService.getData();
+   }
   ngOnInit() {
     this.interForm = new FormGroup({
       infopersonnel: new FormGroup({

@@ -29,7 +29,6 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { IntersouscontratComponent } from './pages/intersouscontrat/intersouscontrat.component';
 import { InterfincontratComponent } from './pages/interfincontrat/interfincontrat.component';
-import { AjouterinterComponent } from './pages/ajouterinter/ajouterinter.component';
 import { ListermanagerComponent } from './pages/listermanager/listermanager.component';
 import { AddmanagerComponent } from './pages/addmanager/addmanager.component';
 import { AlertComponent } from './pages/alert/alert.component';
@@ -42,12 +41,8 @@ import { DetailmanagerComponent } from './pages/detailmanager/detailmanager.comp
 import { DetailinterComponent } from './pages/detailinter/detailinter.component';
 import { DetailagenceComponent } from './pages/detailagence/detailagence.component';
 import { DatePipe } from '@angular/common';
-import { RestaurationdrhComponent } from './pages/restaurationdrh/restaurationdrh.component';
 import { NgxFileSaverModule } from '@clemox/ngx-file-saver';
 import { NgxDocViewerModule } from 'ngx-doc-viewer';
-import { InfopersonnelComponent } from './pages/ajouterinter/infopersonnel/infopersonnel.component';
-import { ContratComponent } from './pages/ajouterinter/contrat/contrat.component';
-import { PostaComponent } from './pages/ajouterinter/posta/posta.component';
 import { MatButtonModule, MatInputModule, MatSidenavModule, MatStepperModule, MatToolbarModule } from '@angular/material';
 import { PresenceComponent } from './pages/presence/presence.component';
 import { AgenceComponent } from './pages/agence/agence.component';
@@ -75,7 +70,6 @@ import { AddinterComponent } from './pages/addinter/addinter.component';
     HomedrhComponent,
     IntersouscontratComponent,
     InterfincontratComponent,
-    AjouterinterComponent,
     ListermanagerComponent,
     AddmanagerComponent,
     AlertComponent,
@@ -87,10 +81,6 @@ import { AddinterComponent } from './pages/addinter/addinter.component';
     DetailmanagerComponent,
     DetailinterComponent,
     DetailagenceComponent,
-    RestaurationdrhComponent,
-    InfopersonnelComponent,
-    ContratComponent,
-    PostaComponent,
     PresenceComponent,
     AgenceComponent,
     OffreComponent,
