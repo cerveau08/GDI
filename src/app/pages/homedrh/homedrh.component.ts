@@ -74,7 +74,6 @@ export class HomedrhComponent implements OnInit {
   intervalId;
   ngOnInit() {
     this.datas = this.dataService.getData();
-    console.log(this.diagrammes);
     const getDownloadProgress = () => {
       console.log("getDownload", this);
       if (this.progress <= 99) {
@@ -86,7 +85,6 @@ export class HomedrhComponent implements OnInit {
       }
     };
     this.intervalId = setInterval(getDownloadProgress, 1000);
-    this.data = this .dataService.getData();
   }
 
   ngOnDestroy() {

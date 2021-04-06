@@ -18,7 +18,7 @@
         <div class="grid-container" *ngFor="let d of data">
             <div class="image">
                 <div class="ima">
-                    <img src="../assets/images/inter.png">
+                    <img alt="" src="../assets/images/inter.png">
                     <div class="im1">
                         <img src="../assets/images/phone.png" alt="">
                     </div>
@@ -77,36 +77,23 @@
                 </div>
             </div>
         </div>
-        
-        
-        <div class="interi-aside">
-            <p class="dernier-aside">Nos dernières recrues</p>
-            <div *ngFor="let p of datas | slice:0:4; let i = index">
-                <div class="list-aside">
-                    <div style="cursor: pointer;" class="grid-container-aside" [ngStyle]="{'border-bottom' : ((i > 2) ? 'none' : '1px solid #f5f6f9') }">
-                        <div  class="item4-aside" >
-                            <img class="photo-aside" src="../assets/images/{{p.photo}}">
-                        </div>
-                        <div  class="item4-aside" >
-                            <p class="prenom-aside"> {{p.prenom}} </p>
-                            <p class="poste-aside"> {{p.poste}} </p>
-                        </div>
-                        <div  class="item4-aside"> 
-                            <p class="tmp-aside" >{{p.matricule}}</p> 
-                        </div>
-                    </div>
-                </div>
+        <div class="annonce-aside">
+            <p class="dernier-aside">Manager</p>
+            <div class="manager-aside">
+               <img src="../assets/images/manager.png" alt="">
             </div>
-            <button  class="button-aside" routerLink="/accueil/newinter">Voir le liste</button>
+            <p class="nom-aside">{{data.manager}}</p>
+            <p class="postem-aside">{{data.postem}}</p>
+            <button  class="button-aside" routerLink="/accueil/manager">Afficher</button>
         </div>
         
         <div class="annonce-aside">
-            <p class="dernier-aside">Avis de recrutement</p>
+            <p class="dernier-aside">Interimaires collaborateurs</p>
             <div *ngFor="let p of datas | slice:0:4; let i = index">
                 <div class="list-aside">
                     <div style="cursor: pointer;" class="grid-container1-aside" [ngStyle]="{'border-bottom' : ((i > 2) ? 'none' : '1px solid #f5f6f9') }">
                         <div  class="item4-aside" >
-                            <p class="prenom-aside"> {{p.poste}} </p>
+                            <p class="prenom-aside"> {{p.prenom}} {{p.nom}}</p>
                             <div class="dep-aside">
                                 <p class="serv-aside"> {{p.direction}}/ </p>
                                 <p class="serv-aside"> {{p.pole}}/ </p>
@@ -120,7 +107,7 @@
                     </div>
                 </div>
             </div>
-            <button  class="button1-aside" routerLink="/accueil/offre">Voir le liste</button>
+            <button  class="button1-aside" routerLink="/accueil/souscontrat">Voir +</button>
         </div>
       </div>
 </div>

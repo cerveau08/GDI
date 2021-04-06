@@ -1,6 +1,6 @@
 <div class="demande">
     <div class="image">
-        <img src="../assets/images/delete.svg">
+        <img alt="" src="../assets/images/delete.svg">
     </div>
     <div class="alert">
         <p class="detail">Vous n’avez pas encore fait votre demande de suvention restauration.</p>
@@ -10,7 +10,7 @@
     </div>
 </div>
     <div class="tableau">
-        <p class="detail1">Liste des interimaires sous contrat</p>
+        <p class="detail1" id="mydesc">Liste des interimaires sous contrat</p>
         <div class="exporter">
             <p class="export">Exporter</p>
             <div class="csv" style="cursor: pointer;">
@@ -22,19 +22,19 @@
                 <mat-icon fontSet="material-icons-outlined">tune</mat-icon>
             </div>
         </div>
-        <table style="overflow-x:auto;">
+        <table style="overflow-x:auto;" aria-describedby = "mydesc">
             <thead>
                 <tr class="head">
-                    <th class="id1">#</th>
-                    <th class="typ">
+                    <th class="id1" id="manager">#</th>
+                    <th class="typ" id="mois">
                         <div class="type">
                             <p>Mois</p> 
                             <mat-icon class="updown" fontSet="material-icons-outlined">unfold_more</mat-icon>
                         </div>
                     </th>
-                    <th>Somme</th>
-                    <th>Date demande</th>
-                    <th>Date envoie</th>
+                    <th id="somme">Somme</th>
+                    <th id="datedemande">Date demande</th>
+                    <th id="dateenvoi">Date envoie</th>
             </tr>
             </thead>
             <tbody>

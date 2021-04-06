@@ -1,26 +1,26 @@
 <div class="all-container">
     <div class="demande">
         <div class="tableau">
-            <p class="detail1">Liste des Intérimaires</p>
-            <table style="overflow-x:auto;">
+            <p class="detail1" id="mydesc">Liste des Intérimaires</p>
+            <table style="overflow-x:auto;" aria-describedby = "mydesc">
                 <thead>
                     <tr class="head">
-                        <th class="id1">#</th>
-                        <th class="typ">
+                        <th class="id1" id="matricule">#</th>
+                        <th class="typ" id="prenom">
                             <div class="type">
                                 <p>Prénom</p> 
                                 <mat-icon class="updown" fontSet="material-icons-outlined">unfold_more</mat-icon>
                             </div>
                         </th>
-                        <th class="typ">
+                        <th class="typ" id="nom">
                             <div class="type">
                                 <p>Nom</p> 
                                 <mat-icon class="updown" fontSet="material-icons-outlined">unfold_more</mat-icon>
                             </div>
                         </th>
-                        <th>Date Début</th>
-                        <th>Date Fin</th>
-                        <th>Action</th>
+                        <th id="datedebut">Date Début</th>
+                        <th id="datefin">Date Fin</th>
+                        <th id="action">Action</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -70,7 +70,7 @@
                 <div class="list-aside">
                     <div style="cursor: pointer;" class="grid-container-aside" [ngStyle]="{'border-bottom' : ((i > 2) ? 'none' : '1px solid #f5f6f9') }">
                         <div  class="item4-aside" >
-                            <img class="photo-aside" src="../assets/images/{{p.photo}}">
+                            <img alt="" class="photo-aside" src="../assets/images/{{p.photo}}">
                         </div>
                         <div  class="item4-aside" >
                             <p class="prenom-aside"> {{p.prenom}} </p>

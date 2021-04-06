@@ -9,12 +9,12 @@ import { DataService } from 'src/app/service/data.service';
 })
 export class OffreComponent implements OnInit {
 
-  data: any;
+  datas: any;
   constructor(public router: Router,
     private dataService: DataService) { }
 
   ngOnInit() {
-    this.data = this.dataService.getData();
+    this.datas = this.dataService.getData();
   }
 
 }

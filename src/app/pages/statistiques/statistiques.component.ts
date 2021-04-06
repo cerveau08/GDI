@@ -44,6 +44,7 @@ var themeColors = [$primary, $warning, $success, $danger, $info];
 })
 export class StatistiquesComponent implements OnInit {
 
+  
   color: any;
   public datas: any;
   public diagrammes: any;

@@ -62,7 +62,7 @@
                     </div>
                 </div>
     
-                <!--DIAGRAMME-->
+                <!--DIAGRAMME data-->
     
                 <!--DIAGRAMME-->
             </div>
@@ -113,34 +113,34 @@
             <button  class="button7" routerLink="/accueil/statistique">Voir les statistiques</button>
         </div>
         <div class="tableau">
-            <p class="1">En fin de contrat ce mois</p>
+            <p class="1" id="mydesc">En fin de contrat ce mois</p>
             <div class="exporter">
                 <div class="filtrer" style="cursor: pointer;">
                     <input class="filtre" type="text" [(ngModel)]="filterterm" placeholder="Filtre">
                     <mat-icon fontSet="material-icons-outlined">tune</mat-icon>
                 </div>
             </div>
-            <table style="overflow-x:auto;">
+            <table style="overflow-x:auto;" aria-describedby = "mydesc">
                 <thead>
                     <tr class="head">
-                        <th class="id1">#</th>
-                        <th class="typ">
+                        <th class="id1" id="matricule">#</th>
+                        <th class="typ" id="nom">
                             <div class="type">
                                 <p>Nom</p> 
                                 <mat-icon class="updown" fontSet="material-icons-outlined">unfold_more</mat-icon>
                             </div>
                         </th>
-                        <th>Manager</th>
-                        <th>Direction</th>
-                        <th>Agence</th>
-                        <th>Réintégrable</th>
+                        <th id="manager">Manager</th>
+                        <th id="direction">Direction</th>
+                        <th id="agence">Agence</th>
+                        <th id="statut">Réintégrable</th>
                 </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let p of datas | filter:filterterm | slice:0:3; let i = index">
                         <td class="id1">{{p.id}}</td>
                         <td>{{p.prenom}} {{p.nom}}</td>
-                        <td><img class="photo" src="../assets/images/{{p.photo}}"></td>
+                        <td><img alt="" class="photo" src="../assets/images/{{p.photo}}"></td>
                         <td>{{p.direction}}</td>
                         <td>{{p.agence}}</td>
                         <td> <div [style.background]="getColor(p)" class="statut"></div> <p class="stat"> {{p.statut}}</p></td>
@@ -181,11 +181,11 @@
         
         <div class="interi-aside">
             <p class="dernier-aside">Nos dernières recrues</p>
-            <div *ngFor="let p of data | slice:0:4; let i = index">
+            <div *ngFor="let p of datas | slice:0:4; let i = index">
                 <div class="list-aside">
                     <div style="cursor: pointer;" class="grid-container-aside" [ngStyle]="{'border-bottom' : ((i > 2) ? 'none' : '1px solid #f5f6f9') }">
                         <div  class="item4-aside" >
-                            <img class="photo-aside" src="../assets/images/{{p.photo}}">
+                            <img alt="" class="photo-aside" src="../assets/images/{{p.photo}}">
                         </div>
                         <div  class="item4-aside" >
                             <p class="prenom-aside"> {{p.prenom}} </p>
@@ -212,7 +212,7 @@
         
         <div class="annonce-aside">
             <p class="dernier-aside">Avis de recrutement</p>
-            <div *ngFor="let p of data | slice:0:4; let i = index">
+            <div *ngFor="let p of datas | slice:0:4; let i = index">
                 <div class="list-aside">
                     <div style="cursor: pointer;" class="grid-container1-aside" [ngStyle]="{'border-bottom' : ((i > 2) ? 'none' : '1px solid #f5f6f9') }">
                         <div  class="item4-aside" >
@@ -234,7 +234,7 @@
         </div>
         <div class="annonce-aside">
             <p class="dernier-aside">Interimaires collaborateurs</p>
-            <div *ngFor="let p of data | slice:0:4; let i = index">
+            <div *ngFor="let p of datas | slice:0:4; let i = index">
                 <div class="list-aside">
                     <div style="cursor: pointer;" class="grid-container1-aside" [ngStyle]="{'border-bottom' : ((i > 2) ? 'none' : '1px solid #f5f6f9') }">
                         <div  class="item4-aside" >

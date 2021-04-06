@@ -15,7 +15,7 @@ export class CompteComponent implements OnInit {
   public nombre = 29;
   public left: any;
 
-  donnees: any;
+  datas: any;
   objetctis = [
     {
       title: "Objectif 1",
@@ -65,7 +65,7 @@ export class CompteComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.donnees = this.dataService.getData();
+    this.datas = this.dataService.getData();
   }
 
   getwidth() {

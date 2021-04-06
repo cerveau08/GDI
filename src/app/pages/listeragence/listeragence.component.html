@@ -44,8 +44,8 @@
                                     <div >
                                     <div class="grid">
                                         <div class="photo">
-                                        <img *ngIf="!url1==true" src="../assets/images/{{p.agentimg}}">
-                                        <img *ngIf="url1" [src]="url1" height="60">
+                                        <img alt="" *ngIf="!url1==true" src="../assets/images/{{p.agentimg}}">
+                                        <img alt="" *ngIf="url1" [src]="url1" height="60">
                                         <input formControlName="photo" class="button" type="file" (change)="readUrl($event)" >
                                         </div>
                                         <div class="others">
@@ -122,8 +122,8 @@
                                 <div >
                                 <div class="gridad">
                                     <div class="photoad">
-                                    <img class="imgad"  *ngIf="!url1==true" src="../assets/images/default.png">
-                                    <img class="imgad" *ngIf="url1" [src]="url1" height="60">
+                                    <img alt="" class="imgad"  *ngIf="!url1==true" src="../assets/images/default.png">
+                                    <img alt="" class="imgad" *ngIf="url1" [src]="url1" height="60">
                                     <input formControlName="photo" class="buttonad" type="file" (change)="readUrl($event)" >
                                     </div>
                                     <div class="othersad">
@@ -186,7 +186,7 @@
                 <div class="list-aside">
                     <div style="cursor: pointer;" class="grid-container-aside" [ngStyle]="{'border-bottom' : ((i > 2) ? 'none' : '1px solid #f5f6f9') }">
                         <div  class="item4-aside" >
-                            <img class="photo-aside" src="../assets/images/{{p.photo}}">
+                            <img alt="" class="photo-aside" src="../assets/images/{{p.photo}}">
                         </div>
                         <div  class="item4-aside" >
                             <p class="prenom-aside"> {{p.prenom}} </p>

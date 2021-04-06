@@ -1,6 +1,6 @@
 <div class="all-container">
     <div class="tableau">
-        <p class="detail1">Liste des interimaires sous contrat</p>
+        <p class="detail1" id="mydesc">Liste des interimaires sous contrat</p>
         <div class="exporter">
             <p class="export">Exporter</p>
             <div class="csv" style="cursor: pointer;">
@@ -12,26 +12,26 @@
                 <mat-icon fontSet="material-icons-outlined">tune</mat-icon>
             </div>
         </div>
-        <table style="overflow-x:auto;">
+        <table style="overflow-x:auto;" aria-describedby = "mydesc">
             <thead>
                 <tr class="head">
-                    <th class="id1">#</th>
-                    <th class="typ">
+                    <th class="id1" id="matricule">#</th>
+                    <th class="typ" id="prenom">
                         <div class="type">
                             <p>Prenom</p> 
                             <mat-icon class="updown" fontSet="material-icons-outlined">unfold_more</mat-icon>
                         </div>
                     </th>
-                    <th class="typ">
+                    <th class="typ" id="nom">
                         <div class="type">
                             <p>Nom</p> 
                             <mat-icon class="updown" fontSet="material-icons-outlined">unfold_more</mat-icon>
                         </div>
                     </th>
-                    <th>Profil</th>
-                    <th>Direction</th>
-                    <th>Dep/serv</th>
-                    <th>Nbre Interimaires</th>
+                    <th id="profil">Profil</th>
+                    <th id="direction">Direction</th>
+                    <th id="dep">Dep/serv</th>
+                    <th id="nbr">Nbre Interimaires</th>
             </tr>
             </thead>
             <tbody>
@@ -39,7 +39,7 @@
                     <td class="id1">{{p.id}}</td>
                     <td>{{p.prenom}}</td>
                     <td>{{p.nom}}</td>
-                    <td> <img class="photo" src="../assets/images/{{p.photo}}"></td>
+                    <td> <img alt="" class="photo" src="../assets/images/{{p.photo}}"></td>
                     <td>{{p.direction}}</td>
                     <td>{{p.agence}}</td>
                     <td> <p>{{p.dateFin  | date:'dd'}}</p> </td>
@@ -83,7 +83,7 @@
                 <div class="list-aside">
                     <div style="cursor: pointer;" class="grid-container-aside" [ngStyle]="{'border-bottom' : ((i > 2) ? 'none' : '1px solid #f5f6f9') }">
                         <div  class="item4-aside" >
-                            <img class="photo-aside" src="../assets/images/{{p.photo}}">
+                            <img alt="" class="photo-aside" src="../assets/images/{{p.photo}}">
                         </div>
                         <div  class="item4-aside" >
                             <p class="prenom-aside"> {{p.prenom}} </p>

@@ -93,7 +93,7 @@ export class NavComponent implements OnInit {
   public drhnav = [
     {
       id: 1, title: 'Tableau de bord',
-      path: 'homedrh',
+      path: 'home',
       icon: "home",
     },{
       id: 3,  title: 'Interimaires',
@@ -147,7 +147,7 @@ export class NavComponent implements OnInit {
   public agencenav = [
     {
       id: 1, title: 'Tableau de bord',
-      path: 'homedrh',
+      path: 'home',
       icon: "home",
     },{
       id: 3,  title: 'Interimaires',
@@ -217,7 +217,6 @@ export class NavComponent implements OnInit {
   getScreenSize(event?) {
         this.scrHeight = window.innerHeight;
         this.scrWidth = window.innerWidth;
-        console.log(this.scrHeight, this.scrWidth);
   }
   constructor(
     private dataService: DataService
@@ -240,9 +239,6 @@ export class NavComponent implements OnInit {
     }
     return this.menus;
   }
-  onClick(i: number, j: number) {
-    this.eventSources[i].activeChoice = j;
-  }
 
   getMargin(event) {
     let margin = 10;
@@ -264,22 +260,6 @@ export class NavComponent implements OnInit {
       color = "#ff7900";
     } 
     return color;
-  }
-
-  getNav() {
-    this.role = localStorage.getItem('user')
-    if(this.role == "inter") {
-      this.menus = this.internav;
-    } else if(this.role == "drh") {
-      this.menus = this.drhnav;
-    } else if(this.role == "agence") {
-      this.menus = this.agencenav;
-    } else if(this.role == "manager") {
-      this.menus = this.managernav;
-    } else {
-      this.menus = this.eventSources
-    }
-    return this.menus;
   }
 }
 

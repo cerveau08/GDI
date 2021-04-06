@@ -238,6 +238,25 @@ table {
     height: 33px;
     border-radius: 50%;
 }
+input[type=checkbox] {
+    width: 20px;
+    height: 20px;
+    font-size: 15px;
+    margin: 0;
+}
+  input[type=checkbox]:after {
+    content: " ";
+    background-color: white;
+    display: inline-block;
+    visibility: visible;
+  }
+  input[type=checkbox]:checked:after {
+    content: "\2714";
+    color: white;
+    background-color: #ff7900;
+    width: 13px;
+    padding-left: 2px;
+  }
   jw-modal {
       position: relative;
       h1{

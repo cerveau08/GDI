@@ -1,3 +1,4 @@
+import { DataService } from 'src/app/service/data.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,10 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./parametre.component.scss']
 })
 export class ParametreComponent implements OnInit {
-
-  constructor() { }
+ 
+  datas: any;
+  constructor(private dataService: DataService) { }
 
   ngOnInit() {
+    this.datas = this.dataService.getData();
   }
 
 }

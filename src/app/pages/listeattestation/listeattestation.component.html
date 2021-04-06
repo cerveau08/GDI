@@ -1,5 +1,5 @@
 <div class="tableau">
-    <p class="detail1">Liste des interimaires</p>
+    <p class="detail1" id="mydesc">Liste des interimaires</p>
     <div class="exporter">
         <p class="export">Exporter</p>
         <div class="csv" style="cursor: pointer;">
@@ -11,19 +11,19 @@
             <mat-icon fontSet="material-icons-outlined">tune</mat-icon>
         </div>
     </div>
-    <table style="overflow-x:auto;">
+    <table style="overflow-x:auto;" aria-describedby = "mydesc">
         <thead>
             <tr class="head">
-                <th class="id1">#</th>
-                <th class="typ">
+                <th class="id1" id="manager">#</th>
+                <th class="typ" id mois>
                     <div class="type">
                         <p>Mois</p> 
                         <mat-icon class="updown" fontSet="material-icons-outlined">unfold_more</mat-icon>
                     </div>
                 </th>
-                <th class="typ">Date de sortie</th>
-                <th>Présence</th>
-                <th>Attestation</th>
+                <th class="typ" id="date">Date de sortie</th>
+                <th id="presence">Présence</th>
+                <th id="attestation">Attestation</th>
         </tr>
         </thead>
         <tbody>

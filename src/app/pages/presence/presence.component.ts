@@ -12,6 +12,8 @@ import { ModalService } from 'src/app/_modal/modal.service';
 })
 export class PresenceComponent implements OnInit {
 
+  checkedList:any;
+  selectedAll: any;
   public restant: any;
   public nombre = 69;
   public left: any;
@@ -44,39 +46,29 @@ export class PresenceComponent implements OnInit {
     this.datas = this.dataService.getData();
   }
 
-  parentcheck(event) {
-    if (event.target.checked) {
-      this.ck = true;
-    } else {
-      this.ck = false;
+  selectAll() {
+    for (var i = 0; i < this.datas.length; i++) {
+      this.datas[i].statut = this.selectedAll;
     }
-    return this.ck;
+    this.getCheckedItemList();
   }
-  annuler1() {
-    this.ck = false;
+  checkIfAllSelected(event) {
+    this.selectedAll = this.datas.every(function(item:any) {
+     // item.s = event.target.checked;
+      return item.statut == true;
+    })
+    this.getCheckedItemList();
   }
-  annuler2() {
-    this.parentCk = false;
-  }
-  onCheckboxChange(e) {
-    const checkArray: FormArray = this.form.get('checkArray') as FormArray;
-  
-    if (e.target.checked) {
-      checkArray.push(new FormControl(e.target.value));
-    } else {
-      let i: number = 0;
-      checkArray.controls.forEach((item: FormControl) => {
-        if (item.value == e.target.value) {
-          checkArray.removeAt(i);
-          return;
-        }
-        i++;
-      });
+  getCheckedItemList(){
+    this.checkedList = [];
+    for (var i = 0; i < this.datas.length; i++) {
+      if(this.datas[i].statut)
+      this.checkedList.push(this.datas[i]);
     }
+    this.checkedList = /*JSON.stringify(*/this.checkedList;
+    console.log(this.checkedList);
   }
-  submitForm() {
-    console.log(this.form.value)
-  }
+ 
 
   getwidth() {
     this.restant = this.nombre + "%";
@@ -88,22 +80,19 @@ export class PresenceComponent implements OnInit {
     return this.left;
   }
   
-
-  onChangeCategory(event, cat: any){ // Use appropriate model type instead of any
+/*
+  onChangeCategory(event, cat: any){
     this.tempArr.brands.push(cat.statutr);
     console.log(this.tempArr.brands.push(cat.id));
-  }
+  }*/
 
   getcolor1(p) {
-    let color = "#ff0000"
+    let color = "#8c8c8c"
     let d = new Date();
     var g1 = new Date(d.getFullYear(), d.getMonth()+1, d.getDate());
     let date = new Date(p.dateFin);
     let now = this.datepipe.transform(g1, 'yyyyMMdd');
     let dates = this.datepipe.transform(date, 'yyyyMMdd');
-    console.log(date);
-    console.log(now);
-    console.log(dates);
     if(now > dates) {
       color = "#8c8c8c"
     } else {

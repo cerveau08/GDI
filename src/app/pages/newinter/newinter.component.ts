@@ -23,7 +23,6 @@ export class NewinterComponent implements OnInit {
 
   ngOnInit() {
     this.datas = this.dataService.getData();
-    this.getcolor(this.p);
   }
 
   openDetail(data) {
@@ -32,24 +31,5 @@ export class NewinterComponent implements OnInit {
         user: JSON.stringify(data)
       }
     })
-  }
-
-  getcolor(p) {
-    let color = "#ff0000"
-    let d = new Date();
-    var g1 = new Date(d.getFullYear(), d.getMonth()+1, d.getDate());
-    let date = new Date(p.dateFin);
-    let now = this.datepipe.transform(g1, 'yyyyMMdd');
-    let dates = this.datepipe.transform(date, 'yyyyMMdd');
-    console.log(date);
-    console.log(now);
-    console.log(dates);
-    if(now > dates) {
-      color = "#ff0000"
-    } else {
-      color = "#000000"
-    }  
-    return color; 
   } 
-
 }
