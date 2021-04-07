@@ -18,7 +18,7 @@ pipeline {
     stages {
         stage('Installation des packets') {
             steps {
-                sh 'set +ex ; export NVM_DIR="$HOME/.nvm"; . ~/.nvm/nvm.sh; . ~/.profile ; nvm use lts/erbium ;npm -g install; npm run build; set -ex'
+                sh 'set +ex ; export NVM_DIR="$HOME/.nvm"; . ~/.nvm/nvm.sh; . ~/.profile ; nvm use lts/erbium ;npm install; npm run build; set -ex'
                 stash includes: '**/*', name: 'app'
             }
         }
@@ -30,7 +30,7 @@ pipeline {
             steps {
                 sh 'docker ps -qa -f name=${NAME} | xargs --no-run-if-empty docker rm -f'
                 sh 'docker images -f reference=${IMAGE} -qa | xargs --no-run-if-empty docker rmi'
-                sh 'docker build  --no-cache -t ${IMAGE}:${VERSION} .'
+                sh 'docker build --no-cache -t ${IMAGE}:${VERSION} .'
                 sh 'docker push ${IMAGE}:${VERSION}'
             }
         }
