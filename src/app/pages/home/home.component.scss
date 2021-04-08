@@ -45,14 +45,14 @@
     letter-spacing: -0.1px;
     color: #222222; 
     text-align: center;
-   // margin-top: 20px;
+    margin-top: 20px;
     span{
         font-size: 18px;
         font-weight: bold;
         letter-spacing: -0.12px;
     } 
 }
-.bar{
+.barcontrat{
     width: 100%;
     position: relative;
     margin-top: 20px;
@@ -99,11 +99,11 @@
 .elmt1 {
     border-right: 10px solid #f5f6f9;
 }
-.tit{
+.tit1{
     margin: 0 auto;
     width: 150px;
 }
-.tit1{
+.tit2{
     margin: 0 auto;
     width: 170px;
 }
@@ -517,13 +517,22 @@
 
 
 
-
+.bar {
+    width: 350px;
+    height: 155px;
+    background-color: #e6ded70a;
+    position: absolute;
+    top: -5px;
+    left: 43px;
+    padding-top: 5px;
+}
 
 // other user 
 .all-container {
     display: grid;
     grid-template-columns: 1fr 350px;
 }
+
 .main{
     padding: 10px;
 }
@@ -840,15 +849,7 @@
     margin-top: 15px;
     position: relative;
 }
-.bar {
-    width: 350px;
-    height: 155px;
-    background-color: #e6ded70a;
-    position: absolute;
-    top: -5px;
-    left: 43px;
-    padding-top: 5px;
-}
+
 
 .button7 {
     width: 205px;
