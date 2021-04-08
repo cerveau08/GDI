@@ -13,6 +13,9 @@ export class ListeragenceComponent implements OnInit {
 
   url1;
   url3;
+  user;
+  showupdate;
+  showadduser;
   datas: any;
   agenceForm: FormGroup;
   userForm: FormGroup;
@@ -21,6 +24,13 @@ export class ListeragenceComponent implements OnInit {
     public router: Router) { }
 
   ngOnInit() {
+    this.user = localStorage.getItem('user');
+    if(this.user == 'drh') {
+      this.showupdate = true;
+    } else {
+      this.showupdate = false;
+    }
+    
     this.datas = this.dataService.getData();
     this.agenceForm = new FormGroup({
       nom: new FormControl (''),

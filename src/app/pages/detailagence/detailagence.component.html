@@ -72,8 +72,8 @@
         </div>
         <div class="btns">
             <button class="buttonaffi" (click)="openModal('custom-modal-1')" type="button">Afficher contrat</button>
-            <button class="buttonmodif" (click)="openModal('custom-modal-2')" type="button">Modifier</button>
-            <button class="buttonsupp" (click)="delete()" type="button">Supprimer</button>
+            <button class="buttonmodif" *ngIf="showupdate" (click)="openModal('custom-modal-2')" type="button">Modifier</button>
+            <button class="buttonsupp" *ngIf="showupdate" (click)="delete()" type="button">Supprimer</button>
         </div>
     </div>
     <div class="aside">

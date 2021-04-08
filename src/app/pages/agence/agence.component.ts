@@ -47,6 +47,9 @@ export class AgenceComponent implements OnInit {
   };
   url1;
   url3: any;
+  user;
+  showupdate;
+  showadduser;
   datas: any;
   agenceForm: FormGroup;
   viewer = 'google';
@@ -58,6 +61,12 @@ export class AgenceComponent implements OnInit {
     private dataService: DataService,) { }
 
   ngOnInit() {
+    this.user = localStorage.getItem('user');
+    if(this.user == 'agence' || this.user == 'drh') {
+      this.showupdate = true;
+    } else {
+      this.showupdate = false;
+    }
     this.datas = this.dataService.getData();
     this.agenceForm = new FormGroup({
       nom: new FormControl (''),

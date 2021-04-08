@@ -1,11 +1,13 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 body {
+    width: 100%;
     margin: 0;
     padding: 0;
     font-family: sans-serif;
     background-color: #f5f6f9;
 }
 .container {
+    width: 100%;
     display: grid;
     grid-template-columns: 300px 1fr /*350px */;
     grid-template-rows: auto 1fr auto;
@@ -16,7 +18,9 @@ body {
     "footer footer footer";
     height: 100vh;
 }
-
+/*undefined {
+  flex: 1;
+}*/
 app-header {
     height: 70px;
     color: black;

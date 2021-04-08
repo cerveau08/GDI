@@ -259,7 +259,6 @@ export class HomeComponent implements OnInit {
     } else {
       this.showHome = true;
     }
-    console.log(this.user);
     const getDownloadProgress = () => {
       console.log("getDownload", this);
       if (this.progress <= 99) {

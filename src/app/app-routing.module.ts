@@ -164,10 +164,10 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'accueil/home',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
-  { path: '**', redirectTo: 'accueil/home' },
+  { path: '**', redirectTo: 'login' },
 ];
 
 @NgModule({

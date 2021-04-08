@@ -430,7 +430,7 @@ jw-modal {
     }
 }
 .form {
-    width: 680px;
+    max-width: 680px;
     margin: 40px auto;
 }
 .grid {
@@ -508,16 +508,22 @@ input {
     padding-left: 10px;
     outline: none;
 }
+.input1 {
+    max-width: 415px;
+}
 .input1 input {
-    width: 415px;
+    width: 95%;
     height: 41px;
     background-color: #f5f6f9;
     border-radius: 1px;
     border: solid 1px #d8d8d8;
     margin-bottom: 15px;
 }
+.input2 {
+    max-width: 415px;
+}
 .input2 input {
-    width: 195px;
+    width: 45%;
     height: 41px;
     background-color: #f5f6f9;
     border-radius: 1px;
@@ -525,7 +531,7 @@ input {
     margin-bottom: 15px;
 }
 .input4 textarea {
-    width: 422px;
+    width: 96%;
     height: 114px;
     background-color: #f5f6f9;
     border-radius: 1px;
@@ -534,7 +540,7 @@ input {
     outline: none;
 }
 .input3 {
-    margin-left: 10px;
+    margin-left: 1%;
 }
 .trait {
     border: 1px solid #979797;
