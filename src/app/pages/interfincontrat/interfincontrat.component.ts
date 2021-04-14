@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { NavigationExtras, Router } from '@angular/router';
 import { DataService } from 'src/app/service/data.service';
@@ -43,6 +43,14 @@ export class InterfincontratComponent implements OnInit {
     '70.000f',
     '80.000f', 
   ];
+  scrHeight:any;
+  scrWidth:any;
+  @HostListener('window:resize', ['$event'])
+  getScreenSize(event?) {
+        this.scrHeight = window.innerHeight;
+        this.scrWidth = window.innerWidth;
+        console.log(this.scrHeight, this.scrWidth);
+  }
   moisSelect
   demandeForm: FormGroup;
   constructor(private dataService: DataService,
@@ -50,7 +58,9 @@ export class InterfincontratComponent implements OnInit {
     private modalService: ModalService,
     public datepipe: DatePipe,
     public router: Router
-    ) { }
+    ) {
+      this.getScreenSize();
+    }
 
   ngOnInit() {
     this.demandeForm = new FormGroup({

@@ -5,8 +5,6 @@ jw-modal {
     display: none;
 
     .jw-modal {
-        /* modal container fixed across whole screen */
-      //  margin-top: 20px;
         margin: 30px auto;
         width: 60%;
         position: fixed;
@@ -44,6 +42,31 @@ jw-modal {
         
         /* z-index must be below .jw-modal and above everything else  */
         z-index: 999;
+    }
+    @media (max-width: 991px) {
+        .jw-modal {
+            margin: 10px auto;
+            width: 90%;
+            position: fixed;
+            top: 5px;
+            right: 0;
+            bottom: 0;
+            left: 0;
+    
+            /* z-index must be higher than .jw-modal-background */
+            z-index: 1000;
+            
+            /* enables scrolling for tall modals */
+            overflow: auto;
+    
+            .jw-modal-body {
+                padding: 5px;
+                background: #fff;
+    
+                /* margin exposes part of the modal background */
+                margin: 10px;
+            }
+        }
     }
 }
 

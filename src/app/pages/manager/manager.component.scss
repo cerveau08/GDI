@@ -26,6 +26,13 @@
 .image {
     position: relative;
 }
+.image-manager {
+    width: 250px;
+    height: 250px;
+    object-fit: contain;
+    border-radius: 40px;
+    border: solid 3px #009393;
+}
 .im1 {
     width: 75px;
     height: 75px;
@@ -510,6 +517,91 @@ table {
         grid-template-areas:
           "tableau"
           "aside";
-        grid-template-rows:auto minmax(60px, auto) 1fr minmax(70px, auto) auto;
-      }
+        margin-right: -10px;
+    }
+    .demande {
+        margin-top: 10px;
+        margin-right: 0;
+        padding: 10px;
+    }
+    .detail {
+        font-size: 20px;
+        margin-left: 10px;
+    }
+    .manager {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+          "image"
+          "information";
+        margin-left: 10px;
+    }
+    .image {
+        width: 250px;
+    }
+    .image-manager {
+        width: 170px;
+        height: 170px;
+        object-fit: contain;
+        border-radius: 20px;
+        border: solid 3px #009393;
+    }
+    .im1 {
+        width: 40px;
+        height: 40px;
+        position: absolute;
+        top: 15%;
+        left: 63%;
+    }
+    .im2 {
+        width: 40px;
+        height: 40px;
+        position: absolute;
+        top: 60%;
+        left: 63%;
+    }
+    .image-contact {
+        width: 30px;
+        height: 30px;
+    }
+    .information{
+        margin-top: 10px;
+    }
+    .nom {
+        font-size: 20px;
+    }
+    .poste {
+        font-size: 16px;
+    }
+    .matricule{
+        font-size: 20px;
+    }
+    hr{
+        margin-top: 10px;
+    }
+    .detail1 {
+        font-size: 18px;
+    }
+    table {
+        margin-top: 10px;
+    }
+    th {
+        font-size: 10px !important;
+    }
+    td {
+        font-size: 10px !important;
+    }
+    .button-aside {
+        font-size: 14px;
+        height: 30px;
+    }
+    .button1-aside {
+        font-size: 14px;
+        height: 30px;
+    }
+    .dernier-aside {
+        font-size: 18px;
+    }
+    .nombre-aside {
+        font-size: 16px;
+    }
 }

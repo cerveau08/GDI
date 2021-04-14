@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { ApexAxisChartSeries, ApexChart, ApexDataLabels, ApexFill, ApexLegend, ApexPlotOptions, ApexResponsive, ApexXAxis, ApexYAxis, ChartComponent } from 'ng-apexcharts';
 import { DataService } from 'src/app/service/data.service';
 import { PaginationService } from 'src/app/service/pagination.service';
@@ -55,6 +55,14 @@ export class StatistiquesComponent implements OnInit {
   progress = 0;
   progressBar = document.querySelector(".progress-bar");
   intervalId;
+  scrHeight:any;
+  scrWidth:any;
+  @HostListener('window:resize', ['$event'])
+  getScreenSize(event?) {
+        this.scrHeight = window.innerHeight;
+        this.scrWidth = window.innerWidth;
+        console.log(this.scrHeight, this.scrWidth);
+  }
   ngOnInit() {
     this.datas = this.dataService.getData();
     const getDownloadProgress = () => {
@@ -96,6 +104,7 @@ export class StatistiquesComponent implements OnInit {
   public chartOptions: Partial<ChartOptions>;
   public chartOptions1: Partial<ChartOptions>;
   constructor(private dataService: DataService,) {
+    this.getScreenSize();
     this.chartOptions = {
       series: [
         {

@@ -287,22 +287,6 @@ button {
   border: none !important;
 }
 
-
-
-.matri {
-  font-size: 18px;
-  font-weight: normal;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  letter-spacing: -0.1px;
-  color: #222222;
-  margin-top: 30px;
-  margin-left: -20px;
-  span {
-      font-weight: bold;
-  }
-}
 .grid {
   margin-top: 10px;
   display: grid;
@@ -394,6 +378,7 @@ select {
   margin-bottom: 20px;
   background-color: #f5f6f9;
   outline: none;
+  color: #8e8e8e;
   border: 1px solid #d8d8d8;
   padding: 5px;
   option {
@@ -612,7 +597,7 @@ button {
   display: grid;
   grid-template-columns: 160px 1fr;
 }
-.image img {
+.image-valide {
   width: 158px;
   height: 158px;
   border-radius: 40px;
@@ -718,17 +703,17 @@ button {
   height: 40px;
 }
 .nombre-aside {
-margin-top: 0px;
-font-family: FuturaBT;
-font-size: 28px;
-font-weight: 900;
-font-stretch: normal;
-font-style: normal;
-line-height: normal;
-letter-spacing: normal;
-color: #222222;
-text-align: center;
-margin-bottom: 5px;
+  margin-top: 0px;
+  font-family: FuturaBT;
+  font-size: 28px;
+  font-weight: 900;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #222222;
+  text-align: center;
+  margin-bottom: 5px;
 }
 .titre-aside {
   opacity: 0.7;
@@ -935,6 +920,236 @@ margin-bottom: 5px;
       grid-template-areas:
         "tableau"
         "aside";
-      grid-template-rows:auto minmax(60px, auto) 1fr minmax(70px, auto) auto;
-    }
+  }
+  .all {
+    margin-right: 0px;
+    padding: 10px 5px;  
+    margin-top: 10px;
+  }
+  .all1 {
+    width: 300px;
+    margin: 0 auto;
+  }
+  .ajouter {
+      font-size: 24px;
+      margin-top: 0;
+      margin-left: 10px;
+  }
+
+  .titre {
+    font-size: 8px;
+    margin-top: 8px;
+  }
+  .form {
+    position: relative;
+  }
+  .triangle1 {
+    position: absolute;
+    top: 0;
+    left: 95px;
+    border-top: 15px solid transparent;
+    border-bottom: 16px solid transparent;
+  }
+  .triangle2 {
+    position: absolute;
+    top: 0;
+    left: 190px;
+    border-top: 15px solid transparent;
+    border-bottom: 16px solid transparent;
+  }
+  .triangle3 {
+    position: absolute;
+    top: 0;
+    left: 285px;
+    border-top: 15px solid transparent;
+    border-bottom: 16px solid transparent;
+  }
+  .head {
+    width: 95px;
+    position: relative;
+  }
+  .header {
+    padding-top: 5px;
+    max-width: 98px;
+    height: 26px;
+    background: #000000;
+    position: relative;
+  }
+  .grid {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "photo"
+      "others";
+  }
+  .grid1 {
+    width: 280px;
+    margin: 15px auto;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "photo"
+      "others";
+  }
+  .photo {
+    width: 110px;
+  }
+  .image-upload {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+  }
+  .buttonphoto1 {
+    padding-left: 0;
+    height: 70px;
+    margin-top: -20px;
+  }
+  .buttonphoto1::before {
+    content: 'Ajouter Photo';
+    width: 100px;
+    height: 20px;
+    font-size: 10px;
+    padding-top: 10px;
+    margin: 0 auto;
+  }
+  .buttonphoto2 {
+    padding-left: 0;
+    height: 70px;
+    margin-top: -20px;
+  }
+  .buttonphoto2::before {
+    content: 'Upload Contrat';
+    width: 100px;
+    height: 20px;
+    font-size: 10px;
+    padding-top: 10px;
+    margin: 0 auto;
+  }
+  .buttonphoto3 {
+    height: 70px;
+    margin-top: -20px;
+  }
+  .buttonphoto3::before {
+    content: 'Fiche de Poste';
+    width: 90px;
+    height: 20px;
+    font-size: 8px;
+    padding-top: 10px;
+    margin: 0 auto;
+    border-left: 3px solid black;
+  }
+  select {
+    width: 133px;
+    height: 35px;
+    font-size: 8px;
+    color: #8e8e8e;
+  }
+
+  .mat-horizontal-content-container {
+      overflow: hidden;
+      padding: 0 5px 10px 5px;
+  }
+  .infoinput1 input {
+    width: 265px;
+    height: 31px;
+    margin-bottom: 10px;
+    font-size: 8px;
+  }
+  .infoinput2 input {
+    width: 120px;
+    height: 31px;
+    margin-bottom: 10px;
+    font-size: 8px;
+  }
+  .posteinput2 input {
+    width: 120px;
+    height: 31px;
+    margin-bottom: 10px;
+    font-size: 8px;
+  } 
+  .contratinput2 input {
+    width: 120px;
+    height: 31px;
+    margin-bottom: 10px;
+    font-size: 8px;
+  }
+  .message {
+    margin-top: 20px;
+  }
+  .image {
+    width: 100px;
+    margin: 0 auto;
+  }
+   .image-valide {
+    width: 100px;
+    height: 100px;
+    border-radius: 40px;
+  }
+  .text {
+    margin-top: 10px;
+    margin-left: 0px;
+    width: 280px;
+  }
+  .p1 {
+    font-size: 10px;
+  }
+  
+  .button1 {
+    width: 90px;
+    height: 30px;
+    font-size: 10px;
+    margin-left: 50px
+  }
+  .button2 {
+    width: 90px;
+    height: 30px;
+    font-size: 10px;
+    margin-left: 10px;
+    margin-top: 10px;
+  }
+  .button3 {
+    width: 80px;
+    height: 30px;
+    font-size: 10px;
+    margin-left: 5px
+  }
+  .button4 {
+    width: 80px;
+    height: 30px;
+    font-size: 10px;
+    margin-left: 10px;
+    margin-top: 10px;
+  }
+  .button5 {
+    width: 80px;
+    height: 30px;
+    font-size: 10px;
+    margin-left: 10px;
+    margin-top: 10px;
+  }
+  .others {
+    margin-left: 0;
+  }
+  .matri {
+    font-size: 14px;
+    margin-top: 10px;
+    margin-left: 5px;
+  }
+  .button-aside {
+    width: 100px;
+    height: 30px;
+    font-size: 14px;
+  }
+  .button1-aside {
+      width: 100px;
+      height: 30px;
+      font-size: 14px;
+  }
+  .prenom-aside {
+    font-size: 12px;
+  }
+  .poste-aside {
+    font-size: 10px;
+  }
+  .tmp-aside {
+    font-size: 10px;
+  }
 }

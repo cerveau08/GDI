@@ -300,6 +300,52 @@
         grid-template-areas:
           "tableau"
           "aside";
-        grid-template-rows:auto minmax(60px, auto) 1fr minmax(70px, auto) auto;
+    }
+    .all {
+        margin-top: 10px;
+        margin-right: 0px;
+        padding: 10px;
+    }
+    .title {
+        font-size: 10px;
+        font-weight: 700;
+    }
+    .titls {
+        font-size: 10px;
+        font-weight: 700;
+    }
+    .heure {
+        font-size: 8px;
+    }
+    .sujet {
+        font-size: 8px;
+        font-weight: 500;
+    }
+    .libele {
+        font-size: 8px;
+        font-weight: 500;
+    }
+    .ser {
+        font-size: 7px;
+        font-weight: 400;
+    }
+    .button-aside {
+        width: 100px;
+        height: 30px;
+        font-size: 14px;
+      }
+      .button1-aside {
+          width: 100px;
+          height: 30px;
+          font-size: 14px;
+      }
+      .prenom-aside {
+        font-size: 12px;
+      }
+      .poste-aside {
+        font-size: 10px;
+      }
+      .tmp-aside {
+        font-size: 10px;
       }
 }

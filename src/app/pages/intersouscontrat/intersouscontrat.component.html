@@ -28,7 +28,7 @@
                             <mat-icon class="updown" fontSet="material-icons-outlined">unfold_more</mat-icon>
                         </div>
                     </th>
-                    <th id="manager">Manager</th>
+                    <th *ngIf="scrWidth>991" id="manager">Manager</th>
                     <th id="direction">Direction</th>
                     <th id="agence">Agence</th>
                     <th id="contrat">Fin de Contrat</th>
@@ -39,7 +39,7 @@
                     <td class="id1">{{p.id}}</td>
                     <td>{{p.prenom}}</td>
                     <td>{{p.nom}}</td>
-                    <td> <img class="photo" alt="photo" src="../assets/images/{{p.photo}}"></td>
+                    <td *ngIf="scrWidth>991"> <img class="photo" alt="photo" src="../assets/images/{{p.photo}}"></td>
                     <td>{{p.direction}}</td>
                     <td>{{p.agence}}</td>
                     <td> <p [style.color]="getcolor(p)">{{p.dateFin  | date:'dd/MM/yyyy'}}</p> </td>

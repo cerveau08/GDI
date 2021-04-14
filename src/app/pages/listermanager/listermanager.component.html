@@ -28,7 +28,7 @@
                             <mat-icon class="updown" fontSet="material-icons-outlined">unfold_more</mat-icon>
                         </div>
                     </th>
-                    <th id="profil">Profil</th>
+                    <th *ngIf="scrWidth>991" id="profil">Profil</th>
                     <th id="direction">Direction</th>
                     <th id="dep">Dep/serv</th>
                     <th id="nbr">Nbre Interimaires</th>
@@ -39,7 +39,7 @@
                     <td class="id1">{{p.id}}</td>
                     <td>{{p.prenom}}</td>
                     <td>{{p.nom}}</td>
-                    <td> <img alt="" class="photo" src="../assets/images/{{p.photo}}"></td>
+                    <td *ngIf="scrWidth>991"> <img alt="" class="photo" src="../assets/images/{{p.photo}}"></td>
                     <td>{{p.direction}}</td>
                     <td>{{p.agence}}</td>
                     <td> <p>{{p.dateFin  | date:'dd'}}</p> </td>

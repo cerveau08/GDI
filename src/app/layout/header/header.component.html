@@ -1,4 +1,5 @@
-<nav class="nav-global">
+<div class="content-web" *ngIf="scrWidth>991">
+  <nav class="nav-global">
     <div routerLink="/login" style="cursor: pointer;" class="logo">
       <img class="img-logo" src="../assets/icones/images-logo-orange.png" alt="">
       <div class="title-logo" *ngIf="scrWidth>991">
@@ -37,9 +38,9 @@
         </div>
         <div  *ngIf="click" class="profilinfo" style="cursor: pointer;">
           <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset" style="will-change: transform;">
-            <p class="profi" routerLink="/accueil/compte">profil</p>
+            <p class="profi" (click)="updown()" routerLink="/accueil/compte">profil</p>
             <br>
-            <p class="deconnecte" routerLink="/login">déconnexion</p>
+            <p class="deconnecte" (click)="updown()" routerLink="/login">déconnexion</p>
           </div>
         </div>
     </div>
@@ -110,3 +111,27 @@
       </div>
   </jw-modal>
 </div>
+</div>
+
+<div class="content-mobile" *ngIf="scrWidth<991">
+  <div class="nav-global-mobile">
+    <div class="toggle-menu-mobile">
+      <mat-icon class="icon-toggle-mobile">menu</mat-icon>
+    </div>
+    <div routerLink="/login" style="cursor: pointer;" class="logo-mobile">
+      <img class="img-logo-mobile" src="../assets/icones/images-logo-orange.png" alt="">
+        <p class="title-logo-mobile">GDI</p>
+    </div>
+    <div class="notif-chat-profil-mobile" >
+        <div class="search-mobile">
+          <mat-icon class="icon-search-mobile" fontSet="material-icons-outlined" >search</mat-icon>
+        </div>
+        <div style="cursor: pointer;" class="elmt-mobile" title="notifications">
+          <div routerLink="/accueil/alertes" style="outline: none;">
+             <mat-icon class="icon-notif-mobile" fontSet="material-icons-outlined" >notifications</mat-icon>
+             <span class="info-notif-mobile">notif</span>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>  

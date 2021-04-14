@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataService } from 'src/app/service/data.service';
 import { PaginationService } from 'src/app/service/pagination.service';
@@ -20,16 +20,25 @@ export class ListermanagerComponent implements OnInit {
   // paged items
   pagedItems: any[];
   date: any;
+  scrHeight:any;
+  scrWidth:any;
+  @HostListener('window:resize', ['$event'])
+  getScreenSize(event?) {
+        this.scrHeight = window.innerHeight;
+        this.scrWidth = window.innerWidth;
+        console.log(this.scrHeight, this.scrWidth);
+  }
   constructor(private dataService: DataService,
     private pagerService: PaginationService,
     private modalService: ModalService,
     public datepipe: DatePipe,
     public router: Router
-    ) { }
+    ) { 
+      this.getScreenSize();
+    }
 
   ngOnInit() {
     this.datas = this.dataService.getData();
-    this.getcolor(this.p);
   }
 
   openDetail(data) {
@@ -40,21 +49,4 @@ export class ListermanagerComponent implements OnInit {
     })
   }
 
-  getcolor(p) {
-    let color = "#ff0000"
-    let d = new Date();
-    var g1 = new Date(d.getFullYear(), d.getMonth()+1, d.getDate());
-    let date = new Date(p.dateFin);
-    let now = this.datepipe.transform(g1, 'yyyyMMdd');
-    let dates = this.datepipe.transform(date, 'yyyyMMdd');
-    console.log(date);
-    console.log(now);
-    console.log(dates);
-    if(now > dates) {
-      color = "#ff0000"
-    } else {
-      color = "#000000"
-    }  
-    return color; 
-  } 
 }

@@ -943,6 +943,226 @@ table {
         grid-template-areas:
           "tableau"
           "aside";
-        grid-template-rows:auto minmax(60px, auto) 1fr minmax(70px, auto) auto;
+    }
+    .all {
+        margin-top: 10px;
+        margin-right: 0px;
+    }
+    .detail1 {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+          "tableau"
+          "aside";
+    }
+    .tit {
+        width: 250px;
+        margin: 0 auto;
+    }
+    .total {
+        font-size: 14px;
+        margin-left: 20px;
+    }
+    .totaln {
+        font-size: 16px;
+        margin-right: 20px;
+        margin-top: 15px;
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+    .cercle {
+        width: 228px;
+        margin: 10px auto;
+    }
+    .per {
+        width: 280px;
+        margin: 10px auto;
+    }
+    .femmes {
+        position: absolute;
+        right: 5px;
+        top: 15px;
+        p {
+            margin: 0;
+        }
+        .fn {
+            font-size: 14px;
+            font-weight: 900;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: normal;
+            letter-spacing: normal;
+            color: #222222;
+        }
+        .fe {
+            font-size: 10px;
+            font-weight: 500;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: normal;
+            letter-spacing: normal;
+            color: #222222;
+        }
+    }
+    #square {
+        position: absolute;
+        top: 30px;
+        right: 45px;
+        width:50px;
+        height:30px;
+        display:block;
+        //background-color:red;
+        border-top: 5px solid #f5f6f9;
+        border-left: 5px solid #f5f6f9;
+        overflow:hidden;
+        -ms-transform: skew(-20deg); /* IE 9 */
+        -webkit-transform: skew(-20deg); /* Chrome, Safari, Opera */
+        transform: skew(-20deg); /* Standard syntax */
+        transform-origin: bottom left; /* Prevent the bottom from shifting */
+    }
+    .fl1 {
+        position: absolute;
+        top: 16px;
+        right: 62px;
+        color: #f5f6f9;
+        mat-icon {
+            font-size: 30px;
+        }
+    }
+    .point1 {
+        background-color: white;
+        border-radius: 50%;
+        border: 6px solid #f3a45e;
+        position: absolute;
+        top: 60px;
+        right: 90px;
+        height: 8px;
+        width: 8px;
+    }
+    #square1 {
+        position: absolute;
+        top: 95px;
+        left: 47px;
+        width:20px;
+        height:20px;
+        display:block;
+        //background-color:red;
+        border-top: 5px solid #f5f6f9;
+        border-right: 5px solid #f5f6f9;
+        overflow:hidden;
+        -ms-transform: skew(20deg); /* IE 9 */
+        -webkit-transform: skew(20deg); /* Chrome, Safari, Opera */
+        transform: skew(20deg); /* Standard syntax */
+        transform-origin: bottom left; /* Prevent the bottom from shifting */
+    }
+    .fl2 {
+        position: absolute;
+        top: 80px;
+        left: 5px;
+        color: #f5f6f9;
+        mat-icon {
+            font-size: 35px;
+        }
+    }
+    .point2 {
+        background-color: white;
+        border-radius: 50%;
+        border: 5px solid #abd6d6;
+        position: absolute;
+        top: 110px;
+        left: 62px;
+        height: 5px;
+        width: 5px;
+    }
+    .hommes {
+        position: absolute;
+        left: 0px;
+        top: 85px;
+        p {
+            margin: 0;
+        }
+        .hn {
+            font-size: 12px;
+            font-weight: 900;
+        }
+        .ho {
+            font-size: 10px;
+            font-weight: 500;
+        }
+        
+    }
+    .lesbouton1 {
+        width: 290px;
+        margin: 0 auto;
+        display: flex;
+        margin-top: 30px;
+    }
+    .button1 {
+        display: flex;
+        width: 120px;
+        height: 35px;
+        background-color: white;
+        border: none;
+        cursor: pointer;
+        outline: none;
+        border: 3px solid #f5f6f9;
+        border-radius: 5px;
+        .color {
+            height: 12px;
+            width: 12px;
+            border-radius: 50%;
+            background: #009393;
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+        p {
+            font-size: 12px;
+            font-weight: 500; 
+            margin-left: 10px;
+            margin-top: 9px;
+        }
+    }
+    .button2 {
+        display: flex;
+        width: 120px;
+        height: 35px;
+        border-radius: 5px;
+        margin-left: 15px;
+        .color {
+            height: 12px;
+            width: 12px;
+            border-radius: 50%;
+            background: #ff7900;
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+        p {
+            font-size: 12px;
+            font-weight: 500;
+            margin-left: 10px;
+            margin-top: 9px;
+        }
+    }
+    .elmt {
+        border-right: none;
+    }
+    .button-aside {
+        width: 100px;
+        height: 30px;
+        font-size: 14px;
       }
+      .button1-aside {
+          width: 100px;
+          height: 30px;
+          font-size: 14px;
+      }
+      .prenom-aside {
+          font-size: 12px;
+        }
+        .poste-aside {
+          font-size: 10px;
+        }
+        .tmp-aside {
+          font-size: 10px;
+        }
 }

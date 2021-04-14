@@ -91,22 +91,27 @@ app-header {
 }
   @media (max-width: 991px) {
     app-nav{
-      height: 70px;
+      height: 0px;
     } 
+    app-header {
+      height: 35px;
+      background-color: white;
+    }
     app-aside {
       margin: 0;
     }
 
     .container {
-      grid-template-columns: 1fr;
-      grid-template-areas:
-        "header"
-        "nav"
-        "content"
-        "side"
-        "footer";
-      grid-template-rows:auto minmax(60px, auto) 1fr minmax(70px, auto) auto;
+      display: block;
+      background-color: #f5f6f9;
     }
+    .ngx-pagination {
+      font-size: 10px;
+    }
+    .mat-horizontal-content-container {
+      overflow: hidden;
+      padding: 0 5px 10px 5px !important;
+  }
 }
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

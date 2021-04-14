@@ -334,6 +334,7 @@
     position: relative;
     width: 400px;
     margin: 0 auto;
+}
     .total {
         font-size: 18px;
         font-weight: bold;
@@ -359,7 +360,6 @@
         top: 0;
         right: 0;
     }
-}
 .filt {
     position: relative;
 }
@@ -858,7 +858,7 @@ table {
   }
   .updown {
     margin-top: 10px;
-    margin-left: 20px;
+    margin-left: 10px;
   }
   tr {
     height: 50px;
@@ -1145,6 +1145,169 @@ table {
     color: #222222;
     margin-top: 5px;
 }
+
+//mobile 
+.content-mobile {
+    padding: 10px;
+}
+.bien-mobile{
+    font-size: 20px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #222222;
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+.alert-mobile{
+    margin-top: 5px;
+    font-size: 10px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #222222;
+    span{
+        font-weight: 500;
+        color: #009393;
+    }
+}
+.progres-mobile {
+    background-color: white;
+    height: 102px;
+    padding: 5px 10px;
+    margin-top: 20px;
+}
+.duree-mobile{
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.1px;
+    color: #222222; 
+    text-align: center;
+    margin-top: 20px;
+    span{
+        font-size: 14px;
+        font-weight: bold;
+        letter-spacing: -0.12px;
+    } 
+}
+.barcontrat-mobile{
+    width: 100%;
+    position: relative;
+    margin-top: 20px;
+}
+#progress_bar-mobile{
+    margin-bottom: 20px;
+    height:8px;
+    background-color: #f5f6f9;
+}
+
+#green_bar-mobile{
+    height:8px;
+    float:left;
+    overflow:hidden;
+    background:#ff7900;
+}
+.position-mobile{
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    border: 2px solid;
+    position: absolute;
+    top: -5px;
+    background-color: white;
+}
+.datefin-mobile {
+    text-align: right;
+    font-size: 8px;
+}
+.detail-mobile {
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    padding: 5px;
+}
+.elmt1-mobile {
+    background-color: white;
+    border-right: 2px solid #f5f6f9;
+}
+.elmt2-mobile {
+    background-color: white;
+    border-left: 2px solid #f5f6f9;
+}
+.titre-mobile {
+    display: flex;
+    width: 100px;
+    margin: 10px auto;
+    p {
+        font-size: 12px;
+        font-weight: 700;
+        margin-top: 0;
+        margin-left: 10px;
+    }
+}
+.image-demande-mobile {
+    width: 20px;
+    height: 20px;
+}
+.image-attestation-mobile {
+    width: 20px;
+    height: 20px;
+}
+
+.nombre-mobile {
+    margin: 0 auto;
+    width: 60px;
+    p{
+        text-align: center;
+        font-size: 62px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: -0.4px;
+        color: #222222;
+        margin-top: -10px;
+        margin-bottom: 0;
+    }
+}
+.mois-mobile {
+    font-size: 16px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.1px;
+    text-align: center;
+    color: #222222;
+    margin-top: 0px;
+}
+.bouton-mobile{
+    margin: 10px auto;
+    width: 100px;
+    .button-mobile {
+        width: 100px;
+        height: 30px;
+        background-color: white;
+        border: none;
+        color: black;
+        padding: 5px 2px;
+        text-align: center;
+        text-decoration: none;
+        font-weight: bold;
+        display: inline-block;
+        font-size: 14px;
+        cursor: pointer;
+        outline: none;
+        border: 3px solid black;
+    }
+}
 @media (max-width: 991px) {
     .chiffre-aside {
         display: grid;
@@ -1166,7 +1329,16 @@ table {
         grid-template-areas:
           "tableau"
           "aside";
-        grid-template-rows:auto minmax(60px, auto) 1fr minmax(70px, auto) auto;
+        margin-right: -10px;
+    }
+    .chiffre-aside {
+        margin-right: -10px;
+    }
+    .interi-aside {
+        margin-right: -10px;
+    }
+    .annonce-aside {
+        margin-right: -10px;
     }
     .detail1{
         width: 100%;
@@ -1181,9 +1353,301 @@ table {
     .elmt {
         padding-bottom: 10px;
         border-right: none;
+        width: 100%;
     }
     .elmt1 {
         border-top: 10px solid #f5f6f9;
         border-right: none;
     }
+    .button-aside {
+        font-size: 14px;
+        height: 40px;
+    }
+    .button1-aside {
+        font-size: 14px;
+        height: 40px;
+    }
+    .tit {
+        width: 250px;
+        margin: 0 auto;
+    }
+    .total {
+        font-size: 14px;
+        margin-left: 20px;
+    }
+    .buttons1 {
+        width: 150px;
+        margin: 0 auto;
+    }
+    .button7 {
+        width: 150px;
+        height: 30px;
+        font-size: 10px;
+    }
+    .button {
+        width: 70px;
+        margin: 0 auto;
+    }
+    .button6 {
+        width: 70px;
+        height: 30px;
+        font-size: 10px;
+    }
+    .totaln {
+        font-size: 16px;
+        margin-right: 20px;
+        margin-top: 15px;
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+    .cercle {
+        width: 228px;
+        margin: 10px auto;
+    }
+    .per {
+        width: 280px;
+        margin: 10px auto;
+    }
+    .femmes {
+        position: absolute;
+        right: 5px;
+        top: 15px;
+        p {
+            margin: 0;
+        }
+        .fn {
+            font-size: 14px;
+            font-weight: 900;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: normal;
+            letter-spacing: normal;
+            color: #222222;
+        }
+        .fe {
+            font-size: 10px;
+            font-weight: 500;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: normal;
+            letter-spacing: normal;
+            color: #222222;
+        }
+    }
+    #square {
+        position: absolute;
+        top: 30px;
+        right: 45px;
+        width:50px;
+        height:30px;
+        display:block;
+        //background-color:red;
+        border-top: 5px solid #f5f6f9;
+        border-left: 5px solid #f5f6f9;
+        overflow:hidden;
+        -ms-transform: skew(-20deg); /* IE 9 */
+        -webkit-transform: skew(-20deg); /* Chrome, Safari, Opera */
+        transform: skew(-20deg); /* Standard syntax */
+        transform-origin: bottom left; /* Prevent the bottom from shifting */
+    }
+    .fl1 {
+        position: absolute;
+        top: 16px;
+        right: 62px;
+        color: #f5f6f9;
+        mat-icon {
+            font-size: 30px;
+        }
+    }
+    .point1 {
+        background-color: white;
+        border-radius: 50%;
+        border: 6px solid #f3a45e;
+        position: absolute;
+        top: 60px;
+        right: 90px;
+        height: 8px;
+        width: 8px;
+    }
+    #square1 {
+        position: absolute;
+        top: 95px;
+        left: 47px;
+        width:20px;
+        height:20px;
+        display:block;
+        //background-color:red;
+        border-top: 5px solid #f5f6f9;
+        border-right: 5px solid #f5f6f9;
+        overflow:hidden;
+        -ms-transform: skew(20deg); /* IE 9 */
+        -webkit-transform: skew(20deg); /* Chrome, Safari, Opera */
+        transform: skew(20deg); /* Standard syntax */
+        transform-origin: bottom left; /* Prevent the bottom from shifting */
+    }
+    .fl2 {
+        position: absolute;
+        top: 80px;
+        left: 5px;
+        color: #f5f6f9;
+        mat-icon {
+            font-size: 35px;
+        }
+    }
+    .point2 {
+        background-color: white;
+        border-radius: 50%;
+        border: 5px solid #abd6d6;
+        position: absolute;
+        top: 110px;
+        left: 62px;
+        height: 5px;
+        width: 5px;
+    }
+    .hommes {
+        position: absolute;
+        left: 0px;
+        top: 85px;
+        p {
+            margin: 0;
+        }
+        .hn {
+            font-size: 12px;
+            font-weight: 900;
+        }
+        .ho {
+            font-size: 10px;
+            font-weight: 500;
+        }
+        
+    }
+    .lesbouton1 {
+        width: 290px;
+        margin: 0 auto;
+        display: flex;
+        margin-top: 30px;
+    }
+    .button1 {
+        display: flex;
+        width: 120px;
+        height: 35px;
+        background-color: white;
+        border: none;
+        cursor: pointer;
+        outline: none;
+        border: 3px solid #f5f6f9;
+        border-radius: 5px;
+        .color {
+            height: 12px;
+            width: 12px;
+            border-radius: 50%;
+            background: #009393;
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+        p {
+            font-size: 12px;
+            font-weight: 500; 
+            margin-left: 10px;
+            margin-top: 9px;
+        }
+    }
+    .button2 {
+        display: flex;
+        width: 120px;
+        height: 35px;
+        border-radius: 5px;
+        margin-left: 15px;
+        .color {
+            height: 12px;
+            width: 12px;
+            border-radius: 50%;
+            background: #ff7900;
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+        p {
+            font-size: 12px;
+            font-weight: 500;
+            margin-left: 10px;
+            margin-top: 9px;
+        }
+    }
+        .updown {
+            margin-top: 10px;
+            margin-left: 0px;
+            font-size: 15px;
+          }
+    th {
+        font-size: 10px;
+    }
+    
+    td {
+        font-size: 10px;
+    }
+    .all-container {
+        margin-right: 0;
+    }
+    .main {
+        padding: 5px;
+    }
+    .tableau {
+        padding: 20px 5px;
+        width: 99%;
+    }
+    .alert {
+        font-size: 10px;
+    }
+    .exporter{
+        display: flex;
+        margin-right: 30px;
+        position: absolute;
+        right: 0;
+        top: 45px;
+    }
+    .export{
+        font-size: 10px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        color: #222222;
+        margin-top: 17px;
+    }
+    
+    .filtrer {
+        display: flex;
+        margin-left: 20px;
+        margin-top: 5px;
+        border: 1px solid #f5f6f9;
+        padding: 0px;
+        height: 30px;
+        border-radius: 5px;
+        .filtre {
+            width: 70px;
+            margin-top: 1px;
+            margin-bottom: 0;
+            margin-left: 10px;
+            border: none;
+            font-size: 16px;
+            outline: none;
+        }
+        mat-icon{
+            margin-top: 10px;
+            margin-right: 10px;
+            margin-bottom: 0;
+            font-size: 15px;
+        }
+    }
+    .prenom-aside {
+        font-size: 12px;
+      }
+      .poste-aside {
+        font-size: 10px;
+      }
+      .tmp-aside {
+        font-size: 10px;
+      }
 }

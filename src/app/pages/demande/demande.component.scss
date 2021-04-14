@@ -454,6 +454,45 @@ table {
         grid-template-areas:
           "tableau"
           "aside";
-        grid-template-rows:auto minmax(60px, auto) 1fr minmax(70px, auto) auto;
-      }
+    }
+    .demande {
+        margin-right: 0;
+        margin-top: 10px;
+    }
+    .tableau {
+        margin-right: 0;
+    }
+    .button-aside {
+        font-size: 14px;
+        height: 40px;
+    }
+    .button1-aside {
+        font-size: 14px;
+        height: 40px;
+    }
+    .button1 {
+        font-size: 14px;
+        width: 150px;
+        height: 40px;
+    }
+    .button2 {
+        font-size: 14px;
+        width: 150px;
+        height: 40px;
+        margin-left: 10px;
+    }
+    .button3 {
+        font-size: 14px;
+        width: 100px;
+        height: 40px;
+    }
+    .button4 {
+        font-size: 14px;
+        width: 150px;
+        height: 40px;
+    }
+    .exporter {
+        margin-top: 30px;
+        margin-bottom: 20px;
+    }
 }

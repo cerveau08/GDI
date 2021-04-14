@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { NgxFileSaverService } from '@clemox/ngx-file-saver';
 import { DataService } from 'src/app/service/data.service';
@@ -32,6 +32,14 @@ export class PresenceComponent implements OnInit {
   DemoDoc="http://www.africau.edu/images/default/sample.pdf" 
   DemoDoc1="https://file-examples.com/wp-content/uploads/2017/02/file-sample_100kB.doc"
   DemoDoc2="https://www.le.ac.uk/oerresources/bdra/html/resources/example.txt" 
+  scrHeight:any;
+  scrWidth:any;
+  @HostListener('window:resize', ['$event'])
+  getScreenSize(event?) {
+        this.scrHeight = window.innerHeight;
+        this.scrWidth = window.innerWidth;
+        console.log(this.scrHeight, this.scrWidth);
+  }
   constructor(private dataService: DataService,
     private fb: FormBuilder,
     private modalService: ModalService,
@@ -39,7 +47,8 @@ export class PresenceComponent implements OnInit {
     public datepipe: DatePipe) {
       this.form = this.fb.group({
         checkArray: this.fb.array([])
-      })
+      });
+      this.getScreenSize();
     }
 
   ngOnInit() {
@@ -62,8 +71,9 @@ export class PresenceComponent implements OnInit {
   getCheckedItemList(){
     this.checkedList = [];
     for (var i = 0; i < this.datas.length; i++) {
-      if(this.datas[i].statut)
-      this.checkedList.push(this.datas[i]);
+      if(this.datas[i].statut) {
+        this.checkedList.push(this.datas[i]);
+      }
     }
     this.checkedList = /*JSON.stringify(*/this.checkedList;
     console.log(this.checkedList);

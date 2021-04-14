@@ -546,6 +546,114 @@ margin-bottom: 5px;
       grid-template-areas:
         "tableau"
         "aside";
-      grid-template-rows:auto minmax(60px, auto) 1fr minmax(70px, auto) auto;
+      margin-top: 10px;
+      margin-right: 0;
+  }
+  th {
+    font-size: 8px;
+    padding: 4px;
+  }
+  td {
+    font-size: 8px;
+    padding: 4px;
+  }
+  .tableau {
+    padding: 10px 5px;
+  }
+  .exporter{
+      display: flex;
+      margin-right: 30px;
+      position: absolute;
+      right: 0;
+      top: 30px;
+  }
+  .export{
+      font-size: 12px;
+      margin-top: 12px;
+  }
+  .csv {
+      display: flex;
+      margin-left: 20px;
+      margin-top: 5px;
+      border: 1px solid #f5f6f9;
+      padding: 0px;
+      height: 30px;
+      border-radius: 5px;
+      p {
+          font-size: 12px;
+          margin-top: 6px;
+          margin-right: 10px;
+          margin-bottom: 0;
+          margin-left: 10px;
+      }
+      mat-icon{
+          margin-top: 5px;
+          margin-right: 5px;
+          margin-bottom: 0;
+          font-size: 15px;
+      }
+  }
+  .filtrer {
+      display: flex;
+      margin-left: 20px;
+      margin-top: 5px;
+      border: 1px solid #f5f6f9;
+      padding: 0px;
+      height: 30px;
+      border-radius: 5px;
+      .filtre {
+        width: 50px;
+        margin-top: 1px;
+        margin-bottom: 0;
+        margin-left: 10px;
+        border: none;
+        font-size: 12px;
+        outline: none;
     }
+      mat-icon{
+          margin-top: 5px;
+          margin-right: 10px;
+          margin-bottom: 0;
+          font-size: 20px;
+      }
+  }
+  .type {
+    display: flex;
+    width: 30px;
+    margin: 0 auto;
+    p {
+        text-align: center;
+    }
+  }
+  .updown {
+    margin-top: 5px;
+    margin-left: 0px;
+    font-size: 15px;
+  }
+  .status {
+    width: 10px;
+    height: 10px;
+  }
+  .pagination {
+    width: 280px;
+  }
+  .button-aside {
+    width: 100px;
+    height: 30px;
+    font-size: 14px;
+  }
+  .button1-aside {
+      width: 100px;
+      height: 30px;
+      font-size: 14px;
+  }
+  .prenom-aside {
+    font-size: 12px;
+  }
+  .poste-aside {
+    font-size: 10px;
+  }
+  .tmp-aside {
+    font-size: 10px;
+  }
 }

@@ -25,26 +25,26 @@
         <div class="info">
             <div class="pes">
                 <div class="prenom">
-                    <mat-icon >person</mat-icon>
-                    <p>{{item.prenom}} {{item.nom}}</p>
+                    <mat-icon class="icon-item">person</mat-icon>
+                    <p class="info-item">{{item.prenom}} {{item.nom}}</p>
                 </div>
                 <div class="email2">
-                    <mat-icon >mail</mat-icon>
-                    <p>{{item.email}}</p>
+                    <mat-icon class="icon-item">mail</mat-icon>
+                    <p class="info-item">{{item.email}}</p>
                 </div>
                 <div class="siteweb">
-                    <mat-icon >language</mat-icon>
-                    <p>{{item.site}}</p>
+                    <mat-icon class="icon-item">language</mat-icon>
+                    <p class="info-item">{{item.site}}</p>
                 </div>
             </div>
             <div class="pa">
                 <div class="phone2">
-                    <mat-icon >local_phone</mat-icon>
-                    <p>{{item.telephone}}</p>
+                    <mat-icon class="icon-item">local_phone</mat-icon>
+                    <p class="info-item">{{item.telephone}}</p>
                 </div>
                 <div class="adresse2">
-                    <mat-icon >room</mat-icon>
-                    <p>{{item.adagen}}</p>
+                    <mat-icon class="icon-item">room</mat-icon>
+                    <p class="info-item">{{item.adagen}}</p>
                 </div>
             </div>
         </div>
@@ -176,9 +176,9 @@
                 <div >
                 <div class="grid">
                     <div class="photo">
-                    <img alt="" *ngIf="!url1==true" src="../assets/images/{{item.agentimg}}">
-                    <img alt="" *ngIf="url1" [src]="url1" height="60">
-                    <input formControlName="photo" class="button" type="file" (change)="readUrl($event)" >
+                        <img alt="" *ngIf="!url1==true" src="../assets/images/{{item.agentimg}}">
+                        <img alt="" *ngIf="url1" [src]="url1" height="60">
+                        <input formControlName="photo" class="button" type="file" (change)="readUrl($event)" >
                     </div>
                     <div class="others">
                         <div class="input1">

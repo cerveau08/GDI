@@ -25,26 +25,26 @@
         <div class="info">
             <div class="pes">
                 <div class="prenom">
-                    <mat-icon >person</mat-icon>
-                    <p>{{item.prenom}} {{item.nom}}</p>
+                    <mat-icon class="icon-item" >person</mat-icon>
+                    <p class="info-item">{{item.prenom}} {{item.nom}}</p>
                 </div>
                 <div class="email2">
-                    <mat-icon >mail</mat-icon>
-                    <p>{{item.email}}</p>
+                    <mat-icon class="icon-item" >mail</mat-icon>
+                    <p class="info-item">{{item.email}}</p>
                 </div>
                 <div class="siteweb">
-                    <mat-icon >language</mat-icon>
-                    <p>{{item.site}}</p>
+                    <mat-icon class="icon-item" >language</mat-icon>
+                    <p class="info-item">{{item.site}}</p>
                 </div>
             </div>
             <div class="pa">
                 <div class="phone2">
-                    <mat-icon >local_phone</mat-icon>
-                    <p>{{item.telephone}}</p>
+                    <mat-icon class="icon-item">local_phone</mat-icon>
+                    <p class="info-item">{{item.telephone}}</p>
                 </div>
                 <div class="adresse2">
-                    <mat-icon >room</mat-icon>
-                    <p>{{item.adagen}}</p>
+                    <mat-icon class="icon-item">room</mat-icon>
+                    <p class="info-item">{{item.adagen}}</p>
                 </div>
             </div>
         </div>
@@ -148,6 +148,7 @@
       </div>
 </div>
 
+
 <!--modal-1-->
 <div class="modal">
     <jw-modal id="custom-modal-1">
@@ -160,7 +161,7 @@
                style="width:100%;height:70vh;">
             </ngx-doc-viewer>
             <div class="btns2">
-                <button (click)="getfilemodal()"  class="btn2">Télécharger</button>
+                <button (click)="getfilemodal()" class="btn2">Télécharger</button>
                 <button   class="btn2a">Arrêter contrat</button>
             </div>
         </div>
@@ -170,7 +171,7 @@
  <!--modal-2-->
  <div class="modal">
     <jw-modal id="custom-modal-2">
-        <h1>Modification</h1>
+        <h1 class="modal-modification">Modification</h1>
         <mat-icon style="cursor: pointer;" (click)="closeModal('custom-modal-2');" class="clear">clear</mat-icon>
         <div class="form">
             <form [formGroup]="agenceForm">

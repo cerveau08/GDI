@@ -22,7 +22,10 @@
             <div class="list2" style="cursor: pointer;" *ngFor="let p of datas | paginate: { itemsPerPage: 12, currentPage: p }; let i = index">
                 <div class="alert1" >
                     <div class="date">
-                        <p class="heure"> {{p.direction}}/{{p.pole}}/{{p.departement}}/{{p.service}}</p>
+                        <p class="heure"> {{p.direction}}/</p>
+                        <p class="heure">{{p.pole}}/</p>
+                        <p class="heure">{{p.departement}}/</p>
+                        <p class="heure">{{p.service}}</p>
                     </div>
                     <div class="theme">
                         <p class="sujet">{{p.poste}}</p>

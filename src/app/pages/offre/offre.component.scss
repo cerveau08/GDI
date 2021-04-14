@@ -12,7 +12,6 @@
     display: grid;
     grid-template-columns: 60% 40%;
     background: #f5f6f9;
-  //  padding-left: 20px;
 }
 .list2 {
     display: grid;
@@ -45,6 +44,9 @@
 .titls {
     font-size: 16px;
     font-weight: 700;
+}
+.date {
+    display: flex;
 }
 .heure {
     font-size: 12px;
@@ -321,6 +323,58 @@
         grid-template-areas:
           "tableau"
           "aside";
-        grid-template-rows:auto minmax(60px, auto) 1fr minmax(70px, auto) auto;
+    }
+    .all {
+        margin-top: 10px;
+        margin-right: 0;
+    }
+    .title {
+        font-size: 10px;
+    }
+    .titlet {
+        font-size: 10px;
+    }
+    .titled {
+        font-size: 10px;
+    }
+    .date {
+        display: block;
+        width: 60px;
+    }
+    .heure {
+        font-size: 8px;
+        width: 50px;
+    }
+    .sujet {
+        font-size: 8px;
+    }
+    .libele {
+        font-size: 8px;
+    }
+    .ser {
+        font-size: 8px;
+        font-weight: 400;
+    }
+    .dire {
+        font-size: 8px;
+    }
+    .button-aside {
+        width: 100px;
+        height: 30px;
+        font-size: 14px;
+    }
+    .button1-aside {
+        width: 100px;
+        height: 30px;
+        font-size: 14px;
+    }
+    .prenom-aside {
+        font-size: 12px;
+      }
+      .poste-aside {
+        font-size: 10px;
+      }
+      .tmp-aside {
+        font-size: 10px;
       }
 }

@@ -1,5 +1,5 @@
 import { DataService } from './../../service/data.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { NgxFileSaverService } from '@clemox/ngx-file-saver';
 import { ModalService } from 'src/app/_modal/modal.service';
 
@@ -38,15 +38,25 @@ export class ManagerComponent implements OnInit {
     matricule: "060210",
     nomInt: "5"
   }];
+  scrHeight:any;
+  scrWidth:any;
   viewer = 'google';   
   DemoDoc="http://www.africau.edu/images/default/sample.pdf" 
   DemoDoc1="https://file-examples.com/wp-content/uploads/2017/02/file-sample_100kB.doc"
   DemoDoc2="https://www.le.ac.uk/oerresources/bdra/html/resources/example.txt" 
   filterterm: string;
   datas: any;
+  @HostListener('window:resize', ['$event'])
+  getScreenSize(event?) {
+        this.scrHeight = window.innerHeight;
+        this.scrWidth = window.innerWidth;
+        console.log(this.scrHeight, this.scrWidth);
+  }
   constructor(private dataService: DataService,
     private modalService: ModalService,
-    private fileSaver: NgxFileSaverService,) { }
+    private fileSaver: NgxFileSaverService,) {
+      this.getScreenSize();
+    }
 
   ngOnInit() {
      this.datas = this.dataService.getData();

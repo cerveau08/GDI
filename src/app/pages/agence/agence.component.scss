@@ -7,17 +7,21 @@
     padding: 30px 40px;
     background-color: white;
     margin-right: 10px;
+}
     .grid2 {
         display: grid;
         grid-template-columns: 160px 1fr;
+    }
         .img {
             img {
                 width: 150px;
                 height: 150px;
             }
         }
+    
         .agence {
            margin-left: 20px;
+        }
            .nom2 {
                 font-size: 36px;
                 font-weight: bold;
@@ -29,7 +33,7 @@
                 margin-top: 0;
                 margin-bottom: 0;
            }
-           .nombre {
+            .nombre {
                height: 41px;
                 width: 350px;
                 border-radius: 4px;
@@ -37,7 +41,10 @@
                 display: flex;
                 padding: 20px;
                 margin-top: 20px;
-                .total {
+                display: grid;
+                grid-template-columns: 33% 33% 33%;
+            }
+              
                     .title {
                         font-size: 12px;
                         font-weight: 500;
@@ -60,9 +67,10 @@
                         margin-top: 10px;
                         margin-bottom: 0;
                     }
-                }
+                
                 .actif {
-                    margin-left: 100px;
+                 //   margin-left: 100px;
+                }
                     .title {
                         font-size: 12px;
                         font-weight: 500;
@@ -85,9 +93,10 @@
                         margin-top: 10px;
                         margin-bottom: 0;
                     }
-                }
+                
                 .archiv {
-                    margin-left: 100px;
+                //    margin-left: 100px;
+                }
                     .title {
                         font-size: 12px;
                         font-weight: 500;
@@ -98,6 +107,7 @@
                         color: #222222;
                         margin-top: 0;
                         margin-bottom: 0;
+                        text-align: center;
                     }
                     .libelle {
                         font-size: 28px;
@@ -109,107 +119,38 @@
                         color: #222222;
                         margin-top: 10px;
                         margin-bottom: 0;
+                        text-align: center;
                     }
-                }
-           }
-        }
-    }
+           
     .info {
         display: grid;
         grid-template-columns: 45% 45%;
         margin-top: 30px;
-        .pes {
+    }
+       
             .prenom {
                 display: flex;
-                mat-icon {
-                    color: #009393;
-                    font-size: 30px;
-                    margin-left: 15px;
-                    margin-top: 5px;
-                }
-                p {
-                    font-size: 18px;
-                    font-weight: normal;
-                    font-stretch: normal;
-                    font-style: normal;
-                    line-height: normal;
-                    letter-spacing: -0.1px;
-                    color: #000000;
-                    margin-left: 20px;
-                    margin-top: 10px;
-                }
             }
             .email2 {
                 display: flex;
-                mat-icon {
-                    color: #009393;
-                    font-size: 30px;
-                    margin-left: 15px;
-                    margin-top: 5px;
-                }
-                p {
-                    font-size: 18px;
-                    font-weight: normal;
-                    font-stretch: normal;
-                    font-style: normal;
-                    line-height: normal;
-                    letter-spacing: -0.1px;
-                    color: #000000;
-                    margin-left: 20px;
-                    margin-top: 5px;
-                }
             }
             .siteweb {
                 display: flex;
-                mat-icon {
-                    color: #009393;
-                    font-size: 30px;
-                    margin-left: 15px;
-                    margin-top: 5px;
-                }
-                p {
-                    font-size: 18px;
-                    font-weight: normal;
-                    font-stretch: normal;
-                    font-style: normal;
-                    line-height: normal;
-                    letter-spacing: -0.1px;
-                    color: #000000;
-                    margin-left: 20px;
-                    margin-top: 10px;
-                }
             }
-        }
-        .pa {
+        
             .phone2 {
                 display: flex;
-                mat-icon {
-                    color: #009393;
-                    font-size: 30px;
-                    margin-left: 15px;
-                    margin-top: 5px;
-                }
-                p {
-                    font-size: 18px;
-                    font-weight: normal;
-                    font-stretch: normal;
-                    font-style: normal;
-                    line-height: normal;
-                    letter-spacing: -0.1px;
-                    color: #000000;
-                    margin-left: 20px;
-                    margin-top: 10px;
-                }
             }
             .adresse2 {
                 display: flex;
-                mat-icon {
+            }
+                .icon-item {
                     color: #009393;
                     font-size: 30px;
                     margin-left: 15px;
                     margin-top: 5px;
                 }
-                p {
+                .info-item {
                     font-size: 18px;
                     font-weight: normal;
                     font-stretch: normal;
@@ -220,9 +161,7 @@
                     margin-left: 20px;
                     margin-top: 10px;
                 }
-            }
-        }
-    }
+            
     .utilisateur {
         font-size: 18px;
         font-weight: bold;
@@ -235,8 +174,10 @@
     .users {
         display: grid;
         grid-template-columns: 55% 40%;
+    }
         .user1 {
             display: flex;
+        }
             .photo1 {
                 img {
                     height: 42px;
@@ -246,6 +187,7 @@
             }
             .profil {
                 margin-left: 20px;
+            }
                 .profil1 {
                     font-size: 14px;
                     font-weight: 500;
@@ -267,11 +209,10 @@
                     color: #222222;
                     margin-top: 0;
                 }
-            }
-        }
         .user2 {
             margin-left: 50px;
             display: flex;
+        }
             .photo1 {
                 img {
                     height: 42px;
@@ -281,6 +222,7 @@
             }
             .profil {
                 margin-left: 20px;
+            }
                 .profil1 {
                     font-size: 14px;
                     font-weight: 500;
@@ -302,10 +244,8 @@
                     color: #222222;
                     margin-top: 0;
                 }
-            }
-        }
-    }
-    .btns {
+            
+   
         .buttonsupp {
             width: 127px;
             height: 50px;
@@ -354,8 +294,8 @@
             outline: none;
             border: 3px solid black;
         }
-    }
-}
+    
+
 .trait {
     border: 1px solid #979797;
     background-color: #979797;
@@ -402,7 +342,8 @@
 //modal-2
 jw-modal {
     position: relative;
-    h1{
+}
+    .modal-modification{
       font-size: 21px;
       font-weight: bold;
       font-stretch: normal;
@@ -426,9 +367,8 @@ jw-modal {
     img {
         width: 200px;
         height: 200px;
-       // margin-left: -20px;
     }
-}
+
 .form {
     width: 680px;
     margin: 40px auto;
@@ -871,6 +811,146 @@ input {
         grid-template-areas:
           "tableau"
           "aside";
-        grid-template-rows:auto minmax(60px, auto) 1fr minmax(70px, auto) auto;
-      }
+        margin-top: 10px;
+    }
+    .grid2 {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+          "img"
+          "agence";
+    }
+    .img {
+        width: 150px;
+        margin: 0 auto;
+    }
+    .agence {
+        margin-left: 0;
+    }
+    .nom2 {
+        text-align: center;
+    }
+    .info {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+          "pes"
+          "pa";
+    }
+    .info-item {
+        font-size: 12px;
+    }
+    .icon-item {
+        font-size: 20px;
+    }
+    .nombre {
+        height: 35px;
+         max-width: 250px;
+         margin: 0 auto;
+         border-radius: 4px;
+         border: solid 1px #eaeaea;
+         display: flex;
+         padding: 10px;
+         margin-top: 20px;
+         display: grid;
+         grid-template-columns: 33% 33% 33%;
+    }
+    .all2 {
+        padding: 10px 10px;
+        margin-right: 0;
+    }
+    .title {
+        font-size: 12px;
+        text-align: center;
+    }
+    .libelle {
+        font-size: 12px;
+        text-align: center;
+    }
+    .users {
+        display: grid;
+        grid-template-columns: 50% 50%;
+    }
+    .user1 {
+        display: block;
+    }
+    .user2 {
+        display: block;
+        margin-left: 0;
+    }
+    .photo1 {
+        width: 42px;
+        margin: 0 auto;
+    }
+    .profil {
+        margin-left: 0;
+    }
+    .profil1 {
+        text-align: center;
+        font-size: 12px;
+    }
+    .profil2 {
+        text-align: center;
+        font-size: 10px;
+    }
+
+    .buttonsupp {
+        width: 80px;
+        height: 30px;
+        font-size: 10px;
+        margin-left: 10px;
+        margin-top: 0;
+    }
+    .buttonaffi {
+        width: 95px;
+        height: 30px;
+        font-size: 10px;
+        margin-left: 10px;
+        margin-top: 0;
+    }
+    .buttonmodif {
+        width: 80px;
+        height: 30px;
+        font-size: 10px;
+        margin-left: 10px;
+        margin-top: 0;
+    }
+    .btns {
+        width: 290px;
+        margin: 0 auto;
+        display: flex;
+    }
+    .dernier-aside {
+        font-size: 18px;
+    }
+    .nombre-aside {
+        font-size: 16px;
+    }
+    .button-aside {
+        font-size: 14px;
+        height: 30px;
+    }
+    .button1-aside {
+        font-size: 14px;
+        height: 30px;
+    }
+    .clear {
+        margin-top: 5px;
+        margin-right: 20px;
+        right: 5%;
+        top: 3%;
+    }
+    .btns2{
+        width: 210px;
+        margin: 0 auto;
+    }
+    .btn2 {
+        width: 100px;
+        height: 30px;
+        font-size: 10px;
+    }
+    .btn2a {
+        width: 100px;
+        height: 30px;
+        font-size: 10px;
+        margin-left: 10px;
+    }
 }

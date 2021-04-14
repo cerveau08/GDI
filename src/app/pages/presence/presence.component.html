@@ -1,7 +1,7 @@
 <div class="all-container">
     <div class="all">
         <div class="progres">
-            <p class="duree">Taux de demande de restauration</p>
+            <p class="duree">Taux de présence de nos intérimaire</p>
             <div class="bar">
                 <div id="progress_bar">
                     <div id="green_bar" [style.width]="getwidth()">&nbsp;</div>
@@ -31,7 +31,7 @@
             <table style="overflow-x:auto;" aria-describedby = "mydesc">
                 <thead>
                     <tr class="head">
-                        <th class="id1" id="manager">#</th>
+                        <th *ngIf="scrWidth>991" class="id1" id="manager">#</th>
                         <th class="typ" id="prenom">
                             <div class="type">
                                 <p>Prenom</p> 
@@ -57,7 +57,7 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let p of datas | filter:filterterm | paginate: { itemsPerPage: 10, currentPage: p }; let i = index">
-                        <td class="id1">{{p.id}}</td>
+                        <td *ngIf="scrWidth>991" class="id1">{{p.id}}</td>
                         <td>{{p.prenom}}</td>
                         <td>{{p.nom}}</td>
                         <td> {{p.dateFin | date: 'dd'}}</td>

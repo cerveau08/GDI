@@ -42,7 +42,7 @@ export class HomeComponent implements OnInit {
   progressBar = document.querySelector(".progress-bar");
   intervalId;
   public restant: any;
-  public nombre = 89;
+  public nombre = 49;
   public left: any;
   scrHeight:any;
   scrWidth:any;

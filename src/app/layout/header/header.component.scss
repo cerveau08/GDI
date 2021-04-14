@@ -290,3 +290,59 @@ select {
    width: 139px;
    height: 50px;
 }
+
+//mobile 
+.content-mobile{
+   margin-right: -10px;
+}
+.nav-global-mobile {
+   background-color: #fff;
+   padding: 0 10px;
+   display: grid;
+   grid-template-columns: 35px 1fr 80px;
+}
+.icon-toggle-mobile {
+   width: 35px;
+   height: 35px;
+   font-size: 35px;
+}
+.logo-mobile{
+   display: flex;
+   margin-left: 10px;
+   margin-top: 8px;
+}
+.img-logo-mobile {
+   height: 22px;
+   width: 22px;
+}
+.title-logo-mobile {
+   font-size: 10px;
+   margin-top: 5px;
+   margin-left: 5px;
+}
+.notif-chat-profil-mobile {
+   display: grid;
+   grid-template-columns: 40px 40px;
+}
+.icon-search-mobile {
+   font-size: 25px;
+   margin-top: 5px;
+}
+.icon-notif-mobile {
+   font-size: 25px;
+   margin-top: 5px;
+}
+.elmt-mobile {
+   position: relative;
+}
+.info-notif-mobile{
+   background: #ff7900;
+   position: absolute;
+   width: 6px;
+   z-index: 999;
+   height: 6px;
+   border-radius: 10px;
+   top: 30%;
+   right: 30.7%;
+   color: transparent;
+}
