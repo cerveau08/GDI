@@ -1,7 +1,6 @@
-    <div *ngIf="scrWidth>991">
-        <div *ngFor="let p of menus ;let i = index" 
-         [style.background]="selected==i?'red':'grey'" (click)="selected=i">
-         <li [style.marginTop.px]="getMargin(p)">
+<div *ngIf="scrWidth>991">
+    <div *ngFor="let p of menus ;let i = index" (click)="selected=i">
+        <li [style.marginTop.px]="getMargin(p)">
             <a class="nav-link" [routerLink]="p.path"  [routerLinkActive]="['active']" style="text-decoration: none;">
                 <div class="grid-container">
                     <div *ngIf="!p.liste" class="item1" [style.background]="selected==i?'#ff7900':'white'" (click)="selected=i">
@@ -37,6 +36,7 @@
         </li>
     </div>
 </div>
+
 <!--
 <nav *ngIf="scrWidth<992">
     <div class="nav">

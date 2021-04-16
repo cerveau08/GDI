@@ -1,3 +1,4 @@
+import { SidenavModule } from './sidenav';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -99,6 +100,7 @@ import { AddinterComponent } from './pages/addinter/addinter.component';
     Ng2SearchPipeModule,
     FormsModule,
     ModalModule,
+    SidenavModule,
     NgApexchartsModule,
     NgxFileSaverModule,
     NgxDocViewerModule,

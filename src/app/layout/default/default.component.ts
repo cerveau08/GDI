@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SidenavService } from 'src/app/sidenav/sidenav.service';
 
 @Component({
   selector: 'app-default',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DefaultComponent implements OnInit {
 
-  constructor() { }
+  constructor(private sidenavService: SidenavService,) { }
 
   ngOnInit() {
   }
 
+  openSidenav(id: string) {
+    this.sidenavService.open(id);
+  }
+
+  closeSidenav(id: string) {
+    this.sidenavService.close(id);
+  }
 }

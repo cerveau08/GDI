@@ -1,5 +1,8 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit} from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
+import { PaginationService } from 'src/app/service/pagination.service';
+import { SidenavService } from 'src/app/sidenav/sidenav.service';
 import { ModalService } from 'src/app/_modal/modal.service';
 
 @Component({
@@ -14,7 +17,7 @@ export class HeaderComponent implements OnInit {
 
   scrHeight:any;
   scrWidth:any;
-
+  side = false;
   @HostListener('window:resize', ['$event'])
   getScreenSize(event?) {
         this.scrHeight = window.innerHeight;
@@ -46,16 +49,42 @@ export class HeaderComponent implements OnInit {
   ];
   moisSelect
   demandeForm: FormGroup;
-  constructor(private modalService: ModalService,) {
-    this.getScreenSize();
+  public menus: any;
+  constructor(private modalService: ModalService, 
+    private sidenavService: SidenavService,
+    private paginationService: PaginationService,
+    private route: Router) {
+    this.getScreenSize(); 
+    this.menus = this.paginationService.getMenu();
+  }
+
+  navigate(item, id) {
+    console.log(item.path);
+    if(item.path) {
+      this.sidenavService.close(id);
+      this.side = false;
+    }
   }
 
   openModal(id: string) {
     this.modalService.open(id);
+    
   }
 
   closeModal(id: string) {
     this.modalService.close(id);
+    
+  }
+  openSidenav(id: string) {
+    this.sidenavService.open(id);
+    this.side = true;
+    console.log(this.menus);
+    
+  }
+
+  closeSidenav(id: string) {
+    this.sidenavService.close(id);
+    this.side = false;
   }
 
   ngOnInit() {
@@ -84,17 +113,38 @@ export class HeaderComponent implements OnInit {
       agence: this.demandeForm.value.agence,
       annee: this.demandeForm.value.annee,
       poste: this.demandeForm.value.poste,
-  } 
-  console.log(info);
-  return info;
+    } 
+    console.log(info);
+    return info;
   }
   updown(item) {
-      if (!this.click) {
-        this.click = 1;
-        return this.click;
-      } else if (this.click = 1) {
-        this.click = null;
-        return this.click;
-      }
+    if (!this.click) {
+      this.click = 1;
+      return this.click;
+    } else if (this.click = 1) {
+      this.click = null;
+      return this.click;
+    }
+  }
+  getMargin(event) {
+    let margin = 10;
+    if (event.id == 1) {
+      margin = 10;
+    } else if (event.id == 8) {
+      margin = 30;
+    } else  {
+      margin = 1;
+    } 
+    return margin;
+  }
+
+  getColor(event) {
+    let color = "#ff7900";
+    if (event.liste) {
+      color = "white";
+    }  else  {
+      color = "#ff7900";
+    } 
+    return color;
   }
 }

@@ -113,16 +113,17 @@
 </div>
 </div>
 
-<div class="content-mobile" *ngIf="scrWidth<991">
+ <div class="content-mobile" *ngIf="scrWidth<991">
   <div class="nav-global-mobile">
     <div class="toggle-menu-mobile">
-      <mat-icon class="icon-toggle-mobile">menu</mat-icon>
+      <mat-icon *ngIf="!side" (click)="openSidenav('custom-modal-8');" class="icon-toggle-mobile">menu</mat-icon>
+      <mat-icon *ngIf="side" (click)="closeSidenav('custom-modal-8');" class="icon-toggle-mobile">menu</mat-icon>
     </div>
-    <div routerLink="/login" style="cursor: pointer;" class="logo-mobile">
+    <div (click)="closeSidenav('custom-modal-8');" routerLink="/login" style="cursor: pointer;" class="logo-mobile">
       <img class="img-logo-mobile" src="../assets/icones/images-logo-orange.png" alt="">
-        <p class="title-logo-mobile">GDI</p>
+      <p class="title-logo-mobile">GDI</p>
     </div>
-    <div class="notif-chat-profil-mobile" >
+    <div (click)="closeSidenav('custom-modal-8');" class="notif-chat-profil-mobile" >
         <div class="search-mobile">
           <mat-icon class="icon-search-mobile" fontSet="material-icons-outlined" >search</mat-icon>
         </div>
@@ -134,4 +135,52 @@
       </div>
     </div>
   </div>
-</div>  
+  <!--modal-->
+<div class="modal">
+  <sonatel-pma-sidenav id="custom-modal-8">
+    <div class="all-sidenav" *ngIf="scrWidth<991">
+      <div class="menu-sidenav" [style.height.px]="scrHeight">
+        <div  *ngFor="let p of menus ;let i = index"  (click)="selected=i" >
+          <li [style.marginTop.px]="getMargin(p)">
+              <a class="nav-link" [routerLink]="p.path"  [routerLinkActive]="['active']" style="text-decoration: none;">
+                  <div class="grid-container" (click)="navigate(p,'custom-modal-8')">
+                      <div *ngIf="!p.liste" class="item1" [style.background]="selected==i?'#ff7900':'white'" (click)="selected=i">
+                      </div>
+                      <div *ngIf="p.liste" class="item1" [style.background]="selected==i?'white':'white'" (click)="selected=i">
+                      </div>
+                      <div class="item2"> 
+                          <mat-icon fontSet="material-icons-outlined" [style.color]="selected==i?'#ff7900':'#979797'" (click)="selected=i" [style.-webkit-text-stroke]="selected==i?' #ff7900':'#979797'" (click)="selected=i">{{p.icon}}</mat-icon>
+                      </div> 
+                      <div class="item3"> 
+                          <p [style.color]="selected==i?'#ff7900':'#979797'" (click)="selected=i" [style.-webkit-text-stroke]="selected==i?' #ff7900':'#979797'" (click)="selected=i"> {{p.title}} </p>
+                      </div>
+                      <div  class="item2"> 
+                          <mat-icon fontSet="material-icons-outlined" [style.color]="selected==i?'#ff7900':'#979797'" (click)="selected=i" [style.-webkit-text-stroke]="selected==i?' #ff7900':'#979797'" (click)="selected=i">{{p.icon2}}</mat-icon>
+                      </div>
+                  </div>
+                  <div *ngIf="selected==i">
+                      <div *ngIf="p.liste">
+                          <div *ngFor="let pl of p.liste; let j = index" >
+                              <a class="nav-link" [routerLink]="pl.path" [routerLinkActive]="['active']" style="text-decoration: none;">
+                                  <div (click)="closeSidenav('custom-modal-8');" class="grid-container1" (click)="selected1=j">
+                                      <div class="item1a" [style.background]="selected1==j?'#ff7900':'white'" >
+                                      </div>
+                                      <div class="item4a">
+                                          <p [style.color]="'#ff7900'" [style.font-weight]="selected1==j?'bold':'normal'" [style.-webkit-text-stroke]="selected1==j?' #ff7900':'#979797'" > {{pl.title}} </p>
+                                      </div>
+                                  </div>
+                              </a>
+                          </div>
+                      </div>
+                  </div>
+              </a>
+          </li>
+      </div>
+      </div>
+      <div (click)="closeSidenav('custom-modal-8');" class="close-sidenav"></div>
+  </div>
+  </sonatel-pma-sidenav>
+</div>
+
+
+<!--modal-->
