@@ -194,6 +194,36 @@ export class PaginationService {
       path: 'parametre',  icon: "settings",
     },
   ];
+  private videos = [
+    {
+      id: 1,
+      url: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
+      subtitle: "By Google",
+      thumb: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/ForBiggerEscapes.jpg",
+      title: "For Bigger Escape",
+      img: "idole2.jpg"
+    },
+    {
+      id: 2,
+      url: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
+      subtitle: "By Google",
+      thumb: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/ForBiggerFun.jpg",
+      title: "For Bigger Fun",
+      img: "karma1.jpg"
+    },
+    {
+      id: 3,
+      url: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+      subtitle: "By Google",
+      thumb: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/ForBiggerBlazes.jpg",
+      title: "For Bigger Blazes",
+      img: "karma1.jpg"
+    }
+  ];
+
+  public getVidoes() {
+    return this.videos;
+  }
   constructor() { }
 
   getMenu() {
