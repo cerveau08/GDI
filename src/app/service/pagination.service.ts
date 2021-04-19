@@ -76,7 +76,10 @@ export class PaginationService {
     },{
       id: 8,  title: 'Mon Compte',
       path: 'compte',  icon: "folder_shared",
-    }
+    },{
+      id: 10,  title: 'Paramètres',
+      path: 'parametre',  icon: "settings",
+    },
   ];
 
   public drhnav = [
