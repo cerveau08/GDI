@@ -91,15 +91,15 @@
                 <div class="diagra1">
                     <div id="chart1">
                         <apx-chart
-                          [series]="chartOptions1.series"
-                          [chart]="chartOptions1.chart"
-                          [dataLabels]="chartOptions1.dataLabels"
-                          [plotOptions]="chartOptions1.plotOptions"
-                          [responsive]="chartOptions1.responsive"
-                          [xaxis]="chartOptions1.xaxis"
-                          [legend]="chartOptions1.legend"
-                          [fill]="chartOptions1.fill"
-                          [dataLabels]="chartOptions1.dataLabels"
+                          [series]="chartOptions.series"
+                          [chart]="chartOptions.chart"
+                          [dataLabels]="chartOptions.dataLabels"
+                          [plotOptions]="chartOptions.plotOptions"
+                          [responsive]="chartOptions.responsive"
+                          [xaxis]="chartOptions.xaxis"
+                          [legend]="chartOptions.legend"
+                          [fill]="chartOptions.fill"
+                          [dataLabels]="chartOptions.dataLabels"
                         ></apx-chart>
                     </div>
                 </div>
@@ -117,6 +117,57 @@
                         <p>Total</p>
                     </div>
                 </div> 
+            </div>
+        </div>
+
+        <div *ngIf="scrWidth>991" class="stat">
+            <div class="elmt2" title="messages2">
+                <div class="tit">
+                    <p class="total">Variation de l’effectif</p>
+                </div>
+                <div class="selects-and-echelle">
+                    <div class="filtre-societe-direction">
+                        <div class="filtrer-societe" style="cursor: pointer;">
+                            <select class="select-societe" #mySelect (change)='societeSelectionner(mySelect.value)'>
+                                <option *ngFor="let p of societes" class="option" [value]="p.societe">{{p.societe}}</option>
+                            </select>
+                        </div>
+                        <div class="filtrer-direction" style="cursor: pointer;">
+                            <select class="select-societe" #myDirection (change)='societeSelectionner(myDirection.value)'>
+                                <option class="option" value="" disabled selected hidden>Direction</option>
+                                <option *ngFor="let p of directions" class="option" [value]="p.direction">{{p.direction}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="">
+                        <div class="lesbouton1">
+                            <div  class="button1"> 
+                                <div class="color"></div> 
+                                <p>Homme</p>
+                            </div>
+                            <div  class="button2"> 
+                                <div class="color"></div> 
+                                <p>Femme</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="diagra1">
+                    <div id="chart1">
+                        <apx-chart
+                          [series]="chartOptions1.series"
+                          [chart]="chartOptions1.chart"
+                          [dataLabels]="chartOptions1.dataLabels"
+                          [plotOptions]="chartOptions1.plotOptions"
+                          [responsive]="chartOptions1.responsive"
+                          [xaxis]="chartOptions1.xaxis"
+                          [legend]="chartOptions1.legend"
+                          [fill]="chartOptions1.fill"
+                          [colors]="chartOptions1.colors"
+                          [dataLabels]="chartOptions1.dataLabels"
+                        ></apx-chart>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

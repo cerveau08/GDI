@@ -273,7 +273,7 @@
 .lesbouton1 {
     width: 200px;
     margin: 0 auto;
-    margin-top: 30px;
+    margin-top: 0px;
 }
 .interimaires-total {
     font-size: 25px;
@@ -285,6 +285,7 @@
     text-align: center;
     color: #222222;
     margin-top: 30px;
+    margin-bottom: 30px;
 }
 .button1 {
     display: flex;
@@ -297,7 +298,7 @@
     border: 3px solid #f5f6f9;
     border-radius: 5px;
     margin-left: 5px;
-    margin-top: 10px;
+    margin-top: 0px;
     .color {
         height: 12px;
         width: 12px;
@@ -677,9 +678,8 @@ table {
 }
 .diagra1 {
     height: 320px;
-   // width: 700px;
     margin: 0 auto;
-    margin-top: 15px;
+    margin-top: 0px;
     position: relative;
 }
 #chart1 {
@@ -689,40 +689,40 @@ table {
         width: 10px !important;
     }
 }
-.filt2 {
-    position: relative;
+
+.selects-and-echelle {
+    display: grid;
+    grid-template-columns: 1fr 200px;
 }
-.filtrer2 {
+.filtre-societe-direction {
     display: flex;
-    margin-left: 10px;
-    margin-top: 5px;
-    border: 1px solid #f5f6f9;
-    padding: 0px;
+    margin-top: 30px;
+}
+.filtrer-societe {
     height: 40px;
-    width: 133px;
-    border-radius: 5px;
-    position: absolute;
-    right: 0;
-    top: 0;
-    margin-right: 15px;
-    margin-top: -5px;
-    p {
-        margin-top: 10px;
-        margin-bottom: 0;
-        margin-left: 10px;
-    }
-    .i1 {
-        color: #009393;
-        margin-top: 5px;
-        margin-left: 5px;
-    }
-    .i2{
-        height: 14px;
-        width: 20px;
-        margin-top: 8px;
-        margin-left: 5px;
-        margin-bottom: 0;
-    }
+    width: 90px;
+    margin-left: 20px;
+}
+.select-societe {
+    height: 40px;
+    width: 120px;
+    border: 1px solid #f5f6f9;
+    background-color: white;
+    border-radius: 4px;
+    outline: none;
+}
+.filtrer-direction {
+    height: 40px;
+    width: 90px;
+    margin-left: 80px;
+}
+.select-direction {
+    height: 40px;
+    width: 130px;
+    border: 1px solid #f5f6f9;
+    background-color: white;
+    border-radius: 4px;
+    outline: none;
 }
 .graph1 {
     width: 400px;

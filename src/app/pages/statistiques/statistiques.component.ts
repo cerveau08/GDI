@@ -1,7 +1,6 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { ApexAxisChartSeries, ApexChart, ApexDataLabels, ApexFill, ApexLegend, ApexPlotOptions, ApexResponsive, ApexXAxis, ApexYAxis, ChartComponent } from 'ng-apexcharts';
+import { ApexAxisChartSeries, ApexChart, ApexDataLabels, ApexFill, ApexLegend, ApexPlotOptions, ApexResponsive, ApexStroke, ApexXAxis, ApexYAxis, ChartComponent } from 'ng-apexcharts';
 import { DataService } from 'src/app/service/data.service';
-import { PaginationService } from 'src/app/service/pagination.service';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -27,7 +26,7 @@ export type ChartOptions1 = {
   datalabels: ApexDataLabels,
   legend: ApexLegend;
   fill: ApexFill;
-  colors: string[],
+  colors: ["#009393", "#ff7900"],
 };
 
 var $primary = "#ff7900",
@@ -44,6 +43,80 @@ var themeColors = [$primary, $warning, $success, $danger, $info];
 })
 export class StatistiquesComponent implements OnInit {
 
+  societes = [
+    {
+      societe: "SONATEL",
+    },
+    {
+      societe: "OFMS",
+    }
+  ]
+  directions1 = [
+    {
+      direction: "DSD",
+    },
+    {
+      direction: "DRH",
+    },
+    {
+      direction: "DGA",
+    },
+    {
+      direction: "DMGP",
+    },
+    {
+      direction: "DOI",
+    },
+    {
+      direction: "DSC",
+    },
+    {
+      direction: "DRJ",
+    },
+    {
+      direction: "ARQ",
+    },
+    {
+      direction: "DAL",
+    },
+  ];
+  directions2 = [
+    {
+      direction: "DD",
+    },
+    {
+      direction: "OM",
+    },
+    {
+      direction: "PM",
+    },
+    {
+      direction: "CP",
+    },
+    {
+      direction: "CD",
+    }
+  ];
+  directs1 = [
+     "DSD",
+     "DRH",
+     "DGA",
+     "DMGP",
+     "DOI",
+     "DSC",
+     "DRJ",
+     "ARQ",
+     "DAL",
+
+  ];
+  directs2 = [
+      "DD",
+      "OM",
+      "PM",
+      "CP",
+      "CD",
+  ];
+  directions: any;
   show = 1;
   color: any;
   public datas: any;
@@ -57,6 +130,7 @@ export class StatistiquesComponent implements OnInit {
   intervalId;
   scrHeight:any;
   scrWidth:any;
+  item;
   @HostListener('window:resize', ['$event'])
   getScreenSize(event?) {
         this.scrHeight = window.innerHeight;
@@ -76,6 +150,22 @@ export class StatistiquesComponent implements OnInit {
       }
     };
     this.intervalId = setInterval(getDownloadProgress, 1000);
+  }
+  societeSelectionner(value:string){
+    console.log(value);
+    this.directions = this.directs1;
+    if(value == "SONATEL") {
+      this.directions = this.directs1;
+    } else if (value == "OFMS") {
+      this.directions = this.directs2;
+    }
+    console.log(this.directions);
+    return this.directions;
+  }
+
+  lesDirections(){
+    this.directions = this.directions1;
+    return this.directions;
   }
   changeshow1() {
     this.show = 1;
@@ -312,184 +402,25 @@ export class StatistiquesComponent implements OnInit {
 
 
     this.chartOptions1 = {
+      colors: [
+        "#009393",
+        "#ff7900"
+      ],
       series: [
         {
-          name: "Finis",
-          data: [
-            {
-              x: "DASI", y: 64,
-              fillColor: "#ff0000", strokeColor: "#ff0000"
-            },{
-              x: "DD", y: 84,
-              fillColor: "#ff0000", strokeColor: "#ff0000"
-            },{
-              x: "DST", y: 94,
-              fillColor: "#ff0000", strokeColor: "#ff0000"
-            },{
-              x: "DSD", y: 64,
-              fillColor: "#ff0000", strokeColor: "#ff0000"
-            },{
-              x: "DRH", y: 84,
-              fillColor: "#ff0000", strokeColor: "#ff0000"
-            },{
-              x: "DRJ",  y: 94,
-              fillColor: "#ff0000", strokeColor: "#ff0000"
-            },{
-              x: "RAP",  y: 64,
-              fillColor: "#ff0000", strokeColor: "#ff0000"
-            },{
-              x: "DV", y: 84,
-              fillColor: "#ff0000", strokeColor: "#ff0000"
-            },{
-              x: "DSI", y: 94,
-              fillColor: "#ff0000", strokeColor: "#ff0000"
-            },{
-              x: "DMPJ",  y: 94,
-              fillColor: "#ff0000", strokeColor: "#ff0000"
-            },{
-              x: "DA",  y: 64,
-              fillColor: "#ff0000", strokeColor: "#ff0000"
-            }, {
-              x: "DEO", y: 84,
-              fillColor: "#ff0000", strokeColor: "#ff0000"
-            },{
-              x: "PMA", y: 94,
-              fillColor: "#ff0000", strokeColor: "#ff0000"
-            },{
-              x: "DSN", y: 64,
-              fillColor: "#ff0000", strokeColor: "#ff0000"
-            },{
-              x: "DIS", y: 84,
-              fillColor: "#ff0000", strokeColor: "#ff0000"
-            }, {
-              x: "DEP",  y: 94,
-              fillColor: "#ff0000", strokeColor: "#ff0000"
-            },{
-              x: "DRA",  y: 64,
-              fillColor: "#ff0000", strokeColor: "#ff0000"
-            },
-          ] 
+          name: "Hommes",
+          data: [44, 55, 57, 56, 61, 58, 63, 60, 66]
         },
         {
-          name: "Nouveaux",
-          data: [
-            {
-              x: "DASI", y: 134,
-              fillColor: "#009393", strokeColor: "#009393"
-            },{
-              x: "DD", y: 284,
-              fillColor: "#009393", strokeColor: "#009393"
-            }, {
-              x: "DST",  y: 124,
-              fillColor: "#009393", strokeColor: "#009393"
-            },{
-              x: "DSD",  y: 274,
-              fillColor: "#009393", strokeColor: "#009393"
-            }, {
-              x: "DRH", y: 184,
-              fillColor: "#009393", strokeColor: "#009393"
-            },{
-              x: "DRJ", y: 194,
-              fillColor: "#009393", strokeColor: "#009393"
-            },{
-              x: "RAP", y: 264,
-              fillColor: "#009393", strokeColor: "#009393"
-            },{
-              x: "DV", y: 104,
-              fillColor: "#009393", strokeColor: "#009393"
-            },{
-              x: "DSI",  y: 124,
-              fillColor: "#009393", strokeColor: "#009393"
-            },{
-              x: "DMPJ",  y: 264,
-              fillColor: "#009393", strokeColor: "#009393"
-            }, {
-              x: "DA", y: 165,
-              fillColor: "#009393", strokeColor: "#009393"
-            },{
-              x: "DEO", y: 294,
-              fillColor: "#009393", strokeColor: "#009393"
-            },{
-              x: "PMA",  y: 274,
-              fillColor: "#009393", strokeColor: "#009393"
-            }, {
-              x: "DSN", y: 184,
-              fillColor: "#009393", strokeColor: "#009393"
-            },{
-              x: "DASDISI", y: 194,
-              fillColor: "#009393", strokeColor: "#009393"
-            },{
-              x: "DEP", y: 264,
-              fillColor: "#009393", strokeColor: "#009393"
-            },{
-              x: "DRA", y: 104,
-              fillColor: "#009393", strokeColor: "#009393"
-            },
-          ]
-        },
-        {
-          name: "Total",
-          data: [
-            {
-              x: "DASI", y: 464,
-              fillColor: "#000000", strokeColor: "#000000"
-            },{
-              x: "DD", y: 684,
-              fillColor: "#000000", strokeColor: "#000000"
-            }, {
-              x: "DST",  y: 694,
-              fillColor: "#000000", strokeColor: "#000000"
-            },{
-              x: "DSD",  y: 764,
-              fillColor: "#000000", strokeColor: "#000000"
-            }, {
-              x: "DRH", y: 484,
-              fillColor: "#000000", strokeColor: "#000000"
-            },{
-              x: "DRJ", y: 794,
-              fillColor: "#000000", strokeColor: "#000000"
-            },{
-              x: "RAP", y: 764,
-              fillColor: "#000000", strokeColor: "#000000"
-            },{
-              x: "DV", y: 684,
-              fillColor: "#000000", strokeColor: "#000000"
-            },{
-              x: "DSI",  y: 594,
-              fillColor: "#000000", strokeColor: "#000000"
-            },{
-              x: "DMPJ",  y: 664,
-              fillColor: "#000000", strokeColor: "#000000"
-            },{
-              x: "DA", y: 484,
-              fillColor: "#000000", strokeColor: "#000000"
-            },{
-              x: "DEO", y: 594,
-              fillColor: "#000000", strokeColor: "#000000"
-            },{
-              x: "PMA",  y: 764,
-              fillColor: "#000000", strokeColor: "#000000"
-            }, {
-              x: "DSN", y: 484,
-              fillColor: "#000000", strokeColor: "#000000"
-            },{
-              x: "DIS", y: 794,
-              fillColor: "#000000", strokeColor: "#000000"
-            },{
-              x: "DEP", y: 764,
-              fillColor: "#000000", strokeColor: "#000000"
-            },{
-              x: "DRA", y: 684,
-              fillColor: "#000000", strokeColor: "#000000"
-            },
-          ]
-        }, 
+          name: "Femmes",
+          data: [76, 85, 101, 98, 87, 105, 91, 114, 94]
+        }
       ],
       chart: {
         type: "bar",
         height: 320,
         width: 700,
-        stacked: true,
+        stacked: false,
         toolbar: {
           show: false
         },
@@ -513,7 +444,7 @@ export class StatistiquesComponent implements OnInit {
       plotOptions: {
         bar: {
           horizontal: false,
-          columnWidth: "30px",
+          columnWidth: "50px",
           endingShape: "rounded",
         },
       },
@@ -525,31 +456,15 @@ export class StatistiquesComponent implements OnInit {
       },
       xaxis: {
         type: "category",
-        categories: [
-          "DASI",
-          "DD",
-          "DST",
-          "DSD",
-          "DRH",
-          "DRJ",
-          "RAP",
-          "DV",
-          "DSI",
-          "DMPJ",
-          "DA",
-          "DEO",
-          "PMA",
-          "DSN",
-          "DIS",
-          "DEP",
-          "DRA",
-        ]
+        categories: 
+          this.societeSelectionner(this.item)
+        
       },
       legend: {
         show: false,
       },
       fill: {
-        opacity: 2,
+        opacity: 4,
       },
     };
   }
