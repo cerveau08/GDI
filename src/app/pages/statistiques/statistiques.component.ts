@@ -44,7 +44,7 @@ var themeColors = [$primary, $warning, $success, $danger, $info];
 })
 export class StatistiquesComponent implements OnInit {
 
-  
+  show = 1;
   color: any;
   public datas: any;
   public diagrammes: any;
@@ -77,7 +77,18 @@ export class StatistiquesComponent implements OnInit {
     };
     this.intervalId = setInterval(getDownloadProgress, 1000);
   }
-
+  changeshow1() {
+    this.show = 1;
+    return this.show;
+  }
+  changeshow2() {  
+    this.show = 2;
+    return this.show;
+  }
+  changeshow3() {  
+    this.show = 3;
+    return this.show;
+  }
   ngOnDestroy() {
     clearInterval(this.intervalId);
   }
@@ -99,12 +110,13 @@ export class StatistiquesComponent implements OnInit {
     } 
     return this.jan;
   } 
-
+  dataStat: any;
   /*@ViewChild("chart")*/ chart: ChartComponent;
   public chartOptions: Partial<ChartOptions>;
   public chartOptions1: Partial<ChartOptions>;
   constructor(private dataService: DataService,) {
     this.getScreenSize();
+    this.dataStat = this.dataService.getDataStatistique();
     this.chartOptions = {
       series: [
         {
@@ -112,40 +124,40 @@ export class StatistiquesComponent implements OnInit {
           data: [
             {
               x: "Jan", y: 64,
-              fillColor: "#ff0000", strokeColor: "#009393"
+              fillColor: "#ff0000", strokeColor: "#ff0000"
             },{
               x: "Fev", y: 84,
-              fillColor: "#ff0000", strokeColor: "#009393"
+              fillColor: "#ff0000", strokeColor: "#ff0000"
             }, {
               x: "Mar",  y: 94,
-              fillColor: "#ff0000", strokeColor: "#009393"
+              fillColor: "#ff0000", strokeColor: "#ff0000"
             },{
               x: "Avr",  y: 64,
-              fillColor: "#ff0000", strokeColor: "#009393"
+              fillColor: "#ff0000", strokeColor: "#ff0000"
             }, {
               x: "Mai", y: 84,
-              fillColor: "#ff0000", strokeColor: "#009393"
+              fillColor: "#ff0000", strokeColor: "#ff0000"
             },{
               x: "Jui", y: 94,
-              fillColor: "#ff0000", strokeColor: "#009393"
+              fillColor: "#ff0000", strokeColor: "#ff0000"
             },{
               x: "Jul", y: 64,
-              fillColor: "#ff0000", strokeColor: "#009393"
+              fillColor: "#ff0000", strokeColor: "#ff0000"
             },{
               x: "Aou", y: 84,
-              fillColor: "#ff0000", strokeColor: "#009393"
+              fillColor: "#ff0000", strokeColor: "#ff0000"
             }, {
               x: "Sep",  y: 94,
-              fillColor: "#ff0000", strokeColor: "#009393"
+              fillColor: "#ff0000", strokeColor: "#ff0000"
             },{
               x: "Oct",  y: 64,
-              fillColor: "#ff0000", strokeColor: "#009393"
+              fillColor: "#ff0000", strokeColor: "#ff0000"
             }, {
               x: "Nov", y: 84,
-              fillColor: "#ff0000", strokeColor: "#009393"
+              fillColor: "#ff0000", strokeColor: "#ff0000"
             },{
               x: "Dec", y: 94,
-              fillColor: "#ff0000", strokeColor: "#009393"
+              fillColor: "#ff0000", strokeColor: "#ff0000"
             },
           ] 
         },
@@ -196,40 +208,40 @@ export class StatistiquesComponent implements OnInit {
           data: [
             {
               x: "Jan", y: 464,
-              fillColor: "#000000", strokeColor: "#009393"
+              fillColor: "#000000", strokeColor: "#000000"
             },{
               x: "Fev", y: 684,
-              fillColor: "#000000", strokeColor: "#009393"
+              fillColor: "#000000", strokeColor: "#000000"
             }, {
               x: "Mar",  y: 694,
-              fillColor: "#000000", strokeColor: "#009393"
+              fillColor: "#000000", strokeColor: "#000000"
             },{
               x: "Avr",  y: 764,
-              fillColor: "#000000", strokeColor: "#009393"
+              fillColor: "#000000", strokeColor: "#000000"
             }, {
               x: "Mai", y: 484,
-              fillColor: "#000000", strokeColor: "#009393"
+              fillColor: "#000000", strokeColor: "#000000"
             },{
               x: "Jui", y: 794,
-              fillColor: "#000000", strokeColor: "#009393"
+              fillColor: "#000000", strokeColor: "#000000"
             },{
               x: "Jul", y: 764,
-              fillColor: "#000000", strokeColor: "#009393"
+              fillColor: "#000000", strokeColor: "#000000"
             },{
               x: "Aou", y: 684,
-              fillColor: "#000000", strokeColor: "#009393"
+              fillColor: "#000000", strokeColor: "#000000"
             }, {
               x: "Sep",  y: 594,
-              fillColor: "#000000", strokeColor: "#009393"
+              fillColor: "#000000", strokeColor: "#000000"
             },{
               x: "Oct",  y: 664,
-              fillColor: "#000000", strokeColor: "#009393"
+              fillColor: "#000000", strokeColor: "#000000"
             }, {
               x: "Nov", y: 484,
-              fillColor: "#000000", strokeColor: "#009393"
+              fillColor: "#000000", strokeColor: "#000000"
             },{
               x: "Dec", y: 594,
-              fillColor: "#000000", strokeColor: "#009393"
+              fillColor: "#000000", strokeColor: "#000000"
             },
           ]
         }, 

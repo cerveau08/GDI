@@ -6,6 +6,32 @@
 .all {
     margin-right: 10px;
 }
+.statt-header {
+    font-size: 26px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #222222;
+}
+.liste-sous-header {
+    display: flex;
+}
+.statt-sous-header {
+    font-size: 21px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #222222;
+    text-align: center;
+}
+.effectif-content {
+    width: 170px;
+    cursor: pointer;
+}
 .bien{
     font-size: 26px;
     font-weight: bold;
@@ -33,10 +59,10 @@
     }
 }
 .detail1{
-    height: 370px;
+    height: 270px;
     background-color: white;
     display: grid;
-    grid-template-columns: 50% 50%;
+    grid-template-columns: 1fr 200px;
     grid-gap: 1px;
     background-color: white;
     padding: 0px;
@@ -44,7 +70,7 @@
     border-bottom: 1px solid #f5f6f9;
 }
 .elmt {
-    border-right: 10px solid #f5f6f9;
+    
 }
 .tit {
     display: flex;
@@ -245,9 +271,19 @@
     
 }
 .lesbouton1 {
-    width: 330px;
+    width: 200px;
     margin: 0 auto;
-    display: flex;
+    margin-top: 30px;
+}
+.interimaires-total {
+    font-size: 25px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #222222;
     margin-top: 30px;
 }
 .button1 {
@@ -260,6 +296,8 @@
     outline: none;
     border: 3px solid #f5f6f9;
     border-radius: 5px;
+    margin-left: 5px;
+    margin-top: 10px;
     .color {
         height: 12px;
         width: 12px;
@@ -290,7 +328,8 @@
     outline: none;
     border: 3px solid #f5f6f9;
     border-radius: 5px;
-    margin-left: 15px;
+    margin-left: 5px;
+    margin-top: 25px;
     .color {
         height: 12px;
         width: 12px;
@@ -953,6 +992,7 @@ table {
         grid-template-areas:
           "tableau"
           "aside";
+        height: 400px;
     }
     .tit {
         width: 250px;
@@ -1091,11 +1131,15 @@ table {
         }
         
     }
+    .interimaires-total {
+        margin-top: 0;
+        margin-bottom: 15px;
+    }
     .lesbouton1 {
         width: 290px;
         margin: 0 auto;
         display: flex;
-        margin-top: 30px;
+        margin-top: 10px;
     }
     .button1 {
         display: flex;
@@ -1107,6 +1151,7 @@ table {
         outline: none;
         border: 3px solid #f5f6f9;
         border-radius: 5px;
+        margin-top: 0;
         .color {
             height: 12px;
             width: 12px;
@@ -1128,6 +1173,7 @@ table {
         height: 35px;
         border-radius: 5px;
         margin-left: 15px;
+        margin-top: 0;
         .color {
             height: 12px;
             width: 12px;

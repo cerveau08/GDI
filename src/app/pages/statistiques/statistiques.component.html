@@ -1,10 +1,21 @@
 <div class="all-container">
     <div class="all">
+        <p class="statt-header">Statistiques</p>
+        <div class="liste-sous-header">
+           <div [style.background]="show==1?'white':'#f5f6f9'" class="effectif-content" (click)="changeshow1()">
+               <p id="effectis" class="statt-sous-header">Effectifs</p>
+           </div>
+           <div [style.background]="show==2?'white':'#f5f6f9'" class="effectif-content" (click)="changeshow2()">
+               <p id="genre" class="statt-sous-header">Genre</p>
+           </div>
+           <div [style.background]="show==3?'white':'#f5f6f9'" class="effectif-content" (click)="changeshow3()">
+               <p id="presence" class="statt-sous-header">Présence</p>
+           </div>
+        </div>
         <div class="detail1">
             <div class="elmt" >
                 <div class="tit">
                     <p class="total">Total Interimaires</p>
-                    <p class="totaln">835</p>
                 </div>
                 <div class="per">
                     <div class="cercle">
@@ -49,6 +60,9 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="">
+                <p class="interimaires-total">835</p>
                 <div class="lesbouton1">
                     <div  class="button1"> 
                         <div class="color"></div> 
@@ -58,49 +72,6 @@
                         <div class="color"></div> 
                         <p>Femme</p>
                     </div>
-                </div>
-            </div>
-            <div *ngIf="scrWidth>991" class="elmt1" title="messages1">
-                <div class="graph1">
-                    <div class="tit">
-                        <p class="total">Variation de l’effectif</p>
-                    </div>
-                    <div class="filt">
-                        <div class="filtrer1" style="cursor: pointer;">
-                            <mat-icon class="i1" fontSet="material-icons-outlined">date_range</mat-icon>
-                            <p class="filtre">Mois</p>
-                            <mat-icon class="i2" fontSet="material-icons-outlined">expand_more</mat-icon>
-                        </div>
-                    </div>
-                    <div class="diagra">
-                        <div id="chart">
-                            <apx-chart
-                              [series]="chartOptions.series"
-                              [chart]="chartOptions.chart"
-                              [dataLabels]="chartOptions.dataLabels"
-                              [plotOptions]="chartOptions.plotOptions"
-                              [responsive]="chartOptions.responsive"
-                              [xaxis]="chartOptions.xaxis"
-                              [legend]="chartOptions.legend"
-                              [fill]="chartOptions.fill"
-                              [dataLabels]="chartOptions.dataLabels"
-                            ></apx-chart>
-                        </div>
-                    </div>
-                    <div class="lesbouton2">
-                        <div  class="button3"> 
-                            <div class="color"></div> 
-                            <p>Finis</p>
-                        </div>
-                        <div  class="button4"> 
-                            <div class="color"></div> 
-                            <p>Nouveaux</p>
-                        </div>
-                        <div  class="button5"> 
-                            <div class="color"></div> 
-                            <p>Total</p>
-                        </div>
-                    </div> 
                 </div>
             </div>
         </div>
