@@ -45,6 +45,7 @@ export class AgenceComponent implements OnInit {
     postem: "Chef de Services Production et Maintenance Applicatif",
     nomInt: "5"
   };
+  showHome = true;
   url1;
   url3: any;
   user;
@@ -66,6 +67,12 @@ export class AgenceComponent implements OnInit {
       this.showupdate = true;
     } else {
       this.showupdate = false;
+    }
+    this.user = localStorage.getItem('user');
+    if(this.user == 'inter') {
+      this.showHome = false;
+    } else {
+      this.showHome = true;
     }
     this.datas = this.dataService.getData();
     this.agenceForm = new FormGroup({

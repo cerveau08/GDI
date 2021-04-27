@@ -1,5 +1,5 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { ApexAxisChartSeries, ApexChart, ApexDataLabels, ApexFill, ApexLegend, ApexPlotOptions, ApexResponsive, ApexStroke, ApexXAxis, ApexYAxis, ChartComponent } from 'ng-apexcharts';
+import { ApexAxisChartSeries, ApexChart, ApexDataLabels, ApexFill, ApexLegend, ApexPlotOptions, ApexResponsive, ApexXAxis, ApexYAxis, ChartComponent } from 'ng-apexcharts';
 import { DataService } from 'src/app/service/data.service';
 
 export type ChartOptions = {
@@ -15,7 +15,7 @@ export type ChartOptions = {
   fill: ApexFill;
   colors: string[],
 };
-export type ChartOptions1 = {
+export type ChartOptions3 = {
   series: ApexAxisChartSeries;
   chart: ApexChart;
   dataLabels: ApexDataLabels;
@@ -28,14 +28,6 @@ export type ChartOptions1 = {
   fill: ApexFill;
   colors: ["#009393", "#ff7900"],
 };
-
-var $primary = "#ff7900",
-  $success = "#009393",
-  $info = "#f5f6f9",
-  $warning = "#F77E17",
-  $danger = "#F55252",
-  $label_color_light = "#E6EAEE";
-var themeColors = [$primary, $warning, $success, $danger, $info];
 @Component({
   selector: 'app-statistiques',
   templateUrl: './statistiques.component.html',
@@ -54,47 +46,75 @@ export class StatistiquesComponent implements OnInit {
   directions1 = [
     {
       direction: "DSD",
+      interHommes: 40,
+      interFemmes: 20
     },
     {
       direction: "DRH",
+      interHommes: 10,
+      interFemmes: 35
     },
     {
       direction: "DGA",
+      interHommes: 29,
+      interFemmes: 41
     },
     {
       direction: "DMGP",
+      interHommes: 18,
+      interFemmes: 29
     },
     {
       direction: "DOI",
+      interHommes: 37,
+      interFemmes: 29
     },
     {
       direction: "DSC",
+      interHommes: 46,
+      interFemmes: 42
     },
     {
       direction: "DRJ",
+      interHommes: 11,
+      interFemmes: 39
     },
     {
       direction: "ARQ",
+      interHommes: 36,
+      interFemmes: 28
     },
     {
       direction: "DAL",
+      interHommes: 18,
+      interFemmes: 42
     },
   ];
   directions2 = [
     {
       direction: "DD",
+      interHommes: 21,
+      interFemmes: 18
     },
     {
       direction: "OM",
+      interHommes: 46,
+      interFemmes: 43
     },
     {
       direction: "PM",
+      interHommes: 26,
+      interFemmes: 39
     },
     {
       direction: "CP",
+      interHommes: 29,
+      interFemmes: 19
     },
     {
       direction: "CD",
+      interHommes: 16,
+      interFemmes: 28
     }
   ];
   directs1 = [
@@ -116,7 +136,564 @@ export class StatistiquesComponent implements OnInit {
       "CP",
       "CD",
   ];
+  diagram1 = [
+    {
+      annee: 2021,
+      nouveau: 200,
+      fini: 120,
+      total: 800,
+      mois: [
+        {
+          mois: "Jan",
+          nouveau: 20,
+          fini: 40,
+          total: 80,
+        },{
+          mois: "Fev",
+          nouveau: 28,
+          fini: 10,
+          total: 90,
+        },{
+          mois: "Mar",
+          nouveau: 39,
+          fini: 26,
+          total: 98,
+        },{
+          mois: "Avr",
+          nouveau: 16,
+          fini: 40,
+          total: 125,
+        },{
+          mois: "Mai",
+          nouveau: 12,
+          fini: 36,
+          total: 105,
+        },{
+          mois: "Jui",
+          nouveau: 29,
+          fini: 35,
+          total: 98,
+        },{
+          mois: "Jul",
+          nouveau: 42,
+          fini: 21,
+          total: 132,
+        },{
+          mois: "Aou",
+          nouveau: 38,
+          fini: 25,
+          total: 84,
+        },{
+          mois: "Sep",
+          nouveau: 19,
+          fini: 27,
+          total: 136,
+        },{
+          mois: "Oct",
+          nouveau: 34,
+          fini: 24,
+          total: 79,
+        },{
+          mois: "Nov",
+          nouveau: 20,
+          fini: 20,
+          total: 141,
+        },{
+          mois: "Dec",
+          nouveau: 26,
+          fini: 14,
+          total: 117,
+        },
+      ]
+    },{
+      annee: 2020,
+      nouveau: 280,
+      fini: 110,
+      total: 925,
+      mois: [
+        {
+          mois: "Jan",
+          nouveau: 30,
+          fini: 10,
+          total: 89,
+        },{
+          mois: "Fev",
+          nouveau: 40,
+          fini: 40,
+          total: 94,
+        },{
+          mois: "Mar",
+          nouveau: 20,
+          fini: 10,
+          total: 96,
+        },{
+          mois: "Avr",
+          nouveau: 20,
+          fini: 40,
+          total: 111,
+        },{
+          mois: "Mai",
+          nouveau: 25,
+          fini: 35,
+          total: 82,
+        },{
+          mois: "Jui",
+          nouveau: 30,
+          fini: 18,
+          total: 122,
+        },{
+          mois: "Jul",
+          nouveau: 26,
+          fini: 31,
+          total: 87,
+        },{
+          mois: "Aou",
+          nouveau: 36,
+          fini: 18,
+          total: 99,
+        },{
+          mois: "Sep",
+          nouveau: 29,
+          fini: 31,
+          total: 69,
+        },{
+          mois: "Oct",
+          nouveau: 26,
+          fini: 36,
+          total: 115,
+        },{
+          mois: "Nov",
+          nouveau: 39,
+          fini: 22,
+          total: 131,
+        },{
+          mois: "Dec",
+          nouveau: 33,
+          fini: 19,
+          total: 94,
+        },
+      ]
+    },{
+      annee: 2019,
+      nouveau: 90,
+      fini: 80,
+      total: 880,
+      mois: [
+        {
+          mois: "Jan",
+          nouveau: 20,
+          fini: 40,
+          total: 80,
+        },{
+          mois: "Fev",
+          nouveau: 28,
+          fini: 10,
+          total: 90,
+        },{
+          mois: "Mar",
+          nouveau: 39,
+          fini: 26,
+          total: 98,
+        },{
+          mois: "Avr",
+          nouveau: 16,
+          fini: 40,
+          total: 125,
+        },{
+          mois: "Mai",
+          nouveau: 12,
+          fini: 36,
+          total: 105,
+        },{
+          mois: "Jui",
+          nouveau: 29,
+          fini: 35,
+          total: 98,
+        },{
+          mois: "Jul",
+          nouveau: 42,
+          fini: 21,
+          total: 132,
+        },{
+          mois: "Aou",
+          nouveau: 38,
+          fini: 25,
+          total: 84,
+        },{
+          mois: "Sep",
+          nouveau: 19,
+          fini: 27,
+          total: 136,
+        },{
+          mois: "Oct",
+          nouveau: 34,
+          fini: 24,
+          total: 79,
+        },{
+          mois: "Nov",
+          nouveau: 20,
+          fini: 20,
+          total: 141,
+        },{
+          mois: "Dec",
+          nouveau: 26,
+          fini: 14,
+          total: 117,
+        },
+      ]
+    },{
+      annee: 2020,
+      nouveau: 90,
+      fini: 50,
+      total: 725,
+      mois: [
+        {
+          mois: "Jan",
+          nouveau: 20,
+          fini: 40,
+          total: 80,
+        },{
+          mois: "Fev",
+          nouveau: 28,
+          fini: 10,
+          total: 90,
+        },{
+          mois: "Mar",
+          nouveau: 39,
+          fini: 26,
+          total: 98,
+        },{
+          mois: "Avr",
+          nouveau: 16,
+          fini: 40,
+          total: 125,
+        },{
+          mois: "Mai",
+          nouveau: 12,
+          fini: 36,
+          total: 105,
+        },{
+          mois: "Jui",
+          nouveau: 29,
+          fini: 35,
+          total: 98,
+        },{
+          mois: "Jul",
+          nouveau: 42,
+          fini: 21,
+          total: 132,
+        },{
+          mois: "Aou",
+          nouveau: 38,
+          fini: 25,
+          total: 84,
+        },{
+          mois: "Sep",
+          nouveau: 19,
+          fini: 27,
+          total: 136,
+        },{
+          mois: "Oct",
+          nouveau: 34,
+          fini: 24,
+          total: 79,
+        },{
+          mois: "Nov",
+          nouveau: 20,
+          fini: 20,
+          total: 141,
+        },{
+          mois: "Dec",
+          nouveau: 26,
+          fini: 14,
+          total: 117,
+        },
+      ]
+    },
+    {
+      annee: 2021,
+      nouveau: 100,
+      fini:60,
+      total: 735,
+      mois: [
+        {
+          mois: "Jan",
+          nouveau: 20,
+          fini: 40,
+          total: 80,
+        },{
+          mois: "Fev",
+          nouveau: 28,
+          fini: 10,
+          total: 90,
+        },{
+          mois: "Mar",
+          nouveau: 39,
+          fini: 26,
+          total: 98,
+        },{
+          mois: "Avr",
+          nouveau: 16,
+          fini: 40,
+          total: 125,
+        },{
+          mois: "Mai",
+          nouveau: 12,
+          fini: 36,
+          total: 105,
+        },{
+          mois: "Jui",
+          nouveau: 29,
+          fini: 35,
+          total: 98,
+        },{
+          mois: "Jul",
+          nouveau: 42,
+          fini: 21,
+          total: 132,
+        },{
+          mois: "Aou",
+          nouveau: 38,
+          fini: 25,
+          total: 84,
+        },{
+          mois: "Sep",
+          nouveau: 19,
+          fini: 27,
+          total: 136,
+        },{
+          mois: "Oct",
+          nouveau: 34,
+          fini: 24,
+          total: 79,
+        },{
+          mois: "Nov",
+          nouveau: 20,
+          fini: 20,
+          total: 141,
+        },{
+          mois: "Dec",
+          nouveau: 26,
+          fini: 14,
+          total: 117,
+        },
+      ]
+    },{
+      annee: 2020,
+      nouveau: 80,
+      fini: 10,
+      total: 625,
+      mois: [
+        {
+          mois: "Jan",
+          nouveau: 20,
+          fini: 40,
+          total: 80,
+        },{
+          mois: "Fev",
+          nouveau: 28,
+          fini: 10,
+          total: 90,
+        },{
+          mois: "Mar",
+          nouveau: 39,
+          fini: 26,
+          total: 98,
+        },{
+          mois: "Avr",
+          nouveau: 16,
+          fini: 40,
+          total: 125,
+        },{
+          mois: "Mai",
+          nouveau: 12,
+          fini: 36,
+          total: 105,
+        },{
+          mois: "Jui",
+          nouveau: 29,
+          fini: 35,
+          total: 98,
+        },{
+          mois: "Jul",
+          nouveau: 42,
+          fini: 21,
+          total: 132,
+        },{
+          mois: "Aou",
+          nouveau: 38,
+          fini: 25,
+          total: 84,
+        },{
+          mois: "Sep",
+          nouveau: 19,
+          fini: 27,
+          total: 136,
+        },{
+          mois: "Oct",
+          nouveau: 34,
+          fini: 24,
+          total: 79,
+        },{
+          mois: "Nov",
+          nouveau: 20,
+          fini: 20,
+          total: 141,
+        },{
+          mois: "Dec",
+          nouveau: 26,
+          fini: 14,
+          total: 117,
+        },
+      ]
+    },{
+      annee: 2019,
+      nouveau: 90,
+      fini: 80,
+      total: 826,
+      mois: [
+        {
+          mois: "Jan",
+          nouveau: 20,
+          fini: 40,
+          total: 80,
+        },{
+          mois: "Fev",
+          nouveau: 28,
+          fini: 10,
+          total: 90,
+        },{
+          mois: "Mar",
+          nouveau: 39,
+          fini: 26,
+          total: 98,
+        },{
+          mois: "Avr",
+          nouveau: 16,
+          fini: 40,
+          total: 125,
+        },{
+          mois: "Mai",
+          nouveau: 12,
+          fini: 36,
+          total: 105,
+        },{
+          mois: "Jui",
+          nouveau: 29,
+          fini: 35,
+          total: 98,
+        },{
+          mois: "Jul",
+          nouveau: 42,
+          fini: 21,
+          total: 132,
+        },{
+          mois: "Aou",
+          nouveau: 38,
+          fini: 25,
+          total: 84,
+        },{
+          mois: "Sep",
+          nouveau: 19,
+          fini: 27,
+          total: 136,
+        },{
+          mois: "Oct",
+          nouveau: 34,
+          fini: 24,
+          total: 79,
+        },{
+          mois: "Nov",
+          nouveau: 20,
+          fini: 20,
+          total: 141,
+        },{
+          mois: "Dec",
+          nouveau: 26,
+          fini: 14,
+          total: 117,
+        },
+      ]
+    },{
+      annee: 2020,
+      nouveau: 90,
+      fini: 50,
+      total: 925,
+      mois: [
+        {
+          mois: "Jan",
+          nouveau: 20,
+          fini: 40,
+          total: 80,
+        },{
+          mois: "Fev",
+          nouveau: 28,
+          fini: 10,
+          total: 90,
+        },{
+          mois: "Mar",
+          nouveau: 39,
+          fini: 26,
+          total: 98,
+        },{
+          mois: "Avr",
+          nouveau: 16,
+          fini: 40,
+          total: 125,
+        },{
+          mois: "Mai",
+          nouveau: 12,
+          fini: 36,
+          total: 105,
+        },{
+          mois: "Jui",
+          nouveau: 29,
+          fini: 35,
+          total: 98,
+        },{
+          mois: "Jul",
+          nouveau: 42,
+          fini: 21,
+          total: 132,
+        },{
+          mois: "Aou",
+          nouveau: 38,
+          fini: 25,
+          total: 84,
+        },{
+          mois: "Sep",
+          nouveau: 19,
+          fini: 27,
+          total: 136,
+        },{
+          mois: "Oct",
+          nouveau: 34,
+          fini: 24,
+          total: 79,
+        },{
+          mois: "Nov",
+          nouveau: 20,
+          fini: 20,
+          total: 141,
+        },{
+          mois: "Dec",
+          nouveau: 26,
+          fini: 14,
+          total: 117,
+        },
+      ]
+    },
+  ]
+  axex;
+  mois;
+  directs: any;
   directions: any;
+  effectif;
+  hommes: any;
+  femmes: any;
+  nouveau; 
+  fini;
+  total;
   show = 1;
   color: any;
   public datas: any;
@@ -131,6 +708,16 @@ export class StatistiquesComponent implements OnInit {
   scrHeight:any;
   scrWidth:any;
   item;
+  dates;
+  dataStat: any;
+  /*@ViewChild("chart")*/ chart: ChartComponent;
+  public chartOptions: Partial<ChartOptions>;
+  public chartOptions2: Partial<ChartOptions>;
+  public chartOptions3: Partial<ChartOptions>;
+  constructor(private dataService: DataService,) {
+    this.getScreenSize();
+    this.dataStat = this.dataService.getDataStatistique();
+  }
   @HostListener('window:resize', ['$event'])
   getScreenSize(event?) {
         this.scrHeight = window.innerHeight;
@@ -140,27 +727,252 @@ export class StatistiquesComponent implements OnInit {
   ngOnInit() {
     this.datas = this.dataService.getData();
     const getDownloadProgress = () => {
-      console.log("getDownload", this);
       if (this.progress <= 99) {
         this.progress = 30;
-        console.log("inside if", this.progress);
         this.progress = this.progress - 2;
       } else {
         clearInterval(this.intervalId);
       }
     };
     this.intervalId = setInterval(getDownloadProgress, 1000);
+    this.societeSelectionner(this.item);
+    this.dateSelectionner(this.item);
+    this.effectifSocieteSelectionner(this.item);
+  }
+  dateSelectionner(value){
+    this.axex = this.diagram1.map(valueOfDirection => valueOfDirection.annee);
+    this.nouveau = this.diagram1.map(valueOfNouveau => valueOfNouveau.nouveau);
+    this.fini = this.diagram1.map(valueOfFini => valueOfFini.fini);
+    this.total = this.diagram1.map(valueOfTotal => valueOfTotal.total);
+    this.chartOptions = {
+      colors: [
+        "#ff0000",
+        "#009393",
+        "#000000",
+      ],
+      series: [
+        {
+          name: "Finis",
+          data: this.fini
+        },
+        {
+          name: "Nouveaux",
+          data: this.nouveau
+        },
+        {
+          name: "Total",
+          data: this.total
+        },
+      ],
+      chart: {
+        type: "bar",
+        height: 300,
+        width: 700,
+        stacked: true,
+        toolbar: {
+          show: false
+        },
+        zoom: {
+          enabled: false
+        }
+      },
+      responsive: [
+        {
+          breakpoint: 480,
+          options: {
+            legend: {
+              show: false,
+              position: "bottom",
+              offsetX: -10,
+              offsetY: 0
+            }
+          }
+        }
+      ],
+      plotOptions: {
+        bar: {
+          horizontal: false,
+          columnWidth: "10px",
+          endingShape: "rounded",
+        },
+      },
+      dataLabels: {
+        enabled: false,
+        style: {
+          colors: ['#f3f4f5', '#fff']
+        }
+      },
+      xaxis: {
+        type: "category",
+        categories: 
+          this.axex
+      },
+      legend: {
+        show: false,
+      },
+      fill: {
+        opacity: 4,
+      },
+    };
+    return this.chartOptions3;
+  }
+  effectifSocieteSelectionner(value:string){
+    this.directs = this.directions1;
+    this.directions = this.directions1.map(valueOfDirection => valueOfDirection.direction);
+    this.effectif = this.directions1.map(valueOfHomme => valueOfHomme.interHommes);
+    if(value == "SONATEL") {
+      this.directs = this.directions1;
+      this.directions = this.directions1.map(valueOfDirection => valueOfDirection.direction);
+      this.effectif = this.directions1.map(valueOfHomme => valueOfHomme.interHommes);
+    } else if (value == "OFMS") {
+      this.directs = this.directions2;
+      this.directions = this.directions2.map(valueOfDirection => valueOfDirection.direction);
+      this.effectif = this.directions2.map(valueOfHomme => valueOfHomme.interHommes);
+    }
+    this.chartOptions2 = {
+      colors: [
+        "#000"
+      ],
+      series: [
+        {
+          name: "Effectif",
+          data: this.effectif
+        }
+      ],
+      chart: {
+        type: "bar",
+        height: 280,
+        width: 700,
+        stacked: false,
+        toolbar: {
+          show: false
+        },
+        zoom: {
+          enabled: false
+        }
+      },
+      responsive: [
+        {
+          breakpoint: 480,
+          options: {
+            legend: {
+              show: false,
+              position: "bottom",
+              offsetX: -10,
+              offsetY: 0
+            }
+          }
+        }
+      ],
+      plotOptions: {
+        bar: {
+          horizontal: false,
+          columnWidth: "20px",
+          endingShape: "rounded",
+        },
+      },
+      dataLabels: {
+        enabled: false,
+        style: {
+          colors: ['#f3f4f5', '#fff']
+        }
+      },
+      xaxis: {
+        type: "category",
+        categories: 
+          this.directions
+      },
+      legend: {
+        show: false,
+      },
+      fill: {
+        opacity: 4,
+      },
+    };
+    return this.chartOptions2;
   }
   societeSelectionner(value:string){
-    console.log(value);
-    this.directions = this.directs1;
+    this.directs = this.directions1;
+    this.directions = this.directions1.map(valueOfDirection => valueOfDirection.direction);
+    this.hommes = this.directions1.map(valueOfHomme => valueOfHomme.interHommes);
+    this.femmes = this.directions1.map(valueOfFemmes => valueOfFemmes.interFemmes);
     if(value == "SONATEL") {
-      this.directions = this.directs1;
+      this.directs = this.directions1;
+      this.directions = this.directions1.map(valueOfDirection => valueOfDirection.direction);
+      this.hommes = this.directions1.map(valueOfHomme => valueOfHomme.interHommes);
+      this.femmes = this.directions1.map(valueOfFemmes => valueOfFemmes.interFemmes);
     } else if (value == "OFMS") {
-      this.directions = this.directs2;
+      this.directs = this.directions2;
+      this.directions = this.directions2.map(valueOfDirection => valueOfDirection.direction);
+      this.hommes = this.directions2.map(valueOfHomme => valueOfHomme.interHommes);
+      this.femmes = this.directions2.map(valueOfFemmes => valueOfFemmes.interFemmes);
     }
-    console.log(this.directions);
-    return this.directions;
+    this.chartOptions3 = {
+      colors: [
+        "#009393",
+        "#ff7900"
+      ],
+      series: [
+        {
+          name: "Hommes",
+          data: this.hommes
+        },
+        {
+          name: "Femmes",
+          data: this.femmes
+        }
+      ],
+      chart: {
+        type: "bar",
+        height: 280,
+        width: 700,
+        stacked: false,
+        toolbar: {
+          show: false
+        },
+        zoom: {
+          enabled: false
+        }
+      },
+      responsive: [
+        {
+          breakpoint: 480,
+          options: {
+            legend: {
+              show: false,
+              position: "bottom",
+              offsetX: -10,
+              offsetY: 0
+            }
+          }
+        }
+      ],
+      plotOptions: {
+        bar: {
+          horizontal: false,
+          columnWidth: "50px",
+          endingShape: "rounded",
+        },
+      },
+      dataLabels: {
+        enabled: false,
+        style: {
+          colors: ['#f3f4f5', '#fff']
+        }
+      },
+      xaxis: {
+        type: "category",
+        categories: 
+          this.directions
+      },
+      legend: {
+        show: false,
+      },
+      fill: {
+        opacity: 4,
+      },
+    };
+    return this.chartOptions3;
   }
 
   lesDirections(){
@@ -200,273 +1012,4 @@ export class StatistiquesComponent implements OnInit {
     } 
     return this.jan;
   } 
-  dataStat: any;
-  /*@ViewChild("chart")*/ chart: ChartComponent;
-  public chartOptions: Partial<ChartOptions>;
-  public chartOptions1: Partial<ChartOptions>;
-  constructor(private dataService: DataService,) {
-    this.getScreenSize();
-    this.dataStat = this.dataService.getDataStatistique();
-    this.chartOptions = {
-      series: [
-        {
-          name: "Finis",
-          data: [
-            {
-              x: "Jan", y: 64,
-              fillColor: "#ff0000", strokeColor: "#ff0000"
-            },{
-              x: "Fev", y: 84,
-              fillColor: "#ff0000", strokeColor: "#ff0000"
-            }, {
-              x: "Mar",  y: 94,
-              fillColor: "#ff0000", strokeColor: "#ff0000"
-            },{
-              x: "Avr",  y: 64,
-              fillColor: "#ff0000", strokeColor: "#ff0000"
-            }, {
-              x: "Mai", y: 84,
-              fillColor: "#ff0000", strokeColor: "#ff0000"
-            },{
-              x: "Jui", y: 94,
-              fillColor: "#ff0000", strokeColor: "#ff0000"
-            },{
-              x: "Jul", y: 64,
-              fillColor: "#ff0000", strokeColor: "#ff0000"
-            },{
-              x: "Aou", y: 84,
-              fillColor: "#ff0000", strokeColor: "#ff0000"
-            }, {
-              x: "Sep",  y: 94,
-              fillColor: "#ff0000", strokeColor: "#ff0000"
-            },{
-              x: "Oct",  y: 64,
-              fillColor: "#ff0000", strokeColor: "#ff0000"
-            }, {
-              x: "Nov", y: 84,
-              fillColor: "#ff0000", strokeColor: "#ff0000"
-            },{
-              x: "Dec", y: 94,
-              fillColor: "#ff0000", strokeColor: "#ff0000"
-            },
-          ] 
-        },
-        {
-          name: "Nouveaux",
-          data: [
-            {
-              x: "Jan", y: 134,
-              fillColor: "#009393", strokeColor: "#009393"
-            },{
-              x: "Fev", y: 284,
-              fillColor: "#009393", strokeColor: "#009393"
-            }, {
-              x: "Mar",  y: 124,
-              fillColor: "#009393", strokeColor: "#009393"
-            },{
-              x: "Avr",  y: 274,
-              fillColor: "#009393", strokeColor: "#009393"
-            }, {
-              x: "Mai", y: 184,
-              fillColor: "#009393", strokeColor: "#009393"
-            },{
-              x: "Jui", y: 194,
-              fillColor: "#009393", strokeColor: "#009393"
-            },{
-              x: "Jul", y: 264,
-              fillColor: "#009393", strokeColor: "#009393"
-            },{
-              x: "Aou", y: 104,
-              fillColor: "#009393", strokeColor: "#009393"
-            }, {
-              x: "Sep",  y: 124,
-              fillColor: "#009393", strokeColor: "#009393"
-            },{
-              x: "Oct",  y: 264,
-              fillColor: "#009393", strokeColor: "#009393"
-            }, {
-              x: "Nov", y: 165,
-              fillColor: "#009393", strokeColor: "#009393"
-            },{
-              x: "Dec", y: 294,
-              fillColor: "#009393", strokeColor: "#009393"
-            },
-          ]
-        },
-        {
-          name: "Total",
-          data: [
-            {
-              x: "Jan", y: 464,
-              fillColor: "#000000", strokeColor: "#000000"
-            },{
-              x: "Fev", y: 684,
-              fillColor: "#000000", strokeColor: "#000000"
-            }, {
-              x: "Mar",  y: 694,
-              fillColor: "#000000", strokeColor: "#000000"
-            },{
-              x: "Avr",  y: 764,
-              fillColor: "#000000", strokeColor: "#000000"
-            }, {
-              x: "Mai", y: 484,
-              fillColor: "#000000", strokeColor: "#000000"
-            },{
-              x: "Jui", y: 794,
-              fillColor: "#000000", strokeColor: "#000000"
-            },{
-              x: "Jul", y: 764,
-              fillColor: "#000000", strokeColor: "#000000"
-            },{
-              x: "Aou", y: 684,
-              fillColor: "#000000", strokeColor: "#000000"
-            }, {
-              x: "Sep",  y: 594,
-              fillColor: "#000000", strokeColor: "#000000"
-            },{
-              x: "Oct",  y: 664,
-              fillColor: "#000000", strokeColor: "#000000"
-            }, {
-              x: "Nov", y: 484,
-              fillColor: "#000000", strokeColor: "#000000"
-            },{
-              x: "Dec", y: 594,
-              fillColor: "#000000", strokeColor: "#000000"
-            },
-          ]
-        }, 
-      ],
-      chart: {
-        type: "bar",
-        height: 200,
-        width: 400,
-        stacked: true,
-        toolbar: {
-          show: false
-        },
-        zoom: {
-          enabled: false
-        }
-      },
-      responsive: [
-        {
-          breakpoint: 480,
-          options: {
-            legend: {
-              show: false,
-              position: "bottom",
-              offsetX: -10,
-              offsetY: 0
-            }
-          }
-        }
-      ],
-      plotOptions: {
-        bar: {
-          horizontal: false,
-          columnWidth: "30px",
-          endingShape: "rounded",
-        },
-      },
-      dataLabels: {
-        enabled: false,
-        style: {
-          colors: ['#f3f4f5', '#fff']
-        }
-      },
-      xaxis: {
-        type: "category",
-        categories: [
-          "Jan",
-          "Fev",
-          "Mar",
-          "Avr",
-          "Mai",
-          "Jui",
-          "Jul",
-          "Aou",
-          "Sep",
-          "Oct",
-          "Nov",
-          "Dec"
-        ]
-      },
-      legend: {
-        show: false,
-      },
-      fill: {
-        opacity: 2,
-      //  shown: 
-      },
-    };
-
-
-    this.chartOptions1 = {
-      colors: [
-        "#009393",
-        "#ff7900"
-      ],
-      series: [
-        {
-          name: "Hommes",
-          data: [44, 55, 57, 56, 61, 58, 63, 60, 66]
-        },
-        {
-          name: "Femmes",
-          data: [76, 85, 101, 98, 87, 105, 91, 114, 94]
-        }
-      ],
-      chart: {
-        type: "bar",
-        height: 320,
-        width: 700,
-        stacked: false,
-        toolbar: {
-          show: false
-        },
-        zoom: {
-          enabled: false
-        }
-      },
-      responsive: [
-        {
-          breakpoint: 480,
-          options: {
-            legend: {
-              show: false,
-              position: "bottom",
-              offsetX: -10,
-              offsetY: 0
-            }
-          }
-        }
-      ],
-      plotOptions: {
-        bar: {
-          horizontal: false,
-          columnWidth: "50px",
-          endingShape: "rounded",
-        },
-      },
-      dataLabels: {
-        enabled: false,
-        style: {
-          colors: ['#f3f4f5', '#fff']
-        }
-      },
-      xaxis: {
-        type: "category",
-        categories: 
-          this.societeSelectionner(this.item)
-        
-      },
-      legend: {
-        show: false,
-      },
-      fill: {
-        opacity: 4,
-      },
-    };
-  }
-
 }

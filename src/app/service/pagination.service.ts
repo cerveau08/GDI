@@ -61,7 +61,7 @@ export class PaginationService {
   public internav = [
     {
       id: 1, title: 'Tableau de bord',
-      path: '/', icon: "home",
+      path: 'home', icon: "home",
     }, {
       id: 5,  title: 'Mes Demandes',
       path: 'demande',  icon: "local_mall",
@@ -172,7 +172,7 @@ export class PaginationService {
   public managernav = [
     {
       id: 1, title: 'Tableau de bord',
-      path: '/', icon: "home",
+      path: 'home', icon: "home",
     }, {
       id: 5,  title: 'Interimaire',
       path: 'listinter',  icon: "person",

@@ -10,6 +10,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 })
 export class ParametreComponent implements OnInit {
  
+  showHome = true;
   passwordForm: FormGroup;
   newpasswordForm: FormGroup;
   videos: any;
@@ -28,10 +29,45 @@ export class ParametreComponent implements OnInit {
   colorb = "#000";
   borderb= "1px solid #000";
   colorc = "#000";
-  borderc= "1px solid #000"
+  borderc= "1px solid #000";
+  data = [{
+    id: 1,
+    prenom: "Amadou Dieye",
+    nom: "LEYE",
+    poste: "Développeur Web",
+    dateDebut: "25/12/2020",
+    dateFin: "25/12/2022",
+    tmp: "tmp_0254",
+    agence: "Set Interim",
+    dateNais: "10/12/1992",
+    lieuNais: "Mbour",
+    genre: "masculin",
+    cni: "1 619 1992 2154",
+    categorie: "Cadre C1C",
+    structure: "Sonatel SA",
+    direction: "DST",
+    pole: "DD",
+    departement: "DASI",
+    service: "PMA",
+    manager: "Madiagne SYLLA",
+    postem: "Chef de Services Production et Maintenance Applicatif",
+    email: "amadou.dieye.leye@orange-sonatel.com",
+    telephone: "+ 221 33 824 91 31",
+    adresse: "mbour",
+    photo: "inter.png",
+    matricule: "060210",
+    nomInt: "5"
+  }];
+  user;
   constructor(private dataService: DataService, private paginationService: PaginationService) { }
 
   ngOnInit() {
+    this.user = localStorage.getItem('user');
+    if(this.user == 'inter') {
+      this.showHome = false;
+    } else {
+      this.showHome = true;
+    }
     this.datas = this.dataService.getData();
     this.videos = this.paginationService.getVidoes();
     this.passwordForm = new FormGroup({

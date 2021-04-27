@@ -46,6 +46,8 @@ export class ManagerComponent implements OnInit {
   DemoDoc2="https://www.le.ac.uk/oerresources/bdra/html/resources/example.txt" 
   filterterm: string;
   datas: any;
+  showHome = true;
+  user;
   @HostListener('window:resize', ['$event'])
   getScreenSize(event?) {
         this.scrHeight = window.innerHeight;
@@ -59,6 +61,12 @@ export class ManagerComponent implements OnInit {
     }
 
   ngOnInit() {
+    this.user = localStorage.getItem('user');
+    if(this.user == 'inter') {
+      this.showHome = false;
+    } else {
+      this.showHome = true;
+    }
      this.datas = this.dataService.getData();
   }
 

@@ -54,6 +54,8 @@ export class CompteComponent implements OnInit {
     matricule: "060210",
     nomInt: "5"
   }];
+  user;
+  showHome = true;
   viewer = 'google';  
   selectedType = 'docx';   
   DemoDoc="http://www.africau.edu/images/default/sample.pdf" 
@@ -65,6 +67,12 @@ export class CompteComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.user = localStorage.getItem('user');
+    if(this.user == 'inter') {
+      this.showHome = false;
+    } else {
+      this.showHome = true;
+    }
     this.datas = this.dataService.getData();
   }
 

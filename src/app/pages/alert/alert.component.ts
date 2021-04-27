@@ -10,10 +10,18 @@ import { Router } from '@angular/router';
 export class AlertComponent implements OnInit {
   
   datas: any;
+  showHome = true;
+  user
   constructor(public router: Router,
     private dataService: DataService) { }
 
   ngOnInit() {
+    this.user = localStorage.getItem('user');
+    if(this.user == 'inter') {
+      this.showHome = false;
+    } else {
+      this.showHome = true;
+    }
     this.datas = this.dataService.getData();
   }
   

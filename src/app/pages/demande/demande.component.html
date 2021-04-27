@@ -51,8 +51,8 @@
                 <pagination-controls (pageChange)="p = $event" previousLabel="Prcédent" nextLabel="Suivant"></pagination-controls>
             </div>
     </div>
-        <div class="aside">
-            <div class="chiffre-aside" style="margin-left: auto;margin-right: 0;">
+        <div  class="aside">
+            <div *ngIf="showHome" class="chiffre-aside" style="margin-left: auto;margin-right: 0;">
                 <div class="elmt-aside" >
                     <div href="">
                         <p class="titre-aside">Présents</p>
@@ -77,7 +77,7 @@
             </div>
             
             
-            <div class="interi-aside">
+            <div *ngIf="showHome" class="interi-aside">
                 <p class="dernier-aside">Nos dernières recrues</p>
                 <div *ngFor="let p of datas | slice:0:4; let i = index">
                     <div class="list-aside">
@@ -97,7 +97,19 @@
                 </div>
                 <button  class="button-aside" routerLink="/accueil/newinter">Voir le liste</button>
             </div>
-            
+            <div *ngIf="!showHome">
+                <div class="annonce-aside" *ngFor="let d of data">
+                    <div  class="manager-detail-aside">
+                        <p class="dernier-aside">Manager</p>
+                        <div class="manager-aside">
+                        <img src="../assets/images/manager.png" alt="">
+                        </div>
+                        <p class="nom-aside">{{d.manager}}</p>
+                        <p class="postem-aside">{{d.postem}}</p>
+                        <button  class="button-aside" routerLink="/accueil/manager">Afficher</button>
+                    </div>
+                </div>
+            </div>
             <div class="annonce-aside">
                 <p class="dernier-aside">Avis de recrutement</p>
                 <div *ngFor="let p of datas | slice:0:4; let i = index">
