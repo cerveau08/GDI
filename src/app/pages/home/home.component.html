@@ -184,8 +184,10 @@
                     <div class="filt">
                         <div class="filtrer1" style="cursor: pointer;">
                             <mat-icon class="i1" fontSet="material-icons-outlined">date_range</mat-icon>
-                            <p class="filtre" [(ngModel)]="filterterm">Mois</p>
-                            <mat-icon class="i2" fontSet="material-icons-outlined">expand_more</mat-icon>
+                            <select class="select-mois" #leMois (change)='moisSelectionner(leMois.value)'>
+                                <option class="option" value="" disabled selected hidden>Mois</option>
+                                <option *ngFor="let p of mois" class="option" [value]="p.libelle">{{p.libelle}}</option>
+                            </select>
                         </div>
                     </div>
                     <div class="diagra">

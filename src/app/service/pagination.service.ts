@@ -95,9 +95,6 @@ export class PaginationService {
         }, {
           id: 2, title: 'Liste en fin de contrat',  path: 'fincontrat',
         },
-        {
-          id: 4,  title: 'Ajouter',  path: 'addinter',
-        },
       ]
     }, {
       id: 4,  title: 'Agence d\'interim',
@@ -119,6 +116,9 @@ export class PaginationService {
           title: 'Ajouter',  path: 'ajoutermanager',
         },
       ]
+    }, {
+      id: 4,  title: 'Présence',
+      icon: "grade", path: 'presence',   
     },{
       id: 6,  title: 'Alertes',
       path: 'alertes',  icon: "query_builder",
@@ -180,8 +180,11 @@ export class PaginationService {
       id: 3,  title: 'Agence d\'interim',
       icon: "local_mall",  path: 'listagence',
     },{
-      id: 4,  title: 'Attestations Présence',
+      id: 4,  title: 'Attestations de Présence',
       path: 'attestation',  icon: "grade",
+    }, {
+      id: 4,  title: 'Présence',
+      icon: "grade", path: 'presence',   
     },{
       id: 6,  title: 'Alertes',
       path: 'alertes',  icon: "query_builder",

@@ -17,13 +17,6 @@ export type ChartOptions = {
   colors: string[],
 };
 
-var $primary = "#ff7900",
-  $success = "#009393",
-  $info = "#f5f6f9",
-  $warning = "#F77E17",
-  $danger = "#F55252",
-  $label_color_light = "#E6EAEE";
-var themeColors = [$primary, $warning, $success, $danger, $info];
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -31,6 +24,20 @@ var themeColors = [$primary, $warning, $success, $danger, $info];
 })
 export class HomeComponent implements OnInit {
 
+  mois = [
+    {libelle: "Jan",},
+    {libelle: "Fev",},
+    {libelle: "Mar",},
+    {libelle: "Avr",},
+    {libelle: "Mai",},
+    {libelle: "Jui",},
+    {libelle: "Jul",},
+    {libelle: "Aou",},
+    {libelle: "Sep",},
+    {libelle: "Oct",},
+    {libelle: "Nov",},
+    {libelle: "Dec",},
+  ];
   color: any;
   public datas: any;
   public diagrammes: any;

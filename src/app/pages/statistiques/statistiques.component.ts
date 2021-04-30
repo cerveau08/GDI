@@ -127,7 +127,6 @@ export class StatistiquesComponent implements OnInit {
      "DRJ",
      "ARQ",
      "DAL",
-
   ];
   directs2 = [
       "DD",
