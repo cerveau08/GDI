@@ -49,8 +49,6 @@ export class IntersouscontratComponent implements OnInit {
   pagedItems: any[];
   date: any;
   constructor(private dataService: DataService,
-    private pagerService: PaginationService,
-    private modalService: ModalService,
     public datepipe: DatePipe,
     public router: Router
     ) { }

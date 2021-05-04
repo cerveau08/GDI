@@ -117,24 +117,6 @@ export class StatistiquesComponent implements OnInit {
       interFemmes: 28
     }
   ];
-  directs1 = [
-     "DSD",
-     "DRH",
-     "DGA",
-     "DMGP",
-     "DOI",
-     "DSC",
-     "DRJ",
-     "ARQ",
-     "DAL",
-  ];
-  directs2 = [
-      "DD",
-      "OM",
-      "PM",
-      "CP",
-      "CD",
-  ];
   diagram1 = [
     {
       annee: 2021,
@@ -341,7 +323,7 @@ export class StatistiquesComponent implements OnInit {
         },
       ]
     },{
-      annee: 2020,
+      annee: 2018,
       nouveau: 90,
       fini: 50,
       total: 725,
@@ -410,7 +392,7 @@ export class StatistiquesComponent implements OnInit {
       ]
     },
     {
-      annee: 2021,
+      annee: 2017,
       nouveau: 100,
       fini:60,
       total: 735,
@@ -478,7 +460,7 @@ export class StatistiquesComponent implements OnInit {
         },
       ]
     },{
-      annee: 2020,
+      annee: 2016,
       nouveau: 80,
       fini: 10,
       total: 625,
@@ -546,7 +528,7 @@ export class StatistiquesComponent implements OnInit {
         },
       ]
     },{
-      annee: 2019,
+      annee: 2015,
       nouveau: 90,
       fini: 80,
       total: 826,
@@ -614,7 +596,7 @@ export class StatistiquesComponent implements OnInit {
         },
       ]
     },{
-      annee: 2020,
+      annee: 2014,
       nouveau: 90,
       fini: 50,
       total: 925,
@@ -713,6 +695,8 @@ export class StatistiquesComponent implements OnInit {
   public chartOptions: Partial<ChartOptions>;
   public chartOptions2: Partial<ChartOptions>;
   public chartOptions3: Partial<ChartOptions>;
+  public chartOptions4: Partial<ChartOptions>;
+  public chartOptions5: Partial<ChartOptions>;
   constructor(private dataService: DataService,) {
     this.getScreenSize();
     this.dataStat = this.dataService.getDataStatistique();
@@ -737,6 +721,8 @@ export class StatistiquesComponent implements OnInit {
     this.societeSelectionner(this.item);
     this.dateSelectionner(this.item);
     this.effectifSocieteSelectionner(this.item);
+    this.dateSelectionnerPresence(this.item);
+    this.serviceSelectionnerPresence(this.item);
   }
   dateSelectionner(value){
     this.axex = this.diagram1.map(valueOfDirection => valueOfDirection.annee);
@@ -972,6 +958,162 @@ export class StatistiquesComponent implements OnInit {
       },
     };
     return this.chartOptions3;
+  }
+
+  dateSelectionnerPresence(value){
+    this.axex = this.diagram1.map(valueOfDirection => valueOfDirection.annee);
+    this.nouveau = this.diagram1.map(valueOfNouveau => valueOfNouveau.nouveau);
+    this.fini = this.diagram1.map(valueOfFini => valueOfFini.fini);
+    this.total = this.diagram1.map(valueOfTotal => valueOfTotal.total);
+    this.chartOptions4 = {
+      colors: [
+        "#ff0000",
+        "#009393",
+        "#000000",
+      ],
+      series: [
+        {
+          name: "Malades",
+          data: this.fini
+        },
+        {
+          name: "Présents",
+          data: this.nouveau
+        },
+        {
+          name: "Congés",
+          data: this.total
+        },
+      ],
+      chart: {
+        type: "bar",
+        height: 300,
+        width: 700,
+        stacked: true,
+        toolbar: {
+          show: false
+        },
+        zoom: {
+          enabled: false
+        }
+      },
+      responsive: [
+        {
+          breakpoint: 480,
+          options: {
+            legend: {
+              show: false,
+              position: "bottom",
+              offsetX: -10,
+              offsetY: 0
+            }
+          }
+        }
+      ],
+      plotOptions: {
+        bar: {
+          horizontal: false,
+          columnWidth: "10px",
+          endingShape: "rounded",
+        },
+      },
+      dataLabels: {
+        enabled: false,
+        style: {
+          colors: ['#f3f4f5', '#fff']
+        }
+      },
+      xaxis: {
+        type: "category",
+        categories: 
+          this.axex
+      },
+      legend: {
+        show: false,
+      },
+      fill: {
+        opacity: 4,
+      },
+    };
+    return this.chartOptions4;
+  }
+
+  serviceSelectionnerPresence(value){
+    this.axex = this.diagram1.map(valueOfDirection => valueOfDirection.annee);
+    this.nouveau = this.diagram1.map(valueOfNouveau => valueOfNouveau.nouveau);
+    this.fini = this.diagram1.map(valueOfFini => valueOfFini.fini);
+    this.total = this.diagram1.map(valueOfTotal => valueOfTotal.total);
+    this.chartOptions5 = {
+      colors: [
+        "#ff0000",
+        "#009393",
+        "#000000",
+      ],
+      series: [
+        {
+          name: "Malades",
+          data: this.fini
+        },
+        {
+          name: "Présents",
+          data: this.nouveau
+        },
+        {
+          name: "Congés",
+          data: this.total
+        },
+      ],
+      chart: {
+        type: "bar",
+        height: 300,
+        width: 700,
+        stacked: true,
+        toolbar: {
+          show: false
+        },
+        zoom: {
+          enabled: false
+        }
+      },
+      responsive: [
+        {
+          breakpoint: 480,
+          options: {
+            legend: {
+              show: false,
+              position: "bottom",
+              offsetX: -10,
+              offsetY: 0
+            }
+          }
+        }
+      ],
+      plotOptions: {
+        bar: {
+          horizontal: false,
+          columnWidth: "10px",
+          endingShape: "rounded",
+        },
+      },
+      dataLabels: {
+        enabled: false,
+        style: {
+          colors: ['#f3f4f5', '#fff']
+        }
+      },
+      xaxis: {
+        type: "category",
+        categories: 
+          this.axex
+      },
+      legend: {
+        show: false,
+      },
+      fill: {
+        opacity: 4,
+      },
+    };
+    return this.chartOptions5;
   }
 
   lesDirections(){

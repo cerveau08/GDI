@@ -1,14 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { DataService } from 'src/app/service/data.service';
 
 @Component({
-  selector: 'app-addinter',
-  templateUrl: './addinter.component.html',
-  styleUrls: ['./addinter.component.scss']
+  selector: 'app-modifierinter',
+  templateUrl: './modifierinter.component.html',
+  styleUrls: ['./modifierinter.component.scss']
 })
-export class AddinterComponent implements OnInit {
+export class ModifierinterComponent implements OnInit {
 
+  item;
   sommes: any = [
     '20.000f', 
     '30.000f', 
@@ -23,7 +25,6 @@ export class AddinterComponent implements OnInit {
   url1="../assets/images/default.png";
   url2="../assets/images/default.png";
   url3="../assets/images/default.png";
-  url4="../assets/images/default.png";
   interForm: FormGroup;
   isLinear = true;
   infoForm : FormGroup;
@@ -31,9 +32,16 @@ export class AddinterComponent implements OnInit {
   posteForm : FormGroup;
   formPhoneGroup : FormGroup;
   datas: any;
-  constructor(private fb: FormBuilder,private dataService: DataService,) {
-    this.datas = this.dataService.getData();
-   }
+  constructor(private activeroute: ActivatedRoute,
+    private fb: FormBuilder,
+    private dataService: DataService,) {
+      this.datas = this.dataService.getData();
+    this.activeroute.queryParams.subscribe(params => {
+      this.item = JSON.parse(params["user"]);
+      console.log(this.item);
+    })
+  }
+
   ngOnInit() {
     this.interForm = new FormGroup({
       infopersonnel: new FormGroup({
@@ -70,7 +78,9 @@ export class AddinterComponent implements OnInit {
     });
   }
 
+  get f() { return this.interForm.controls; }
   submitted1() {
+    //console.log(this.interForm.get('numeroCni').value);
     const infopersonnel = this.interForm.value.infopersonnel;
     const cni = infopersonnel.numeroCni;
     const preno = infopersonnel.prenom;
@@ -187,19 +197,6 @@ export class AddinterComponent implements OnInit {
         reader.readAsDataURL(event.target.files[0]);
       }
   }
-
-  readUrl4(event: any) {
-    console.log('readUrl');
-      if (event.target.files && event.target.files[0]) {
-        var reader = new FileReader();
-      
-        reader.onload = (event: any) => {
-          this.url4 = event.target.result;
-        }
-      
-        reader.readAsDataURL(event.target.files[0]);
-      }
-  }
   colors1() {
     let colora = "#ff7900";
     if(localStorage.getItem('colora')){
@@ -255,4 +252,5 @@ export class AddinterComponent implements OnInit {
     this.url2="../assets/images/default.png";
     this.url3="../assets/images/default.png";
   }
+
 }

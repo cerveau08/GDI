@@ -14,9 +14,10 @@ export class AddagenceComponent implements OnInit {
   url3;
   url4;
   datas: any;
+  infoForm: FormGroup;
   constructor(private dataService: DataService) { }
 
-  infoForm: FormGroup;
+  
   ngOnInit() {
     this.datas = this.dataService.getData();
     this.infoForm = new FormGroup({
@@ -29,6 +30,8 @@ export class AddagenceComponent implements OnInit {
       website: new FormControl (''),
       adresse: new FormControl(''),
       photo: new FormControl (''),
+      login: new FormControl(''),
+      password: new FormControl (''),
       ninea: new FormControl(''),
       rccm: new FormControl (''),
       cnidg: new FormControl(''),
@@ -72,6 +75,8 @@ export class AddagenceComponent implements OnInit {
         adresse: this.infoForm.value.adresse,
         photo: this.infoForm.value.photo,
         ninea: this.infoForm.value.ninea,
+        login: this.infoForm.value.login,
+        password: this.infoForm.value.password,
         rccm: this.infoForm.value.rccm,
         contrat: this.infoForm.value.contrat,
         cnidg: this.infoForm.value.cnidg,

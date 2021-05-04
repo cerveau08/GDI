@@ -6,6 +6,34 @@
             <div class="bouton"  >
                 <button class="button" type="button" > <mat-icon>upload</mat-icon> <p>Charger fichier XLS, CSV, SQL</p></button>
             </div>
+            <div class="form-add-manager-matricule">
+                <form [formGroup]="matriculeForm">
+                    <div class="content-input">
+                        <p class="label-form">Matricule</p>
+                        <input class="input-form" formControlName="matricule" type="text">
+                    </div>
+                    <div class="content-button">
+                        <button (click)="submitted1()" class="buttob-envoyer">Envoyer</button>
+                    </div>
+                </form>
+            </div>
+            <div *ngIf="show" class="form-add-manager">
+                <form [formGroup]="userForm">
+                    <div class="manager">
+                        <div class="image">
+                            <img class="image-manager" src="../assets/images/manager.png" alt="">
+                        </div>
+                        <div class="information">
+                            <p class="nom">{{item.manager}}</p>
+                            <p class="poste">{{item.postem}}</p>
+                            <p class="matricule">{{item.matricule}}</p>
+                        </div>
+                    </div>
+                    <div class="content-button-valider">
+                        <button (click)="submitted2()"  class="buttob-envoyer">Valider</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
     <div class="aside">
@@ -35,7 +63,7 @@
         
         
         <div class="interi-aside">
-            <p class="dernier-aside">Nos dernières recrues</p>
+            <p class="dernier-aside">En fin de contrat</p>
             <div *ngFor="let p of datas | slice:0:4; let i = index">
                 <div class="list-aside">
                     <div style="cursor: pointer;" class="grid-container-aside" [ngStyle]="{'border-bottom' : ((i > 2) ? 'none' : '1px solid #f5f6f9') }">
@@ -47,7 +75,7 @@
                             <p class="poste-aside"> {{p.poste}} </p>
                         </div>
                         <div  class="item4-aside"> 
-                            <p class="tmp-aside" >{{p.matricule}}</p> 
+                            <p class="tmp-aside" >{{p.dateFin | date: 'dd/MM/yyyy'}}</p> 
                         </div>
                     </div>
                 </div>

@@ -1,6 +1,6 @@
 <div class="all-container" >
     <div class="all" *ngIf="!showHome">
-        <div class="content-web" *ngIf="scrWidth>991">
+        <div class="content-web">
             <p routerLink="/accueil/homedrh" class="bien">Bienvenue Amadou!</p>
             <p class="alert">Vous n’avez pas encore fait votre demande de suvention restauration. <span routerLink="/accueil/alertes" style="cursor: pointer; outline: none;">Je fais ma demande</span></p>
             <div class="progres">
@@ -14,101 +14,54 @@
                 </div>
                 <p class="datefin">12 Dec 2020</p>
             </div>
-            <div class="detail">
-                    <div class="elmt" >
-                        <div class="tit1">
-                            <div class="titre">
-                                <img alt="" src="../assets/images/restaurant.png">
-                                <p>Restaurant</p>
-                            </div>
-                        </div>
-                        <div class="nombre">
-                            <img alt="" src="../assets/images/delete.svg">
-                        </div>
-                        <p class="mois">Novembre</p>
-                        <div class="bouton">
-                            <button  class="button">Demander</button>
+            <div class="detail-donnees">
+                <div class="elmt" >
+                    <div class="tit1">
+                        <div class="titre">
+                            <img alt="" src="../assets/images/restaurant.png">
+                            <p>Restaurant</p>
                         </div>
                     </div>
-                    <div class="elmt1" title="messages">
-                        <div class="tit2">
-                            <div class="titre1">
-                                <img alt="" src="../assets/images/guide.png">
-                                <p>Demandes</p>
-                            </div>
-                        </div>
-                        <div class="nombre1">
-                            <p class="chiffr">5</p>
-                        </div>
-                        <p class="mois1">En attentes</p>
-                        <div class="bouton">
-                            <button routerLink="/accueil/demande" class="button">Détails</button>
+                    <div class="nombre">
+                        <img alt="" src="../assets/images/en-attent-1.png">
+                    </div>
+                    <p class="mois">En attente</p>
+                    <div class="bouton">
+                        <button  class="button">Avril</button>
+                    </div>
+                </div>
+                <div class="elmt1" title="messages">
+                    <div class="tit2">
+                        <div class="titre1">
+                            <img alt="" src="../assets/images/guide.png">
+                            <p>Demandes</p>
                         </div>
                     </div>
-                    <div class="elmt2" >
-                        <div class="tit2">
-                            <div class="titre2">
-                                <img alt="" src="../assets/images/file.png">
-                                <p>Attestations</p>
-                            </div>
+                    <div class="nombre1">
+                        <p class="chiffr">5</p>
+                    </div>
+                    <p class="mois1">En attentes</p>
+                    <div class="bouton">
+                        <button routerLink="/accueil/demande" class="button">Détails</button>
+                    </div>
+                </div>
+                <div class="elmt2" >
+                    <div class="tit2">
+                        <div class="titre2">
+                            <img alt="" src="../assets/images/file.png">
+                            <p>Attestations</p>
                         </div>
-                        <div class="nombre2">
-                            <p class="chiffr">1</p>
-                        </div>
-                        <p class="mois2">Disponible</p>
-                        <div class="bouton">
-                            <button routerLink="/accueil/listeattestation" class="button">Voir</button>
-                        </div>
+                    </div>
+                    <div class="nombre2">
+                        <p class="chiffr">1</p>
+                    </div>
+                    <p class="mois2">Disponible</p>
+                    <div class="bouton">
+                        <button routerLink="/accueil/listeattestation" class="button">Voir</button>
                     </div>
                 </div>
             </div>
-             <div class="content-mobile" *ngIf="scrWidth<991">
-                        <p routerLink="/accueil/homedrh" class="bien-mobile">Bienvenue Amadou!</p>
-                        <p class="alert-mobile">Vous n’avez pas encore fait votre demande de suvention restauration. <span routerLink="/accueil/alertes" style="cursor: pointer; outline: none;">Je fais ma demande</span></p>
-                        <div class="progres-mobile">
-                            <p class="duree-mobile">Contrat <span>5 mois ( 35 jours</span> restant )</p>
-                            <div class="barcontrat-mobile">
-                                <div id="progress_bar-mobile">
-                                    <div id="green_bar-mobile" [style.width]="getwidth()">&nbsp;</div>
-                                </div>
-                                <div class="position-mobile" [style.left]="getposition()">
-                                </div>
-                            </div>
-                            <p class="datefin-mobile">12 Dec 2020</p>
-                        </div>
-                        <div class="detail-mobile">
-                            <div class="elmt1-mobile" title="messages">
-                              
-                                    <div class="titre-mobile">
-                                        <img class="image-demande-mobile" alt="" src="../assets/images/guide.png">
-                                        <p>Demandes</p>
-                                    </div>
-                            
-                                <div class="nombre-mobile">
-                                    <p class="chiffr-mobile">5</p>
-                                </div>
-                                <p class="mois-mobile">En attentes</p>
-                                <div class="bouton-mobile">
-                                    <button routerLink="/accueil/demande" class="button-mobile">Détails</button>
-                                </div>
-                            </div>
-                            <div class="elmt2-mobile" >
-                                
-                                    <div class="titre-mobile">
-                                        <img class="image-attestation-mobile" alt="" src="../assets/images/file.png">
-                                        <p>Attestations</p>
-                                    </div>
-                               
-                                <div class="nombre-mobile">
-                                    <p class="chiffr-mobile">1</p>
-                                </div>
-                                <p class="mois-mobile">Disponible</p>
-                                <div class="bouton-mobile">
-                                    <button routerLink="/accueil/listeattestation" class="button-mobile">Voir</button>
-                                </div>
-                            </div>
-                        </div>
-                </div>    
+        </div>   
     </div>
     <div class="main" *ngIf="showHome">
             <p routerLink="/accueil/home" class="bien">Bienvenue Amadou!</p>
@@ -292,7 +245,7 @@
                 </div>
             </div>
             <div *ngIf="showHome" class="interi-aside">
-                <p class="dernier-aside">Nos dernières recrues</p>
+                <p class="dernier-aside">En fin de contrat</p>
                 <div *ngFor="let p of datas | slice:0:4; let i = index">
                     <div class="list-aside">
                         <div style="cursor: pointer;" class="grid-container-aside" [ngStyle]="{'border-bottom' : ((i > 2) ? 'none' : '1px solid #f5f6f9') }">
@@ -304,7 +257,7 @@
                                 <p class="poste-aside"> {{p.poste}} </p>
                             </div>
                             <div  class="item4-aside"> 
-                                <p class="tmp-aside" >{{p.matricule}}</p> 
+                                <p class="tmp-aside" >{{p.dateFin | date: 'dd/MM/yyyy'}}</p> 
                             </div>
                         </div>
                     </div>

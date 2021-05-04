@@ -1,3 +1,5 @@
+import { AdduserComponent } from './pages/adduser/adduser.component';
+import { ModifierinterComponent } from './pages/modifierinter/modifierinter.component';
 import { ListeattestationComponent } from './pages/listeattestation/listeattestation.component';
 import { NewinterComponent } from './pages/newinter/newinter.component';
 import { OffreComponent } from './pages/offre/offre.component';
@@ -140,6 +142,14 @@ const routes: Routes = [
       },
       { path: 'listeattestation',
         component: ListeattestationComponent,
+       //   canActivate: [AuthGuard]
+      },
+      { path: 'modifierinter',
+        component: ModifierinterComponent,
+       //   canActivate: [AuthGuard]
+      },
+      { path: 'adduser',
+        component: AdduserComponent,
        //   canActivate: [AuthGuard]
       },
       {

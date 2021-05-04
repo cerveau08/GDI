@@ -1213,19 +1213,33 @@ table {
         width: 100px;
         height: 30px;
         font-size: 14px;
-      }
-      .button1-aside {
-          width: 100px;
-          height: 30px;
-          font-size: 14px;
-      }
-      .prenom-aside {
-          font-size: 12px;
-        }
-        .poste-aside {
-          font-size: 10px;
-        }
-        .tmp-aside {
-          font-size: 10px;
-        }
+    }
+    .button1-aside {
+        width: 100px;
+        height: 30px;
+        font-size: 14px;
+    }
+    .prenom-aside {
+        font-size: 12px;
+    }
+    .poste-aside {
+        font-size: 10px;
+    }
+    .tmp-aside {
+        font-size: 10px;
+    }
+    .statt-sous-header {
+        font-size: 16px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        color: #222222;
+        text-align: center;
+    }
+    .effectif-content {
+        width: 90px;
+        cursor: pointer;
+    }
 }

@@ -51,6 +51,8 @@ import { OffreComponent } from './pages/offre/offre.component';
 import { NewinterComponent } from './pages/newinter/newinter.component';
 import { ListeattestationComponent } from './pages/listeattestation/listeattestation.component';
 import { AddinterComponent } from './pages/addinter/addinter.component';
+import { ModifierinterComponent } from './pages/modifierinter/modifierinter.component';
+import { AdduserComponent } from './pages/adduser/adduser.component';
 
 @NgModule({
   declarations: [
@@ -87,7 +89,9 @@ import { AddinterComponent } from './pages/addinter/addinter.component';
     OffreComponent,
     NewinterComponent,
     ListeattestationComponent,
-    AddinterComponent
+    AddinterComponent,
+    ModifierinterComponent,
+    AdduserComponent
   ],
   imports: [
     BrowserModule,

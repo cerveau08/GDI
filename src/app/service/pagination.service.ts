@@ -123,10 +123,7 @@ export class PaginationService {
       id: 6,  title: 'Alertes',
       path: 'alertes',  icon: "query_builder",
     },{
-      id: 8,  title: 'Mon Compte',
-      path: 'compte',  icon: "folder_shared",
-    },{
-      id: 9,  title: 'Statistiques',
+      id: 8,  title: 'Statistiques',
       path: 'statistique',  icon: "leaderboard",
     },{
       id: 10,  title: 'Paramètres',

@@ -142,10 +142,17 @@
                             <option *ngFor="let som of sommes" [ngValue]="som">{{som}}</option>
                           </select>
                         </div>
-                        <div class="photo">
-                          <img class="image-upload" *ngIf="!url3==true" src="/assets/images/upload.png" alt="">
-                          <img class="image-upload" [src]="url3" height="60" alt="">
-                          <input formControlName="ficheposte" class="buttonphoto3" type="file" (change)="readUrl3($event)" >
+                        <div class="fiche-et-pv">
+                          <div class="photo">
+                            <img class="image-upload" *ngIf="!url3==true" src="/assets/images/upload.png" alt="">
+                            <img class="image-upload" [src]="url3" height="60" alt="">
+                            <input formControlName="ficheposte" class="buttonphoto3" type="file" (change)="readUrl3($event)" >
+                          </div>
+                          <div class="photo">
+                            <img class="image-upload" *ngIf="!url4==true" src="/assets/images/upload.png" alt="">
+                            <img class="image-upload" [src]="url4" height="60" alt="">
+                            <input formControlName="ficheposte" class="buttonphoto4" type="file" (change)="readUrl4($event)" >
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -205,24 +212,24 @@
   
   
   <div class="interi-aside">
-      <p class="dernier-aside">Nos dernières recrues</p>
-      <div *ngFor="let p of datas | slice:0:4; let i = index">
-          <div class="list-aside">
-              <div style="cursor: pointer;" class="grid-container-aside" [ngStyle]="{'border-bottom' : ((i > 2) ? 'none' : '1px solid #f5f6f9') }">
-                  <div  class="item4-aside" >
-                      <img alt="" class="photo-aside" src="../assets/images/{{p.photo}}">
-                  </div>
-                  <div  class="item4-aside" >
-                      <p class="prenom-aside"> {{p.prenom}} </p>
-                      <p class="poste-aside"> {{p.poste}} </p>
-                  </div>
-                  <div  class="item4-aside"> 
-                      <p class="tmp-aside" >{{p.matricule}}</p> 
-                  </div>
-              </div>
-          </div>
-      </div>
-      <button  class="button-aside" routerLink="/accueil/newinter">Voir le liste</button>
+    <p class="dernier-aside">En fin de contrat</p>
+    <div *ngFor="let p of datas | slice:0:4; let i = index">
+        <div class="list-aside">
+            <div style="cursor: pointer;" class="grid-container-aside" [ngStyle]="{'border-bottom' : ((i > 2) ? 'none' : '1px solid #f5f6f9') }">
+                <div  class="item4-aside" >
+                    <img alt="" class="photo-aside" src="../assets/images/{{p.photo}}">
+                </div>
+                <div  class="item4-aside" >
+                    <p class="prenom-aside"> {{p.prenom}} </p>
+                    <p class="poste-aside"> {{p.poste}} </p>
+                </div>
+                <div  class="item4-aside"> 
+                    <p class="tmp-aside" >{{p.dateFin | date: 'dd/MM/yyyy'}}</p> 
+                </div>
+            </div>
+        </div>
+    </div>
+    <button  class="button-aside" routerLink="/accueil/newinter">Voir le liste</button>
   </div>
   
   <div class="annonce-aside">

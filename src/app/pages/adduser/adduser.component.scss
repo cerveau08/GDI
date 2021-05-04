@@ -4,178 +4,164 @@
     background-color: #f5f6f9;
 }
 .all {
-    background-color: white;
     margin-right: 10px;
-    padding: 20px;
-    position: relative;
+    background-color: white;
+    padding: 30px;
 }
-.bouton-ajout-user {
-    position: absolute;
-    top: 20px;
-    right: 20px;
+.detail {
+    font-size: 36px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.2px;
+    color: #222222;
+    margin-top: 0;
 }
-.button-add-user {
-    color: #fff;
-    background-color: #ff7900;
-    outline: none;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: 600;
-    border: none;
-    height: 40px;
-    width: 170px;
+.bouton {
+    width: 320px;
+    margin: 50px auto;
 }
-.parametre-text {
-  font-size: 28px;
-  font-weight: bold;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: 1.2;
-  letter-spacing: normal;
-}
-.parametre-header {
+.button {
     display: flex;
+    width: 319px;
+    height: 50px;
+    margin-top: 60px;
+    mat-icon {
+        margin-top: 10px;
+    }
+    background: white;
+    border: 3px solid #000000;
+    p {
+        font-size: 18px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.11;
+        letter-spacing: -0.2px;
+        color: #000000;
+        margin-top: 12px;
+        margin-left: 10px;
+    }
 }
-.header-1 {
-    height: 40px;
-    width: 150px;
-    cursor: pointer;
+.label-form {
+    color: black;
+    font-size: 16px;
+    margin-bottom: 5px;
 }
-.header-2 {
-    height: 40px;
+.input-form {
     width: 250px;
-    margin-left: 30px;
-    cursor: pointer;
-}
-.parametre-header-title {
-    font-size: 24px;
-    font-weight: 600;
-    text-align: center;
-    margin-top: 5px;
-}
-.content-securite {
-    margin-top: 50px;
-}
-.label-input {
-    font-size: 16px;
-    margin: 0;
-}
-.parametre-input {
-    width: 300px;
-    height: 40px;
-    background-color: #f5f6f9;
-    border-radius: 1px;
-    border: solid 1px #d8d8d8;
-    margin: 10px auto;
-    padding-left: 10px;
-    padding-right: 10px;
-}
-button{
-    outline: none;
-    cursor: pointer;
-}
-.valider-password {
-    height: 40px;
-    width: 100px;
-    border-radius: 0;
-    background-color: white;
-    color: #ff7900;
-    border: 1px solid #ff7900;
-    font-weight: 600;
-    font-size: 14px;
-}
-.enregistrer-password {
-    height: 40px;
-    width: 100px;
-    border-radius: 0;
-    background-color: white;
-    color: #ff7900;
-    border: 1px solid #ff7900;
-    font-weight: 600;
-    font-size: 14px;
-}
-.aide-assistance-video {
-    display: flex;
-    flex-wrap: wrap;
-}
-.video-play {
-    max-width: 400px;
-    margin-right: 10px;
-    margin-bottom: 10px;
-    outline: none;
-}
-.message-change-password {
-    margin-top: 50px;
-    font-size: 18px;
-    color: #ff7900;
-    font-weight: 600;
-}
-.aide-assistance-header {
-    display: flex;
-}
-.explication-header {
-    border: 1px solid #d8d8d8;
-    height: 40px;
-    width: 150px;
-    margin-right: 20px;
-    cursor: pointer;
-}
-.content-aide-assistance {
-    margin-top: 30px;
-}
-.aide-assistance-header-title {
-    font-size: 14px;
-    font-weight: 600;
-    text-align: center;
-    margin-top: 12px;
-}
-.libelle-assistanc {
-    font-size: 14px;
-}
-.input-message {
-    width: 350px;
-    height: 114px;
+    font-size: 22px;
+    height: 41px;
     background-color: #f5f6f9;
     border-radius: 1px;
     border: solid 1px #d8d8d8;
     margin-bottom: 15px;
     outline: none;
-    padding: 0;
+    padding: 5px;
 }
-.aide-assistance-contact {
+.buttob-envoyer {
+    height: 40px;
+    width: 90px;
+    color: #ff7900;
+    border: 1px solid #ff7900;
+    background-color: white;
+    outline: none;
+    cursor: pointer;
+    font-weight: 600;
+}
+.form-add-manager {
+    margin-top: 20px;
+}
+.manager {
     display: grid;
-    grid-template-columns: 50% 50%;
-    background-color: #f5f6f9;
+    grid-template-columns: 300px 1fr;
+    grid-gap: 1px;
 }
-.personne-a-contacter {
-    display: grid;
-    grid-template-columns: 100px 1fr;
+.image {
+    position: relative;
 }
-.image-personne {
-    width: 50px;
+.image-manager {
+    width: 250px;
+    height: 250px;
+    object-fit: contain;
+    border-radius: 40px;
+    border: solid 3px #009393;
+}
+.information{
+    margin-top: 30px;
+    margin-left: 10px;
+}
+.nom {
+    font-size: 28px;
+    font-weight: 900;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.16px;
+    color: #222222;
+    margin: 0;
+}
+.poste {
+    font-size: 24px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: italic;
+    line-height: normal;
+    letter-spacing: -0.13px;
+    color: #222222;
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+.matricule{
+    font-size: 28px;
+    font-weight: 900;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.16px;
+    color: #222222;
+    margin-top: 10px;
+}
+.content-button-valider {
+    width: 90px;
     margin: 20px auto;
 }
-.la-photo {
-    height: 50px;
-    width: 50px;
-    border-radius: 50%;
-    border: 2px solid #009393;
-}
-.nom-complet {
-    font-size: 16px;
-    font-weight: 600;
-    margin: 10px 0 5px;
-}
-.fonction-person {
+.select-profil {
+    height: 40px;
+    background-color: #f5f6f9;
+    color: black;
+    width: 150px;
+    outline: none;
     font-size: 14px;
-    color: #ff7900;
-    margin: 5px 0;
 }
-.phone-email {
-    font-size: 12px;
-    margin: 5px 0 3px;
+.form-add-user-agent {
+    width: 450px;
+    margin: 20px auto;
 }
-
+.infoinput1 input {
+    width: 415px;
+    height: 41px;
+    background-color: #f5f6f9;
+    border-radius: 1px;
+    border: solid 1px #d8d8d8;
+    margin-bottom: 20px;
+    padding: 5px;
+    outline: none;
+  }
+  .infoinput2 input {
+    width: 195px;
+    height: 41px;
+    background-color: #f5f6f9;
+    border-radius: 1px;
+    border: solid 1px #d8d8d8;
+    margin-bottom: 20px;
+    padding: 5px;
+    outline: none;
+  }
+  .input3 {
+    margin-left: 10px;
+  }
 //  aside scss
 
 .chiffre-aside{
@@ -313,8 +299,8 @@ button{
     outline: none;
 }
 .annonce-aside {
-    margin-top: 0px;
-    margin-bottom: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
     background-color: #ffffff;
     padding: 10px 20px 15px 20px;
 }
@@ -425,155 +411,125 @@ button{
           "aside";
     }
     .all {
-        margin-right: 0;
         margin-top: 10px;
-        padding: 5px;
+        margin-right: 0px;
+        background-color: white;
+        padding: 10px;
     }
-    .parametre-header {
-        display: flex;
+    .detail {
+        font-size: 26px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: -0.2px;
+        color: #222222;
+        margin-top: 0;
     }
-    .header-1 {
-        height: 30px;
-        width: 110px;
-        cursor: pointer;
-    }
-    .header-2 {
-        height: 30px;
-        width: 160px;
-        margin-left: 10px;
-        cursor: pointer;
-    }
-    .parametre-header-title {
-        font-size: 14px;
-        font-weight: 600;
-        text-align: center;
-        margin-top: 5px;
-    }
-    .content-securite {
-        margin-top: 20px;
-    }
-    .label-input {
-        font-size: 12px;
-        margin: 0;
-    }
-    .parametre-input {
-        width: 250px;
-        height: 30px;
-        margin: 10px auto;
-        padding-left: 10px;
-        padding-right: 10px;
-    }
-    button{
-        outline: none;
-        cursor: pointer;
-    }
-    .valider-password {
-        height: 30px;
-        width: 100px;
-        font-weight: 600;
-        font-size: 12px;
-    }
-    .enregistrer-password {
-        height: 30px;
-        width: 100px;
-        font-weight: 600;
-        font-size: 12px;
-    }
-    .aide-assistance-video {
-        display: flex;
-        flex-wrap: wrap;
-    }
-    .video-play {
-        max-width: 250px;
-        margin-right: 10px;
-        margin-bottom: 10px;
-        outline: none;
-    }
-    .message-change-password {
-        margin-top: 30px;
-        font-size: 14px;
-        color: #ff7900;
-        font-weight: 600;
-    }
-    .aide-assistance-header {
-        display: flex;
-    }
-    .explication-header {
-        border: 1px solid #d8d8d8;
-        height: 30px;
-        width: 90px;
-        margin-right: 10px;
-        cursor: pointer;
-    }
-    .content-aide-assistance {
-        margin-top: 20px;
-    }
-    .aide-assistance-header-title {
-        font-size: 10px;
-        font-weight: 600;
-        text-align: center;
-        margin-top: 10px;
-    }
-    .libelle-assistance {
-        font-size: 10px;
-    }
-    .input-message {
+    .bouton {
         width: 280px;
-        height: 114px;
+        margin: 50px auto;
+    }
+    .button {
+        display: flex;
+        width: 240px;
+        height: 40px;
+        margin-top: 60px;
+        mat-icon {
+            margin-top: 5px;
+        }
+        background: white;
+        border: 3px solid #000000;
+        p {
+            font-size: 12px;
+            font-weight: bold;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 1.11;
+            letter-spacing: -0.2px;
+            color: #000000;
+            margin-top: 12px;
+            margin-left: 10px;
+        }
+    }
+    .manager {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+          "image"
+          "information";
+        margin-left: 10px;
+    }
+    .image {
+        width: 180px;
+        margin: 0 auto;
+    }
+    .image-manager {
+        width: 170px;
+        height: 170px;
+        object-fit: contain;
+        border-radius: 20px;
+        border: solid 3px #009393;
+    }
+    .information{
+        margin-top: 10px;
+    }
+    .nom {
+        font-size: 20px;
+    }
+    .poste {
+        font-size: 16px;
+    }
+    .matricule{
+        font-size: 20px;
+    }
+    .input-form {
+        width: 220px;
+        font-size: 20px;
+        height: 31px;
         background-color: #f5f6f9;
         border-radius: 1px;
         border: solid 1px #d8d8d8;
         margin-bottom: 15px;
         outline: none;
-        padding: 0;
+        padding: 5px;
     }
-    .aide-assistance-contact {
-        display: grid;
-        grid-template-columns: 1fr;
-        background-color: #f5f6f9;
-    }
-    .personne-a-contacter {
-        display: grid;
-        grid-template-columns: 80px 1fr;
-    }
-    .image-personne {
-        width: 50px;
-        margin: 20px auto;
-    }
-    .la-photo {
-        height: 40px;
-        width: 40px;
-        border-radius: 50%;
-        border: 2px solid #009393;
-    }
-    .nom-complet {
-        font-size: 14px;
-        font-weight: 600;
-        margin: 10px 0 5px;
-    }
-    .fonction-person {
-        font-size: 12px;
+    .buttob-envoyer {
+        height: 30px;
+        width: 90px;
         color: #ff7900;
-        margin: 5px 0;
-    }
-    .phone-email {
-        font-size: 10px;
-        margin: 5px 0 3px;
-    }
-    .bouton-ajout-user {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-    }
-    .button-add-user {
-        color: #fff;
-        background-color: #ff7900;
+        border: 1px solid #ff7900;
+        background-color: white;
         outline: none;
         cursor: pointer;
-        font-size: 12px;
         font-weight: 600;
-        border: none;
-        height: 30px;
-        width: 95px;
     }
+    .content-button-valider {
+        width: 90px;
+        margin: 10px auto;
+    }
+
+    .form-add-user-agent {
+        width: 300px;
+        margin: 20px auto;
+    }
+    .infoinput1 input {
+        width: 280px;
+        height: 31px;
+        background-color: #f5f6f9;
+        border-radius: 1px;
+        border: solid 1px #d8d8d8;
+        margin-bottom: 20px;
+        padding: 5px;
+        outline: none;
+      }
+      .infoinput2 input {
+        width: 130px;
+        height: 31px;
+        background-color: #f5f6f9;
+        border-radius: 1px;
+        border: solid 1px #d8d8d8;
+        margin-bottom: 20px;
+        padding: 5px;
+        outline: none;
+      }
 }

@@ -461,6 +461,7 @@ table {
     }
     .tableau {
         margin-right: 0;
+        padding: 2px;
     }
     .button-aside {
         font-size: 14px;
@@ -492,7 +493,57 @@ table {
         height: 40px;
     }
     .exporter {
-        margin-top: 30px;
-        margin-bottom: 20px;
+        margin-top: 10px;
+        margin-bottom: 30px;
+        margin-right: 0;
+        margin-left: 5px;
+        top: 10px;
+    }
+    .csv {
+        display: flex;
+        margin-left: 10px;
+        margin-top: 5px;
+        border: 1px solid #f5f6f9;
+        padding: 0px;
+        height: 35px;
+        border-radius: 5px;
+        p {
+            margin-top: 10px;
+            margin-right: 10px;
+            margin-bottom: 0;
+            margin-left: 10px;
+        }
+        mat-icon{
+            margin-top: 10px;
+            margin-right: 5px;
+            margin-bottom: 0;
+            font-size: 15px;
+        }
+    }
+    .filtrer {
+        display: flex;
+        margin-left: 20px;
+        margin-top: 5px;
+        border: 1px solid #f5f6f9;
+        padding: 0px;
+        height: 35px;
+        border-radius: 5px;
+        .filtre {
+            width: 90px;
+            margin-top: 1px;
+            margin-bottom: 0;
+            margin-left: 10px;
+            border: none;
+            font-size: 16px;
+            outline: none;
+        }
+        mat-icon{
+            margin-top: 10px;
+            margin-right: 10px;
+            margin-bottom: 0;
+        }
+    }
+    td {
+        font-size: 10px;
     }
 }

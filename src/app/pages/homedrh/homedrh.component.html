@@ -180,7 +180,7 @@
         
         
         <div class="interi-aside">
-            <p class="dernier-aside">Nos dernières recrues</p>
+            <p class="dernier-aside">En fin de contrat</p>
             <div *ngFor="let p of datas | slice:0:4; let i = index">
                 <div class="list-aside">
                     <div style="cursor: pointer;" class="grid-container-aside" [ngStyle]="{'border-bottom' : ((i > 2) ? 'none' : '1px solid #f5f6f9') }">
@@ -192,7 +192,7 @@
                             <p class="poste-aside"> {{p.poste}} </p>
                         </div>
                         <div  class="item4-aside"> 
-                            <p class="tmp-aside" >{{p.matricule}}</p> 
+                            <p class="tmp-aside" >{{p.dateFin | date: 'dd/MM/yyyy'}}</p> 
                         </div>
                     </div>
                 </div>

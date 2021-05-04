@@ -1,6 +1,6 @@
 import { DataService } from './../../service/data.service';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ModalService } from 'src/app/_modal/modal.service';
 import { NgxFileSaverService } from '@clemox/ngx-file-saver';
 
@@ -62,7 +62,8 @@ export class DetailinterComponent implements OnInit {
   constructor(private activeroute: ActivatedRoute,
               private modalService: ModalService,
               private dataService: DataService,
-              private fileSaver: NgxFileSaverService, ) { 
+              private fileSaver: NgxFileSaverService,
+              public router: Router, ) { 
     this.activeroute.queryParams.subscribe(params => {
       this.item = JSON.parse(params["user"]);
       console.log(this.item);
@@ -96,5 +97,13 @@ export class DetailinterComponent implements OnInit {
 
   closeModal(id: string) {
     this.modalService.close(id);
+  }
+
+  modifierInter() {
+    this.router.navigate(['accueil/modifierinter'], {
+      queryParams: {
+        user: JSON.stringify(this.item)
+      }
+    })
   }
 }

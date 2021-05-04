@@ -508,29 +508,6 @@ select {
   margin-left: 30px !important;
   padding-top: 15px;
 }
-.buttonphoto4::-webkit-file-upload-button {
-  visibility: hidden;
-  outline: none;
-}
-.buttonphoto4::before {
-  content: 'Proces Verbal';
-  width: 145px;
-  height: 35px;
-  background-color: white;
-  border: none;
-  color: black;
-  text-align: center;
-  text-decoration: none;
-  font-weight: bold;
-  display: inline-block;
-  font-size: 18px;
-  cursor: pointer;
-  outline: none;
-  border: 3px solid black;
-  margin-top: 10px;
-  margin-left: 30px !important;
-  padding-top: 15px;
-}
 .others {
   margin-left: 20px;
 }
@@ -677,6 +654,30 @@ button {
   display: grid;
   grid-template-columns: 50% 50%;
 }
+.buttonphoto4::-webkit-file-upload-button {
+  visibility: hidden;
+  outline: none;
+}
+.buttonphoto4::before {
+  content: 'Proces Verbal';
+  width: 145px;
+  height: 35px;
+  background-color: white;
+  border: none;
+  color: black;
+  text-align: center;
+  text-decoration: none;
+  font-weight: bold;
+  display: inline-block;
+  font-size: 18px;
+  cursor: pointer;
+  outline: none;
+  border: 3px solid black;
+  margin-top: 10px;
+  margin-left: 30px !important;
+  padding-top: 15px;
+}
+
 
 //  aside scss
 
