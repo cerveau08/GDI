@@ -1,6 +1,6 @@
 .all-container {
     display: grid;
-    grid-template-columns: 1fr 350px;
+    grid-template-columns: 1fr 330px;
     background-color: #f5f6f9;
 }
 .all {
@@ -64,12 +64,12 @@
 .tableau {
     margin-top: 20px;
     background-color: white;
-    padding: 30px;
+    padding: 15px;
     position: relative;
 }
 .exporter{
     display: flex;
-    margin-right: 30px;
+    margin-right: 15px;
     position: absolute;
     right: 0;
     top: 45px;
@@ -108,8 +108,8 @@
     margin-top: 5px;
 }
 .button1 {
-    width: 92px;
-    height: 40px;
+    width: 82px;
+    height: 35px;
     background-color: #f16e00;
     border: none;
     color: white;
@@ -122,11 +122,11 @@
     color: #ffffff;
     cursor: pointer;
     outline: none;
-    margin-left: 20px;
+    margin-left: 10px;
 }
 .button2 {
-    width: 92px;
-    height: 40px;
+    width: 80px;
+    height: 35px;
     background-color: #cccccc;
     border: none;
     color: white;
@@ -139,11 +139,11 @@
     color: #ffffff;
     cursor: pointer;
     outline: none;
-    margin-left: 20px;
+    margin-left: 10px;
 }
 .button3 {
-    width: 119px;
-    height: 40px;
+    width: 110px;
+    height: 35px;
     background-color: #cccccc;
     border: none;
     color: white;
@@ -156,7 +156,7 @@
     color: #ffffff;
     cursor: pointer;
     outline: none;
-    margin-left: 20px;
+    margin-left: 10px;
 }
 .filtrer {
     display: flex;
@@ -384,7 +384,6 @@ input[type=checkbox] {
     margin-top: 7px;
 }
  
-
 //  aside scss
 
 .chiffre-aside{
@@ -397,18 +396,18 @@ input[type=checkbox] {
 
  .chiffre-aside .elmt-aside{
     position: relative;
-    padding: 13px 32px 0px 32px;
+    padding: 13px 22px 0px 22px;
     border-left: solid 2px #f5f6f9;
  }
  .chiffre-aside .elmt1-aside{
    position: relative;
-   padding: 13px 35px 0px 39px;
+   padding: 13px 25px 0px 29px;
    border-left: solid 1px #f5f6f9;
    border-right: solid 1px #f5f6f9;
 }
 .chiffre-aside .elmt2-aside{
     position: relative;
-    padding: 13px 30px 0px 35px;
+    padding: 13px 20px 0px 25px;
 }
  .icon-aside {
     width: 40px;
@@ -459,7 +458,7 @@ input[type=checkbox] {
 }
 .grid-container-aside {
     display: grid;
-    grid-template-columns: 45px 200px 45px;
+    grid-template-columns: 45px 175px 45px;
     grid-gap: 1px;
     background-color: white;
     padding: 0px;
@@ -475,7 +474,7 @@ input[type=checkbox] {
 .prenom-aside {
     margin-top: 0;
     margin-left: 10px;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: bold;
     font-stretch: normal;
     font-style: normal;
@@ -489,13 +488,14 @@ input[type=checkbox] {
 .poste-aside {
     margin-top: -8px;
     margin-left: 10px;
+    font-size: 10px;
     white-space:nowrap;
     overflow:hidden;
     text-overflow: ellipsis;
 }
 .tmp-aside {
     margin-top: 10px;
-    font-size: 12px;
+    font-size: 10px;
     font-weight: 900;
     font-stretch: normal;
     font-style: normal;
@@ -525,11 +525,11 @@ input[type=checkbox] {
     margin-top: 20px;
     margin-bottom: 20px;
     background-color: #ffffff;
-    padding: 10px 20px 15px 20px;
+    padding: 10px;
 }
 .grid-container1-aside {
     display: grid;
-    grid-template-columns: 210px 100px;
+    grid-template-columns: 190px 90px;
     grid-gap: 1px;
     background-color: white;
     padding: 0px;
@@ -543,6 +543,7 @@ input[type=checkbox] {
 .serv-aside {
     margin-top: -8px;
     opacity: 0.7;
+
     font-size: 12px;
     font-weight: normal;
     font-stretch: normal;

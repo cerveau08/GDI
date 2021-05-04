@@ -224,7 +224,7 @@ export class HomeComponent implements OnInit {
       chart: {
         type: "bar",
         height: 200,
-        width: 400,
+        width: 350,
         stacked: true,
         toolbar: {
           show: false
@@ -249,7 +249,7 @@ export class HomeComponent implements OnInit {
       plotOptions: {
         bar: {
           horizontal: false,
-          columnWidth: "30px",
+          columnWidth: "20px",
           endingShape: "rounded",
         },
       },

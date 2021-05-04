@@ -752,7 +752,7 @@ export class StatistiquesComponent implements OnInit {
       chart: {
         type: "bar",
         height: 300,
-        width: 700,
+        width: 600,
         stacked: true,
         toolbar: {
           show: false
@@ -827,7 +827,7 @@ export class StatistiquesComponent implements OnInit {
       chart: {
         type: "bar",
         height: 280,
-        width: 700,
+        width: 600,
         stacked: false,
         toolbar: {
           show: false
@@ -910,7 +910,7 @@ export class StatistiquesComponent implements OnInit {
       chart: {
         type: "bar",
         height: 280,
-        width: 700,
+        width: 600,
         stacked: false,
         toolbar: {
           show: false
@@ -988,7 +988,7 @@ export class StatistiquesComponent implements OnInit {
       chart: {
         type: "bar",
         height: 300,
-        width: 700,
+        width: 600,
         stacked: true,
         toolbar: {
           show: false
@@ -1066,7 +1066,7 @@ export class StatistiquesComponent implements OnInit {
       chart: {
         type: "bar",
         height: 300,
-        width: 700,
+        width: 600,
         stacked: true,
         toolbar: {
           show: false

@@ -1,6 +1,6 @@
 .all-container {
     display: grid;
-    grid-template-columns: 1fr 350px;
+    grid-template-columns: 1fr 330px;
     background-color: #f5f6f9;
 }
 .all2 {
@@ -569,7 +569,6 @@ input {
     font-weight: bold;
 }
 
-
 //  aside scss
 
 .chiffre-aside{
@@ -582,18 +581,18 @@ input {
 
  .chiffre-aside .elmt-aside{
     position: relative;
-    padding: 13px 32px 0px 32px;
+    padding: 13px 22px 0px 22px;
     border-left: solid 2px #f5f6f9;
  }
  .chiffre-aside .elmt1-aside{
    position: relative;
-   padding: 13px 35px 0px 39px;
+   padding: 13px 25px 0px 29px;
    border-left: solid 1px #f5f6f9;
    border-right: solid 1px #f5f6f9;
 }
 .chiffre-aside .elmt2-aside{
     position: relative;
-    padding: 13px 30px 0px 35px;
+    padding: 13px 20px 0px 25px;
 }
  .icon-aside {
     width: 40px;
@@ -644,7 +643,7 @@ input {
 }
 .grid-container-aside {
     display: grid;
-    grid-template-columns: 45px 200px 45px;
+    grid-template-columns: 45px 175px 45px;
     grid-gap: 1px;
     background-color: white;
     padding: 0px;
@@ -660,7 +659,7 @@ input {
 .prenom-aside {
     margin-top: 0;
     margin-left: 10px;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: bold;
     font-stretch: normal;
     font-style: normal;
@@ -674,13 +673,14 @@ input {
 .poste-aside {
     margin-top: -8px;
     margin-left: 10px;
+    font-size: 10px;
     white-space:nowrap;
     overflow:hidden;
     text-overflow: ellipsis;
 }
 .tmp-aside {
     margin-top: 10px;
-    font-size: 12px;
+    font-size: 10px;
     font-weight: 900;
     font-stretch: normal;
     font-style: normal;
@@ -710,11 +710,11 @@ input {
     margin-top: 20px;
     margin-bottom: 20px;
     background-color: #ffffff;
-    padding: 10px 20px 15px 20px;
+    padding: 10px;
 }
 .grid-container1-aside {
     display: grid;
-    grid-template-columns: 210px 100px;
+    grid-template-columns: 190px 90px;
     grid-gap: 1px;
     background-color: white;
     padding: 0px;
@@ -728,6 +728,7 @@ input {
 .serv-aside {
     margin-top: -8px;
     opacity: 0.7;
+
     font-size: 12px;
     font-weight: normal;
     font-stretch: normal;
