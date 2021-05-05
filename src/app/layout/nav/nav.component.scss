@@ -19,7 +19,7 @@ fa-icon {
 }
 .grid-container {
     display: grid;
-    grid-template-columns: 5px 50px 150px 20px;
+    grid-template-columns: 5px 40px 150px 20px;
     grid-gap: 1px;
     background-color: white;
     padding: 0px;
@@ -27,8 +27,7 @@ fa-icon {
   
   .grid-container > div {
     background-color: white;
-    padding: 5px 0;
-    font-size: 18px;
+    font-size: 15px;
     -webkit-text-stroke: 0.8px #979797;
     font-family: HelveticaNeue;
     font-weight: normal;
@@ -38,9 +37,9 @@ fa-icon {
     letter-spacing: normal;
     color: #222222;
     mat-icon {
-        font-size: 30px;
+        font-size: 25px;
         color: #222222;
-        padding-right: 15px;
+        padding-right: 0px;
         margin-left: 5px;
         margin-top: 5px;
     }

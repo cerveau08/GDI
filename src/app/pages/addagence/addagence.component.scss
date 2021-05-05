@@ -6,12 +6,12 @@
 .all {
     background: white;
     margin-right: 10px;
-    padding-top: 30px;
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 .all1 {
-    width: 700px;
+    width: 650px;
     margin: 0 auto;
 }
 .p1 {
@@ -42,12 +42,12 @@
 .grid {
     margin-top: 10px;
     display: grid;
-    grid-template-columns: 240px 1fr;
+    grid-template-columns: 200px 1fr;
 }
-img {
-    width: 232px;
-    height: 232px;
-    margin-left: -20px;
+.image-upload {
+    width: 190px;
+    height: 190px;
+    margin-left: 0px;
     border-radius: 40px;
     border: solid 3px #009393;
 }
@@ -73,7 +73,7 @@ img {
 /* for poor sods using IE */
 ::-ms-browse {
     content: 'Ajouter Photo';
-    width: 158px;
+    width: 150px;
     height: 50px;
     background-color: white;
     border: none;
@@ -88,7 +88,7 @@ img {
     outline: none;
     border: 3px solid black;
     margin-top: 10px;
-    margin-left: 20px;
+    margin-left: 5px;
 }
 .button::-webkit-file-upload-button {
     visibility: hidden;
@@ -114,7 +114,7 @@ img {
     padding-top: 15px;
 }
 .others {
-    margin-left: 20px;
+    margin-left: 10px;
 }
 input {
     padding-left: 10px;
@@ -126,7 +126,7 @@ input {
     background-color: #f5f6f9;
     border-radius: 1px;
     border: solid 1px #d8d8d8;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 }
 .input2 input {
     width: 195px;
@@ -134,7 +134,7 @@ input {
     background-color: #f5f6f9;
     border-radius: 1px;
     border: solid 1px #d8d8d8;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 }
 .input4 textarea {
     width: 422px;
@@ -142,7 +142,7 @@ input {
     background-color: #f5f6f9;
     border-radius: 1px;
     border: solid 1px #d8d8d8;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     outline: none;
 }
 .input3 {
@@ -164,14 +164,14 @@ input {
     letter-spacing: -0.2px;
     color: white;
     border-radius: none;
-    margin-top: 30px;
+    margin-top: 15px;
     border: none;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 .trait {
     border: 1px solid #979797;
     background-color: #979797;
-    margin-top: 30px;
+    margin-top: 20px;
 }
 .p2 {
     font-size: 18px;
@@ -182,21 +182,33 @@ input {
     letter-spacing: -0.1px;
     color: #222222;
     margin-top: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 .buttons1 {
-    display: flex;
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
 }
 .button3::-webkit-file-upload-button {
     visibility: hidden;
     outline: none;
 }
+.button3 {
+    width: 160px;
+}
+.button4 {
+    width: 160px;
+}
+.button5 {
+    width: 160px;
+}
+.button6 {
+    width: 160px;
+}
 .button3::before {
     content: 'NINEA';
-    width: 128px;
+    width: 100px;
     height: 30px;
     background-color: white;
-    border: none;
     color: black;
     text-align: center;
     text-decoration: none;
@@ -207,7 +219,7 @@ input {
     outline: none;
     border: 3px solid black;
     margin-top: 10px;
-    margin-left: 10px;
+    margin-left: 0px;
     padding-top: 10px;
 
 }
@@ -217,10 +229,9 @@ input {
 }
 .button4::before {
     content: 'RCCM';
-    width: 128px;
+    width: 100px;
     height: 30px;
     background-color: white;
-    border: none;
     color: black;
     text-align: center;
     text-decoration: none;
@@ -231,7 +242,7 @@ input {
     outline: none;
     border: 3px solid black;
     margin-top: 10px;
-    margin-left: 10px;
+    margin-left: 0px;
     padding-top: 10px;
 }
 .button5::-webkit-file-upload-button {
@@ -240,10 +251,9 @@ input {
 }
 .button5::before {
     content: 'Contrat';
-    width: 128px;
+    width: 100px;
     height: 30px;
     background-color: white;
-    border: none;
     color: black;
     text-align: center;
     text-decoration: none;
@@ -254,7 +264,7 @@ input {
     outline: none;
     border: 3px solid black;
     margin-top: 10px;
-    margin-left: 10px;
+    margin-left: 0px;
     padding-top: 10px;
 
 }
@@ -264,10 +274,9 @@ input {
 }
 .button6::before {
     content: 'CNI DG';
-    width: 128px;
+    width: 100px;
     height: 30px;
     background-color: white;
-    border: none;
     color: black;
     text-align: center;
     text-decoration: none;
@@ -278,241 +287,11 @@ input {
     outline: none;
     border: 3px solid black;
     margin-top: 10px;
-    margin-left: 10px;
+    margin-left: 0px;
     padding-top: 10px;
 }
 
 
-
-
-//  aside scss
-
-.chiffre-aside{
-    position: relative;
-    right: 0;
-    display: flex;
-   background-color: #ffffff;
- }
- 
-
- .chiffre-aside .elmt-aside{
-    position: relative;
-    padding: 13px 22px 0px 22px;
-    border-left: solid 2px #f5f6f9;
- }
- .chiffre-aside .elmt1-aside{
-   position: relative;
-   padding: 13px 25px 0px 29px;
-   border-left: solid 1px #f5f6f9;
-   border-right: solid 1px #f5f6f9;
-}
-.chiffre-aside .elmt2-aside{
-    position: relative;
-    padding: 13px 20px 0px 25px;
-}
- .icon-aside {
-    width: 40px;
-    height: 40px;
- }
-.nombre-aside {
-  margin-top: 0px;
-  font-family: FuturaBT;
-  font-size: 28px;
-  font-weight: 900;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  letter-spacing: normal;
-  color: #222222;
-  text-align: center;
-  margin-bottom: 5px;
-}
-.titre-aside {
-    opacity: 0.7;
-    font-family: Futura;
-    font-size: 12px;
-    font-weight: 500;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: normal;
-    letter-spacing: normal;
-    color: #222222;
-    text-align: center;
-    margin-top: 0;
-    margin-bottom: 0;
-}
-.interi-aside {
-    margin-top: 20px;
-    background-color: #ffffff;
-    padding: 10px 20px 15px 20px;
-}
-.dernier-aside {
-    font-size: 20px;
-    font-weight: bold;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: normal;
-    letter-spacing: -0.1px;
-    color: #222222;
-    margin-top: 0;
-    margin-bottom: 30px;
-}
-.grid-container-aside {
-    display: grid;
-    grid-template-columns: 45px 175px 45px;
-    grid-gap: 1px;
-    background-color: white;
-    padding: 0px;
-    margin-top: 10px;
-    border-bottom: 1px solid #f5f6f9;
-}
-.photo-aside {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-}
-
-.prenom-aside {
-    margin-top: 0;
-    margin-left: 10px;
-    font-size: 12px;
-    font-weight: bold;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: normal;
-    letter-spacing: normal;
-    color: #222222;
-    white-space:nowrap;
-    overflow:hidden;
-    text-overflow: ellipsis;
-}
-.poste-aside {
-    margin-top: -8px;
-    margin-left: 10px;
-    font-size: 10px;
-    white-space:nowrap;
-    overflow:hidden;
-    text-overflow: ellipsis;
-}
-.tmp-aside {
-    margin-top: 10px;
-    font-size: 10px;
-    font-weight: 900;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: normal;
-    letter-spacing: normal;
-    text-align: right;
-    color: #f03737;
-}
-.button-aside {
-    width: 132px;
-    height: 50px;
-    background-color: #f16e00;
-    border: none;
-    color: white;
-    padding: 5px 2px;
-    text-align: center;
-    text-decoration: none;
-    font-weight: bold;
-    display: inline-block;
-    font-size: 18px;
-    margin-top: 4px;
-    margin-left: 80px;
-    cursor: pointer;
-    outline: none;
-}
-.annonce-aside {
-    margin-top: 20px;
-    margin-bottom: 20px;
-    background-color: #ffffff;
-    padding: 10px;
-}
-.grid-container1-aside {
-    display: grid;
-    grid-template-columns: 190px 90px;
-    grid-gap: 1px;
-    background-color: white;
-    padding: 0px;
-    margin-top: 10px;
-    border-bottom: 1px solid #f5f6f9;
-}
-.dep-aside {
-    display: flex;
-    margin-left: 10px;
-}
-.serv-aside {
-    margin-top: -8px;
-    opacity: 0.7;
-
-    font-size: 12px;
-    font-weight: normal;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: normal;
-    letter-spacing: normal;
-    color: #222222;
-}
-.button1-aside {
-    width: 132px;
-    height: 50px;
-    background-color: #32c832;
-    border: none;
-    color: black;
-    padding: 5px 2px;
-    text-align: center;
-    text-decoration: none;
-    font-weight: bold;
-    display: inline-block;
-    font-size: 18px;
-    margin-top: 4px;
-    margin-left: 80px;
-    cursor: pointer;
-    outline: none;
-}
-.tmp1-aside {
-    margin-right: 20px;
-    margin-top: 10px;
-    font-size: 12px;
-    font-weight: 900;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: normal;
-    letter-spacing: normal;
-    text-align: right;
-    color: #009393;
-}
-.manager-aside {
-    margin: 0 auto;
-    width: 140px;
-    img{
-        width: 139px;
-        height: 139px;
-    }
-    
-}
-.nom-aside {
-    font-size: 24px;
-    font-weight: bold;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: normal;
-    letter-spacing: -0.13px;
-    text-align: center;
-    color: #222222;
-    margin-bottom: 0;
-}
-.postem-aside{
-    font-size: 18px;
-    font-weight: normal;
-    font-stretch: normal;
-    font-style: italic;
-    line-height: normal;
-    letter-spacing: -0.1px;
-    text-align: center;
-    color: #222222;
-    margin-top: 5px;
-}
 @media (max-width: 991px) {
     .chiffre-aside {
         display: grid;
