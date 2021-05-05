@@ -770,6 +770,7 @@ button {
     width: 100px;
     height: 100px;
     margin: 0 auto;
+    border-radius: 20px;
   }
   .buttonphoto1 {
     padding-left: 0;
@@ -801,14 +802,27 @@ button {
     height: 70px;
     margin-top: -20px;
   }
+  .buttonphoto4 {
+    height: 70px;
+    margin-top: -20px;
+  }
   .buttonphoto3::before {
     content: 'Fiche de Poste';
-    width: 90px;
+    width: 80px;
     height: 20px;
     font-size: 8px;
     padding-top: 10px;
-    margin: 0 auto;
     border-left: 3px solid black;
+    margin-left: 0 !important;
+  }
+  .buttonphoto4::before {
+    content: 'Fiche de Poste';
+    width: 80px;
+    height: 20px;
+    font-size: 8px;
+    padding-top: 10px;
+    border-left: 3px solid black;
+    margin-left: 0 !important;
   }
   select {
     width: 133px;
@@ -928,6 +942,6 @@ button {
   }
   .fiche-et-pv {
     display: grid;
-    grid-template-columns: 1fr;
+   // grid-template-columns: 1fr;
   }
 }

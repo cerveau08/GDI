@@ -56,7 +56,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let p of datas | filter:filterterm | paginate: { itemsPerPage: 10, currentPage: p }; let i = index">
+                    <tr *ngFor="let p of datas | filter:filterterm | paginate: { itemsPerPage: 8, currentPage: p }; let i = index">
                         <td *ngIf="scrWidth>991" class="id1">{{p.id}}</td>
                         <td>{{p.prenom}}</td>
                         <td>{{p.nom}}</td>

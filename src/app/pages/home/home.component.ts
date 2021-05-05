@@ -49,7 +49,7 @@ export class HomeComponent implements OnInit {
   progressBar = document.querySelector(".progress-bar");
   intervalId;
   public restant: any;
-  public nombre = 49;
+  public nombre = 39;
   public left: any;
   scrHeight:any;
   scrWidth:any;
@@ -297,7 +297,7 @@ export class HomeComponent implements OnInit {
     const getDownloadProgress = () => {
       console.log("getDownload", this);
       if (this.progress <= 99) {
-        this.progress = 30;
+        this.progress = 20;
         console.log("inside if", this.progress);
         this.progress = this.progress - 2;
       } else {
