@@ -1,4 +1,4 @@
-<div *ngIf="scrWidth>991">
+<div *ngIf="scrWidth>991" class="all-nav">
     <div *ngFor="let p of menus ;let i = index" (click)="selected=i">
         <li [style.marginTop.px]="getMargin(p)">
             <a class="nav-link" [routerLink]="p.path"  [routerLinkActive]="['active']" style="text-decoration: none;">

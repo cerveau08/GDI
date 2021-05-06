@@ -119,6 +119,9 @@ export class PaginationService {
     }, {
       id: 4,  title: 'Présence',
       icon: "grade", path: 'presence',   
+    }, {
+      id: 5,  title: 'Demandes',
+      path: 'lesdemande',  icon: "local_mall",
     },{
       id: 6,  title: 'Alertes',
       path: 'alertes',  icon: "query_builder",
@@ -151,6 +154,9 @@ export class PaginationService {
     }, {
       id: 4,  title: 'Présence',
       icon: "grade", path: 'presence',   
+    }, {
+      id: 5,  title: 'Demandes',
+      path: 'lesdemande',  icon: "local_mall",
     },{
       id: 6,  title: 'Alertes',
       path: 'alertes',  icon: "query_builder",
@@ -182,6 +188,9 @@ export class PaginationService {
     }, {
       id: 4,  title: 'Présence',
       icon: "grade", path: 'presence',   
+    }, {
+      id: 5,  title: 'Demandes',
+      path: 'lesdemande',  icon: "local_mall",
     },{
       id: 6,  title: 'Alertes',
       path: 'alertes',  icon: "query_builder",

@@ -1,7 +1,14 @@
 <div class="all-container">
     <div>
         <div class="demande">
-            <p class="detail">Mes demandes</p>
+            <div class="demande-header">
+                <div class="demande-header-text">
+                    <p class="detail">Mes demandes</p>
+                </div>
+                <div class="demande-button-content">
+                    <button (click)="openModal('custom-modal-8');" class="demande-button">Faire une demande</button>
+                </div>
+            </div>
             <div>
                 <button  class="button1">Congés Maladie</button>
                 <button  class="button2">Convenance perso</button>
@@ -134,3 +141,42 @@
             </div>
         </div>
 </div>
+
+
+<!--modal-->
+<div class="modal">
+    <jw-modal id="custom-modal-8">
+        <mat-icon style="cursor: pointer;" (click)="closeModal('custom-modal-8');" class="clear">clear</mat-icon>
+        <div class="all">
+          <h1>Faire une demande</h1>
+          <div>
+            <form [formGroup]="demandeForm">
+                <div class="forms">
+                    <div>
+                    <div class="sele">
+                        <div class="sele1">
+                            <select class="custom-select" formControlName="type">
+                                <option value="" disabled selected hidden>Type de Demande</option>
+                                <option *ngFor="let moi of demandes" [ngValue]="moi">{{moi}}</option>
+                            </select>
+                        </div>
+                        </div>
+                      <div class="input2">
+                        <input type="text" formControlName="debut" placeholder="dateDEbut">
+                        <input class="input3" type="text" formControlName="fin" placeholder="DateFin">
+                      </div>
+                      <div class="input2">
+                        <textarea class="motif-demande" type="text" formControlName="motif" placeholder="motif"></textarea>
+                      </div>
+                      
+                      <div class="boutonsea">
+                          <button (click)="onSubmit()" class="buttonsea">Demander</button>
+                      </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        </div>
+    </jw-modal>
+  </div>
+  

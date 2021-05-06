@@ -1,6 +1,9 @@
 import { PaginationService } from './../../service/pagination.service';
 import { DataService } from './../../service/data.service';
 import { Component, OnInit } from '@angular/core';
+import { ModalService } from 'src/app/_modal/modal.service';
+import { FormControl, FormGroup } from '@angular/forms';
+
 
 @Component({
   selector: 'app-demande',
@@ -9,6 +12,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DemandeComponent implements OnInit {
 
+  demandes: any = [
+    'Conge maladie', 
+    'convenance personnelle', 
+    'mission', 
+    'conge annuelle',
+  ];
+  demandeForm: FormGroup;
   public datas: any;
   // pager object
   pager: any = {};
@@ -46,6 +56,7 @@ export class DemandeComponent implements OnInit {
   }];
   user
   constructor(private dataService: DataService,
+    private modalService: ModalService, 
     private pagerService: PaginationService,) { }
 
   ngOnInit() {
@@ -56,5 +67,32 @@ export class DemandeComponent implements OnInit {
       this.showHome = true;
     }
     this.datas = this.dataService.getData();
+    this.demandeForm = new FormGroup({
+      type: new FormControl (''),
+      debut: new FormControl(''),
+      fin: new FormControl (''),
+      motif: new FormControl(''),
+    });
+  }
+
+  onSubmit() {
+    const info = {
+      type: this.demandeForm.value.type,
+      debut: this.demandeForm.value.debut,
+      fin: this.demandeForm.value.fin,
+      motif: this.demandeForm.value.motif,
+    } 
+    console.log(info);
+    return info;
+  }
+
+  openModal(id: string) {
+    this.modalService.open(id);
+    
+  }
+
+  closeModal(id: string) {
+    this.modalService.close(id);
+    
   }
 }

@@ -53,6 +53,7 @@ import { ListeattestationComponent } from './pages/listeattestation/listeattesta
 import { AddinterComponent } from './pages/addinter/addinter.component';
 import { ModifierinterComponent } from './pages/modifierinter/modifierinter.component';
 import { AdduserComponent } from './pages/adduser/adduser.component';
+import { LesdemandesComponent } from './pages/lesdemandes/lesdemandes.component';
 
 @NgModule({
   declarations: [
@@ -91,7 +92,8 @@ import { AdduserComponent } from './pages/adduser/adduser.component';
     ListeattestationComponent,
     AddinterComponent,
     ModifierinterComponent,
-    AdduserComponent
+    AdduserComponent,
+    LesdemandesComponent
   ],
   imports: [
     BrowserModule,

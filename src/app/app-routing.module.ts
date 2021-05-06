@@ -1,3 +1,4 @@
+import { LesdemandesComponent } from './pages/lesdemandes/lesdemandes.component';
 import { AdduserComponent } from './pages/adduser/adduser.component';
 import { ModifierinterComponent } from './pages/modifierinter/modifierinter.component';
 import { ListeattestationComponent } from './pages/listeattestation/listeattestation.component';
@@ -150,6 +151,10 @@ const routes: Routes = [
       },
       { path: 'adduser',
         component: AdduserComponent,
+       //   canActivate: [AuthGuard]
+      },
+      { path: 'lesdemande',
+        component: LesdemandesComponent,
        //   canActivate: [AuthGuard]
       },
       {
