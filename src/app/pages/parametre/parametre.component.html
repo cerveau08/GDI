@@ -116,7 +116,7 @@
         </div>
         
         
-        <div class="interi-aside">
+        <div *ngIf="showHome" class="interi-aside">
             <p class="dernier-aside">En fin de contrat</p>
             <div *ngFor="let p of datas | slice:0:4; let i = index">
                 <div class="list-aside">

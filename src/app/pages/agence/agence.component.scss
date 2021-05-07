@@ -4,23 +4,23 @@
     background-color: #f5f6f9;
 }
 .all2 {
-    padding: 30px 20px;
+    padding: 10px;
     background-color: white;
     margin-right: 10px;
 }
     .grid2 {
         display: grid;
-        grid-template-columns: 160px 1fr;
+        grid-template-columns: 140px 1fr;
     }
         .img {
             .image-logo-agence {
-                width: 150px;
-                height: 150px;
+                width: 140px;
+                height: 140px;
             }
         }
     
         .agence {
-           margin-left: 20px;
+           margin-left: 10px;
         }
            .nom2 {
                 font-size: 36px;
@@ -34,12 +34,12 @@
                 margin-bottom: 0;
            }
             .nombre {
-               height: 41px;
-                width: 350px;
+               height: 50px;
+                width: 300px;
                 border-radius: 4px;
                 border: solid 1px #eaeaea;
                 display: flex;
-                padding: 20px;
+                padding: 0px;
                 margin-top: 20px;
                 display: grid;
                 grid-template-columns: 33% 33% 33%;
@@ -68,9 +68,6 @@
                         margin-bottom: 0;
                     }
                 
-                .actif {
-                 //   margin-left: 100px;
-                }
                     .title {
                         font-size: 12px;
                         font-weight: 500;
@@ -94,9 +91,7 @@
                         margin-bottom: 0;
                     }
                 
-                .archiv {
-                //    margin-left: 100px;
-                }
+                
                     .title {
                         font-size: 12px;
                         font-weight: 500;
@@ -110,7 +105,7 @@
                         text-align: center;
                     }
                     .libelle {
-                        font-size: 28px;
+                        font-size: 22px;
                         font-weight: 900;
                         font-stretch: normal;
                         font-style: normal;
@@ -124,8 +119,8 @@
            
     .info {
         display: grid;
-        grid-template-columns: 45% 45%;
-        margin-top: 30px;
+        grid-template-columns: 50% 50%;
+        margin-top: 15px;
     }
        
             .prenom {
@@ -147,18 +142,18 @@
                 .icon-item {
                     color: #009393;
                     font-size: 30px;
-                    margin-left: 15px;
+                    margin-left: 5px;
                     margin-top: 5px;
                 }
                 .info-item {
-                    font-size: 18px;
+                    font-size: 14px;
                     font-weight: normal;
                     font-stretch: normal;
                     font-style: normal;
                     line-height: normal;
                     letter-spacing: -0.1px;
                     color: #000000;
-                    margin-left: 20px;
+                    margin-left: 10px;
                     margin-top: 10px;
                 }
             
@@ -210,7 +205,7 @@
                     margin-top: 0;
                 }
         .user2 {
-            margin-left: 50px;
+            margin-left: 10px;
             display: flex;
         }
             .photo1 {
@@ -479,7 +474,7 @@ input {
 .trait {
     border: 1px solid #979797;
     background-color: #979797;
-    margin-top: 30px;
+    margin-top: 10px;
 }
 .p2 {
     font-size: 18px;
