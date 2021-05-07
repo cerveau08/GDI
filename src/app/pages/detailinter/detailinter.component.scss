@@ -1,27 +1,3 @@
-.all-container {
-    display: grid;
-    grid-template-columns: 1fr 330px;
-    background-color: #f5f6f9;
-}
-.compte{
-    background-color: white;
-    margin-right: 10px;
-    padding: 30px;
-}
-.content-header {
-    display: grid;
-    grid-template-columns: 1fr 120px;
-}
-.detail{
-    font-size: 36px;
-    font-weight: bold;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: normal;
-    letter-spacing: -0.2px;
-    color: #222222;
-    margin-top: 0;
-}
 .button-modifier {
     width: 110px;
     height: 40px;
@@ -33,9 +9,33 @@
     font-weight: 600;
     cursor: pointer;
 }
+.content-header {
+    display: grid;
+    grid-template-columns: 1fr 110px;
+}
+.all-container {
+    display: grid;
+    grid-template-columns: 1fr 330px;
+    background-color: #f5f6f9;
+}
+.compte{
+    background-color: white;
+    margin-right: 10px;
+    padding: 10px;
+}
+.detail{
+    font-size: 30px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.2px;
+    color: #222222;
+    margin-top: 0;
+}
 .progres {
     background-color: white;
-    height: 142px;
+    height: 100px;
     margin-top: 0px;
 }
 .duree{
@@ -87,31 +87,35 @@
 }
 .grid-container {
     display: grid;
-    grid-template-columns: 400px  1fr;
+    grid-template-columns: 230px  1fr;
     grid-gap: 1px;
-    margin-top: 20px;
+    margin-top: 10px;
 }
 .ima {
-    width: 297px;
-    height: 297px;
     position: relative;
+}
+.image-interimaire {
+    width: 200px;
+    height: 200px;
+    border-radius: 40px;
+    border: 3px solid #009393;
+}
+.image-contact {
+    width: 50px;
+    height: 50px;
+}
     .im1 {
-        width: 75px;
-        height: 75px;
         position: absolute;
-        top: 25%;
-        left: 90%;
+        top: 25px;
+        right: -10px;
     }
     .im2 {
-        width: 75px;
-        height: 75px;
         position: absolute;
-        top: 55%;
-        left: 90%;
+        top: 120px;
+        right: -10px;
     }
-}
 .prenom{
-    font-size: 28px;
+    font-size: 20px;
     font-weight: bold;
     font-stretch: normal;
     font-style: normal;
@@ -123,7 +127,7 @@
     margin-bottom: 0;
 }
 .fonction{
-    font-size: 24px;
+    font-size: 16px;
     font-weight: normal;
     font-stretch: normal;
     font-style: italic;
@@ -134,7 +138,7 @@
     margin: 0;
 }
 .key{
-    font-size: 18px;
+    font-size: 14px;
     font-weight: normal;
     font-stretch: normal;
     font-style: normal;
@@ -143,14 +147,16 @@
     color: #222222;
     margin-top: 0;
     margin-bottom: 15px;
+    margin-left: 15px;
     .value {
         font-weight: bold;
     }
 }
 .lot2{
+    margin-left: 15px;
     margin-top: 50px;
     margin-bottom: 15px;
-    font-size: 18px;
+    font-size: 14px;
     font-weight: normal;
     font-stretch: normal;
     font-style: normal;
@@ -162,7 +168,7 @@
     }
 }
 .button1 {
-    width: 120px;
+    width: 80px;
     height: 40px;
     background-color: white;
     border: none;
@@ -172,14 +178,14 @@
     text-decoration: none;
     font-weight: bold;
     display: inline-block;
-    font-size: 18px;
+    font-size: 14px;
     cursor: pointer;
     outline: none;
-    border: 3px solid black;
-    margin-top: 20px;
+    border: 2px solid black;
+    margin-top: 10px;
 }
 .button2 {
-    width: 252px;
+    width: 192px;
     height: 40px;
     background-color: white;
     border: none;
@@ -189,15 +195,15 @@
     text-decoration: none;
     font-weight: bold;
     display: inline-block;
-    font-size: 18px;
+    font-size: 14px;
     cursor: pointer;
     outline: none;
-    border: 3px solid black;
-    margin-left: 20px;
-    margin-top: 20px;
+    border: 2px solid black;
+    margin-left: 10px;
+    margin-top: 10px;
 }
 .button3 {
-    width: 165px;
+    width: 125px;
     height: 40px;
     background-color: white;
     border: none;
@@ -207,15 +213,15 @@
     text-decoration: none;
     font-weight: bold;
     display: inline-block;
-    font-size: 18px;
+    font-size: 14px;
     cursor: pointer;
     outline: none;
-    border: 3px solid black;
-    margin-left: 20px;
-    margin-top: 20px;
+    border: 2px solid black;
+    margin-left: 10px;
+    margin-top: 10px;
 }
 .button4 {
-    width: 120px;
+    width: 80px;
     height: 40px;
     background-color: white;
     border: none;
@@ -225,14 +231,15 @@
     text-decoration: none;
     font-weight: bold;
     display: inline-block;
-    font-size: 18px;
+    font-size: 14px;
     cursor: pointer;
     outline: none;
-    border: 3px solid black;
-    margin-left: 20px;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    border: 2px solid black;
+    margin-left: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
+
 // modal 1
 .btns2{
     width: 350px;
@@ -392,6 +399,7 @@
     color: white;
     background-color: #000000;
 }
+
 
 @media (max-width: 991px) {
     .chiffre-aside {

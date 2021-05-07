@@ -252,9 +252,10 @@
             line-height: 1.11;
             letter-spacing: -0.2px;
             color: white;
-            margin-left: 50px;
+            margin-left: 10px;
             outline: none;
             border: none;
+            cursor: pointer;
         }
         .buttonaffi {
             width: 156px;
@@ -271,6 +272,7 @@
             margin-top: 30px;
             outline: none;
             border: none;
+            cursor: pointer;
         }
         .buttonmodif {
             width: 117px;
@@ -283,11 +285,12 @@
             line-height: 1.11;
             letter-spacing: -0.2px;
             color: black;
-            margin-left: 50px;
+            margin-left: 10px;
             border-radius: none;
             margin-top: 30px;
             outline: none;
             border: 3px solid black;
+            cursor: pointer;
         }
     
 
