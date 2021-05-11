@@ -13,7 +13,7 @@ export class DetailinterComponent implements OnInit {
 
   item: any;
   public restant: any;
-  public nombre = 29;
+  public nombre = 39;
   public left: any;
   donnees: any;
   objetctis = [
