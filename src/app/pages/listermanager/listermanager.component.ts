@@ -49,7 +49,7 @@ getManager() {
   this.otherService.getListManager().subscribe(
     data => {
       console.log(data);
-      this.datas = data;
+      this.datas = data.data;
     },
     error => {
       console.log(error);

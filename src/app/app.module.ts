@@ -1,6 +1,7 @@
 import { SidenavModule } from './sidenav';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+//import { AlertModule } from './_modal';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,7 +15,7 @@ import { ManagerComponent } from './pages/manager/manager.component';
 import { InterimaireComponent } from './pages/interimaire/interimaire.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularMaterialModule } from './angular-material.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CompteComponent } from './pages/compte/compte.component';
 import { DemandeComponent } from './pages/demande/demande.component';
@@ -54,6 +55,7 @@ import { AddinterComponent } from './pages/addinter/addinter.component';
 import { ModifierinterComponent } from './pages/modifierinter/modifierinter.component';
 import { AdduserComponent } from './pages/adduser/adduser.component';
 import { LesdemandesComponent } from './pages/lesdemandes/lesdemandes.component';
+import { JwtInterceptorService } from './helpers/jwt-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -115,9 +117,12 @@ import { LesdemandesComponent } from './pages/lesdemandes/lesdemandes.component'
     MatButtonModule, 
     MatSidenavModule,
     MatInputModule,
+    //AlertModule,
     NgCircleProgressModule.forRoot({})
   ],
-  providers: [DatePipe],
+  providers: [DatePipe,
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorService, multi: true },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

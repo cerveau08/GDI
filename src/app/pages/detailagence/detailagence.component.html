@@ -34,7 +34,7 @@
                 </div>
                 <div class="siteweb">
                     <mat-icon class="icon-item">language</mat-icon>
-                    <p class="info-item">{{item.site}}</p>
+                    <p class="info-item">{{item.siteweb}}</p>
                 </div>
             </div>
             <div class="pa">
@@ -44,7 +44,7 @@
                 </div>
                 <div class="adresse2">
                     <mat-icon class="icon-item">room</mat-icon>
-                    <p class="info-item">{{item.adagen}}</p>
+                    <p class="info-item">{{item.adresse}}</p>
                 </div>
             </div>
         </div>
@@ -104,7 +104,7 @@
         
         <div class="interi-aside">
             <p class="dernier-aside">En fin de contrat</p>
-            <div *ngFor="let p of datas | slice:0:4; let i = index">
+            <div *ngFor="let p of agence | slice:0:4; let i = index">
                 <div class="list-aside">
                     <div style="cursor: pointer;" class="grid-container-aside" [ngStyle]="{'border-bottom' : ((i > 2) ? 'none' : '1px solid #f5f6f9') }">
                         <div  class="item4-aside" >

@@ -31,7 +31,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let p of datas | filter:filterterm | paginate: { itemsPerPage: 8, currentPage: p }; let i = index">
+                    <tr *ngFor="let p of dd | filter:filterterm | paginate: { itemsPerPage: 8, currentPage: p }; let i = index">
                         <td *ngIf="scrWidth>991" class="id1">{{p.id}}</td>
                         <td>{{p.prenom}}</td>
                         <td>{{p.nom}}</td>
@@ -51,7 +51,7 @@
                                 <div class="tab">
                                     <mat-icon style="cursor: pointer;" (click)="closeModal('custom-modal-'+p.id);" class="clear">clear</mat-icon>
                                     <p class="dtl1">{{p.libele}}</p>
-                                    <p class="dtl1">{{p.adagen}}</p>
+                                    <p class="dtl1">{{p.adresse}}</p>
                                 </div>
                             </jw-modal>
                         </div>

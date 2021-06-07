@@ -3,6 +3,7 @@ import { Component, HostListener, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { NgxFileSaverService } from '@clemox/ngx-file-saver';
 import { DataService } from 'src/app/service/data.service';
+import { OthersService } from 'src/app/services/others.service';
 import { ModalService } from 'src/app/_modal';
 
 @Component({
@@ -18,6 +19,7 @@ export class LesdemandesComponent implements OnInit {
   public nombre = 69;
   public left: any;
   public datas: any;
+  dd :any;
   pager: any = {};
   filterterm: string;
   public p: any;
@@ -45,6 +47,7 @@ export class LesdemandesComponent implements OnInit {
     private fb: FormBuilder,
     private modalService: ModalService,
     private fileSaver: NgxFileSaverService,
+    private otherService: OthersService,
     public datepipe: DatePipe) {
       this.form = this.fb.group({
         checkArray: this.fb.array([])
@@ -53,10 +56,23 @@ export class LesdemandesComponent implements OnInit {
     }
 
   ngOnInit() {
-    this.datas = this.dataService.getData();
+    //this.datas = this.dataService.getData();
     this.validerForm = new FormGroup({
       status: new FormControl('')
     })
+    this.getDemandes();
+  }
+ 
+  getDemandes() {
+  this.otherService.getListDemandes().subscribe(
+    data => {
+      console.log(data);
+      this.dd = data.data;
+    },
+    error => {
+      console.log(error);
+    }
+  );
   }
 
   selectAll() {

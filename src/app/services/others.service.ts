@@ -26,14 +26,17 @@ export class OthersService {
   getListManager(): Observable<any> {
     return this.http.get<any>(this.reqUrl + '/managers/list');
   }
+  getListDemandes(): Observable<any> {
+    return this.http.get<any>(this.reqUrl + '/listeDemandes');
+  }
 
   // recupere la liste des agences
   getListAgence(): Observable<any> {
     return this.http.get<any>(this.reqUrl + '/listeAgence');
   }
    // recupere les details d'une agence
-   getAgenceId(): Observable<any> {
-    return this.http.get<any>(this.reqUrl + '/detailAgence');
+  getAgenceId(id: any): Observable<any> {
+    return this.http.get<any>(this.reqUrl + '/detailAgence', id);
   }
  // recupere le liste des attestation
  getListAttest(): Observable<any> {
@@ -48,4 +51,16 @@ getAllUser() {
 deleteUser(id: number): Observable<any> {
   return this.http.delete<any>(`${this.reqUrl}/users/update/${id}`);
 }
+addAgence(data) {
+    return this.http.post<any>(`${this.reqUrl}/ajoutAgence`, data);
+  }
+  updateAgence(user, id: number): Observable<any> {
+    return this.http.put<any>(`${this.reqUrl}/updateAgence/${id}`, user);
+  }
+  getAgenceById(id: number): Observable<any> {
+    return this.http.get<any>(`${this.reqUrl}/detailAgence/${id}`);
+  }
+  delete(id: string) {
+    return this.http.delete(`${this.reqUrl}/users/${id}`)
+  }
 }

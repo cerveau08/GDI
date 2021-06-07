@@ -2,6 +2,7 @@ import { Component, HostListener, OnInit} from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { PaginationService } from 'src/app/service/pagination.service';
+import { AuthService } from 'src/app/services/auth.service';
 import { SidenavService } from 'src/app/sidenav/sidenav.service';
 import { ModalService } from 'src/app/_modal/modal.service';
 
@@ -53,7 +54,8 @@ export class HeaderComponent implements OnInit {
   constructor(private modalService: ModalService, 
     private sidenavService: SidenavService,
     private paginationService: PaginationService,
-    private route: Router) {
+    private route: Router,
+    private authService: AuthService) {
     this.getScreenSize(); 
     this.menus = this.paginationService.getMenu();
   }
@@ -117,6 +119,10 @@ export class HeaderComponent implements OnInit {
     console.log(info);
     return info;
   }
+
+  logout() {
+    this.authService.logout();
+}
   updown(item) {
     if (!this.click) {
       this.click = 1;

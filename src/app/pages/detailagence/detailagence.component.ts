@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgxFileSaverService } from '@clemox/ngx-file-saver';
 import { DataService } from 'src/app/service/data.service';
+import { OthersService } from 'src/app/services/others.service';
 import { ModalService } from 'src/app/_modal/modal.service';
 
 @Component({
@@ -18,6 +19,8 @@ export class DetailagenceComponent implements OnInit {
   user;
   showupdate;
   showadduser;
+  id: any;
+  agence: any;
   datas: any;
   agenceForm: FormGroup;
   viewer = 'google';
@@ -27,7 +30,9 @@ export class DetailagenceComponent implements OnInit {
   constructor(private activeroute: ActivatedRoute,
     private modalService: ModalService,
     private dataService: DataService,
-    private fileSaver: NgxFileSaverService,) { 
+    private fileSaver: NgxFileSaverService,
+    private otherService: OthersService,
+    private route: Router) { 
       this.activeroute.queryParams.subscribe(params => {
         this.item = JSON.parse(params["user"]);
         console.log(this.item);
@@ -41,7 +46,21 @@ export class DetailagenceComponent implements OnInit {
     } else {
       this.showupdate = false;
     }
-    this.datas = this.dataService.getData();
+
+    this.getAgenceById();
+  }
+  getAgenceById(){
+    this.otherService.getAgenceId(this.id).subscribe(
+      data =>{
+         this.datas = this.id;
+         console.log(data);
+      },
+      error =>{
+        console.log(error)
+      }
+    );
+
+    //this.datas = this.dataService.getData();
     this.agenceForm = new FormGroup({
       nom: new FormControl (''),
       directeur: new FormControl(''),
@@ -55,6 +74,19 @@ export class DetailagenceComponent implements OnInit {
       contrat: new FormControl(''),
       cnidg: new FormControl (''),
     });
+  }
+
+  updateUser() {
+    this.otherService.updateAgence(this.id, this.agenceForm.value).subscribe(
+      (response) =>{
+        console.log(response);
+        //const link = ['listeusers'];
+        //this.route.navigate(/listeAgence);
+      },
+      (error)=>{
+        console.log(error);
+      }
+    )
   }
 
   submitted1() {

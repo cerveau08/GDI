@@ -36,11 +36,11 @@ export class ListeragenceComponent implements OnInit {
 
     this.otherService.getListAgence().subscribe(
       data => {
-        this.datas = data;
+        this.dataAgence = data.data;
         console.log(data);
       }
     );
-    //this.datas = this.dataService.getData();
+    this.datas = this.dataService.getData();
     this.agenceForm = new FormGroup({
       nom: new FormControl (''),
       directeur: new FormControl(''),
