@@ -289,7 +289,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.datas = this.dataService.getData();
     this.user = localStorage.getItem('user');
-    if(this.user == 'inter') {
+    if(this.user == 'interimaire') {
       this.showHome = false;
     } else {
       this.showHome = true;

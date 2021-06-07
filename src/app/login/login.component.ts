@@ -1,6 +1,7 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +11,8 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
-  constructor(private route: Router) {
+  constructor(private route: Router,
+              private auth: AuthService) {
     this.getScreenSize();
   }
 
@@ -36,8 +38,20 @@ export class LoginComponent implements OnInit {
       username: this.loginForm.value.username,
       password: this.loginForm.value.password
     } 
-    localStorage.setItem('user', this.loginForm.value.username);
-    console.log(user);
-    this.route.navigate(['accueil/home']);
+    //console.log(user);
+    this.auth.login(user).subscribe(
+      data => {
+        console.log(data)
+        //console.log(data.data['role'][0])
+        let profil = data.data.profil
+        console.log(profil);
+
+        localStorage.setItem('token', data.token)
+        localStorage.setItem('user', profil);
+        if(data) {
+          this.route.navigate(['accueil/home']);
+        }
+      }
+    )
   }
 }

@@ -8,7 +8,7 @@
                 </div>
             </div>
             <div class="forms">
-                <form [formGroup]="loginForm">
+                <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
                     <h3 class="passe">Connexion</h3>
                     <div class="fiel">
                         <label class="label"for="fullname">Nom d’utilisateur</label>
@@ -37,7 +37,7 @@
                 <label class="label-mobile" for="fullname">Mot de Passe</label>
                 <input formControlName="password" class="input-text-mobile" type="text" name="fullname" id="fullname">
             </div>
-            <button (click)="onSubmit()" class="button-mobile">Se connecter</button>
+            <button type="submit" class="button-mobile">Se connecter</button>
             <p class="forget-mobile" routerLink="/passwordforgetmail">Mot de passe oublié?</p>
         </form>
     </div>

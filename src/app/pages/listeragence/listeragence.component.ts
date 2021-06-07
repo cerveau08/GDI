@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ModalService } from 'src/app/_modal/modal.service';
 import { Router } from '@angular/router';
+import {OthersService} from '../../services/others.service';
 
 @Component({
   selector: 'app-listeragence',
@@ -19,9 +20,11 @@ export class ListeragenceComponent implements OnInit {
   datas: any;
   agenceForm: FormGroup;
   userForm: FormGroup;
+  dataAgence: any;
   constructor(private dataService: DataService,
     private modalService: ModalService,
-    public router: Router) { }
+    public router: Router,
+    private otherService: OthersService) { }
 
   ngOnInit() {
     this.user = localStorage.getItem('user');
@@ -30,7 +33,13 @@ export class ListeragenceComponent implements OnInit {
     } else {
       this.showupdate = false;
     }
-    
+
+    this.otherService.getListAgence().subscribe(
+      data => {
+        this.dataAgence = data.data;
+        console.log(data);
+      }
+    );
     this.datas = this.dataService.getData();
     this.agenceForm = new FormGroup({
       nom: new FormControl (''),
@@ -53,6 +62,7 @@ export class ListeragenceComponent implements OnInit {
       profil: new FormControl(''),
       photo: new FormControl (''),
     });
+    
   }
 
   openDetail(data) {
@@ -61,8 +71,9 @@ export class ListeragenceComponent implements OnInit {
         user: JSON.stringify(data)
       }
     })
-  }
 
+    //this.getAgence();
+  }
   submitted1() {
     const info = {
         nom: this.agenceForm.value.nom,

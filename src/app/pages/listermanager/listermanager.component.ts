@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { DataService } from 'src/app/service/data.service';
 import { PaginationService } from 'src/app/service/pagination.service';
 import { ModalService } from 'src/app/_modal';
+import {OthersService} from '../../services/others.service';
 
 @Component({
   selector: 'app-listermanager',
@@ -32,14 +33,29 @@ export class ListermanagerComponent implements OnInit {
     private pagerService: PaginationService,
     private modalService: ModalService,
     public datepipe: DatePipe,
-    public router: Router
+    public router: Router,
+    private otherService: OthersService
     ) { 
       this.getScreenSize();
     }
 
   ngOnInit() {
-    this.datas = this.dataService.getData();
+    //this.datas = this.dataService.getData();
+
+    this.getManager();
   }
+ 
+getManager() {
+  this.otherService.getListManager().subscribe(
+    data => {
+      console.log(data);
+      this.datas = data.data;
+    },
+    error => {
+      console.log(error);
+    }
+  );
+}
 
   openDetail(data) {
     this.router.navigate(['/accueil/manager'], {

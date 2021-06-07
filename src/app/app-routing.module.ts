@@ -33,13 +33,14 @@ import { RestaurationComponent } from './pages/restauration/restauration.compone
 import { PasswordforgetMailComponent } from './passwordforget-mail/passwordforget-mail.component';
 import { PasswordforgetComponent } from './passwordforget/passwordforget.component';
 import { AddinterComponent } from './pages/addinter/addinter.component';
+import { AuthGuard } from './helpers/auth.guard';
 
 
 const routes: Routes = [
   {
     path: 'accueil',
     component: DefaultComponent,
-   // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     children: [
       {
         path: 'home', 
@@ -51,111 +52,111 @@ const routes: Routes = [
       },
       { path: 'manager',
         component: ManagerComponent,
-       //   canActivate: [AuthGuard]
+          canActivate: [AuthGuard]
       },
       { path: 'compte',
         component: CompteComponent,
-       //   canActivate: [AuthGuard]
+          canActivate: [AuthGuard]
       },
       { path: 'demande',
         component: DemandeComponent,
-       //   canActivate: [AuthGuard]
+          canActivate: [AuthGuard]
       },
       { path: 'restauration',
         component: RestaurationComponent,
-       //   canActivate: [AuthGuard]
+          canActivate: [AuthGuard]
       },
       { path: 'presence',
         component: PresenceComponent,
-       //   canActivate: [AuthGuard]
+          canActivate: [AuthGuard]
       },
       { path: 'listinter',
         component: InterimaireComponent,
-       //   canActivate: [AuthGuard]
+          canActivate: [AuthGuard]
       },
       { path: 'souscontrat',
         component: IntersouscontratComponent,
-       //   canActivate: [AuthGuard]
+          canActivate: [AuthGuard]
       },
       { path: 'fincontrat',
         component: InterfincontratComponent,
-       //   canActivate: [AuthGuard]
+          canActivate: [AuthGuard]
       },
       { path: 'addinter',
         component: AddinterComponent,
-       //   canActivate: [AuthGuard]
+          canActivate: [AuthGuard]
       },
       { path: 'listagence',
         component: ListeragenceComponent,
-       //   canActivate: [AuthGuard]
+         canActivate: [AuthGuard]
       },
       { path: 'ajouteragence',
         component: AddagenceComponent,
-       //   canActivate: [AuthGuard]
+          canActivate: [AuthGuard]
       },
       { path: 'ajoutermanager',
         component: AddmanagerComponent,
-       //   canActivate: [AuthGuard]
+          canActivate: [AuthGuard]
       },
       { path: 'listmanager',
         component: ListermanagerComponent,
-       //   canActivate: [AuthGuard]
+          canActivate: [AuthGuard]
       },
       { path: 'alertes',
         component: AlertComponent,
-       //   canActivate: [AuthGuard]
+          canActivate: [AuthGuard]
       },
       { path: 'attestation',
         component: AttestationpresenceComponent,
-       //   canActivate: [AuthGuard]
+          canActivate: [AuthGuard]
       },
       { path: 'statistique',
         component: StatistiquesComponent,
-       //   canActivate: [AuthGuard]
+          canActivate: [AuthGuard]
       },
       { path: 'parametre',
         component: ParametreComponent,
-       //   canActivate: [AuthGuard]
+          canActivate: [AuthGuard]
       },
       { path: 'detailagence',
         component: DetailagenceComponent,
-       //   canActivate: [AuthGuard]
+          canActivate: [AuthGuard]
       },
       { path: 'detailinter',
         component: DetailinterComponent,
-       //   canActivate: [AuthGuard]
+          canActivate: [AuthGuard]
       },
       { path: 'detailmanager',
         component: DetailmanagerComponent,
-       //   canActivate: [AuthGuard]
+          canActivate: [AuthGuard]
       },
       { path: 'agence',
         component: AgenceComponent,
-       //   canActivate: [AuthGuard]
+          canActivate: [AuthGuard]
       },
       { path: 'offre',
         component: OffreComponent,
-       //   canActivate: [AuthGuard]
+          canActivate: [AuthGuard]
       },
       { path: 'newinter',
         component: NewinterComponent,
-       //   canActivate: [AuthGuard]
+          canActivate: [AuthGuard]
       },
       { path: 'listeattestation',
         component: ListeattestationComponent,
-       //   canActivate: [AuthGuard]
+          canActivate: [AuthGuard]
       },
       { path: 'modifierinter',
         component: ModifierinterComponent,
-       //   canActivate: [AuthGuard]
+          canActivate: [AuthGuard]
       },
       { path: 'adduser',
         component: AdduserComponent,
-       //   canActivate: [AuthGuard]
+          canActivate: [AuthGuard]
       },
       { path: 'lesdemande',
         component: LesdemandesComponent,
-       //   canActivate: [AuthGuard]
+          canActivate: [AuthGuard]
       },
       {
         path: '',

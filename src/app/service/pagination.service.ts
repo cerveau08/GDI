@@ -240,7 +240,7 @@ export class PaginationService {
 
   getMenu() {
     this.role = localStorage.getItem('user')
-    if(this.role == "inter") {
+    if(this.role == "interimaire") {
       this.menus = this.internav;
     } else if(this.role == "drh") {
       this.menus = this.drhnav;
