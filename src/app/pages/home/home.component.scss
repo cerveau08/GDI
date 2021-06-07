@@ -37,7 +37,7 @@
     margin-top: 20px;
 }
 .duree{
-    font-size: 18px;
+    font-size: 14px;
     font-weight: normal;
     font-stretch: normal;
     font-style: normal;
@@ -80,6 +80,7 @@
 }
 .datefin {
     text-align: right;
+    font-size: 14px;
 }
 .detail-donnees{
     height: 252px;
@@ -118,7 +119,7 @@
     p{
         margin-top: 10px;
        margin-left: 10px;
-       font-size: 20px;
+       font-size: 16px;
        font-weight: bold;
        font-stretch: normal;
        font-style: normal;
@@ -138,7 +139,7 @@
     p{
         margin-top: 10px;
        margin-left: 10px;
-       font-size: 20px;
+       font-size: 16px;
        font-weight: bold;
        font-stretch: normal;
        font-style: normal;
@@ -157,7 +158,7 @@
     p{
         margin-top: 10px;
        margin-left: 10px;
-       font-size: 20px;
+       font-size: 16px;
        font-weight: bold;
        font-stretch: normal;
        font-style: normal;
@@ -207,7 +208,7 @@
     }
 }
 .mois{
-    font-size: 18px;
+    font-size: 14px;
     font-weight: bold;
     font-stretch: normal;
     font-style: normal;
@@ -218,7 +219,7 @@
     margin-top: 10px;
 }
 .mois1 {
-    font-size: 18px;
+    font-size: 14px;
     font-weight: bold;
     font-stretch: normal;
     font-style: normal;
@@ -229,7 +230,7 @@
     margin-top: 0px;
 }
 .mois2 {
-    font-size: 18px;
+    font-size: 14px;
     font-weight: bold;
     font-stretch: normal;
     font-style: normal;
@@ -241,10 +242,10 @@
 }
 .bouton{
     margin: 0 auto;
-    width: 120px;
+    width: 100px;
     .button {
-        width: 120px;
-        height: 40px;
+        width: 100px;
+        height: 30px;
         background-color: white;
         border: none;
         color: black;
@@ -253,7 +254,7 @@
         text-decoration: none;
         font-weight: bold;
         display: inline-block;
-        font-size: 18px;
+        font-size: 14px;
         cursor: pointer;
         outline: none;
         border: 3px solid black;
@@ -278,7 +279,7 @@
     padding: 10px;
 }
 .bien{
-    font-size: 26px;
+    font-size: 18px;
     font-weight: bold;
     font-stretch: normal;
     font-style: normal;
@@ -289,7 +290,7 @@
     margin-bottom: 15px;
 }
 .alert{
-    font-size: 16px;
+    font-size: 14px;
     font-weight: normal;
     font-stretch: normal;
     font-style: normal;

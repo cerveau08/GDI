@@ -34,7 +34,7 @@
 }
 .button1 {
     width: 160px;
-    height: 40px;
+    height: 30px;
     background-color: #f16e00;
     border: none;
     color: white;
@@ -50,7 +50,7 @@
 }
 .button2 {
     width: 180px;
-    height: 40px;
+    height: 30px;
     background-color: #f16e00;
     border: none;
     color: white;
@@ -67,7 +67,7 @@
 }
 .button3 {
     width: 90px;
-    height: 40px;
+    height: 30px;
     background-color: #f16e00;
     border: none;
     color: white;
@@ -84,7 +84,7 @@
 }
 .button4 {
     width: 160px;
-    height: 40px;
+    height: 30px;
     background-color: #f16e00;
     border: none;
     color: white;
@@ -129,16 +129,16 @@
     margin-top: 5px;
     border: 1px solid #f5f6f9;
     padding: 0px;
-    height: 40px;
+    height: 30px;
     border-radius: 5px;
     p {
-        margin-top: 12px;
+        margin-top: 8px;
         margin-right: 10px;
         margin-bottom: 0;
         margin-left: 10px;
     }
     mat-icon{
-        margin-top: 10px;
+        margin-top: 5px;
         margin-right: 5px;
         margin-bottom: 0;
     }
@@ -149,7 +149,7 @@
     margin-top: 5px;
     border: 1px solid #f5f6f9;
     padding: 0px;
-    height: 40px;
+    height: 30px;
     border-radius: 5px;
     .filtre {
         width: 90px;
@@ -161,7 +161,7 @@
         outline: none;
     }
     mat-icon{
-        margin-top: 10px;
+        margin-top: 5px;
         margin-right: 10px;
         margin-bottom: 0;
     }
@@ -174,9 +174,9 @@ table {
   
   th {
     text-align: center;
-    padding: 8px;
-    font-size: 14px;
-    font-weight: 500;
+   // padding: 8px;
+    font-size: 13px;
+    font-weight: bold;
     font-stretch: normal;
     font-style: normal;
     line-height: normal;
