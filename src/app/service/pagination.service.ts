@@ -70,7 +70,7 @@ export class PaginationService {
       path: 'manager',  icon: "grade",
     },
     {
-      id: 3,  title: 'Mon Agence d\'interim',
+      id: 3,  title: 'Mon Agence',
       icon: "local_mall",  path: 'agence',
       click: false,  activeChoice: -1,
     },{

@@ -1,6 +1,6 @@
 .all-container {
     display: grid;
-    grid-template-columns: 1fr 330px;
+    grid-template-columns: 1fr 265px;
     background-color: #f5f6f9;
 }
 .all {
@@ -72,7 +72,7 @@
     margin-right: 15px;
     position: absolute;
     right: 0;
-    top: 45px;
+    top: 25px;
 }
 .export{
     font-size: 14px;
@@ -219,7 +219,7 @@ table {
   }
   .updown {
     margin-top: 10px;
-    margin-left: 20px;
+    margin-left: 0px;
   }
   tr {
     height: 50px;

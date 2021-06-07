@@ -9,7 +9,7 @@ body {
 .container {
     width: 100%;
     display: grid;
-    grid-template-columns: 225px 1fr /*350px */;
+    grid-template-columns: 190px 1fr /*350px */;
     grid-template-rows: auto 1fr;
     grid-gap: 7px;
     grid-template-areas:
@@ -20,7 +20,7 @@ body {
 }
 
 app-header {
-    height: 70px;
+    height: 60px;
     color: black;
     font-size: 14px;
     grid-area: header;
@@ -151,7 +151,7 @@ html, body { height: 100%; width: 100%;}
 .nombre-aside {
 margin-top: 0px;
 font-family: FuturaBT;
-font-size: 28px;
+font-size: 22px;
 font-weight: 900;
 font-stretch: normal;
 font-style: normal;
@@ -181,7 +181,7 @@ margin-bottom: 5px;
   padding: 5px;
 }
 .dernier-aside {
-  font-size: 20px;
+  font-size: 16px;
   font-weight: bold;
   font-stretch: normal;
   font-style: normal;
@@ -193,7 +193,7 @@ margin-bottom: 5px;
 }
 .grid-container-aside {
   display: grid;
-  grid-template-columns: 45px 175px 45px;
+  grid-template-columns: 40px 155px 55px;
   grid-gap: 1px;
   background-color: white;
   padding: 0px;
@@ -201,14 +201,15 @@ margin-bottom: 5px;
   border-bottom: 1px solid #f5f6f9;
 }
 .photo-aside {
-  width: 40px;
-  height: 40px;
+  width: 35px;
+  height: 35px;
   border-radius: 50%;
 }
 
 .prenom-aside {
+  margin-bottom: 0;
   margin-top: 0;
-  margin-left: 10px;
+  margin-left: 0px;
   font-size: 12px;
   font-weight: bold;
   font-stretch: normal;
@@ -216,14 +217,16 @@ margin-bottom: 5px;
   line-height: normal;
   letter-spacing: normal;
   color: #222222;
+  width: 190px;
   white-space:nowrap;
   overflow:hidden;
   text-overflow: ellipsis;
 }
 .poste-aside {
-  margin-top: -8px;
-  margin-left: 10px;
+  margin-top: 8px;
+  margin-left: 0px;
   font-size: 10px;
+  width: 140px;
   white-space:nowrap;
   overflow:hidden;
   text-overflow: ellipsis;
@@ -241,7 +244,7 @@ margin-bottom: 5px;
 }
 .button-aside {
   width: 132px;
-  height: 40px;
+  height: 30px;
   background-color: #f16e00;
   border: none;
   color: white;
@@ -250,14 +253,14 @@ margin-bottom: 5px;
   text-decoration: none;
   font-weight: bold;
   display: inline-block;
-  font-size: 18px;
+  font-size: 15px;
   margin-top: 4px;
   margin-left: 80px;
   cursor: pointer;
   outline: none;
 }
 .annonce-aside {
-  margin-top: 10px;
+  margin-top: 0px;
   margin-bottom: 20px;
   background-color: #ffffff;
   padding: 5px;
@@ -273,10 +276,10 @@ margin-bottom: 5px;
 }
 .dep-aside {
   display: flex;
-  margin-left: 10px;
+  margin-left: 0px;
 }
 .serv-aside {
-  margin-top: -8px;
+  margin-top: 8px;
   opacity: 0.7;
 
   font-size: 12px;
@@ -289,7 +292,7 @@ margin-bottom: 5px;
 }
 .button1-aside {
   width: 132px;
-  height: 40px;
+  height: 30px;
   background-color: #32c832;
   border: none;
   color: black;
@@ -298,14 +301,13 @@ margin-bottom: 5px;
   text-decoration: none;
   font-weight: bold;
   display: inline-block;
-  font-size: 18px;
+  font-size: 15px;
   margin-top: 4px;
   margin-left: 80px;
   cursor: pointer;
   outline: none;
 }
 .tmp1-aside {
-  margin-right: 20px;
   margin-top: 10px;
   font-size: 12px;
   font-weight: 900;
@@ -313,20 +315,19 @@ margin-bottom: 5px;
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-  text-align: right;
   color: #009393;
 }
 .manager-aside {
   margin: 0 auto;
-  width: 140px;
+  width: 130px;
   img{
-      width: 139px;
-      height: 139px;
+      width: 129px;
+      height: 129px;
   }
   
 }
 .nom-aside {
-  font-size: 24px;
+  font-size: 20px;
   font-weight: bold;
   font-stretch: normal;
   font-style: normal;
@@ -337,7 +338,7 @@ margin-bottom: 5px;
   margin-bottom: 0;
 }
 .postem-aside{
-  font-size: 18px;
+  font-size: 16px;
   font-weight: normal;
   font-stretch: normal;
   font-style: italic;

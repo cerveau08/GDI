@@ -1,12 +1,12 @@
 .all-container {
     display: grid;
-    grid-template-columns: 1fr 330px;
+    grid-template-columns: 1fr 265px;
     background-color: #f5f6f9;
 }
 .all {
     background-color: white;
     margin-right: 10px;
-    padding: 20px;
+    padding: 10px;
 }
 .list1 {
     display: grid;
@@ -39,11 +39,11 @@
     font-size: 12px;
 }
 .sujet {
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 500;
 }
 .libele {
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 500;
 }
 .ser {

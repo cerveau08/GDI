@@ -53,9 +53,9 @@ export class HeaderComponent implements OnInit {
   public menus: any;
   constructor(private modalService: ModalService, 
     private sidenavService: SidenavService,
+    private authService: AuthService,
     private paginationService: PaginationService,
-    private route: Router,
-    private authService: AuthService) {
+    private route: Router) {
     this.getScreenSize(); 
     this.menus = this.paginationService.getMenu();
   }
