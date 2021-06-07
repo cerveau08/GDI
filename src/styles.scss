@@ -207,6 +207,7 @@ margin-bottom: 5px;
 }
 
 .prenom-aside {
+  margin-bottom: 0;
   margin-top: 0;
   margin-left: 0px;
   font-size: 12px;
@@ -216,12 +217,13 @@ margin-bottom: 5px;
   line-height: normal;
   letter-spacing: normal;
   color: #222222;
+  width: 190px;
   white-space:nowrap;
   overflow:hidden;
   text-overflow: ellipsis;
 }
 .poste-aside {
-  margin-top: -8px;
+  margin-top: 8px;
   margin-left: 0px;
   font-size: 10px;
   width: 140px;
@@ -274,10 +276,10 @@ margin-bottom: 5px;
 }
 .dep-aside {
   display: flex;
-  margin-left: 10px;
+  margin-left: 0px;
 }
 .serv-aside {
-  margin-top: -8px;
+  margin-top: 8px;
   opacity: 0.7;
 
   font-size: 12px;
@@ -306,7 +308,6 @@ margin-bottom: 5px;
   outline: none;
 }
 .tmp1-aside {
-  margin-right: 20px;
   margin-top: 10px;
   font-size: 12px;
   font-weight: 900;
@@ -314,20 +315,19 @@ margin-bottom: 5px;
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-  text-align: right;
   color: #009393;
 }
 .manager-aside {
   margin: 0 auto;
-  width: 140px;
+  width: 130px;
   img{
-      width: 139px;
-      height: 139px;
+      width: 129px;
+      height: 129px;
   }
   
 }
 .nom-aside {
-  font-size: 24px;
+  font-size: 20px;
   font-weight: bold;
   font-stretch: normal;
   font-style: normal;
@@ -338,7 +338,7 @@ margin-bottom: 5px;
   margin-bottom: 0;
 }
 .postem-aside{
-  font-size: 18px;
+  font-size: 16px;
   font-weight: normal;
   font-stretch: normal;
   font-style: italic;
