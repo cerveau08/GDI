@@ -9,7 +9,7 @@ body {
 .container {
     width: 100%;
     display: grid;
-    grid-template-columns: 225px 1fr /*350px */;
+    grid-template-columns: 190px 1fr /*350px */;
     grid-template-rows: auto 1fr;
     grid-gap: 7px;
     grid-template-areas:
@@ -20,7 +20,7 @@ body {
 }
 
 app-header {
-    height: 70px;
+    height: 60px;
     color: black;
     font-size: 14px;
     grid-area: header;
@@ -151,7 +151,7 @@ html, body { height: 100%; width: 100%;}
 .nombre-aside {
 margin-top: 0px;
 font-family: FuturaBT;
-font-size: 28px;
+font-size: 22px;
 font-weight: 900;
 font-stretch: normal;
 font-style: normal;
@@ -181,7 +181,7 @@ margin-bottom: 5px;
   padding: 5px;
 }
 .dernier-aside {
-  font-size: 20px;
+  font-size: 16px;
   font-weight: bold;
   font-stretch: normal;
   font-style: normal;
@@ -193,7 +193,7 @@ margin-bottom: 5px;
 }
 .grid-container-aside {
   display: grid;
-  grid-template-columns: 45px 175px 45px;
+  grid-template-columns: 40px 155px 55px;
   grid-gap: 1px;
   background-color: white;
   padding: 0px;
@@ -201,14 +201,14 @@ margin-bottom: 5px;
   border-bottom: 1px solid #f5f6f9;
 }
 .photo-aside {
-  width: 40px;
-  height: 40px;
+  width: 35px;
+  height: 35px;
   border-radius: 50%;
 }
 
 .prenom-aside {
   margin-top: 0;
-  margin-left: 10px;
+  margin-left: 0px;
   font-size: 12px;
   font-weight: bold;
   font-stretch: normal;
@@ -222,8 +222,9 @@ margin-bottom: 5px;
 }
 .poste-aside {
   margin-top: -8px;
-  margin-left: 10px;
+  margin-left: 0px;
   font-size: 10px;
+  width: 140px;
   white-space:nowrap;
   overflow:hidden;
   text-overflow: ellipsis;
@@ -241,7 +242,7 @@ margin-bottom: 5px;
 }
 .button-aside {
   width: 132px;
-  height: 40px;
+  height: 30px;
   background-color: #f16e00;
   border: none;
   color: white;
@@ -250,7 +251,7 @@ margin-bottom: 5px;
   text-decoration: none;
   font-weight: bold;
   display: inline-block;
-  font-size: 18px;
+  font-size: 15px;
   margin-top: 4px;
   margin-left: 80px;
   cursor: pointer;
@@ -289,7 +290,7 @@ margin-bottom: 5px;
 }
 .button1-aside {
   width: 132px;
-  height: 40px;
+  height: 30px;
   background-color: #32c832;
   border: none;
   color: black;
@@ -298,7 +299,7 @@ margin-bottom: 5px;
   text-decoration: none;
   font-weight: bold;
   display: inline-block;
-  font-size: 18px;
+  font-size: 15px;
   margin-top: 4px;
   margin-left: 80px;
   cursor: pointer;

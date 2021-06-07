@@ -14,7 +14,7 @@
                         <p [style.color]="selected==i?'#ff7900':'#979797'" (click)="selected=i" [style.-webkit-text-stroke]="selected==i?' #ff7900':'#979797'" (click)="selected=i"> {{p.title}} </p>
                     </div>
                     <div  class="item2"> 
-                        <mat-icon fontSet="material-icons-outlined" [style.color]="selected==i?'#ff7900':'#979797'" (click)="selected=i" [style.-webkit-text-stroke]="selected==i?' #ff7900':'#979797'" (click)="selected=i">{{p.icon2}}</mat-icon>
+                        <mat-icon class="icon2" fontSet="material-icons-outlined" [style.color]="selected==i?'#ff7900':'#979797'" (click)="selected=i" [style.-webkit-text-stroke]="selected==i?' #ff7900':'#979797'" (click)="selected=i">{{p.icon2}}</mat-icon>
                     </div>
                 </div>
                 <div *ngIf="selected==i">
