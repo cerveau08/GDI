@@ -63,4 +63,13 @@ addAgence(data) {
   delete(id: string) {
     return this.http.delete(`${this.reqUrl}/users/${id}`)
   }
+  addInter(data) {
+    return this.http.post<any>(`${this.reqUrl}/interimaire/create`, data);
+  }
+  addContrat(data) {
+    return this.http.post<any>(`${this.reqUrl}/contrat/interimaire`, data);
+  }
+  getListInterFinContrat(id: number): Observable<any> {
+    return this.http.get<any>(`${this.reqUrl}/interimaireFinContrat/${id}`);
+  }
 }

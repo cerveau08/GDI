@@ -40,8 +40,7 @@ export class ListermanagerComponent implements OnInit {
     }
 
   ngOnInit() {
-    //this.datas = this.dataService.getData();
-
+    this.datas = this.dataService.getData();
     this.getManager();
   }
  

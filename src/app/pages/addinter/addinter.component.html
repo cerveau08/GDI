@@ -20,30 +20,31 @@
                         <div class="photo">
                           <img class="image-upload" *ngIf="!url1==true" src="/assets/images/upload.png" alt="">
                           <img class="image-upload" [src]="url1" height="60" alt="">
-                          <input formControlName="photo" class="buttonphoto1" type="file" (change)="readUrl1($event)">
+                          <input formControlName="photo" class="buttonphoto1" type="file" (change)="getPhoto($event.target)">
                         </div>
                         <div class="others">
                           <div class="infoinput1">
-                            <input type="text" formControlName="numeroCni" placeholder="Numero CNI">
+                            <input type="text" formControlName="nCni" placeholder="Numero CNI">
+                            <input class="input3" type="text" formControlName="nPassport" placeholder="Numero Passport">
                           </div>
                           <div class="infoinput2">
                             <input type="text" formControlName="prenom" placeholder="Prenom">
                             <input class="input3" type="text" formControlName="nom" placeholder="Nom">
                           </div>
                           <div class="infoinput1">
-                            <input type="text" formControlName="email" placeholder="Email">
+                            <input type="text" formControlName="mail" placeholder="Email">
                           </div>
                           <div class="infoinput2">
-                            <input type="text" formControlName="dateNais" placeholder="Date de Naissance">
-                            <input class="input3" type="text" formControlName="lieuNais" placeholder="Lieu de Naissance">
+                            <input type="text" formControlName="dateNaissance" placeholder="Date de Naissance">
+                            <input class="input3" type="text" formControlName="lieuNaissance" placeholder="Lieu de Naissance">
                           </div>
                           <div class="infoinput2">
-                            <input type="text" formControlName="genre" placeholder="Genre">
-                            <input class="input3" type="text" formControlName="situationmatri" placeholder="Situation Matrimoniale">
+                            <input type="text" formControlName="sexe" placeholder="Genre">
+                            <input class="input3" type="text" formControlName="sitmat" placeholder="Situation Matrimoniale">
                           </div>
                           <div class="infoinput2">
                             <input type="text" formControlName="diplome" placeholder="Diplome">
-                            <input class="input3" type="text" formControlName="ecole" placeholder="Université et Ecole">
+                            <input class="input3" type="text" formControlName="universite" placeholder="Université et Ecole">
                           </div>
                         </div>
                       </div>
@@ -80,7 +81,7 @@
                             <option class="option" value="" disabled selected hidden>type de contrat</option>
                             <option *ngFor="let som of sommes" [ngValue]="som">{{som}}</option>
                           </select>
-                          <select class="select6" formControlName="agence" placeholder="Agence d'interim">
+                          <select class="select6" formControlName="agenceId" placeholder="Agence d'interim">
                             <option class="option" value="" disabled selected hidden>Agence d'interim</option>
                             <option *ngFor="let som of sommes" [ngValue]="som">{{som}}</option>
                           </select>
@@ -90,11 +91,11 @@
                           <input class="input3" type="text" formControlName="dateFin" placeholder="Date Fin">
                         </div> 
                         <div class="contratinput2">
-                          <input type="text" formControlName="categorie" placeholder="Catégorie">
-                          <input class="input3" type="text" formControlName="salaire" placeholder="Montant Salaire Brut">
+                          <input type="text" formControlName="categorieId" placeholder="Catégorie">
+                          <input class="input3" type="text" formControlName="salaireBrut" placeholder="Montant Salaire Brut">
                         </div>
                         <div class="contratinput2">
-                          <select class="select5" formControlName="structure">
+                          <select class="select5" formControlName="structureId">
                             <option class="option" value="" disabled selected hidden>Structure</option>
                             <option *ngFor="let som of sommes" [ngValue]="som">{{som}}</option>
                           </select>
@@ -137,7 +138,7 @@
                       <div class="center">
                         <div class="posteinput2">
                           <input type="text" formControlName="titre" placeholder="Titre du Poste">
-                          <select class="select6" formControlName="matriculemanager">
+                          <select class="select6" formControlName="matricule">
                             <option class="option" value="" disabled selected hidden>Matricule manageur</option>
                             <option *ngFor="let som of sommes" [ngValue]="som">{{som}}</option>
                           </select>
