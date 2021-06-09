@@ -6,11 +6,11 @@
 .all {
     margin-right: 10px;
     background-color: white;
-    padding: 30px;
+    padding: 10px;
 }
 .detail {
-    font-size: 36px;
-    font-weight: normal;
+    font-size: 18px;
+    font-weight: bold;
     font-stretch: normal;
     font-style: normal;
     line-height: normal;
@@ -18,41 +18,44 @@
     color: #222222;
     margin-top: 0;
 }
+.texte-manager {
+    font-size: 12px;
+}
 .bouton {
     width: 320px;
     margin: 50px auto;
 }
 .button {
     display: flex;
-    width: 319px;
-    height: 50px;
+    width: 280px;
+    height: 40px;
     margin-top: 60px;
     mat-icon {
-        margin-top: 10px;
+        margin-top: 5px;
     }
     background: white;
-    border: 3px solid #000000;
+    border: 2px solid #000000;
     p {
-        font-size: 18px;
+        font-size: 16px;
         font-weight: bold;
         font-stretch: normal;
         font-style: normal;
         line-height: 1.11;
         letter-spacing: -0.2px;
         color: #000000;
-        margin-top: 12px;
+        margin-top: 6px;
         margin-left: 10px;
     }
 }
 .label-form {
     color: black;
-    font-size: 16px;
+    font-size: 14px;
     margin-bottom: 5px;
 }
 .input-form {
     width: 250px;
     font-size: 22px;
-    height: 41px;
+    height: 30px;
     background-color: #f5f6f9;
     border-radius: 1px;
     border: solid 1px #d8d8d8;
@@ -61,7 +64,7 @@
     padding: 5px;
 }
 .buttob-envoyer {
-    height: 40px;
+    height: 30px;
     width: 90px;
     color: #ff7900;
     border: 1px solid #ff7900;
