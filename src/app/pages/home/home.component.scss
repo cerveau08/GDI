@@ -1,6 +1,6 @@
 .all-container {
     display: grid;
-    grid-template-columns: 1fr 265px;
+    grid-template-columns: 1fr 290px;
     background-color: #f5f6f9;
 }
 .all{
@@ -331,7 +331,7 @@
     margin: 0 auto;
 }
     .total {
-        font-size: 18px;
+        font-size: 16px;
         font-weight: bold;
         font-stretch: normal;
         font-style: normal;
@@ -341,7 +341,7 @@
         margin-left: 20px;
     }
     .totaln {
-        font-size: 25px;
+        font-size: 20px;
         font-weight: bold;
         font-stretch: normal;
         font-style: normal;
@@ -407,7 +407,7 @@
         margin: 0;
     }
     .fn {
-        font-size: 18px;
+        font-size: 16px;
         font-weight: 900;
         font-stretch: normal;
         font-style: normal;
@@ -416,7 +416,7 @@
         color: #222222;
     }
     .fe {
-        font-size: 13px;
+        font-size: 12px;
         font-weight: 500;
         font-stretch: normal;
         font-style: normal;
@@ -503,7 +503,7 @@
         margin: 0;
     }
     .hn {
-        font-size: 18px;
+        font-size: 16px;
         font-weight: 900;
         font-stretch: normal;
         font-style: normal;
@@ -512,7 +512,7 @@
         color: #222222;
     }
     .ho {
-        font-size: 13px;
+        font-size: 12px;
         font-weight: 500;
         font-stretch: normal;
         font-style: normal;
@@ -829,9 +829,8 @@ table {
 }
   th {
     text-align: center;
-    padding: 8px;
     font-size: 14px;
-    font-weight: 500;
+    font-weight: bold;
     font-stretch: normal;
     font-style: normal;
     line-height: normal;
@@ -840,8 +839,7 @@ table {
   }
   td {
     text-align: center;
-    padding: 8px;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: normal;
     font-stretch: normal;
     font-style: normal;

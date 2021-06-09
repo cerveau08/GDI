@@ -16,7 +16,7 @@
                     </div>
                     <div class="field">
                         <label class="label" for="fullname">Mot de Passe</label>
-                        <input formControlName="password" class="input-text" type="text" name="fullname" id="fullname">
+                        <input formControlName="password" class="input-text" type="password" name="fullname" id="fullname">
                     </div>
                     <button (click)="onSubmit()" class="button">Se connecter</button>
                     <p class="forget" routerLink="/passwordforgetmail">Mot de passe oublié?</p>
@@ -35,9 +35,9 @@
             </div>
             <div class="field-mobile">
                 <label class="label-mobile" for="fullname">Mot de Passe</label>
-                <input formControlName="password" class="input-text-mobile" type="text" name="fullname" id="fullname">
+                <input formControlName="password" class="input-text-mobile" type="password" name="fullname" id="fullname">
             </div>
-            <button type="submit" class="button-mobile">Se connecter</button>
+            <button type="submit" (click)="onSubmit()" class="button-mobile">Se connecter</button>
             <p class="forget-mobile" routerLink="/passwordforgetmail">Mot de passe oublié?</p>
         </form>
     </div>
