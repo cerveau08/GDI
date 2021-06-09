@@ -4,6 +4,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { NavigationExtras, Router } from '@angular/router';
 import { DataService } from 'src/app/service/data.service';
 import { PaginationService } from 'src/app/service/pagination.service';
+import { OthersService } from 'src/app/services/others.service';
 import { ModalService } from 'src/app/_modal';
 
 @Component({
@@ -20,6 +21,7 @@ export class InterfincontratComponent implements OnInit {
   pagedItems: any[];
   date: any;
   dateFin;
+  dataInter: any;
   mois: any = [
     'Janvier', 
     'Février', 
@@ -56,6 +58,7 @@ export class InterfincontratComponent implements OnInit {
   constructor(private dataService: DataService,
     private pagerService: PaginationService,
     private modalService: ModalService,
+    private otherService: OthersService,
     public datepipe: DatePipe,
     public router: Router
     ) {
@@ -68,7 +71,16 @@ export class InterfincontratComponent implements OnInit {
       somme: new FormControl('')
     });
     this.datas = this.dataService.getData();;
+
+    //this.otherService.getListAgence().subscribe(
+      //data => {
+       //// this.dataInter = data.data;
+       // console.log(data);
+      //}
+    //);
   }
+
+
 
   openDetail(data) {
     this.router.navigate(['/accueil/detailinter'], {

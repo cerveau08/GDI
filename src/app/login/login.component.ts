@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
   getScreenSize(event?) {
         this.scrHeight = window.innerHeight;
         this.scrWidth = window.innerWidth;
-        console.log(this.scrHeight, this.scrWidth);
+        //console.log(this.scrHeight, this.scrWidth);
   }
   ngOnInit() {
     this.loginForm = new FormGroup({

@@ -100,7 +100,7 @@ export class AddagenceComponent implements OnInit {
       )
   }
 
-  //recuperation de l'avatar
+  //recuperation de l'image
   getLogo(e:any) {
     this.logo= e.files.item(0);
     console.log(this.logo)

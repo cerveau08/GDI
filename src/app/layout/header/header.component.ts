@@ -23,7 +23,7 @@ export class HeaderComponent implements OnInit {
   getScreenSize(event?) {
         this.scrHeight = window.innerHeight;
         this.scrWidth = window.innerWidth;
-        console.log(this.scrHeight, this.scrWidth);
+        //console.log(this.scrHeight, this.scrWidth);
   }
   mois: any = [
     'Janvier', 
@@ -61,7 +61,7 @@ export class HeaderComponent implements OnInit {
   }
 
   navigate(item, id) {
-    console.log(item.path);
+    //console.log(item.path);
     if(item.path) {
       this.sidenavService.close(id);
       this.side = false;
@@ -116,7 +116,7 @@ export class HeaderComponent implements OnInit {
       annee: this.demandeForm.value.annee,
       poste: this.demandeForm.value.poste,
     } 
-    console.log(info);
+    //console.log(info);
     return info;
   }
 
