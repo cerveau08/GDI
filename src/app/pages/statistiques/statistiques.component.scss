@@ -7,7 +7,7 @@
     margin-right: 10px;
 }
 .statt-header {
-    font-size: 26px;
+    font-size: 18px;
     font-weight: bold;
     font-stretch: normal;
     font-style: normal;
@@ -21,7 +21,7 @@
     display: flex;
 }
 .statt-sous-header {
-    font-size: 21px;
+    font-size: 16px;
     font-weight: bold;
     font-stretch: normal;
     font-style: normal;
@@ -83,7 +83,7 @@
     grid-template-columns: 1fr 300px;
 }
     .total {
-        font-size: 24px;
+        font-size: 16px;
         font-weight: bold;
         font-stretch: normal;
         font-style: normal;
@@ -130,15 +130,15 @@
     margin-left: 10px;
 }
 .icone-calendar1 {
-    margin-top: 10px;
+    margin-top: 5px;
     margin-left: 15px;
 }
 .filtrer-annees {
     display: flex;
     border: 1px solid #f5f6f9;
     border-radius: 5px;
-    height: 50px;
-    width: 130px;
+    height: 40px;
+    width: 120px;
     margin-top: 15px;
     cursor: pointer;
 }
@@ -700,7 +700,7 @@ table {
     position: relative;
 }
 #chart1 {
-    max-width: 750px;
+    width: 600px;
     margin: 0 auto;
     apx-chart{
         width: 10px !important;

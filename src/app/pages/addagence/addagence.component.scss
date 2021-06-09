@@ -11,7 +11,7 @@
     padding-right: 10px;
 }
 .all1 {
-    width: 650px;
+    width: 500px;
     margin: 0 auto;
 }
 .p1 {
@@ -42,13 +42,13 @@
 .grid {
     margin-top: 10px;
     display: grid;
-    grid-template-columns: 200px 1fr;
+    grid-template-columns: 150px 1fr;
 }
 .image-upload {
-    width: 190px;
-    height: 190px;
+    width: 140px;
+    height: 140px;
     margin-left: 0px;
-    border-radius: 40px;
+    border-radius: 20px;
     border: solid 3px #009393;
 }
 ::-webkit-file-upload-button {
@@ -73,7 +73,7 @@
 /* for poor sods using IE */
 ::-ms-browse {
     content: 'Ajouter Photo';
-    width: 150px;
+    width: 120px;
     height: 50px;
     background-color: white;
     border: none;
@@ -83,10 +83,10 @@
     text-decoration: none;
     font-weight: bold;
     display: inline-block;
-    font-size: 18px;
+    font-size: 14px;
     cursor: pointer;
     outline: none;
-    border: 3px solid black;
+    border: 2px solid black;
     margin-top: 10px;
     margin-left: 5px;
 }
@@ -96,8 +96,8 @@
 }
 .button::before {
     content: 'Ajouter Photo';
-    width: 158px;
-    height: 35px;
+    width: 120px;
+    height: 30px;
     background-color: white;
     border: none;
     color: black;
@@ -105,13 +105,13 @@
     text-decoration: none;
     font-weight: bold;
     display: inline-block;
-    font-size: 18px;
+    font-size: 16px;
     cursor: pointer;
     outline: none;
     border: 3px solid black;
     margin-top: 10px;
-    margin-left: 10px;
-    padding-top: 15px;
+    margin-left: 0px;
+    padding-top: 5px;
 }
 .others {
     margin-left: 10px;
@@ -119,31 +119,33 @@
 input {
     padding-left: 10px;
     outline: none;
+    font-size: 14px;
 }
 .input1 input {
-    width: 415px;
-    height: 41px;
+    width: 315px;
+    height: 30px;
     background-color: #f5f6f9;
     border-radius: 1px;
     border: solid 1px #d8d8d8;
     margin-bottom: 10px;
 }
 .input2 input {
-    width: 195px;
-    height: 41px;
+    width: 145px;
+    height: 30px;
     background-color: #f5f6f9;
     border-radius: 1px;
     border: solid 1px #d8d8d8;
     margin-bottom: 10px;
 }
 .input4 textarea {
-    width: 422px;
-    height: 114px;
+    width: 315px;
+    height: 64px;
     background-color: #f5f6f9;
     border-radius: 1px;
     border: solid 1px #d8d8d8;
     margin-bottom: 10px;
     outline: none;
+    padding-left: 10px;
 }
 .input3 {
     margin-left: 10px;
@@ -154,9 +156,9 @@ input {
 }
 .button2 {
     width: 106px;
-    height: 50px;
+    height: 40px;
     background: #f16e00;
-    font-size: 18px;
+    font-size: 14px;
     font-weight: bold;
     font-stretch: normal;
     font-style: normal;
@@ -164,7 +166,7 @@ input {
     letter-spacing: -0.2px;
     color: white;
     border-radius: none;
-    margin-top: 15px;
+    margin-top: 5px;
     border: none;
     margin-bottom: 10px;
 }
