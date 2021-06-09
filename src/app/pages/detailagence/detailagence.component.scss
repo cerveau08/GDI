@@ -4,7 +4,7 @@
     background-color: #f5f6f9;
 }
 .all2 {
-    padding: 30px 40px;
+    padding: 10px;
     background-color: white;
     margin-right: 10px;
 }
@@ -68,9 +68,6 @@
                         margin-bottom: 0;
                     }
                 
-                .actif {
-                 //   margin-left: 100px;
-                }
                     .title {
                         font-size: 12px;
                         font-weight: 500;
@@ -94,9 +91,6 @@
                         margin-bottom: 0;
                     }
                 
-                .archiv {
-                //    margin-left: 100px;
-                }
                     .title {
                         font-size: 12px;
                         font-weight: 500;
@@ -151,7 +145,7 @@
                     margin-top: 5px;
                 }
                 .info-item {
-                    font-size: 18px;
+                    font-size: 14px;
                     font-weight: normal;
                     font-stretch: normal;
                     font-style: normal;
@@ -248,24 +242,24 @@
    
         .buttonsupp {
             width: 127px;
-            height: 50px;
+            height: 40px;
             background: #cd3c14;
-            font-size: 18px;
+            font-size: 14px;
             font-weight: bold;
             font-stretch: normal;
             font-style: normal;
             line-height: 1.11;
             letter-spacing: -0.2px;
             color: white;
-            margin-left: 80px;
+            margin-left: 50px;
             outline: none;
             border: none;
         }
         .buttonaffi {
             width: 176px;
-            height: 50px;
+            height: 40px;
             background: black;
-            font-size: 18px;
+            font-size: 14px;
             font-weight: bold;
             font-stretch: normal;
             font-style: normal;
@@ -273,24 +267,24 @@
             letter-spacing: -0.2px;
             color: white;
             border-radius: none;
-            margin-top: 30px;
+            margin-top: 20px;
             outline: none;
             border: none;
         }
         .buttonmodif {
             width: 117px;
-            height: 50px;
+            height: 40px;
             background: white;
-            font-size: 18px;
+            font-size: 14px;
             font-weight: bold;
             font-stretch: normal;
             font-style: normal;
             line-height: 1.11;
             letter-spacing: -0.2px;
             color: black;
-            margin-left: 80px;
+            margin-left: 30px;
             border-radius: none;
-            margin-top: 30px;
+            margin-top: 20px;
             outline: none;
             border: 3px solid black;
         }
