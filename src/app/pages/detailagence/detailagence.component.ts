@@ -20,8 +20,7 @@ export class DetailagenceComponent implements OnInit {
   showupdate;
   showadduser;
   id: any;
-  agence: any;
-  datas: any;
+  dataAgence: any;
   agenceForm: FormGroup;
   viewer = 'google';
   DemoDoc="http://www.africau.edu/images/default/sample.pdf" 
@@ -47,19 +46,16 @@ export class DetailagenceComponent implements OnInit {
       this.showupdate = false;
     }
 
-    this.getAgenceById();
-  }
-  getAgenceById(){
-    this.otherService.getAgenceId(this.id).subscribe(
+    this.otherService.getOneAgenceById(this.item).subscribe(
       data =>{
-         this.datas = this.id;
-         console.log(data);
+         this.dataAgence = data;
+         console.log(this.dataAgence);
       },
       error =>{
         console.log(error)
       }
     );
-
+  
     //this.datas = this.dataService.getData();
     this.agenceForm = new FormGroup({
       nom: new FormControl (''),

@@ -6,7 +6,7 @@
           <mat-horizontal-stepper [linear]="isLinear" #stepper labelPosition="bottom">
             <mat-step [stepControl]="interForm" >
               <ng-template matStepLabel>
-                  <div class="head">
+                  <div class="">
                     <div class="header" [style.background]="colors1()">
                         <p class="titre"> 1. Infos personnelles</p>
                     </div>
@@ -161,7 +161,7 @@
                     <button class="button2" type="button" (click)="submit()" matSteppperNext>Enregistrer</button>
                 </form>
                 </div>
-                <div class="message" *ngIf="submited" >
+                <!--<div class="message" *ngIf="submited" >
                   <div class="grid1">
                     <div class="image">
                       <img class="image-valide" src="../assets/images/valide.png" alt="">
@@ -175,7 +175,7 @@
                   <button class="button3" type="button" (click)="removeItem()" (click)="stepper.reset()">Ajouter un autre</button>
                   <button class="button4" (click)="removeItem()" routerLink="/accueil/souscontrat">Liste interimaires</button>
                   <button class="button5" (click)="removeItem()" routerLink="/accueil/homedrh">Tableau de bord</button>
-                </div>
+                </div>-->
               </div>
             </mat-step>
 

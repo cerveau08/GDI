@@ -17,6 +17,7 @@ export class ListeragenceComponent implements OnInit {
   user;
   showupdate;
   showadduser;
+  id: any;
   datas: any;
   agenceForm: FormGroup;
   userForm: FormGroup;
@@ -64,7 +65,7 @@ export class ListeragenceComponent implements OnInit {
     });
     
   }
-
+  
   openDetail(data) {
     this.router.navigate(['/accueil/detailagence'], {
       queryParams: {

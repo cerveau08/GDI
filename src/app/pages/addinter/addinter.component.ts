@@ -18,7 +18,7 @@ export class AddinterComponent implements OnInit {
     '50.000f',
     '60.000f',
     '70.000f',
-    '80.000f', 
+    '80.000f',
   ];
   submited = false;
   matricule = "Tmp_02568";
