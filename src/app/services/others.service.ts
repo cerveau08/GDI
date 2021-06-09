@@ -35,8 +35,8 @@ export class OthersService {
     return this.http.get<any>(this.reqUrl + '/listeAgence');
   }
    // recupere les details d'une agence
-  getAgenceId(id: any): Observable<any> {
-    return this.http.get<any>(this.reqUrl + '/detailAgence', id);
+   getOneAgenceById(id: number) {
+    return this.http.get(this.reqUrl + `/detailAgence/${id}`);
   }
  // recupere le liste des attestation
  getListAttest(): Observable<any> {
