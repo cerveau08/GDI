@@ -5,6 +5,9 @@
             <p class="texte-manager">{{p}}</p>
             <div class="bouton"  >
                 <button class="button" type="button" > <mat-icon>upload</mat-icon> <p>Charger fichier XLS, CSV, SQL</p></button>
+                <div class="content-button-valider">
+                    <button class="button-valider">Valider</button>
+                </div>
             </div>
             <div class="form-add-manager-matricule">
                 <form [formGroup]="matriculeForm">
@@ -13,9 +16,10 @@
                         <input class="input-form" formControlName="matricule" type="text">
                     </div>
                     <div class="content-button">
-                        <button (click)="submitted1()" class="buttob-envoyer">Envoyer</button>
+                        <button (click)="submitted1()" class="button-envoyer">Envoyer</button>
                     </div>
                 </form>
+                <p class="info-manager"></p>
             </div>
             <div *ngIf="show" class="form-add-manager">
                 <form [formGroup]="userForm">

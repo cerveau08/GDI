@@ -47,8 +47,12 @@ export class AgenceComponent implements OnInit {
   };
   showHome = true;
   url1;
-  url3: any;
+  url3;
+  url2;
   user;
+  filename1 = "";
+  filename2 = "";
+  filename3 = "";
   showupdate;
   showadduser;
   datas: any;
@@ -138,9 +142,21 @@ export class AgenceComponent implements OnInit {
         var reader = new FileReader();
       
         reader.onload = (event: any) => {
+          this.url2 = event.target.result;
+        }
+        this.filename2 = event.target.files[0].name;
+        reader.readAsDataURL(event.target.files[0]);
+      }
+  }
+  readUrl2(event: any) {
+    console.log('readUrl');
+      if (event.target.files && event.target.files[0]) {
+        var reader = new FileReader();
+      
+        reader.onload = (event: any) => {
           this.url3 = event.target.result;
         }
-      
+        this.filename3 = event.target.files[0].name;
         reader.readAsDataURL(event.target.files[0]);
       }
   }

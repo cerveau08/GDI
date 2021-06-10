@@ -28,16 +28,17 @@
     border: 2px solid #979797;
     margin-top: 20px;
     display: grid;
-    grid-template-columns: 125px 1fr 130px;
+    grid-template-columns: 105px 1fr 125px;
+    max-width: 750px;
 }
 .image img {
-    width: 120px;
-    height: 120px;
+    width: 100px;
+    height: 100px;
     margin-top: 20px;
     margin-left: 5px;
 }
 .nom {
-    font-size: 24px;
+    font-size: 18px;
     font-weight: bold;
     font-stretch: normal;
     font-style: normal;
@@ -141,7 +142,7 @@ button{
     border: solid 2px #000000;
     color: #000;
     background: white;
-    margin-top: 20px;
+    margin-top: 10px;
     margin-left: 30px;
     outline: none;
 }
@@ -152,7 +153,7 @@ button{
     border: none;
     color: white;
     background: #f16e00;
-    margin-top: 20px;
+    margin-top: 10px;
     margin-left: 30px;
     outline: none;
 }
@@ -163,7 +164,7 @@ button{
     border: solid 2px #000000;
     color: #000;
     background: white;
-    margin-top: 20px;
+    margin-top: 10px;
     outline: none;
 }
 

@@ -162,7 +162,6 @@ const info = {
     console.log(this.interForm.value);
     localStorage.setItem('color3', "20px solid #f16e00");
     localStorage.setItem('colorc', "#f16e00");
-   // this.submited = true;
     this.otherService.addInter(this.interForm.value).subscribe(
       data => {
         console.log(data);
@@ -170,6 +169,7 @@ const info = {
          // alert('Intérimaire ajouté avec succées...');
         //}
         //this.route.navigate(['/accueil/listagence']);
+        this.submited = true;
       },
         error=> {
           this.errorMsg = 'Probleme de connexion au serveur';

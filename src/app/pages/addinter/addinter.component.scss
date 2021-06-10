@@ -9,11 +9,11 @@
     padding: 5px;  
 }
 .all1 {
-  width: 610px;
+  width: 500px;
   margin: 0 auto;
 }
 .ajouter {
-    font-size: 34px;
+    font-size: 18px;
     font-weight: bold;
     font-stretch: normal;
     font-style: normal;
@@ -41,7 +41,7 @@
 .triangle1 {
   position: absolute;
   top: 0;
-  left: 203px;
+  left: 160px;
   width: 0; 
   height: 0; 
   border-top: 20px solid transparent;
@@ -51,7 +51,7 @@
 .triangle2 {
   position: absolute;
   top: 0;
-  left: 405px;
+  left: 320px;
   width: 0; 
   height: 0; 
   border-top: 20px solid transparent;
@@ -61,7 +61,7 @@
 .triangle3 {
   position: absolute;
   top: 0;
-  left: 608px;
+  left: 480px;
   width: 0; 
   height: 0; 
   border-top: 20px solid transparent;
@@ -69,12 +69,12 @@
 //  border-left: 20px solid green;
 }
 .head {
-    width: 232px;
+    width: 160px;
     position: relative;
 }
 .header {
   padding-top: 5px;
-  max-width: 232px;
+  max-width: 160px;
   height: 36px;
   background: #000000;
   position: relative;
@@ -137,7 +137,7 @@ button {
 
 
 .matri {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
@@ -145,7 +145,7 @@ button {
   letter-spacing: -0.1px;
   color: #222222;
   margin-top: 30px;
-  margin-left: -20px;
+  margin-left: 5px;
   span {
       font-weight: bold;
   }
@@ -153,13 +153,13 @@ button {
 .grid {
   margin-top: 10px;
   display: grid;
-  grid-template-columns: 205px 1fr;
+  grid-template-columns: 150px 1fr;
 }
 .image-upload {
-  width: 200px;
-  height: 200px;
+  width: 140px;
+  height: 140px;
   margin-left: 0px;
-  border-radius: 40px;
+  border-radius: 20px;
   border: solid 3px #009393;
 }
 ::-webkit-file-upload-button {
@@ -207,8 +207,8 @@ button {
 }
 .buttonphoto1::before {
   content: 'Ajouter Photo';
-  width: 150px;
-  height: 35px;
+  width: 120px;
+  height: 25px;
   background-color: white;
   border: none;
   color: black;
@@ -216,13 +216,12 @@ button {
   text-decoration: none;
   font-weight: bold;
   display: inline-block;
-  font-size: 18px;
+  font-size: 14px;
   cursor: pointer;
   outline: none;
-  border: 3px solid black;
-  margin-top: 10px;
-  margin-left: 15px;
-  padding-top: 15px;
+  border: 2px solid black;
+  margin-top: 0px;
+  padding-top: 5px;
 }
 .others {
   margin-left: 20px;
@@ -232,20 +231,20 @@ input {
   outline: none;
 }
 .infoinput1 input {
-  width: 320px;
-  height: 41px;
+  width: 319px;
+  height: 30px;
   background-color: #f5f6f9;
   border-radius: 1px;
   border: solid 1px #d8d8d8;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 .infoinput2 input {
-  width: 148px;
-  height: 41px;
+  width: 147px;
+  height: 30px;
   background-color: #f5f6f9;
   border-radius: 1px;
   border: solid 1px #d8d8d8;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 .infoinput3 {
   margin-left: 10px;
@@ -319,7 +318,7 @@ button {
   text-decoration: none;
   font-weight: bold;
   display: inline-block;
-  font-size: 18px;
+  font-size: 14px;
   cursor: pointer;
   outline: none;
   border: 3px solid black;
@@ -332,8 +331,8 @@ button {
 }
 .buttonphoto2::before {
   content: 'Upload Contrat';
-  width: 150px;
-  height: 35px;
+  width: 120px;
+  height: 25px;
   background-color: white;
   border: none;
   color: black;
@@ -341,13 +340,12 @@ button {
   text-decoration: none;
   font-weight: bold;
   display: inline-block;
-  font-size: 18px;
+  font-size: 14px;
   cursor: pointer;
   outline: none;
   border: 3px solid black;
-  margin-top: 10px;
-  margin-left: 15px;
-  padding-top: 15px;
+  margin-top: 0px;
+  padding-top: 5px;
 }
 .others {
   margin-left: 20px;
@@ -357,20 +355,20 @@ input {
   outline: none;
 }
 .contratinput2 input {
-  width: 154px;
-  height: 41px;
+  width: 145px;
+  height: 30px;
   background-color: #f5f6f9;
   border-radius: 1px;
   border: solid 1px #d8d8d8;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 .contratinput3 {
   margin-left: 10px;
 }
 select {
-  width: 168px;
-  height: 45px;
-  margin-bottom: 20px;
+  width: 159px;
+  height: 34px;
+  margin-bottom: 10px;
   background-color: #f5f6f9;
   outline: none;
   color: black;
@@ -435,11 +433,11 @@ select {
 }
 .posteinput2 {
   width: 450px;
-  margin: 20px auto;
+  margin: 5px auto;
 }
 .photo {
-  width: 205px;
-  margin: 20px auto;
+  width: 150px;
+  margin: 0px auto;
 }
 ::-webkit-file-upload-button {
   
@@ -486,8 +484,8 @@ select {
 }
 .buttonphoto3::before {
   content: 'Fiche de poste';
-  width: 145px;
-  height: 35px;
+  width: 125px;
+  height: 25px;
   background-color: white;
   border: none;
   color: black;
@@ -495,13 +493,11 @@ select {
   text-decoration: none;
   font-weight: bold;
   display: inline-block;
-  font-size: 18px;
+  font-size: 14px;
   cursor: pointer;
   outline: none;
-  border: 3px solid black;
-  margin-top: 10px;
-  margin-left: 15px !important;
-  padding-top: 15px;
+  border: 2px solid black;
+  padding-top: 5px;
 }
 .buttonphoto4::-webkit-file-upload-button {
   visibility: hidden;
@@ -509,8 +505,8 @@ select {
 }
 .buttonphoto4::before {
   content: 'Proces Verbal';
-  width: 145px;
-  height: 35px;
+  width: 125px;
+  height: 25px;
   background-color: white;
   border: none;
   color: black;
@@ -518,13 +514,11 @@ select {
   text-decoration: none;
   font-weight: bold;
   display: inline-block;
-  font-size: 18px;
+  font-size: 14px;
   cursor: pointer;
   outline: none;
-  border: 3px solid black;
-  margin-top: 10px;
-  margin-left: 15px !important;
-  padding-top: 15px;
+  border: 2px solid black;
+  padding-top: 5px;
 }
 .others {
   margin-left: 10px;
@@ -534,8 +528,8 @@ input {
   outline: none;
 }
 .posteinput2 input {
-  width: 195px;
-  height: 41px;
+  width: 205px;
+  height: 30px;
   background-color: #f5f6f9;
   border-radius: 1px;
   border: solid 1px #d8d8d8;
@@ -545,33 +539,34 @@ input {
   margin-left: 10px;
 }
 
-.select6 {
+.select7 {
   margin-left: 10px;
+  width: 215px;
 }
 .mat-button, .mat-flat-button, .mat-icon-button, .mat-stroked-button {
   border-radius: 0;
 }
 .button1 {
-  width: 126px;
-  height: 50px;
+  width: 116px;
+  height: 30px;
   border: solid 2px #000000;
   background: white;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: bold;
   font-stretch: normal;
   font-style: normal;
   line-height: 1.11;
   letter-spacing: -0.2px;
   color: #000000;
-  margin-left: 80px;
+  margin-left: 70px;
   outline: none;
 }
 button {
   cursor: pointer;
 }
 .button2 {
-  width: 126px;
-  height: 50px;
+  width: 106px;
+  height: 30px;
   background: #f16e00;
   font-size: 18px;
   font-weight: bold;
@@ -580,9 +575,9 @@ button {
   line-height: 1.11;
   letter-spacing: -0.2px;
   color: white;
-  margin-left: 130px;
+  margin-left: 120px;
   border-radius: none;
-  margin-top: 30px;
+  margin-top: 20px;
   outline: none;
   border: none;
   cursor: pointer;
@@ -591,23 +586,23 @@ button {
   margin-top: 90px;
 }
 .grid1 {
-  width: 550px;
+  width: 490px;
   margin: 40px auto;
   display: grid;
-  grid-template-columns: 160px 1fr;
+  grid-template-columns: 150px 1fr;
 }
 .image-valide {
-  width: 158px;
-  height: 158px;
+  width: 148px;
+  height: 148px;
   border-radius: 40px;
 }
 .text {
   margin-top: 10px;
   margin-left: 10px;
-  width: 386px;
+  width: 300px;
 }
 .p1 {
-  font-size: 16px;
+  font-size: 14px;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
@@ -620,10 +615,10 @@ button {
   }
 }
 .button3 {
-  width: 167px;
-  height: 50px;
+  width: 127px;
+  height: 30px;
   background: #f16e00;
-  font-size: 18px;
+  font-size: 14px;
   font-weight: bold;
   font-stretch: normal;
   font-style: normal;
@@ -635,10 +630,10 @@ button {
   border: none;
 }
 .button4 {
-  width: 176px;
-  height: 50px;
+  width: 156px;
+  height: 30px;
   background: black;
-  font-size: 18px;
+  font-size: 14px;
   font-weight: bold;
   font-stretch: normal;
   font-style: normal;
@@ -652,10 +647,10 @@ button {
   border: none;
 }
 .button5 {
-  width: 167px;
-  height: 50px;
+  width: 137px;
+  height: 30px;
   background: white;
-  font-size: 18px;
+  font-size: 14px;
   font-weight: bold;
   font-stretch: normal;
   font-style: normal;

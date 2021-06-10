@@ -15,7 +15,7 @@ export class DetailinterComponent implements OnInit {
   item: any;
   id: any;
   public restant: any;
-  public nombre = 39;
+  public nombre = 59;
   public left: any;
   donnees: any;
   dataInter:any;
