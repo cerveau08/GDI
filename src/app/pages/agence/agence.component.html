@@ -190,9 +190,9 @@
                 <div >
                 <div class="grid">
                     <div class="photo">
-                    <img alt="" *ngIf="!url1==true" src="../assets/images/{{item.agentimg}}">
-                    <img alt="" *ngIf="url1" [src]="url1" height="60">
-                    <input formControlName="photo" class="button" type="file" (change)="readUrl($event)" >
+                        <img alt="" class="photo-agence" *ngIf="!url1==true" src="../assets/images/{{item.agentimg}}">
+                        <img alt="" class="photo-agence" *ngIf="url1" [src]="url1" height="60">
+                        <input formControlName="photo" class="button" type="file" (change)="readUrl($event)" >
                     </div>
                     <div class="others">
                         <div class="input1">
@@ -222,7 +222,15 @@
                     <p class="p2">Documents Entreprise</p>
                     <div class="buttons1">
                         <input formControlName="contrat" class="button5" type="file" (change)="readUrl1($event)" >
-                        <input formControlName="cnidg" class="button6" type="file" (change)="readUrl1($event)" >
+                        <input formControlName="cnidg" class="button6" type="file" (change)="readUrl2($event)" >
+                    </div>
+                    <div class="filenames">
+                        <div class="nom-file2">
+                            <p class="filename2" *ngIf="url2">{{filename2}}</p>
+                        </div>
+                        <div class="nom-file3">
+                            <p class="filename3" *ngIf="url3">{{filename3}}</p>
+                        </div>
                     </div>
                 </div>
                 <div class="buttons">

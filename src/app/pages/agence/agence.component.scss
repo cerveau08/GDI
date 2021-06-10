@@ -23,7 +23,7 @@
            margin-left: 10px;
         }
            .nom2 {
-                font-size: 36px;
+                font-size: 22px;
                 font-weight: bold;
                 font-stretch: normal;
                 font-style: normal;
@@ -44,54 +44,7 @@
                 display: grid;
                 grid-template-columns: 33% 33% 33%;
             }
-              
-                    .title {
-                        font-size: 12px;
-                        font-weight: 500;
-                        font-stretch: normal;
-                        font-style: normal;
-                        line-height: normal;
-                        letter-spacing: normal;
-                        color: #222222;
-                        margin-top: 0;
-                        margin-bottom: 0;
-                    }
-                    .libelle {
-                        font-size: 28px;
-                        font-weight: 900;
-                        font-stretch: normal;
-                        font-style: normal;
-                        line-height: normal;
-                        letter-spacing: normal;
-                        color: #222222;
-                        margin-top: 10px;
-                        margin-bottom: 0;
-                    }
-                
-                    .title {
-                        font-size: 12px;
-                        font-weight: 500;
-                        font-stretch: normal;
-                        font-style: normal;
-                        line-height: normal;
-                        letter-spacing: normal;
-                        color: #222222;
-                        margin-top: 0;
-                        margin-bottom: 0;
-                    }
-                    .libelle {
-                        font-size: 28px;
-                        font-weight: 900;
-                        font-stretch: normal;
-                        font-style: normal;
-                        line-height: normal;
-                        letter-spacing: normal;
-                        color: #222222;
-                        margin-top: 10px;
-                        margin-bottom: 0;
-                    }
-                
-                
+    
                     .title {
                         font-size: 12px;
                         font-weight: 500;
@@ -105,7 +58,7 @@
                         text-align: center;
                     }
                     .libelle {
-                        font-size: 22px;
+                        font-size: 16px;
                         font-weight: 900;
                         font-stretch: normal;
                         font-style: normal;
@@ -141,7 +94,7 @@
             }
                 .icon-item {
                     color: #009393;
-                    font-size: 30px;
+                    font-size: 20px;
                     margin-left: 5px;
                     margin-top: 5px;
                 }
@@ -243,9 +196,9 @@
    
         .buttonsupp {
             width: 117px;
-            height: 40px;
+            height: 30px;
             background: #cd3c14;
-            font-size: 18px;
+            font-size: 14px;
             font-weight: bold;
             font-stretch: normal;
             font-style: normal;
@@ -259,9 +212,9 @@
         }
         .buttonaffi {
             width: 156px;
-            height: 40px;
+            height: 30px;
             background: black;
-            font-size: 18px;
+            font-size: 14px;
             font-weight: bold;
             font-stretch: normal;
             font-style: normal;
@@ -276,9 +229,9 @@
         }
         .buttonmodif {
             width: 117px;
-            height: 40px;
+            height: 30px;
             background: white;
-            font-size: 18px;
+            font-size: 14px;
             font-weight: bold;
             font-stretch: normal;
             font-style: normal;
@@ -302,13 +255,13 @@
 
 //modal-1
 .btns2{
-    width: 350px;
+    width: 310px;
     margin: 0 auto;
 }
 .btn2 {
-    width: 142px;
-    height: 50px;
-    font-size: 16px;
+    width: 122px;
+    height: 30px;
+    font-size: 14px;
     font-weight: bold;
     font-stretch: normal;
     font-style: normal;
@@ -321,9 +274,9 @@
     margin-top: 7px;
 }
 .btn2a {
-    width: 166px;
-    height: 50px;
-    font-size: 16px;
+    width: 146px;
+    height: 30px;
+    font-size: 14px;
     font-weight: bold;
     font-stretch: normal;
     font-style: normal;
@@ -359,8 +312,8 @@ jw-modal {
       margin-right: 30px;
       font-weight: bold;
       position: absolute;
-      right: 5%;
-      top: 5%;
+      right: 1%;
+      top: 1%;
     }
     .image-logo-agence {
         width: 180px;
@@ -374,9 +327,12 @@ jw-modal {
 .grid {
     margin-top: 10px;
     display: grid;
-    grid-template-columns: 200px 1fr;
+    grid-template-columns: 150px 1fr;
 }
-
+.photo-agence {
+    width: 140px;
+    height: 140px;
+}
 ::-webkit-file-upload-button {
     
     width: 158px;
@@ -422,8 +378,8 @@ jw-modal {
 }
 .button::before {
     content: 'Modifier';
-    width: 148px;
-    height: 35px;
+    width: 120px;
+    height: 25px;
     background-color: white;
     border: none;
     color: black;
@@ -431,13 +387,13 @@ jw-modal {
     text-decoration: none;
     font-weight: bold;
     display: inline-block;
-    font-size: 18px;
+    font-size: 14px;
     cursor: pointer;
     outline: none;
-    border: 3px solid black;
-    margin-top: 20px;
+    border: 2px solid black;
+    margin-top: 10px;
     margin-left: 0px;
-    padding-top: 15px;
+    padding-top: 5px;
 }
 .others {
     margin-left: 0px;
@@ -448,27 +404,27 @@ input {
 }
 .input1 input {
     width: 415px;
-    height: 41px;
+    height: 30px;
     background-color: #f5f6f9;
     border-radius: 1px;
     border: solid 1px #d8d8d8;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 }
 .input2 input {
     width: 195px;
-    height: 41px;
+    height: 30px;
     background-color: #f5f6f9;
     border-radius: 1px;
     border: solid 1px #d8d8d8;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 }
 .input4 textarea {
     width: 422px;
-    height: 114px;
+    height: 80px;
     background-color: #f5f6f9;
     border-radius: 1px;
     border: solid 1px #d8d8d8;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     outline: none;
 }
 .input3 {
@@ -497,7 +453,7 @@ input {
 .button5::before {
     content: 'Contrat';
     width: 128px;
-    height: 30px;
+    height: 25px;
     background-color: white;
     border: none;
     color: black;
@@ -505,13 +461,13 @@ input {
     text-decoration: none;
     font-weight: bold;
     display: inline-block;
-    font-size: 18px;
+    font-size: 14px;
     cursor: pointer;
     outline: none;
-    border: 3px solid black;
+    border: 2px solid black;
     margin-top: 10px;
     margin-left: 10px;
-    padding-top: 10px;
+    padding-top: 5px;
 
 }
 .button6::-webkit-file-upload-button {
@@ -521,7 +477,7 @@ input {
 .button6::before {
     content: 'CNI DG';
     width: 128px;
-    height: 30px;
+    height: 25px;
     background-color: white;
     border: none;
     color: black;
@@ -529,35 +485,49 @@ input {
     text-decoration: none;
     font-weight: bold;
     display: inline-block;
-    font-size: 18px;
+    font-size: 14px;
     cursor: pointer;
     outline: none;
-    border: 3px solid black;
+    border: 2px solid black;
     margin-top: 10px;
     margin-left: 10px;
-    padding-top: 10px;
+    padding-top: 5px;
 }
 .buttons1 {
     width: 350px;
-    margin: 20px auto;
+    margin: 10px auto;
     display: flex;
 }
 .buttons {
-    width: 150px;
+    width: 100px;
     margin: 20px auto;
     display: flex;
 }
+.filenames {
+    width: 400px;
+    margin: 5px auto;
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+.filename3 {
+    text-align: right;
+    font-size: 14px;
+    color: #ff7900;
+}
+.filename2 {
+    text-align: left;
+    font-size: 14px;
+    color: #ff7900;
+}
 .buttonenregistrer {
     width: 98px;
-    height: 50px;
+    height: 30px;
     padding: 8px 15px 9px;
     border: none;
     color: white;
     background: #000000;
-    margin-top: 20px;
-    margin-left: 30px;
     outline: none;
-    font-size: 18px;
+    font-size: 14px;
     font-weight: bold;
 }
 

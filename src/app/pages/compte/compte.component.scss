@@ -9,7 +9,7 @@
     padding: 10px;
 }
 .detail{
-    font-size: 30px;
+    font-size: 18px;
     font-weight: bold;
     font-stretch: normal;
     font-style: normal;
@@ -24,7 +24,7 @@
     margin-top: 0px;
 }
 .duree{
-    font-size: 18px;
+    font-size: 16px;
     font-weight: normal;
     font-stretch: normal;
     font-style: normal;
@@ -34,7 +34,7 @@
     text-align: center;
     margin-top: 0px;
     span{
-        font-size: 18px;
+        font-size: 16px;
         font-weight: bold;
         letter-spacing: -0.12px;
     } 
@@ -65,14 +65,19 @@
     top: -10px;
     background-color: white;
 }
-
+.datedebut {
+    font-size: 14px;
+    font-weight: bold;
+}
 .datefin {
     text-align: right;
     margin-top: -35px;
+    font-size: 14px;
+    font-weight: bold;
 }
 .grid-container {
     display: grid;
-    grid-template-columns: 230px  1fr;
+    grid-template-columns: 180px  1fr;
     grid-gap: 1px;
     margin-top: 10px;
 }
@@ -80,27 +85,27 @@
     position: relative;
 }
 .image-interimaire {
-    width: 200px;
-    height: 200px;
-    border-radius: 40px;
+    width: 150px;
+    height: 150px;
+    border-radius: 20px;
     border: 3px solid #009393;
 }
 .image-contact {
-    width: 50px;
-    height: 50px;
+    width: 30px;
+    height: 30px;
 }
     .im1 {
         position: absolute;
-        top: 25px;
-        right: -10px;
+        top: 20px;
+        right: 10px;
     }
     .im2 {
         position: absolute;
-        top: 120px;
-        right: -10px;
+        top: 100px;
+        right: 10px;
     }
 .prenom{
-    font-size: 20px;
+    font-size: 16px;
     font-weight: bold;
     font-stretch: normal;
     font-style: normal;
@@ -112,7 +117,7 @@
     margin-bottom: 0;
 }
 .fonction{
-    font-size: 16px;
+    font-size: 14px;
     font-weight: normal;
     font-stretch: normal;
     font-style: italic;
@@ -139,7 +144,7 @@
 }
 .lot2{
     margin-left: 15px;
-    margin-top: 50px;
+    margin-top: 30px;
     margin-bottom: 15px;
     font-size: 14px;
     font-weight: normal;
@@ -154,11 +159,11 @@
 }
 .button1 {
     width: 80px;
-    height: 40px;
+    height: 30px;
     background-color: white;
     border: none;
     color: black;
-    padding: 5px 2px;
+    padding: 2px 2px;
     text-align: center;
     text-decoration: none;
     font-weight: bold;
@@ -171,11 +176,11 @@
 }
 .button2 {
     width: 192px;
-    height: 40px;
+    height: 30px;
     background-color: white;
     border: none;
     color: black;
-    padding: 5px 2px;
+    padding: 2px 2px;
     text-align: center;
     text-decoration: none;
     font-weight: bold;
@@ -189,11 +194,11 @@
 }
 .button3 {
     width: 125px;
-    height: 40px;
+    height: 30px;
     background-color: white;
     border: none;
     color: black;
-    padding: 5px 2px;
+    padding: 2px 2px;
     text-align: center;
     text-decoration: none;
     font-weight: bold;
@@ -207,11 +212,11 @@
 }
 .button4 {
     width: 80px;
-    height: 40px;
+    height: 30px;
     background-color: white;
     border: none;
     color: black;
-    padding: 5px 2px;
+    padding: 2px 2px;
     text-align: center;
     text-decoration: none;
     font-weight: bold;
