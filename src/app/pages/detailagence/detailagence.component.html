@@ -178,28 +178,28 @@
                     <div class="photo">
                         <img alt="" *ngIf="!url1==true" src="../assets/images/{{item.agentimg}}">
                         <img alt="" *ngIf="url1" [src]="url1" height="60">
-                        <input formControlName="photo" class="button" type="file" (change)="readUrl($event)" >
+                        <input formControlName="photo" class="button" type="file" (change)="getPhoto($event.target)" >
                     </div>
                     <div class="others">
                         <div class="input1">
-                        <input type="text" [value]="item.agence" formControlName="nom" placeholder="Nom entreprise">
+                        <input type="text"  formControlName="nom" placeholder="Nom entreprise">
                         </div>
                         <div class="input2">
-                            <input type="text" [value]="item.manager" formControlName="directeur" placeholder="Nom Directeur Général">
-                            <input class="input3" [value]="item.telephone"  type="text" formControlName="numerodg" placeholder="Numéro DG">
+                            <input type="text"  formControlName="nomdg" placeholder="Nom Directeur Général">
+                            <input class="input3"   type="text" formControlName="numdg" placeholder="Numéro DG">
                         </div>
                         <div class="input1">
-                            <input type="text" [value]="item.email"  formControlName="email" placeholder="Email">
+                            <input type="text"  formControlName="email" placeholder="Email">
                         </div>
                         <div class="input2">
-                            <input type="text" [value]="item.telephone" formControlName="mobile" placeholder="Numéro téléphone Mobile">
-                            <input class="input3" [value]="item.telephone"  type="text" formControlName="fixe" placeholder="Numéro Fixe">
+                            <input type="text"  formControlName="mobile" placeholder="Numéro téléphone Mobile">
+                            <input class="input3"   type="text" formControlName="fixe" placeholder="Numéro Fixe">
                         </div>
                         <div class="input1">
-                            <input type="text" [value]="item.site" formControlName="website" placeholder="Site web">
+                            <input type="text"  formControlName="siteweb" placeholder="Site web">
                         </div>
                         <div class="input4">
-                            <textarea type="textarea" [value]="item.adagen" formControlName="adresse" placeholder="Adresse"></textarea>
+                            <textarea type="textarea" formControlName="adresse" placeholder="Adresse"></textarea>
                         </div>
                     </div>
                 </div>

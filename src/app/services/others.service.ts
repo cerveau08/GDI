@@ -38,6 +38,9 @@ export class OthersService {
    getOneAgenceById(id: number) {
     return this.http.get(this.reqUrl + `/detailAgence/${id}`);
   }
+  getOneInterById(id: number) {
+    return this.http.get(this.reqUrl + `/detailInter/${id}`);
+  }
  // recupere le liste des attestation
  getListAttest(): Observable<any> {
   return this.http.get<any>(this.reqUrl + '/listeAttestationByMonth');
@@ -55,7 +58,7 @@ addAgence(data) {
     return this.http.post<any>(`${this.reqUrl}/ajoutAgence`, data);
   }
   updateAgence(user, id: number): Observable<any> {
-    return this.http.put<any>(`${this.reqUrl}/updateAgence/${id}`, user);
+    return this.http.post<any>(`${this.reqUrl}/updateAgence/${id}`, user);
   }
   getAgenceById(id: number): Observable<any> {
     return this.http.get<any>(`${this.reqUrl}/detailAgence/${id}`);

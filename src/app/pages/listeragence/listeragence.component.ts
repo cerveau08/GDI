@@ -2,7 +2,7 @@ import { DataService } from 'src/app/service/data.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ModalService } from 'src/app/_modal/modal.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import {OthersService} from '../../services/others.service';
 
 @Component({
@@ -18,14 +18,16 @@ export class ListeragenceComponent implements OnInit {
   showupdate;
   showadduser;
   id: any;
+  item:any;
   datas: any;
   agenceForm: FormGroup;
   userForm: FormGroup;
   dataAgence: any;
   constructor(private dataService: DataService,
     private modalService: ModalService,
+    private activeroute: ActivatedRoute,
     public router: Router,
-    private otherService: OthersService) { }
+    private otherService: OthersService) {}
 
   ngOnInit() {
     this.user = localStorage.getItem('user');
@@ -41,6 +43,7 @@ export class ListeragenceComponent implements OnInit {
         console.log(data);
       }
     );
+
     this.datas = this.dataService.getData();
     this.agenceForm = new FormGroup({
       nom: new FormControl (''),

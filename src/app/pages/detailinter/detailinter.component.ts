@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ModalService } from 'src/app/_modal/modal.service';
 import { NgxFileSaverService } from '@clemox/ngx-file-saver';
+import { OthersService } from 'src/app/services/others.service';
 
 @Component({
   selector: 'app-detailinter',
@@ -12,10 +13,12 @@ import { NgxFileSaverService } from '@clemox/ngx-file-saver';
 export class DetailinterComponent implements OnInit {
 
   item: any;
+  id: any;
   public restant: any;
   public nombre = 39;
   public left: any;
   donnees: any;
+  dataInter:any;
   objetctis = [
     {
       title: "Objectif 1",
@@ -62,6 +65,7 @@ export class DetailinterComponent implements OnInit {
   constructor(private activeroute: ActivatedRoute,
               private modalService: ModalService,
               private dataService: DataService,
+              private otherService: OthersService,
               private fileSaver: NgxFileSaverService,
               public router: Router, ) { 
     this.activeroute.queryParams.subscribe(params => {
@@ -71,7 +75,16 @@ export class DetailinterComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.donnees = this.dataService.getData();
+    //this.donnees = this.dataService.getData();
+    this.otherService.getOneInterById(this.id).subscribe(
+      data =>{
+         this.dataInter = data;
+         console.log(this.dataInter);
+      },
+      error =>{
+        console.log(error)
+      }
+    );
   }
 
   public get(p) {
