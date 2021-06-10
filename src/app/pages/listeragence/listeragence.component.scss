@@ -29,6 +29,7 @@
     margin-top: 20px;
     display: grid;
     grid-template-columns: 105px 1fr 125px;
+    max-width: 750px;
 }
 .image img {
     width: 100px;
