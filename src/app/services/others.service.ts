@@ -75,4 +75,10 @@ addAgence(data) {
   getListInterFinContrat(id: number): Observable<any> {
     return this.http.get<any>(`${this.reqUrl}/interimaireFinContrat/${id}`);
   }
+  getAllSociete(){
+    return this.http.get(this.reqUrl + '/societe/all')
+  }
+  getAllDirection(){
+    return this.http.get(this.reqUrl + '/direction/id')
+  }
 }

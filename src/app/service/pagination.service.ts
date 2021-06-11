@@ -177,8 +177,14 @@ export class PaginationService {
       id: 1, title: 'Tableau de bord',
       path: 'home', icon: "home",
     }, {
-      id: 5,  title: 'Interimaire',
-      path: 'listinter',  icon: "person",
+      id: 3,  title: 'Interimaires',
+      icon: "person",  icon2: "expand_more", icon3: "expand_less",
+      liste: [{
+          id: 1,  title: 'Liste sous contrat',  path: 'souscontrat',
+        }, {
+          id: 2, title: 'Liste en fin de contrat',  path: 'fincontrat',
+        },
+      ]
     },{
       id: 3,  title: 'Agence d\'interim',
       icon: "local_mall",  path: 'listagence',

@@ -11,15 +11,7 @@ import { OthersService } from 'src/app/services/others.service';
 })
 export class AddinterComponent implements OnInit {
 
-  sommes: any = [
-    '20.000f', 
-    '30.000f', 
-    '40.000f', 
-    '50.000f',
-    '60.000f',
-    '70.000f',
-    '80.000f',
-  ];
+ 
   submited = false;
   matricule = "Tmp_02568";
   url1="../assets/images/default.png";
@@ -36,11 +28,12 @@ export class AddinterComponent implements OnInit {
   posteForm : FormGroup;
   formPhoneGroup : FormGroup;
   datas: any;
+  datajson;
   constructor(private fb: FormBuilder,
               private dataService: DataService,
               private otherService: OthersService,
               private route: Router) {
-   // this.datas = this.dataService.getData();
+    this.datajson = this.dataService.getData();
    }
   ngOnInit() {
     this.interForm = new FormGroup({
@@ -78,6 +71,20 @@ export class AddinterComponent implements OnInit {
         ficheposte: new FormControl(''),
       })
     });
+      //recupere les societes
+    this.otherService.getAllSociete().subscribe(
+      data => {
+        this.datas = data["data"];
+        console.log(data);
+      }
+    );
+      //recupere les directions
+      //this.otherService.getAllDirection().subscribe(
+       //// data => {
+        //  this.datas = data['hydra:member'];
+        //  console.log(data);
+       // }
+     // );
   }
 
   submitted1() {
