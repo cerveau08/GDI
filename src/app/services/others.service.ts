@@ -78,7 +78,16 @@ addAgence(data) {
   getAllSociete(){
     return this.http.get(this.reqUrl + '/societe/all')
   }
-  getAllDirection(){
-    return this.http.get(this.reqUrl + '/direction/id')
+  getAllPoles(id: number){
+    return this.http.get(`${this.reqUrl}/poles/${id}`)
+  }
+  getAllDirection(id: number){
+    return this.http.get(`${this.reqUrl}/direction/${id}`)
+  }
+  getAllService(id: number){
+    return this.http.get(`${this.reqUrl}/services/${id}`)
+  }
+  getAllDept(id: number){
+    return this.http.get(`${this.reqUrl}/departement/${id}`)
   }
 }

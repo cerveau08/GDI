@@ -28,6 +28,8 @@ export class AddinterComponent implements OnInit {
   posteForm : FormGroup;
   formPhoneGroup : FormGroup;
   datas: any;
+  dataD: any;
+  id: any;
   datajson;
   constructor(private fb: FormBuilder,
               private dataService: DataService,
@@ -75,16 +77,30 @@ export class AddinterComponent implements OnInit {
     this.otherService.getAllSociete().subscribe(
       data => {
         this.datas = data["data"];
-        console.log(data);
+        console.log(this.dataD);
       }
     );
-      //recupere les directions
-      //this.otherService.getAllDirection().subscribe(
-       //// data => {
+      //recupere les poles
+      //this.otherService.getAllPoles(this.id).subscribe(
+      //  data => {
+      //    this.datas = data['hydra:member'];
+      //    console.log(data);
+     //   }
+      // );
+       //recupere les service
+       //this.otherService.getAllServices(this.id).subscribe(
+        //data => {
         //  this.datas = data['hydra:member'];
         //  console.log(data);
-       // }
-     // );
+        //}
+      //);
+       //recupere les direction
+    this.otherService.getAllDirection(this.id).subscribe(
+     data => {
+       this.dataD = data;
+      console.log(data);
+      }
+     );
   }
 
   submitted1() {
