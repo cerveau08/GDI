@@ -29,6 +29,7 @@ export class AddinterComponent implements OnInit {
   formPhoneGroup : FormGroup;
   datas: any;
   dataD: any;
+  dataAgence: any;
   id: any;
   datajson;
   constructor(private fb: FormBuilder,
@@ -86,6 +87,13 @@ export class AddinterComponent implements OnInit {
       console.log(this.dataD);
       }
      );
+     //liste des agences
+     this.otherService.getListAgence().subscribe(
+      data => {
+        this.dataAgence = data.data;
+        console.log(data);
+      }
+    );
   }
 
   submitted1() {

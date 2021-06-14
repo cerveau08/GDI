@@ -85,7 +85,7 @@
                           </select>
                           <select class="select6" formControlName="agenceId" placeholder="Agence d'interim">
                             <option class="option" value="" disabled selected hidden>Agence d'interim</option>
-                            <option *ngFor="let data of datas" value="data.id">{{data.libelle}}</option>
+                            <option *ngFor="let data of dataAgence" value="data.id">{{data.nom}}</option>
                           </select>
                         </div>
                         <div class="contratinput2">
