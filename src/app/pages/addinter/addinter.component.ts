@@ -77,28 +77,13 @@ export class AddinterComponent implements OnInit {
     this.otherService.getAllSociete().subscribe(
       data => {
         this.datas = data["data"];
-        console.log(this.dataD);
+        console.log(data);
       }
     );
-      //recupere les poles
-      //this.otherService.getAllPoles(this.id).subscribe(
-      //  data => {
-      //    this.datas = data['hydra:member'];
-      //    console.log(data);
-     //   }
-      // );
-       //recupere les service
-       //this.otherService.getAllServices(this.id).subscribe(
-        //data => {
-        //  this.datas = data['hydra:member'];
-        //  console.log(data);
-        //}
-      //);
-       //recupere les direction
     this.otherService.getAllDirection(this.id).subscribe(
      data => {
        this.dataD = data;
-      console.log(data);
+      console.log(this.dataD);
       }
      );
   }
