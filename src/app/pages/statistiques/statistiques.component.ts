@@ -806,6 +806,7 @@ export class StatistiquesComponent implements OnInit {
     return this.chartOptions3;
   }
   effectifSocieteSelectionner(value:string){
+    console.log(value);
     this.directs = this.directions1;
     this.directions = this.directions1.map(valueOfDirection => valueOfDirection.direction);
     this.effectif = this.directions1.map(valueOfHomme => valueOfHomme.interHommes);

@@ -20,6 +20,8 @@ export class DetailagenceComponent implements OnInit {
   showupdate;
   showadduser;
   id: any;
+  photo: any;
+  image: any;
   dataAgence: any;
   agenceForm: FormGroup;
   viewer = 'google';
@@ -59,12 +61,12 @@ export class DetailagenceComponent implements OnInit {
     //this.datas = this.dataService.getData();
     this.agenceForm = new FormGroup({
       nom: new FormControl (''),
-      directeur: new FormControl(''),
-      numerodg: new FormControl (''),
+      nomdg: new FormControl(''),
+      numdg: new FormControl (''),
       email: new FormControl(''),
       mobile: new FormControl (''),
       fixe: new FormControl(''),
-      website: new FormControl (''),
+      siteweb: new FormControl (''),
       adresse: new FormControl(''),
       photo: new FormControl (''),
       contrat: new FormControl(''),
@@ -72,37 +74,47 @@ export class DetailagenceComponent implements OnInit {
     });
   }
 
-  updateUser() {
-    this.otherService.updateAgence(this.id, this.agenceForm.value).subscribe(
-      (response) =>{
-        console.log(response);
-        //const link = ['listeusers'];
-        //this.route.navigate(/listeAgence);
-      },
-      (error)=>{
-        console.log(error);
-      }
-    )
-  }
+  //updatedAgence() {
+    
+ // }
 
   submitted1() {
-    const info = {
-        nom: this.agenceForm.value.nom,
-        directeur: this.agenceForm.value.directeur,
-        numerodg: this.agenceForm.value.numerodg,
-        email: this.agenceForm.value.email,
-        mobile: this.agenceForm.value.mobile,
-        fixe: this.agenceForm.value.fixe,
-        website: this.agenceForm.value.website,
-        adresse: this.agenceForm.value.adresse,
-        photo: this.agenceForm.value.photo,
-        contrat: this.agenceForm.value.contrat,
-        cnidg: this.agenceForm.value.cnidg,
+    console.log(this.agenceForm.value);
+    const value = this.agenceForm.value;
+    const info = new FormData();
+    info.append("nom",value.nom);
+    info.append("nomdg",value.nomdg);
+    info.append("numdg",value.numdg);
+    info.append("email",value.email);
+    info.append("mobile",value.mobile);
+    info.append("fixe",value.fixe);
+    info.append("siteweb",value.siteweb);
+    info.append("adresse",value.adresse);
+    info.append("logo",this.photo);
+    info.append("contrat",value.contrat);
+    info.append("cnidg",value.cnidg);
+    this.otherService.updateAgence(this.item, this.agenceForm.value).subscribe(
+          (res) =>{
+            console.log(res);
+          },
+          (error)=>{
+            console.log(error);
+          }
+        )
     } 
-    console.log(info);
-    return info;
-  }
 
+    //recuperation de l'image
+  getPhoto(e:any) {
+    this.photo= e.files.item(0);
+    console.log(this.photo)
+
+    let reader = new FileReader();
+    reader.readAsDataURL( this.photo)
+    reader.onload= ()=>{
+      this.image= reader.result
+      console.log(this.image)
+    }
+  }
   public getfilemodal() {
     this.fileSaver.saveUrl(this.DemoDoc, 'contrat');
   }

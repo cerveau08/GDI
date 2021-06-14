@@ -38,6 +38,9 @@ export class OthersService {
    getOneAgenceById(id: number) {
     return this.http.get(this.reqUrl + `/detailAgence/${id}`);
   }
+  getOneInterById(id: number) {
+    return this.http.get(this.reqUrl + `/detailInter/${id}`);
+  }
  // recupere le liste des attestation
  getListAttest(): Observable<any> {
   return this.http.get<any>(this.reqUrl + '/listeAttestationByMonth');
@@ -55,7 +58,7 @@ addAgence(data) {
     return this.http.post<any>(`${this.reqUrl}/ajoutAgence`, data);
   }
   updateAgence(user, id: number): Observable<any> {
-    return this.http.put<any>(`${this.reqUrl}/updateAgence/${id}`, user);
+    return this.http.post<any>(`${this.reqUrl}/updateAgence/${id}`, user);
   }
   getAgenceById(id: number): Observable<any> {
     return this.http.get<any>(`${this.reqUrl}/detailAgence/${id}`);
@@ -71,5 +74,20 @@ addAgence(data) {
   }
   getListInterFinContrat(id: number): Observable<any> {
     return this.http.get<any>(`${this.reqUrl}/interimaireFinContrat/${id}`);
+  }
+  getAllSociete(){
+    return this.http.get(this.reqUrl + '/societe/all')
+  }
+  getAllPoles(id: number){
+    return this.http.get(`${this.reqUrl}/poles/${id}`)
+  }
+  getAllDirection(id: number){
+    return this.http.get(`${this.reqUrl}/direction/${id}`)
+  }
+  getAllService(id: number){
+    return this.http.get(`${this.reqUrl}/services/${id}`)
+  }
+  getAllDept(id: number){
+    return this.http.get(`${this.reqUrl}/departement/${id}`)
   }
 }

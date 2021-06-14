@@ -16,12 +16,14 @@ export class InterfincontratComponent implements OnInit {
 
   public datas: any;
   pager: any = {};
+  id= 1;
   filterterm: string;
   public p: any;
   pagedItems: any[];
   date: any;
   dateFin;
-  dataInter: any;
+  user;
+  showupdate;
   mois: any = [
     'Janvier', 
     'Février', 
@@ -66,21 +68,26 @@ export class InterfincontratComponent implements OnInit {
     }
 
   ngOnInit() {
+    this.user = localStorage.getItem('user');
+    if(this.user == 'drh') {
+      this.showupdate = true;
+    } else {
+      this.showupdate = false;
+    }
+
     this.demandeForm = new FormGroup({
       moi: new FormControl (''),
       somme: new FormControl('')
     });
-    this.datas = this.dataService.getData();;
+    //this.datas = this.dataService.getData();;
 
-    //this.otherService.getListAgence().subscribe(
-      //data => {
-       //// this.dataInter = data.data;
-       // console.log(data);
-      //}
-    //);
+    this.otherService.getListInterFinContrat(this.id).subscribe(
+      data => {
+       this.datas = data.data;
+       console.log(data);
+      }
+    );
   }
-
-
 
   openDetail(data) {
     this.router.navigate(['/accueil/detailinter'], {

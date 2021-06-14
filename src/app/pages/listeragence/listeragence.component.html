@@ -5,7 +5,7 @@
             <div class="liste">
                 <div class="item" *ngFor="let p of dataAgence | paginate: { itemsPerPage: 4, currentPage: p }; let i = index">
                     <div class="image">
-                        <img src="assets/{{p.logo}}" alt="">
+                        <img src="http://10.137.16.67:8053/assets/images/{{p.logo}}" alt="">
                     </div>
                     <div class="info">
                         <p class="nom">{{p.agence}}</p>
