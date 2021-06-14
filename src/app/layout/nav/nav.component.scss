@@ -1,0 +1,124 @@
+.all-nav {
+  height: 650px;
+  background-color: white;
+}
+li {
+    list-style-type: none;
+    margin-top: 10px;
+}
+li.ho {
+    margin-top: 50px;
+}
+li.compte {
+    margin-top: 80px;
+}
+fa-icon {
+    font-size: 1.9em;
+    color: #464040;
+    padding-right: 10px;
+}
+.bar {
+    border-left: 6px solid #ff7900;
+    height: 50px;
+}
+.grid-container {
+    display: grid;
+    grid-template-columns: 5px 30px 125px 15px;
+    grid-gap: 1px;
+    background-color: white;
+    padding: 0px;
+  }
+  
+  .grid-container > div {
+  //  background-color: white;
+    font-size: 14px;
+    -webkit-text-stroke: 0.8px #979797;
+    font-family: HelveticaNeue;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #222222;
+    .icon1 {
+        font-size: 20px;
+        color: #222222;
+        padding-right: 0px;
+        margin-left: 0px;
+        margin-top: 5px;
+    }
+    .icon2 {
+      font-size: 20px;
+      color: #222222;
+      padding-right: 0px;
+      margin-left: 0px;
+      margin-top: 10px;
+    }
+  }
+  .item3 {
+    margin-left: 0px;
+  }
+  .item2{
+    width: 30px;
+    margin-top: 5px;
+    text-decoration: none;
+  }
+.active {
+    color: #ff7900;
+}
+.grid-container1 {
+  display: grid;
+  grid-template-columns: 5px  280px;
+  grid-gap: 1px;
+  background-color: white;
+  padding: 0px;
+}
+
+.grid-container1 > div {
+  background-color: white;
+  padding: 2px 0;
+  font-size: 12px;
+  -webkit-text-stroke: 0.8px #979797;
+  font-family: HelveticaNeue;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #222222;
+}
+.item4 {
+  margin-left: 80px;
+  margin-top: -15px;
+}
+.item1a {
+  margin-top: -5px;
+}
+.item4a {
+  margin-left: 40px;
+  margin-top: -15px;
+}
+@media (max-width: 991px) {
+  .nav {
+    display: flex;
+    height: 70px;
+    .grid-container2{
+     // border-right: 1px solid #f5f6f9;
+      margin-top: -10px;
+      padding: 10px;
+    }
+  }
+  .item5{
+   // width: 50px;
+     p{
+       margin-top: 10px;
+       font-size: 12px;
+       text-align: center;
+     }
+  }
+  .item7 {
+    width: 22px;
+    margin: 0 auto;
+    margin-top: -10px;
+  }
+}
