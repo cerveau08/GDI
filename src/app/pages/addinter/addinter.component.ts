@@ -27,12 +27,13 @@ export class AddinterComponent implements OnInit {
   contactForm : FormGroup;
   posteForm : FormGroup;
   formPhoneGroup : FormGroup;
-  datas: any;
-  dataD: any;
+  dataSociete: any;
+  dataDirection: any;
   dataAgence: any;
-  dataDept: any;
+  dataDepartement: any;
   id: any;
   itemd;
+  donneeService;
   itemdept;
   datajson;
   constructor(private fb: FormBuilder,
@@ -87,12 +88,13 @@ export class AddinterComponent implements OnInit {
       //recupere les societes
     this.otherService.getAllSociete().subscribe(
       data => {
-        this.datas = data["data"];
+        this.dataSociete = data["data"];
         console.log(data);
       }
     );
     this.directionsListe(this.itemd)
-    //this.deptListe(this.itemdept)
+    this.departementListe(this.itemd)
+    this.serviceListe(this.itemd)
   }
 
   submitted1() {
@@ -198,7 +200,27 @@ const info = {
     console.log(value);
     this.otherService.getAllDirection(value).subscribe(
       data => {
-        this.dataD = data['data'];
+        this.dataDirection = data['data'];
+       console.log(data);
+       }
+    ); 
+  }
+
+  departementListe(value) {
+    console.log(value);
+    this.otherService.getAllDepartement(value).subscribe(
+      data => {
+        this.dataDepartement = data['data'];
+       console.log(data);
+       }
+    ); 
+  }
+
+  serviceListe(value) {
+    console.log(value);
+    this.otherService.getAllService(value).subscribe(
+      data => {
+        this.donneeService = data['data'];
        console.log(data);
        }
     ); 

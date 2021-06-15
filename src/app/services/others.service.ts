@@ -57,8 +57,8 @@ deleteUser(id: number): Observable<any> {
 addAgence(data) {
     return this.http.post<any>(`${this.reqUrl}/ajoutAgence`, data);
   }
-  updateAgence(user, id: number): Observable<any> {
-    return this.http.post<any>(`${this.reqUrl}/updateAgence/${id}`, user);
+  updateAgence(data:any, id: number): Observable<any> {
+    return this.http.post<any>(`${this.reqUrl}/updateAgence/${id}`, data);
   }
   getAgenceById(id: number): Observable<any> {
     return this.http.get<any>(`${this.reqUrl}/detailAgence/${id}`);
@@ -87,7 +87,7 @@ addAgence(data) {
   getAllService(id: number){
     return this.http.get(`${this.reqUrl}/services/${id}`)
   }
-  getAllDept(id: number){
+  getAllDepartement(id: number){
     return this.http.get(`${this.reqUrl}/departement/${id}`)
   }
 }
