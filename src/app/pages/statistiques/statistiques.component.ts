@@ -697,6 +697,8 @@ export class StatistiquesComponent implements OnInit {
   public chartOptions3: Partial<ChartOptions>;
   public chartOptions4: Partial<ChartOptions>;
   public chartOptions5: Partial<ChartOptions>;
+  public chartOptions6: Partial<ChartOptions>;
+  public chartOptions7: Partial<ChartOptions>;
   constructor(private dataService: DataService,) {
     this.getScreenSize();
     this.dataStat = this.dataService.getDataStatistique();
@@ -723,6 +725,8 @@ export class StatistiquesComponent implements OnInit {
     this.effectifSocieteSelectionner(this.item);
     this.dateSelectionnerPresence(this.item);
     this.serviceSelectionnerPresence(this.item);
+    this.dateSelectionnerAgence(this.item);
+    this.serviceSelectionnerAgence(this.item);
   }
   dateSelectionner(value){
     this.axex = this.diagram1.map(valueOfDirection => valueOfDirection.annee);
@@ -802,6 +806,7 @@ export class StatistiquesComponent implements OnInit {
     return this.chartOptions3;
   }
   effectifSocieteSelectionner(value:string){
+    console.log(value);
     this.directs = this.directions1;
     this.directions = this.directions1.map(valueOfDirection => valueOfDirection.direction);
     this.effectif = this.directions1.map(valueOfHomme => valueOfHomme.interHommes);
@@ -1116,6 +1121,162 @@ export class StatistiquesComponent implements OnInit {
     return this.chartOptions5;
   }
 
+  dateSelectionnerAgence(value){
+    this.axex = this.diagram1.map(valueOfDirection => valueOfDirection.annee);
+    this.nouveau = this.diagram1.map(valueOfNouveau => valueOfNouveau.nouveau);
+    this.fini = this.diagram1.map(valueOfFini => valueOfFini.fini);
+    this.total = this.diagram1.map(valueOfTotal => valueOfTotal.total);
+    this.chartOptions6 = {
+      colors: [
+        "#ff0000",
+        "#009393",
+        "#000000",
+      ],
+      series: [
+        {
+          name: "Malades",
+          data: this.fini
+        },
+        {
+          name: "Présents",
+          data: this.nouveau
+        },
+        {
+          name: "Congés",
+          data: this.total
+        },
+      ],
+      chart: {
+        type: "bar",
+        height: 300,
+        width: 550,
+        stacked: true,
+        toolbar: {
+          show: false
+        },
+        zoom: {
+          enabled: false
+        }
+      },
+      responsive: [
+        {
+          breakpoint: 480,
+          options: {
+            legend: {
+              show: false,
+              position: "bottom",
+              offsetX: -10,
+              offsetY: 0
+            }
+          }
+        }
+      ],
+      plotOptions: {
+        bar: {
+          horizontal: false,
+          columnWidth: "10px",
+          endingShape: "rounded",
+        },
+      },
+      dataLabels: {
+        enabled: false,
+        style: {
+          colors: ['#f3f4f5', '#fff']
+        }
+      },
+      xaxis: {
+        type: "category",
+        categories: 
+          this.axex
+      },
+      legend: {
+        show: false,
+      },
+      fill: {
+        opacity: 4,
+      },
+    };
+    return this.chartOptions6;
+  }
+
+  serviceSelectionnerAgence(value){
+    this.axex = this.diagram1.map(valueOfDirection => valueOfDirection.annee);
+    this.nouveau = this.diagram1.map(valueOfNouveau => valueOfNouveau.nouveau);
+    this.fini = this.diagram1.map(valueOfFini => valueOfFini.fini);
+    this.total = this.diagram1.map(valueOfTotal => valueOfTotal.total);
+    this.chartOptions7 = {
+      colors: [
+        "#ff0000",
+        "#009393",
+        "#000000",
+      ],
+      series: [
+        {
+          name: "Malades",
+          data: this.fini
+        },
+        {
+          name: "Présents",
+          data: this.nouveau
+        },
+        {
+          name: "Congés",
+          data: this.total
+        },
+      ],
+      chart: {
+        type: "bar",
+        height: 300,
+        width: 550,
+        stacked: true,
+        toolbar: {
+          show: false
+        },
+        zoom: {
+          enabled: false
+        }
+      },
+      responsive: [
+        {
+          breakpoint: 480,
+          options: {
+            legend: {
+              show: false,
+              position: "bottom",
+              offsetX: -10,
+              offsetY: 0
+            }
+          }
+        }
+      ],
+      plotOptions: {
+        bar: {
+          horizontal: false,
+          columnWidth: "10px",
+          endingShape: "rounded",
+        },
+      },
+      dataLabels: {
+        enabled: false,
+        style: {
+          colors: ['#f3f4f5', '#fff']
+        }
+      },
+      xaxis: {
+        type: "category",
+        categories: 
+          this.axex
+      },
+      legend: {
+        show: false,
+      },
+      fill: {
+        opacity: 4,
+      },
+    };
+    return this.chartOptions7;
+  }
+
   lesDirections(){
     this.directions = this.directions1;
     return this.directions;
@@ -1130,6 +1291,10 @@ export class StatistiquesComponent implements OnInit {
   }
   changeshow3() {  
     this.show = 3;
+    return this.show;
+  }
+  changeshow4() {  
+    this.show = 4;
     return this.show;
   }
   ngOnDestroy() {

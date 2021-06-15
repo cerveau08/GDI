@@ -30,7 +30,10 @@ export class AddinterComponent implements OnInit {
   datas: any;
   dataD: any;
   dataAgence: any;
+  dataDept: any;
   id: any;
+  itemd;
+  itemdept;
   datajson;
   constructor(private fb: FormBuilder,
               private dataService: DataService,
@@ -74,6 +77,13 @@ export class AddinterComponent implements OnInit {
         ficheposte: new FormControl(''),
       })
     });
+    //liste des agences
+    this.otherService.getListAgence().subscribe(
+      data => {
+        this.dataAgence = data.data;
+        console.log(data);
+      }
+    );
       //recupere les societes
     this.otherService.getAllSociete().subscribe(
       data => {
@@ -81,19 +91,8 @@ export class AddinterComponent implements OnInit {
         console.log(data);
       }
     );
-    this.otherService.getAllDirection(this.id).subscribe(
-     data => {
-       this.dataD = data;
-      console.log(this.dataD);
-      }
-     );
-     //liste des agences
-     this.otherService.getListAgence().subscribe(
-      data => {
-        this.dataAgence = data.data;
-        console.log(data);
-      }
-    );
+    this.directionsListe(this.itemd)
+    //this.deptListe(this.itemdept)
   }
 
   submitted1() {
@@ -195,6 +194,16 @@ const info = {
       )
   }
 
+  directionsListe(value) {
+    console.log(value);
+    this.otherService.getAllDirection(value).subscribe(
+      data => {
+        this.dataD = data['data'];
+       console.log(data);
+       }
+    ); 
+  }
+ 
   readUrl1(event: any) {
     console.log('readUrl');
       if (event.target.files && event.target.files[0]) {
@@ -203,7 +212,6 @@ const info = {
         reader.onload = (event: any) => {
           this.url1 = event.target.result;
         }
-      
         reader.readAsDataURL(event.target.files[0]);
       }
   }

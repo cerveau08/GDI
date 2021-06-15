@@ -22,6 +22,8 @@ export class ListeragenceComponent implements OnInit {
   datas: any;
   agenceForm: FormGroup;
   userForm: FormGroup;
+  photo;
+  errorMsg;
   dataAgence: any;
   constructor(private dataService: DataService,
     private modalService: ModalService,
@@ -47,25 +49,25 @@ export class ListeragenceComponent implements OnInit {
     this.datas = this.dataService.getData();
     this.agenceForm = new FormGroup({
       nom: new FormControl (''),
-      directeur: new FormControl(''),
-      numerodg: new FormControl (''),
+      nomdg: new FormControl(''),
+      numdg: new FormControl (''),
       email: new FormControl(''),
       mobile: new FormControl (''),
       fixe: new FormControl(''),
-      website: new FormControl (''),
+      siteweb: new FormControl (''),
       adresse: new FormControl(''),
       photo: new FormControl (''),
       contrat: new FormControl(''),
       cnidg: new FormControl (''),
     });
-    this.userForm = new FormGroup({
-      prenom: new FormControl (''),
-      nom: new FormControl(''),
-      email: new FormControl(''),
-      telephone: new FormControl (''),
-      profil: new FormControl(''),
-      photo: new FormControl (''),
-    });
+    //this.userForm = new FormGroup({
+    //  prenom: new FormControl (''),
+     // nom: new FormControl(''),
+     // email: new FormControl(''),
+     // telephone: new FormControl (''),
+     // profil: new FormControl(''),
+     // photo: new FormControl (''),
+  //  });
     
   }
   
@@ -79,35 +81,48 @@ export class ListeragenceComponent implements OnInit {
     //this.getAgence();
   }
   submitted1() {
-    const info = {
-        nom: this.agenceForm.value.nom,
-        directeur: this.agenceForm.value.directeur,
-        numerodg: this.agenceForm.value.numerodg,
-        email: this.agenceForm.value.email,
-        mobile: this.agenceForm.value.mobile,
-        fixe: this.agenceForm.value.fixe,
-        website: this.agenceForm.value.website,
-        adresse: this.agenceForm.value.adresse,
-        photo: this.agenceForm.value.photo,
-        contrat: this.agenceForm.value.contrat,
-        cnidg: this.agenceForm.value.cnidg,
-    } 
-    console.log(info);
-    return info;
+    console.log(this.agenceForm.value);
+    const value = this.agenceForm.value;
+    const info = new FormData();
+    info.append("nom",value.nom);
+    info.append("nomdg",value.nomdg);
+    info.append("numdg",value.numdg);
+    info.append("email",value.email);
+    info.append("mobile",value.mobile);
+    info.append("fixe",value.fixe);
+    info.append("siteweb",value.siteweb);
+    info.append("adresse",value.adresse);
+    info.append("logo",this.photo);
+    info.append("contrat",value.contrat);
+    info.append("cnidg",value.cnidg);
+    this.otherService.addAgence(info).subscribe(
+      data => {
+        console.log(data);
+        if (data) {
+          alert('Agence modifié avec succées...');
+        }
+        this.router.navigate(['/accueil/listagence']);
+      },
+        error=> {
+          this.errorMsg = 'Probleme de connexion au serveur';
+          console.log(error)
+        }
+        //this.ndm.navigateByUrl('/accueil/listUsers');
+      )
   }
 
-  submitted2() {
-    const info = {
-        prenom: this.userForm.value.prenom,
-        nom: this.userForm.value.nom,
-        email: this.userForm.value.email,
-        telephone: this.userForm.value.telephone,
-        profil: this.userForm.value.profil,
-        photot: this.userForm.value.photo,
-    } 
-    console.log(info);
-    return info;
-  }
+ // submitted2() {
+   // const info = {
+      //  prenom: this.userForm.value.prenom,
+       // nom: this.userForm.value.nom,
+       // email: this.userForm.value.email,
+      //  telephone: this.userForm.value.telephone,
+     //   profil: this.userForm.value.profil,
+    //    photot: this.userForm.value.photo,
+   // } 
+   // console.log(info);
+   // return info;
+  //}
 
   openModal(id: string) {
     this.modalService.open(id);
