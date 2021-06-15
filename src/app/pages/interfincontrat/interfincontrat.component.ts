@@ -16,7 +16,7 @@ export class InterfincontratComponent implements OnInit {
 
   public datas: any;
   pager: any = {};
-  id= 1;
+  id;
   filterterm: string;
   public p: any;
   pagedItems: any[];
@@ -81,7 +81,7 @@ export class InterfincontratComponent implements OnInit {
     });
     //this.datas = this.dataService.getData();;
 
-    this.otherService.getListInterFinContrat(this.id).subscribe(
+    this.otherService.getInter().subscribe(
       data => {
        this.datas = data.data;
        console.log(data);

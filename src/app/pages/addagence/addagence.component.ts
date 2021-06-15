@@ -84,7 +84,8 @@ export class AddagenceComponent implements OnInit {
     info.append("siteweb",value.siteweb);
     info.append("adresse",value.adresse);
     info.append("logo",this.logo);
-    this.otherService.addAgence(info).subscribe(
+    console.log(info);
+  /*  this.otherService.addAgence(info).subscribe(
       data => {
         console.log(data);
         if (data) {
@@ -97,7 +98,7 @@ export class AddagenceComponent implements OnInit {
           console.log(error)
         }
         //this.ndm.navigateByUrl('/accueil/listUsers');
-      )
+      ) */
   }
 
   //recuperation de l'image

@@ -132,6 +132,26 @@
         margin-left: 10px;
     }
 }
+.web {
+    display: flex;
+    mat-icon {
+       color: #009393;
+       font-size: 30px;
+       margin-left: 15px;
+       margin-top: 5px;
+    }
+    .siteweb {
+        font-size: 12px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: -0.08px;
+        color: #000000;
+        margin-top: 10px;
+        margin-left: 10px;
+    }
+}
 button{
     cursor: pointer;
 }

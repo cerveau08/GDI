@@ -35,10 +35,10 @@
                         <td *ngIf="scrWidth>991" class="id1">{{p.id}}</td>
                         <td>{{p.prenom}}</td>
                         <td>{{p.nom}}</td>
-                        <td> {{p.poste}}</td>
+                        <td> {{p.typeDemande}}</td>
                         <td><button  class="buttons1" (click)="openModal('custom-modal-'+p.id)">Afficher</button></td>
-                        <td>{{p.dateDebut | date: 'dd/MM/yyyy'}}</td>
-                        <td>{{p.dateFin | date: 'dd/MM/yyyy'}}</td>
+                        <td>{{p.dateDebut.date | date: 'dd/MM/yyyy'}}</td>
+                        <td>{{p.dateFin.date | date: 'dd/MM/yyyy'}}</td>
                         <td><input type="checkbox"
                                 [checked]="p.statut"
                                 [(ngModel)]="p.statut"
@@ -50,8 +50,8 @@
                             <jw-modal id="custom-modal-{{p.id}}">
                                 <div class="tab">
                                     <mat-icon style="cursor: pointer;" (click)="closeModal('custom-modal-'+p.id);" class="clear">clear</mat-icon>
-                                    <p class="dtl1">{{p.libele}}</p>
-                                    <p class="dtl1">{{p.adresse}}</p>
+                                    <p class="motif-titre">Motif de la demande</p>
+                                    <p class="dtl1">{{p.description}}</p>
                                 </div>
                             </jw-modal>
                         </div>

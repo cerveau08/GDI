@@ -22,6 +22,11 @@ export class OthersService {
     return this.http.get<any>(this.reqUrl + '/listeInterimParContrat');
   }
 
+  // recupere la liste des interimaire fin de contrat
+  getInter(): Observable<any> {
+    return this.http.get<any>(this.reqUrl + '/interimaires/manager/1');
+  }
+
   // recupere la liste des manager
   getListManager(): Observable<any> {
     return this.http.get<any>(this.reqUrl + '/managers/list');
