@@ -1,5 +1,6 @@
 import { DataService } from 'src/app/service/data.service';
 import { QueryBindingType } from '@angular/compiler/src/core';
+import { OthersService } from 'src/app/services/others.service';
 import { Component, HostListener, OnInit } from '@angular/core';
 import { ApexAxisChartSeries, ApexChart, ApexDataLabels, ApexPlotOptions, ApexResponsive, ApexXAxis, ApexYAxis, ApexLegend, ApexFill, ChartComponent } from 'ng-apexcharts';
 
@@ -90,7 +91,8 @@ export class HomeComponent implements OnInit {
         //console.log(this.scrHeight, this.scrWidth);
   }
 
-  constructor(private dataService: DataService) {
+  constructor(private dataService: DataService ,
+    private otherService: OthersService) {
     this.getScreenSize();
     this.chartOptions = {
       series: [
@@ -286,8 +288,14 @@ export class HomeComponent implements OnInit {
     };
   }
 
+  id=1;
   ngOnInit() {
-    this.datas = this.dataService.getData();
+    this.datas = this.otherService.getListInterFinContrat(this.id).subscribe(
+      data => {
+       this.datas = data.data;
+       console.log(data);
+      }
+    );
     this.user = localStorage.getItem('user');
     if(this.user == 'interimaire') {
       this.showHome = false;
@@ -311,9 +319,9 @@ export class HomeComponent implements OnInit {
   }
 
   getColor(p) {
-    if(p.statut == "oui") {
+    if(p.isAdmissible == true) {
       this.color = "#6dd400";
-    } else if (p.statut == "non") {
+    } else if (p.isAdmissible == false) {
       this.color = "#f03737";
     }
     return this.color;

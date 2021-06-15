@@ -30,6 +30,7 @@ export class AddinterComponent implements OnInit {
   datas: any;
   dataD: any;
   id: any;
+  itemd;
   datajson;
   constructor(private fb: FormBuilder,
               private dataService: DataService,
@@ -80,12 +81,13 @@ export class AddinterComponent implements OnInit {
         console.log(data);
       }
     );
-    this.otherService.getAllDirection(this.id).subscribe(
+    this.directionsListe(this.itemd)
+   /* this.otherService.getAllDirection(this.id).subscribe(
      data => {
-       this.dataD = data;
-      console.log(this.dataD);
+       this.dataD = data['data'];
+      console.log(data);
       }
-     );
+     );*/
   }
 
   submitted1() {
@@ -187,6 +189,16 @@ const info = {
       )
   }
 
+  directionsListe(value) {
+    console.log(value);
+    this.otherService.getAllDirection(value).subscribe(
+      data => {
+        this.dataD = data['data'];
+       console.log(data);
+       }
+    );
+    
+  }
   readUrl1(event: any) {
     console.log('readUrl');
       if (event.target.files && event.target.files[0]) {

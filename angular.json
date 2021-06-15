@@ -130,6 +130,6 @@
   },
   "defaultProject": "GDI",
   "cli": {
-    "analytics": "b29d2f96-efd4-484f-bbf5-879ae657cf20"
+    "analytics": false
   }
 }

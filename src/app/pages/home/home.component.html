@@ -207,10 +207,10 @@
                         <tr *ngFor="let p of datas | filter:filterterm | slice:0:3; let i = index">
                             <td class="id1">{{p.id}}</td>
                             <td>{{p.prenom}} {{p.nom}}</td>
-                            <td *ngIf="scrWidth>991"><img alt="" class="photo" src="../assets/images/{{p.photo}}"></td>
-                            <td>{{p.direction}}</td>
-                            <td>{{p.agence}}</td>
-                            <td> <div [style.background]="getColor(p)" class="statut"></div> <p class="stat"> {{p.statut}}</p></td>
+                            <td *ngIf="scrWidth>991"><img alt="" class="photo" src="{{p.photo}}"></td>
+                            <td>{{p.direction.libelle}}</td>
+                            <td>{{p.agence.nom}}</td>
+                            <td> <div [style.background]="getColor(p)" class="statut"></div> <p class="stat" [style.color]="getColor(p)"> {{p.isAdmissible}}</p></td>
                         </tr>
                     </tbody>
                     
