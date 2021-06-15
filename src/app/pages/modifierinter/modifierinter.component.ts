@@ -25,6 +25,7 @@ export class ModifierinterComponent implements OnInit {
   url1="../assets/images/default.png";
   url2="../assets/images/default.png";
   url3="../assets/images/default.png";
+  url4="../assets/images/default.png";
   interForm: FormGroup;
   isLinear = true;
   infoForm : FormGroup;
@@ -192,6 +193,18 @@ export class ModifierinterComponent implements OnInit {
       
         reader.onload = (event: any) => {
           this.url3 = event.target.result;
+        }
+      
+        reader.readAsDataURL(event.target.files[0]);
+      }
+  }
+  readUrl4(event: any) {
+    console.log('readUrl');
+      if (event.target.files && event.target.files[0]) {
+        var reader = new FileReader();
+      
+        reader.onload = (event: any) => {
+          this.url4 = event.target.result;
         }
       
         reader.readAsDataURL(event.target.files[0]);

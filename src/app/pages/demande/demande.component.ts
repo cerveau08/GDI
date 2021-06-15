@@ -1,3 +1,4 @@
+import { OthersService } from 'src/app/services/others.service';
 import { PaginationService } from './../../service/pagination.service';
 import { DataService } from './../../service/data.service';
 import { Component, OnInit } from '@angular/core';
@@ -57,7 +58,8 @@ export class DemandeComponent implements OnInit {
   user
   constructor(private dataService: DataService,
     private modalService: ModalService, 
-    private pagerService: PaginationService,) { }
+    private pagerService: PaginationService, private otherService: OthersService
+    ) { }
 
   ngOnInit() {
     this.user = localStorage.getItem('user');
@@ -67,6 +69,12 @@ export class DemandeComponent implements OnInit {
       this.showHome = true;
     }
     this.datas = this.dataService.getData();
+   this.otherService.getListDemandes().subscribe(
+     data => {
+       this.datas = data;
+       console.log(data);
+     }
+   )
     this.demandeForm = new FormGroup({
       type: new FormControl (''),
       debut: new FormControl(''),
