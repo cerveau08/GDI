@@ -64,15 +64,15 @@
                                                     <input class="input3" [value]="p.poste" type="text" formControlName="poste" placeholder="Profession" >
                                                 </div>
                                                 <div class="input2">
-                                                    <input type="date" formControlName="dateDebut" placeholder="Date Debut">
-                                                    <input class="input3" type="date" formControlName="dateFin" placeholder="Date Fin">
+                                                    <input type="date" formControlName="dateDebut" #DateDebut placeholder="Date Debut">
+                                                    <input class="input3" type="date" formControlName="dateFin" #DateFin placeholder="Date Fin">
                                                 </div>
                                                 <div class="input2">
                                                     <input type="text" [value]="p.agence" formControlName="agence" placeholder="Agence" >
-                                                    <input type="text" class="input3" formControlName="nbr_jr_absence" placeholder="Nombre de jour absent">
+                                                    <input type="text" class="input3" formControlName="nbr_jr_absence" #Abscence placeholder="Nombre de jour absent">
                                                 </div>
                                                 <div class="content-button-submit">
-                                                    <button (click)="onSubmit()" class="button-submit">Valider</button>
+                                                    <button (click)="submit(p.id, Abscence.value, statut, contrat, period, DateDebut.value, DateFin.value)" class="button-submit">Valider</button>
                                                 </div>
                                             </div>
                                         </div>

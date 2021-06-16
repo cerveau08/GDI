@@ -77,7 +77,9 @@ export class IntersouscontratComponent implements OnInit {
     });
   }
 
-  submit() {
+  submit(interim, nbr, statut, contrat, period, dateDebut, dateFin) {
+    console.log(interim, dateDebut);
+    
     console.log(this.attestationForm.value);
   }
 
