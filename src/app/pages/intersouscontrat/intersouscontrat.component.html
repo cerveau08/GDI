@@ -44,7 +44,44 @@
                     <td *ngIf="role != 'manager'" (click)="openDetail(p)">{{p.direction}}/{{p.departement}}/{{p.service}}</td>
                     <td *ngIf="role != 'agence'" (click)="openDetail(p)">{{p.agence}}</td>
                     <td (click)="openDetail(p)"> <p >{{p.dateFin  | date:'dd/MM/yyyy'}}</p> </td>
-                    <td *ngIf="role == 'manager'" id="contrat"><button  class="buttons-attestation" (click)="openModal('custom-modal-'+p.id)">Ajouter</button></td>
+                    <td *ngIf="role == 'manager'" (click)="openModal('custom-modal-'+p.id)" id="contrat"><button  class="buttons-attestation" >Ajouter</button></td>
+                    <!--modal-->
+                    <div class="modal">
+                        <jw-modal id="custom-modal-{{p.id}}">
+                            <mat-icon style="cursor: pointer;" (click)="closeModal('custom-modal-'+p.id);" class="clear">clear</mat-icon>
+                            <div class="all">
+                                <h1>Ajouter Attestation</h1>
+                                <div>
+                                    <form [formGroup]="attestationForm">
+                                        <div class="forms">
+                                            <div>
+                                                <div class="input2">
+                                                    <input type="text" [value]="p.prenom" formControlName="prenom" placeholder="Prenom" >
+                                                    <input class="input3"[value]="p.nom" type="text" formControlName="nom" placeholder="Nom" >
+                                                </div>
+                                                <div class="input2">
+                                                    <input type="text" [value]="p.matricule" formControlName="matricule" placeholder="Matricule" >
+                                                    <input class="input3" [value]="p.poste" type="text" formControlName="poste" placeholder="Profession" >
+                                                </div>
+                                                <div class="input2">
+                                                    <input type="date" formControlName="dateDebut" placeholder="Date Debut">
+                                                    <input class="input3" type="date" formControlName="dateFin" placeholder="Date Fin">
+                                                </div>
+                                                <div class="input2">
+                                                    <input type="text" [value]="p.agence" formControlName="agence" placeholder="Agence" >
+                                                    <input type="text" class="input3" formControlName="nbr_jr_absence" placeholder="Nombre de jour absent">
+                                                </div>
+                                                <div class="content-button-submit">
+                                                    <button (click)="onSubmit()" class="button-submit">Valider</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </jw-modal>
+                    </div>
+                    <!-- modal -->
                 </tr>
             </tbody>
             
