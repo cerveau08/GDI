@@ -71,24 +71,28 @@ export class DemandeComponent implements OnInit {
     this.datas = this.dataService.getData();
    this.otherService.getListDemandes().subscribe(
      data => {
-       this.datas = data;
+       this.datas = data.data;
        console.log(data);
      }
    )
     this.demandeForm = new FormGroup({
       type: new FormControl (''),
-      debut: new FormControl(''),
-      fin: new FormControl (''),
+      dateDebut: new FormControl(''),
+      dateFin: new FormControl (''),
       motif: new FormControl(''),
+      description: new FormControl(''),
+      etat: new FormControl(''),
     });
   }
 
   onSubmit() {
     const info = {
       type: this.demandeForm.value.type,
-      debut: this.demandeForm.value.debut,
-      fin: this.demandeForm.value.fin,
+      dateDebut: this.demandeForm.value.dateDebut,
+      dateFin: this.demandeForm.value.dateFin,
       motif: this.demandeForm.value.motif,
+      descrition: this.demandeForm.value.description,
+      etat: this.demandeForm.value.etat,
     } 
     console.log(info);
     return info;

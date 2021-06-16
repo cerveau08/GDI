@@ -22,10 +22,10 @@ export class ModifierinterComponent implements OnInit {
   ];
   submited = false;
   matricule = "Tmp_02568";
-  url1="../assets/images/default.png";
-  url2="../assets/images/default.png";
-  url3="../assets/images/default.png";
-  url4="../assets/images/default.png";
+  url1="../../../assets/images/{{item.photo}}";
+  url2="../assets/images/{{item.photo}}";
+  url3="../assets/images/{{item.photo}}";
+  url4="../assets/images/{{item.photo}}";
   interForm: FormGroup;
   isLinear = true;
   infoForm : FormGroup;
@@ -33,6 +33,7 @@ export class ModifierinterComponent implements OnInit {
   posteForm : FormGroup;
   formPhoneGroup : FormGroup;
   datas: any;
+  nomUpdate;
   constructor(private activeroute: ActivatedRoute,
     private fb: FormBuilder,
     private dataService: DataService,) {
@@ -44,18 +45,19 @@ export class ModifierinterComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.url1 = this.item.photo;
     this.interForm = new FormGroup({
       infopersonnel: new FormGroup({
-        numeroCni: new FormControl(''),
-        prenom: new FormControl(''),
-        nom: new FormControl(''),
-        email: new FormControl(''),
-        dateNais: new FormControl(''),
-        lieuNais: new FormControl(''),
-        genre: new FormControl(''),
-        situationmatri: new FormControl(''),
-        diplome: new FormControl(''),
-        ecole: new FormControl(''),
+        numeroCni: new FormControl(this.item.cni),
+        prenom: new FormControl(this.item.prenom),
+        nom: new FormControl(this.item.nom),
+        email: new FormControl(this.item.email),
+        dateNais: new FormControl(this.item.dateNais),
+        lieuNais: new FormControl(this.item.lieuNais),
+        genre: new FormControl(this.item.genre),
+        situationmatri: new FormControl(this.item.situationmatri),
+        diplome: new FormControl(this.item.diplome),
+        ecole: new FormControl(this.item.ecole),
         photo: new FormControl(''),
       }),
       contrat: new FormGroup({
@@ -82,10 +84,11 @@ export class ModifierinterComponent implements OnInit {
   get f() { return this.interForm.controls; }
   submitted1() {
     //console.log(this.interForm.get('numeroCni').value);
+    
     const infopersonnel = this.interForm.value.infopersonnel;
     const cni = infopersonnel.numeroCni;
     const preno = infopersonnel.prenom;
-    const name = infopersonnel.nom;
+    const nom1 = infopersonnel.nom;
     const mail = infopersonnel.email;
     const date = infopersonnel.dateNais;
     const lieu = infopersonnel.lieuNais;
@@ -98,7 +101,7 @@ export class ModifierinterComponent implements OnInit {
       infopersonnel: {
         numeroCni: cni,
         prenom: preno,
-        nom: name,
+        nom: nom1,
         email: mail,
         dateNais: date,
         lieuNais: lieu,

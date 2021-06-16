@@ -66,47 +66,23 @@ export class DetailagenceComponent implements OnInit {
       
     //this.datas = this.dataService.getData();
     this.agenceForm = new FormGroup({
-      nom: new FormControl (''),
-      nomdg: new FormControl(''),
-      numdg: new FormControl (''),
-      email: new FormControl(''),
-      mobile: new FormControl (''),
-      fixe: new FormControl(''),
-      siteweb: new FormControl (''),
-      adresse: new FormControl(''),
-      photo: new FormControl (''),
-      contrat: new FormControl(''),
-      cnidg: new FormControl (''),
+      nom: new FormControl (this.dataAgence.nom),
+      nomdg: new FormControl(this.dataAgence.nomdg),
+      numdg: new FormControl (this.dataAgence.numdg),
+      email: new FormControl(this.dataAgence.email),
+      mobile: new FormControl (this.dataAgence.mobile),
+      fixe: new FormControl(this.dataAgence.fixe),
+      siteweb: new FormControl (this.dataAgence.siteweb),
+      adresse: new FormControl(this.dataAgence.adresse),
+      photo: new FormControl (this.dataAgence.photo),
+      contrat: new FormControl(this.dataAgence.contrat),
+      cnidg: new FormControl (this.dataAgence.cnidg),
     });
   }
 
   submitted1() {
     console.log(this.agenceForm.value);
     const value = this.agenceForm.value;
-     
-    if (!value.nom) {
-      this.nomUpdate = this.agenceForm.patchValue({nom: this.item.nom})
-    }else if (!value.nomdg) {
-      this.nomDg = this.agenceForm.patchValue({nomdg: this.item.nomdg})
-    }else if (!value.numdg) {
-      this.numdg = this.agenceForm.patchValue({numdg: this.item.numdg})
-    }else if (!value.email) {
-      this.email = this.agenceForm.patchValue({email: this.item.email})
-    }else if (!value.moile) {
-      this.mobile = this.agenceForm.patchValue({mobile: this.item.mobile})
-    }else if (!value.fixe) {
-      this.fixe = this.agenceForm.patchValue({nomdg: this.item.nomdg})
-    }else if (!value.adresse) {
-      this.adresse = this.agenceForm.patchValue({adresse: this.item.adresse})
-    }else if (!value.photo) {
-      this.photo = this.agenceForm.patchValue({photo: this.item.photo})
-    }else if (!value.cnidg) {
-      this.cnidg = this.agenceForm.patchValue({cnidg: this.item.cnidg})
-    }else if (!value.contrat) {
-      this.contrat = this.agenceForm.patchValue({contrat: this.item.contrat})
-    }
-
-    
     const info = new FormData();
     info.append("nom",value.nom);
     info.append("nomdg",value.nomdg);
@@ -129,13 +105,13 @@ export class DetailagenceComponent implements OnInit {
         )
     } 
 
-    updateAgence() {
-      this.route.navigate(['accueil/detailagence'], {
-        queryParams: {
-          user: JSON.stringify(this.item)
-        }
-      })
-    }
+   // updateAgence() {
+    //  this.route.navigate(['accueil/detailagence'], {
+     //   queryParams: {
+      //    user: JSON.stringify(this.item)
+      //  }
+     // })
+  //  }
     //recuperation de l'image
   getPhoto(e:any) {
     this.photo= e.files.item(0);
