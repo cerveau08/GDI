@@ -290,7 +290,7 @@ export class HomeComponent implements OnInit {
 
   id=1;
   ngOnInit() {
-    this.datas = this.otherService.getListInterFinContrat(this.id).subscribe(
+    this.otherService.getListInterFinContrat(this.id).subscribe(
       data => {
        this.datas = data.data;
        console.log(data);
