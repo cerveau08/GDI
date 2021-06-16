@@ -31,6 +31,12 @@ export class OthersService {
   getListManager(): Observable<any> {
     return this.http.get<any>(this.reqUrl + '/managers/list');
   }
+
+// details manager
+getDetailsManagerById(id: number) {
+  return this.http.get(this.reqUrl + `/users/${id}`);
+}
+
   getListDemandes(): Observable<any> {
     return this.http.get<any>(this.reqUrl + '/listeDemandes');
   }
