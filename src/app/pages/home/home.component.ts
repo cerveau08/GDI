@@ -291,6 +291,12 @@ export class HomeComponent implements OnInit {
 
 
   ngOnInit() {
+    this.otherService.getListInterFinContrat(this.id).subscribe(
+      data => {
+       this.datas = data.data;
+       console.log(data);
+      }
+    );
   //  this.datas = this.dataService.getData();
     
     this.user = localStorage.getItem('user');
