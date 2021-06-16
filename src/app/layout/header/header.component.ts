@@ -50,6 +50,7 @@ export class HeaderComponent implements OnInit {
   ];
   moisSelect
   demandeForm: FormGroup;
+  name;
   public menus: any;
   constructor(private modalService: ModalService, 
     private sidenavService: SidenavService,

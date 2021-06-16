@@ -85,7 +85,7 @@
                           </select>
                           <select class="select6" formControlName="agenceId" placeholder="Agence d'interim">
                             <option class="option" value="" disabled selected hidden>Agence d'interim</option>
-                            <option *ngFor="let data of datas" value="data.id">{{data.libelle}}</option>
+                            <option *ngFor="let data of dataAgence" value="data.id">{{data.nom}}</option>
                           </select>
                         </div>
                         <div class="contratinput2">
@@ -97,23 +97,23 @@
                           <input class="input3" type="text" formControlName="salaireBrut" placeholder="Montant Salaire Brut">
                         </div>
                         <div class="contratinput2">
-                          <select class="select5" #societe formControlName="structureId" (change)='directionsListe(societe.value)'>
+                          <select class="select5" #societe formControlName="structureId" (change)="directionsListe(societe.value)">
                             <option class="option" value="" disabled selected hidden>Societe</option>
-                            <option *ngFor="let data of datas" [value]="data.id">{{data.libelle}}</option>
+                            <option *ngFor="let data of dataSociete" [value]="data.id">{{data.libelle}}</option>
                           </select>
-                          <select class="select6" #direction formControlName="direction">
+                          <select class="select6" #direction  formControlName="direction" (change)="departementListe(direction.value)">
                             <option class="option" value="" disabled selected hidden>Direction</option>
-                            <option *ngFor="let data of dataD" value="{{data.id}}">{{data.libelle}}</option>
+                            <option *ngFor="let data of dataDirection" value="{{data.id}}">{{data.libelle}}</option>
                           </select>
                         </div>
                         <div class="contratinput2">
-                          <select class="select5" #departement formControlName="departement">
+                          <select class="select5" #departement formControlName="departement" (change)="serviceListe(departement.value)">
                             <option class="option" value="" disabled selected hidden>Département</option>
-                            <option *ngFor="let data of datas" [ngValue]="data">{{data.libelle}}</option>
+                            <option *ngFor="let data of dataDepartement" value="{{data.id}}">{{data.libelle}}</option>
                           </select>
-                          <select class="select6" formControlName="service">
+                          <select class="select6"  formControlName="service" >
                             <option class="option" value="" disabled selected hidden>Service</option>
-                            <option *ngFor="let data of datas" [ngValue]="data">{{data.libelle}}</option>
+                            <option *ngFor="let data of donneeService" value="{{data.id}}">{{data.libelle}}</option>
                           </select>
                         </div>
                     </div>

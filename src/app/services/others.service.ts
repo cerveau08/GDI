@@ -24,7 +24,7 @@ export class OthersService {
 
   // recupere la liste des interimaire fin de contrat
   getInter(): Observable<any> {
-    return this.http.get<any>(this.reqUrl + '/interimaires/manager/1');
+    return this.http.get<any>(this.reqUrl + '/interimairesByUser');
   }
 
   // recupere la liste des manager
@@ -43,10 +43,14 @@ getDetailsManagerById(id: number) {
 
   // recupere la liste des agences
   getListAgence(): Observable<any> {
-    return this.http.get<any>(this.reqUrl + '/listeAgence');
+    return this.http.get<any>(this.reqUrl + '/listeAgence?page=1');
   }
    // recupere les details d'une agence
    getOneAgenceById(id: number) {
+    return this.http.get(this.reqUrl + `/detailAgence/${id}`);
+  }
+   // recupere les details d'une aqa
+   getOneManagerById(id: number) {
     return this.http.get(this.reqUrl + `/detailAgence/${id}`);
   }
   getOneInterById(id: number) {
@@ -68,8 +72,8 @@ deleteUser(id: number): Observable<any> {
 addAgence(data) {
     return this.http.post<any>(`${this.reqUrl}/ajoutAgence`, data);
   }
-  updateAgence(user, id: number): Observable<any> {
-    return this.http.post<any>(`${this.reqUrl}/updateAgence/${id}`, user);
+  updateAgence(data:any, id: number): Observable<any> {
+    return this.http.post<any>(`${this.reqUrl}/updateAgence/${id}`, data);
   }
   getAgenceById(id: number): Observable<any> {
     return this.http.get<any>(`${this.reqUrl}/detailAgence/${id}`);
@@ -98,7 +102,11 @@ addAgence(data) {
   getAllService(id: number){
     return this.http.get(`${this.reqUrl}/services/${id}`)
   }
-  getAllDept(id: number){
+  getAllDepartement(id: number){
     return this.http.get(`${this.reqUrl}/departement/${id}`)
+  }
+  //delete une agence en l'archivant
+  deleteAgence(id: string) {
+    return this.http.delete(`${this.reqUrl}//${id}`)
   }
 }
