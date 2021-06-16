@@ -90,7 +90,7 @@ export class DetailagenceComponent implements OnInit {
     info.append("fixe",value.fixe);
     info.append("siteweb",value.siteweb);
     info.append("adresse",value.adresse);
-    info.append("logo",this.photo);
+    info.append("photo",this.photo);
     info.append("contrat",value.contrat);
     info.append("cnidg",value.cnidg);
     this.otherService.updateAgence(this.item, this.agenceForm.value).subscribe(
@@ -103,6 +103,13 @@ export class DetailagenceComponent implements OnInit {
         )
     } 
 
+    updateAgence() {
+      this.route.navigate(['accueil/detailagence'], {
+        queryParams: {
+          user: JSON.stringify(this.item)
+        }
+      })
+    }
     //recuperation de l'image
   getPhoto(e:any) {
     this.photo= e.files.item(0);

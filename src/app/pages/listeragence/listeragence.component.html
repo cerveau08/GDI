@@ -5,7 +5,7 @@
             <div class="liste">
                 <div class="item" *ngFor="let p of dataAgence | paginate: { itemsPerPage: 4, currentPage: p }; let i = index">
                     <div class="image">
-                        <img src="/assets/images/orange.png" alt="">
+                        <img src="{{p.logo}}" alt="">
                     </div>
                     <div class="info">
                         <p class="nom">{{p.agence}}</p>
@@ -23,9 +23,15 @@
                                 <p class="email">{{p.email}}</p>
                             </div>
                         </div>
-                        <div class="adresse">
-                            <mat-icon >room</mat-icon>
-                            <p class="adres">{{p.adresse}}</p>
+                        <div class="contact">
+                            <div class="web">
+                                <mat-icon >language</mat-icon>
+                                <p class="siteweb">{{p.email}}</p>
+                            </div>
+                            <div class="adresse">
+                                <mat-icon >room</mat-icon>
+                                <p class="adres">{{p.adresse}}</p>
+                            </div>
                         </div>
                     </div>
                     <div class="boutons">
@@ -44,7 +50,7 @@
                                     <div >
                                     <div class="grid">
                                         <div class="photo">
-                                        <img alt="" *ngIf="!url1==true" src="../assets/images/{{p.agentimg}}">
+                                        <img alt="" *ngIf="!url1==true" src="{{p.logo}}">
                                         <img alt="" *ngIf="url1" [src]="url1" height="60">
                                         <input formControlName="photo" class="button" type="file" (change)="readUrl($event)" >
                                         </div>
@@ -94,7 +100,7 @@
                     <jw-modal id="custom-modale-{{p.id}}">
                         <div class="grid2">
                             <div class="img">
-                                <img src="../assets/images/{{p.agentimg}}" alt="">
+                                <img src="{{p.logo}}" alt="">
                             </div>
                             <div class="agence">
                                 <p class="nom2">{{p.agence}}</p>

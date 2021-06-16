@@ -95,20 +95,7 @@ export class ListeragenceComponent implements OnInit {
     info.append("logo",this.photo);
     info.append("contrat",value.contrat);
     info.append("cnidg",value.cnidg);
-    this.otherService.addAgence(info).subscribe(
-      data => {
-        console.log(data);
-        if (data) {
-          alert('Agence modifié avec succées...');
-        }
-        this.router.navigate(['/accueil/listagence']);
-      },
-        error=> {
-          this.errorMsg = 'Probleme de connexion au serveur';
-          console.log(error)
-        }
-        //this.ndm.navigateByUrl('/accueil/listUsers');
-      )
+   console.log(info);
   }
 
  // submitted2() {

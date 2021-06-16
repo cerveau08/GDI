@@ -209,6 +209,13 @@ table {
     letter-spacing: normal;
     color: #000000;
   }
+  .motif-titre {
+      font-size: 18px;
+      font-weight: bold;
+      text-align: center;
+      margin-top: 10px;
+      margin-bottom: 20px;
+  }
   .type {
     display: flex;
     width: 50px;
@@ -281,8 +288,8 @@ input[type=checkbox] {
         margin-right: 30px;
         font-weight: bold;
         position: absolute;
-        right: 35px;
-        top: 40px;
+        right: 5px;
+        top: 5px;
       }
   }
 .forms {
