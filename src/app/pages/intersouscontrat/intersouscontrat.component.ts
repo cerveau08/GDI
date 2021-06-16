@@ -48,15 +48,17 @@ export class IntersouscontratComponent implements OnInit {
   public p: any;
   pagedItems: any[];
   date: any;
+  role;
   constructor(private dataService: DataService,
     public datepipe: DatePipe,
-    public router: Router
+    public router: Router,
+    private modalService: ModalService,
     ) { }
 
   ngOnInit() {
     this.datas = this.dataService.getData();
-    
-    this.getcolor(this.p);
+    this.role = localStorage.getItem('user')
+   // this.getcolor(this.p);
   }
 
   openDetail(data) {
@@ -67,7 +69,7 @@ export class IntersouscontratComponent implements OnInit {
     })
   }
 
-  getcolor(p) {
+  /*getcolor(p) {
     let color = "#ff0000"
     let d = new Date();
     var g1 = new Date(d.getFullYear(), d.getMonth()+1, d.getDate());
@@ -83,7 +85,7 @@ export class IntersouscontratComponent implements OnInit {
       color = "#000000"
     }  
     return color; 
-  } 
+  } */
   downloadFile(data: any) {
     const replacer = (key, value) => (value === null ? '' : value); // specify how you want to handle null values here
     const header = Object.keys(data[0]);
@@ -104,5 +106,13 @@ export class IntersouscontratComponent implements OnInit {
     a.click();
     window.URL.revokeObjectURL(url);
     a.remove();
+  }
+
+  openModal(id: string) {
+    this.modalService.open(id);
+  }
+
+  closeModal(id: string) {
+    this.modalService.close(id);
   }
 }

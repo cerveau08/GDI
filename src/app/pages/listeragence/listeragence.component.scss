@@ -49,6 +49,7 @@
 }
 .user {
     display: flex;
+    width: 90%;
     mat-icon {
        color: #009393;
        font-size: 30px;
@@ -69,8 +70,10 @@
 }
 .contact {
     display: flex;
+    width: 95%;
     .phone {
         display: flex;
+        max-width: 150px;
         mat-icon {
             color: #009393;
             font-size: 30px;
@@ -92,6 +95,7 @@
     .mail {
         display: flex;
         margin-left: 30px;
+        max-width: 300px;
         mat-icon {
             color: #009393;
             font-size: 30px;
@@ -113,6 +117,8 @@
 }
 .adresse {
     display: flex;
+    margin-left: 10px;
+    max-width: 200px;
     mat-icon {
        color: #009393;
        font-size: 30px;
@@ -120,7 +126,6 @@
        margin-top: 5px;
     }
     .adres {
-        width: 320px;
         font-size: 12px;
         font-weight: normal;
         font-stretch: normal;
@@ -134,6 +139,7 @@
 }
 .web {
     display: flex;
+    max-width: 300px;
     mat-icon {
        color: #009393;
        font-size: 30px;
@@ -771,7 +777,7 @@ input {
             line-height: normal;
             letter-spacing: -0.08px;
             color: #000000;
-            margin-top: 0px;
+            margin-top: 5px;
             margin-left: 0px;
         }
     }
@@ -787,7 +793,7 @@ input {
             }
             .telephone {
                 font-size: 10px;
-                margin-top: 0px;
+                margin-top: 5px;
                 margin-left: 0px;
                 width: 85px;
             }
@@ -809,7 +815,7 @@ input {
                 line-height: normal;
                 letter-spacing: -0.08px;
                 color: #000000;
-                margin-top: 0px;
+                margin-top: 5px;
                 margin-left: 0px;
             }
         }
@@ -831,7 +837,27 @@ input {
             line-height: normal;
             letter-spacing: -0.08px;
             color: #000000;
-            margin-top: 00px;
+            margin-top: 5px;
+            margin-left: 0px;
+        }
+    }
+    .web {
+        display: flex;
+        mat-icon {
+           color: #009393;
+           font-size: 15px;
+           margin-left: 0px;
+           margin-top: 0px;
+        }
+        .siteweb {
+            font-size: 10px;
+            font-weight: normal;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: normal;
+            letter-spacing: -0.08px;
+            color: #000000;
+            margin-top: 5px;
             margin-left: 0px;
         }
     }

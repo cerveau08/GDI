@@ -56,6 +56,7 @@ export class HomeComponent implements OnInit {
   scrWidth:any;
   user: any;
   showHome = true;
+  id=1;
   data = [{
     id: 1,
     prenom: "Amadou Dieye",
@@ -288,14 +289,11 @@ export class HomeComponent implements OnInit {
     };
   }
 
-  id=1;
+
   ngOnInit() {
-    this.otherService.getListInterFinContrat(this.id).subscribe(
-      data => {
-       this.datas = data.data;
-       console.log(data);
-      }
-    );
+    
+  //  this.datas = this.dataService.getData();
+    
     this.user = localStorage.getItem('user');
     if(this.user == 'interimaire') {
       this.showHome = false;
@@ -313,6 +311,12 @@ export class HomeComponent implements OnInit {
       }
     };
     this.intervalId = setInterval(getDownloadProgress, 1000);
+    this.otherService.getListInterFinContrat(this.id).subscribe(
+      data => {
+       this.datas = data;
+       console.log(data);
+      }
+    );
   }
   ngOnDestroy() {
     clearInterval(this.intervalId);
