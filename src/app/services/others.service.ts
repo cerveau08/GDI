@@ -37,10 +37,14 @@ export class OthersService {
 
   // recupere la liste des agences
   getListAgence(): Observable<any> {
-    return this.http.get<any>(this.reqUrl + '/listeAgence');
+    return this.http.get<any>(this.reqUrl + '/listeAgence?page=1');
   }
    // recupere les details d'une agence
    getOneAgenceById(id: number) {
+    return this.http.get(this.reqUrl + `/detailAgence/${id}`);
+  }
+   // recupere les details d'une aqa
+   getOneManagerById(id: number) {
     return this.http.get(this.reqUrl + `/detailAgence/${id}`);
   }
   getOneInterById(id: number) {
@@ -94,5 +98,9 @@ addAgence(data) {
   }
   getAllDepartement(id: number){
     return this.http.get(`${this.reqUrl}/departement/${id}`)
+  }
+  //delete une agence en l'archivant
+  deleteAgence(id: string) {
+    return this.http.delete(`${this.reqUrl}//${id}`)
   }
 }

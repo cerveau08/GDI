@@ -24,6 +24,12 @@ export class DetailagenceComponent implements OnInit {
   image: any;
   dataAgence: any;
   agenceForm: FormGroup;
+  nomUpdate; nomDg;
+  numdg; email;
+  fixe; mobile;
+  siteweb; adresse;
+  contrat; cnidg;
+
   viewer = 'google';
   DemoDoc="http://www.africau.edu/images/default/sample.pdf" 
   DemoDoc1="https://file-examples.com/wp-content/uploads/2017/02/file-sample_100kB.doc"
@@ -55,9 +61,9 @@ export class DetailagenceComponent implements OnInit {
       },
       error =>{
         console.log(error)
-      }
-    );
+      });
   
+      
     //this.datas = this.dataService.getData();
     this.agenceForm = new FormGroup({
       nom: new FormControl (''),
@@ -74,13 +80,33 @@ export class DetailagenceComponent implements OnInit {
     });
   }
 
-  //updatedAgence() {
-    
- // }
-
   submitted1() {
     console.log(this.agenceForm.value);
     const value = this.agenceForm.value;
+     
+    if (!value.nom) {
+      this.nomUpdate = this.agenceForm.patchValue({nom: this.item.nom})
+    }else if (!value.nomdg) {
+      this.nomDg = this.agenceForm.patchValue({nomdg: this.item.nomdg})
+    }else if (!value.numdg) {
+      this.numdg = this.agenceForm.patchValue({numdg: this.item.numdg})
+    }else if (!value.email) {
+      this.email = this.agenceForm.patchValue({email: this.item.email})
+    }else if (!value.moile) {
+      this.mobile = this.agenceForm.patchValue({mobile: this.item.mobile})
+    }else if (!value.fixe) {
+      this.fixe = this.agenceForm.patchValue({nomdg: this.item.nomdg})
+    }else if (!value.adresse) {
+      this.adresse = this.agenceForm.patchValue({adresse: this.item.adresse})
+    }else if (!value.photo) {
+      this.photo = this.agenceForm.patchValue({photo: this.item.photo})
+    }else if (!value.cnidg) {
+      this.cnidg = this.agenceForm.patchValue({cnidg: this.item.cnidg})
+    }else if (!value.contrat) {
+      this.contrat = this.agenceForm.patchValue({contrat: this.item.contrat})
+    }
+
+    
     const info = new FormData();
     info.append("nom",value.nom);
     info.append("nomdg",value.nomdg);
