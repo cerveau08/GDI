@@ -1,5 +1,6 @@
 import { DataService } from 'src/app/service/data.service';
 import { QueryBindingType } from '@angular/compiler/src/core';
+import { OthersService } from 'src/app/services/others.service';
 import { Component, HostListener, OnInit } from '@angular/core';
 import { ApexAxisChartSeries, ApexChart, ApexDataLabels, ApexPlotOptions, ApexResponsive, ApexXAxis, ApexYAxis, ApexLegend, ApexFill, ChartComponent } from 'ng-apexcharts';
 
@@ -55,6 +56,7 @@ export class HomeComponent implements OnInit {
   scrWidth:any;
   user: any;
   showHome = true;
+  id=1;
   data = [{
     id: 1,
     prenom: "Amadou Dieye",
@@ -90,7 +92,8 @@ export class HomeComponent implements OnInit {
         //console.log(this.scrHeight, this.scrWidth);
   }
 
-  constructor(private dataService: DataService) {
+  constructor(private dataService: DataService ,
+    private otherService: OthersService) {
     this.getScreenSize();
     this.chartOptions = {
       series: [
@@ -286,8 +289,10 @@ export class HomeComponent implements OnInit {
     };
   }
 
+
   ngOnInit() {
-    this.datas = this.dataService.getData();
+  //  this.datas = this.dataService.getData();
+    
     this.user = localStorage.getItem('user');
     if(this.user == 'interimaire') {
       this.showHome = false;
@@ -305,15 +310,21 @@ export class HomeComponent implements OnInit {
       }
     };
     this.intervalId = setInterval(getDownloadProgress, 1000);
+    this.otherService.getListInterFinContrat(this.id).subscribe(
+      data => {
+       this.datas = data;
+       console.log(data);
+      }
+    );
   }
   ngOnDestroy() {
     clearInterval(this.intervalId);
   }
 
   getColor(p) {
-    if(p.statut == "oui") {
+    if(p.isAdmissible == true) {
       this.color = "#6dd400";
-    } else if (p.statut == "non") {
+    } else if (p.isAdmissible == false) {
       this.color = "#f03737";
     }
     return this.color;

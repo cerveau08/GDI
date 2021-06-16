@@ -19,7 +19,7 @@ export class ListeragenceComponent implements OnInit {
   showadduser;
   id: any;
   item:any;
-  datas: any;
+  datas: any;  
   agenceForm: FormGroup;
   userForm: FormGroup;
   dataAgence: any;
