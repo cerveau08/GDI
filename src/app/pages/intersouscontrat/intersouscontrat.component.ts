@@ -1,3 +1,4 @@
+import { FormGroup, FormControl } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -49,6 +50,7 @@ export class IntersouscontratComponent implements OnInit {
   pagedItems: any[];
   date: any;
   role;
+  attestationForm: FormGroup;
   constructor(private dataService: DataService,
     public datepipe: DatePipe,
     public router: Router,
@@ -59,6 +61,24 @@ export class IntersouscontratComponent implements OnInit {
     this.datas = this.dataService.getData();
     this.role = localStorage.getItem('user')
    // this.getcolor(this.p);
+    this.attestationForm = new FormGroup({
+      interim_id: new FormControl(''),
+      dateDebut: new FormControl(''),
+      dateFin: new FormControl(''),
+      contrat_id: new FormControl(''),
+      nbr_jr_absence: new FormControl(''),
+      periode_id: new FormControl(''),
+      statut_id: new FormControl(''),
+      prenom: new FormControl(''),
+      nom: new FormControl(''),
+      poste: new FormControl(''),
+      matricule: new FormControl(''),
+      agence: new FormControl(''),
+    });
+  }
+
+  submit() {
+    console.log(this.attestationForm.value);
   }
 
   openDetail(data) {
