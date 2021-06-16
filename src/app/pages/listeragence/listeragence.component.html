@@ -56,11 +56,11 @@
                                         </div>
                                         <div class="others">
                                             <div class="input1">
-                                            <input type="text" [value]="p.agence" formControlName="nom" placeholder="Nom entreprise">
+                                            <input type="text" [value]="p.nom" formControlName="nom" placeholder="Nom entreprise">
                                             </div>
                                             <div class="input2">
-                                                <input type="text" [value]="p.manager" formControlName="directeur" placeholder="Nom Directeur Général">
-                                                <input class="input3" [value]="p.telephone"  type="text" formControlName="numerodg" placeholder="Numéro DG">
+                                                <input type="text" [value]="p.nomdg" formControlName="nomdg" placeholder="Nom Directeur Général">
+                                                <input class="input3" [value]="p.telephone"  type="text" formControlName="numdg" placeholder="Numéro DG">
                                             </div>
                                             <div class="input1">
                                                 <input type="text" [value]="p.email"  formControlName="email" placeholder="Email">
@@ -70,10 +70,10 @@
                                                 <input class="input3" [value]="p.telephone"  type="text" formControlName="fixe" placeholder="Numéro Fixe">
                                             </div>
                                             <div class="input1">
-                                                <input type="text" [value]="p.site" formControlName="website" placeholder="Site web">
+                                                <input type="text" [value]="p.siteweb" formControlName="siteweb" placeholder="Site web">
                                             </div>
                                             <div class="input4">
-                                                <textarea type="textarea" [value]="p.adagen" formControlName="adresse" placeholder="Adresse"></textarea>
+                                                <textarea type="textarea" [value]="p.adresse" formControlName="adresse" placeholder="Adresse"></textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -123,12 +123,12 @@
                         <div class="trait"></div>
                         <h1>Ajouter nouvel utilisateur</h1>
                         <mat-icon style="cursor: pointer;" (click)="closeModal('custom-modale-'+p.id);" class="clear">clear</mat-icon>
-                        <div class="formad">
+                       <!-- <div class="formad">
                             <form [formGroup]="userForm">
                                 <div >
                                 <div class="gridad">
                                     <div class="photoad">
-                                    <img alt="" class="imgad"  *ngIf="!url1==true" src="../assets/images/default.png">
+                                    <img alt="" class="imgad"  *ngIf="!url1==true" src="/assets/images/manager.png">
                                     <img alt="" class="imgad" *ngIf="url1" [src]="url1" height="60">
                                     <input formControlName="photo" class="buttonad" type="file" (change)="readUrl($event)" >
                                     </div>
@@ -151,7 +151,7 @@
                                 </div>
                                 </div>
                             </form>
-                        </div>
+                        </div>-->
                     </jw-modal>
                 </div>
             <!--modal-2-->

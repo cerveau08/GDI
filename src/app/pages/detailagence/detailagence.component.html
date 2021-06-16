@@ -108,7 +108,7 @@
                 <div class="list-aside">
                     <div style="cursor: pointer;" class="grid-container-aside" [ngStyle]="{'border-bottom' : ((i > 2) ? 'none' : '1px solid #f5f6f9') }">
                         <div  class="item4-aside" >
-                            <img alt="" class="photo-aside" src="../assets/images/{{p.photo}}">
+                            <img alt="" class="photo-aside" src="{{p.photo}}">
                         </div>
                         <div  class="item4-aside" >
                             <p class="prenom-aside"> {{p.prenom}} </p>
@@ -172,34 +172,34 @@
         <h1>Modification</h1>
         <mat-icon style="cursor: pointer;" (click)="closeModal('custom-modal-2');" class="clear">clear</mat-icon>
         <div class="form">
-            <form [formGroup]="agenceForm">
+            <form [formGroup]="agenceForm" (ngSubmit)="submitted1()">
                 <div >
                 <div class="grid">
                     <div class="photo">
-                        <img alt="" *ngIf="!url1==true" src="../assets/images/{{item.agentimg}}">
+                        <img alt="" *ngIf="!url1==true" src="{{dataAgence.data.photo}}">
                         <img alt="" *ngIf="url1" [src]="url1" height="60">
                         <input formControlName="photo" class="button" type="file" (change)="getPhoto($event.target)" >
                     </div>
                     <div class="others">
                         <div class="input1">
-                        <input type="text"  formControlName="nom" placeholder="Nom entreprise">
+                        <input type="text" [value]="dataAgance.data.nom"  formControlName="nom" placeholder="Nom entreprise">
                         </div>
                         <div class="input2">
-                            <input type="text"  formControlName="nomdg" placeholder="Nom Directeur Général">
+                            <input type="text" [value]="dataAgance.data.nomdg"  formControlName="nomdg" placeholder="Nom Directeur Général">
                             <input class="input3"   type="text" formControlName="numdg" placeholder="Numéro DG">
                         </div>
                         <div class="input1">
-                            <input type="text"  formControlName="email" placeholder="Email">
+                            <input type="text" [value]="dataAgance.data.email"  formControlName="email" placeholder="Email">
                         </div>
                         <div class="input2">
-                            <input type="text"  formControlName="mobile" placeholder="Numéro téléphone Mobile">
+                            <input type="text" [value]="dataAgance.data.mobile"  formControlName="mobile" placeholder="Numéro téléphone Mobile">
                             <input class="input3"   type="text" formControlName="fixe" placeholder="Numéro Fixe">
                         </div>
                         <div class="input1">
-                            <input type="text"  formControlName="siteweb" placeholder="Site web">
+                            <input type="text" [value]="dataAgance.data.siteweb" formControlName="siteweb" placeholder="Site web">
                         </div>
                         <div class="input4">
-                            <textarea type="textarea" formControlName="adresse" placeholder="Adresse"></textarea>
+                            <textarea type="textarea" [value]="dataAgance.data.adresse" formControlName="adresse" placeholder="Adresse"></textarea>
                         </div>
                     </div>
                 </div>
@@ -207,12 +207,12 @@
                 <div class="boutons">
                     <p class="p2">Documents Entreprise</p>
                     <div class="buttons1">
-                        <input formControlName="contrat" class="button5" type="file" (change)="readUrl1($event)" >
-                        <input formControlName="cnidg" class="button6" type="file" (change)="readUrl1($event)" >
+                        <input formControlName="contrat" [value]="dataAgance.data.contrat" class="button5" type="file" (change)="readUrl1($event)" >
+                        <input formControlName="cnidg" [value]="dataAgance.data.cnidg" class="button6" type="file" (change)="readUrl1($event)" >
                     </div>
                 </div>
                 <div class="buttons">
-                <button class="buttonenregistrer" (click)="submitted1()" type="button">Valider</button>
+                <button class="buttonenregistrer" type="submit">Valider</button>
                 </div>
                 </div>
             </form>

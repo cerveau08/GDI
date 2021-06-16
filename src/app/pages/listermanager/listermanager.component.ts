@@ -59,7 +59,7 @@ getManager() {
   openDetail(data) {
     this.router.navigate(['/accueil/manager'], {
       queryParams: {
-        user: JSON.stringify(data)
+        user: JSON.stringify(data.id)
       }
     })
   }

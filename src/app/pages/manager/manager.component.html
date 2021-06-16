@@ -1,7 +1,7 @@
 <div class="all-container">
     <div class="demande">
         <p class="detail">Détail</p>
-        <div class="manager" *ngFor="let p of data">
+        <div class="manager" >
             <div class="image">
                 <img class="image-manager" src="../assets/images/manager.png" alt="">
                 <div class="im1">
@@ -14,9 +14,9 @@
                 </div>
             </div>
             <div class="information">
-                <p class="nom">{{p.manager}}</p>
-                <p class="poste">{{p.postem}}</p>
-                <p class="matricule">{{p.matricule}}</p>
+                <p class="nom">{{data.data.prenom}} {{data.data.nom}}</p>
+                <p class="poste">{{data.data.postem}}</p>
+                <p class="matricule">{{data.data.matricule}}</p>
             </div>
         </div>
         <hr>

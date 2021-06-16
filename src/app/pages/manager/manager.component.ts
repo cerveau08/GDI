@@ -2,6 +2,9 @@ import { DataService } from './../../service/data.service';
 import { Component, HostListener, OnInit } from '@angular/core';
 import { NgxFileSaverService } from '@clemox/ngx-file-saver';
 import { ModalService } from 'src/app/_modal/modal.service';
+import { ActivatedRoute } from '@angular/router';
+import {OthersService} from '../../services/others.service';
+
 
 @Component({
   selector: 'app-manager',
@@ -10,7 +13,7 @@ import { ModalService } from 'src/app/_modal/modal.service';
 })
 export class ManagerComponent implements OnInit {
 
-  data = [{
+ /* data = [{
     id: 1,
     prenom: "Amadou Dieye",
     nom: "LEYE",
@@ -37,7 +40,7 @@ export class ManagerComponent implements OnInit {
     photo: "inter.png",
     matricule: "060210",
     nomInt: "5"
-  }];
+  }];*/
   scrHeight:any;
   scrWidth:any;
   viewer = 'google';   
@@ -48,6 +51,8 @@ export class ManagerComponent implements OnInit {
   datas: any;
   showHome = true;
   user;
+  item;
+  data;
   @HostListener('window:resize', ['$event'])
   getScreenSize(event?) {
         this.scrHeight = window.innerHeight;
@@ -56,8 +61,14 @@ export class ManagerComponent implements OnInit {
   }
   constructor(private dataService: DataService,
     private modalService: ModalService,
-    private fileSaver: NgxFileSaverService,) {
+    private fileSaver: NgxFileSaverService,
+    private otherService: OthersService,
+    private activeroute: ActivatedRoute) {
       this.getScreenSize();
+      this.activeroute.queryParams.subscribe(params => {
+        this.item = JSON.parse(params["user"]);
+        console.log(this.item);
+      })
     }
 
   ngOnInit() {
@@ -68,6 +79,15 @@ export class ManagerComponent implements OnInit {
       this.showHome = true;
     }
      this.datas = this.dataService.getData();
+     
+     this.otherService.getDetailsManagerById(this.item).subscribe(
+       data => {
+         this.data = data
+         console.log(this.data);
+         
+       }
+     )
+     
   }
 
   openModal(id: string) {

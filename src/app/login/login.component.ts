@@ -1,3 +1,4 @@
+import { PresenceComponent } from './../pages/presence/presence.component';
 import { Component, HostListener, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -45,9 +46,12 @@ export class LoginComponent implements OnInit {
         //console.log(data.data['role'][0])
         let profil = data.data.profil
         console.log(profil);
+        let prenom = data.data.prenom
+        console.log(prenom);
 
         localStorage.setItem('token', data.token)
-        localStorage.setItem('user', profil);
+        localStorage.setItem('user', profil)
+        localStorage.setItem('prenom', prenom);
         if(data) {
           this.route.navigate(['accueil/home']);
         }

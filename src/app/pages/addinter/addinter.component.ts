@@ -27,10 +27,14 @@ export class AddinterComponent implements OnInit {
   contactForm : FormGroup;
   posteForm : FormGroup;
   formPhoneGroup : FormGroup;
-  datas: any;
-  dataD: any;
+  dataSociete: any;
+  dataDirection: any;
+  dataAgence: any;
+  dataDepartement: any;
   id: any;
   itemd;
+  donneeService;
+  itemdept;
   datajson;
   constructor(private fb: FormBuilder,
               private dataService: DataService,
@@ -74,20 +78,23 @@ export class AddinterComponent implements OnInit {
         ficheposte: new FormControl(''),
       })
     });
+    //liste des agences
+    this.otherService.getListAgence().subscribe(
+      data => {
+        this.dataAgence = data.data;
+        console.log(data);
+      }
+    );
       //recupere les societes
     this.otherService.getAllSociete().subscribe(
       data => {
-        this.datas = data["data"];
+        this.dataSociete = data["data"];
         console.log(data);
       }
     );
     this.directionsListe(this.itemd)
-   /* this.otherService.getAllDirection(this.id).subscribe(
-     data => {
-       this.dataD = data['data'];
-      console.log(data);
-      }
-     );*/
+    this.departementListe(this.itemd)
+    this.serviceListe(this.itemd)
   }
 
   submitted1() {
@@ -193,12 +200,32 @@ const info = {
     console.log(value);
     this.otherService.getAllDirection(value).subscribe(
       data => {
-        this.dataD = data['data'];
+        this.dataDirection = data['data'];
        console.log(data);
        }
-    );
-    
+    ); 
   }
+
+  departementListe(value) {
+    console.log(value);
+    this.otherService.getAllDepartement(value).subscribe(
+      data => {
+        this.dataDepartement = data['data'];
+       console.log(data);
+       }
+    ); 
+  }
+
+  serviceListe(value) {
+    console.log(value);
+    this.otherService.getAllService(value).subscribe(
+      data => {
+        this.donneeService = data['data'];
+       console.log(data);
+       }
+    ); 
+  }
+ 
   readUrl1(event: any) {
     console.log('readUrl');
       if (event.target.files && event.target.files[0]) {
@@ -207,7 +234,6 @@ const info = {
         reader.onload = (event: any) => {
           this.url1 = event.target.result;
         }
-      
         reader.readAsDataURL(event.target.files[0]);
       }
   }

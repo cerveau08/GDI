@@ -24,6 +24,12 @@ export class DetailagenceComponent implements OnInit {
   image: any;
   dataAgence: any;
   agenceForm: FormGroup;
+  nomUpdate; nomDg;
+  numdg; email;
+  fixe; mobile;
+  siteweb; adresse;
+  contrat; cnidg;
+
   viewer = 'google';
   DemoDoc="http://www.africau.edu/images/default/sample.pdf";
   DemoDoc1="https://file-examples.com/wp-content/uploads/2017/02/file-sample_100kB.doc";
@@ -55,28 +61,24 @@ export class DetailagenceComponent implements OnInit {
       },
       error =>{
         console.log(error)
-      }
-    );
+      });
   
+      
     //this.datas = this.dataService.getData();
     this.agenceForm = new FormGroup({
-      nom: new FormControl (''),
-      nomdg: new FormControl(''),
-      numdg: new FormControl (''),
-      email: new FormControl(''),
-      mobile: new FormControl (''),
-      fixe: new FormControl(''),
-      siteweb: new FormControl (''),
-      adresse: new FormControl(''),
-      photo: new FormControl (''),
-      contrat: new FormControl(''),
-      cnidg: new FormControl (''),
+      nom: new FormControl (this.dataAgence.nom),
+      nomdg: new FormControl(this.dataAgence.nomdg),
+      numdg: new FormControl (this.dataAgence.numdg),
+      email: new FormControl(this.dataAgence.email),
+      mobile: new FormControl (this.dataAgence.mobile),
+      fixe: new FormControl(this.dataAgence.fixe),
+      siteweb: new FormControl (this.dataAgence.siteweb),
+      adresse: new FormControl(this.dataAgence.adresse),
+      photo: new FormControl (this.dataAgence.photo),
+      contrat: new FormControl(this.dataAgence.contrat),
+      cnidg: new FormControl (this.dataAgence.cnidg),
     });
   }
-
-  //updatedAgence() {
-    
- // }
 
   submitted1() {
     console.log(this.agenceForm.value);
@@ -90,7 +92,7 @@ export class DetailagenceComponent implements OnInit {
     info.append("fixe",value.fixe);
     info.append("siteweb",value.siteweb);
     info.append("adresse",value.adresse);
-    info.append("logo",this.photo);
+    info.append("photo",this.photo);
     info.append("contrat",value.contrat);
     info.append("cnidg",value.cnidg);
     this.otherService.updateAgence(this.item, this.agenceForm.value).subscribe(
@@ -103,6 +105,13 @@ export class DetailagenceComponent implements OnInit {
         )
     } 
 
+   // updateAgence() {
+    //  this.route.navigate(['accueil/detailagence'], {
+     //   queryParams: {
+      //    user: JSON.stringify(this.item)
+      //  }
+     // })
+  //  }
     //recuperation de l'image
   getPhoto(e:any) {
     this.photo= e.files.item(0);
