@@ -39,7 +39,7 @@
                     <td class="id1">{{p.id}}</td>
                     <td>{{p.prenom}}</td>
                     <td>{{p.nom}}</td>
-                    <td *ngIf="scrWidth>991"> <img alt="" class="photo" src="../assets/images/{{p.photo}}"></td>
+                    <td *ngIf="scrWidth>991"> <img alt="" class="photo" src="http://10.137.16.67:8053/{{p.photo}}"></td>
                     <td>{{p.direction.libelle}}</td>
                     <td>{{p.structure.departement}}/{{p.service}}</td>
                     <td> <p>{{p.nbreInterimaires}}</p> </td>
@@ -83,7 +83,7 @@
                 <div class="list-aside">
                     <div style="cursor: pointer;" class="grid-container-aside" [ngStyle]="{'border-bottom' : ((i > 2) ? 'none' : '1px solid #f5f6f9') }">
                         <div  class="item4-aside" >
-                            <img alt="" class="photo-aside" src="../assets/images/{{p.photo}}">
+                            <img alt="" class="photo-aside" src="http://10.137.16.67:8053/{{p.photo}}">
                         </div>
                         <div  class="item4-aside" >
                             <p class="prenom-aside"> {{p.prenom}} </p>

@@ -49,6 +49,7 @@
 }
 .user {
     display: flex;
+    width: 90%;
     mat-icon {
        color: #009393;
        font-size: 30px;
@@ -69,8 +70,10 @@
 }
 .contact {
     display: flex;
+    width: 95%;
     .phone {
         display: flex;
+        max-width: 150px;
         mat-icon {
             color: #009393;
             font-size: 30px;
@@ -92,6 +95,7 @@
     .mail {
         display: flex;
         margin-left: 30px;
+        max-width: 300px;
         mat-icon {
             color: #009393;
             font-size: 30px;
@@ -114,6 +118,7 @@
 .adresse {
     display: flex;
     margin-left: 10px;
+    max-width: 200px;
     mat-icon {
        color: #009393;
        font-size: 30px;
@@ -121,7 +126,6 @@
        margin-top: 5px;
     }
     .adres {
-        width: 320px;
         font-size: 12px;
         font-weight: normal;
         font-stretch: normal;
@@ -135,6 +139,7 @@
 }
 .web {
     display: flex;
+    max-width: 300px;
     mat-icon {
        color: #009393;
        font-size: 30px;
