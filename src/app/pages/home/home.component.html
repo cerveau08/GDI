@@ -253,7 +253,7 @@
                                 <img alt="" class="photo-aside" src="../assets/images/{{p.photo}}">
                             </div>
                             <div  class="item4-aside" >
-                                <p class="prenom-aside"> {{p.prenom}} </p>
+                                <p class="prenom-aside"> {{p.prenom}} {{p.nom}} </p>
                                 <p class="poste-aside"> {{p.poste}} </p>
                             </div>
                             <div  class="item4-aside"> 
@@ -285,10 +285,10 @@
                             <div  class="item4-aside" >
                                 <p class="prenom-aside"> {{p.poste}} </p>
                                 <div class="dep-aside">
-                                    <p class="serv-aside"> {{p.direction}}/ </p>
-                                    <p class="serv-aside"> {{p.pole}}/ </p>
-                                    <p class="serv-aside"> {{p.departement}}/ </p>
-                                    <p class="serv-aside"> {{p.service}} </p>
+                                    <p class="serv-aside"> {{p.direction.libelle}}/ </p>
+                                    <p class="serv-aside"> {{p.pole.libelle}}/ </p>
+                                    <p class="serv-aside"> {{p.departement.libelle}}/ </p>
+                                    <p class="serv-aside"> {{p.service.libelle}} </p>
                                 </div>
                             </div>
                             <div  class="item4-aside"> 
