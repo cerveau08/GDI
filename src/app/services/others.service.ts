@@ -34,7 +34,7 @@ export class OthersService {
 
 // details manager
 getDetailsManagerById(id: number) {
-  return this.http.get(this.reqUrl + `/users/${id}`);
+  return this.http.get(this.reqUrl + `/manager/${id}`);
 }
 
   getListDemandes(): Observable<any> {
@@ -88,7 +88,7 @@ addAgence(data) {
     return this.http.post<any>(`${this.reqUrl}/contrat/interimaire`, data);
   }
   getListInterFinContrat(id: number): Observable<any> {
-    return this.http.get<any>(`${this.reqUrl}/interimaireFinContrat/${id}`);
+    return this.http.get<any>(`${this.reqUrl}/interimFinContrat?page=1`);
   }
   getAllSociete(){
     return this.http.get(this.reqUrl + '/societe/all')

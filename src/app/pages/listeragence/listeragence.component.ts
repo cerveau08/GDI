@@ -30,7 +30,7 @@ export class ListeragenceComponent implements OnInit {
 
   page = 1;
   passenger: any; 
-  itemsPerPage = 6;
+  itemsPerPage = 3;
   totalItems : any;
   public reqUrl = environment.base_url;
   constructor(private dataService: DataService,
@@ -47,13 +47,6 @@ export class ListeragenceComponent implements OnInit {
     } else {
       this.showupdate = false;
     }
-
-    this.otherService.getListAgence().subscribe(
-      data => {
-        this.dataAgence = data.data;
-        console.log(data);
-      }
-    );
    
     this.datas = this.dataService.getData();
     this.agenceForm = new FormGroup({
@@ -69,15 +62,7 @@ export class ListeragenceComponent implements OnInit {
       contrat: new FormControl(''),
       cnidg: new FormControl (''),
     });
-    //this.userForm = new FormGroup({
-    //  prenom: new FormControl (''),
-     // nom: new FormControl(''),
-     // email: new FormControl(''),
-     // telephone: new FormControl (''),
-     // profil: new FormControl(''),
-     // photo: new FormControl (''),
-  //  });
-    
+    this.gty(this.page);
   }
   
   gty(page: any){
