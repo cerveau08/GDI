@@ -2,22 +2,22 @@
     <div class="all2" >
         <div class="grid2">
             <div class="img">
-                <img src="{{dataAgence.data.logo}}" alt="">
+                <img src="{{dataAgence?.data.logo}}" alt="">
             </div>
             <div class="agence">
-                <p class="nom2">{{dataAgence.data.nom}}</p>
+                <p class="nom2">{{dataAgence?.data.nom}}</p>
                 <div class="nombre">
                     <div class="total">
                         <p class="title">Total</p>
-                        <p class="libelle">{{dataAgence.dateDebut | date: "Mdd"}}</p>
+                        <p class="libelle">{{dataAgence?.data.dateDebut | date: "Mdd"}}</p>
                     </div>
                     <div class="actif">
                         <p class="title">Actifs</p>
-                        <p class="libelle">{{dataAgence.dateFin | date: "Mdd"}}</p>
+                        <p class="libelle">{{dataAgence?.data.dateFin | date: "Mdd"}}</p>
                     </div>
                     <div class="archiv">
                         <p class="title">Archivés</p>
-                        <p class="libelle">{{dataAgence.dateDebut | date: "Mdd"}}</p>
+                        <p class="libelle">{{dataAgence?.data.dateDebut | date: "Mdd"}}</p>
                     </div>
                 </div>
             </div>
@@ -26,25 +26,25 @@
             <div class="pes">
                 <div class="prenom">
                     <mat-icon class="icon-item">person</mat-icon>
-                    <p class="info-item">{{dataAgence.data.responsable}}</p>
+                    <p class="info-item">{{dataAgence?.data.responsable}}</p>
                 </div>
                 <div class="email2">
                     <mat-icon class="icon-item">mail</mat-icon>
-                    <p class="info-item">{{dataAgence.data.email}}</p>
+                    <p class="info-item">{{dataAgence?.data.email}}</p>
                 </div>
                 <div class="siteweb">
                     <mat-icon class="icon-item">language</mat-icon>
-                    <p class="info-item">{{dataAgence.data.siteweb}}</p>
+                    <p class="info-item">{{dataAgence?.data.siteweb}}</p>
                 </div>
             </div>
             <div class="pa">
                 <div class="phone2">
                     <mat-icon class="icon-item">local_phone</mat-icon>
-                    <p class="info-item">{{dataAgence.data.telephone}}</p>
+                    <p class="info-item">{{dataAgence?.data.telephone}}</p>
                 </div>
                 <div class="adresse2">
                     <mat-icon class="icon-item">room</mat-icon>
-                    <p class="info-item">{{dataAgence.data.adresse}}</p>
+                    <p class="info-item">{{dataAgence?.data.adresse}}</p>
                 </div>
             </div>
         </div>
@@ -53,20 +53,20 @@
         <div class="users">
             <div class="user1">
                 <div class="photo1">
-                    <img src="../assets/images/{{item.photo}}" alt="">
+                    <img src="../assets/images/{{dataAgence?.data.photo}}" alt="">
                 </div>
                 <div class="profil">
-                    <p class="profil1">{{item.manager}}</p>
-                    <p class="profil2">{{item.poste}}</p>
+                    <p class="profil1">{{dataAgence?.data.manager}}</p>
+                    <p class="profil2">{{dataAgence?.data.manager}}</p>
                 </div>
             </div>
-            <div class="user2">
+            <div class="user1">
                 <div class="photo1">
-                    <img src="../assets/images/{{item.photo}}" alt="">
+                    <img src="../assets/images/{{dataAgence?.photo}}" alt="">
                 </div>
                 <div class="profil">
-                    <p class="profil1">{{dataAgence.data.manager}}</p>
-                    <p class="profil2">{{dataAgence.data.poste}}</p>
+                    <p class="profil1">{{dataAgence?.manager}}</p>
+                    <p class="profil2">{{dataAgence?.poste}}</p>
                 </div>
             </div>
         </div>
@@ -152,7 +152,7 @@
     <jw-modal id="custom-modal-1">
         <div class="tableau">
             <mat-icon style="cursor: pointer;" (click)="closeModal('custom-modal-1');" class="clear">clear</mat-icon>
-            <p class="dtl1">contrat {{dataAgence.data.agence}}</p>
+            <p class="dtl1">contrat {{dataAgence?.nom}}</p>
             <ngx-doc-viewer 
                [url]="DemoDoc" 
                [viewer]="viewer" 
@@ -174,46 +174,46 @@
         <div class="form">
             <form [formGroup]="agenceForm" (ngSubmit)="submitted1()">
                 <div >
-                <div class="grid">
-                    <div class="photo">
-                        <img alt="" *ngIf="!url1==true" src="{{dataAgence.data.photo}}">
-                        <img alt="" *ngIf="url1" [src]="url1" height="60">
-                        <input formControlName="photo" class="button" type="file" (change)="getPhoto($event.target)" >
+                    <div class="grid">
+                        <div class="photo">
+                            <img alt="" *ngIf="!url1==true" src="{{logo}}">
+                            <img alt="" *ngIf="url1" [src]="url1" height="60">
+                            <input formControlName="logo" class="button" type="file" [(ngModel)]="logo" (change)="getPhoto($event.target)" >
+                        </div>
+                        <div class="others">
+                            <div class="input1">
+                            <input type="text" [(ngModel)]="nom"  formControlName="nom" placeholder="Nom entreprise">
+                            </div>
+                            <div class="input2">
+                                <input type="text" [(ngModel)]="nomdg"  formControlName="nomdg" placeholder="Nom Directeur Général">
+                                <input class="input3" [(ngModel)]="numdg"  type="text" formControlName="numdg" placeholder="Numéro DG">
+                            </div>
+                            <div class="input1">
+                                <input type="text" [(ngModel)]="email"  formControlName="email" placeholder="Email">
+                            </div>
+                            <div class="input2">
+                                <input type="text" [(ngModel)]="mobile"  formControlName="mobile" placeholder="Numéro téléphone Mobile">
+                                <input class="input3" [(ngModel)]="fixe"  type="text" formControlName="fixe" placeholder="Numéro Fixe">
+                            </div>
+                            <div class="input1">
+                                <input type="text" [(ngModel)]="siteweb" formControlName="siteweb" placeholder="Site web">
+                            </div>
+                            <div class="input4">
+                                <textarea type="textarea" [(ngModel)]="adresse" formControlName="adresse" placeholder="Adresse"></textarea>
+                            </div>
+                        </div>
                     </div>
-                    <div class="others">
-                        <div class="input1">
-                        <input type="text" [value]="dataAgance.data.nom"  formControlName="nom" placeholder="Nom entreprise">
-                        </div>
-                        <div class="input2">
-                            <input type="text" [value]="dataAgance.data.nomdg"  formControlName="nomdg" placeholder="Nom Directeur Général">
-                            <input class="input3"   type="text" formControlName="numdg" placeholder="Numéro DG">
-                        </div>
-                        <div class="input1">
-                            <input type="text" [value]="dataAgance.data.email"  formControlName="email" placeholder="Email">
-                        </div>
-                        <div class="input2">
-                            <input type="text" [value]="dataAgance.data.mobile"  formControlName="mobile" placeholder="Numéro téléphone Mobile">
-                            <input class="input3"   type="text" formControlName="fixe" placeholder="Numéro Fixe">
-                        </div>
-                        <div class="input1">
-                            <input type="text" [value]="dataAgance.data.siteweb" formControlName="siteweb" placeholder="Site web">
-                        </div>
-                        <div class="input4">
-                            <textarea type="textarea" [value]="dataAgance.data.adresse" formControlName="adresse" placeholder="Adresse"></textarea>
+                    <div class="trait"></div>
+                    <div class="boutons">
+                        <p class="p2">Documents Entreprise</p>
+                        <div class="buttons1">
+                            <input formControlName="contrat" [(ngModel)]="contrat" class="button5" type="file" (change)="readUrl1($event)" >
+                            <input formControlName="cnidg" [(ngModel)]="cnidg" class="button6" type="file" (change)="readUrl1($event)" >
                         </div>
                     </div>
-                </div>
-                <div class="trait"></div>
-                <div class="boutons">
-                    <p class="p2">Documents Entreprise</p>
-                    <div class="buttons1">
-                        <input formControlName="contrat" [value]="dataAgance.data.contrat" class="button5" type="file" (change)="readUrl1($event)" >
-                        <input formControlName="cnidg" [value]="dataAgance.data.cnidg" class="button6" type="file" (change)="readUrl1($event)" >
+                    <div class="buttons">
+                    <button class="buttonenregistrer" type="submit">Valider</button>
                     </div>
-                </div>
-                <div class="buttons">
-                <button class="buttonenregistrer" type="submit">Valider</button>
-                </div>
                 </div>
             </form>
         </div>

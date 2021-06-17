@@ -76,6 +76,7 @@ export class AddinterComponent implements OnInit {
         titre: new FormControl(''),
         matricule: new FormControl(''),
         ficheposte: new FormControl(''),
+        procesverbal: new FormControl(''),
       })
     });
     //liste des agences
@@ -114,41 +115,12 @@ export class AddinterComponent implements OnInit {
     infoInter.append("diplome",value.diplome);
     infoInter.append("universite",value.universite);
     infoInter.append("photo",this.photo);
-    /*
-const infopersonnel = this.interForm.value.infopersonnel;
-const cni = infopersonnel.numeroCni;
-const preno = infopersonnel.prenom;
-const name = infopersonnel.nom;
-const mail = infopersonnel.email;
-const date = infopersonnel.dateNais;
-const lieu = infopersonnel.lieuNais;
-const sexe = infopersonnel.genre;
-const situation = infopersonnel.situationmatri;
-const grade = infopersonnel.diplome;
-const school = infopersonnel.ecole;
-const image = infopersonnel.photo;
-const info = {
-  infopersonnel: {
-    numeroCni: cni,
-    prenom: preno,
-    nom: name,
-    email: mail,
-    dateNais: date,
-    lieuNais: lieu,
-    genre: sexe,
-    situationmatri: situation,
-    diplome: grade,
-    ecole: school,
-    photo: image,
-  }
-} */
-
     console.log(infoInter);
-    localStorage.setItem('color1', "20px solid #f16e00");
-    localStorage.setItem('color2', "20px solid #ff7900");
-    localStorage.setItem('colora', "#f16e00");
-    localStorage.setItem('colorb', "#ff7900");
-    return infoInter;
+    //localStorage.setItem('color1', "20px solid #f16e00");
+    //localStorage.setItem('color2', "20px solid #ff7900");
+    //localStorage.setItem('colora', "#f16e00");
+    //localStorage.setItem('colorb', "#ff7900");
+    //return infoInter;
   }
 
   submitted2() {
@@ -166,20 +138,48 @@ const info = {
     infoCont.append("departement",value.departement);
     infoCont.append("service",value.service);
     infoCont.append("filecontrat",value.filecontrat);
-  
     console.log(infoCont);
-    localStorage.setItem('color2', "20px solid #f16e00");
-    localStorage.setItem('color3', "20px solid #ff7900");
-    localStorage.setItem('colorb', "#f16e00");
-    localStorage.setItem('colorc', "#ff7900");
-    return infoCont;
+    //localStorage.setItem('color2', "20px solid #f16e00");
+    //localStorage.setItem('color3', "20px solid #ff7900");
+    //localStorage.setItem('colorb', "#f16e00");
+    //localStorage.setItem('colorc', "#ff7900");
+   // return infoCont;
   }
 
   submit() {
+    const interimForm = new FormData();
+    interimForm.append("nCni",this.interForm.value.infopersonnel.nCni)
+    interimForm.append("universite",this.interForm.value.infopersonnel.universite)
+    interimForm.append("sexe",this.interForm.value.infopersonnel.sexe)
+    interimForm.append("dateNaissance",this.interForm.value.infopersonnel.dateNaissance)
+    interimForm.append("lieuNaissance",this.interForm.value.infopersonnel.lieuNaissance)
+    interimForm.append("profession",this.interForm.value.infopersonnel.profession)
+    interimForm.append("sitmat",this.interForm.value.infopersonnel.sitmat)
+    //interimForm.append("diplome",this.interForm.value.infopersonnel.diplome)
+    interimForm.append("adressse",this.interForm.value.infopersonnel.adresse)
+    interimForm.append("profilId",'3')
+    interimForm.append("categorieId",this.interForm.value.contrat.categorieId)
+    interimForm.append("structureId",this.interForm.value.contrat.structureId)
+    interimForm.append("domaineId",'1')
+    interimForm.append("agenceId",'20')
+    interimForm.append("societeId",this.interForm.value.infopersonnel.societeId)
+    interimForm.append("salaireBrut",this.interForm.value.infopersonnel.salaireBrut)
+    //interimForm.append("titre",this.interForm.value.infoPoste.titre)
+    //interimForm.append("matricule",this.interForm.value.infoPoste.matricule)
+    //interimForm.append("ficheposte",this.interForm.value.infoPoste.ficheposte)
+    //interimForm.append("procesverbal",this.interForm.value.infoPoste.procesverbal)
+    console.log(this.interForm.value.infopersonnel);
+
     console.log(this.interForm.value);
+    const value = this.interForm.value;
+    const infoPoste = new FormData();
+    infoPoste.append("titre",value.titre);
+    infoPoste.append("matricule",value.matricule);
+    infoPoste.append("ficheposte",value.ficheposte);
+    infoPoste.append("procesverbal",value.procesverbal);
     localStorage.setItem('color3', "20px solid #f16e00");
     localStorage.setItem('colorc', "#f16e00");
-    this.otherService.addInter(this.interForm.value).subscribe(
+    this.otherService.addInter(interimForm).subscribe(
       data => {
         console.log(data);
         //if (data) {
@@ -335,13 +335,13 @@ const info = {
   //recuperation de l'image
   getPhoto(e:any) {
     this.photo= e.files.item(0);
-    console.log(this.photo)
+    console.log(this.photo.type);
 
     let reader = new FileReader();
     reader.readAsDataURL( this.photo)
     reader.onload= ()=>{
       this.image= reader.result
-      console.log(this.image)
+     // console.log(this.image)
     }
   }
 }

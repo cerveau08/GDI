@@ -10,12 +10,12 @@
 }
     .grid2 {
         display: grid;
-        grid-template-columns: 160px 1fr;
+        grid-template-columns: 140px 1fr;
     }
         .img {
             img {
-                width: 150px;
-                height: 150px;
+                width: 140px;
+                height: 140px;
             }
         }
     
@@ -23,7 +23,7 @@
            margin-left: 20px;
         }
            .nom2 {
-                font-size: 36px;
+                font-size: 25px;
                 font-weight: bold;
                 font-stretch: normal;
                 font-style: normal;
@@ -35,11 +35,11 @@
            }
             .nombre {
                height: 41px;
-                width: 350px;
+                max-width: 300px;
                 border-radius: 4px;
                 border: solid 1px #eaeaea;
                 display: flex;
-                padding: 20px;
+                padding: 5px;
                 margin-top: 20px;
                 display: grid;
                 grid-template-columns: 33% 33% 33%;
@@ -167,20 +167,21 @@
     }
     .users {
         display: grid;
-        grid-template-columns: 55% 40%;
+        grid-template-columns: 50% 50%;
     }
         .user1 {
             display: flex;
+            margin-right: 10px;
         }
             .photo1 {
                 img {
-                    height: 42px;
-                    width: 42px;
+                    height: 35px;
+                    width: 35px;
                     border-radius: 50%;
                 }
             }
             .profil {
-                margin-left: 20px;
+                margin-left: 10px;
             }
                 .profil1 {
                     font-size: 14px;
@@ -203,46 +204,11 @@
                     color: #222222;
                     margin-top: 0;
                 }
-        .user2 {
-            margin-left: 50px;
-            display: flex;
-        }
-            .photo1 {
-                img {
-                    height: 42px;
-                    width: 42px;
-                    border-radius: 50%;
-                }
-            }
-            .profil {
-                margin-left: 20px;
-            }
-                .profil1 {
-                    font-size: 14px;
-                    font-weight: 500;
-                    font-stretch: normal;
-                    font-style: normal;
-                    line-height: normal;
-                    letter-spacing: normal;
-                    color: #222222;
-                    margin-top: 5px;
-                    margin-bottom: 0;
-                }
-                .profil2 {
-                    font-size: 12px;
-                    font-weight: normal;
-                    font-stretch: normal;
-                    font-style: normal;
-                    line-height: normal;
-                    letter-spacing: normal;
-                    color: #222222;
-                    margin-top: 0;
-                }
-            
+       
    
         .buttonsupp {
-            width: 127px;
-            height: 40px;
+            width: 100px;
+            height: 30px;
             background: #cd3c14;
             font-size: 14px;
             font-weight: bold;
@@ -256,8 +222,8 @@
             border: none;
         }
         .buttonaffi {
-            width: 176px;
-            height: 40px;
+            width: 150px;
+            height: 30px;
             background: black;
             font-size: 14px;
             font-weight: bold;
@@ -272,8 +238,8 @@
             border: none;
         }
         .buttonmodif {
-            width: 117px;
-            height: 40px;
+            width: 100px;
+            height: 30px;
             background: white;
             font-size: 14px;
             font-weight: bold;
@@ -286,7 +252,7 @@
             border-radius: none;
             margin-top: 20px;
             outline: none;
-            border: 3px solid black;
+            border: 2px solid black;
         }
     
 
@@ -337,14 +303,14 @@
 jw-modal {
     position: relative;
     h1{
-      font-size: 21px;
+      font-size: 18px;
       font-weight: bold;
       font-stretch: normal;
       font-style: normal;
       line-height: normal;
       letter-spacing: 1px;
       color: #222222;
-      margin-top: 30px;
+      margin-top: 15px;
       margin-left: 30px;
     }
     .clear {
@@ -354,8 +320,8 @@ jw-modal {
       margin-right: 30px;
       font-weight: bold;
       position: absolute;
-      right: 5%;
-      top: 5%;
+      right: 2px;
+      top: 2px;
     }
     img {
         width: 200px;
@@ -365,7 +331,7 @@ jw-modal {
 }
 .form {
     max-width: 680px;
-    margin: 40px auto;
+    margin: 10px auto;
 }
 .grid {
     margin-top: 10px;
@@ -419,7 +385,7 @@ jw-modal {
 .button::before {
     content: 'Modifier';
     width: 158px;
-    height: 35px;
+    height: 25px;
     background-color: white;
     border: none;
     color: black;
@@ -427,10 +393,10 @@ jw-modal {
     text-decoration: none;
     font-weight: bold;
     display: inline-block;
-    font-size: 18px;
+    font-size: 14px;
     cursor: pointer;
     outline: none;
-    border: 3px solid black;
+    border: 2px solid black;
     margin-top: 30px;
     margin-left: 10px;
     padding-top: 15px;
@@ -447,7 +413,7 @@ input {
 }
 .input1 input {
     width: 95%;
-    height: 41px;
+    height: 30px;
     background-color: #f5f6f9;
     border-radius: 1px;
     border: solid 1px #d8d8d8;
@@ -458,20 +424,21 @@ input {
 }
 .input2 input {
     width: 45%;
-    height: 41px;
+    height: 30px;
     background-color: #f5f6f9;
     border-radius: 1px;
     border: solid 1px #d8d8d8;
     margin-bottom: 15px;
 }
 .input4 textarea {
-    width: 96%;
-    height: 114px;
+    width: 94%;
+    height: 60px;
     background-color: #f5f6f9;
     border-radius: 1px;
     border: solid 1px #d8d8d8;
     margin-bottom: 15px;
     outline: none;
+    padding-left: 10px;
 }
 .input3 {
     margin-left: 1%;
@@ -479,7 +446,7 @@ input {
 .trait {
     border: 1px solid #979797;
     background-color: #979797;
-    margin-top: 30px;
+    margin-top: 5px;
 }
 .p2 {
     font-size: 18px;
@@ -499,7 +466,7 @@ input {
 .button5::before {
     content: 'Contrat';
     width: 128px;
-    height: 30px;
+    height: 25px;
     background-color: white;
     border: none;
     color: black;
@@ -507,10 +474,10 @@ input {
     text-decoration: none;
     font-weight: bold;
     display: inline-block;
-    font-size: 18px;
+    font-size: 14px;
     cursor: pointer;
     outline: none;
-    border: 3px solid black;
+    border: 2px solid black;
     margin-top: 10px;
     margin-left: 10px;
     padding-top: 10px;
@@ -523,7 +490,7 @@ input {
 .button6::before {
     content: 'CNI DG';
     width: 128px;
-    height: 30px;
+    height: 25px;
     background-color: white;
     border: none;
     color: black;
@@ -531,35 +498,35 @@ input {
     text-decoration: none;
     font-weight: bold;
     display: inline-block;
-    font-size: 18px;
+    font-size: 14px;
     cursor: pointer;
     outline: none;
-    border: 3px solid black;
+    border: 2px solid black;
     margin-top: 10px;
     margin-left: 10px;
     padding-top: 10px;
 }
 .buttons1 {
     width: 350px;
-    margin: 20px auto;
+    margin: 10px auto;
     display: flex;
 }
 .buttons {
-    width: 150px;
+    width: 100px;
     margin: 20px auto;
     display: flex;
 }
 .buttonenregistrer {
     width: 98px;
-    height: 50px;
+    height: 30px;
     padding: 8px 15px 9px;
     border: none;
     color: white;
     background: #000000;
-    margin-top: 20px;
-    margin-left: 30px;
+    margin-top: 10px;
+    margin-left: 0px;
     outline: none;
-    font-size: 18px;
+    font-size: 14px;
     font-weight: bold;
 }
 

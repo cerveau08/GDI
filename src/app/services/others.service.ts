@@ -11,20 +11,20 @@ export class OthersService {
   constructor(private http: HttpClient) { }
 // recupere la liste des interimaire sous contrat
   getInterSousContrat(): Observable<any> {
-    return this.http.get<any>(this.reqUrl + '/interimaires/listeInterimParContrat');
+    return this.http.get<any>(this.reqUrl + '/interimSousContrat');
   }
   // recupere la liste des interimaire sous contrat
   getUsersAll(): Observable<any> {
     return this.http.get<any>(this.reqUrl + '/users/all');
   }
 // recupere la liste des interimaire fin de contrat
-  getInterFinContrat(): Observable<any> {
-    return this.http.get<any>(this.reqUrl + '/listeInterimParContrat');
-  }
+ // getInterFinContrat(): Observable<any> {
+   // return this.http.get<any>(this.reqUrl + '/listeInterimParContrat');
+ // }
 
   // recupere la liste des interimaire fin de contrat
   getInter(): Observable<any> {
-    return this.http.get<any>(this.reqUrl + '/interimairesByUser');
+    return this.http.get<any>(this.reqUrl + '/interimFinContrat');
   }
 
   // recupere la liste des manager
@@ -107,6 +107,6 @@ addAgence(data) {
   }
   //delete une agence en l'archivant
   deleteAgence(id: string) {
-    return this.http.delete(`${this.reqUrl}//${id}`)
+    return this.http.delete(`${this.reqUrl}/deleteAgence/${id}`)
   }
 }
