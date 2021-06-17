@@ -53,6 +53,7 @@ export class ManagerComponent implements OnInit {
   user;
   item;
   data;
+  managerinfo;
   @HostListener('window:resize', ['$event'])
   getScreenSize(event?) {
         this.scrHeight = window.innerHeight;
@@ -68,6 +69,14 @@ export class ManagerComponent implements OnInit {
       this.activeroute.queryParams.subscribe(params => {
         this.item = JSON.parse(params["user"]);
         console.log(this.item);
+        this.otherService.getDetailsManagerById(this.item).subscribe(
+          result => {
+            this.data = result
+            this.managerinfo = this.data.data
+            console.log(this.data);
+            
+          }
+        )
       })
     }
 
