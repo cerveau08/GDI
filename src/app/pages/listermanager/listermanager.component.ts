@@ -24,7 +24,7 @@ export class ListermanagerComponent implements OnInit {
   //pagedItems: any[];
   page = 1;
   passenger: any; 
-  itemsPerPage = 4;
+  itemsPerPage = 10;
   totalItems : any;
   date: any;
   scrHeight:any;
@@ -48,24 +48,14 @@ export class ListermanagerComponent implements OnInit {
     }
 
   ngOnInit() {
-    this.datas = this.dataService.getData();
-    this.getManager();
+   // this.datas = this.dataService.getData();
+    //this.getManager();
+    this.gty(this.page);
   }
- 
-getManager() {
-  this.otherService.getListManager().subscribe(
-    data => {
-      console.log(data);
-      this.datas = data.data;
-    },
-    error => {
-      console.log(error);
-    }
-  );
-}
+
 
 gty(page: any){
-  this.http.get(this.reqUrl + `/souscontrat?page=${page}&size=${this.itemsPerPage}`).subscribe((data: any) => {
+  this.http.get(this.reqUrl + `/managers/list?page=${page}&size=${this.itemsPerPage}`).subscribe((data: any) => {
     this.datas =  data.data;
     this.totalItems = data.total;
     console.log(this.datas);
