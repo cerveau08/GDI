@@ -17,17 +17,13 @@ import { environment } from 'src/environments/environment';
 export class IntersouscontratComponent implements OnInit {
   public data; any;
   public datas: any;
-  pager: any = {};
-  filterterm: string;
-  public p: any;
-  pagedItems: any[];
   date: any;
   role;
   dataInter: any;
   attestationForm: FormGroup;
   page = 1;
   passenger: any; 
-  itemsPerPage = 4;
+  itemsPerPage = 10;
   totalItems : any;
   public reqUrl = environment.base_url;
   constructor(private dataService: DataService,
@@ -39,14 +35,6 @@ export class IntersouscontratComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-    this.datas = this.dataService.getData();
-    this.otherService.getInterSousContrat().subscribe(
-      data => {
-       this.dataInter = data.data;
-       console.log(data);
-      }
-    );
-
     this.role = localStorage.getItem('user')
    // this.getcolor(this.p);
     this.attestationForm = new FormGroup({
@@ -63,10 +51,11 @@ export class IntersouscontratComponent implements OnInit {
       matricule: new FormControl(''),
       agence: new FormControl(''),
     });
+    this.gty(this.page);
   }
 
   gty(page: any){
-    this.http.get(this.reqUrl + `/souscontrat?page=${page}&size=${this.itemsPerPage}`).subscribe((data: any) => {
+    this.http.get(this.reqUrl + `/interimSousContrat?page=${page}&size=${this.itemsPerPage}`).subscribe((data: any) => {
       this.dataInter =  data.data;
       this.totalItems = data.total;
       console.log(this.dataInter);
