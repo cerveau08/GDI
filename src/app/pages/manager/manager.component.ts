@@ -68,6 +68,13 @@ export class ManagerComponent implements OnInit {
       this.activeroute.queryParams.subscribe(params => {
         this.item = JSON.parse(params["user"]);
         console.log(this.item);
+        this.otherService.getDetailsManagerById(this.item).subscribe(
+          data => {
+            this.data = data
+            console.log(this.data);
+            
+          }
+        )
       })
     }
 
@@ -80,17 +87,11 @@ export class ManagerComponent implements OnInit {
     }
      this.datas = this.dataService.getData();
      
-     this.otherService.getDetailsManagerById(this.item).subscribe(
-       data => {
-         this.data = data
-         console.log(this.data);
-         
-       }
-     )
+     
      
   }
 
-  openModal(id: string) {
+  openModal(id: string) {g
     this.modalService.open(id);
   }
 
