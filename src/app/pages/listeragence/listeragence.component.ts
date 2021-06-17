@@ -4,6 +4,8 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { ModalService } from 'src/app/_modal/modal.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import {OthersService} from '../../services/others.service';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-listeragence',
@@ -25,10 +27,17 @@ export class ListeragenceComponent implements OnInit {
   photo;
   errorMsg;
   dataAgence: any;
+
+  page = 1;
+  passenger: any; 
+  itemsPerPage = 6;
+  totalItems : any;
+  public reqUrl = environment.base_url;
   constructor(private dataService: DataService,
     private modalService: ModalService,
     private activeroute: ActivatedRoute,
     public router: Router,
+    private http: HttpClient,
     private otherService: OthersService) {}
 
   ngOnInit() {
@@ -45,7 +54,7 @@ export class ListeragenceComponent implements OnInit {
         console.log(data);
       }
     );
-
+   
     this.datas = this.dataService.getData();
     this.agenceForm = new FormGroup({
       nom: new FormControl (''),
@@ -71,6 +80,16 @@ export class ListeragenceComponent implements OnInit {
     
   }
   
+  gty(page: any){
+    this.http.get(this.reqUrl + `/listeAgence?page=${page}&size=${this.itemsPerPage}`).subscribe((data: any) => {
+      this.dataAgence =  data.data;
+      this.totalItems = data.total;
+      console.log(this.dataAgence);
+      console.log(this.totalItems);
+      
+    })
+  }
+
   openDetail(data) {
     this.router.navigate(['/accueil/detailagence'], {
       queryParams: {

@@ -3,7 +3,13 @@
         <div class="">
             <p class="p1">Liste des Agences d’interim</p>
             <div class="liste">
-                <div class="item" *ngFor="let p of dataAgence | paginate: { itemsPerPage: 4, currentPage: p }; let i = index">
+                <div class="item" *ngFor="let p of dataAgence | paginate
+                                            : {
+                                                itemsPerPage: itemsPerPage,
+                                                currentPage: page,
+                                                totalItems: totalItems
+                                                }">
+                    <!-- <div class="item" *ngFor="let p of dataAgence | paginate: { itemsPerPage: 4, currentPage: p }; let i = index"> -->
                     <div class="image">
                         <img src="{{p.logo}}" alt="">
                     </div>
@@ -156,7 +162,7 @@
                 </div>
             <!--modal-2-->
                  </div>
-                <pagination-controls (pageChange)="p = $event" previousLabel="Précédent" nextLabel="Suivant"></pagination-controls>
+                <pagination-controls (pageChange)="gty((page = $event))" previousLabel="Précédent" nextLabel="Suivant"></pagination-controls>
             </div>
         </div>
     </div>
