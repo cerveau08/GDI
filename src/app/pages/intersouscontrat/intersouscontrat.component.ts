@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { DataService } from 'src/app/service/data.service';
 import { PaginationService } from 'src/app/service/pagination.service';
 import { ModalService } from 'src/app/_modal';
+import { OthersService } from 'src/app/services/others.service';
 
 @Component({
   selector: 'app-intersouscontrat',
@@ -15,34 +16,6 @@ export class IntersouscontratComponent implements OnInit {
 
   public data; any;
 
-  donnee = [{
-    id: 1,
-    prenom: "Amadou Dieye",
-    nom: "LEYE",
-    poste: "Développeur Web",
-    dateDebut: "25/12/2020",
-    dateFin: "25/12/2022",
-    tmp: "tmp_0254",
-    agence: "Set Interim",
-    dateNais: "10/12/1992",
-    lieuNais: "Mbour",
-    genre: "masculin",
-    cni: "1 619 1992 2154",
-    categorie: "Cadre C1C",
-    structure: "Sonatel SA",
-    direction: "DST",
-    pole: "DD",
-    departement: "DASI",
-    service: "PMA",
-    manager: "Madiagne SYLLA",
-    postem: "Chef de Services Production et Maintenance Applicatif",
-    email: "amadou.dieye.leye@orange-sonatel.com",
-    telephone: "+ 221 33 824 91 31",
-    adresse: "mbour",
-    photo: "inter.png",
-    matricule: "060210",
-    nomInt: "5"
-  }];
   public datas: any;
   pager: any = {};
   filterterm: string;
@@ -50,15 +23,24 @@ export class IntersouscontratComponent implements OnInit {
   pagedItems: any[];
   date: any;
   role;
+  dataInter: any;
   attestationForm: FormGroup;
   constructor(private dataService: DataService,
     public datepipe: DatePipe,
     public router: Router,
     private modalService: ModalService,
+    private otherService: OthersService
     ) { }
 
   ngOnInit() {
     this.datas = this.dataService.getData();
+    this.otherService.getInterSousContrat().subscribe(
+      data => {
+       this.dataInter = data.data;
+       console.log(data);
+      }
+    );
+
     this.role = localStorage.getItem('user')
    // this.getcolor(this.p);
     this.attestationForm = new FormGroup({
@@ -76,6 +58,7 @@ export class IntersouscontratComponent implements OnInit {
       agence: new FormControl(''),
     });
   }
+  
 
   submit(interim, nbr, statut, contrat, period, dateDebut, dateFin) {
     console.log(interim, dateDebut);

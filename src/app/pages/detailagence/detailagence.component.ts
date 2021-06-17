@@ -19,6 +19,7 @@ export class DetailagenceComponent implements OnInit {
   user;
   showupdate;
   showadduser;
+  showdelete;
   id: any;
   image: any;
   dataAgence;
@@ -175,7 +176,17 @@ export class DetailagenceComponent implements OnInit {
       }
   }
 
-  delete(id) {
-
+  delete() {
+    this.otherService.deleteAgence(this.user.id).subscribe(
+      (response) =>{
+       console.log(response)
+       if (response) {
+        alert('Voulez vous supprimer cette agence');
+       }
+      },
+      (error)=>{
+        console.log(error);
+      }
+    );
   }
 }

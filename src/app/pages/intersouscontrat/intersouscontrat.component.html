@@ -36,7 +36,7 @@
             </tr>
             </thead>
             <tbody>
-                <tr style="cursor: pointer;" *ngFor="let p of datas | filter:filterterm | paginate: { itemsPerPage: 8, currentPage: p }; let i = index">
+                <tr style="cursor: pointer;" *ngFor="let p of dataInter | filter:filterterm | paginate: { itemsPerPage: 8, currentPage: p }; let i = index">
                     <td (click)="openDetail(p)" class="id1">{{p.id}}</td>
                     <td (click)="openDetail(p)">{{p.prenom}}</td>
                     <td (click)="openDetail(p)">{{p.nom}}</td>
