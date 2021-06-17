@@ -64,7 +64,7 @@ export class ManagerComponent implements OnInit {
      
   }
 
-  openModal(id: string) {g
+  openModal(id: string) {
     this.modalService.open(id);
   }
 
