@@ -24,11 +24,6 @@ export class DetailagenceComponent implements OnInit {
   image: any;
   dataAgence: any;
   agenceForm: FormGroup;
-  nomUpdate; nomDg;
-  numdg; email;
-  fixe; mobile;
-  siteweb; adresse;
-  contrat; cnidg;
 
   viewer = 'google';
   DemoDoc="http://www.africau.edu/images/default/sample.pdf";

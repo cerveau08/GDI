@@ -36,6 +36,9 @@
                           <div class="infoinput1">
                             <input type="text" formControlName="mail" placeholder="Email">
                           </div>
+                          <div class="infoinput1">
+                            <input type="text" formControlName="adresse" placeholder="Adresse">
+                          </div>
                           <div class="infoinput2">
                             <input type="text" formControlName="dateNaissance" placeholder="Date de Naissance">
                             <input class="input3" type="text" formControlName="lieuNaissance" placeholder="Lieu de Naissance">
@@ -154,7 +157,7 @@
                           <div class="photo">
                             <img class="image-upload" *ngIf="!url4==true" src="/assets/images/upload.png" alt="">
                             <img class="image-upload" [src]="url4" height="60" alt="">
-                            <input formControlName="ficheposte" class="buttonphoto4" type="file" (change)="readUrl4($event)" >
+                            <input formControlName="procesverbal" class="buttonphoto4" type="file" (change)="readUrl4($event)" >
                           </div>
                         </div>
                       </div>
