@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { FormGroup, FormControl } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
@@ -7,7 +8,6 @@ import { PaginationService } from 'src/app/service/pagination.service';
 import { ModalService } from 'src/app/_modal';
 import { OthersService } from 'src/app/services/others.service';
 import { environment } from 'src/environments/environment';
-import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-intersouscontrat',
@@ -15,39 +15,26 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./intersouscontrat.component.scss']
 })
 export class IntersouscontratComponent implements OnInit {
-
   public data; any;
   public datas: any;
-  pager: any = {};
-  filterterm: string;
-  public p: any;
-  pagedItems: any[];
   date: any;
   role;
   dataInter: any;
   attestationForm: FormGroup;
-
   page = 1;
-  itemsPerPage = 10;
+  passenger: any; 
+  itemsPerPage = 7;
   totalItems : any;
   public reqUrl = environment.base_url;
   constructor(private dataService: DataService,
     public datepipe: DatePipe,
     public router: Router,
-    private http: HttpClient,
     private modalService: ModalService,
-    private otherService: OthersService
+    private otherService: OthersService,
+    private http: HttpClient
     ) { }
 
   ngOnInit() {
-    this.datas = this.dataService.getData();
-   /* this.otherService.getInterSousContrat().subscribe(
-      data => {
-       this.dataInter = data.data;
-       console.log(data);
-      }
-    );*/
-
     this.role = localStorage.getItem('user')
    // this.getcolor(this.p);
     this.attestationForm = new FormGroup({
@@ -66,6 +53,7 @@ export class IntersouscontratComponent implements OnInit {
     });
     this.gty(this.page);
   }
+
   
   gty(page: any){
     this.http.get(this.reqUrl + `/interimSousContrat?page=${page}&size=${this.itemsPerPage}`).subscribe((data: any) => {
