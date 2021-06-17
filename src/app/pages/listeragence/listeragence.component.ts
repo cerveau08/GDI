@@ -29,7 +29,6 @@ export class ListeragenceComponent implements OnInit {
   dataAgence: any;
 
   page = 1;
-  passenger: any; 
   itemsPerPage = 3;
   totalItems : any;
   public reqUrl = environment.base_url;
