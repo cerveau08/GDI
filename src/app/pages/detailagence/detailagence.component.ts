@@ -64,8 +64,8 @@ export class DetailagenceComponent implements OnInit {
             this.siteweb = this.dataAgence.data.siteweb;
             this.adresse = this.dataAgence.data.adresse;
             this.logo = this.dataAgence.data.logo;
-            this.contrat = this.dataAgence.data.contrat;
-            this.cnidg = this.dataAgence.data.cnidg;
+            //this.contrat = this.dataAgence.data.contrat;
+           // this.cnidg = this.dataAgence.data.cnidg;
           },
           error =>{
             console.log(error)
@@ -92,8 +92,8 @@ export class DetailagenceComponent implements OnInit {
       siteweb: new FormControl(''),
       adresse: new FormControl(''),
       logo: new FormControl(''),
-      contrat: new FormControl(''),
-      cnidg: new FormControl(''),
+    //  contrat: new FormControl(''),
+     // cnidg: new FormControl(''),
     });
   }
 
@@ -111,9 +111,12 @@ export class DetailagenceComponent implements OnInit {
     info.append("siteweb",value.siteweb);
     info.append("adresse",value.adresse);
     info.append("logo",this.logo);
-    info.append("contrat",value.contrat);
-    info.append("cnidg",value.cnidg);
-    this.otherService.updateAgence(this.item, this.agenceForm.value).subscribe(
+    console.log(info);
+    
+    //info.append("contrat",value.contrat);
+    //info.append("cnidg",value.cnidg);
+    console.log(this.item);
+    this.otherService.updateAgence(this.item.id, this.agenceForm.value).subscribe(
           (res) =>{
             console.log(res);
           },
