@@ -36,21 +36,21 @@
             </tr>
             </thead>
             <tbody>
-                <tr (click)="openDetail(p)" style="cursor: pointer;" *ngFor="let p of datas | filter:filterterm | paginate: { itemsPerPage: 8, currentPage: p }; let i = index">
-                    <td class="id1">{{p.id}}</td>
+                <tr  style="cursor: pointer;" *ngFor="let p of dataFinContrat | filter:filterterm | paginate: { itemsPerPage: itemsPerPage, currentPage: page, totalItems: totalItems};">
+                    <td (click)="openDetail(p)" class="id1">{{p.id}}</td>
                     <td>{{p.prenom}}</td>
                     <td>{{p.nom}}</td>
                     <td *ngIf="scrWidth>991"> <img alt="" class="photo" src="{{p.photo}}"></td>
-                    <td>{{p.direction}}/{{p.departement}}/{{p.service}}</td>
+                    <td>{{p.direction}}</td>
                     <td  >{{p.agence}}</td>
                     <td><div [style.background]="getcolor1(p)" class="status"></div></td>
-                    <td> <p>{{p.fin_contrat}}</p> </td>
+                    <td> <p [style.color]="getcolor(p)">{{p.fin_contrat  | date:'dd/MM/yyyy'}}</p> </td>
                 </tr>
             </tbody>
             
         </table>  
         <div class="pagination">
-            <pagination-controls (pageChange)="p = $event" previousLabel="Prcédent" nextLabel="Suivant"></pagination-controls>
+            <pagination-controls (pageChange)="gty(page = $event)" previousLabel="Prcédent" nextLabel="Suivant"></pagination-controls>
         </div>
     </div>
     <div class="aside">
@@ -81,18 +81,18 @@
         
         <div class="interi-aside">
             <p class="dernier-aside">En fin de contrat</p>
-            <div *ngFor="let p of datas | slice:0:4; let i = index">
+            <div *ngFor="let p of dataFinContrat | slice:0:4; let i = index">
                 <div class="list-aside">
                     <div style="cursor: pointer;" class="grid-container-aside" [ngStyle]="{'border-bottom' : ((i > 2) ? 'none' : '1px solid #f5f6f9') }">
                         <div  class="item4-aside" >
-                            <img alt="" class="photo-aside" src="../assets/images/{{p.photo}}">
+                            <img alt="" class="photo-aside" src="{{p.photo}}">
                         </div>
                         <div  class="item4-aside" >
                             <p class="prenom-aside"> {{p.prenom}} </p>
                             <p class="poste-aside"> {{p.poste}} </p>
                         </div>
                         <div  class="item4-aside"> 
-                            <p class="tmp-aside" >{{p.dateFin | date: 'dd/MM/yyyy'}}</p> 
+                            <p class="tmp-aside" >{{p.fin_contrat | date: 'dd/MM/yyyy'}}</p> 
                         </div>
                     </div>
                 </div>
@@ -102,7 +102,7 @@
         
         <div class="annonce-aside">
             <p class="dernier-aside">Avis de recrutement</p>
-            <div *ngFor="let p of datas | slice:0:4; let i = index">
+            <div *ngFor="let p of dataFinContrat | slice:0:4; let i = index">
                 <div class="list-aside">
                     <div style="cursor: pointer;" class="grid-container1-aside" [ngStyle]="{'border-bottom' : ((i > 2) ? 'none' : '1px solid #f5f6f9') }">
                         <div  class="item4-aside" >

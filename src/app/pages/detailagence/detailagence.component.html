@@ -2,22 +2,22 @@
     <div class="all2" >
         <div class="grid2">
             <div class="img">
-                <img src="{{dataAgence?.data.logo}}" alt="">
+                <img src="{{dataAgence?.logo}}" alt="">
             </div>
             <div class="agence">
-                <p class="nom2">{{dataAgence?.data.nom}}</p>
+                <p class="nom2">{{dataAgence?.nom}}</p>
                 <div class="nombre">
                     <div class="total">
                         <p class="title">Total</p>
-                        <p class="libelle">{{dataAgence?.data.dateDebut | date: "Mdd"}}</p>
+                        <p class="libelle">{{dataAgence?.dateDebut | date: "Mdd"}}</p>
                     </div>
                     <div class="actif">
                         <p class="title">Actifs</p>
-                        <p class="libelle">{{dataAgence?.data.dateFin | date: "Mdd"}}</p>
+                        <p class="libelle">{{dataAgence?.dateFin | date: "Mdd"}}</p>
                     </div>
                     <div class="archiv">
                         <p class="title">Archivés</p>
-                        <p class="libelle">{{dataAgence?.data.dateDebut | date: "Mdd"}}</p>
+                        <p class="libelle">{{dataAgence?.dateDebut | date: "Mdd"}}</p>
                     </div>
                 </div>
             </div>
@@ -26,25 +26,25 @@
             <div class="pes">
                 <div class="prenom">
                     <mat-icon class="icon-item">person</mat-icon>
-                    <p class="info-item">{{dataAgence?.data.responsable}}</p>
+                    <p class="info-item">{{dataAgence?.responsable}}</p>
                 </div>
                 <div class="email2">
                     <mat-icon class="icon-item">mail</mat-icon>
-                    <p class="info-item">{{dataAgence?.data.email}}</p>
+                    <p class="info-item">{{dataAgence?.email}}</p>
                 </div>
                 <div class="siteweb">
                     <mat-icon class="icon-item">language</mat-icon>
-                    <p class="info-item">{{dataAgence?.data.siteweb}}</p>
+                    <p class="info-item">{{dataAgence?.siteweb}}</p>
                 </div>
             </div>
             <div class="pa">
                 <div class="phone2">
                     <mat-icon class="icon-item">local_phone</mat-icon>
-                    <p class="info-item">{{dataAgence?.data.telephone}}</p>
+                    <p class="info-item">{{dataAgence?.telephone}}</p>
                 </div>
                 <div class="adresse2">
                     <mat-icon class="icon-item">room</mat-icon>
-                    <p class="info-item">{{dataAgence?.data.adresse}}</p>
+                    <p class="info-item">{{dataAgence?.adresse}}</p>
                 </div>
             </div>
         </div>
@@ -53,11 +53,11 @@
         <div class="users">
             <div class="user1">
                 <div class="photo1">
-                    <img src="../assets/images/{{dataAgence?.data.photo}}" alt="">
+                    <img src="../assets/images/{{dataAgence?.photo}}" alt="">
                 </div>
                 <div class="profil">
-                    <p class="profil1">{{dataAgence?.data.manager}}</p>
-                    <p class="profil2">{{dataAgence?.data.manager}}</p>
+                    <p class="profil1">{{dataAgence?.user}}</p>
+                    <p class="profil2">{{dataAgence?.user}}</p>
                 </div>
             </div>
             <div class="user1">
@@ -65,7 +65,7 @@
                     <img src="../assets/images/{{dataAgence?.photo}}" alt="">
                 </div>
                 <div class="profil">
-                    <p class="profil1">{{dataAgence?.manager}}</p>
+                    <p class="profil1">{{dataAgence?.user}}</p>
                     <p class="profil2">{{dataAgence?.poste}}</p>
                 </div>
             </div>
@@ -178,7 +178,7 @@
                         <div class="photo">
                             <img alt="" *ngIf="!url1==true" src="{{logo}}">
                             <img alt="" *ngIf="url1" [src]="url1" height="60">
-                            <input formControlName="logo" class="button" type="file" [(ngModel)]="logo" (change)="getPhoto($event.target)" >
+                            <input formControlName="logo" class="button" type="file" (change)="getPhoto($event.target)" >
                         </div>
                         <div class="others">
                             <div class="input1">

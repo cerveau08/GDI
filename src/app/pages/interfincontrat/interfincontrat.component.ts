@@ -1,4 +1,5 @@
 import { DatePipe } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 import { Component, HostListener, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { NavigationExtras, Router } from '@angular/router';
@@ -6,6 +7,7 @@ import { DataService } from 'src/app/service/data.service';
 import { PaginationService } from 'src/app/service/pagination.service';
 import { OthersService } from 'src/app/services/others.service';
 import { ModalService } from 'src/app/_modal';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-interfincontrat',
@@ -24,6 +26,7 @@ export class InterfincontratComponent implements OnInit {
   dateFin;
   user;
   showupdate;
+  dataFinContrat;
   mois: any = [
     'Janvier', 
     'Février', 
@@ -57,12 +60,17 @@ export class InterfincontratComponent implements OnInit {
   }
   moisSelect
   demandeForm: FormGroup;
+  page = 1;
+  itemsPerPage = 7;
+  totalItems : any;
+  public reqUrl = environment.base_url;
   constructor(private dataService: DataService,
     private pagerService: PaginationService,
     private modalService: ModalService,
     private otherService: OthersService,
     public datepipe: DatePipe,
-    public router: Router
+    public router: Router,
+    private http: HttpClient
     ) {
       this.getScreenSize();
     }
@@ -81,14 +89,17 @@ export class InterfincontratComponent implements OnInit {
     });
     //this.datas = this.dataService.getData();;
 
-    this.otherService.getInter().subscribe(
-      data => {
-       this.datas = data.data;
-       console.log(data);
-      }
-    );
+    this.gty(this.page);
   }
 
+  gty(page: any){
+    this.http.get(this.reqUrl + `/interimFinContrat?page=${page}&size=${this.itemsPerPage}`).subscribe((data: any) => {
+      this.dataFinContrat =  data.data;
+      this.totalItems = data.total;
+      console.log(data);
+      
+    })
+  }
   openDetail(data) {
     this.router.navigate(['/accueil/detailinter'], {
       queryParams: {
@@ -119,7 +130,7 @@ export class InterfincontratComponent implements OnInit {
     let d = new Date();
     var g1 = new Date(d.getFullYear(), d.getMonth()+1, d.getDate());
     let now = this.datepipe.transform(g1, 'yyyyMMdd');
-    let dates = this.datepipe.transform(p.dateFin, 'yyyyMMdd');
+    let dates = this.datepipe.transform(p.fin_contrat, 'yyyyMMdd');
     if(now > dates) {
       color = "#ff0000"
     } else {
@@ -131,7 +142,7 @@ export class InterfincontratComponent implements OnInit {
     let color = "#ff0000"
     let d = new Date();
     var g1 = new Date(d.getFullYear(), d.getMonth()+1, d.getDate());
-    let date = new Date(p.dateFin);
+    let date = new Date(p.fin_contrat);
     let now = this.datepipe.transform(g1, 'yyyyMMdd');
     let dates = this.datepipe.transform(date, 'yyyyMMdd');
     if(now > dates) {

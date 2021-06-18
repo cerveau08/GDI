@@ -30,7 +30,8 @@ export class DetailagenceComponent implements OnInit {
   DemoDoc="http://www.africau.edu/images/default/sample.pdf";
   DemoDoc1="https://file-examples.com/wp-content/uploads/2017/02/file-sample_100kB.doc";
   DemoDoc2="https://www.le.ac.uk/oerresources/bdra/html/resources/example.txt"; 
-
+  
+  data;
   nom;
   nomdg;
   numdg;
@@ -53,17 +54,18 @@ export class DetailagenceComponent implements OnInit {
         console.log(this.item);
         this.otherService.getOneAgenceById(this.item).subscribe(
           data =>{
-            this.dataAgence = data
+            this.data = data;
+            this.dataAgence = this.data.data;
             console.log(this.dataAgence);
-            this.nom = this.dataAgence.data.nom;
-            this.nomdg = this.dataAgence.data.responsable;
-            this.numdg = this.dataAgence.data.numdg;
-            this.email = this.dataAgence.data.email;
-            this.mobile = this.dataAgence.data.telephone;
-            this.fixe = this.dataAgence.data.fixe;
-            this.siteweb = this.dataAgence.data.siteweb;
-            this.adresse = this.dataAgence.data.adresse;
-            this.logo = this.dataAgence.data.logo;
+            this.nom = this.dataAgence.nom;
+            this.nomdg = this.dataAgence.responsable;
+            this.numdg = this.dataAgence.numdg;
+            this.email = this.dataAgence.email;
+            this.mobile = this.dataAgence.telephone;
+            this.fixe = this.dataAgence.fixe;
+            this.siteweb = this.dataAgence.siteweb;
+            this.adresse = this.dataAgence.adresse;
+            this.logo = this.dataAgence.logo;
             //this.contrat = this.dataAgence.data.contrat;
            // this.cnidg = this.dataAgence.data.cnidg;
           },
