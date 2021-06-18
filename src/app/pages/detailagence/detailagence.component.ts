@@ -116,7 +116,7 @@ export class DetailagenceComponent implements OnInit {
     //info.append("contrat",value.contrat);
     //info.append("cnidg",value.cnidg);
     console.log(this.item);
-    this.otherService.updateAgence(this.item.id, this.agenceForm.value).subscribe(
+    this.otherService.updateAgence(this.agenceForm.value, this.item).subscribe(
           (res) =>{
             console.log(res);
           },
