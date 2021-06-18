@@ -22,7 +22,6 @@ export class IntersouscontratComponent implements OnInit {
   dataInter: any;
   attestationForm: FormGroup;
   page = 1;
-  passenger: any; 
   itemsPerPage = 7;
   totalItems : any;
   public reqUrl = environment.base_url;
@@ -61,7 +60,6 @@ export class IntersouscontratComponent implements OnInit {
       this.totalItems = data.total;
       console.log(this.dataInter);
       console.log(this.totalItems);
-      
     })
   }
 

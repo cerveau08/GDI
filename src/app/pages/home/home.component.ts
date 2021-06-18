@@ -39,6 +39,7 @@ export class HomeComponent implements OnInit {
     {libelle: "Nov",},
     {libelle: "Dec",},
   ];
+  dataInterFin;
   color: any;
   public datas: any;
   public diagrammes: any;
@@ -57,34 +58,6 @@ export class HomeComponent implements OnInit {
   user: any;
   showHome = true;
   id=1;
-  data = [{
-    id: 1,
-    prenom: "Amadou Dieye",
-    nom: "LEYE",
-    poste: "Développeur Web",
-    dateDebut: "25/12/2020",
-    dateFin: "25/12/2022",
-    tmp: "tmp_0254",
-    agence: "Set Interim",
-    dateNais: "10/12/1992",
-    lieuNais: "Mbour",
-    genre: "masculin",
-    cni: "1 619 1992 2154",
-    categorie: "Cadre C1C",
-    structure: "Sonatel SA",
-    direction: "DST",
-    pole: "DD",
-    departement: "DASI",
-    service: "PMA",
-    manager: "Madiagne SYLLA",
-    postem: "Chef de Services Production et Maintenance Applicatif",
-    email: "amadou.dieye.leye@orange-sonatel.com",
-    telephone: "+ 221 33 824 91 31",
-    adresse: "mbour",
-    photo: "inter.png",
-    matricule: "060210",
-    nomInt: "5"
-  }];
   @HostListener('window:resize', ['$event'])
   getScreenSize(event?) {
         this.scrHeight = window.innerHeight;
@@ -291,13 +264,13 @@ export class HomeComponent implements OnInit {
 
 
   ngOnInit() {
-    this.otherService.getListInterFinContrat(this.id).subscribe(
+    this.otherService.getInter().subscribe(
       data => {
-       this.datas = data.data;
+       this.dataInterFin = data.data;
        console.log(data);
       }
     );
-  //  this.datas = this.dataService.getData();
+  // this.data = this.dataService.getData();
     
     this.user = localStorage.getItem('user');
     if(this.user == 'interimaire') {
@@ -316,12 +289,6 @@ export class HomeComponent implements OnInit {
       }
     };
     this.intervalId = setInterval(getDownloadProgress, 1000);
-    this.otherService.getListInterFinContrat(this.id).subscribe(
-      data => {
-       this.datas = data;
-       console.log(data);
-      }
-    );
   }
   ngOnDestroy() {
     clearInterval(this.intervalId);

@@ -30,7 +30,8 @@ export class DetailagenceComponent implements OnInit {
   DemoDoc="http://www.africau.edu/images/default/sample.pdf";
   DemoDoc1="https://file-examples.com/wp-content/uploads/2017/02/file-sample_100kB.doc";
   DemoDoc2="https://www.le.ac.uk/oerresources/bdra/html/resources/example.txt"; 
-
+  
+  data;
   nom;
   nomdg;
   numdg;
@@ -53,19 +54,20 @@ export class DetailagenceComponent implements OnInit {
         console.log(this.item);
         this.otherService.getOneAgenceById(this.item).subscribe(
           data =>{
-            this.dataAgence = data
+            this.data = data;
+            this.dataAgence = this.data.data;
             console.log(this.dataAgence);
-            this.nom = this.dataAgence.data.nom;
-            this.nomdg = this.dataAgence.data.responsable;
-            this.numdg = this.dataAgence.data.numdg;
-            this.email = this.dataAgence.data.email;
-            this.mobile = this.dataAgence.data.telephone;
-            this.fixe = this.dataAgence.data.fixe;
-            this.siteweb = this.dataAgence.data.siteweb;
-            this.adresse = this.dataAgence.data.adresse;
-            this.logo = this.dataAgence.data.logo;
-            this.contrat = this.dataAgence.data.contrat;
-            this.cnidg = this.dataAgence.data.cnidg;
+            this.nom = this.dataAgence.nom;
+            this.nomdg = this.dataAgence.responsable;
+            this.numdg = this.dataAgence.numdg;
+            this.email = this.dataAgence.email;
+            this.mobile = this.dataAgence.telephone;
+            this.fixe = this.dataAgence.fixe;
+            this.siteweb = this.dataAgence.siteweb;
+            this.adresse = this.dataAgence.adresse;
+            this.logo = this.dataAgence.logo;
+            //this.contrat = this.dataAgence.data.contrat;
+           // this.cnidg = this.dataAgence.data.cnidg;
           },
           error =>{
             console.log(error)
@@ -92,8 +94,8 @@ export class DetailagenceComponent implements OnInit {
       siteweb: new FormControl(''),
       adresse: new FormControl(''),
       logo: new FormControl(''),
-      contrat: new FormControl(''),
-      cnidg: new FormControl(''),
+    //  contrat: new FormControl(''),
+     // cnidg: new FormControl(''),
     });
   }
 
@@ -111,25 +113,23 @@ export class DetailagenceComponent implements OnInit {
     info.append("siteweb",value.siteweb);
     info.append("adresse",value.adresse);
     info.append("logo",this.logo);
-    info.append("contrat",value.contrat);
-    info.append("cnidg",value.cnidg);
-    this.otherService.updateAgence(this.item, this.agenceForm.value).subscribe(
+    console.log(info);
+    
+    //info.append("contrat",value.contrat);
+    //info.append("cnidg",value.cnidg);
+    console.log(this.item);
+    this.otherService.updateAgence(this.agenceForm.value, this.item).subscribe(
           (res) =>{
             console.log(res);
+            if(res){
+              this.route.navigate(['/accueil/listagence']);
+            }
           },
           (error)=>{
             console.log(error);
           }
         )
     } 
-
-   // updateAgence() {
-    //  this.route.navigate(['accueil/detailagence'], {
-     //   queryParams: {
-      //    user: JSON.stringify(this.item)
-      //  }
-     // })
-  //  }
     //recuperation de l'image
   getPhoto(e:any) {
     this.logo= e.files.item(0);
@@ -177,11 +177,11 @@ export class DetailagenceComponent implements OnInit {
   }
 
   delete() {
-    this.otherService.deleteAgence(this.user.id).subscribe(
+    this.otherService.deleteAgence(this.item).subscribe(
       (response) =>{
        console.log(response)
        if (response) {
-        alert('Voulez vous supprimer cette agence');
+        this.route.navigate(['/accueil/listagence']);
        }
       },
       (error)=>{
