@@ -89,9 +89,10 @@ export class AddagenceComponent implements OnInit {
       data => {
         console.log(data);
         if (data) {
-          alert('Agence ajouté avec succées...');
-        }
+         // alert('Agence ajouté avec succées...');
+        //}
         this.route.navigate(['/accueil/listagence']);
+        }
       },
         error=> {
           this.errorMsg = 'Probleme de connexion au serveur';

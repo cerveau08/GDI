@@ -119,6 +119,9 @@ export class DetailagenceComponent implements OnInit {
     this.otherService.updateAgence(this.agenceForm.value, this.item).subscribe(
           (res) =>{
             console.log(res);
+            if(res){
+              this.route.navigate(['/accueil/listagence']);
+            }
           },
           (error)=>{
             console.log(error);
