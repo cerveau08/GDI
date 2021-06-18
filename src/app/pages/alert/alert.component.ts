@@ -1,3 +1,4 @@
+import { OthersService } from 'src/app/services/others.service';
 import { DataService } from './../../service/data.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -13,6 +14,7 @@ export class AlertComponent implements OnInit {
   showHome = true;
   user
   constructor(public router: Router,
+    private otherService: OthersService,
     private dataService: DataService) { }
 
   ngOnInit() {

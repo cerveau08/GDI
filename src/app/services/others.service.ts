@@ -103,4 +103,9 @@ addAgence(data) {
   deleteAgence(id: string) {
     return this.http.delete(`${this.reqUrl}/deleteAgence/${id}`)
   }
+
+  getListeNotification(): Observable<any> {
+    return this.http.get<any>(this.reqUrl + '/notification/all/');
+  }
+
 }
