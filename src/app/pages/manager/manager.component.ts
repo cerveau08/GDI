@@ -44,7 +44,7 @@ export class ManagerComponent implements OnInit {
         this.otherService.getDetailsManagerById(this.item).subscribe(
           result => {
             this.data = result
-            this.managerinfo = this.data.data
+            this.managerinfo = this.data.data.detail
             console.log(this.data);
             
           }
