@@ -41,10 +41,10 @@
                     <td>{{p.prenom}}</td>
                     <td>{{p.nom}}</td>
                     <td *ngIf="scrWidth>991"> <img alt="" class="photo" src="{{p.photo}}"></td>
-                    <td>{{p.direction.libelle}}</td>
-                    <td  >{{p.agence.nom}}</td>
+                    <td>{{p.direction}}/{{p.departement}}/{{p.service}}</td>
+                    <td  >{{p.agence}}</td>
                     <td><div [style.background]="getcolor1(p)" class="status"></div></td>
-                    <td> <p [style.color]="getcolor(p)">{{p.dateFin  | date:'dd/MM/yyyy'}}</p> </td>
+                    <td> <p>{{p.fin_contrat}}</p> </td>
                 </tr>
             </tbody>
             

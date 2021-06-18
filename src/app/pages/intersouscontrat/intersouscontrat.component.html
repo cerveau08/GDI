@@ -43,7 +43,7 @@
                     <td (click)="openDetail(p)" *ngIf="role != 'manager'"> <img class="photo" alt="" src="{{p.manager.avatar}}"></td>
                     <td *ngIf="role != 'manager'" (click)="openDetail(p)">{{p.direction}}/{{p.departement}}/{{p.service}}</td>
                     <td *ngIf="role != 'agence'" (click)="openDetail(p)">{{p.agence}}</td>
-                    <td (click)="openDetail(p)"> <p >{{p.fin_contrat  | date:'dd/MM/yyyy'}}</p> </td>
+                    <td (click)="openDetail(p)"> <p>{{p.fin_contrat  | date:'dd/MM/yyyy'}}</p> </td>
                     <td *ngIf="role == 'manager'" (click)="openModal('custom-modal-'+p.id)" id="contrat"><button  class="buttons-attestation" >Ajouter</button></td>
                     <!--modal-->
                     <div class="modal">
