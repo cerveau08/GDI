@@ -44,7 +44,7 @@ export class AddinterComponent implements OnInit {
    }
   ngOnInit() {
     this.interForm = new FormGroup({
-        infopersonnel: new FormGroup({
+      //  infopersonnel: new FormGroup({
         nCni: new FormControl(''),
         prenom: new FormControl(''),
         nom: new FormControl(''),
@@ -58,34 +58,34 @@ export class AddinterComponent implements OnInit {
         diplome: new FormControl(''),
         universite: new FormControl(''),
         photo: new FormControl(''),
-      }),
-      contrat: new FormGroup({
+    //  }),
+     // contrat: new FormGroup({
         type: new FormControl(''),
         agenceId: new FormControl(''),
         dateDebut: new FormControl(''),
         dateFin: new FormControl(''),
         categorieId: new FormControl(''),
-        salaireBrute: new FormControl(''),
+        salaireBrut: new FormControl(''),
         structureId: new FormControl(''),
         direction: new FormControl(''),
         departement: new FormControl(''),
         service: new FormControl(''),
         filecontrat: new FormControl(''),
-      }),
-      poste: new FormGroup({
+    //  }),
+     // poste: new FormGroup({
         profession: new FormControl(''),
-        /*matricule: new FormControl(''),
+        matriculeManager: new FormControl(''),
         ficheposte: new FormControl(''),
-        procesverbal: new FormControl(''),*/
-      })
+        procesverbal: new FormControl(''),
+    //  })
     });
     //liste des agences
-    this.otherService.getListAgence().subscribe(
+   /* this.otherService.getListAgence().subscribe(
       data => {
         this.dataAgence = data.data;
         console.log(data);
       }
-    );
+    );*/
       //recupere les societes
     this.otherService.getAllSociete().subscribe(
       data => {
@@ -93,9 +93,6 @@ export class AddinterComponent implements OnInit {
         console.log(data);
       }
     );
-    this.directionsListe(this.itemd)
-    this.departementListe(this.itemd)
-    this.serviceListe(this.itemd)
   }
 
   submitted1() {
@@ -148,27 +145,27 @@ export class AddinterComponent implements OnInit {
 
   submit() {
     const interimForm = new FormData();
-    interimForm.append("nCni",this.interForm.value.infopersonnel.nCni)
-    interimForm.append("universite",this.interForm.value.infopersonnel.universite)
-    interimForm.append("sexe",this.interForm.value.infopersonnel.sexe)
-    interimForm.append("dateNaissance",this.interForm.value.infopersonnel.dateNaissance)
-    interimForm.append("lieuNaissance",this.interForm.value.infopersonnel.lieuNaissance)
-    interimForm.append("profession",this.interForm.value.infopersonnel.profession)
-    interimForm.append("sitmat",this.interForm.value.infopersonnel.sitmat)
-    interimForm.append("diplome",this.interForm.value.infopersonnel.diplome)
-    interimForm.append("adressse",this.interForm.value.infopersonnel.adresse)
+    interimForm.append("nCni",this.interForm.value.nCni)
+    interimForm.append("universite",this.interForm.value.universite)
+    interimForm.append("sexe",this.interForm.value.sexe)
+    interimForm.append("dateNaissance",this.interForm.value.dateNaissance)
+    interimForm.append("lieuNaissance",this.interForm.value.lieuNaissance)
+    interimForm.append("profession",this.interForm.value.profession)
+    interimForm.append("sitmat",this.interForm.value.sitmat)
+    interimForm.append("diplome",this.interForm.value.diplome)
+    interimForm.append("adressse",this.interForm.value.adresse)
     interimForm.append("profilId",'3')
-    interimForm.append("categorieId",this.interForm.value.contrat.categorieId)
-    interimForm.append("structureId",this.interForm.value.contrat.structureId)
+    interimForm.append("categorieId",this.interForm.value.categorieId)
+    interimForm.append("structureId",this.interForm.value.structureId)
     interimForm.append("domaineId",'1')
     interimForm.append("agenceId",'20')
-    interimForm.append("societeId",this.interForm.value.infopersonnel.societeId)
-    interimForm.append("salaireBrute",this.interForm.value.infopersonnel.salaireBrute)
-    interimForm.append("profession",this.interForm.value.infopersonnel.profession)
+    interimForm.append("societeId",this.interForm.value.societeId)
+    interimForm.append("salaireBrute",this.interForm.value.salaireBrute)
+    interimForm.append("profession",this.interForm.value.profession)
     //interimForm.append("matricule",this.interForm.value.infoPoste.matricule)
     //interimForm.append("ficheposte",this.interForm.value.infoPoste.ficheposte)
     //interimForm.append("procesverbal",this.interForm.value.infoPoste.procesverbal)
-    console.log(this.interForm.value.infopersonnel);
+    console.log(this.interForm.value);
 
     console.log(this.interForm.value);
     //const value = this.interForm.value;

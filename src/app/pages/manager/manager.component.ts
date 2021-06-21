@@ -26,6 +26,7 @@ export class ManagerComponent implements OnInit {
   user;
   item;
   data;
+  dataInterFin;
   managerinfo;
   @HostListener('window:resize', ['$event'])
   getScreenSize(event?) {
@@ -67,18 +68,16 @@ export class ManagerComponent implements OnInit {
       this.showHome = true;
     }
      this.datas = this.dataService.getData();
-      
-     this.gty(this.page);
-    }
-  
-  gty(page: any){
-    this.http.get(this.reqUrl + `/interimaires/manager/1?page=${page}&size=${this.itemsPerPage}`).subscribe((data: any) => {
-      this.datas =  data.data;
-      this.totalItems = data.total;
-      console.log(this.datas);
-      console.log(this.totalItems);
-      
-    })
+
+     this.otherService.getInter().subscribe(
+      data => {
+       this.dataInterFin = data.data;
+       console.log(data);
+      }
+    );
+     
+     
+     
   }
   openModal(id: string) {
     this.modalService.open(id);

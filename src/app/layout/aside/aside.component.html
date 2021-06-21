@@ -40,7 +40,9 @@
                 </div>
             </div>
         </div>
-        <button  class="button-aside" routerLink="/accueil/newinter">Voir le liste</button>
+        <div class="content-button-aside">
+            <button  class="button-aside" routerLink="/accueil/newinter">Voir le liste</button>
+        </div>
     </div>
     <div *ngIf="!showHome">
         <div class="annonce-aside" *ngFor="let d of dataInterFin">
@@ -51,7 +53,9 @@
                 </div>
                 <p class="nom-aside">{{d.manager}}</p>
                 <p class="postem-aside">{{d.postem}}</p>
-                <button  class="button-aside" routerLink="/accueil/manager">Afficher</button>
+                <div class="content-button-aside">
+                    <button  class="button-aside" routerLink="/accueil/manager">Afficher</button>
+                </div>
             </div>
         </div>
     </div>
@@ -74,6 +78,8 @@
                 </div>
             </div>
         </div>
-        <button  class="button1-aside" routerLink="/accueil/offre">Voir le liste</button>
+        <div class="content-button-aside">
+            <button  class="button1-aside" routerLink="/accueil/offre">Voir le liste</button>
+        </div>
     </div>
 </div>
