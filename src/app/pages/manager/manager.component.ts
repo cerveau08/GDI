@@ -24,6 +24,7 @@ export class ManagerComponent implements OnInit {
   user;
   item;
   data;
+  dataInterFin;
   managerinfo;
   @HostListener('window:resize', ['$event'])
   getScreenSize(event?) {
@@ -60,6 +61,13 @@ export class ManagerComponent implements OnInit {
       this.showHome = true;
     }
      this.datas = this.dataService.getData();
+
+     this.otherService.getInter().subscribe(
+      data => {
+       this.dataInterFin = data.data;
+       console.log(data);
+      }
+    );
      
      
      
