@@ -120,7 +120,41 @@ export class ModifierinterComponent implements OnInit {
   }
 
   get f() { return this.interForm.controls; }
+
   submitted1() {
+    console.log(this.dataInter);
+    console.log(this.interForm.value);
+    const value = this.interForm.value;
+    const info = new FormData();
+    info.append("nom",value.nom);
+    info.append("prenom",value.prenom);
+    info.append("ncni",value.ncni);
+    info.append("adresse",value.adresse);
+    info.append("telephone",value.telephone);
+    info.append("mail",value.mail);
+    info.append("dateNiassance",value.dateNaissance);
+    info.append("lieuNaissance",value.lieuNaissance);
+    info.append("sexe",value.sexe);
+    info.append("sitmat",value.sitmat);
+    info.append("logo",this.logo);
+    console.log(info);
+    
+    //info.append("contrat",value.contrat);
+    //info.append("cnidg",value.cnidg);
+    console.log(this.item);
+    this.otherService.updateAgence(this.interForm.value, this.item).subscribe(
+          (res) =>{
+            console.log(res);
+            if(res){
+              this.route.navigate(['/accueil/listagence']);
+            }
+          },
+          (error)=>{
+            console.log(error);
+          }
+        )
+    } 
+ /* submitted1() {
     //console.log(this.interForm.get('numeroCni').value);
     
     const infopersonnel = this.interForm.value.infopersonnel;
@@ -199,7 +233,7 @@ export class ModifierinterComponent implements OnInit {
     localStorage.setItem('color3', "20px solid #f16e00");
     localStorage.setItem('colorc', "#f16e00");
     this.submited = true;
-  }
+  }*/
 
   readUrl1(event: any) {
     console.log('readUrl');
