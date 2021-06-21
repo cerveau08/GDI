@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from 'src/app/service/data.service';
+import { OthersService } from 'src/app/services/others.service';
 
 @Component({
   selector: 'app-aside',
@@ -38,11 +39,37 @@ export class AsideComponent implements OnInit {
     matricule: "060210",
     nomInt: "5"
   }];
-  constructor(private dataService: DataService) { }
-
+  dataInterFin;
+  color: any;
+  user: any;
+  showHome = true;
+  constructor(private dataService: DataService,private otherService: OthersService) {
+    this.otherService.getInter().subscribe(
+      data => {
+       this.dataInterFin = data.data;
+       console.log(data);
+      }
+    );
+  }
 
   ngOnInit() {
+    this.user = localStorage.getItem('user');
+    if(this.user == 'interimaire') {
+      this.showHome = false;
+    } else {
+      this.showHome = true;
+    }
     this.data = this .dataService.getData();
+    
+  }
+
+  getColor(p) {
+    if(p.isAdmissible == true) {
+      this.color = "#6dd400";
+    } else if (p.isAdmissible == false) {
+      this.color = "#f03737";
+    }
+    return this.color;
   }
   
 }

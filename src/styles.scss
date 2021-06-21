@@ -9,13 +9,13 @@ body {
 .container {
     width: 100%;
     display: grid;
-    grid-template-columns: 190px 1fr /*350px */;
-    grid-template-rows: auto 1fr;
+    grid-template-columns: 190px 1fr 290px;
+    grid-template-rows: auto 1fr auto;
     grid-gap: 7px;
     grid-template-areas:
-    "header header "
-    "nav content"
-    "footer footer";
+    "header header header"
+    "nav content side"
+    "footer footer footer";
     height: 100vh;
 }
 

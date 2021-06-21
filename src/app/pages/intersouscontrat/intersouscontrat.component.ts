@@ -22,7 +22,7 @@ export class IntersouscontratComponent implements OnInit {
   dataInter: any;
   attestationForm: FormGroup;
   page = 1;
-  itemsPerPage = 7;
+  itemsPerPage = 8;
   totalItems : any;
   public reqUrl = environment.base_url;
   constructor(private dataService: DataService,
