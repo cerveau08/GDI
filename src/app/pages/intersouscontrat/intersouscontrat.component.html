@@ -15,7 +15,7 @@
         <table style="overflow-x:auto;" aria-describedby = "mydesc">
             <thead>
                 <tr class="head">
-                    <th class="id1" id="matricule">#</th>
+                    <!-- <th class="id1" id="matricule">#</th> -->
                     <th class="typ" id="prenom">
                         <div class="type">
                             <p>Prenom</p> 
@@ -41,7 +41,7 @@
                     currentPage: page,
                     totalItems: totalItems
                     }; let i = index">
-                    <td (click)="openDetail(p)" class="id1">{{p.id}}</td>
+                    <!-- <td (click)="openDetail(p)" class="id1">{{p.id}}</td> -->
                     <td (click)="openDetail(p)">{{p.prenom}}</td>
                     <td (click)="openDetail(p)">{{p.nom}}</td>
                     <td (click)="openDetail(p)" *ngIf="role != 'manager'"> <img class="photo" alt="" src="{{p.manager.avatar}}"></td>

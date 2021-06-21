@@ -85,8 +85,8 @@ export class ModifierinterComponent implements OnInit {
   ngOnInit() {
     this.url1 = this.item.photo;
     this.interForm = new FormGroup({
-      infopersonnel: new FormGroup({
-        nCni: new FormControl(this.item.nCni),
+    //  infopersonnel: new FormGroup({
+        numeroCni: new FormControl(this.item.nCni),
         prenom: new FormControl(this.item.prenom),
         nom: new FormControl(this.item.nom),
         email: new FormControl(this.item.email),
@@ -95,10 +95,10 @@ export class ModifierinterComponent implements OnInit {
         sexe: new FormControl(this.item.genre),
         sitmat: new FormControl(this.item.sitmat),
         diplome: new FormControl(this.item.diplome),
-        unicersite: new FormControl(this.item.universiet),
+        ecole: new FormControl(this.item.ecole),
         photo: new FormControl(''),
-      }),
-      contrat: new FormGroup({
+    //  }),
+    //  contrat: new FormGroup({
         type: new FormControl(''),
         agence: new FormControl(''),
         dateDebut: new FormControl(''),
@@ -110,12 +110,12 @@ export class ModifierinterComponent implements OnInit {
         departement: new FormControl(''),
         service: new FormControl(''),
         filecontrat: new FormControl(''),
-      }),
-      poste: new FormGroup({
+    //  }),
+    //  poste: new FormGroup({
         titre: new FormControl(''),
         matriculemanager: new FormControl(''),
         ficheposte: new FormControl(''),
-      })
+    //  })
     });
   }
 

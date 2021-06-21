@@ -88,7 +88,7 @@ table {
   th {
     text-align: center;
     padding: 8px;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: bold;
     font-stretch: normal;
     font-style: normal;
@@ -98,7 +98,7 @@ table {
   }
   td {
     text-align: center;
-    font-size: 12px;
+    font-size: 10px;
     font-weight: normal;
     font-stretch: normal;
     font-style: normal;
@@ -108,7 +108,7 @@ table {
   }
   .type {
     display: flex;
-    width: 50px;
+  //  width: 50px;
     margin: 0 auto;
     p {
         text-align: center;
@@ -117,6 +117,8 @@ table {
   .updown {
     margin-top: 10px;
     margin-left: 0px;
+    width: 15px;
+    height: 15px;
   }
   tr {
     height: 50px;
