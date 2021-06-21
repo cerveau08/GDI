@@ -130,14 +130,6 @@ export class DetailagenceComponent implements OnInit {
           }
         )
     } 
-
-   // updateAgence() {
-    //  this.route.navigate(['accueil/detailagence'], {
-     //   queryParams: {
-      //    user: JSON.stringify(this.item)
-      //  }
-     // })
-  //  }
     //recuperation de l'image
   getPhoto(e:any) {
     this.logo= e.files.item(0);
@@ -185,11 +177,11 @@ export class DetailagenceComponent implements OnInit {
   }
 
   delete() {
-    this.otherService.deleteAgence(this.user.id).subscribe(
+    this.otherService.deleteAgence(this.item).subscribe(
       (response) =>{
        console.log(response)
        if (response) {
-        alert('Voulez vous supprimer cette agence');
+        this.route.navigate(['/accueil/listagence']);
        }
       },
       (error)=>{

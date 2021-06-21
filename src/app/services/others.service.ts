@@ -9,38 +9,31 @@ import {HttpClient} from '@angular/common/http';
 export class OthersService {
   public reqUrl = environment.base_url;
   constructor(private http: HttpClient) { }
+
 // recupere la liste des interimaire sous contrat
   getInterSousContrat(): Observable<any> {
     return this.http.get<any>(this.reqUrl + '/interimSousContrat');
   }
-  // recupere la liste des interimaire sous contrat
+  // recupere la liste des users 
   getUsersAll(): Observable<any> {
     return this.http.get<any>(this.reqUrl + '/users/all');
   }
-// recupere la liste des interimaire fin de contrat
- // getInterFinContrat(): Observable<any> {
-   // return this.http.get<any>(this.reqUrl + '/listeInterimParContrat');
- // }
-
   // recupere la liste des interimaire fin de contrat
   getInter(): Observable<any> {
     return this.http.get<any>(this.reqUrl + '/interimFinContrat');
   }
-
   // recupere la liste des manager
   getListManager(): Observable<any> {
     return this.http.get<any>(this.reqUrl + '/managers/list');
   }
-
 // details manager
 getDetailsManagerById(id: number) {
   return this.http.get(this.reqUrl + `/manager/${id}`);
 }
-
+//liste des demandes
   getListDemandes(): Observable<any> {
     return this.http.get<any>(this.reqUrl + '/listeDemandes');
   }
-
   // recupere la liste des agences
   getListAgence(): Observable<any> {
     return this.http.get<any>(this.reqUrl + '/listeAgence?page=1');
@@ -49,10 +42,11 @@ getDetailsManagerById(id: number) {
    getOneAgenceById(id: number) {
     return this.http.get(this.reqUrl + `/detailAgence/${id}`);
   }
-   // recupere les details d'une aqa
+   // recupere les details d'une agence
    getOneManagerById(id: number) {
     return this.http.get(this.reqUrl + `/detailAgence/${id}`);
   }
+  // recupere les details d'un interimaire
   getOneInterById(id: number) {
     return this.http.get(this.reqUrl + `/detailInter/${id}`);
   }
@@ -109,4 +103,9 @@ addAgence(data) {
   deleteAgence(id: string) {
     return this.http.delete(`${this.reqUrl}/deleteAgence/${id}`)
   }
+
+  getListeNotification(): Observable<any> {
+    return this.http.get<any>(this.reqUrl + '/notification/all/');
+  }
+
 }
