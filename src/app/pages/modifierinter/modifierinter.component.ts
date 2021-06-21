@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { DataService } from 'src/app/service/data.service';
+import { OthersService } from 'src/app/services/others.service';
 
 @Component({
   selector: 'app-modifierinter',
@@ -33,31 +34,68 @@ export class ModifierinterComponent implements OnInit {
   posteForm : FormGroup;
   formPhoneGroup : FormGroup;
   datas: any;
+  dataInter;
   nomUpdate;
+  prenom;
+  nom;
+  nCin;
+  profession;
+  dateNaissance;
+  lieuNaissance;
+  sexe;
+  categorie;
+  agence;
+  structure;
+  direction;
+  departement;
+  service;
   constructor(private activeroute: ActivatedRoute,
     private fb: FormBuilder,
-    private dataService: DataService,) {
-      this.datas = this.dataService.getData();
-    this.activeroute.queryParams.subscribe(params => {
-      this.item = JSON.parse(params["user"]);
-      console.log(this.item);
-    })
+    private dataService: DataService,
+    private otherService: OthersService) {
+      //this.datas = this.dataService.getData();
+      this.activeroute.queryParams.subscribe(params => {
+        this.item = JSON.parse(params["user"]);
+        console.log(this.item);
+        this.otherService.getOneInterById(this.item).subscribe(
+          data =>{
+             this.dataInter = data;
+             console.log(this.dataInter);
+             this.prenom = this.dataInter.prenom;
+              this.nom = this.dataInter.nom;
+              this.nCin = this.dataInter.nCin;
+              this.profession = this.dataInter.profession;
+              this.dateNaissance = this.dataInter.dateNaissance;
+              this.lieuNaissance = this.dataInter.lieuNaissance;
+              this.sexe = this.dataInter.sexe;
+              this.categorie = this.dataInter.categorie;
+              this.agence = this.dataInter.agence;
+              this.structure = this.dataInter.structure;
+              this.direction = this.dataInter.direction;
+              this.departement = this.dataInter.departement;
+              this.service = this.dataInter.service;
+          },
+          error =>{
+            console.log(error)
+          }
+        );
+      })
   }
 
   ngOnInit() {
     this.url1 = this.item.photo;
     this.interForm = new FormGroup({
       infopersonnel: new FormGroup({
-        numeroCni: new FormControl(this.item.cni),
+        nCni: new FormControl(this.item.nCni),
         prenom: new FormControl(this.item.prenom),
         nom: new FormControl(this.item.nom),
         email: new FormControl(this.item.email),
-        dateNais: new FormControl(this.item.dateNais),
-        lieuNais: new FormControl(this.item.lieuNais),
-        genre: new FormControl(this.item.genre),
-        situationmatri: new FormControl(this.item.situationmatri),
+        dateNaissance: new FormControl(this.item.dateNaissance),
+        lieuNaissance: new FormControl(this.item.lieuNaissance),
+        sexe: new FormControl(this.item.genre),
+        sitmat: new FormControl(this.item.sitmat),
         diplome: new FormControl(this.item.diplome),
-        ecole: new FormControl(this.item.ecole),
+        unicersite: new FormControl(this.item.universiet),
         photo: new FormControl(''),
       }),
       contrat: new FormGroup({
@@ -66,7 +104,7 @@ export class ModifierinterComponent implements OnInit {
         dateDebut: new FormControl(''),
         dateFin: new FormControl(''),
         categorie: new FormControl(''),
-        salaire: new FormControl(''),
+        salaireBrute: new FormControl(''),
         structure: new FormControl(''),
         direction: new FormControl(''),
         departement: new FormControl(''),

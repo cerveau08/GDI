@@ -1,7 +1,7 @@
 <div class="all-container">
     <div class="demande">
         <div class="tableau">
-            <p class="detail1" id="mydesc">Liste des Intérimaires</p>
+            <p class="detail1" id="mydesc">Liste des Attestations de Presence</p>
             <table style="overflow-x:auto;" aria-describedby = "mydesc">
                 <thead>
                     <tr class="head">
@@ -24,7 +24,10 @@
                 </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let p of datas | filter:filterterm | paginate: { itemsPerPage: 12, currentPage: p }; let i = index">
+                    <tr *ngFor="let p of dataAttest | filter:filterterm | paginate: { 
+                        itemsPerPage: itemsPerPage,
+                        currentPage: page,
+                        totalItems: totalItems}; let i = index">
                         <td class="id1">{{p.id}}</td>
                         <td>{{p.prenom}}</td>
                         <td>{{p.nom}}</td>
@@ -35,7 +38,7 @@
                 </tbody>
                 
             </table>
-            <pagination-controls (pageChange)="p = $event" previousLabel="Prcédent" nextLabel="Suivant"></pagination-controls>
+            <pagination-controls (pageChange)="gty(page = $event)" previousLabel="Prcédent" nextLabel="Suivant"></pagination-controls>
         </div>
     </div>
 </div>

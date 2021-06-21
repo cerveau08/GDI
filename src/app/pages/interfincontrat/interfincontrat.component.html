@@ -44,7 +44,7 @@
                     <td>{{p.direction}}</td>
                     <td  >{{p.agence}}</td>
                     <td><div [style.background]="getcolor1(p)" class="status"></div></td>
-                    <td> <p [style.color]="getcolor(p)">{{p.fin_contrat  | date:'dd/MM/yyyy'}}</p> </td>
+                    <td> <p [style.color]="p.color">{{p.fin_contrat  | date:'dd/MM/yyyy'}}</p> </td>
                 </tr>
             </tbody>
             

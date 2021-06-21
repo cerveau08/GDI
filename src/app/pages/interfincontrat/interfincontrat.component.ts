@@ -125,7 +125,7 @@ export class InterfincontratComponent implements OnInit {
     this.modalService.close(id);
   }
 
-  getcolor(p) {
+  /*getcolor(p) {
     let color = "#ff0000"
     let d = new Date();
     var g1 = new Date(d.getFullYear(), d.getMonth()+1, d.getDate());
@@ -138,14 +138,11 @@ export class InterfincontratComponent implements OnInit {
     }  
     return color; 
   } 
+  */
   getcolor1(p) {
-    let color = "#ff0000"
-    let d = new Date();
-    var g1 = new Date(d.getFullYear(), d.getMonth()+1, d.getDate());
-    let date = new Date(p.fin_contrat);
-    let now = this.datepipe.transform(g1, 'yyyyMMdd');
-    let dates = this.datepipe.transform(date, 'yyyyMMdd');
-    if(now > dates) {
+    let color = "#10a900"
+  
+    if(p.admissible==false) {
       color = "#ff0000"
     } else {
       color = "#10a900"

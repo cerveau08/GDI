@@ -16,12 +16,6 @@ import { environment } from 'src/environments/environment';
 export class ListermanagerComponent implements OnInit {
 
   public datas: any;
-  // pager object
-  //pager: any = {};
-  //filterterm: string;
- // public p: any;
-  // paged items
-  //pagedItems: any[];
   page = 1;
   passenger: any; 
   itemsPerPage = 10;
