@@ -5,6 +5,7 @@ import { PaginationService } from 'src/app/service/pagination.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { SidenavService } from 'src/app/sidenav/sidenav.service';
 import { ModalService } from 'src/app/_modal/modal.service';
+import {OthersService} from '../../services/others.service';
 
 @Component({
   selector: 'app-header',
@@ -56,6 +57,7 @@ export class HeaderComponent implements OnInit {
     private sidenavService: SidenavService,
     private authService: AuthService,
     private paginationService: PaginationService,
+    private otherService: OthersService,
     private route: Router) {
     this.getScreenSize(); 
     this.menus = this.paginationService.getMenu();

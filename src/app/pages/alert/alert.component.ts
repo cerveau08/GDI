@@ -3,6 +3,7 @@ import { DataService } from './../../service/data.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-alert',
   templateUrl: './alert.component.html',
@@ -12,7 +13,8 @@ export class AlertComponent implements OnInit {
   
   datas: any;
   showHome = true;
-  user
+  user;
+  alert;
   constructor(public router: Router,
     private otherService: OthersService,
     private dataService: DataService) { }
@@ -25,6 +27,14 @@ export class AlertComponent implements OnInit {
       this.showHome = true;
     }
     this.datas = this.dataService.getData();
+
+    this.otherService.getListeNotification().subscribe(
+      data => {
+       this.alert = data.data;
+       console.log(data);
+      }
+    );
+
   }
   
   openDetail(data) {
