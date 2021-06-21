@@ -25,26 +25,27 @@
                           </div>
                           <div class="others">
                             <div class="infoinput1">
-                              <input type="text" [value]="item.cni" formControlName="nCin" placeholder="Numero CNI">
+                              <input type="text" [(ngModel)]="ncni" formControlName="nCin" placeholder="Numero CNI">
                             </div>
                             <div class="infoinput2">
-                              <input type="text" [value]="item.prenom" formControlName="prenom" placeholder="Prenom">
-                              <input class="input3" [value]="item.nom" type="text" formControlName="nom" placeholder="Nom">
+                              <input type="text" [(ngModel)]="prenom" formControlName="prenom" placeholder="Prenom">
+                              <input class="input3" [(ngModel)]="nom" type="text" formControlName="nom" placeholder="Nom">
                             </div>
                             <div class="infoinput1">
-                              <input type="text" [value]="item.email" formControlName="email" placeholder="Email">
+                              <input type="text" [(ngModel)]="email" formControlName="email" placeholder="Email">
+                              <input class="input3" [(ngModel)]="adresse" formControlName="adresse" placeholder="Adresse">
                             </div>
                             <div class="infoinput2">
-                              <input type="text" [value]="item.Nais" formControlName="dateNaissance" placeholder="Date de Naissance">
-                              <input class="input3" [value]="item.lieuNais" type="text" formControlName="lieuNaissance" placeholder="Lieu de Naissance">
+                              <input type="text" [(ngModel)]="datedenaissance" formControlName="datedenaissance" placeholder="Date de Naissance">
+                              <input class="input3" [(ngModel)]="lieudenaissance" type="text" formControlName="lieudenaissance" placeholder="Lieu de Naissance">
                             </div>
                             <div class="infoinput2">
-                              <input type="text" [value]="item.genre" formControlName="sexe" placeholder="Genre">
-                              <input class="input3" [value]="item.categorie" type="text" formControlName="sitmat" placeholder="Situation Matrimoniale">
+                              <input type="text" [(ngModel)]="sexe" formControlName="sexe" placeholder="Genre">
+                              <input class="input3" [(ngModel)]="categorie" type="text" formControlName="categorie" placeholder="Situation Matrimoniale">
                             </div>
                             <div class="infoinput2">
-                              <input type="text" [value]="item.poste" formControlName="diplome" placeholder="Diplome">
-                              <input class="input3" [value]="item.poste" type="text" formControlName="ecole" placeholder="Université et Ecole">
+                              <input type="text" [(ngModel)]="diplome" formControlName="diplome" placeholder="Diplome">
+                              <input class="input3" [(ngModel)]="universite" type="text" formControlName="ecole" placeholder="Université et Ecole">
                             </div>
                           </div>
                         </div>

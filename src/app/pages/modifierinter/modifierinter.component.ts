@@ -90,12 +90,13 @@ export class ModifierinterComponent implements OnInit {
         prenom: new FormControl(this.item.prenom),
         nom: new FormControl(this.item.nom),
         email: new FormControl(this.item.email),
-        dateNaissance: new FormControl(this.item.dateNaissance),
-        lieuNaissance: new FormControl(this.item.lieuNaissance),
+        datedenaissance: new FormControl(this.item.dateNaissance),
+        lieudenaissance: new FormControl(this.item.lieuNaissance),
         sexe: new FormControl(this.item.genre),
         sitmat: new FormControl(this.item.sitmat),
         diplome: new FormControl(this.item.diplome),
         ecole: new FormControl(this.item.ecole),
+        adresse: new FormControl(this.item.adresse),
         photo: new FormControl(''),
     //  }),
     //  contrat: new FormGroup({
@@ -124,7 +125,7 @@ export class ModifierinterComponent implements OnInit {
     //console.log(this.interForm.get('numeroCni').value);
     
     const infopersonnel = this.interForm.value.infopersonnel;
-    const cni = infopersonnel.numeroCni;
+    const cni = infopersonnel.nCi;
     const preno = infopersonnel.prenom;
     const nom1 = infopersonnel.nom;
     const mail = infopersonnel.email;
