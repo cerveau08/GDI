@@ -48,7 +48,7 @@ getDetailsManagerById(id: number) {
   }
   // recupere les details d'un interimaire
   getOneInterById(id: number) {
-    return this.http.get(this.reqUrl + `/detailInter/${id}`);
+    return this.http.get(this.reqUrl + `/interimaire/${id}`);
   }
  // recupere le liste des attestation
  getListAttest(): Observable<any> {
@@ -106,6 +106,9 @@ addAgence(data) {
 
   getListeNotification(): Observable<any> {
     return this.http.get<any>(this.reqUrl + '/notification/all/');
+  }
+  getAttestationListe(){
+    return this.http.get<any>(this.reqUrl + '/listeAttestationByMonth');
   }
 
 }

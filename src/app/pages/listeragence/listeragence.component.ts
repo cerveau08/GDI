@@ -27,7 +27,6 @@ export class ListeragenceComponent implements OnInit {
   photo;
   errorMsg;
   dataAgence: any;
-
   page = 1;
   itemsPerPage = 3;
   totalItems : any;

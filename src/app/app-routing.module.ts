@@ -1,3 +1,4 @@
+import { ObjectifsComponent } from './pages/objectifs/objectifs.component';
 import { LesdemandesComponent } from './pages/lesdemandes/lesdemandes.component';
 import { AdduserComponent } from './pages/adduser/adduser.component';
 import { ModifierinterComponent } from './pages/modifierinter/modifierinter.component';
@@ -156,6 +157,10 @@ const routes: Routes = [
       },
       { path: 'lesdemande',
         component: LesdemandesComponent,
+          canActivate: [AuthGuard]
+      },
+      { path: 'objectif',
+        component: ObjectifsComponent,
           canActivate: [AuthGuard]
       },
       {

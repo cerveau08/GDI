@@ -24,13 +24,17 @@ export class DetailagenceComponent implements OnInit {
   image: any;
   dataAgence;
   agenceForm: FormGroup;
+  userAgenceForm: FormGroup;
   nomUpdate; 
-
+  url2;
+  urlUser;
   viewer = 'google';
   DemoDoc="http://www.africau.edu/images/default/sample.pdf";
   DemoDoc1="https://file-examples.com/wp-content/uploads/2017/02/file-sample_100kB.doc";
   DemoDoc2="https://www.le.ac.uk/oerresources/bdra/html/resources/example.txt"; 
-  
+  filename1 = "";
+  filename2 = "";
+  filename3 = "";
   data;
   nom;
   nomdg;
@@ -97,6 +101,15 @@ export class DetailagenceComponent implements OnInit {
     //  contrat: new FormControl(''),
      // cnidg: new FormControl(''),
     });
+    this.userAgenceForm = new FormGroup({
+      prenom: new FormControl (''),
+      nom: new FormControl(''),
+      poste: new FormControl (''),
+      email: new FormControl(''),
+      mobile: new FormControl (''),
+      adresse: new FormControl(''),
+      photo: new FormControl (''),
+    });
   }
 
   submitted1() {
@@ -130,6 +143,9 @@ export class DetailagenceComponent implements OnInit {
           }
         )
     } 
+    ajouterUser() {
+      console.log(this.userAgenceForm.value);
+    }
     //recuperation de l'image
   getPhoto(e:any) {
     this.logo= e.files.item(0);
@@ -169,12 +185,25 @@ export class DetailagenceComponent implements OnInit {
         var reader = new FileReader();
       
         reader.onload = (event: any) => {
-          this.url3 = event.target.result;
+          this.url2 = event.target.result;
         }
-      
+        this.filename2 = event.target.files[0].name;
         reader.readAsDataURL(event.target.files[0]);
       }
   }
+  readUrl2(event: any) {
+    console.log('readUrl');
+      if (event.target.files && event.target.files[0]) {
+        var reader = new FileReader();
+      
+        reader.onload = (event: any) => {
+          this.url3 = event.target.result;
+        }
+        this.filename3 = event.target.files[0].name;
+        reader.readAsDataURL(event.target.files[0]);
+      }
+  }
+
 
   delete() {
     this.otherService.deleteAgence(this.item).subscribe(

@@ -62,6 +62,27 @@ export class DetailinterComponent implements OnInit {
   DemoDoc="http://www.africau.edu/images/default/sample.pdf" 
   DemoDoc1="https://file-examples.com/wp-content/uploads/2017/02/file-sample_100kB.doc"
   DemoDoc2="https://www.le.ac.uk/oerresources/bdra/html/resources/example.txt" 
+  data;
+  nom;
+  prenom;
+  datedenaissance;
+  lieudenaissance;
+  telephone;
+  sitmat;
+  adresse;
+  agence;
+  categorie;
+  diplome;
+  ncni;
+  email;
+  profession;
+  matricule;
+  salaire_brut;
+  universite;
+  sexe;
+  direction;
+  departement;
+  service
   constructor(private activeroute: ActivatedRoute,
               private modalService: ModalService,
               private dataService: DataService,
@@ -71,12 +92,45 @@ export class DetailinterComponent implements OnInit {
     this.activeroute.queryParams.subscribe(params => {
       this.item = JSON.parse(params["user"]);
       console.log(this.item);
+      this.otherService.getOneInterById(this.item).subscribe(
+        //data =>{
+          // this.dataInter = data;
+           //console.log(this.dataInter);
+           data =>{
+            this.data = data;
+            this.dataInter = this.data.data;
+            console.log(this.dataInter);
+            this.nom = this.dataInter.nom;
+            this.prenom = this.dataInter.prenom;
+            this.datedenaissance = this.dataInter.datedenaissance;
+            this.lieudenaissance = this.dataInter.lieudenaissance;
+            this.ncni = this.dataInter.ncni;
+            this.diplome = this.dataInter.diplome;
+            this.email = this.dataInter.email;
+            this.adresse = this.dataInter.adresse;
+            this.profession = this.dataInter.profession;
+            this.salaire_brut = this.dataInter.salaire_brut;
+            this.profession = this.dataInter.profession;
+            this.telephone = this.dataInter.telephone;
+            this.universite = this.dataInter.universite;
+            this.sitmat = this.dataInter.sitmat;
+            this.agence = this.dataInter.agence;
+            this.categorie = this.dataInter.categorie;
+            this.matricule = this.dataInter.matricule;
+            this.sexe = this.dataInter.sexe;
+           /* this.direction = this.dataInter.direction;
+            this.departement = this.dataInter.departement;
+            this.service = this.dataInter.service;*/
+        },
+        error =>{
+          console.log(error)
+        }
+      );
     })
   }
-
   ngOnInit() {
     //this.donnees = this.dataService.getData();
-    this.otherService.getOneInterById(this.id).subscribe(
+    /*this.otherService.getOneInterById(this.item).subscribe(
       data =>{
          this.dataInter = data;
          console.log(this.dataInter);
@@ -84,7 +138,7 @@ export class DetailinterComponent implements OnInit {
       error =>{
         console.log(error)
       }
-    );
+    );*/
   }
 
   public get(p) {
@@ -114,6 +168,14 @@ export class DetailinterComponent implements OnInit {
 
   modifierInter() {
     this.router.navigate(['accueil/modifierinter'], {
+      queryParams: {
+        user: JSON.stringify(this.item)
+      }
+    })
+  }
+
+  objectif() {
+    this.router.navigate(['accueil/objectif'], {
       queryParams: {
         user: JSON.stringify(this.item)
       }

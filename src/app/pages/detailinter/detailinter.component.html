@@ -32,24 +32,24 @@
                     <div class="im2">
                         <img class="image-contact" src="../assets/images/phone.png" alt="">
                     </div>
-                    <p class="prenom">{{item.prenom}} {{item.nom}}</p>
-                    <p class="fonction">{{item.poste}}</p>
+                    <p class="prenom">{{dataInter.prenom}} {{dataInter.nom}}</p>
+                    <p class="fonction">{{dataInter.profession}}</p>
                 </div>
             </div>
             <div class="info">
                 <div class="lot1">
-                    <p class="key">Numéro CNI: <span class="value">{{item.cni}}</span> </p>
-                    <p class="key">Date de naissance: <span class="value">{{item.dateNais}}</span> </p>
-                    <p class="key">Lieu de naissance: <span class="value">{{item.lieuNais}}</span> </p>
-                    <p class="key">Genre: <span class="value">{{item.genre}}</span> </p>
+                    <p class="key">Numéro CNI: <span class="value">{{dataInter.ncni}}</span> </p>
+                    <p class="key">Date de naissance: <span class="value">{{dataInter.datedenaissance}}</span> </p>
+                    <p class="key">Lieu de naissance: <span class="value">{{dataInter.lieudenaissance}}</span> </p>
+                    <p class="key">Genre: <span class="value">{{dataInter.sexe}}</span> </p>
                 </div>
                 <div class="lot">
-                    <p class="lot2">Catégorie: <span class="value">{{item.categorie}}</span> </p>
-                    <p class="key">Agence Interim: <span class="value">{{item.agence.nom}}</span> </p>
-                    <p class="key">Structure: <span class="value">{{item.structure}}</span> </p>
-                    <p class="key">Direction: <span class="value">{{item.direction.libelle}}</span> </p>
-                    <p class="key">Département: <span class="value">{{item.departement}}</span> </p>
-                    <p class="key">Service: <span class="value">{{item.service}}</span> </p>
+                    <p class="lot2">Catégorie: <span class="value">{{dataInter.categorie.libelle}}</span> </p>
+                    <p class="key">Agence Interim: <span class="value">{{dataInter.agence.nom}}</span> </p>
+                    <p class="key">Structure: <span class="value">{{dataInter.structure.libelle}}</span> </p>
+                    <p class="key">Direction: <span class="value">{{dataInter.direction?.libelle}}</span> </p>
+                    <p class="key">Département: <span class="value">{{dataInter.departement?.libelle}}</span> </p>
+                    <p class="key">Service: <span class="value">{{dataInter.service?.libelle}}</span> </p>
                 </div>
             </div>
         </div>
@@ -57,7 +57,7 @@
             <button  class="button1" (click)="openModal('custom-modal-1')">Contrat</button>
             <button  class="button2" (click)="openModal('custom-modal-2')">Attestations de présence</button>
             <button  class="button3" (click)="openModal('custom-modal-3')">Fiche de poste</button>
-            <button  class="button4" (click)="openModal('custom-modal-4')">Objectifs</button>
+            <button  class="button4" (click)="objectif()">Objectifs</button>
         </div>
     </div>
 </div>

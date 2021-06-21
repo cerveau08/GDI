@@ -40,8 +40,8 @@
                         <td>{{p.dateDebut | date: 'dd/MM/yyyy'}}</td>
                         <td>{{p.dateFin | date: 'dd/MM/yyyy'}}</td>
                         <td><input type="checkbox"
-                                [checked]="p.statut"
-                                [(ngModel)]="p.statut"
+                                [checked]="p.etat"
+                                [(ngModel)]="p.etat"
                                 [value]="p.id" 
                                 (change)="checkIfAllSelected();"/>
                             </td>
