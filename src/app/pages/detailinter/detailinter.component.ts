@@ -62,6 +62,7 @@ export class DetailinterComponent implements OnInit {
   DemoDoc="http://www.africau.edu/images/default/sample.pdf" 
   DemoDoc1="https://file-examples.com/wp-content/uploads/2017/02/file-sample_100kB.doc"
   DemoDoc2="https://www.le.ac.uk/oerresources/bdra/html/resources/example.txt" 
+ 
   constructor(private activeroute: ActivatedRoute,
               private modalService: ModalService,
               private dataService: DataService,
@@ -71,12 +72,20 @@ export class DetailinterComponent implements OnInit {
     this.activeroute.queryParams.subscribe(params => {
       this.item = JSON.parse(params["user"]);
       console.log(this.item);
+      this.otherService.getOneInterById(this.item).subscribe(
+        data =>{
+           this.dataInter = data;
+           console.log(this.dataInter);
+        },
+        error =>{
+          console.log(error)
+        }
+      );
     })
   }
-
   ngOnInit() {
     //this.donnees = this.dataService.getData();
-    this.otherService.getOneInterById(this.id).subscribe(
+    /*this.otherService.getOneInterById(this.item).subscribe(
       data =>{
          this.dataInter = data;
          console.log(this.dataInter);
@@ -84,7 +93,7 @@ export class DetailinterComponent implements OnInit {
       error =>{
         console.log(error)
       }
-    );
+    );*/
   }
 
   public get(p) {
