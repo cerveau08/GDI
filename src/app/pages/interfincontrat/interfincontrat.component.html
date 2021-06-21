@@ -15,7 +15,7 @@
         <table style="overflow-x:auto;"aria-describedby = "mydesc" >
             <thead>
                 <tr class="head">
-                    <th class="id1" id="matricule">#</th>
+                    <!-- <th class="id1" id="matricule">#</th> -->
                     <th class="typ" id="prenom">
                         <div class="type">
                             <p>Prenom</p> 
@@ -28,21 +28,21 @@
                             <mat-icon class="updown" fontSet="material-icons-outlined">unfold_more</mat-icon>
                         </div>
                     </th>
-                    <th *ngIf="scrWidth>991" id="manager">Manager</th>
-                    <th id="direction">Direction</th>
-                    <th  id="agence">Agence</th>
+                    <th *ngIf="user != 'manager' && scrWidth>991"  id="manager">Manager</th>
+                    <th *ngIf="user != 'manager'" id="direction">Direction</th>
+                    <th *ngIf="user != 'agence'" id="agence">Agence</th>
                     <th id="admissible">Admissible</th>
                     <th id="contrat">Fin de Contrat</th>
             </tr>
             </thead>
             <tbody>
                 <tr  style="cursor: pointer;" *ngFor="let p of dataFinContrat | filter:filterterm | paginate: { itemsPerPage: itemsPerPage, currentPage: page, totalItems: totalItems};">
-                    <td (click)="openDetail(p)" class="id1">{{p.id}}</td>
+                    <!-- <td (click)="openDetail(p)" class="id1">{{p.id}}</td> -->
                     <td>{{p.prenom}}</td>
                     <td>{{p.nom}}</td>
-                    <td *ngIf="scrWidth>991"> <img alt="" class="photo" src="{{p.photo}}"></td>
-                    <td>{{p.direction}}</td>
-                    <td  >{{p.agence}}</td>
+                    <td *ngIf="user != 'manager' && scrWidth>991"> <img alt="" class="photo" src="{{p.photo}}"></td>
+                    <td *ngIf="user != 'manager'" >{{p.direction}}</td>
+                    <td *ngIf="user != 'agence'" >{{p.agence}}</td>
                     <td><div [style.background]="getcolor1(p)" class="status"></div></td>
                     <td> <p [style.color]="p.color">{{p.fin_contrat  | date:'dd/MM/yyyy'}}</p> </td>
                 </tr>

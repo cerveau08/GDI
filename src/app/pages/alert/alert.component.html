@@ -19,18 +19,18 @@
                     </div>
                 </div>
             </div>
-            <div class="list2" style="cursor: pointer;" (click)="openDetail(p)" *ngFor="let p of datas | paginate: { itemsPerPage: 12, currentPage: p }; let i = index">
+            <div class="list2" style="cursor: pointer;" (click)="openDetail(p)" *ngFor="let p of alert | paginate: { itemsPerPage: 12, currentPage: p }; let i = index">
                 <div class="alert1" >
                     <div class="date">
-                        <p class="heure">{{p.dateFin | date: "dd-MM-yyyy"}} {{p.heure}}</p>
+                        <p class="heure">{{p.dateNotif | date: "dd-MM-yyyy"}} {{p.heure}}</p>
                     </div>
                     <div class="theme">
-                        <p class="sujet">{{p.theme}}</p>
+                        <p class="sujet">{{p.libelle}}</p>
                     </div>
                 </div>
                 <div class="alert2">
                     <div class="content">
-                        <p class="libele">{{p.libele}}</p>
+                        <p class="libele">{{p.description}}</p>
                     </div>
                     <div class="ser">
                         <p class="dire">{{p.direction}}/{{p.pole}}/{{p.departement}}/{{p.service}}</p>

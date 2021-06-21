@@ -56,6 +56,7 @@ import { ModifierinterComponent } from './pages/modifierinter/modifierinter.comp
 import { AdduserComponent } from './pages/adduser/adduser.component';
 import { LesdemandesComponent } from './pages/lesdemandes/lesdemandes.component';
 import { JwtInterceptorService } from './helpers/jwt-interceptor.service';
+import { ObjectifsComponent } from './pages/objectifs/objectifs.component';
 
 @NgModule({
   declarations: [
@@ -95,7 +96,8 @@ import { JwtInterceptorService } from './helpers/jwt-interceptor.service';
     AddinterComponent,
     ModifierinterComponent,
     AdduserComponent,
-    LesdemandesComponent
+    LesdemandesComponent,
+    ObjectifsComponent
   ],
   imports: [
     BrowserModule,

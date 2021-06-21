@@ -8,13 +8,14 @@
                 <ng-template matStepLabel>
                     <div class="head">
                       <div class="header" [style.background]="colors1()">
-                          <p class="titre"> 1. Infos personnelles</p>
+                        <p class="titre"> 1. Infos personnelles</p>
                       </div>
                   </div>
                 </ng-template>
                 <div>
                     <form [formGroup]="interForm">
-                      <div formGroupName="infopersonnel">
+                      <!-- <div formGroupName="infopersonnel"> -->
+                        <div>
                         <p class="matri">Matricule: <span>item.tmp</span> </p>
                         <div class="grid">
                           <div class="photo">
@@ -67,7 +68,8 @@
                   </ng-template>
                 <div>
                   <form [formGroup]="interForm">
-                    <div formGroupName="contrat">
+                    <!-- <div formGroupName="contrat"> -->
+                      <div>
                       <p class="matri">Matricule: <span>{{matricule}}</span> </p>
                       <div class="grid">
                         <div class="photo">
@@ -77,23 +79,17 @@
                         </div>
                         <div class="others">
                           <div class="contratinput2">
-                            <select class="select5" formControlName="type">
+                            <select class="select5" formControlName="categorie">
                               <option class="option" value=""[ngValue]="som" >{{item.categorie}}</option>
                               <option *ngFor="let som of sommes" [ngValue]="som">{{som}}</option>
                             </select>
-                            <select class="select6" formControlName="agence" placeholder="Agence d'interim">
-                              <option class="option" value="" [ngValue]="som">{{item.agence}}</option>
-                              <option *ngFor="let som of sommes" [ngValue]="som">{{som}}</option>
-                            </select>
+                            <input class="input3" [value]="item.matricule" type="text" formControlName="salaireBrute" placeholder="Montant Salaire Brut">
                           </div>
                           <div class="contratinput2">
                             <input type="text" [value]="item.dateFin | date:'dd/MM/yyyy'" formControlName="dateDebut" placeholder="Date Début">
                             <input class="input3" [value]="item.dateDebut | date:'dd/MM/yyyy'" type="text" formControlName="dateFin" placeholder="Date Fin">
                           </div> 
-                          <div class="contratinput2">
-                            <input type="text" [value]="item.categorie" formControlName="categorie" placeholder="Catégorie">
-                            <input class="input3" [value]="item.matricule" type="text" formControlName="salaire" placeholder="Montant Salaire Brut">
-                          </div>
+                         
                           <div class="contratinput2">
                             <select class="select5" formControlName="structure">
                               <option class="option" value="" [ngValue]="som">{{item.structure}}</option>
@@ -134,7 +130,8 @@
                 <div>
                   <div *ngIf="!submited">
                     <form [formGroup]="interForm">
-                      <div formGroupName="poste">
+                      <!-- <div formGroupName="poste"> -->
+                        <div>
                         <div class="center">
                           <div class="posteinput2">
                             <input type="text" [value]="item.poste" formControlName="titre" placeholder="Titre du Poste">
