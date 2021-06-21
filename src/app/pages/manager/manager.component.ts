@@ -1,9 +1,11 @@
+import { HttpClient } from '@angular/common/http';
 import { DataService } from './../../service/data.service';
 import { Component, HostListener, OnInit } from '@angular/core';
 import { NgxFileSaverService } from '@clemox/ngx-file-saver';
 import { ModalService } from 'src/app/_modal/modal.service';
 import { ActivatedRoute } from '@angular/router';
 import {OthersService} from '../../services/others.service';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -31,10 +33,15 @@ export class ManagerComponent implements OnInit {
         this.scrWidth = window.innerWidth;
         console.log(this.scrHeight, this.scrWidth);
   }
+  page = 1;
+  itemsPerPage = 3;
+  totalItems : any;
+  public reqUrl = environment.base_url;
   constructor(private dataService: DataService,
     private modalService: ModalService,
     private fileSaver: NgxFileSaverService,
     private otherService: OthersService,
+    private http: HttpClient,
     private activeroute: ActivatedRoute) {
       this.getScreenSize();
       this.activeroute.queryParams.subscribe(params => {
@@ -60,11 +67,19 @@ export class ManagerComponent implements OnInit {
       this.showHome = true;
     }
      this.datas = this.dataService.getData();
-     
-     
-     
+      
+     this.gty(this.page);
+    }
+  
+  gty(page: any){
+    this.http.get(this.reqUrl + `/interimaires/manager/1?page=${page}&size=${this.itemsPerPage}`).subscribe((data: any) => {
+      this.datas =  data.data;
+      this.totalItems = data.total;
+      console.log(this.datas);
+      console.log(this.totalItems);
+      
+    })
   }
-
   openModal(id: string) {
     this.modalService.open(id);
   }
