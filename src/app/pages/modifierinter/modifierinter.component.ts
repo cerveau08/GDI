@@ -61,7 +61,7 @@ export class ModifierinterComponent implements OnInit {
           data =>{
              this.dataInter = data;
              console.log(this.dataInter);
-             this.prenom = this.dataInter.prenom;
+              this.prenom = this.dataInter.prenom;
               this.nom = this.dataInter.nom;
               this.nCin = this.dataInter.nCin;
               this.profession = this.dataInter.profession;
@@ -86,7 +86,7 @@ export class ModifierinterComponent implements OnInit {
     this.url1 = this.item.photo;
     this.interForm = new FormGroup({
     //  infopersonnel: new FormGroup({
-        numeroCni: new FormControl(this.item.nCni),
+        nCin: new FormControl(this.item.nCni),
         prenom: new FormControl(this.item.prenom),
         nom: new FormControl(this.item.nom),
         email: new FormControl(this.item.email),
