@@ -61,7 +61,7 @@ export class InterfincontratComponent implements OnInit {
   moisSelect
   demandeForm: FormGroup;
   page = 1;
-  itemsPerPage = 7;
+  itemsPerPage = 8;
   totalItems : any;
   public reqUrl = environment.base_url;
   constructor(private dataService: DataService,

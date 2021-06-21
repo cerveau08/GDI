@@ -78,7 +78,7 @@
                       <div class="photo">
                         <img class="image-upload" *ngIf="!url2==true" src="/assets/images/upload.png" alt="">
                         <img class="image-upload" [src]="url2" height="60" alt="">
-                        <input formControlName="filecontrat"  class="buttonphoto2" type="file" (change)="readUrl2($event)" >
+                        <input formControlName="filecontrat"  class="buttonphoto2" type="file" (change)="getPhoto($event.target)" >
                       </div>
                       <div class="others">
                         <div class="contratinput2">
@@ -142,7 +142,7 @@
                     <div formGroupName="poste">
                       <div class="center">
                         <div class="posteinput2">
-                          <input type="text" formControlName="titre" placeholder="Titre du Poste">
+                          <input type="text" formControlName="profession" placeholder="Titre du Poste">
                           <select class="select7" formControlName="matricule">
                             <option class="option" value="" disabled selected hidden>Matricule manageur</option>
                             <option *ngFor="let som of sommes" [ngValue]="som">{{som}}</option>
@@ -152,12 +152,12 @@
                           <div class="photo">
                             <img class="image-upload" *ngIf="!url3==true" src="/assets/images/upload.png" alt="">
                             <img class="image-upload" [src]="url3" height="60" alt="">
-                            <input formControlName="ficheposte" class="buttonphoto3" type="file" (change)="readUrl3($event)" >
+                            <input formControlName="ficheposte" class="buttonphoto3" type="file" (change)="getPhoto($event.target)" >
                           </div>
                           <div class="photo">
                             <img class="image-upload" *ngIf="!url4==true" src="/assets/images/upload.png" alt="">
                             <img class="image-upload" [src]="url4" height="60" alt="">
-                            <input formControlName="procesverbal" class="buttonphoto4" type="file" (change)="readUrl4($event)" >
+                            <input formControlName="procesverbal" class="buttonphoto4" type="file" (change)="getPhoto($event.target)" >
                           </div>
                         </div>
                       </div>
@@ -191,7 +191,7 @@
         </div>
     </div>
 </div>
-<div class="aside">
+<!-- <div class="aside">
   <div class="chiffre-aside" style="margin-left: auto;margin-right: 0;">
       <div class="elmt-aside" >
           <div href="">
@@ -260,5 +260,5 @@
       </div>
       <button  class="button1-aside" routerLink="/accueil/offre">Voir le liste</button>
   </div>
-</div>
+</div> -->
 </div>
