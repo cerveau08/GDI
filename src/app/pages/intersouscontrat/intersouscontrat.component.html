@@ -41,13 +41,13 @@
                     currentPage: page,
                     totalItems: totalItems
                     }; let i = index">
-                    <!-- <td (click)="openDetail(p)" class="id1">{{p.id}}</td> -->
-                    <td (click)="openDetail(p)">{{p.prenom}}</td>
-                    <td (click)="openDetail(p)">{{p.nom}}</td>
-                    <td (click)="openDetail(p)" *ngIf="role != 'manager'"> <img class="photo" alt="" src="{{p.manager.avatar}}"></td>
-                    <td *ngIf="role != 'manager'" (click)="openDetail(p)">{{p.direction}}/{{p.departement}}/{{p.service}}</td>
-                    <td *ngIf="role != 'agence'" (click)="openDetail(p)">{{p.agence}}</td>
-                    <td (click)="openDetail(p)"> <p>{{p.fin_contrat  | date:'dd/MM/yyyy'}}</p> </td>
+                    <td (click)="openDetail(p.id)" class="id1">{{p.id}}</td>
+                    <td (click)="openDetail(p.id)">{{p.prenom}}</td>
+                    <td (click)="openDetail(p.id)">{{p.nom}}</td>
+                    <td (click)="openDetail(p.id)" *ngIf="role != 'manager'"> <img class="photo" alt="" src="{{p.manager.avatar}}"></td>
+                    <td *ngIf="role != 'manager'" (click)="openDetail(p.id)">{{p.direction}}/{{p.departement}}/{{p.service}}</td>
+                    <td *ngIf="role != 'agence'" (click)="openDetail(p.id)">{{p.agence}}</td>
+                    <td (click)="openDetail(p.id)"> <p>{{p.fin_contrat  | date:'dd/MM/yyyy'}}</p> </td>
                     <td *ngIf="role == 'manager'" (click)="openModal('custom-modal-'+p.id)" id="contrat"><button  class="buttons-attestation" >Ajouter</button></td>
                     <!--modal-->
                     <div class="modal">

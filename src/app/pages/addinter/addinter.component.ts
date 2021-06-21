@@ -60,8 +60,8 @@ export class AddinterComponent implements OnInit {
         photo: new FormControl(''),
     //  }),
      // contrat: new FormGroup({
-        type: new FormControl(''),
-        agenceId: new FormControl(''),
+        //type: new FormControl(''),
+        //agenceId: new FormControl(''),
         dateDebut: new FormControl(''),
         dateFin: new FormControl(''),
         categorieId: new FormControl(''),
