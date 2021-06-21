@@ -74,6 +74,7 @@
             <button class="buttonaffi" (click)="openModal('custom-modal-1')" type="button">Afficher contrat</button>
             <button class="buttonmodif" *ngIf="showupdate" (click)="openModal('custom-modal-2')" type="button">Modifier</button>
             <button class="buttonsupp" *ngIf="showupdate" (click)="delete()" type="button">Supprimer</button>
+            <button class="buttonadduser" *ngIf="showupdate" (click)="openModal('custom-modal-3')" type="button">Ajouter Utilisateur</button>
         </div>
     </div>
 </div>
@@ -138,12 +139,61 @@
                         <p class="p2">Documents Entreprise</p>
                         <div class="buttons1">
                            <!-- <input formControlName="contrat" [(ngModel)]="contrat" class="button5" type="file" (change)="readUrl1($event)" >
-                            <input formControlName="cnidg" [(ngModel)]="cnidg" class="button6" type="file" (change)="readUrl1($event)" >-->
+                            <input formControlName="cnidg" [(ngModel)]="cnidg" class="button6" type="file" (change)="readUrl2($event)" > -->
+                        </div>
+                        <div class="filenames">
+                            <div class="nom-file2">
+                                <p class="filename2" *ngIf="url2">{{filename2}}</p>
+                            </div>
+                            <div class="nom-file3">
+                                <p class="filename3" *ngIf="url3">{{filename3}}</p>
+                            </div>
                         </div>
                     </div>
                     <div class="buttons">
                     <button class="buttonenregistrer" type="submit">Valider</button>
                     </div>
+                </div>
+            </form>
+        </div>
+    </jw-modal>
+</div>
+
+
+ <!--modal-3-->
+ <div class="modal">
+    <jw-modal id="custom-modal-3">
+        <h1 class="modal-modification">Ajouter un nouveau Utilisateur</h1>
+        <mat-icon style="cursor: pointer;" (click)="closeModal('custom-modal-3');" class="clear">clear</mat-icon>
+        <div class="form">
+            <form [formGroup]="userAgenceForm">
+                <div >
+                <div class="grid">
+                    <div class="photo">
+                        <img alt="" class="photo-agence" *ngIf="!urlUser==true" src="">
+                        <img alt="" class="photo-agence" *ngIf="urlUser" [src]="urlUser" height="60">
+                        <input formControlName="photo" class="buttonPhotoUser" type="file" (change)="readUrlUser($event)" >
+                    </div>
+                    <div class="others">
+                        <div class="input2">
+                            <input type="text"  formControlName="prenom" placeholder="Prénom">
+                            <input class="input3"   type="text" formControlName="nom" placeholder="Nom">
+                        </div>
+                        <div class="input1">
+                            <input type="text"  formControlName="email" placeholder="Email">
+                        </div>
+                        <div class="input2">
+                            <input type="text" formControlName="mobile" placeholder="Numéro téléphone Mobile">
+                            <input class="input3"  type="text" formControlName="poste" placeholder="Numéro Fixe">
+                        </div>
+                        <div class="input4">
+                            <textarea type="textarea" formControlName="adresse" placeholder="Adresse"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="buttons">
+                   <button class="buttonenregistrer" (click)="ajouterUser()" type="button">Valider</button>
+                </div>
                 </div>
             </form>
         </div>

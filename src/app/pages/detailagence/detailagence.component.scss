@@ -8,253 +8,289 @@
     background-color: white;
     margin-right: 10px;
 }
-    .grid2 {
-        display: grid;
-        grid-template-columns: 140px 1fr;
+.grid2 {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+}
+.img {
+    img {
+        width: 140px;
+        height: 140px;
     }
-        .img {
-            img {
-                width: 140px;
-                height: 140px;
-            }
-        }
-    
-        .agence {
-           margin-left: 20px;
-        }
-           .nom2 {
-                font-size: 25px;
-                font-weight: bold;
-                font-stretch: normal;
-                font-style: normal;
-                line-height: normal;
-                letter-spacing: -0.2px;
-                color: #ff7900;
-                margin-top: 0;
-                margin-bottom: 0;
-           }
-            .nombre {
-               height: 41px;
-                max-width: 300px;
-                border-radius: 4px;
-                border: solid 1px #eaeaea;
-                display: flex;
-                padding: 5px;
-                margin-top: 20px;
-                display: grid;
-                grid-template-columns: 33% 33% 33%;
-            }
+}
+
+.agence {
+    margin-left: 20px;
+}
+.nom2 {
+    font-size: 25px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.2px;
+    color: #ff7900;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.nombre {
+    height: 41px;
+    max-width: 300px;
+    border-radius: 4px;
+    border: solid 1px #eaeaea;
+    display: flex;
+    padding: 5px;
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+}
               
-                    .title {
-                        font-size: 12px;
-                        font-weight: 500;
-                        font-stretch: normal;
-                        font-style: normal;
-                        line-height: normal;
-                        letter-spacing: normal;
-                        color: #222222;
-                        margin-top: 0;
-                        margin-bottom: 0;
-                    }
-                    .libelle {
-                        font-size: 28px;
-                        font-weight: 900;
-                        font-stretch: normal;
-                        font-style: normal;
-                        line-height: normal;
-                        letter-spacing: normal;
-                        color: #222222;
-                        margin-top: 10px;
-                        margin-bottom: 0;
-                    }
-                
-                    .title {
-                        font-size: 12px;
-                        font-weight: 500;
-                        font-stretch: normal;
-                        font-style: normal;
-                        line-height: normal;
-                        letter-spacing: normal;
-                        color: #222222;
-                        margin-top: 0;
-                        margin-bottom: 0;
-                    }
-                    .libelle {
-                        font-size: 28px;
-                        font-weight: 900;
-                        font-stretch: normal;
-                        font-style: normal;
-                        line-height: normal;
-                        letter-spacing: normal;
-                        color: #222222;
-                        margin-top: 10px;
-                        margin-bottom: 0;
-                    }
-                
-                    .title {
-                        font-size: 12px;
-                        font-weight: 500;
-                        font-stretch: normal;
-                        font-style: normal;
-                        line-height: normal;
-                        letter-spacing: normal;
-                        color: #222222;
-                        margin-top: 0;
-                        margin-bottom: 0;
-                        text-align: center;
-                    }
-                    .libelle {
-                        font-size: 28px;
-                        font-weight: 900;
-                        font-stretch: normal;
-                        font-style: normal;
-                        line-height: normal;
-                        letter-spacing: normal;
-                        color: #222222;
-                        margin-top: 10px;
-                        margin-bottom: 0;
-                        text-align: center;
-                    }
+.title {
+    font-size: 12px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #222222;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.libelle {
+    font-size: 28px;
+    font-weight: 900;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #222222;
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+
+.title {
+    font-size: 12px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #222222;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.libelle {
+    font-size: 28px;
+    font-weight: 900;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #222222;
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+
+.title {
+    font-size: 12px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #222222;
+    margin-top: 0;
+    margin-bottom: 0;
+    text-align: center;
+}
+.libelle {
+    font-size: 28px;
+    font-weight: 900;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #222222;
+    margin-top: 10px;
+    margin-bottom: 0;
+    text-align: center;
+}
            
-    .info {
-        display: grid;
-        grid-template-columns: 45% 45%;
-        margin-top: 30px;
-    }
+.info {
+    display: grid;
+    grid-template-columns: 45% 45%;
+    margin-top: 30px;
+}
        
-            .prenom {
-                display: flex;
-            }
-            .email2 {
-                display: flex;
-            }
-            .siteweb {
-                display: flex;
-            }
-        
-            .phone2 {
-                display: flex;
-            }
-            .adresse2 {
-                display: flex;
-            }
-                .icon-item {
-                    color: #009393;
-                    font-size: 30px;
-                    margin-left: 15px;
-                    margin-top: 5px;
-                }
-                .info-item {
-                    font-size: 14px;
-                    font-weight: normal;
-                    font-stretch: normal;
-                    font-style: normal;
-                    line-height: normal;
-                    letter-spacing: -0.1px;
-                    color: #000000;
-                    margin-left: 20px;
-                    margin-top: 10px;
-                }
+.prenom {
+    display: flex;
+}
+.email2 {
+    display: flex;
+}
+.siteweb {
+    display: flex;
+}
+
+.phone2 {
+    display: flex;
+}
+.adresse2 {
+    display: flex;
+}
+.icon-item {
+    color: #009393;
+    font-size: 30px;
+    margin-left: 15px;
+    margin-top: 5px;
+}
+.info-item {
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.1px;
+    color: #000000;
+    margin-left: 20px;
+    margin-top: 10px;
+}
             
-    .utilisateur {
-        font-size: 18px;
-        font-weight: bold;
-        font-stretch: normal;
-        font-style: normal;
-        line-height: normal;
-        letter-spacing: -0.1px;
-        color: #222222;
+.utilisateur {
+    font-size: 18px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.1px;
+    color: #222222;
+}
+.users {
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+.user1 {
+    display: flex;
+    margin-right: 10px;
+}
+.photo1 {
+    img {
+        height: 35px;
+        width: 35px;
+        border-radius: 50%;
     }
-    .users {
-        display: grid;
-        grid-template-columns: 50% 50%;
-    }
-        .user1 {
-            display: flex;
-            margin-right: 10px;
-        }
-            .photo1 {
-                img {
-                    height: 35px;
-                    width: 35px;
-                    border-radius: 50%;
-                }
-            }
-            .profil {
-                margin-left: 10px;
-            }
-                .profil1 {
-                    font-size: 14px;
-                    font-weight: 500;
-                    font-stretch: normal;
-                    font-style: normal;
-                    line-height: normal;
-                    letter-spacing: normal;
-                    color: #222222;
-                    margin-top: 5px;
-                    margin-bottom: 0;
-                }
-                .profil2 {
-                    font-size: 12px;
-                    font-weight: normal;
-                    font-stretch: normal;
-                    font-style: normal;
-                    line-height: normal;
-                    letter-spacing: normal;
-                    color: #222222;
-                    margin-top: 0;
-                }
+}
+.profil {
+    margin-left: 10px;
+}
+.profil1 {
+    font-size: 14px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #222222;
+    margin-top: 5px;
+    margin-bottom: 0;
+}
+.profil2 {
+    font-size: 12px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #222222;
+    margin-top: 0;
+}
        
    
-        .buttonsupp {
-            width: 100px;
-            height: 30px;
-            background: #cd3c14;
-            font-size: 14px;
-            font-weight: bold;
-            font-stretch: normal;
-            font-style: normal;
-            line-height: 1.11;
-            letter-spacing: -0.2px;
-            color: white;
-            margin-left: 50px;
-            outline: none;
-            border: none;
-        }
-        .buttonaffi {
-            width: 150px;
-            height: 30px;
-            background: black;
-            font-size: 14px;
-            font-weight: bold;
-            font-stretch: normal;
-            font-style: normal;
-            line-height: 1.11;
-            letter-spacing: -0.2px;
-            color: white;
-            border-radius: none;
-            margin-top: 20px;
-            outline: none;
-            border: none;
-        }
-        .buttonmodif {
-            width: 100px;
-            height: 30px;
-            background: white;
-            font-size: 14px;
-            font-weight: bold;
-            font-stretch: normal;
-            font-style: normal;
-            line-height: 1.11;
-            letter-spacing: -0.2px;
-            color: black;
-            margin-left: 30px;
-            border-radius: none;
-            margin-top: 20px;
-            outline: none;
-            border: 2px solid black;
-        }
-    
+.buttonsupp {
+    width: 90px;
+    height: 30px;
+    background: #cd3c14;
+    font-size: 14px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.11;
+    letter-spacing: -0.2px;
+    color: white;
+    margin-left: 10px;
+    outline: none;
+    border: none;
+}
+.buttonaffi {
+    width: 130px;
+    height: 30px;
+    background: black;
+    font-size: 14px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.11;
+    letter-spacing: -0.2px;
+    color: white;
+    border-radius: none;
+    margin-top: 20px;
+    outline: none;
+    border: none;
+}
+.buttonmodif {
+    width: 80px;
+    height: 30px;
+    background: white;
+    font-size: 14px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.11;
+    letter-spacing: -0.2px;
+    color: black;
+    margin-left: 10px;
+    border-radius: none;
+    margin-top: 20px;
+    outline: none;
+    border: 2px solid black;
+}
+.buttonadduser {
+    width: 140px;
+    height: 30px;
+    background: white;
+    font-size: 14px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.11;
+    letter-spacing: -0.2px;
+    color: #ff7900;
+    margin-left: 10px;
+    border-radius: none;
+    margin-top: 30px;
+    outline: none;
+    border: 3px solid #ff7900;
+    cursor: pointer;
+}
+.buttonPhotoUser::before {
+    content: 'Ajouter';
+    width: 120px;
+    height: 20px;
+    background-color: white;
+    border: none;
+    color: black;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+    font-size: 14px;
+    cursor: pointer;
+    outline: none;
+    border: 2px solid black;
+    margin-top: 10px;
+    margin-left: 0px;
+    padding-top: 5px;    
+}
 
 .trait {
     border: 1px solid #979797;
@@ -401,6 +437,10 @@ jw-modal {
     margin-left: 10px;
     padding-top: 15px;
 }
+.buttonPhotoUser {
+    width: 130px;
+    margin-left: 20px;
+}
 .others {
     margin-left: 20px;
 }
@@ -529,7 +569,22 @@ input {
     font-size: 14px;
     font-weight: bold;
 }
-
+.filenames {
+    width: 400px;
+    margin: 5px auto;
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+.filename3 {
+    text-align: right;
+    font-size: 14px;
+    color: #ff7900;
+}
+.filename2 {
+    text-align: left;
+    font-size: 14px;
+    color: #ff7900;
+}
 @media (max-width: 991px) {
     .chiffre-aside {
         display: grid;
@@ -643,7 +698,7 @@ input {
         width: 95px;
         height: 30px;
         font-size: 10px;
-        margin-left: 10px;
+        margin-left: 0px;
         margin-top: 0;
     }
     .buttonmodif {
@@ -652,6 +707,37 @@ input {
         font-size: 10px;
         margin-left: 10px;
         margin-top: 0;
+    }
+    .buttonadduser {
+        width: 100px;
+        height: 30px;
+        font-size: 10px;
+        margin-left: 10px;
+        margin-top: 0px;
+    }
+    .buttonPhotoUser {
+        width: 75px;
+        margin-left: 10px;
+        margin-bottom: 10px;
+    }
+    .buttonPhotoUser::before {
+        content: 'Ajouter';
+        width: 70px;
+        height: 20px;
+        background-color: white;
+        border: none;
+        color: black;
+        text-align: center;
+        text-decoration: none;
+        font-weight: bold;
+        display: inline-block;
+        font-size: 14px;
+        cursor: pointer;
+        outline: none;
+        border: 2px solid black;
+        margin-top: 10px;
+        margin-left: 0px;
+        padding-top: 5px;    
     }
     .btns {
         width: 290px;
@@ -673,10 +759,10 @@ input {
         height: 40px;
     }
     .clear {
-        margin-top: 5px;
+        margin-top: 1px;
         margin-right: 20px;
         right: 5%;
-        top: 3%;
+        top: 1%;
     }
     .btns2{
         width: 210px;
@@ -693,6 +779,12 @@ input {
         font-size: 10px;
         margin-left: 10px;
     }
+    .filenames {
+        width: 90%;
+        margin: 5px auto;
+        display: grid;
+        grid-template-columns: 50% 50%;
+    }
     .grid {
         grid-template-columns: 1fr;
         grid-template-areas:
@@ -702,13 +794,13 @@ input {
     jw-modal {
         position: relative;
         h1{
-          font-size: 21px;
+          font-size: 18px;
           margin-top: 20px;
           margin-left: 10px;
         }
         .clear {
-          width: 16px;
-          height: 16px;
+          width: 10px;
+          height: 10px;
           margin-top: 5px;
           margin-right: 20px;
           font-weight: bold;
@@ -805,7 +897,7 @@ input {
         margin-bottom: 10px;
     }
     .input4 textarea {
-        width: 96%;
+        width: 94%;
         height: 70px;
         margin-bottom: 10px;
         font-size: 10px;
@@ -851,7 +943,7 @@ input {
         padding-top: 10px;
     }
     .buttons1 {
-        width: 290px;
+        width: 270px;
         margin: 5px auto;
         display: flex;
     }
