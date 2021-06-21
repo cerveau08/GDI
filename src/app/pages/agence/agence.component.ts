@@ -49,14 +49,17 @@ export class AgenceComponent implements OnInit {
   url1;
   url3;
   url2;
+  urlUser;
   user;
   filename1 = "";
   filename2 = "";
   filename3 = "";
+  filenameUser = "";
   showupdate;
   showadduser;
   datas: any;
   agenceForm: FormGroup;
+  userAgenceForm: FormGroup;
   viewer = 'google';
   DemoDoc="http://www.africau.edu/images/default/sample.pdf" 
   DemoDoc1="https://file-examples.com/wp-content/uploads/2017/02/file-sample_100kB.doc"
@@ -92,6 +95,15 @@ export class AgenceComponent implements OnInit {
       contrat: new FormControl(''),
       cnidg: new FormControl (''),
     });
+    this.userAgenceForm = new FormGroup({
+      prenom: new FormControl (''),
+      nom: new FormControl(''),
+      poste: new FormControl (''),
+      email: new FormControl(''),
+      mobile: new FormControl (''),
+      adresse: new FormControl(''),
+      photo: new FormControl (''),
+    });
   }
 
   submitted1() {
@@ -110,6 +122,10 @@ export class AgenceComponent implements OnInit {
     } 
     console.log(info);
     return info;
+  }
+
+  ajouterUser() {
+    console.log(this.userAgenceForm.value);
   }
 
   public getfilemodal() {
@@ -157,6 +173,19 @@ export class AgenceComponent implements OnInit {
           this.url3 = event.target.result;
         }
         this.filename3 = event.target.files[0].name;
+        reader.readAsDataURL(event.target.files[0]);
+      }
+  }
+
+  readUrlUser(event: any) {
+    console.log('readUrl');
+      if (event.target.files && event.target.files[0]) {
+        var reader = new FileReader();
+      
+        reader.onload = (event: any) => {
+          this.urlUser = event.target.result;
+        }
+        this.filenameUser = event.target.files[0].name;
         reader.readAsDataURL(event.target.files[0]);
       }
   }

@@ -260,9 +260,12 @@ margin-bottom: 5px;
   display: inline-block;
   font-size: 15px;
   margin-top: 4px;
-  margin-left: 80px;
   cursor: pointer;
   outline: none;
+}
+.content-button-aside {
+  width: 132px;
+  margin: 0 auto;
 }
 .annonce-aside {
   margin-top: 0px;
@@ -308,7 +311,7 @@ margin-bottom: 5px;
   display: inline-block;
   font-size: 15px;
   margin-top: 4px;
-  margin-left: 80px;
+  margin-left: 0px;
   cursor: pointer;
   outline: none;
 }

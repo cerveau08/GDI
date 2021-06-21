@@ -195,7 +195,7 @@
             
    
         .buttonsupp {
-            width: 117px;
+            width: 90px;
             height: 30px;
             background: #cd3c14;
             font-size: 14px;
@@ -211,7 +211,7 @@
             cursor: pointer;
         }
         .buttonaffi {
-            width: 156px;
+            width: 120px;
             height: 30px;
             background: black;
             font-size: 14px;
@@ -228,7 +228,7 @@
             cursor: pointer;
         }
         .buttonmodif {
-            width: 117px;
+            width: 90px;
             height: 30px;
             background: white;
             font-size: 14px;
@@ -243,6 +243,24 @@
             margin-top: 30px;
             outline: none;
             border: 3px solid black;
+            cursor: pointer;
+        }
+        .buttonadduser {
+            width: 140px;
+            height: 30px;
+            background: white;
+            font-size: 14px;
+            font-weight: bold;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 1.11;
+            letter-spacing: -0.2px;
+            color: #ff7900;
+            margin-left: 10px;
+            border-radius: none;
+            margin-top: 30px;
+            outline: none;
+            border: 3px solid #ff7900;
             cursor: pointer;
         }
     
@@ -395,6 +413,25 @@ jw-modal {
     margin-left: 0px;
     padding-top: 5px;
 }
+.buttonPhotoUser::before {
+    content: 'Ajouter';
+    width: 120px;
+    height: 20px;
+    background-color: white;
+    border: none;
+    color: black;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+    font-size: 14px;
+    cursor: pointer;
+    outline: none;
+    border: 2px solid black;
+    margin-top: 10px;
+    margin-left: 0px;
+    padding-top: 5px;    
+}
 .others {
     margin-left: 0px;
 }
@@ -419,13 +456,14 @@ input {
     margin-bottom: 10px;
 }
 .input4 textarea {
-    width: 422px;
+    width: 412px;
     height: 80px;
     background-color: #f5f6f9;
     border-radius: 1px;
     border: solid 1px #d8d8d8;
     margin-bottom: 10px;
     outline: none;
+    padding-left: 10px;
 }
 .input3 {
     margin-left: 10px;
@@ -655,6 +693,13 @@ input {
         margin-left: 10px;
         margin-top: 0;
     }
+    .buttonadduser {
+        width: 100px;
+        height: 30px;
+        font-size: 10px;
+        margin-left: 10px;
+        margin-top: 0px;
+    }
     .btns {
         width: 290px;
         margin: 0 auto;
@@ -695,4 +740,270 @@ input {
         font-size: 10px;
         margin-left: 10px;
     }
+
+    //jw-modal-2
+
+    .modal-modification{
+        font-size: 16px;
+        color: #222222;
+        margin-top: 5px;
+        margin-left: 5px;
+      }
+      .clear {
+        width: 10px;
+        height: 10px;
+        margin-top: 10px;
+        margin-right: 20px;
+        font-weight: bold;
+        position: absolute;
+        right: 1%;
+        top: 1%;
+      }
+      .image-logo-agence {
+          width: 80px;
+          height: 80px;
+      }
+  
+  .form {
+      max-width: 280px;
+      margin: 20px auto;
+  }
+  .grid {
+      margin-top: 10px;
+      display: grid;
+      grid-template-columns: 90px 1fr;
+  }
+  .photo-agence {
+      width: 80px;
+      height: 80px;
+  }
+  ::-webkit-file-upload-button {
+      
+      width: 80px;
+      height: 50px;
+      background-color: white;
+      border: none;
+      color: black;
+      padding: 5px 2px;
+      text-align: center;
+      text-decoration: none;
+      font-weight: bold;
+      display: inline-block;
+      font-size: 18px;
+      cursor: pointer;
+      outline: none;
+      border: 3px solid black;
+      margin-top: 10px;
+      margin-left: 20px;
+  }
+  /* for poor sods using IE */
+  ::-ms-browse {
+      content: 'Ajouter Photo';
+      width: 98px;
+      height: 50px;
+      background-color: white;
+      border: none;
+      color: black;
+      padding: 5px 2px;
+      text-align: center;
+      text-decoration: none;
+      font-weight: bold;
+      display: inline-block;
+      font-size: 18px;
+      cursor: pointer;
+      outline: none;
+      border: 3px solid black;
+      margin-top: 10px;
+      margin-left: 20px;
+  }
+  .button::-webkit-file-upload-button {
+      visibility: hidden;
+      outline: none;
+  }
+  .button {
+      width: 80px;
+      height: 50px;
+      margin-left: -5px;
+  }
+  .button::before {
+      content: 'Modifier';
+      width: 70px;
+      height: 20px;
+      background-color: white;
+      border: none;
+      color: black;
+      text-align: center;
+      text-decoration: none;
+      font-weight: bold;
+      display: inline-block;
+      font-size: 14px;
+      cursor: pointer;
+      outline: none;
+      border: 2px solid black;
+      margin-top: 0px;
+      margin-left: 0px;
+      padding-top: 5px;
+  }
+  .buttonPhotoUser {
+      width: 80px;
+  }
+  .buttonPhotoUser::before {
+      content: 'Ajouter';
+      width: 70px;
+      height: 20px;
+      background-color: white;
+      border: none;
+      color: black;
+      text-align: center;
+      text-decoration: none;
+      font-weight: bold;
+      display: inline-block;
+      font-size: 14px;
+      cursor: pointer;
+      outline: none;
+      border: 2px solid black;
+      margin-top: 10px;
+      margin-left: 0px;
+      padding-top: 5px;    
+  }
+  .others {
+      margin-left: 0px;
+  }
+  input {
+      padding-left: 5px;
+      outline: none;
+      font-size: 10px;
+  }
+  .input1 input {
+      width: 180px;
+      height: 20px;
+      background-color: #f5f6f9;
+      border-radius: 1px;
+      border: solid 1px #d8d8d8;
+      margin-bottom: 10px;
+  }
+  .input2 input {
+      width: 180px;
+      height: 20px;
+      background-color: #f5f6f9;
+      border-radius: 1px;
+      border: solid 1px #d8d8d8;
+      margin-bottom: 10px;
+  }
+  .input4 textarea {
+      width: 175px;
+      height: 40px;
+      background-color: #f5f6f9;
+      border-radius: 1px;
+      border: solid 1px #d8d8d8;
+      margin-bottom: 10px;
+      outline: none;
+      padding-left: 10px;
+      font-size: 10px;
+  }
+  .input3 {
+      margin-left: 0px;
+  }
+  .trait {
+      border: 1px solid #979797;
+      background-color: #979797;
+      margin-top: 10px;
+  }
+  .p2 {
+      font-size: 18px;
+      font-weight: bold;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: normal;
+      letter-spacing: -0.1px;
+      color: #222222;
+      margin-top: 10px;
+      margin-bottom: 10px;
+  }
+  .button5::-webkit-file-upload-button {
+      visibility: hidden;
+      outline: none;
+  }
+  .button5::before {
+      content: 'Contrat';
+      width: 80px;
+      height: 20px;
+      background-color: white;
+      border: none;
+      color: black;
+      text-align: center;
+      text-decoration: none;
+      font-weight: bold;
+      display: inline-block;
+      font-size: 12px;
+      cursor: pointer;
+      outline: none;
+      border: 2px solid black;
+      margin-top: 10px;
+      margin-left: 10px;
+      padding-top: 5px;
+  
+  }
+  .button6::-webkit-file-upload-button {
+      visibility: hidden;
+      outline: none;
+  }
+  .button6::before {
+      content: 'CNI DG';
+      width: 70px;
+      height: 20px;
+      background-color: white;
+      border: none;
+      color: black;
+      text-align: center;
+      text-decoration: none;
+      font-weight: bold;
+      display: inline-block;
+      font-size: 12px;
+      cursor: pointer;
+      outline: none;
+      border: 2px solid black;
+      margin-top: 10px;
+      margin-left: 10px;
+      padding-top: 5px;
+  }
+  .buttons1 {
+      width: 270px;
+      margin: 10px auto;
+      display: flex;
+  }
+  .buttons {
+      width: 100px;
+      margin: 5px auto;
+      display: flex;
+  }
+  .filenames {
+      width: 90%;
+      margin: 5px auto;
+      display: grid;
+      grid-template-columns: 50% 50%;
+  }
+  .filename3 {
+      text-align: right;
+      font-size: 14px;
+      color: #ff7900;
+  }
+  .filename2 {
+      text-align: left;
+      font-size: 14px;
+      color: #ff7900;
+  }
+  .buttonenregistrer {
+      width: 98px;
+      height: 30px;
+      padding: 8px 15px 9px;
+      border: none;
+      color: white;
+      background: #000000;
+      outline: none;
+      font-size: 14px;
+      font-weight: bold;
+      margin: 0;
+  }
+  
 }

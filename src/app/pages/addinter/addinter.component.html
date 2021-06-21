@@ -14,7 +14,8 @@
               </ng-template>
               <div>
                   <form [formGroup]="interForm">
-                    <div formGroupName="infopersonnel">
+                    <!-- <div formGroupName="infopersonnel"> -->
+                      <div>
                       <p class="matri">Matricule: <span>{{matricule}}</span> </p>
                       <div class="grid">
                         <div class="photo">
@@ -72,7 +73,8 @@
                 </ng-template>
               <div>
                 <form [formGroup]="interForm">
-                  <div formGroupName="contrat">
+                  <!-- <div formGroupName="contrat"> -->
+                    <div>
                     <p class="matri">Matricule: <span>{{matricule}}</span> </p>
                     <div class="grid">
                       <div class="photo">
@@ -83,22 +85,22 @@
                       <div class="others">
                         <div class="contratinput2">
                           <select class="select5" formControlName="type">
-                            <option class="option" value="" disabled selected hidden>type de contrat</option>
-                            <option *ngFor="let data of datas" value="data.id">{{data.libelle}}</option>
+                            <option class="option" value="" disabled selected hidden>Catégorie</option>
+                            <option *ngFor="let data of dataSociete" value="data.id">{{data.libelle}}</option>
                           </select>
-                          <select class="select6" formControlName="agenceId" placeholder="Agence d'interim">
+                          <input class="input3" type="text" formControlName="salaireBrut" placeholder="Montant Salaire Brut">
+                          <!-- <select class="select6" formControlName="agenceId" placeholder="Agence d'interim">
                             <option class="option" value="" disabled selected hidden>Agence d'interim</option>
                             <option *ngFor="let data of dataAgence" value="data.id">{{data.nom}}</option>
-                          </select>
+                          </select> -->
                         </div>
                         <div class="contratinput2">
                           <input type="text" formControlName="dateDebut" placeholder="Date Début">
                           <input class="input3" type="text" formControlName="dateFin" placeholder="Date Fin">
                         </div> 
-                        <div class="contratinput2">
+                        <!-- <div class="contratinput2">
                           <input type="text" formControlName="categorieId" placeholder="Catégorie">
-                          <input class="input3" type="text" formControlName="salaireBrut" placeholder="Montant Salaire Brut">
-                        </div>
+                        </div> -->
                         <div class="contratinput2">
                           <select class="select5" #societe formControlName="structureId" (change)="directionsListe(societe.value)">
                             <option class="option" value="" disabled selected hidden>Societe</option>
@@ -139,11 +141,12 @@
               <div>
                 <div *ngIf="!submited">
                   <form [formGroup]="interForm">
-                    <div formGroupName="poste">
+                    <!-- <div formGroupName="poste"> -->
+                      <div>
                       <div class="center">
                         <div class="posteinput2">
                           <input type="text" formControlName="profession" placeholder="Titre du Poste">
-                          <select class="select7" formControlName="matricule">
+                          <select class="select7" formControlName="matriculeManager">
                             <option class="option" value="" disabled selected hidden>Matricule manageur</option>
                             <option *ngFor="let som of sommes" [ngValue]="som">{{som}}</option>
                           </select>
