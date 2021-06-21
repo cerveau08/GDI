@@ -102,18 +102,18 @@
         
         <div *ngIf="showHome" class="interi-aside">
             <p class="dernier-aside">En fin de contrat</p>
-            <div *ngFor="let p of datas | slice:0:4; let i = index">
+            <div *ngFor="let p of dataInterFin | slice:0:4; let i = index">
                 <div class="list-aside">
                     <div style="cursor: pointer;" class="grid-container-aside" [ngStyle]="{'border-bottom' : ((i > 2) ? 'none' : '1px solid #f5f6f9') }">
                         <div  class="item4-aside" >
                             <img alt="" class="photo-aside" src="../assets/images/{{p.photo}}">
                         </div>
                         <div  class="item4-aside" >
-                            <p class="prenom-aside"> {{p.prenom}} </p>
+                            <p class="prenom-aside"> {{p.prenom}} {{p.nom}} </p>
                             <p class="poste-aside"> {{p.poste}} </p>
                         </div>
                         <div  class="item4-aside"> 
-                            <p class="tmp-aside" >{{p.dateFin | date: 'dd/MM/yyyy'}}</p> 
+                            <p class="tmp-aside" >{{p.fin_contrat | date: 'dd/MM/yyyy'}}</p> 
                         </div>
                     </div>
                 </div>
