@@ -94,34 +94,6 @@ app-header {
   overflow: hidden;
  padding: 0 5px 10px 5px !important;
 }
-  @media (max-width: 991px) {
-    app-nav{
-      height: 0px;
-    } 
-    app-header {
-      height: 35px;
-      background-color: white;
-    }
-    app-aside {
-      margin: 0;
-    }
-
-    .container {
-      display: block;
-      background-color: #f5f6f9;
-    }
-    .ngx-pagination {
-      font-size: 10px;
-    }
-    .mat-horizontal-content-container {
-      overflow: hidden;
-     padding: 0 5px 10px 5px !important;
-    }
-}
-html, body { height: 100%; width: 100%;}
-
-
-
 
 //  aside scss
 
@@ -356,3 +328,50 @@ margin-bottom: 5px;
   color: #222222;
   margin-top: 5px;
 }
+
+  @media (max-width: 991px) {
+    app-nav{
+      height: 0px;
+    } 
+    app-header {
+      height: 35px;
+      background-color: white;
+    }
+    app-aside {
+      margin: 0;
+    }
+
+    .container {
+      display: block;
+      background-color: #f5f6f9;
+    }
+    .ngx-pagination {
+      font-size: 10px;
+    }
+    .mat-horizontal-content-container {
+      overflow: hidden;
+     padding: 0 5px 10px 5px !important;
+    }
+    .grid-container-aside {
+      display: grid;
+      grid-template-columns: 40px 1fr 55px;
+      grid-gap: 1px;
+      background-color: white;
+      padding: 0px;
+      margin-top: 10px;
+      border-bottom: 1px solid #f5f6f9;
+    }
+    .grid-container1-aside {
+      display: grid;
+      grid-template-columns: 1fr 70px;
+      grid-gap: 1px;
+      background-color: white;
+      padding: 0px;
+      margin-top: 10px;
+      border-bottom: 1px solid #f5f6f9;
+    }
+}
+html, body { height: 100%; width: 100%;}
+
+
+
