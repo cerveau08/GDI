@@ -44,12 +44,11 @@ export class AddinterComponent implements OnInit {
   constructor(private fb: FormBuilder,
               private dataService: DataService,
               private otherService: OthersService,
-              private formBuilder: FormBuilder,
               private route: Router) {
     this.datajson = this.dataService.getData();
    }
   ngOnInit() {
-    this.interForm = this.formBuilder.group({
+    this.interForm = new FormGroup({
         nCni: new FormControl(''),
         prenom: new FormControl(''),
         nom: new FormControl(''),
@@ -97,7 +96,7 @@ export class AddinterComponent implements OnInit {
     );
   }
   submit() {
-   /* const interimForm = new FormData();
+    const interimForm = new FormData();
     this.contrat = {
       type: this.interForm.value.type_contrat,
       file: this.filecontrat,
@@ -109,35 +108,8 @@ export class AddinterComponent implements OnInit {
     this.proceverbal = {
       type: this.interForm.value.type_proceverbal,
       file: this.proceverbal,
-    }*/
-
-    const formValue = this.interForm.value;
-    const formData = new FormData();
-    for (const key of Object.keys(formValue)) {
-      const value = formValue[key];
-      console.log(value);
-      formData.append(key, value);
     }
-    if (this.filecontrat) {
-      formData.append('filecontrat', this.filecontrat);
-    }else if(this.ficheposte){
-      formData.append('ficheposte', this.ficheposte);
-    }else if(this.proceverbal){
-      formData.append('ficheposte', this.ficheposte);
-    }
-      this.otherService.addInter(formData).subscribe(
-        (response)=> {
-          const link = ['accueil/souscontrat'];
-          this.route.navigate(link);
-          console.log(response)
-        },
-        (error)=> {
-          this.errorMsg = 'Probleme de connexion au serveur';
-          console.log(error)
-        }
-      );
-    
-    /*console.log(interimForm);
+    console.log(interimForm);
     interimForm.append("nCni",this.interForm.value.nCni)
     interimForm.append("universite",this.interForm.value.universite)
     interimForm.append("sexe",this.interForm.value.sexe)
@@ -173,7 +145,7 @@ export class AddinterComponent implements OnInit {
           console.log(error)
         }
         //this.ndm.navigateByUrl('/accueil/listUsers');
-      )*/
+      )
   }
 
   directionsListe(value) {
