@@ -40,6 +40,7 @@ export class HomeComponent implements OnInit {
     {libelle: "Dec",},
   ];
   dataInterFin;
+  prenom;
   color: any;
   public datas: any;
   public diagrammes: any;
@@ -264,12 +265,13 @@ export class HomeComponent implements OnInit {
 
 
   ngOnInit() {
-    this.otherService.getInter().subscribe(
-      data => {
-       this.dataInterFin = data.data;
-       console.log(data);
-      }
-    );
+    this.prenom = localStorage.getItem('prenom');
+      this.otherService.getInter().subscribe(
+        data => {
+        this.dataInterFin = data.data;
+        console.log(data);
+        }
+      );
   // this.data = this.dataService.getData();
     
     this.user = localStorage.getItem('user');
