@@ -16,7 +16,7 @@
                     <form [formGroup]="interForm">
                       <!-- <div formGroupName="infopersonnel"> -->
                         <div>
-                        <p class="matri">Matricule: <span>item.matricule</span> </p>
+                        <p class="matri">Matricule: <span>{{matricule}}</span> </p>
                         <div class="grid">
                           <div class="photo">
                             <!-- <img class="image-upload" *ngIf="!url1==true" src="/assets/images/upload.png" alt=""> -->
@@ -75,7 +75,7 @@
                         <div class="photo">
                           <!-- <img class="image-upload" *ngIf="!url2==true" src="" alt=""> -->
                           <img class="image-upload" [src]="url2" height="60" alt="">
-                          <input formControlName="filecontrat"  class="buttonphoto2" type="file" (change)="readUrl2($event)" >
+                          <input formControlName="filecontrat"  class="buttonphoto2" type="file" (change)="getPhoto($event.target)" >
                         </div>
                         <div class="others">
                           <div class="contratinput2">
@@ -143,12 +143,12 @@
                             <div class="photo">
                               <img class="image-upload" *ngIf="!url3==true" src="/assets/images/upload.png" alt="">
                               <img class="image-upload" [src]="url3" height="60" alt="">
-                              <input formControlName="ficheposte" class="buttonphoto3" type="file" (change)="readUrl3($event)" >
+                              <input formControlName="ficheposte" class="buttonphoto3" type="file" (change)="getPhoto($event.target)" >
                             </div>
                             <div class="photo">
                               <img class="image-upload" *ngIf="!url4==true" src="/assets/images/upload.png" alt="">
                               <img class="image-upload" [src]="url4" height="60" alt="">
-                              <input formControlName="proceverbal" class="buttonphoto4" type="file" (change)="readUrl4($event)" >
+                              <input formControlName="proceverbal" class="buttonphoto4" type="file" (change)="getPhoto($event.target)" >
                             </div>
                           </div>
                         </div>
