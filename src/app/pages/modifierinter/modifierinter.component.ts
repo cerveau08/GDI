@@ -51,6 +51,8 @@ export class ModifierinterComponent implements OnInit {
   dateFin;
   sitmat;
   email;
+  ficheposte;
+  proceverbal;
   telephone;
   categorie;
   salaire_brut;
@@ -90,6 +92,8 @@ export class ModifierinterComponent implements OnInit {
               this.salaire_brut = this.dataInter.data.salaire_brut;
               this.categorie = this.dataInter.data.categorie;
               this.telephone = this.dataInter.data.telephone;
+              this.ficheposte = this.dataInter.data.ficheposte;
+              this.proceverbal = this.dataInter.data.proceverbal;
               this.universite = this.dataInter.data.universite;
               this.agence = this.dataInter.data.agence;
               this.structure = this.dataInter.data.structure;
@@ -130,6 +134,7 @@ export class ModifierinterComponent implements OnInit {
         service: new FormControl(''),
         filecontrat: new FormControl(''),
         profession: new FormControl(''),
+        telephone: new FormControl(''),
         matriculemanager: new FormControl(''),
         ficheposte: new FormControl(''),
         proceverbal: new FormControl(''),
@@ -166,7 +171,7 @@ export class ModifierinterComponent implements OnInit {
     info.append("adresse",value.adresse);
     info.append("sexe",value.sexe);
     info.append("sitmat",value.sitmat);
-    info.append("diplome",value.diplome);
+    info.append("diplome",value.telephone);
     info.append("universite",value.universite);
     info.append("type",value.type);
     info.append("agence",value.agence);
@@ -181,9 +186,9 @@ export class ModifierinterComponent implements OnInit {
     info.append("file_contrat",value.file_contrat);
     info.append("profession",value.profession);
     info.append("matriculemanager",value.matriculemanager);
-    info.append("fichePoste",value.fichePoste);
+    info.append("ficheposte",value.ficheposte);
     info.append("proceverbal",value.proceverbal);
-    info.append("logo",this.photo);
+    info.append("photo",this.photo);
     console.log(info);
     console.log(this.item);
     this.otherService.updateInter(this.interForm.value, this.item).subscribe(

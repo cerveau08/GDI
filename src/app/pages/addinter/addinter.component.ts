@@ -59,7 +59,7 @@ export class AddinterComponent implements OnInit {
         photo: new FormControl(''),
         dateDebut: new FormControl(''),
         dateFin: new FormControl(''),
-        categorieId: new FormControl(''),
+        categorie: new FormControl(''),
         salaireBrut: new FormControl(''),
         structureId: new FormControl(''),
         direction: new FormControl(''),
@@ -86,14 +86,6 @@ export class AddinterComponent implements OnInit {
       }
     );
   }
-
-  submitted1() {
-    
-  }
-
-  submitted2() {
-  }
-
   submit() {
     const interimForm = new FormData();
     interimForm.append("nCni",this.interForm.value.nCni)
@@ -105,17 +97,17 @@ export class AddinterComponent implements OnInit {
     interimForm.append("sitmat",this.interForm.value.sitmat)
     interimForm.append("diplome",this.interForm.value.diplome)
     interimForm.append("adressse",this.interForm.value.adresse)
-    interimForm.append("profilId",'3')
-    interimForm.append("categorieId",this.interForm.value.categorieId)
+    //interimForm.append("profilId",'3')
+    interimForm.append("categorie",this.interForm.value.categorie)
     interimForm.append("structureId",this.interForm.value.structureId)
-    interimForm.append("domaineId",'1')
-    interimForm.append("agenceId",'20')
+    //interimForm.append("domaineId",'1')
+    //interimForm.append("agenceId",'20')
     interimForm.append("societeId",this.interForm.value.societeId)
     interimForm.append("salaireBrute",this.interForm.value.salaireBrute)
     interimForm.append("profession",this.interForm.value.profession)
-    //interimForm.append("matricule",this.interForm.value.infoPoste.matricule)
-    //interimForm.append("ficheposte",this.interForm.value.infoPoste.ficheposte)
-    //interimForm.append("procesverbal",this.interForm.value.infoPoste.procesverbal)
+    interimForm.append("matricule",this.interForm.value.matricule)
+    interimForm.append("ficheposte",this.interForm.value.ficheposte)
+    interimForm.append("procesverbal",this.interForm.value.procesverbal)
     console.log(this.interForm.value);
 
     console.log(this.interForm.value);

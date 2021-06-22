@@ -41,7 +41,7 @@
                             <input type="text" formControlName="adresse" placeholder="Adresse">
                           </div>
                           <div class="infoinput2">
-                            <input type="text" formControlName="dateNaissance" placeholder="Date de Naissance">
+                            <input type="date" formControlName="dateNaissance" placeholder="Date de Naissance">
                             <input class="input3" type="text" formControlName="lieuNaissance" placeholder="Lieu de Naissance">
                           </div>
                           <div class="infoinput2">
@@ -57,7 +57,7 @@
                     </div>
                     <div class="buttons">
                       <button class="button1" type="button">Annuler</button>
-                      <button class="button2" (click)="submitted1()" type="button" mat-button matStepperNext>Suivant</button>
+                      <button class="button2"  type="button" mat-button matStepperNext>Suivant</button>
                     </div>
                   </form>
               </div>
@@ -84,15 +84,15 @@
                       </div>
                       <div class="others">
                         <div class="contratinput2">
-                          <select class="select5" formControlName="type">
+                          <select class="select5" formControlName="categorie">
                             <option class="option" value="" disabled selected hidden>Catégorie</option>
                             <option *ngFor="let data of dataSociete" value="data.id">{{data.libelle}}</option>
                           </select>
                           <input class="input3" type="text" formControlName="salaireBrut" placeholder="Montant Salaire Brut">
                         </div>
                         <div class="contratinput2">
-                          <input type="text" formControlName="dateDebut" placeholder="Date Début">
-                          <input class="input3" type="text" formControlName="dateFin" placeholder="Date Fin">
+                          <input type="date" formControlName="dateDebut" placeholder="Date Début">
+                          <input class="input3" type="date" formControlName="dateFin" placeholder="Date Fin">
                         </div> 
                         <div class="contratinput2">
                           <select class="select5" #societe formControlName="structureId" (change)="directionsListe(societe.value)">
@@ -118,7 +118,7 @@
                     </div>
                   </div>
                   <button class="button1"  type="button" mat-button matStepperPrevious>Précédent</button>
-                  <button class="button2" (click)="submitted2()" type="button"  mat-button matStepperNext>Suivant</button>
+                  <button class="button2"  type="button"  mat-button matStepperNext>Suivant</button>
               </form>
               </div>
             </mat-step>
@@ -141,7 +141,7 @@
                           <input type="text" formControlName="profession" placeholder="Titre du Poste">
                           <select class="select7" formControlName="matriculeManager">
                             <option class="option" value="" disabled selected hidden>Matricule manageur</option>
-                            <option *ngFor="let som of sommes" [ngValue]="som">{{som}}</option>
+                            <option *ngFor="let data of dataManager" [value]="data.id">{{data.libelle}}</option>
                           </select>
                         </div>
                         <div class="fiche-et-pv">
