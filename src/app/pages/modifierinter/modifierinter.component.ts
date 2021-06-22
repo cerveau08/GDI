@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from 'src/app/service/data.service';
 import { OthersService } from 'src/app/services/others.service';
 
@@ -34,24 +34,38 @@ export class ModifierinterComponent implements OnInit {
   posteForm : FormGroup;
   formPhoneGroup : FormGroup;
   datas: any;
+  dataSociete;
+  dataDirection;
+  dataDepartement;
+  donneeService;
   dataInter;
   nomUpdate;
   prenom;
   nom;
-  nCin;
+  ncni;
   profession;
-  dateNaissance;
-  lieuNaissance;
+  datedenaissance;
+  lieudenaissance;
   sexe;
+  dateDebut;
+  dateFin;
+  sitmat;
+  email;
+  telephone;
   categorie;
+  salaire_brut;
   agence;
   structure;
   direction;
   departement;
   service;
+  photo;
+  image;
+  universite;
   constructor(private activeroute: ActivatedRoute,
     private fb: FormBuilder,
     private dataService: DataService,
+    private route: Router,
     private otherService: OthersService) {
       //this.datas = this.dataService.getData();
       this.activeroute.queryParams.subscribe(params => {
@@ -61,19 +75,27 @@ export class ModifierinterComponent implements OnInit {
           data =>{
              this.dataInter = data;
              console.log(this.dataInter);
-             this.prenom = this.dataInter.prenom;
-              this.nom = this.dataInter.nom;
-              this.nCin = this.dataInter.nCin;
-              this.profession = this.dataInter.profession;
-              this.dateNaissance = this.dataInter.dateNaissance;
-              this.lieuNaissance = this.dataInter.lieuNaissance;
-              this.sexe = this.dataInter.sexe;
-              this.categorie = this.dataInter.categorie;
-              this.agence = this.dataInter.agence;
-              this.structure = this.dataInter.structure;
-              this.direction = this.dataInter.direction;
-              this.departement = this.dataInter.departement;
-              this.service = this.dataInter.service;
+             this.prenom = this.dataInter.data.prenom;
+              this.nom = this.dataInter.data.nom;
+              this.ncni = this.dataInter.data.ncni;
+              this.profession = this.dataInter.data.profession;
+              this.email = this.dataInter.data.email;
+              this.sitmat = this.dataInter.data.sitmat;
+              this.matricule = this.dataInter.data.matricule;
+              this.datedenaissance = this.dataInter.data.datedenaissance;
+              this.lieudenaissance = this.dataInter.data.lieudenaissance;
+              this.sexe = this.dataInter.data.sexe;
+              this.dateDebut = this.dataInter.data.dateDebut;
+              this.dateFin = this.dataInter.data.dateFin;
+              this.salaire_brut = this.dataInter.data.salaire_brut;
+              this.categorie = this.dataInter.data.categorie;
+              this.telephone = this.dataInter.data.telephone;
+              this.universite = this.dataInter.data.universite;
+              this.agence = this.dataInter.data.agence;
+              this.structure = this.dataInter.data.structure;
+              this.direction = this.dataInter.data.direction;
+              this.departement = this.dataInter.data.departement;
+              this.service = this.dataInter.data.service;
           },
           error =>{
             console.log(error)
@@ -83,123 +105,139 @@ export class ModifierinterComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.url1 = this.item.photo;
+   /* this.url1 = this.item.photo;*/
     this.interForm = new FormGroup({
-      infopersonnel: new FormGroup({
-        nCni: new FormControl(this.item.nCni),
-        prenom: new FormControl(this.item.prenom),
-        nom: new FormControl(this.item.nom),
-        email: new FormControl(this.item.email),
-        dateNaissance: new FormControl(this.item.dateNaissance),
-        lieuNaissance: new FormControl(this.item.lieuNaissance),
-        sexe: new FormControl(this.item.genre),
-        sitmat: new FormControl(this.item.sitmat),
-        diplome: new FormControl(this.item.diplome),
-        unicersite: new FormControl(this.item.universiet),
+        ncni: new FormControl(''),
+        prenom: new FormControl(''),
+        nom: new FormControl(''),
+        email: new FormControl(''),
+        datedenaissance: new FormControl(''),
+        lieudenaissance: new FormControl(''),
+        sexe: new FormControl(''),
+        sitmat: new FormControl(''),
+        diplome: new FormControl(''),
+        universite: new FormControl(''),
         photo: new FormControl(''),
-      }),
-      contrat: new FormGroup({
         type: new FormControl(''),
         agence: new FormControl(''),
         dateDebut: new FormControl(''),
         dateFin: new FormControl(''),
         categorie: new FormControl(''),
-        salaireBrute: new FormControl(''),
+        salaire_brut: new FormControl(''),
         structure: new FormControl(''),
         direction: new FormControl(''),
         departement: new FormControl(''),
         service: new FormControl(''),
         filecontrat: new FormControl(''),
-      }),
-      poste: new FormGroup({
-        titre: new FormControl(''),
+        profession: new FormControl(''),
         matriculemanager: new FormControl(''),
         ficheposte: new FormControl(''),
-      })
+        proceverbal: new FormControl(''),
     });
+
+      //recupere les societes
+      this.otherService.getAllSociete().subscribe(
+        data => {
+          this.dataSociete = data["data"];
+          console.log(data);
+        }
+      );
   }
 
   get f() { return this.interForm.controls; }
   submitted1() {
-    //console.log(this.interForm.get('numeroCni').value);
     
-    const infopersonnel = this.interForm.value.infopersonnel;
-    const cni = infopersonnel.numeroCni;
-    const preno = infopersonnel.prenom;
-    const nom1 = infopersonnel.nom;
-    const mail = infopersonnel.email;
-    const date = infopersonnel.dateNais;
-    const lieu = infopersonnel.lieuNais;
-    const sexe = infopersonnel.genre;
-    const situation = infopersonnel.situationmatri;
-    const grade = infopersonnel.diplome;
-    const school = infopersonnel.ecole;
-    const image = infopersonnel.photo;
-    const info = {
-      infopersonnel: {
-        numeroCni: cni,
-        prenom: preno,
-        nom: nom1,
-        email: mail,
-        dateNais: date,
-        lieuNais: lieu,
-        genre: sexe,
-        situationmatri: situation,
-        diplome: grade,
-        ecole: school,
-        photo: image,
-      }
-    } 
-    console.log(info);
-    localStorage.setItem('color1', "20px solid #f16e00");
-    localStorage.setItem('color2', "20px solid #ff7900");
-    localStorage.setItem('colora', "#f16e00");
-    localStorage.setItem('colorb', "#ff7900");
-    return info;
   }
-
   submitted2() {
-    const contrat = this.interForm.value.contrat;
-    const typ = contrat.type;
-    const agen = contrat.agence;
-    const dateD = contrat.dateDebut;
-    const dateF = contrat.dateFin;
-    const categori = contrat.categorie;
-    const salair = contrat.salaire;
-    const struct = contrat.structure;
-    const direc = contrat.direction;
-    const depart = contrat.departement;
-    const servi = contrat.service;
-    const file = contrat.filecontrat;
-    const info = {
-      contrat: {
-        type: typ,
-        agence: agen,
-        dateDebut: dateD,
-        dateFin: dateF,
-        categorie: categori,
-        salaire: salair,
-        structure: struct,
-        direction: direc,
-        departement: depart,
-        service: servi,
-        filecontrat: file,
-      }
-    } 
+  
+  }
+  submit() {
+   console.log(this.dataInter);
+    console.log(this.interForm.value);
+    const value = this.interForm.value;
+    const info = new FormData();
+    info.append("nom",value.nom);
+    info.append("prenom",value.prenom);
+    info.append("ncni",value.ncni);
+    info.append("datedenaissance",value.dateNaissance);
+    info.append("lieudenaissance",value.lieuNaissance);
+    info.append("telephone",value.telephone);
+    info.append("email",value.email);
+    info.append("adresse",value.adresse);
+    info.append("sexe",value.sexe);
+    info.append("sitmat",value.sitmat);
+    info.append("diplome",value.diplome);
+    info.append("universite",value.universite);
+    info.append("type",value.type);
+    info.append("agence",value.agence);
+    info.append("dateDebut",value.dateDebut);
+    info.append("dateFin",value.dateFin);
+    info.append("categorie",value.categorie);
+    info.append("salaire_brut",value.salaire_brut);
+    info.append("structure",value.structure);
+    info.append("direction",value.direction);
+    info.append("departement",value.departement);
+    info.append("service",value.service);
+    info.append("file_contrat",value.file_contrat);
+    info.append("profession",value.profession);
+    info.append("matriculemanager",value.matriculemanager);
+    info.append("fichePoste",value.fichePoste);
+    info.append("proceverbal",value.proceverbal);
+    info.append("logo",this.photo);
     console.log(info);
-    localStorage.setItem('color2', "20px solid #f16e00");
-    localStorage.setItem('color3', "20px solid #ff7900");
-    localStorage.setItem('colorb', "#f16e00");
-    localStorage.setItem('colorc', "#ff7900");
-    return info;
+    console.log(this.item);
+    this.otherService.updateInter(this.interForm.value, this.item).subscribe(
+          (res) =>{
+            console.log(res);
+            if(res){
+              this.route.navigate(['/accueil/listagence']);
+            }
+          },
+          (error)=>{
+            console.log(error);
+          }
+        )
   }
 
-  submit() {
-    console.log(this.interForm.value);
-    localStorage.setItem('color3', "20px solid #f16e00");
-    localStorage.setItem('colorc', "#f16e00");
-    this.submited = true;
+  directionsListe(value) {
+    console.log(value);
+    this.otherService.getAllDirection(value).subscribe(
+      data => {
+        this.dataDirection = data['data'];
+       console.log(data);
+       }
+    ); 
   }
+
+  departementListe(value) {
+    console.log(value);
+    this.otherService.getAllDepartement(value).subscribe(
+      data => {
+        this.dataDepartement = data['data'];
+       console.log(data);
+       }
+    ); 
+  }
+
+  serviceListe(value) {
+    console.log(value);
+    this.otherService.getAllService(value).subscribe(
+      data => {
+        this.donneeService = data['data'];
+       console.log(data);
+       }
+    ); 
+  }
+ 
+    //recuperation de l'image
+    getPhoto(e:any) {
+      this.photo= e.files.item(0);
+      let reader = new FileReader();
+      reader.readAsDataURL( this.photo)
+      reader.onload= ()=>{
+        this.image= reader.result
+      } 
+    }
 
   readUrl1(event: any) {
     console.log('readUrl');

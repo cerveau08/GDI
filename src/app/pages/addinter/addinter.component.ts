@@ -44,7 +44,6 @@ export class AddinterComponent implements OnInit {
    }
   ngOnInit() {
     this.interForm = new FormGroup({
-      //  infopersonnel: new FormGroup({
         nCni: new FormControl(''),
         prenom: new FormControl(''),
         nom: new FormControl(''),
@@ -58,10 +57,6 @@ export class AddinterComponent implements OnInit {
         diplome: new FormControl(''),
         universite: new FormControl(''),
         photo: new FormControl(''),
-    //  }),
-     // contrat: new FormGroup({
-        //type: new FormControl(''),
-        //agenceId: new FormControl(''),
         dateDebut: new FormControl(''),
         dateFin: new FormControl(''),
         categorieId: new FormControl(''),
@@ -71,13 +66,10 @@ export class AddinterComponent implements OnInit {
         departement: new FormControl(''),
         service: new FormControl(''),
         filecontrat: new FormControl(''),
-    //  }),
-     // poste: new FormGroup({
         profession: new FormControl(''),
         matriculeManager: new FormControl(''),
         ficheposte: new FormControl(''),
         procesverbal: new FormControl(''),
-    //  })
     });
     //liste des agences
    /* this.otherService.getListAgence().subscribe(
@@ -96,51 +88,10 @@ export class AddinterComponent implements OnInit {
   }
 
   submitted1() {
-    /*console.log(this.interForm.value);
-    const value = this.interForm.value;
-    const infoInter = new FormData();
-    infoInter.append("nCni",value.nCni);
-    infoInter.append("prenom",value.prenom);
-    infoInter.append("nom",value.nom);
-    infoInter.append("mail",value.mail);
-    infoInter.append("dateNaissance",value.dateNaissance);
-    infoInter.append("lieuNaissance",value.lieuNaissance);
-    infoInter.append("sexe",value.sexe);
-    infoInter.append("sitmat",value.sitmat);
-    infoInter.append("adresse",value.adresse);
-    infoInter.append("nPassport",value.nPassport);
-    infoInter.append("diplome",value.diplome);
-    infoInter.append("universite",value.universite);
-    infoInter.append("photo",this.photo);
-    console.log(infoInter);
-    localStorage.setItem('color1', "20px solid #f16e00");
-    localStorage.setItem('color2', "20px solid #ff7900");
-    localStorage.setItem('colora', "#f16e00");
-    localStorage.setItem('colorb', "#ff7900");
-    return infoInter;*/
+    
   }
 
   submitted2() {
-   /*const contrat = this.interForm.value.contrat;
-    const value = this.interForm.value;
-    const infoCont = new FormData();
-    infoCont.append("type",value.type);
-    infoCont.append("agenceId",value.agenceId);
-    infoCont.append("dateDebut",value.dateDebut);
-    infoCont.append("dateFin",value.DateFin);
-    infoCont.append("categorieId",value.categorieId);
-    infoCont.append("salaireBrut",value.salaireBrut);
-    infoCont.append("structureId",value.structureId);
-    infoCont.append("direction",value.direction);
-    infoCont.append("departement",value.departement);
-    infoCont.append("service",value.service);
-    infoCont.append("filecontrat",value.filecontrat);
-    console.log(infoCont);
-    localStorage.setItem('color2', "20px solid #f16e00");
-    localStorage.setItem('color3', "20px solid #ff7900");
-    localStorage.setItem('colorb', "#f16e00");
-    localStorage.setItem('colorc', "#ff7900");
-    return infoCont;*/
   }
 
   submit() {
@@ -168,14 +119,6 @@ export class AddinterComponent implements OnInit {
     console.log(this.interForm.value);
 
     console.log(this.interForm.value);
-    //const value = this.interForm.value;
-    //const infoPoste = new FormData();
-    //infoPoste.append("titre",value.titre);
-    //infoPoste.append("matricule",value.matricule);
-    //infoPoste.append("ficheposte",value.ficheposte);
-    //infoPoste.append("procesverbal",value.procesverbal);
-    //localStorage.setItem('color3', "20px solid #f16e00");
-    //localStorage.setItem('colorc', "#f16e00");
     this.otherService.addInter(interimForm).subscribe(
       data => {
         console.log(data);

@@ -69,6 +69,9 @@ addAgence(data) {
   updateAgence(data:any, id: number): Observable<any> {
     return this.http.post<any>(`${this.reqUrl}/updateAgence/${id}`, data);
   }
+  updateInter(data:any, id: number): Observable<any> {
+    return this.http.post<any>(`${this.reqUrl}/users/updateInterimaire/${id}`, data);
+  }
   getAgenceById(id: number): Observable<any> {
     return this.http.get<any>(`${this.reqUrl}/detailAgence/${id}`);
   }
