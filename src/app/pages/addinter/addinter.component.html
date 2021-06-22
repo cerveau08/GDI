@@ -80,13 +80,13 @@
                       <div class="photo">
                         <img class="image-upload" *ngIf="!url2==true" src="/assets/images/upload.png" alt="">
                         <img class="image-upload" [src]="url2" height="60" alt="">
-                        <input formControlName="filecontrat"  class="buttonphoto2" type="file" (change)="getPhoto($event.target)" >
+                        <input formControlName="filecontrat"  class="buttonphoto2" type="file" (change)="getFileContrat($event)" >
                       </div>
                       <div class="others">
                         <div class="contratinput2">
                           <select class="select5" formControlName="categorie">
                             <option class="option" value="" disabled selected hidden>Catégorie</option>
-                            <option *ngFor="let data of dataSociete" value="data.id">{{data.libelle}}</option>
+                            <option *ngFor="let data of dataCategorie" [value]="data.id">{{data.libelle}}</option>
                           </select>
                           <input class="input3" type="text" formControlName="salaireBrut" placeholder="Montant Salaire Brut">
                         </div>
@@ -148,12 +148,12 @@
                           <div class="photo">
                             <img class="image-upload" *ngIf="!url3==true" src="/assets/images/upload.png" alt="">
                             <img class="image-upload" [src]="url3" height="60" alt="">
-                            <input formControlName="ficheposte" class="buttonphoto3" type="file" (change)="getPhoto($event.target)" >
+                            <input formControlName="ficheposte" class="buttonphoto3" type="file" (change)="getFichePoste($event)" >
                           </div>
                           <div class="photo">
                             <img class="image-upload" *ngIf="!url4==true" src="/assets/images/upload.png" alt="">
                             <img class="image-upload" [src]="url4" height="60" alt="">
-                            <input formControlName="procesverbal" class="buttonphoto4" type="file" (change)="getPhoto($event.target)" >
+                            <input formControlName="proceverbal" class="buttonphoto4" type="file" (change)="getProceVerbal($event)" >
                           </div>
                         </div>
                       </div>

@@ -64,6 +64,7 @@ export class ModifierinterComponent implements OnInit {
   photo;
   image;
   universite;
+  dataCategorie;
   constructor(private activeroute: ActivatedRoute,
     private fb: FormBuilder,
     private dataService: DataService,
@@ -147,6 +148,14 @@ export class ModifierinterComponent implements OnInit {
           console.log(data);
         }
       );
+
+       //recupere les categories
+       this.otherService.getAllCategorie().subscribe(
+        data => {
+          this.dataCategorie = data["data"];
+          console.log(data);
+        }
+      );
   }
 
   get f() { return this.interForm.controls; }
@@ -177,7 +186,7 @@ export class ModifierinterComponent implements OnInit {
     info.append("agence",value.agence);
     info.append("dateDebut",value.dateDebut);
     info.append("dateFin",value.dateFin);
-    info.append("categorie",value.categorie);
+    info.append("categorieId",value.categorie);
     info.append("salaire_brut",value.salaire_brut);
     info.append("structure",value.structure);
     info.append("direction",value.direction);
@@ -195,7 +204,7 @@ export class ModifierinterComponent implements OnInit {
           (res) =>{
             console.log(res);
             if(res){
-              this.route.navigate(['/accueil/listagence']);
+              this.route.navigate(['/accueil/souscontrat']);
             }
           },
           (error)=>{

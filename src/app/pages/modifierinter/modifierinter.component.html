@@ -81,13 +81,13 @@
                           <div class="contratinput2">
                             <select class="select5" formControlName="categorie">
                               <option class="option" value="" >Categorie</option>
-                              <option *ngFor="let data of dataSociete" [value]="data.id">{{data.libelle}}</option>
+                              <option *ngFor="let data of dataCategorie" [value]="data.id">{{data.libelle}}</option>
                             </select>
                             <input class="input3" [(ngModel)]="salaire_brut" type="text" formControlName="salaire_brut" placeholder="Montant Salaire Brut">
                           </div>
                           <div class="contratinput2">
-                            <input type="text" [(ngModel)]="dateDebut" formControlName="dateDebut" placeholder="Date Début">
-                            <input class="input3" [(ngModel)]="dateFin" type="text" formControlName="dateFin" placeholder="Date Fin">
+                            <input type="date" [(ngModel)]="dateDebut" formControlName="dateDebut" placeholder="Date Début">
+                            <input class="input3" [(ngModel)]="dateFin" type="date" formControlName="dateFin" placeholder="Date Fin">
                           </div> 
                          
                           <div class="contratinput2">

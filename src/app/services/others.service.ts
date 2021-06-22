@@ -90,6 +90,9 @@ addAgence(data) {
   getAllSociete(){
     return this.http.get(this.reqUrl + '/societe/all')
   }
+  getAllCategorie(){
+    return this.http.get(this.reqUrl + '/categories')
+  }
   getAllPoles(id: number){
     return this.http.get(`${this.reqUrl}/poles/${id}`)
   }
