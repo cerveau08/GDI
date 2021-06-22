@@ -239,7 +239,31 @@
     margin-top: 10px;
     margin-bottom: 10px;
 }
-
+.button5 {
+    width: 150px;
+    height: 30px;
+    background-color: #ff7900;
+    border: none;
+    color: white;
+    padding: 2px 2px;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+    font-size: 14px;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    margin-left: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.filename {
+    color: #ff7900;
+    font-size: 12px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
 // modal 1
 .btns2{
     width: 350px;
@@ -399,7 +423,124 @@
     color: white;
     background-color: #000000;
 }
-
+.modal-renouveler {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 5px;
+}
+.clear-renouveler {
+    width: 10px;
+    height: 10px;
+    font-weight: bold;
+    position: absolute;
+    right: 20px;
+    top: 5px;
+}
+.form-contrat {
+    width: 530px;
+    margin: 10px auto;
+}
+.input2 input {
+    width: 250px;
+    height: 30px;
+    background-color: #f5f6f9;
+    border-radius: 1px;
+    border: solid 1px #d8d8d8;
+    margin-bottom: 10px;
+}
+.input3 {
+    margin-left: 10px;
+}
+select {
+    width: 255px;
+    height: 34px;
+    margin-bottom: 10px;
+    background-color: #f5f6f9;
+    outline: none;
+    color: black;
+    border: 1px solid #d8d8d8;
+    padding: 5px;
+    option {
+        font-size: 14px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 10px;
+        letter-spacing: 0.07px;
+        color: #000;
+        margin-top: 10px;
+        text-align: center;
+    }
+}
+.buttoncontrat {
+    width: 150px;
+}
+.buttoncontrat::-webkit-file-upload-button {
+    visibility: hidden;
+    outline: none;
+}
+.buttoncontrat::before {
+    content: 'Contrat';
+    width: 128px;
+    height: 25px;
+    background-color: #f5f6f9;
+    border: none;
+    color: black;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    cursor: pointer;
+    outline: none;
+    border: 1px solid #d8d8d8;
+    margin-top: 0px;
+    margin-left: 0px;
+    padding-top: 5px;
+}
+.buttonficheposte {
+    width: 150px;
+    margin-left: 0px;
+}
+.buttonficheposte::-webkit-file-upload-button {
+    visibility: hidden;
+    outline: none;
+}
+.buttonficheposte::before {
+    content: 'Fiche de Poste';
+    width: 128px;
+    height: 25px;
+    background-color: #f5f6f9;
+    border: none;
+    color: black;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    cursor: pointer;
+    outline: none;
+    border: 1px solid #d8d8d8;
+    margin-top: 0px;
+    margin-left: 0px;
+    padding-top: 5px;
+}
+.buttons-fichier {
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+.buttons-content-valider {
+    width: 100px;
+    margin: 0 auto;
+}
+.button-enregistrer-contrat {
+    width: 100px;
+    font-size: 14px;
+    font-weight: bold;
+    background-color: #ff7900;
+    outline: none;
+    cursor: pointer;
+    color: white;
+    border: none;
+    height: 30px;
+    margin-top: 15px;
+}
 @media (max-width: 991px) {
     .chiffre-aside {
         display: grid;

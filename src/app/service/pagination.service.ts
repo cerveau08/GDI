@@ -74,6 +74,9 @@ export class PaginationService {
       icon: "local_mall",  path: 'agence',
       click: false,  activeChoice: -1,
     },{
+      id: 7,  title: 'Alertes',
+      path: 'alertes',  icon: "query_builder",
+    },{
       id: 8,  title: 'Mon Compte',
       path: 'compte',  icon: "folder_shared",
     },{

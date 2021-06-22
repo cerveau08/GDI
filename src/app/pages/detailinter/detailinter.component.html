@@ -58,6 +58,7 @@
             <button  class="button2" (click)="openModal('custom-modal-2')">Attestations de présence</button>
             <button  class="button3" (click)="openModal('custom-modal-3')">Fiche de poste</button>
             <button  class="button4" (click)="objectif()">Objectifs</button>
+            <button  class="button5" (click)="openModal('custom-modal-4')">Renouveler contrat</button>
         </div>
     </div>
 </div>
@@ -137,3 +138,75 @@
         </div>
     </jw-modal>
 </div> -->
+ <!--modal-4-->
+ <div class="modal">
+    <jw-modal id="custom-modal-4">
+        <h1 class="modal-renouveler">Renouveler Contrat</h1>
+        <mat-icon style="cursor: pointer;" (click)="closeModal('custom-modal-4');" class="clear-renouveler">clear</mat-icon>
+        <div class="form-contrat">
+            <form [formGroup]="contratForm">
+                <div class="content-form-contrat">
+                    <div class="input2">
+                        <select class="select5" formControlName="categorie">
+                            <option class="option" value="" disabled selected hidden>Catégorie</option>
+                            <option *ngFor="let data of dataSociete" value="data.id">{{data.libelle}}</option>
+                        </select>
+                        <input class="input3" type="text" formControlName="salaireBrut" placeholder="Montant Salaire Brut">
+                    </div>
+                    <div class="input2">
+                        <input type="text" formControlName="dateDebut" placeholder="Date Début">
+                        <input class="input3" type="text" formControlName="dateFin" placeholder="Date Fin">
+                    </div>
+                    <div class="input2">
+                        <select class="select5" #societe formControlName="structureId" (change)="directionsListe(societe.value)">
+                            <option class="option" value="" disabled selected hidden>Societe</option>
+                            <option *ngFor="let data of dataSociete" [value]="data.id">{{data.libelle}}</option>
+                        </select>
+                        <select class="input3" #direction  formControlName="direction" (change)="departementListe(direction.value)">
+                            <option class="option" value="" disabled selected hidden>Direction</option>
+                            <option *ngFor="let data of dataDirection" value="{{data.id}}">{{data.libelle}}</option>
+                        </select>
+                    </div>
+                    <div class="input2">
+                        <select class="select5" #departement formControlName="departement" (change)="serviceListe(departement.value)">
+                            <option class="option" value="" disabled selected hidden>Département</option>
+                            <option *ngFor="let data of dataDepartement" value="{{data.id}}">{{data.libelle}}</option>
+                        </select>
+                        <select class="input3"  formControlName="service" >
+                            <option class="option" value="" disabled selected hidden>Service</option>
+                            <option *ngFor="let data of donneeService" value="{{data.id}}">{{data.libelle}}</option>
+                        </select>
+                    </div>
+                    <div class="input2">
+                        <input type="text" formControlName="profession" placeholder="Titre du Poste">
+                        <select class="input3" formControlName="matriculeManager">
+                            <option class="option" value="" disabled selected hidden>Matricule manageur</option>
+                            <option *ngFor="let data of dataSociete" [value]="data.id"></option>
+                        </select>
+                    </div>
+                    <div class="buttons-fichier">
+                        <div>
+                            <input formControlName="contrat"  class="buttoncontrat" type="file" (change)="contrat($event.target)">
+                            <p class="filename" *ngIf="urlcontrat">{{filenamecontrat}}</p>
+                        </div>
+                        <div>
+                            <input formControlName="ficheposte"  class="buttonficheposte" type="file" (change)="fichedeposte($event.target)">
+                            <p class="filename" *ngIf="urlfichedeposte">{{filenamefichedeposte}}</p>
+                        </div>
+                    </div>
+                    <div class="filenames">
+                        <div class="nom-file2">
+                            <p class="filename2" *ngIf="url2">{{filename2}}</p>
+                        </div>
+                        <div class="nom-file3">
+                            <p class="filename3" *ngIf="url3">{{filename3}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="buttons-content-valider">
+                   <button class="button-enregistrer-contrat" (click)="validerContrat()" type="button">Valider</button>
+                </div>
+            </form>
+        </div>
+    </jw-modal>
+</div>

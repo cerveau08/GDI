@@ -89,18 +89,11 @@
                             <option *ngFor="let data of dataSociete" value="data.id">{{data.libelle}}</option>
                           </select>
                           <input class="input3" type="text" formControlName="salaireBrut" placeholder="Montant Salaire Brut">
-                          <!-- <select class="select6" formControlName="agenceId" placeholder="Agence d'interim">
-                            <option class="option" value="" disabled selected hidden>Agence d'interim</option>
-                            <option *ngFor="let data of dataAgence" value="data.id">{{data.nom}}</option>
-                          </select> -->
                         </div>
                         <div class="contratinput2">
                           <input type="text" formControlName="dateDebut" placeholder="Date Début">
                           <input class="input3" type="text" formControlName="dateFin" placeholder="Date Fin">
                         </div> 
-                        <!-- <div class="contratinput2">
-                          <input type="text" formControlName="categorieId" placeholder="Catégorie">
-                        </div> -->
                         <div class="contratinput2">
                           <select class="select5" #societe formControlName="structureId" (change)="directionsListe(societe.value)">
                             <option class="option" value="" disabled selected hidden>Societe</option>

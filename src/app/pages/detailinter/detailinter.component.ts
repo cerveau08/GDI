@@ -1,9 +1,11 @@
+import { FormGroup, FormControl } from '@angular/forms';
 import { DataService } from './../../service/data.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ModalService } from 'src/app/_modal/modal.service';
 import { NgxFileSaverService } from '@clemox/ngx-file-saver';
 import { OthersService } from 'src/app/services/others.service';
+import { formatCurrency } from '@angular/common';
 
 @Component({
   selector: 'app-detailinter',
@@ -29,34 +31,7 @@ export class DetailinterComponent implements OnInit {
       libelle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
     },
   ];
-  datas = [{
-    id: 1,
-    prenom: "Amadou Dieye",
-    nom: "LEYE",
-    poste: "Développeur Web",
-    dateDebut: "25/12/2020",
-    dateFin: "25/12/2022",
-    tmp: "tmp_0254",
-    agence: "Set Interim",
-    dateNais: "10/12/1992",
-    lieuNais: "Mbour",
-    genre: "masculin",
-    cni: "1 619 1992 2154",
-    categorie: "Cadre C1C",
-    structure: "Sonatel SA",
-    direction: "DST",
-    pole: "DD",
-    departement: "DASI",
-    service: "PMA",
-    manager: "Madiagne SYLLA",
-    postem: "Chef de Services Production et Maintenance Applicatif",
-    email: "amadou.dieye.leye@orange-sonatel.com",
-    telephone: "+ 221 33 824 91 31",
-    adresse: "mbour",
-    photo: "inter.png",
-    matricule: "060210",
-    nomInt: "5"
-  }];
+  
   viewer = 'google';  
   selectedType = 'docx';   
   DemoDoc="http://www.africau.edu/images/default/sample.pdf" 
@@ -83,6 +58,16 @@ export class DetailinterComponent implements OnInit {
   direction;
   departement;
   service
+  contratForm: FormGroup;
+  filenamecontrat;
+  filenamefichedeposte;
+  urlcontrat;
+  urlfichedeposte;
+  dataSociete: any;
+  dataDirection: any;
+  dataAgence: any;
+  dataDepartement: any;
+  donneeService: any;
   constructor(private activeroute: ActivatedRoute,
               private modalService: ModalService,
               private dataService: DataService,
@@ -93,9 +78,6 @@ export class DetailinterComponent implements OnInit {
       this.item = JSON.parse(params["user"]);
       console.log(this.item);
       this.otherService.getOneInterById(this.item).subscribe(
-        //data =>{
-          // this.dataInter = data;
-           //console.log(this.dataInter);
            data =>{
             this.data = data;
             this.dataInter = this.data.data;
@@ -129,18 +111,57 @@ export class DetailinterComponent implements OnInit {
     })
   }
   ngOnInit() {
-    //this.donnees = this.dataService.getData();
-    /*this.otherService.getOneInterById(this.item).subscribe(
-      data =>{
-         this.dataInter = data;
-         console.log(this.dataInter);
-      },
-      error =>{
-        console.log(error)
+    this.contratForm = new FormGroup({
+      categorie: new FormControl(''),
+      salaireBrut: new FormControl(''),
+      dateDebut: new FormControl(''),
+      dateFin: new FormControl(''),
+      structureId: new FormControl(''),
+      direction: new FormControl(''),
+      departement: new FormControl(''),
+      service: new FormControl(''),
+      profession: new FormControl(''),
+      matriculeManager: new FormControl(''),
+      contrat: new FormControl(''),
+      ficheposte: new FormControl('')
+    });
+    this.otherService.getAllSociete().subscribe(
+      data => {
+        this.dataSociete = data["data"];
+        console.log(data);
       }
-    );*/
+    );
   }
 
+  directionsListe(value) {
+    console.log(value);
+    this.otherService.getAllDirection(value).subscribe(
+      data => {
+        this.dataDirection = data['data'];
+       console.log(data);
+       }
+    ); 
+  }
+
+  departementListe(value) {
+    console.log(value);
+    this.otherService.getAllDepartement(value).subscribe(
+      data => {
+        this.dataDepartement = data['data'];
+       console.log(data);
+       }
+    ); 
+  }
+
+  serviceListe(value) {
+    console.log(value);
+    this.otherService.getAllService(value).subscribe(
+      data => {
+        this.donneeService = data['data'];
+       console.log(data);
+       }
+    ); 
+  }
   public get(p) {
     this.fileSaver.saveUrl(p.pathfile, p.file);
   }
@@ -173,6 +194,10 @@ export class DetailinterComponent implements OnInit {
       }
     })
   }
+  
+  validerContrat() {
+    console.log(this.contratForm.value);
+  }
 
   objectif() {
     this.router.navigate(['accueil/objectif'], {
@@ -180,5 +205,28 @@ export class DetailinterComponent implements OnInit {
         user: JSON.stringify(this.item)
       }
     })
+  }
+
+  contrat(e:any) {
+    this.urlcontrat= e.files.item(0);
+    console.log(this.urlcontrat.name);
+    this.filenamecontrat = this.urlcontrat.name;
+    let reader = new FileReader();
+    reader.readAsDataURL( this.urlcontrat)
+    reader.onload= ()=>{
+     // this.fil= reader.result
+     // console.log(this.image)
+    }
+  }
+  fichedeposte(e:any) {
+    this.urlfichedeposte= e.files.item(0);
+    console.log(this.urlfichedeposte.type);
+    this.filenamefichedeposte = this.urlfichedeposte.name;
+    let reader = new FileReader();
+    reader.readAsDataURL( this.urlfichedeposte)
+    reader.onload= ()=>{
+     // this.fil= reader.result
+     // console.log(this.image)
+    }
   }
 }
