@@ -95,6 +95,18 @@ export class AddinterComponent implements OnInit {
       }
     );
   }
+  submitted1(){
+    localStorage.setItem('color1', "20px solid #f16e00");
+    localStorage.setItem('color2', "20px solid #ff7900");
+    localStorage.setItem('colora', "#f16e00");
+    localStorage.setItem('colorb', "#ff7900");
+  }
+  submitted2(){
+    localStorage.setItem('color2', "20px solid #f16e00");
+    localStorage.setItem('color3', "20px solid #ff7900");
+    localStorage.setItem('colorb', "#f16e00");
+    localStorage.setItem('colorc', "#ff7900");
+  }
   submit() {
     const interimForm = new FormData();
     this.contrat = {
