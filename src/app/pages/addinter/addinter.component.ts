@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DataService } from 'src/app/service/data.service';
 import { OthersService } from 'src/app/services/others.service';
@@ -52,7 +52,7 @@ export class AddinterComponent implements OnInit {
         nCni: new FormControl(''),
         prenom: new FormControl(''),
         nom: new FormControl(''),
-        mail: new FormControl(''),
+        email: new FormControl(''),
         dateNaissance: new FormControl(''),
         lieuNaissance: new FormControl(''),
         sexe: new FormControl(''),
@@ -64,21 +64,36 @@ export class AddinterComponent implements OnInit {
         photo: new FormControl(''),
         dateDebut: new FormControl(''),
         dateFin: new FormControl(''),
-        categorie: new FormControl(''),
+        dateSignature: new FormControl(''),
+        categorieId: new FormControl(''),
         salaireBrut: new FormControl(''),
         structureId: new FormControl(''),
-        direction: new FormControl(''),
-        departement: new FormControl(''),
-        service: new FormControl(''),
+        directionId: new FormControl(''),
+        departementId: new FormControl(''),
+        societeId: new FormControl(''),
         filecontrat: new FormControl(''),
         profession: new FormControl(''),
         matriculeManager: new FormControl(''),
         ficheposte: new FormControl(''),
         proceverbal: new FormControl(''),
-        type_contrat: new FormControl(''),
-        type_photo: new FormControl(''),
-        type_proceverbal: new FormControl(''),
-        type_ficheposte: new FormControl(''),
+        documents: new FormArray([
+          new FormGroup({
+            document: new FormControl(''),
+            typeDocumentId: new FormControl('')
+          }),
+          new FormGroup({
+            document: new FormControl(''),
+            typeDocumentId: new FormControl('')
+          }),
+          new FormGroup({
+            document: new FormControl(''),
+            typeDocumentId: new FormControl('')
+          }),
+        ])
+        // type_contrat: new FormControl(''),
+        // type_photo: new FormControl(''),
+        // type_proceverbal: new FormControl(''),
+        // type_ficheposte: new FormControl(''),
     });
       //recupere les societes
     this.otherService.getAllSociete().subscribe(
@@ -122,7 +137,7 @@ export class AddinterComponent implements OnInit {
       file: this.proceverbal,
     }
     console.log(interimForm);
-    interimForm.append("nCni",this.interForm.value.nCni)
+   /* interimForm.append("nCni",this.interForm.value.nCni)
     interimForm.append("universite",this.interForm.value.universite)
     interimForm.append("sexe",this.interForm.value.sexe)
     interimForm.append("dateNaissance",this.interForm.value.dateNaissance)
@@ -139,7 +154,7 @@ export class AddinterComponent implements OnInit {
     interimForm.append("matricule",this.interForm.value.matricule)
     interimForm.append("ficheposte",this.ficheposte)
     interimForm.append("proceverbal",this.proceverbal)
-    interimForm.append("filecontrat",this.contrat)
+    interimForm.append("filecontrat",this.contrat)*/
     console.log(this.interForm.value);
 
     console.log(this.interForm.value);

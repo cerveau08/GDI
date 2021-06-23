@@ -27,15 +27,15 @@
                           <div class="infoinput1">
                             <input type="text" formControlName="nCni" placeholder="Numero CNI">
                           </div>
-                          <div class="infoinput1">
+                          <!-- <div class="infoinput1">
                             <input type="text" formControlName="nPassport" placeholder="Numero Passport">
-                          </div>
+                          </div> -->
                           <div class="infoinput2">
                             <input type="text" formControlName="prenom" placeholder="Prenom">
                             <input class="input3" type="text" formControlName="nom" placeholder="Nom">
                           </div>
                           <div class="infoinput1">
-                            <input type="text" formControlName="mail" placeholder="Email">
+                            <input type="text" formControlName="email" placeholder="Email">
                           </div>
                           <div class="infoinput1">
                             <input type="text" formControlName="adresse" placeholder="Adresse">
@@ -50,7 +50,7 @@
                           </div>
                           <div class="infoinput2">
                             <input type="text" formControlName="diplome" placeholder="Diplome">
-                            <input class="input3" type="text" formControlName="universite" placeholder="Université et Ecole">
+                            <input class="input3" type="text" formControlName="universite" placeholder="Université ou Ecole">
                           </div>
                         </div>
                       </div>
@@ -76,40 +76,42 @@
                   <!-- <div formGroupName="contrat"> -->
                     <div>
                     <p class="matri">Matricule: <span>{{matricule}}</span> </p>
-                    <div class="grid">
-                      <div class="photo">
-                        <img class="image-upload" *ngIf="!url2==true" src="/assets/images/upload.png" alt="">
-                        <img class="image-upload" [src]="url2" height="60" alt="">
-                        <input formControlName="filecontrat"  class="buttonphoto2" type="file" (change)="getFileContrat($event)" >
+                    <div class="grid" >
+                      <div formArrayName="documents">
+                        <div class="photo" [formGroupName]="0">
+                          <img class="image-upload" *ngIf="!url2==true" src="/assets/images/upload.png" alt="">
+                          <img class="image-upload" [src]="url2" height="60" alt="">
+                          <input formControlName="document"  class="buttonphoto2" type="file" (change)="getFileContrat($event)" >
+                        </div>
                       </div>
                       <div class="others">
                         <div class="contratinput2">
-                          <select class="select5" formControlName="categorie">
+                          <select class="select5" formControlName="categorieId">
                             <option class="option" value="" disabled selected hidden>Catégorie</option>
                             <option *ngFor="let data of dataCategorie" [value]="data.id">{{data.libelle}}</option>
                           </select>
                           <input class="input3" type="text" formControlName="salaireBrut" placeholder="Montant Salaire Brut">
                         </div>
                         <div class="contratinput2">
-                          <input type="date" formControlName="dateDebut" placeholder="Date Début">
-                          <input class="input3" type="date" formControlName="dateFin" placeholder="Date Fin">
-                        </div> 
+                          <input type="date" formControlName="dateDebut" placeholder="Date de Début">
+                          <input class="input3" type="date" formControlName="dateFin" placeholder="Date de Fin">
+                        </div>  
                         <div class="contratinput2">
-                          <select class="select5" #societe formControlName="structureId" (change)="directionsListe(societe.value)">
+                          <select class="select5" #societe formControlName="societeId" (change)="directionsListe(societe.value)">
                             <option class="option" value="" disabled selected hidden>Societe</option>
                             <option *ngFor="let data of dataSociete" [value]="data.id">{{data.libelle}}</option>
                           </select>
-                          <select class="select6" #direction  formControlName="direction" (change)="departementListe(direction.value)">
+                          <select class="select6" #direction  formControlName="directionId" (change)="departementListe(direction.value)">
                             <option class="option" value="" disabled selected hidden>Direction</option>
                             <option *ngFor="let data of dataDirection" value="{{data.id}}">{{data.libelle}}</option>
                           </select>
                         </div>
                         <div class="contratinput2">
-                          <select class="select5" #departement formControlName="departement" (change)="serviceListe(departement.value)">
+                          <select class="select5" #departement formControlName="departementId" (change)="serviceListe(departement.value)">
                             <option class="option" value="" disabled selected hidden>Département</option>
                             <option *ngFor="let data of dataDepartement" value="{{data.id}}">{{data.libelle}}</option>
                           </select>
-                          <select class="select6"  formControlName="service" >
+                          <select class="select6"  formControlName="structureId">
                             <option class="option" value="" disabled selected hidden>Service</option>
                             <option *ngFor="let data of donneeService" value="{{data.id}}">{{data.libelle}}</option>
                           </select>
@@ -118,7 +120,7 @@
                     </div>
                   </div>
                   <button class="button1"  type="button" mat-button matStepperPrevious>Précédent</button>
-                  <button class="button2"  type="button" (click)="submitted1()"  mat-button matStepperNext>Suivant</button>
+                  <button class="button2" (click)="submitted2()" type="button"  mat-button matStepperNext>Suivant</button>
               </form>
               </div>
             </mat-step>
@@ -139,21 +141,22 @@
                       <div class="center">
                         <div class="posteinput2">
                           <input type="text" formControlName="profession" placeholder="Titre du Poste">
-                          <select class="select7" formControlName="matriculeManager">
+                          <!-- <select class="select7" formControlName="matriculeManager">
                             <option class="option" value="" disabled selected hidden>Matricule manageur</option>
                             <option *ngFor="let data of dataManager" [value]="data.id">{{data.libelle}}</option>
-                          </select>
+                          </select> -->
+                          <input class="input3" type="date" formControlName="dateSignature" placeholder="Date de Signature">
                         </div>
-                        <div class="fiche-et-pv">
-                          <div class="photo">
+                        <div class="fiche-et-pv" formArrayName="documents">
+                          <div class="photo" [formGroupName]="1">
                             <img class="image-upload" *ngIf="!url3==true" src="/assets/images/upload.png" alt="">
                             <img class="image-upload" [src]="url3" height="60" alt="">
-                            <input formControlName="ficheposte" class="buttonphoto3" type="file" (change)="getFichePoste($event)" >
+                            <input formControlName="document" class="buttonphoto3" type="file" (change)="getFichePoste($event)" >
                           </div>
-                          <div class="photo">
+                          <div class="photo" [formGroupName]="2">
                             <img class="image-upload" *ngIf="!url4==true" src="/assets/images/upload.png" alt="">
                             <img class="image-upload" [src]="url4" height="60" alt="">
-                            <input formControlName="proceverbal" class="buttonphoto4" type="file" (change)="getProceVerbal($event)" >
+                            <input formControlName="document" class="buttonphoto4" type="file" (change)="getProceVerbal($event)" >
                           </div>
                         </div>
                       </div>

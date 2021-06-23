@@ -116,18 +116,20 @@ export class DetailinterComponent implements OnInit {
   }
   ngOnInit() {
     this.contratForm = new FormGroup({
-      categorie: new FormControl(''),
+      categorieId: new FormControl(''),
       salaireBrut: new FormControl(''),
       dateDebut: new FormControl(''),
       dateFin: new FormControl(''),
-      structureId: new FormControl(''),
-      direction: new FormControl(''),
-      departement: new FormControl(''),
-      service: new FormControl(''),
-      profession: new FormControl(''),
-      matriculeManager: new FormControl(''),
+      dateSignature: new FormControl(''),
+      societeId: new FormControl(''),
+      directionId: new FormControl(''),
+      departementId: new FormControl(''),
+      serviceId: new FormControl(''),
+      poste: new FormControl(''),
+     // matriculeManager: new FormControl(''),
       contrat: new FormControl(''),
-      ficheposte: new FormControl('')
+      ficheposte: new FormControl(''),
+      interimaireId: new FormControl(''),
     });
     this.otherService.getAllSociete().subscribe(
       data => {
