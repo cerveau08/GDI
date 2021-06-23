@@ -27,6 +27,7 @@ export class ListeragenceComponent implements OnInit {
   photo;
   errorMsg;
   dataAgence: any;
+
   page = 1;
   itemsPerPage = 3;
   totalItems : any;
@@ -59,6 +60,8 @@ export class ListeragenceComponent implements OnInit {
       photo: new FormControl (''),
       contrat: new FormControl(''),
       cnidg: new FormControl (''),
+      ninea: new FormControl (''),
+      rccm: new FormControl (''),
     });
     this.gty(this.page);
   }
@@ -97,6 +100,8 @@ export class ListeragenceComponent implements OnInit {
     info.append("logo",this.photo);
     info.append("contrat",value.contrat);
     info.append("cnidg",value.cnidg);
+    info.append("ninea",value.ninea);
+    info.append("rccm",value.rccm);
    console.log(info);
   }
 

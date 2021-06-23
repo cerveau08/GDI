@@ -117,4 +117,7 @@ addAgence(data) {
   getListeObjectif(id: number){
     return this.http.get(`${this.reqUrl}/listeObjectifs/${id}`);
   }
+  addUser(data) {
+    return this.http.post<any>(`${this.reqUrl}/users/create`, data);
+  }
 }
