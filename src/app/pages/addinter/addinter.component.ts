@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DataService } from 'src/app/service/data.service';
 import { OthersService } from 'src/app/services/others.service';
@@ -76,6 +76,20 @@ export class AddinterComponent implements OnInit {
         matriculeManager: new FormControl(''),
         ficheposte: new FormControl(''),
         proceverbal: new FormControl(''),
+        documents: new FormArray([
+          new FormGroup({
+            document: new FormControl(''),
+            typeDocumentId: new FormControl('')
+          }),
+          new FormGroup({
+            document: new FormControl(''),
+            typeDocumentId: new FormControl('')
+          }),
+          new FormGroup({
+            document: new FormControl(''),
+            typeDocumentId: new FormControl('')
+          }),
+        ])
         // type_contrat: new FormControl(''),
         // type_photo: new FormControl(''),
         // type_proceverbal: new FormControl(''),
@@ -96,6 +110,18 @@ export class AddinterComponent implements OnInit {
       }
     );
   }
+  submitted1(){
+    localStorage.setItem('color1', "20px solid #f16e00");
+    localStorage.setItem('color2', "20px solid #ff7900");
+    localStorage.setItem('colora', "#f16e00");
+    localStorage.setItem('colorb', "#ff7900");
+  }
+  submitted2(){
+    localStorage.setItem('color2', "20px solid #f16e00");
+    localStorage.setItem('color3', "20px solid #ff7900");
+    localStorage.setItem('colorb', "#f16e00");
+    localStorage.setItem('colorc', "#ff7900");
+  }
   submit() {
     const interimForm = new FormData();
     this.contrat = {
@@ -111,7 +137,7 @@ export class AddinterComponent implements OnInit {
       file: this.proceverbal,
     }
     console.log(interimForm);
-    interimForm.append("nCni",this.interForm.value.nCni)
+   /* interimForm.append("nCni",this.interForm.value.nCni)
     interimForm.append("universite",this.interForm.value.universite)
     interimForm.append("sexe",this.interForm.value.sexe)
     interimForm.append("dateNaissance",this.interForm.value.dateNaissance)
@@ -128,7 +154,7 @@ export class AddinterComponent implements OnInit {
     interimForm.append("matricule",this.interForm.value.matricule)
     interimForm.append("ficheposte",this.ficheposte)
     interimForm.append("proceverbal",this.proceverbal)
-    interimForm.append("filecontrat",this.contrat)
+    interimForm.append("filecontrat",this.contrat)*/
     console.log(this.interForm.value);
 
     console.log(this.interForm.value);

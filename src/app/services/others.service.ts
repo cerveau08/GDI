@@ -81,8 +81,8 @@ addAgence(data) {
   addInter(data) {
     return this.http.post<any>(`${this.reqUrl}/interimaire/create`, data);
   }
-  addContrat(data) {
-    return this.http.post<any>(`${this.reqUrl}/contrat/interimaire`, data);
+  renouvellerContrat(data) {
+    return this.http.post<any>(`${this.reqUrl}/ajoutContrat`, data);
   }
   getListInterFinContrat(id: number): Observable<any> {
     return this.http.get<any>(`${this.reqUrl}/interimFinContrat?page=1`);
