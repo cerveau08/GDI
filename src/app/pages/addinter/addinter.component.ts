@@ -158,7 +158,7 @@ export class AddinterComponent implements OnInit {
     console.log(this.interForm.value);
 
     console.log(this.interForm.value);
-    this.otherService.addInter(interimForm).subscribe(
+    this.otherService.addInter(this.interForm.value).subscribe(
       data => {
         console.log(data);
         //if (data) {
