@@ -29,7 +29,7 @@
             <span class="info-status">on line</span>
           </div>
           <div (click)="updown()" *ngIf="scrWidth>991" class="nom d-flex" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="10,20">
-            Serigne
+            {{prenom}}    
           </div>
           <div class="updown" (click)="updown()">
             <mat-icon *ngIf="!click" fontSet="material-icons-outlined" >expand_more</mat-icon>

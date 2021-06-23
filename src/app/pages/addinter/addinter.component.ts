@@ -21,21 +21,26 @@ export class AddinterComponent implements OnInit {
   interForm: FormGroup;
   isLinear = true;
   photo: any;
-  image: any;
+  fichierContrat?: File;
+  fichierPoste?: File;
+  fichierProceVerbal?: File;
   errorMsg: string;
   infoForm : FormGroup;
-  contactForm : FormGroup;
-  posteForm : FormGroup;
   formPhoneGroup : FormGroup;
   dataSociete: any;
   dataDirection: any;
   dataAgence: any;
   dataDepartement: any;
+  dataCategorie;
   id: any;
   itemd;
   donneeService;
   itemdept;
   datajson;
+  contrat;
+  filecontrat;
+  ficheposte;
+  proceverbal;
   constructor(private fb: FormBuilder,
               private dataService: DataService,
               private otherService: OthersService,
@@ -44,7 +49,6 @@ export class AddinterComponent implements OnInit {
    }
   ngOnInit() {
     this.interForm = new FormGroup({
-      //  infopersonnel: new FormGroup({
         nCni: new FormControl(''),
         prenom: new FormControl(''),
         nom: new FormControl(''),
@@ -58,34 +62,24 @@ export class AddinterComponent implements OnInit {
         diplome: new FormControl(''),
         universite: new FormControl(''),
         photo: new FormControl(''),
-    //  }),
-     // contrat: new FormGroup({
-        //type: new FormControl(''),
-        //agenceId: new FormControl(''),
         dateDebut: new FormControl(''),
         dateFin: new FormControl(''),
-        categorieId: new FormControl(''),
+        categorie: new FormControl(''),
         salaireBrut: new FormControl(''),
         structureId: new FormControl(''),
         direction: new FormControl(''),
         departement: new FormControl(''),
         service: new FormControl(''),
         filecontrat: new FormControl(''),
-    //  }),
-     // poste: new FormGroup({
         profession: new FormControl(''),
         matriculeManager: new FormControl(''),
         ficheposte: new FormControl(''),
-        procesverbal: new FormControl(''),
-    //  })
+        proceverbal: new FormControl(''),
+        type_contrat: new FormControl(''),
+        type_photo: new FormControl(''),
+        type_proceverbal: new FormControl(''),
+        type_ficheposte: new FormControl(''),
     });
-    //liste des agences
-   /* this.otherService.getListAgence().subscribe(
-      data => {
-        this.dataAgence = data.data;
-        console.log(data);
-      }
-    );*/
       //recupere les societes
     this.otherService.getAllSociete().subscribe(
       data => {
@@ -93,58 +87,29 @@ export class AddinterComponent implements OnInit {
         console.log(data);
       }
     );
+     //recupere les categories
+     this.otherService.getAllCategorie().subscribe(
+      data => {
+        this.dataCategorie = data["data"];
+        console.log(data);
+      }
+    );
   }
-
-  submitted1() {
-    /*console.log(this.interForm.value);
-    const value = this.interForm.value;
-    const infoInter = new FormData();
-    infoInter.append("nCni",value.nCni);
-    infoInter.append("prenom",value.prenom);
-    infoInter.append("nom",value.nom);
-    infoInter.append("mail",value.mail);
-    infoInter.append("dateNaissance",value.dateNaissance);
-    infoInter.append("lieuNaissance",value.lieuNaissance);
-    infoInter.append("sexe",value.sexe);
-    infoInter.append("sitmat",value.sitmat);
-    infoInter.append("adresse",value.adresse);
-    infoInter.append("nPassport",value.nPassport);
-    infoInter.append("diplome",value.diplome);
-    infoInter.append("universite",value.universite);
-    infoInter.append("photo",this.photo);
-    console.log(infoInter);
-    localStorage.setItem('color1', "20px solid #f16e00");
-    localStorage.setItem('color2', "20px solid #ff7900");
-    localStorage.setItem('colora', "#f16e00");
-    localStorage.setItem('colorb', "#ff7900");
-    return infoInter;*/
-  }
-
-  submitted2() {
-   /*const contrat = this.interForm.value.contrat;
-    const value = this.interForm.value;
-    const infoCont = new FormData();
-    infoCont.append("type",value.type);
-    infoCont.append("agenceId",value.agenceId);
-    infoCont.append("dateDebut",value.dateDebut);
-    infoCont.append("dateFin",value.DateFin);
-    infoCont.append("categorieId",value.categorieId);
-    infoCont.append("salaireBrut",value.salaireBrut);
-    infoCont.append("structureId",value.structureId);
-    infoCont.append("direction",value.direction);
-    infoCont.append("departement",value.departement);
-    infoCont.append("service",value.service);
-    infoCont.append("filecontrat",value.filecontrat);
-    console.log(infoCont);
-    localStorage.setItem('color2', "20px solid #f16e00");
-    localStorage.setItem('color3', "20px solid #ff7900");
-    localStorage.setItem('colorb', "#f16e00");
-    localStorage.setItem('colorc', "#ff7900");
-    return infoCont;*/
-  }
-
   submit() {
     const interimForm = new FormData();
+    this.contrat = {
+      type: this.interForm.value.type_contrat,
+      file: this.filecontrat,
+    }
+    this.ficheposte = {
+      type: this.interForm.value.type_ficheposte,
+      file: this.ficheposte,
+    }
+    this.proceverbal = {
+      type: this.interForm.value.type_proceverbal,
+      file: this.proceverbal,
+    }
+    console.log(interimForm);
     interimForm.append("nCni",this.interForm.value.nCni)
     interimForm.append("universite",this.interForm.value.universite)
     interimForm.append("sexe",this.interForm.value.sexe)
@@ -154,28 +119,18 @@ export class AddinterComponent implements OnInit {
     interimForm.append("sitmat",this.interForm.value.sitmat)
     interimForm.append("diplome",this.interForm.value.diplome)
     interimForm.append("adressse",this.interForm.value.adresse)
-    interimForm.append("profilId",'3')
-    interimForm.append("categorieId",this.interForm.value.categorieId)
+    interimForm.append("categorieId",this.interForm.value.categorie)
     interimForm.append("structureId",this.interForm.value.structureId)
-    interimForm.append("domaineId",'1')
-    interimForm.append("agenceId",'20')
     interimForm.append("societeId",this.interForm.value.societeId)
     interimForm.append("salaireBrute",this.interForm.value.salaireBrute)
     interimForm.append("profession",this.interForm.value.profession)
-    //interimForm.append("matricule",this.interForm.value.infoPoste.matricule)
-    //interimForm.append("ficheposte",this.interForm.value.infoPoste.ficheposte)
-    //interimForm.append("procesverbal",this.interForm.value.infoPoste.procesverbal)
+    interimForm.append("matricule",this.interForm.value.matricule)
+    interimForm.append("ficheposte",this.ficheposte)
+    interimForm.append("proceverbal",this.proceverbal)
+    interimForm.append("filecontrat",this.contrat)
     console.log(this.interForm.value);
 
     console.log(this.interForm.value);
-    //const value = this.interForm.value;
-    //const infoPoste = new FormData();
-    //infoPoste.append("titre",value.titre);
-    //infoPoste.append("matricule",value.matricule);
-    //infoPoste.append("ficheposte",value.ficheposte);
-    //infoPoste.append("procesverbal",value.procesverbal);
-    //localStorage.setItem('color3', "20px solid #f16e00");
-    //localStorage.setItem('colorc', "#f16e00");
     this.otherService.addInter(interimForm).subscribe(
       data => {
         console.log(data);
@@ -221,6 +176,29 @@ export class AddinterComponent implements OnInit {
        console.log(data);
        }
     ); 
+  }
+
+   //recuperation de l'image
+   getPhoto(e:any) {
+    this.photo= e.files.item(0);
+    console.log(this.photo.type);
+  }
+
+  //recuperation du  contrat
+  getFileContrat(event: any) {
+    this.fichierContrat = event.target.files[0];
+  }
+
+   //recuperation  du proceverbal
+   getProceVerbal(e:any) {
+    this.fichierProceVerbal= e.files.item(0);
+    console.log(this.fichierProceVerbal.type);
+  }
+
+   //recuperation du fiche de poste
+   getFichePoste(e:any) {
+    this.fichierPoste= e.files.item(0);
+    console.log(this.fichierPoste.type);
   }
  
   readUrl1(event: any) {
@@ -327,19 +305,6 @@ export class AddinterComponent implements OnInit {
     this.url1="../assets/images/default.png";
     this.url2="../assets/images/default.png";
     this.url3="../assets/images/default.png";
-  }
-
-  //recuperation de l'image
-  getPhoto(e:any) {
-    this.photo= e.files.item(0);
-    console.log(this.photo.type);
-
-    let reader = new FileReader();
-    reader.readAsDataURL( this.photo)
-    reader.onload= ()=>{
-      this.image= reader.result
-     // console.log(this.image)
-    }
   }
 }
 

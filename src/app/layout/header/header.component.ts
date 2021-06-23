@@ -16,7 +16,7 @@ export class HeaderComponent implements OnInit {
 
   public click: any;
   filterterm: string;
-
+  dataInterFin;
   scrHeight:any;
   scrWidth:any;
   side = false;
@@ -53,6 +53,7 @@ export class HeaderComponent implements OnInit {
   demandeForm: FormGroup;
   name;
   public menus: any;
+  prenom;
   constructor(private modalService: ModalService, 
     private sidenavService: SidenavService,
     private authService: AuthService,
@@ -93,6 +94,11 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.prenom = localStorage.getItem('prenom');
+    
+
+
+
     this.demandeForm = new FormGroup({
       prenom: new FormControl (''),
       nom: new FormControl(''),
@@ -125,7 +131,7 @@ export class HeaderComponent implements OnInit {
 
   logout() {
     this.authService.logout();
-}
+  }
   updown(item) {
     if (!this.click) {
       this.click = 1;
