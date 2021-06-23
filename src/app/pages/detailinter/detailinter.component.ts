@@ -68,6 +68,7 @@ export class DetailinterComponent implements OnInit {
   dataAgence: any;
   dataDepartement: any;
   donneeService: any;
+  dataCategorie;
   constructor(private activeroute: ActivatedRoute,
               private modalService: ModalService,
               private dataService: DataService,
@@ -96,6 +97,9 @@ export class DetailinterComponent implements OnInit {
             this.telephone = this.dataInter.telephone;
             this.universite = this.dataInter.universite;
             this.sitmat = this.dataInter.sitmat;
+            this.direction = this.dataInter.direction;
+            this.departement = this.dataInter.departement;
+            this.service = this.dataInter.service;
             this.agence = this.dataInter.agence;
             this.categorie = this.dataInter.categorie;
             this.matricule = this.dataInter.matricule;
@@ -131,6 +135,14 @@ export class DetailinterComponent implements OnInit {
         console.log(data);
       }
     );
+
+       //recupere les categories
+       this.otherService.getAllCategorie().subscribe(
+        data => {
+          this.dataCategorie = data["data"];
+          console.log(data);
+        }
+      );
   }
 
   directionsListe(value) {
