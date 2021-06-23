@@ -138,8 +138,10 @@
                     <div class="boutons">
                         <p class="p2">Documents Entreprise</p>
                         <div class="buttons1">
-                           <!-- <input formControlName="contrat" [(ngModel)]="contrat" class="button5" type="file" (change)="readUrl1($event)" >
-                            <input formControlName="cnidg" [(ngModel)]="cnidg" class="button6" type="file" (change)="readUrl2($event)" > -->
+                           <input formControlName="contrat" [(ngModel)]="contrat" class="button5" type="file" (change)="getFileContrat($event)" >
+                            <input formControlName="cnidg" [(ngModel)]="cnidg" class="button6" type="file" (change)="getCnidg($event)" > 
+                            <input formControlName="ninea" [(ngModel)]="ninea" class="button6" type="file" (change)="getNinea($event)" >
+                            <input formControlName="rccm" [(ngModel)]="rccm" class="button6" type="file" (change)="getRccm($event)" >
                         </div>
                         <div class="filenames">
                             <div class="nom-file2">

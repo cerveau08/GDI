@@ -45,8 +45,14 @@ export class DetailagenceComponent implements OnInit {
   siteweb;
   adresse;
   logo;
+  fichierContrat;
   contrat;
   cnidg;
+  ninea;
+  rccm;
+  fichierNinea;
+  fichierRccm;
+  copieCnidg;
   constructor(private activeroute: ActivatedRoute,
     private modalService: ModalService,
     private dataService: DataService,
@@ -98,8 +104,10 @@ export class DetailagenceComponent implements OnInit {
       siteweb: new FormControl(''),
       adresse: new FormControl(''),
       logo: new FormControl(''),
-    //  contrat: new FormControl(''),
-     // cnidg: new FormControl(''),
+      contrat: new FormControl(''),
+      cnidg: new FormControl(''),
+      ninea: new FormControl(''),
+      rccm: new FormControl(''),
     });
     this.userAgenceForm = new FormGroup({
       prenom: new FormControl (''),
@@ -126,6 +134,10 @@ export class DetailagenceComponent implements OnInit {
     info.append("siteweb",value.siteweb);
     info.append("adresse",value.adresse);
     info.append("logo",this.logo);
+    info.append("cnidg",this.cnidg);
+    info.append("contrat",this.contrat);
+    info.append("ninea",this.ninea);
+    info.append("rccm",this.rccm);
     console.log(info);
     
     //info.append("contrat",value.contrat);
@@ -164,6 +176,30 @@ export class DetailagenceComponent implements OnInit {
       this.image= reader.result
     } 
   }
+
+   //recuperation du  contrat
+   getFileContrat(event: any) {
+    this.fichierContrat = event.target.files[0];
+  }
+
+   //recuperation  du ninea
+   getNinea(e:any) {
+    this.fichierNinea= e.files.item(0);
+    console.log(this.fichierNinea.type);
+  }
+
+   //recuperation  du rccm
+   getRccm(e:any) {
+    this.fichierRccm= e.files.item(0);
+    console.log(this.fichierRccm.type);
+  }
+
+    //recuperation  du rccm
+    getCnidg(e:any) {
+      this.copieCnidg= e.files.item(0);
+      console.log(this.copieCnidg.type);
+    }
+
   public getfilemodal() {
     this.fileSaver.saveUrl(this.DemoDoc, 'contrat');
   }
