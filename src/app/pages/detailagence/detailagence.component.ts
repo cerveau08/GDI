@@ -145,7 +145,16 @@ export class DetailagenceComponent implements OnInit {
     } 
     ajouterUser() {
       console.log(this.userAgenceForm.value);
+      this.otherService.addUser(this.userAgenceForm.value).subscribe(
+        (response) =>{
+          console.log(response)
+        },
+        (error) =>{
+          console.log(error)
+        }
+      )
     }
+
     //recuperation de l'image
   getPhoto(e:any) {
     this.logo= e.files.item(0);
