@@ -1,3 +1,71 @@
 <div class="objectif-container">
     <h1 class="titre-objectif">Liste des objectifs du contrat de {{item}}</h1>
+    <div class="content-list-objectif">
+        <div class="item-objectif" *ngFor="let p of objectif">
+            <div class="content-item-object">
+                <p class="objectif-title">Objectif 1</p>
+                <p class="objectif-content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facere impedit obcaecati doloribus laborum, ex odio veritatis magni ullam. Harum quasi deserunt, sapiente omnis quaerat reiciendis quis incidunt minus officia unde.</p>
+            </div>
+            <div class="objectif-buttons">
+                <button class="button-evaluer">Evaluer</button>
+                <button class="button-modifier">Modifier</button>
+                <button class="button-commentaire">Les notes</button>
+            </div>
+            <!--modal-->
+            <div class="modal">
+                <jw-modal id="custom-modal-{{p.id}}">
+                    <mat-icon style="cursor: pointer;" (click)="closeModal('custom-modal-'+p.id);" class="clear">clear</mat-icon>
+                    <div class="all">
+                        <h1>Evaluer l'Interimaire</h1>
+                        <div>
+                            <form [formGroup]="objectifForm">
+                                <div class="forms">
+                                    <div>
+                                        <div class="content-item-object">
+                                            <p class="objectif-title">Objectif 1</p>
+                                            <p class="objectif-content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facere impedit obcaecati doloribus laborum, ex odio veritatis magni ullam. Harum quasi deserunt, sapiente omnis quaerat reiciendis quis incidunt minus officia unde.</p>
+                                        </div>
+                                        <div class="input2">
+                                            <input type="month" formControlName="dateDebut" #DateDebut placeholder="Date Debut">
+                                            <input class="input3" type="month" formControlName="dateFin" #DateFin placeholder="Date Fin">
+                                        </div>
+                                        <div class="input2">
+                                            <input type="text" formControlName="note" placeholder="Agence" >
+                                            <textarea type="textarea" formControlName="commentaire" placeholder="Commentaires"></textarea>
+                                        </div>
+                                        <div class="content-button-submit">
+                                            <button (click)="submit()" class="button-submit">Valider</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </jw-modal>
+            </div>
+            <!-- modal -->
+        </div>
+        <!-- <div class="item-objectif">
+            <div class="content-item-object">
+                <p class="objectif-title">Objectif 1</p>
+                <p class="objectif-content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facere impedit obcaecati doloribus laborum, ex odio veritatis magni ullam. Harum quasi deserunt, sapiente omnis quaerat reiciendis quis incidunt minus officia unde.</p>
+            </div>
+            <div class="objectif-buttons">
+                <button class="button-evaluer">Evaluer</button>
+                <button class="button-modifier">Modifier</button>
+                <button class="button-commentaire">Les Commentaires</button>
+            </div>
+        </div>
+        <div class="item-objectif">
+            <div class="content-item-object">
+                <p class="objectif-title">Objectif 1</p>
+                <p class="objectif-content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facere impedit obcaecati doloribus laborum, ex odio veritatis magni ullam. Harum quasi deserunt, sapiente omnis quaerat reiciendis quis incidunt minus officia unde.</p>
+            </div>
+            <div class="objectif-buttons">
+                <button class="button-evaluer">Evaluer</button>
+                <button class="button-modifier">Modifier</button>
+                <button class="button-commentaire">Les Commentaires</button>
+            </div>
+        </div> -->
+    </div>
 </div>

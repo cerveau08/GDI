@@ -202,7 +202,7 @@ export class DetailinterComponent implements OnInit {
   objectif() {
     this.router.navigate(['accueil/objectif'], {
       queryParams: {
-        user: JSON.stringify(this.item)
+        interimaire: JSON.stringify(this.item)
       }
     })
   }

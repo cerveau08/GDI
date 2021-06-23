@@ -7,3 +7,61 @@
     font-size: 18px;
     font-weight: bold;
 }
+.item-objectif {
+    display: grid;
+    grid-template-columns: 1fr 90px;
+    border: 1px solid #000;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+.content-item-object {
+    padding-right: 10px;
+}
+.objectif-title {
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 0px;
+    margin-bottom: 5px;
+}
+.objectif-content {
+    font-size: 13px;
+    font-weight: normal;
+    margin-top: 5px;
+    margin-bottom: 0;
+    text-align: justify;
+}
+.button-evaluer {
+    height: 30px;
+    width: 90px;
+    background-color: #ff7900;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+}
+.button-modifier {
+    height: 30px;
+    width: 90px;
+    background-color: white;
+    border: 1px solid black;
+    cursor: pointer;
+    outline: none;
+    color: black;
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 5px;
+}
+.button-commentaire {
+    height: 30px;
+    width: 90px;
+    background-color: #009393;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 5px;
+}
