@@ -88,33 +88,33 @@ addAgence(data) {
     return this.http.get<any>(`${this.reqUrl}/interimFinContrat?page=1`);
   }
   getAllSociete(){
-    return this.http.get(this.reqUrl + '/societe/all')
+    return this.http.get(this.reqUrl + '/societe/all');
   }
   getAllCategorie(){
     return this.http.get(this.reqUrl + '/categories')
   }
   getAllPoles(id: number){
-    return this.http.get(`${this.reqUrl}/poles/${id}`)
+    return this.http.get(`${this.reqUrl}/poles/${id}`);
   }
   getAllDirection(id: number){
-    return this.http.get(`${this.reqUrl}/direction/${id}`)
+    return this.http.get(`${this.reqUrl}/direction/${id}`);
   }
   getAllService(id: number){
-    return this.http.get(`${this.reqUrl}/services/${id}`)
+    return this.http.get(`${this.reqUrl}/services/${id}`);
   }
   getAllDepartement(id: number){
-    return this.http.get(`${this.reqUrl}/departement/${id}`)
+    return this.http.get(`${this.reqUrl}/departement/${id}`);
   }
   //delete une agence en l'archivant
   deleteAgence(id: string) {
-    return this.http.delete(`${this.reqUrl}/deleteAgence/${id}`)
+    return this.http.delete(`${this.reqUrl}/deleteAgence/${id}`);
   }
 
   getListeNotification(): Observable<any> {
     return this.http.get<any>(this.reqUrl + '/notification/all/');
   }
-  getAttestationListe(){
-    return this.http.get<any>(this.reqUrl + '/listeAttestationByMonth');
+ 
+  getListeObjectif(id: number){
+    return this.http.get(`${this.reqUrl}/listeObjectifs/${id}`);
   }
-
 }
