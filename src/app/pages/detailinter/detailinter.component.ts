@@ -126,7 +126,6 @@ export class DetailinterComponent implements OnInit {
       departementId: new FormControl(''),
       serviceId: new FormControl(''),
       poste: new FormControl(''),
-     // matriculeManager: new FormControl(''),
       contrat: new FormControl(''),
       ficheposte: new FormControl(''),
       interimaireId: new FormControl(''),
@@ -176,6 +175,7 @@ export class DetailinterComponent implements OnInit {
        }
     ); 
   }
+
   public get(p) {
     this.fileSaver.saveUrl(p.pathfile, p.file);
   }
@@ -210,7 +210,18 @@ export class DetailinterComponent implements OnInit {
   }
   
   validerContrat() {
+   this.contratForm.patchValue({interimaireId: this.item});
+//const contratForm = new FormData();
+  //  console.log(contratForm);
     console.log(this.contratForm.value);
+    this.otherService.renouvelerContrat(this.contratForm.value).subscribe(
+      data => {
+        console.log(data);
+      },
+      error =>{
+        console.log(error);
+      }
+    )
   }
 
   objectif() {

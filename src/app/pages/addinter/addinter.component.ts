@@ -59,7 +59,7 @@ export class AddinterComponent implements OnInit {
         sitmat: new FormControl(''),
         adresse: new FormControl(''),
         nPassport: new FormControl(''),
-        diplome: new FormControl(''),
+        //fileNcni: new FormControl(''),
         universite: new FormControl(''),
         photo: new FormControl(''),
         dateDebut: new FormControl(''),
@@ -71,29 +71,26 @@ export class AddinterComponent implements OnInit {
         directionId: new FormControl(''),
         departementId: new FormControl(''),
         societeId: new FormControl(''),
-        filecontrat: new FormControl(''),
+        contratDoc: new FormControl(''),
         profession: new FormControl(''),
         matriculeManager: new FormControl(''),
-        ficheposte: new FormControl(''),
-        proceverbal: new FormControl(''),
-        documents: new FormArray([
+        fileFicheposte: new FormControl(''),
+        fileproceverbal: new FormControl(''),
+        fileCni: new FormControl(''),
+        diplome: new FormArray([
           new FormGroup({
+            document: new FormControl(''),
+            typeDocumentId: new FormControl('')
+          }),
+         /* new FormGroup({
             document: new FormControl(''),
             typeDocumentId: new FormControl('')
           }),
           new FormGroup({
             document: new FormControl(''),
             typeDocumentId: new FormControl('')
-          }),
-          new FormGroup({
-            document: new FormControl(''),
-            typeDocumentId: new FormControl('')
-          }),
+          }),*/
         ])
-        // type_contrat: new FormControl(''),
-        // type_photo: new FormControl(''),
-        // type_proceverbal: new FormControl(''),
-        // type_ficheposte: new FormControl(''),
     });
       //recupere les societes
     this.otherService.getAllSociete().subscribe(
@@ -124,39 +121,7 @@ export class AddinterComponent implements OnInit {
   }
   submit() {
     const interimForm = new FormData();
-  /*  this.contrat = {
-      type: this.interForm.value.type_contrat,
-      file: this.filecontrat,
-    }
-    this.ficheposte = {
-      type: this.interForm.value.type_ficheposte,
-      file: this.ficheposte,
-    }
-    this.proceverbal = {
-      type: this.interForm.value.type_proceverbal,
-      file: this.proceverbal,
-    }*/
     console.log(interimForm);
-   /* interimForm.append("nCni",this.interForm.value.nCni)
-    interimForm.append("universite",this.interForm.value.universite)
-    interimForm.append("sexe",this.interForm.value.sexe)
-    interimForm.append("dateNaissance",this.interForm.value.dateNaissance)
-    interimForm.append("lieuNaissance",this.interForm.value.lieuNaissance)
-    interimForm.append("profession",this.interForm.value.profession)
-    interimForm.append("sitmat",this.interForm.value.sitmat)
-    interimForm.append("diplome",this.interForm.value.diplome)
-    interimForm.append("adressse",this.interForm.value.adresse)
-    interimForm.append("categorieId",this.interForm.value.categorie)
-    interimForm.append("structureId",this.interForm.value.structureId)
-    interimForm.append("societeId",this.interForm.value.societeId)
-    interimForm.append("salaireBrute",this.interForm.value.salaireBrute)
-    interimForm.append("profession",this.interForm.value.profession)
-    interimForm.append("matricule",this.interForm.value.matricule)
-    interimForm.append("ficheposte",this.ficheposte)
-    interimForm.append("proceverbal",this.proceverbal)
-    interimForm.append("filecontrat",this.contrat)
-    console.log(this.interForm.value);*/
-
     console.log(this.interForm.value);
     this.otherService.addInter(this.interForm.value).subscribe(
       data => {
