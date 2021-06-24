@@ -106,8 +106,6 @@ export class DetailagenceComponent implements OnInit {
       logo: new FormControl(''),
       contrat: new FormControl(''),
       cnidg: new FormControl(''),
-      ninea: new FormControl(''),
-      rccm: new FormControl(''),
     });
     this.userAgenceForm = new FormGroup({
       prenom: new FormControl (''),
@@ -136,8 +134,6 @@ export class DetailagenceComponent implements OnInit {
     info.append("logo",this.logo);
     info.append("cnidg",this.cnidg);
     info.append("contrat",this.contrat);
-    info.append("ninea",this.ninea);
-    info.append("rccm",this.rccm);
     console.log(info);
     
     //info.append("contrat",value.contrat);

@@ -139,7 +139,7 @@ export class AgenceComponent implements OnInit {
   closeModal(id: string) {
     this.modalService.close(id);
   }
-
+//photo
   readUrl(event: any) {
     console.log('readUrl');
       if (event.target.files && event.target.files[0]) {
@@ -151,7 +151,7 @@ export class AgenceComponent implements OnInit {
         reader.readAsDataURL(event.target.files[0]);
       }
   }
-
+//contrat
   readUrl1(event: any) {
     console.log('readUrl');
       if (event.target.files && event.target.files[0]) {
@@ -164,6 +164,7 @@ export class AgenceComponent implements OnInit {
         reader.readAsDataURL(event.target.files[0]);
       }
   }
+  //cnidg
   readUrl2(event: any) {
     console.log('readUrl');
       if (event.target.files && event.target.files[0]) {

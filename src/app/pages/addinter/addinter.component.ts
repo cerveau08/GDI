@@ -124,7 +124,7 @@ export class AddinterComponent implements OnInit {
   }
   submit() {
     const interimForm = new FormData();
-    this.contrat = {
+  /*  this.contrat = {
       type: this.interForm.value.type_contrat,
       file: this.filecontrat,
     }
@@ -135,7 +135,7 @@ export class AddinterComponent implements OnInit {
     this.proceverbal = {
       type: this.interForm.value.type_proceverbal,
       file: this.proceverbal,
-    }
+    }*/
     console.log(interimForm);
    /* interimForm.append("nCni",this.interForm.value.nCni)
     interimForm.append("universite",this.interForm.value.universite)
@@ -154,8 +154,8 @@ export class AddinterComponent implements OnInit {
     interimForm.append("matricule",this.interForm.value.matricule)
     interimForm.append("ficheposte",this.ficheposte)
     interimForm.append("proceverbal",this.proceverbal)
-    interimForm.append("filecontrat",this.contrat)*/
-    console.log(this.interForm.value);
+    interimForm.append("filecontrat",this.contrat)
+    console.log(this.interForm.value);*/
 
     console.log(this.interForm.value);
     this.otherService.addInter(this.interForm.value).subscribe(
