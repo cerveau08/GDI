@@ -49,7 +49,7 @@
                             <input class="input3" type="text" formControlName="sitmat" placeholder="Situation Matrimoniale">
                           </div>
                           <div class="infoinput2">
-                            <input type="text" formControlName="diplome" placeholder="Diplome">
+                            <!-- <input type="text" formControlName="diplome" placeholder="Diplome"> -->
                             <input class="input3" type="text" formControlName="universite" placeholder="Université ou Ecole">
                           </div>
                         </div>
@@ -77,11 +77,12 @@
                     <div>
                     <p class="matri">Matricule: <span>{{matricule}}</span> </p>
                     <div class="grid" >
-                      <div formArrayName="documents">
-                        <div class="photo" [formGroupName]="0">
-                          <img class="image-upload" *ngIf="!url2==true" src="/assets/images/upload.png" alt="">
-                          <img class="image-upload" [src]="url2" height="60" alt="">
-                          <input formControlName="document"  class="buttonphoto2" type="file" (change)="getFileContrat($event)" >
+                      <div >
+                        <div class="photo">
+                          <!-- <img class="image-upload" *ngIf="!url2==true" src="/assets/images/upload.png" alt="">
+                          <img class="image-upload" [src]="url2" height="60" alt=""> -->
+                          <input formControlName="contratDoc"  class="buttonphoto2" type="file" (change)="getFileContrat($event)" >
+                          <p class="fileName">{{contratName}}</p>
                         </div>
                       </div>
                       <div class="others">
@@ -116,6 +117,14 @@
                             <option *ngFor="let data of donneeService" value="{{data.id}}">{{data.libelle}}</option>
                           </select>
                         </div>
+                        <div class="contratinput2">
+                          <input type="text" formControlName="profession" placeholder="Titre du Poste">
+                          <!-- <select class="select7" formControlName="matriculeManager">
+                            <option class="option" value="" disabled selected hidden>Matricule manageur</option>
+                            <option *ngFor="let data of dataManager" [value]="data.id">{{data.libelle}}</option>
+                          </select> -->
+                          <input class="input3" type="date" formControlName="dateSignature" placeholder="Date de Signature">
+                        </div>
                     </div>
                     </div>
                   </div>
@@ -139,20 +148,32 @@
                     <!-- <div formGroupName="poste"> -->
                       <div>
                       <div class="center">
-                        <div class="posteinput2">
-                          <input type="text" formControlName="profession" placeholder="Titre du Poste">
-                          <input class="input3" type="date" formControlName="dateSignature" placeholder="Date de Signature">
-                        </div>
-                        <div class="fiche-et-pv" formArrayName="documents">
-                          <div class="photo" [formGroupName]="1">
-                            <img class="image-upload" *ngIf="!url3==true" src="/assets/images/upload.png" alt="">
-                            <img class="image-upload" [src]="url3" height="60" alt="">
-                            <input formControlName="document" class="buttonphoto3" type="file" (change)="getFichePoste($event)" >
+                        <div class="fiche-et-pv" >
+                          <div class="photo" >
+                            <!-- <img class="image-diplome" *ngIf="!url3==true" src="/assets/images/upload.png" alt="">
+                            <img class="image-upload" [src]="url3" height="60" alt=""> -->
+                            <input formControlName="fileFicheposte" class="buttonphoto3" type="file" (change)="getFichePoste($event)" >
+                            <p class="fileName">{{fichedeposteName}}</p>
                           </div>
-                          <div class="photo" [formGroupName]="2">
-                            <img class="image-upload" *ngIf="!url4==true" src="/assets/images/upload.png" alt="">
-                            <img class="image-upload" [src]="url4" height="60" alt="">
-                            <input formControlName="document" class="buttonphoto4" type="file" (change)="getProceVerbal($event)" >
+                          <div class="photo" >
+                            <!-- <img class="image-upload" *ngIf="!url4==true" src="/assets/images/upload.png" alt="">
+                            <img class="image-upload" [src]="url4" height="60" alt=""> -->
+                            <input formControlName="fileproceverbal" class="buttonphoto4" type="file" (change)="getProceVerbal($event)" >
+                            <p class="fileName">{{proceverbalName}}</p>
+                          </div>
+                        </div>
+                        <div class="les-diplomes-content">
+                          <div class="diplome-title">
+                            <p class="diplome-title-text">Diplomes</p>
+                          </div>
+                          <div class="liste-diplome">
+                            <div formArrayName="fileDiplome">
+                              <div class="liste-diplome-content" *ngFor="let diplome of interForm.get('fileDiplome').controls; index as idx">
+                                <input [formControlName]="idx" class="buttondiplome" type="file" (change)="getDiplomes($event)" >
+                                <p class="diplomename">{{proceverbalName}}</p>
+                                <mat-icon class="add-diplome" fontSet="material-icons-outlined" (click)="addNameField()">add</mat-icon>
+                              </div>
+                            </div>
                           </div>
                         </div>
                       </div>

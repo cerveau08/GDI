@@ -21,6 +21,7 @@ export class AddinterComponent implements OnInit {
   interForm: FormGroup;
   isLinear = true;
   photo: any;
+  fichierDiplome?: File;
   fichierContrat?: File;
   fichierPoste?: File;
   fichierProceVerbal?: File;
@@ -42,6 +43,12 @@ export class AddinterComponent implements OnInit {
   filecontrat;
   ficheposte;
   proceverbal;
+  contratName;
+  cniName;
+  fichedeposteName;
+  proceverbalName;
+  diplomeName;
+  fileDiplome: FormArray;
   constructor(private fb: FormBuilder,
               private dataService: DataService,
               private otherService: OthersService,
@@ -77,21 +84,24 @@ export class AddinterComponent implements OnInit {
         matriculeManager: new FormControl(''),
         fileFicheposte: new FormControl(''),
         fileproceverbal: new FormControl(''),
-        //fileCni: new FormControl(''),
-        documents: new FormArray([
-          new FormGroup({
-            document: new FormControl(''),
-            typeDocumentId: new FormControl('')
-          }),
-          new FormGroup({
-            document: new FormControl(''),
-            typeDocumentId: new FormControl('')
-          }),
-          new FormGroup({
-            document: new FormControl(''),
-            typeDocumentId: new FormControl('')
-          }),
+        fileCni: new FormControl(''),
+        fileDiplome: new FormArray([
+          new FormControl(''),
         ])
+       /* diplome: new FormArray([
+          new FormGroup({
+            document: new FormControl(''),
+            typeDocumentId: new FormControl('')
+          }),
+         new FormGroup({
+            document: new FormControl(''),
+            typeDocumentId: new FormControl('')
+          }),
+          new FormGroup({
+            document: new FormControl(''),
+            typeDocumentId: new FormControl('')
+          }),
+        ])*/
     });
       //recupere les societes
     this.otherService.getAllSociete().subscribe(
@@ -108,6 +118,14 @@ export class AddinterComponent implements OnInit {
       }
     );
   }
+  get diplome(): FormArray {
+    return this.interForm.get('fileDiplome') as FormArray;
+  }
+  addNameField() { 
+
+    this.diplome.push(new FormControl('', Validators.required)); 
+  }
+
   submitted1(){
     localStorage.setItem('color1', "20px solid #f16e00");
     localStorage.setItem('color2', "20px solid #ff7900");
@@ -121,8 +139,9 @@ export class AddinterComponent implements OnInit {
     localStorage.setItem('colorc', "#ff7900");
   }
   submit() {
-    const interimForm = new FormData();
-    console.log(interimForm);
+    for (let i = 0; i < this.diplome.length; i++) {
+      console.log(this.diplome.at(i).value);
+    }
     console.log(this.interForm.value);
     this.otherService.addInter(this.interForm.value).subscribe(
       data => {
@@ -186,18 +205,35 @@ export class AddinterComponent implements OnInit {
   //recuperation du  contrat
   getFileContrat(event: any) {
     this.fichierContrat = event.target.files[0];
+    this.contratName = this.fichierContrat.name;
+    console.log(this.contratName);
+    
   }
 
    //recuperation  du proceverbal
    getProceVerbal(e:any) {
-    this.fichierProceVerbal= e.files.item(0);
+    this.fichierProceVerbal= e.target.files.item(0);
     console.log(this.fichierProceVerbal.type);
+    this.proceverbalName = this.fichierProceVerbal.name;
+    console.log(this.proceverbalName);
   }
 
    //recuperation du fiche de poste
    getFichePoste(e:any) {
-    this.fichierPoste= e.files.item(0);
+    this.fichierPoste= e.target.files.item(0);
     console.log(this.fichierPoste.type);
+    this.fichedeposteName = this.fichierPoste.name;
+    console.log(this.fichedeposteName);
+  }
+
+  //recuperation du fiche de poste
+  getDiplomes(e:any) {
+    this.fichierDiplome= e.target.files.item(0);
+    for (let i = 0; i < this.diplome.length; i++) {
+      console.log(this.diplome.at(i).value);
+      this.diplomeName[i] = this.fichierDiplome.name;
+      console.log(this.diplomeName[i]);
+    }
   }
  
   readUrl1(event: any) {
