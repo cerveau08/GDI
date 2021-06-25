@@ -76,8 +76,8 @@ export class DetailagenceComponent implements OnInit {
             this.siteweb = this.dataAgence.siteweb;
             this.adresse = this.dataAgence.adresse;
             this.logo = this.dataAgence.logo;
-            //this.contrat = this.dataAgence.data.contrat;
-           // this.cnidg = this.dataAgence.data.cnidg;
+            this.contrat = this.dataAgence.data.contrat;
+            this.cnidg = this.dataAgence.data.cnidg;
           },
           error =>{
             console.log(error)
@@ -104,7 +104,7 @@ export class DetailagenceComponent implements OnInit {
       siteweb: new FormControl(''),
       adresse: new FormControl(''),
       logo: new FormControl(''),
-      contrat: new FormControl(''),
+      contratAgence: new FormControl(''),
       cnidg: new FormControl(''),
     });
     this.userAgenceForm = new FormGroup({
@@ -114,7 +114,7 @@ export class DetailagenceComponent implements OnInit {
       email: new FormControl(''),
       mobile: new FormControl (''),
       adresse: new FormControl(''),
-      photo: new FormControl (''),
+      logo: new FormControl (''),
     });
   }
 
@@ -133,7 +133,7 @@ export class DetailagenceComponent implements OnInit {
     info.append("adresse",value.adresse);
     info.append("logo",this.logo);
     info.append("cnidg",this.cnidg);
-    info.append("contrat",this.contrat);
+    info.append("contratAgence",this.contrat);
     console.log(info);
     
     //info.append("contrat",value.contrat);
@@ -164,15 +164,15 @@ export class DetailagenceComponent implements OnInit {
     }
 
     //recuperation de l'image
-  getPhoto(e:any) {
+ getPhoto(e:any) {
     this.logo= e.files.item(0);
     let reader = new FileReader();
-    reader.readAsDataURL( this.logo)
+    reader.readAsDataURL(this.logo)
     reader.onload= ()=>{
       this.image= reader.result
     } 
   }
-
+ /*
    //recuperation du  contrat
    getFileContrat(event: any) {
     this.fichierContrat = event.target.files[0];
@@ -194,7 +194,7 @@ export class DetailagenceComponent implements OnInit {
     getCnidg(e:any) {
       this.copieCnidg= e.files.item(0);
       console.log(this.copieCnidg.type);
-    }
+    }*/
 
   public getfilemodal() {
     this.fileSaver.saveUrl(this.DemoDoc, 'contrat');
@@ -208,8 +208,8 @@ export class DetailagenceComponent implements OnInit {
     this.modalService.close(id);
   }
 
-  readUrl(event: any) {
-    console.log('readUrl');
+  getphoto(event: any) {
+    console.log('getPhoto');
       if (event.target.files && event.target.files[0]) {
         var reader = new FileReader();
         reader.onload = (event: any) => {
@@ -220,8 +220,8 @@ export class DetailagenceComponent implements OnInit {
       }
   }
 
-  readUrl1(event: any) {
-    console.log('readUrl');
+  getCnidg(event: any) {
+    console.log('getCnidg');
       if (event.target.files && event.target.files[0]) {
         var reader = new FileReader();
       
@@ -232,8 +232,8 @@ export class DetailagenceComponent implements OnInit {
         reader.readAsDataURL(event.target.files[0]);
       }
   }
-  readUrl2(event: any) {
-    console.log('readUrl');
+  getContratAgence(event: any) {
+    console.log('getContratAgence');
       if (event.target.files && event.target.files[0]) {
         var reader = new FileReader();
       

@@ -34,6 +34,7 @@ export class AddinterComponent implements OnInit {
   dataCategorie;
   id: any;
   itemd;
+  image;
   donneeService;
   itemdept;
   datajson;
@@ -59,7 +60,7 @@ export class AddinterComponent implements OnInit {
         sitmat: new FormControl(''),
         adresse: new FormControl(''),
         nPassport: new FormControl(''),
-        //fileNcni: new FormControl(''),
+        diplome: new FormControl(''),
         universite: new FormControl(''),
         photo: new FormControl(''),
         dateDebut: new FormControl(''),
@@ -76,20 +77,20 @@ export class AddinterComponent implements OnInit {
         matriculeManager: new FormControl(''),
         fileFicheposte: new FormControl(''),
         fileproceverbal: new FormControl(''),
-        fileCni: new FormControl(''),
-        diplome: new FormArray([
+        //fileCni: new FormControl(''),
+        documents: new FormArray([
           new FormGroup({
             document: new FormControl(''),
             typeDocumentId: new FormControl('')
           }),
-         /* new FormGroup({
+          new FormGroup({
             document: new FormControl(''),
             typeDocumentId: new FormControl('')
           }),
           new FormGroup({
             document: new FormControl(''),
             typeDocumentId: new FormControl('')
-          }),*/
+          }),
         ])
     });
       //recupere les societes
@@ -174,6 +175,12 @@ export class AddinterComponent implements OnInit {
    getPhoto(e:any) {
     this.photo= e.files.item(0);
     console.log(this.photo.type);
+    let reader = new FileReader();
+    reader.readAsDataURL( this.photo)
+    reader.onload= ()=>{
+      this.image= reader.result
+      console.log(this.image)
+    }
   }
 
   //recuperation du  contrat

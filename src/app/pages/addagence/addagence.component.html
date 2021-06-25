@@ -34,16 +34,30 @@
                   </div>
                 </div>
               </div>
-              <!--<div class="trait"></div>
+             <div class="trait"></div>
                 <div class="boutons">
                   <p class="p2">Documents Entreprise</p>
                   <div class="buttons1">
-                    <input formControlName="ninea" class="button3" type="file" (change)="readUrl1($event)" >
-                    <input formControlName="rccm" class="button4" type="file" (change)="readUrl1($event)" >
-                    <input formControlName="contrat" class="button5" type="file" (change)="readUrl1($event)" >
-                    <input formControlName="cnidg" class="button6" type="file" (change)="readUrl1($event)" >
+                    <input formControlName="ninea" class="button3" type="file" (change)="getNinea($event)" >
+                    <input formControlName="rccm" class="button4" type="file" (change)="getRccm($event)" >
+                    <input formControlName="contrat" class="button5" type="file" (change)="getContrat($event)" >
+                    <input formControlName="cnidg" class="button6" type="file" (change)="getCnidg($event)" >
                   </div>
-                </div>-->
+                  <div class="filenames">
+                    <div class="nom-file2">
+                        <p class="filename2" *ngIf="url2">{{filename2}}</p>
+                    </div>
+                    <div class="nom-file3">
+                        <p class="filename3" *ngIf="url3">{{filename3}}</p>
+                    </div>
+                    <div class="nom-file4">
+                      <p class="filename4" *ngIf="url4">{{filename4}}</p>
+                  </div>
+                  <div class="nom-file5">
+                    <p class="filename5" *ngIf="url5">{{filename5}}</p>
+                </div>
+                </div>
+                </div>
               <div >
               </div>
             </div>

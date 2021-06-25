@@ -109,16 +109,16 @@ export class AgenceComponent implements OnInit {
   submitted1() {
     const info = {
         nom: this.agenceForm.value.nom,
-        directeur: this.agenceForm.value.directeur,
+        nomdg: this.agenceForm.value.nomdg,
         numerodg: this.agenceForm.value.numerodg,
         email: this.agenceForm.value.email,
         mobile: this.agenceForm.value.mobile,
         fixe: this.agenceForm.value.fixe,
-        website: this.agenceForm.value.website,
+        site: this.agenceForm.value.siteweb,
         adresse: this.agenceForm.value.adresse,
         photo: this.agenceForm.value.photo,
         contrat: this.agenceForm.value.contrat,
-        cnidg: this.agenceForm.value.cnidg,
+        cnidg: this.agenceForm.value.cnidg, 
     } 
     console.log(info);
     return info;

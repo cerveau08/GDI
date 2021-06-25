@@ -53,20 +53,20 @@
         <div class="users">
             <div class="user1">
                 <div class="photo1">
-                    <img src="../assets/images/{{dataAgence?.photo}}" alt="">
+                    <img src="../assets/images/{{dataAgence?.user.avatar}}" alt="">
                 </div>
                 <div class="profil">
-                    <p class="profil1">{{dataAgence?.user}}</p>
-                    <p class="profil2">{{dataAgence?.user}}</p>
+                    <p class="profil1">{{dataAgence?.user.nom}}</p>
+                    <p class="profil2">{{dataAgence?.user.prenom}}</p>
                 </div>
             </div>
             <div class="user1">
                 <div class="photo1">
-                    <img src="../assets/images/{{dataAgence?.photo}}" alt="">
+                    <img src="../assets/images/{{dataAgence?.avatar}}" alt="">
                 </div>
                 <div class="profil">
-                    <p class="profil1">{{dataAgence?.user}}</p>
-                    <p class="profil2">{{dataAgence?.poste}}</p>
+                    <p class="profil1">{{dataAgence?.nom}}</p>
+                    <p class="profil2">{{dataAgence?.prenom}}</p>
                 </div>
             </div>
         </div>
@@ -107,9 +107,9 @@
                 <div >
                     <div class="grid">
                         <div class="photo">
-                            <img alt="" *ngIf="!url1==true" src="{{logo}}">
+                            <img alt="" *ngIf="!url1==true" src="{{image}}">
                             <img alt="" *ngIf="url1" [src]="url1" height="60">
-                            <input formControlName="logo" class="button" type="file" (change)="getPhoto($event.target)" >
+                            <input formControlName="logo" class="button" type="file" (change)="getPhoto($event)" >
                         </div>
                         <div class="others">
                             <div class="input1">
@@ -138,8 +138,8 @@
                     <div class="boutons">
                         <p class="p2">Documents Entreprise</p>
                         <div class="buttons1">
-                           <input formControlName="contrat"  class="button5" type="file" (change)="getFileContrat($event)" >
-                            <input formControlName="cnidg"  class="button6" type="file" (change)="getCnidg($event)" > 
+                           <input formControlName="cnidg"  class="button5" type="file" (change)="getCnidg($event)" >
+                            <input formControlName="contrat"  class="button6" type="file" (change)="getContratAgence($event)" > 
                         </div>
                         <div class="filenames">
                             <div class="nom-file2">

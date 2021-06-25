@@ -19,7 +19,7 @@
                       <p class="matri">Matricule: <span>{{matricule}}</span> </p>
                       <div class="grid">
                         <div class="photo">
-                          <img class="image-upload" *ngIf="!url1==true" src="/assets/images/upload.png" alt="">
+                          <img class="image-upload" *ngIf="!url1==true" src="{{image}}" alt="">
                           <img class="image-upload" [src]="url1" height="60" alt="">
                           <input formControlName="photo" class="buttonphoto1" type="file" (change)="getPhoto($event.target)">
                         </div>
@@ -141,10 +141,6 @@
                       <div class="center">
                         <div class="posteinput2">
                           <input type="text" formControlName="profession" placeholder="Titre du Poste">
-                          <!-- <select class="select7" formControlName="matriculeManager">
-                            <option class="option" value="" disabled selected hidden>Matricule manageur</option>
-                            <option *ngFor="let data of dataManager" [value]="data.id">{{data.libelle}}</option>
-                          </select> -->
                           <input class="input3" type="date" formControlName="dateSignature" placeholder="Date de Signature">
                         </div>
                         <div class="fiche-et-pv" formArrayName="documents">
