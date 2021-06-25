@@ -325,9 +325,80 @@ button {
   margin-top: 10px;
   margin-left: 20px;
 }
+.buttonphoto1 {
+  width: 130px;
+}
+.buttonphoto2 {
+  width: 130px;
+}
+.buttonphoto3 {
+  width: 130px;
+ // height: 40px;
+}
+.buttonphoto4 {
+  width: 130px;
+}
+.les-diplomes-content {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  border: 1px solid #8e8e8e;
+}
+.diplome-title {
+  border-right: 1px solid #8e8e8e;
+}
+.diplome-title-text {
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 40px;
+  text-align: center;
+}
+.liste-diplome-content {
+  display: flex;
+}
+.buttondiplome {
+  width: 130px;
+}
+.buttondiplome::-webkit-file-upload-button {
+  visibility: hidden;
+  outline: none;
+}
+.buttondiplome::before {
+  content: 'uploader';
+  width: 125px;
+  height: 25px;
+  background-color: white;
+  border: none;
+  color: black;
+  text-align: center;
+  text-decoration: none;
+  font-weight: bold;
+  display: inline-block;
+  font-size: 14px;
+  cursor: pointer;
+  outline: none;
+  border: 2px solid black;
+  padding-top: 5px;
+}
 .buttonphoto2::-webkit-file-upload-button {
   visibility: hidden;
   outline: none;
+}
+.add-diplome {
+  margin-top: 40px;
+  cursor: pointer;
+}
+.diplomename {
+  font-size: 14px;
+  color: #ff7900;
+  margin: 10px;
+  width: 200px !important;
+  margin-top: 30px;
+}
+.fileName {
+  font-size: 14px;
+  color: #ff7900;
+  margin: 10px;
+  width: 140px !important;
 }
 .buttonphoto2::before {
   content: 'Upload Contrat';
@@ -458,26 +529,7 @@ select {
   margin-top: 20px;
   margin-left: 0px;
 }
-/* for poor sods using IE */
-::-ms-browse {
-  content: 'Ajouter Photo';
-  width: 165px;
-  height: 50px;
-  background-color: white;
-  border: none;
-  color: black;
-  padding: 5px 2px;
-  text-align: center;
-  text-decoration: none;
-  font-weight: bold;
-  display: inline-block;
-  font-size: 18px;
-  cursor: pointer;
-  outline: none;
-  border: 3px solid black;
-  margin-top: 10px;
-  margin-left: 0px;
-}
+
 .buttonphoto3::-webkit-file-upload-button {
   visibility: hidden;
   outline: none;
