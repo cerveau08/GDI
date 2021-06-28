@@ -179,8 +179,8 @@
                           <div class="liste-diplome">
                             <div formArrayName="fileDiplome">
                               <div class="liste-diplome-content" *ngFor="let diplome of interForm.get('fileDiplome').controls; index as idx">
-                                <input [formControlName]="idx" class="buttondiplome" type="file" (change)="getDiplomes($event)" >
-                                <p class="diplomename">{{proceverbalName}}</p>
+                                <input [formControlName]="idx" class="buttondiplome" type="file" (change)="getDiplomes($event, idx)" >
+                                <p class="diplomename">{{diplomeName}}</p>
                                 <mat-icon class="add-diplome" fontSet="material-icons-outlined" (click)="addNameField()">add</mat-icon>
                               </div>
                             </div>
