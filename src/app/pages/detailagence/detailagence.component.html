@@ -129,17 +129,17 @@
                     <div class="boutons">
                         <p class="p2">Documents Entreprise</p>
                         <div class="buttons1">
-                           <input formControlName="cnidg"  class="button5" type="file" (change)="getCnidg($event)" >
-                            <input formControlName="contrat"  class="button6" type="file" (change)="getContratAgence($event)" > 
+                           <input formControlName="cnidg"  class="button5" type="file" (change)="getCnidg($event.target)" >
+                            <input formControlName="contrat"  class="button6" type="file" (change)="getContrat($event.target)" > 
                         </div>
-                        <div class="filenames">
+                       <!-- <div class="filenames">
                             <div class="nom-file2">
                                 <p class="filename2" *ngIf="url2">{{filename2}}</p>
                             </div>
                             <div class="nom-file3">
                                 <p class="filename3" *ngIf="url3">{{filename3}}</p>
                             </div>
-                        </div>
+                        </div>-->
                     </div>
                     <div class="buttons">
                     <button class="buttonenregistrer" type="submit">Valider</button>
@@ -163,7 +163,7 @@
                     <div class="photo">
                         <img alt="" class="photo-agence" *ngIf="!urlUser==true" src="">
                         <img alt="" class="photo-agence" *ngIf="urlUser" [src]="urlUser" height="60">
-                        <input formControlName="photo" class="buttonPhotoUser" type="file" (change)="readUrlUser($event)" >
+                        <input formControlName="logo" class="buttonPhotoUser" type="file" (change)="getPhoto($event)" >
                     </div>
                     <div class="others">
                         <div class="input2">
@@ -174,8 +174,8 @@
                             <input type="text"  formControlName="email" placeholder="Email">
                         </div>
                         <div class="input2">
-                            <input type="text" formControlName="mobile" placeholder="Numéro téléphone Mobile">
-                            <input class="input3"  type="text" formControlName="poste" placeholder="Numéro Fixe">
+                            <input type="text" formControlName="telephone" placeholder="Numéro téléphone Mobile">
+                            <input class="input3"  type="text" formControlName="poste" placeholder="Titre Poste">
                         </div>
                         <div class="input4">
                             <textarea type="textarea" formControlName="adresse" placeholder="Adresse"></textarea>

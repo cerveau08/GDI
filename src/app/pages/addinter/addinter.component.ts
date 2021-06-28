@@ -88,14 +88,14 @@ export class AddinterComponent implements OnInit {
         dateSignature: new FormControl(''),
         categorieId: new FormControl(''),
         salaireBrut: new FormControl(''),
-        structureId: new FormControl('14'),
-        domaineId: new FormControl('2'),
+        structureId: new FormControl(14),
+        domaineId: new FormControl(2),
         directionId: new FormControl(''),
         departementId: new FormControl(''),
-        societeId: new FormControl(''),
-        poste: new FormControl('manager'),
-        contratDoc: new FormControl(''),
+        societeId: new FormControl(3),
         profession: new FormControl(''),
+        contratDoc: new FormControl(''),
+        //profession: new FormControl(''),
         matriculeManager: new FormControl(''),
         fileFicheposte: new FormControl(''),
         fileproceverbal: new FormControl(''),
@@ -170,7 +170,12 @@ export class AddinterComponent implements OnInit {
     
     const value = this.interForm.value;
     const formdata = new FormData();
-    formdata.append("societeId",this.interForm.value.societeId);
+    // formdata.append("societeId",this.interForm.value.societeId);
+    // formdata.append("structureId",this.interForm.value.sevice);
+    // formdata.append("domaineId",this.interForm.value.domaineId);
+    formdata.append("societeId","3");
+    formdata.append("structureId","14");
+    formdata.append("domaineId","2");
     formdata.append("typePiece",this.interForm.value.typePiece);
     formdata.append("numeroPiece",this.interForm.value.numeroPiece);
     formdata.append("nom",this.interForm.value.nom);
@@ -181,9 +186,9 @@ export class AddinterComponent implements OnInit {
     formdata.append("universite",this.interForm.value.universite);
     formdata.append("sexe",this.interForm.value.sexe);
     formdata.append("profession",this.interForm.value.profession);
-    formdata.append("structureId",this.interForm.value.structureId);
     formdata.append("categorieId",this.interForm.value.categorieId);
-    formdata.append("domaineId",this.interForm.value.domaineId);
+    formdata.append("directionId",this.interForm.value.direction);
+    formdata.append("departementId",this.interForm.value.departement);
     formdata.append("sitmat",this.interForm.value.sitmat);
     formdata.append("salaireBrut",this.interForm.value.salaireBrut);
     formdata.append("dateNaissance",this.interForm.value.dateNaissance);
@@ -195,7 +200,7 @@ export class AddinterComponent implements OnInit {
     formdata.append("contratDoc",this.fichierContrat);
     formdata.append("fileCni",this.fichierCni);
     formdata.append("fileFicheposte",this.fichierPoste);
-    formdata.append("proceverbal",this.fichierProceVerbal);
+    formdata.append("fileproceverbal",this.fichierProceVerbal);
     formdata.append("photo",this.photo);
     formdata.append("matriculeManager",this.interForm.value.matriculeManager);
     formdata.append("fileDiplome",this.diplome.value);
