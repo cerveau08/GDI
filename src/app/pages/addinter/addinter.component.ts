@@ -26,6 +26,9 @@ export class AddinterComponent implements OnInit {
   fichierPoste?: File;
   fichierProceVerbal?: File;
   fichierCni?: File;
+  fichierdiplome1?: File;
+  fichierdiplome2?: File;
+  fichierdiplome3?: File;
   errorMsg: string;
   infoForm : FormGroup;
   formPhoneGroup : FormGroup;
@@ -50,7 +53,22 @@ export class AddinterComponent implements OnInit {
   fichedeposteName;
   proceverbalName;
   diplomeName;
+  diplomeName1;
+  diplomeName2;
+  diplomeName3;
   fileDiplome: FormArray;
+  ListePiece = [
+    {
+      id: 1, 
+      libelle: "CNI",
+    },
+    {
+      id: 2, 
+      libelle: "Passeport"
+    }
+  ];
+  selected1 = false;
+  selected2 = false;
   constructor(private fb: FormBuilder,
               private dataService: DataService,
               private otherService: OthersService,
@@ -78,23 +96,26 @@ export class AddinterComponent implements OnInit {
         dateSignature: new FormControl(''),
         categorieId: new FormControl(''),
         salaireBrut: new FormControl(''),
-        structureId: new FormControl('14'),
-        domaineId: new FormControl('2'),
+        structureId: new FormControl(14),
+        domaineId: new FormControl(2),
         directionId: new FormControl(''),
         departementId: new FormControl(''),
-        societeId: new FormControl(''),
-        poste: new FormControl('manager'),
-        contratDoc: new FormControl(''),
+        societeId: new FormControl(3),
         profession: new FormControl(''),
+        contratDoc: new FormControl(''),
+        //profession: new FormControl(''),
         matriculeManager: new FormControl(''),
         fileFicheposte: new FormControl(''),
         fileproceverbal: new FormControl(''),
         fileCni: new FormControl(''),
         typePiece: new FormControl(''),
-        fileDiplome: new FormArray([
+        diplome1: new FormControl(''),
+        diplome2: new FormControl(''),
+        diplome3: new FormControl(''),
+       /* fileDiplome: new FormArray([
           new FormControl(''),
         ])
-       /* diplome: new FormArray([
+        diplome: new FormArray([
           new FormGroup({
             document: new FormControl(''),
             typeDocumentId: new FormControl('')
@@ -128,10 +149,25 @@ export class AddinterComponent implements OnInit {
     return this.interForm.get('fileDiplome') as FormArray;
   }
   addNameField() { 
-
     this.diplome.push(new FormControl('', Validators.required)); 
   }
 
+  addDiplome1() {
+    this.selected1 = true;
+  }
+  addDiplome2() {
+    this.selected2 = true;
+  }
+
+  //recuperation du fiche de poste
+  getDiplomes(e:any) {
+    this.fichierDiplome= e.target.files.item(0);
+    for (let i = 0; i < this.diplome.length; i++) {
+      console.log(this.diplome.at(i).value);
+      this.diplomeName = this.fichierDiplome.name;
+      console.log(this.diplomeName);
+    }
+  }
   submitted1(){
     localStorage.setItem('color1', "20px solid #f16e00");
     localStorage.setItem('color2', "20px solid #ff7900");
@@ -145,13 +181,20 @@ export class AddinterComponent implements OnInit {
     localStorage.setItem('colorc', "#ff7900");
   }
   submit() {
-    for (let i = 0; i < this.diplome.length; i++) {
+   /* for (let i = 0; i < this.diplome.length; i++) {
       console.log(this.diplome.at(i).value);
     }
     console.log(this.diplome.value);
-    
+    */
     const value = this.interForm.value;
     const formdata = new FormData();
+    // formdata.append("societeId",this.interForm.value.societeId);
+    // formdata.append("structureId",this.interForm.value.sevice);
+    // formdata.append("domaineId",this.interForm.value.domaineId);
+    formdata.append("societeId","3");
+    formdata.append("structureId","14");
+    formdata.append("domaineId","2");
+    formdata.append("typePiece",this.interForm.value.typePiece);
     formdata.append("numeroPiece",this.interForm.value.numeroPiece);
     formdata.append("nom",this.interForm.value.nom);
     formdata.append("prenom",this.interForm.value.prenom);
@@ -161,10 +204,9 @@ export class AddinterComponent implements OnInit {
     formdata.append("universite",this.interForm.value.universite);
     formdata.append("sexe",this.interForm.value.sexe);
     formdata.append("profession",this.interForm.value.profession);
-    formdata.append("structureId",this.interForm.value.structureId);
     formdata.append("categorieId",this.interForm.value.categorieId);
-    formdata.append("domaineId",this.interForm.value.domaineId);
-    formdata.append("societeId",this.interForm.value.societeId);
+    formdata.append("directionId",this.interForm.value.direction);
+    formdata.append("departementId",this.interForm.value.departement);
     formdata.append("sitmat",this.interForm.value.sitmat);
     formdata.append("salaireBrut",this.interForm.value.salaireBrut);
     formdata.append("dateNaissance",this.interForm.value.dateNaissance);
@@ -176,11 +218,13 @@ export class AddinterComponent implements OnInit {
     formdata.append("contratDoc",this.fichierContrat);
     formdata.append("fileCni",this.fichierCni);
     formdata.append("fileFicheposte",this.fichierPoste);
-    formdata.append("proceverbal",this.fichierProceVerbal);
+    formdata.append("fileproceverbal",this.fichierProceVerbal);
     formdata.append("photo",this.photo);
     formdata.append("matriculeManager",this.interForm.value.matriculeManager);
-    formdata.append("typePiece",value.typePiece);
-    formdata.append("fileDiplome",this.diplome.value);
+    formdata.append("fileDiplome[]",this.fichierdiplome1);
+    formdata.append("fileDiplome[]",this.fichierdiplome2);
+    formdata.append("fileDiplome[]",this.fichierdiplome3);
+   // formdata.append("fileDiplome",this.diplome.value);
     console.log(this.interForm.value);
     this.otherService.addInter(formdata).subscribe(
       data => {
@@ -189,7 +233,9 @@ export class AddinterComponent implements OnInit {
          // alert('Intérimaire ajouté avec succées...');
         //}
         //this.route.navigate(['/accueil/listagence']);
-        this.submited = true;
+        if(data.status == true) {
+          this.submited = true;
+        }
       },
         error=> {
           this.errorMsg = 'Probleme de connexion au serveur';
@@ -249,6 +295,26 @@ export class AddinterComponent implements OnInit {
     
   }
 
+  //les diplomes
+  getDiplome1(event: any) {
+    this.fichierdiplome1 = event.target.files[0];
+    this.diplomeName1 = this.fichierdiplome1.name;
+    console.log(this.diplomeName1);
+    
+  }
+  getDiplome2(event: any) {
+    this.fichierdiplome2 = event.target.files[0];
+    this.diplomeName2 = this.fichierdiplome2.name;
+    console.log(this.diplomeName2);
+    
+  }
+  getDiplome3(event: any) {
+    this.fichierdiplome3 = event.target.files[0];
+    this.diplomeName3 = this.fichierdiplome3.name;
+    console.log(this.diplomeName3);
+    
+  }
+
    //recuperation  du proceverbal
    getProceVerbal(e:any) {
     this.fichierProceVerbal= e.target.files.item(0);
@@ -265,23 +331,14 @@ export class AddinterComponent implements OnInit {
     console.log(this.fichedeposteName);
   }
 
-  //recuperation du fiche de poste
-  getDiplomes(e:any) {
-    this.fichierDiplome= e.target.files.item(0);
-    for (let i = 0; i < this.diplome.length; i++) {
-      console.log(this.diplome.at(i).value);
-      this.diplomeName[i] = this.fichierDiplome.name;
-      console.log(this.diplomeName[i]);
-    }
-  }
+  
 
   getFileCni(e:any) {
     this.fichierCni= e.target.files.item(0);
-    for (let i = 0; i < this.fileCni.length; i++) {
-      console.log(this.fileCni.at(i).value);
-      this.cniName[i] = this.fichierCni.name;
-      console.log(this.cniName[i]);
-    }
+   // console.log(this.fichierCni);
+    this.cniName = this.fichierCni.name;
+    console.log(this.cniName);
+    
   }
  
   readUrl1(event: any) {
