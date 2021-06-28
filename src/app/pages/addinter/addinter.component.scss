@@ -379,6 +379,27 @@ button {
   border: 2px solid black;
   padding-top: 5px;
 }
+.buttonCNI::-webkit-file-upload-button {
+  visibility: hidden;
+  outline: none;
+}
+.buttonCNI::before {
+  content: 'Fichier Pièce';
+  width: 125px;
+  height: 25px;
+  background-color: white;
+  border: none;
+  color: black;
+  text-align: center;
+  text-decoration: none;
+  font-weight: bold;
+  display: inline-block;
+  font-size: 14px;
+  cursor: pointer;
+  outline: none;
+  border: 2px solid black;
+  padding-top: 5px;
+}
 .buttonphoto2::-webkit-file-upload-button {
   visibility: hidden;
   outline: none;
