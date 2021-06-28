@@ -19,13 +19,13 @@
                       <p class="matri">Matricule: <span>{{matricule}}</span> </p>
                       <div class="grid">
                         <div class="photo">
-                          <img class="image-upload" *ngIf="!url1==true" src="{{photo}}" alt="">
-                          <img class="image-upload" [src]="url1" height="60" alt="">
+                          <img class="image-upload" *ngIf="!image" [src]="url1" alt="">
+                          <img class="image-upload" *ngIf="image" [src]="image" height="60" alt="">
                           <input formControlName="photo" class="buttonphoto1" type="file" (change)="getPhoto($event.target)">
                         </div>
                         <div class="others">
                           <div class="infoinput2">
-                            <select class="select5" #societe formControlName="societeId" (change)="directionsListe(societe.value)">
+                            <select class="select5"  formControlName="typePiece" >
                               <option class="option" value="" disabled selected hidden>Type Pièce</option>
                               <option *ngFor="let data of ListePiece" [value]="data.id">{{data.libelle}}</option>
                             </select>
@@ -177,11 +177,28 @@
                             <p class="diplome-title-text">Diplomes</p>
                           </div>
                           <div class="liste-diplome">
-                            <div formArrayName="fileDiplome">
+                            <!-- <div formArrayName="fileDiplome">
                               <div class="liste-diplome-content" *ngFor="let diplome of interForm.get('fileDiplome').controls; index as idx">
                                 <input [formControlName]="idx" class="buttondiplome" type="file" (change)="getDiplomes($event, idx)" >
                                 <p class="diplomename">{{diplomeName}}</p>
                                 <mat-icon class="add-diplome" fontSet="material-icons-outlined" (click)="addNameField()">add</mat-icon>
+                              </div>
+                            </div> -->
+                            <div >
+                              <div class="liste-diplome-content">
+                                <input fomControlName="diplome1" class="buttondiplome" type="file" (change)="getDiplome1($event)" >
+                                <p class="diplomename">{{diplomeName1}}</p>
+                                <mat-icon class="add-diplome" fontSet="material-icons-outlined" (click)="addDiplome1()">add</mat-icon>
+                              </div>
+                              <div class="liste-diplome-content" [style.display]="selected1==true?'flex':'none'">
+                                <input fomControlName="diplome2" class="buttondiplome" type="file" (change)="getDiplome2($event)" >
+                                <p class="diplomename">{{diplomeName2}}</p>
+                                <mat-icon class="add-diplome" fontSet="material-icons-outlined" (click)="addDiplome2()">add</mat-icon>
+                              </div>
+                              <div class="liste-diplome-content" [style.display]="selected2==true?'flex':'none'">
+                                <input fomControlName="diplome3" class="buttondiplome" type="file" (change)="getDiplome3($event)" >
+                                <p class="diplomename">{{diplomeName3}}</p>
+                                <!-- <mat-icon class="add-diplome" fontSet="material-icons-outlined" (click)="addDiplome3()">add</mat-icon> -->
                               </div>
                             </div>
                           </div>
