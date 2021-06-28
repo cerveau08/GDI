@@ -32,9 +32,10 @@ export class DetailagenceComponent implements OnInit {
   DemoDoc="http://www.africau.edu/images/default/sample.pdf";
   DemoDoc1="https://file-examples.com/wp-content/uploads/2017/02/file-sample_100kB.doc";
   DemoDoc2="https://www.le.ac.uk/oerresources/bdra/html/resources/example.txt"; 
-  filename1 = "";
-  filename2 = "";
-  filename3 = "";
+  contratName;
+  cnidgName;
+  fichierCnidg?: File;
+  fichierContrat?: File;
   data;
   nom;
   nomdg;
@@ -45,14 +46,9 @@ export class DetailagenceComponent implements OnInit {
   siteweb;
   adresse;
   logo;
-  fichierContrat;
   contrat;
   cnidg;
-  ninea;
-  rccm;
-  fichierNinea;
-  fichierRccm;
-  copieCnidg;
+
   constructor(private activeroute: ActivatedRoute,
     private modalService: ModalService,
     private dataService: DataService,
@@ -104,15 +100,17 @@ export class DetailagenceComponent implements OnInit {
       siteweb: new FormControl(''),
       adresse: new FormControl(''),
       logo: new FormControl(''),
-      contratAgence: new FormControl(''),
+      contrat: new FormControl(''),
       cnidg: new FormControl(''),
     });
     this.userAgenceForm = new FormGroup({
       prenom: new FormControl (''),
       nom: new FormControl(''),
       poste: new FormControl (''),
+      profil: new FormControl('12'),
+      agenceId: new FormControl('32'),
       email: new FormControl(''),
-      mobile: new FormControl (''),
+      telephone: new FormControl (''),
       adresse: new FormControl(''),
       logo: new FormControl (''),
     });
@@ -132,14 +130,11 @@ export class DetailagenceComponent implements OnInit {
     info.append("siteweb",value.siteweb);
     info.append("adresse",value.adresse);
     info.append("logo",this.logo);
-    info.append("cnidg",this.cnidg);
-    info.append("contratAgence",this.contrat);
+    info.append("cnidg",this.fichierCnidg);
+    info.append("contrat",this.fichierContrat);
     console.log(info);
-    
-    //info.append("contrat",value.contrat);
-    //info.append("cnidg",value.cnidg);
     console.log(this.item);
-    this.otherService.updateAgence(this.agenceForm.value, this.item).subscribe(
+    this.otherService.updateAgence(info, this.item).subscribe(
           (res) =>{
             console.log(res);
             if(res){
@@ -152,8 +147,19 @@ export class DetailagenceComponent implements OnInit {
         )
     } 
     ajouterUser() {
+      const formdata = new FormData();
+      const value = this.userAgenceForm.value;
+    formdata.append("prenom",value.prenom);
+    formdata.append("nom",value.nom);
+    formdata.append("profil",value.profil);
+    formdata.append("poste",value.poste);
+    formdata.append("agenceid",value.agenceId);
+    formdata.append("email",value.email);
+    formdata.append("telephone",value.mobile);
+    formdata.append("adresse",value.adresse);
+    formdata.append("logo",this.logo);
       console.log(this.userAgenceForm.value);
-      this.otherService.addUser(this.userAgenceForm.value).subscribe(
+      this.otherService.addUser(formdata).subscribe(
         (response) =>{
           console.log(response)
         },
@@ -172,29 +178,20 @@ export class DetailagenceComponent implements OnInit {
       this.image= reader.result
     } 
   }
- /*
+ 
    //recuperation du  contrat
    getFileContrat(event: any) {
     this.fichierContrat = event.target.files[0];
+    this.contratName = this.fichierContrat.name;
+    console.log(this.contratName);
   }
-
-   //recuperation  du ninea
-   getNinea(e:any) {
-    this.fichierNinea= e.files.item(0);
-    console.log(this.fichierNinea.type);
+   //recuperation  du cnidg
+   getCnidg(e:any) {
+    this.fichierCnidg= e.files.item(0);
+    console.log(this.fichierCnidg.type);
+    this.cnidgName = this.fichierCnidg.name;
+    console.log(this.cnidgName);
   }
-
-   //recuperation  du rccm
-   getRccm(e:any) {
-    this.fichierRccm= e.files.item(0);
-    console.log(this.fichierRccm.type);
-  }
-
-    //recuperation  du rccm
-    getCnidg(e:any) {
-      this.copieCnidg= e.files.item(0);
-      console.log(this.copieCnidg.type);
-    }*/
 
   public getfilemodal() {
     this.fileSaver.saveUrl(this.DemoDoc, 'contrat');
@@ -207,44 +204,6 @@ export class DetailagenceComponent implements OnInit {
   closeModal(id: string) {
     this.modalService.close(id);
   }
-
-  getphoto(event: any) {
-    console.log('getPhoto');
-      if (event.target.files && event.target.files[0]) {
-        var reader = new FileReader();
-        reader.onload = (event: any) => {
-          this.url1 = event.target.result;
-        }
-      
-        reader.readAsDataURL(event.target.files[0]);
-      }
-  }
-
-  getCnidg(event: any) {
-    console.log('getCnidg');
-      if (event.target.files && event.target.files[0]) {
-        var reader = new FileReader();
-      
-        reader.onload = (event: any) => {
-          this.url2 = event.target.result;
-        }
-        this.filename2 = event.target.files[0].name;
-        reader.readAsDataURL(event.target.files[0]);
-      }
-  }
-  getContratAgence(event: any) {
-    console.log('getContratAgence');
-      if (event.target.files && event.target.files[0]) {
-        var reader = new FileReader();
-      
-        reader.onload = (event: any) => {
-          this.url3 = event.target.result;
-        }
-        this.filename3 = event.target.files[0].name;
-        reader.readAsDataURL(event.target.files[0]);
-      }
-  }
-
 
   delete() {
     this.otherService.deleteAgence(this.item).subscribe(

@@ -83,9 +83,9 @@ export class AddinterComponent implements OnInit {
         directionId: new FormControl(''),
         departementId: new FormControl(''),
         societeId: new FormControl(''),
-        poste: new FormControl('manager'),
-        contratDoc: new FormControl(''),
         profession: new FormControl(''),
+        contratDoc: new FormControl(''),
+        //profession: new FormControl(''),
         matriculeManager: new FormControl(''),
         fileFicheposte: new FormControl(''),
         fileproceverbal: new FormControl(''),
@@ -161,8 +161,11 @@ export class AddinterComponent implements OnInit {
     formdata.append("universite",this.interForm.value.universite);
     formdata.append("sexe",this.interForm.value.sexe);
     formdata.append("profession",this.interForm.value.profession);
-    formdata.append("structureId",this.interForm.value.structureId);
+    formdata.append("structureId",this.interForm.value.structure);
     formdata.append("categorieId",this.interForm.value.categorieId);
+    formdata.append("directionId",this.interForm.value.direction);
+    formdata.append("departementId",this.interForm.value.departement);
+    formdata.append("structureId",this.interForm.value.sevice);
     formdata.append("domaineId",this.interForm.value.domaineId);
     formdata.append("societeId",this.interForm.value.societeId);
     formdata.append("sitmat",this.interForm.value.sitmat);
@@ -176,7 +179,7 @@ export class AddinterComponent implements OnInit {
     formdata.append("contratDoc",this.fichierContrat);
     formdata.append("fileCni",this.fichierCni);
     formdata.append("fileFicheposte",this.fichierPoste);
-    formdata.append("proceverbal",this.fichierProceVerbal);
+    formdata.append("fileproceverbal",this.fichierProceVerbal);
     formdata.append("photo",this.photo);
     formdata.append("matriculeManager",this.interForm.value.matriculeManager);
     formdata.append("typePiece",value.typePiece);
