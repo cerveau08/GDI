@@ -156,6 +156,7 @@ export class AddinterComponent implements OnInit {
     formdata.append("nom",this.interForm.value.nom);
     formdata.append("prenom",this.interForm.value.prenom);
     formdata.append("adresse",this.interForm.value.adresse);
+    formdata.append("email",this.interForm.value.email);
     formdata.append("telephone",this.interForm.value.telephone);
     formdata.append("universite",this.interForm.value.universite);
     formdata.append("sexe",this.interForm.value.sexe);
@@ -163,6 +164,7 @@ export class AddinterComponent implements OnInit {
     formdata.append("structureId",this.interForm.value.structureId);
     formdata.append("categorieId",this.interForm.value.categorieId);
     formdata.append("domaineId",this.interForm.value.domaineId);
+    formdata.append("societeId",this.interForm.value.societeId);
     formdata.append("sitmat",this.interForm.value.sitmat);
     formdata.append("salaireBrut",this.interForm.value.salaireBrut);
     formdata.append("dateNaissance",this.interForm.value.dateNaissance);
