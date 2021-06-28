@@ -25,6 +25,7 @@ export class AddinterComponent implements OnInit {
   fichierContrat?: File;
   fichierPoste?: File;
   fichierProceVerbal?: File;
+  fichierCni?: File;
   errorMsg: string;
   infoForm : FormGroup;
   formPhoneGroup : FormGroup;
@@ -40,9 +41,10 @@ export class AddinterComponent implements OnInit {
   itemdept;
   datajson;
   contrat;
-  filecontrat;
-  ficheposte;
+  contratDoc;
+  fileFicheposte;
   proceverbal;
+  fileCni;
   contratName;
   cniName;
   fichedeposteName;
@@ -57,10 +59,11 @@ export class AddinterComponent implements OnInit {
    }
   ngOnInit() {
     this.interForm = new FormGroup({
-        nCni: new FormControl(''),
+        numeroPiece: new FormControl(''),
         prenom: new FormControl(''),
         nom: new FormControl(''),
         email: new FormControl(''),
+        telephone: new FormControl(''),
         dateNaissance: new FormControl(''),
         lieuNaissance: new FormControl(''),
         sexe: new FormControl(''),
@@ -75,16 +78,19 @@ export class AddinterComponent implements OnInit {
         dateSignature: new FormControl(''),
         categorieId: new FormControl(''),
         salaireBrut: new FormControl(''),
-        structureId: new FormControl(''),
+        structureId: new FormControl('14'),
+        domaineId: new FormControl('2'),
         directionId: new FormControl(''),
         departementId: new FormControl(''),
         societeId: new FormControl(''),
+        poste: new FormControl('manager'),
         contratDoc: new FormControl(''),
         profession: new FormControl(''),
         matriculeManager: new FormControl(''),
         fileFicheposte: new FormControl(''),
         fileproceverbal: new FormControl(''),
         fileCni: new FormControl(''),
+        typePiece: new FormControl(''),
         fileDiplome: new FormArray([
           new FormControl(''),
         ])
@@ -142,8 +148,39 @@ export class AddinterComponent implements OnInit {
     for (let i = 0; i < this.diplome.length; i++) {
       console.log(this.diplome.at(i).value);
     }
+    console.log(this.diplome.value);
+    
+    const value = this.interForm.value;
+    const formdata = new FormData();
+    formdata.append("numeroPiece",this.interForm.value.numeroPiece);
+    formdata.append("nom",this.interForm.value.nom);
+    formdata.append("prenom",this.interForm.value.prenom);
+    formdata.append("adresse",this.interForm.value.adresse);
+    formdata.append("telephone",this.interForm.value.telephone);
+    formdata.append("universite",this.interForm.value.universite);
+    formdata.append("sexe",this.interForm.value.sexe);
+    formdata.append("profession",this.interForm.value.profession);
+    formdata.append("structureId",this.interForm.value.structureId);
+    formdata.append("categorieId",this.interForm.value.categorieId);
+    formdata.append("domaineId",this.interForm.value.domaineId);
+    formdata.append("sitmat",this.interForm.value.sitmat);
+    formdata.append("salaireBrut",this.interForm.value.salaireBrut);
+    formdata.append("dateNaissance",this.interForm.value.dateNaissance);
+    formdata.append("lieuNaissance",this.interForm.value.lieuNaissance);
+    formdata.append("dateDebut",this.interForm.value.dateDebut);
+    formdata.append("dateFin",this.interForm.value.dateFin);
+    formdata.append("dateSignature",this.interForm.value.dateSignature);
+    formdata.append("poste",this.interForm.value.poste);
+    formdata.append("contratDoc",this.contratDoc);
+    formdata.append("fileCni",this.fileCni);
+    formdata.append("fileFicheposte",this.fileFicheposte);
+    formdata.append("proceverbal",this.proceverbal);
+    formdata.append("photo",this.photo);
+    formdata.append("matriculeManager",this.interForm.value.matriculeManager);
+    formdata.append("typePiece",value.typePiece);
+    formdata.append("fileDiplome",this.diplome.value);
     console.log(this.interForm.value);
-    this.otherService.addInter(this.interForm.value).subscribe(
+    this.otherService.addInter(formdata).subscribe(
       data => {
         console.log(data);
         //if (data) {
@@ -233,6 +270,15 @@ export class AddinterComponent implements OnInit {
       console.log(this.diplome.at(i).value);
       this.diplomeName[i] = this.fichierDiplome.name;
       console.log(this.diplomeName[i]);
+    }
+  }
+
+  getFileCni(e:any) {
+    this.fichierCni= e.target.files.item(0);
+    for (let i = 0; i < this.fileCni.length; i++) {
+      console.log(this.fileCni.at(i).value);
+      this.cniName[i] = this.fichierCni.name;
+      console.log(this.cniName[i]);
     }
   }
  

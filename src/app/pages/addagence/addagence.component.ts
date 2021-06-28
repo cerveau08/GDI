@@ -82,53 +82,25 @@ export class AddagenceComponent implements OnInit {
         reader.readAsDataURL(event.target.files[0]);
       }
   }
-  getCnidg(event: any) {
+  getCnidg(e: any) {
     console.log('getCnidg');
-      if (event.target.files && event.target.files[0]) {
-        var reader = new FileReader();
-      
-        reader.onload = (event: any) => {
-          this.url5 = event.target.result;
-        }
-        this.filename5 = event.target.files[0].name;
-        reader.readAsDataURL(event.target.files[0]);
-      }
+    this.cnidg= e.files.item(0);
+    console.log(this.cnidg)
   }
-  getContrat(event: any) {
+  getContrat(e: any) {
     console.log('getContrat');
-      if (event.target.files && event.target.files[0]) {
-        var reader = new FileReader();
-      
-        reader.onload = (event: any) => {
-          this.url4 = event.target.result;
-        }
-        this.filename4 = event.target.files[0].name;
-        reader.readAsDataURL(event.target.files[0]);
-      }
+    this.contrat= e.files.item(0);
+    console.log(this.contrat)
   }
-  getNinea(event: any) {
+  getNinea(e: any) {
     console.log('getNinea');
-      if (event.target.files && event.target.files[0]) {
-        var reader = new FileReader();
-      
-        reader.onload = (event: any) => {
-          this.url2 = event.target.result;
-        }
-        this.filename2 = event.target.files[0].name;
-        reader.readAsDataURL(event.target.files[0]);
-      }
+    this.ninea= e.files.item(0);
+    console.log(this.ninea)
   }
-  getRccm(event: any) {
+  getRccm(e: any) {
     console.log('getRccm');
-      if (event.target.files && event.target.files[0]) {
-        var reader = new FileReader();
-      
-        reader.onload = (event: any) => {
-          this.url3 = event.target.result;
-        }
-        this.filename3 = event.target.files[0].name;
-        reader.readAsDataURL(event.target.files[0]);
-      }
+    this.rccm= e.files.item(0);
+    console.log(this.rccm)
   }
 
   submitted1() {

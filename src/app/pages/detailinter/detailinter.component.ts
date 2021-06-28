@@ -211,10 +211,22 @@ export class DetailinterComponent implements OnInit {
   
   validerContrat() {
    this.contratForm.patchValue({interimaireId: this.item});
-//const contratForm = new FormData();
+ const formdata = new FormData();
+formdata.append("structureId",this.contratForm.value.structureId);
+formdata.append("categorieId",this.contratForm.value.categorieId);
+formdata.append("domaineId",this.contratForm.value.domaineId);
+formdata.append("societeId",this.contratForm.value.societeId);
+formdata.append("salaireBrut",this.contratForm.value.salaireBrut);
+formdata.append("personneId",this.contratForm.value.personneId);
+formdata.append("profession",this.contratForm.value.profession);
+formdata.append("dateDebut",this.contratForm.value.dateDebut);
+formdata.append("dateFin",this.contratForm.value.dateFin);
+formdata.append("dateSignature",this.contratForm.value.dateSignature);
+formdata.append("poste",this.contratForm.value.poste);
+formdata.append("document",this.contratForm.value.document);
   //  console.log(contratForm);
-    console.log(this.contratForm.value);
-    this.otherService.renouvelerContrat(this.contratForm.value).subscribe(
+    //console.log(this.contratForm.value);
+    this.otherService.renouvelerContrat(formdata).subscribe(
       data => {
         console.log(data);
       },

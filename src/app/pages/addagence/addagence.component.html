@@ -38,10 +38,10 @@
                 <div class="boutons">
                   <p class="p2">Documents Entreprise</p>
                   <div class="buttons1">
-                    <input formControlName="ninea" class="button3" type="file" (change)="getNinea($event)" >
-                    <input formControlName="rccm" class="button4" type="file" (change)="getRccm($event)" >
-                    <input formControlName="contrat" class="button5" type="file" (change)="getContrat($event)" >
-                    <input formControlName="cnidg" class="button6" type="file" (change)="getCnidg($event)" >
+                    <input formControlName="ninea" class="button3" type="file" (change)="getNinea($event.target)" >
+                    <input formControlName="rccm" class="button4" type="file" (change)="getRccm($event.target)" >
+                    <input formControlName="contrat" class="button5" type="file" (change)="getContrat($event.target)" >
+                    <input formControlName="cnidg" class="button6" type="file" (change)="getCnidg($event.target)" >
                   </div>
                   <div class="filenames">
                     <div class="nom-file2">

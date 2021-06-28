@@ -3,7 +3,11 @@
         <div class="">
             <p class="p1">Liste des Agences d’interim</p>
             <div class="liste">
-                <div class="item" *ngFor="let p of dataAgence | paginate: { itemsPerPage: itemsPerPage, currentPage: page, totalItems: totalItems}">
+                <div class="item" *ngFor="let p of dataAgence | paginate: { 
+                    itemsPerPage: itemsPerPage,
+                    currentPage: page,
+                    totalItems: totalItems
+                    }; let i = index">
                     <!-- <div class="item" *ngFor="let p of dataAgence | paginate: { itemsPerPage: 4, currentPage: p }; let i = index"> -->
                     <div class="image">
                         <img src="{{p.logo}}" alt="">

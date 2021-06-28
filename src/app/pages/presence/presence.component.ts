@@ -1,9 +1,11 @@
+import { HttpClient } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
 import { Component, HostListener, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { NgxFileSaverService } from '@clemox/ngx-file-saver';
 import { DataService } from 'src/app/service/data.service';
 import { ModalService } from 'src/app/_modal/modal.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-presence',
@@ -24,6 +26,10 @@ export class PresenceComponent implements OnInit {
   pagedItems: any[];
   date: any;
   tempArr: any = { "brands": [] };
+  page = 1;
+  itemsPerPage = 3;
+  totalItems : any;
+  dataP;
   form: FormGroup;
   parentCk=false;
   ck=false;
@@ -40,10 +46,13 @@ export class PresenceComponent implements OnInit {
         this.scrWidth = window.innerWidth;
         console.log(this.scrHeight, this.scrWidth);
   }
+  
+  public reqUrl = environment.base_url;
   constructor(private dataService: DataService,
     private fb: FormBuilder,
     private modalService: ModalService,
     private fileSaver: NgxFileSaverService,
+    private http: HttpClient,
     public datepipe: DatePipe) {
       this.form = this.fb.group({
         checkArray: this.fb.array([])
@@ -52,7 +61,17 @@ export class PresenceComponent implements OnInit {
     }
 
   ngOnInit() {
-    this.datas = this.dataService.getData();
+    //this.datas = this.dataService.getData();
+   this.gty(this.page);
+  }
+  //URL/api?page=1&limite=8
+  gty(page: any){
+    this.http.get(this.reqUrl + `/listeAttestationByMonth?page=${page}&limit=${this.itemsPerPage}`).subscribe((data: any) => {
+      this.dataP =  data.data;
+      this.totalItems = data.total;
+      console.log(this.dataP);
+      console.log(this.totalItems);
+    })
   }
 
   selectAll() {

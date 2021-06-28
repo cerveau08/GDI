@@ -25,7 +25,7 @@
                         </div>
                         <div class="others">
                           <div class="infoinput1">
-                            <input type="text" formControlName="nCni" placeholder="Numero CNI">
+                            <input type="text" formControlName="numeroPiece" placeholder="Numero CNI">
                           </div>
                           <!-- <div class="infoinput1">
                             <input type="text" formControlName="nPassport" placeholder="Numero Passport">
@@ -49,7 +49,7 @@
                             <input class="input3" type="text" formControlName="sitmat" placeholder="Situation Matrimoniale">
                           </div>
                           <div class="infoinput2">
-                            <!-- <input type="text" formControlName="diplome" placeholder="Diplome"> -->
+                            <input type="text" formControlName="telephone" placeholder="Telephone"> 
                             <input class="input3" type="text" formControlName="universite" placeholder="Université ou Ecole">
                           </div>
                         </div>
@@ -149,6 +149,12 @@
                       <div>
                       <div class="center">
                         <div class="fiche-et-pv" >
+                          <div class="photo" >
+                            <!-- <img class="image-diplome" *ngIf="!url3==true" src="/assets/images/upload.png" alt="">
+                            <img class="image-upload" [src]="url3" height="60" alt=""> -->
+                            <input formControlName="fileCni" class="buttonphoto3" type="file" (change)="getFileCni($event)" >
+                            <p class="fileName">{{cniName}}</p>
+                          </div>
                           <div class="photo" >
                             <!-- <img class="image-diplome" *ngIf="!url3==true" src="/assets/images/upload.png" alt="">
                             <img class="image-upload" [src]="url3" height="60" alt=""> -->

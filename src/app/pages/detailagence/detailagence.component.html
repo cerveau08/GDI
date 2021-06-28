@@ -50,23 +50,14 @@
         </div>
         <div class="trait"></div>
         <p class="utilisateur">Liste des utilisateurs</p>
-        <div class="users">
+        <div class="users" *ngFor="let p of dataAgence.users | slice:0:2;">
             <div class="user1">
                 <div class="photo1">
                     <img src="../assets/images/{{dataAgence?.user.avatar}}" alt="">
                 </div>
                 <div class="profil">
-                    <p class="profil1">{{dataAgence?.user.nom}}</p>
-                    <p class="profil2">{{dataAgence?.user.prenom}}</p>
-                </div>
-            </div>
-            <div class="user1">
-                <div class="photo1">
-                    <img src="../assets/images/{{dataAgence?.avatar}}" alt="">
-                </div>
-                <div class="profil">
-                    <p class="profil1">{{dataAgence?.nom}}</p>
-                    <p class="profil2">{{dataAgence?.prenom}}</p>
+                    <p class="profil1">{{p.user.nom}}</p>
+                    <p class="profil2">{{p?.user.prenom}}</p>
                 </div>
             </div>
         </div>

@@ -49,7 +49,7 @@ export class ListermanagerComponent implements OnInit {
 
 
 gty(page: any){
-  this.http.get(this.reqUrl + `/managers/list?page=${page}&size=${this.itemsPerPage}`).subscribe((data: any) => {
+  this.http.get(this.reqUrl + `/managers/list?page=${page}&limit=${this.itemsPerPage}`).subscribe((data: any) => {
     this.datas =  data.data;
     this.totalItems = data.total;
     console.log(this.datas);
