@@ -155,7 +155,7 @@ export class DetailagenceComponent implements OnInit {
     formdata.append("poste",value.poste);
     formdata.append("agenceid",value.agenceId);
     formdata.append("email",value.email);
-    formdata.append("telephone",value.mobile);
+    formdata.append("telephone",value.telephone);
     formdata.append("adresse",value.adresse);
     formdata.append("logo",this.logo);
       console.log(this.userAgenceForm.value);
