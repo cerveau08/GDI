@@ -173,10 +173,10 @@ export class AddinterComponent implements OnInit {
     formdata.append("dateFin",this.interForm.value.dateFin);
     formdata.append("dateSignature",this.interForm.value.dateSignature);
     formdata.append("poste",this.interForm.value.poste);
-    formdata.append("contratDoc",this.contratDoc);
-    formdata.append("fileCni",this.fileCni);
-    formdata.append("fileFicheposte",this.fileFicheposte);
-    formdata.append("proceverbal",this.proceverbal);
+    formdata.append("contratDoc",this.fichierContrat);
+    formdata.append("fileCni",this.fichierCni);
+    formdata.append("fileFicheposte",this.fichierPoste);
+    formdata.append("proceverbal",this.fichierProceVerbal);
     formdata.append("photo",this.photo);
     formdata.append("matriculeManager",this.interForm.value.matriculeManager);
     formdata.append("typePiece",value.typePiece);
