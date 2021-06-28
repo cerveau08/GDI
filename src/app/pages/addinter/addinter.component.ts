@@ -138,10 +138,18 @@ export class AddinterComponent implements OnInit {
     return this.interForm.get('fileDiplome') as FormArray;
   }
   addNameField() { 
-
     this.diplome.push(new FormControl('', Validators.required)); 
   }
 
+  //recuperation du fiche de poste
+  getDiplomes(e:any) {
+    this.fichierDiplome= e.target.files.item(0);
+    for (let i = 0; i < this.diplome.length; i++) {
+      console.log(this.diplome.at(i).value);
+      this.diplomeName = this.fichierDiplome.name;
+      console.log(this.diplomeName);
+    }
+  }
   submitted1(){
     localStorage.setItem('color1', "20px solid #f16e00");
     localStorage.setItem('color2', "20px solid #ff7900");
@@ -277,23 +285,14 @@ export class AddinterComponent implements OnInit {
     console.log(this.fichedeposteName);
   }
 
-  //recuperation du fiche de poste
-  getDiplomes(e:any) {
-    this.fichierDiplome= e.target.files.item(0);
-    for (let i = 0; i < this.diplome.length; i++) {
-      console.log(this.diplome.at(i).value);
-      this.diplomeName[i] = this.fichierDiplome.name;
-      console.log(this.diplomeName[i]);
-    }
-  }
+  
 
   getFileCni(e:any) {
     this.fichierCni= e.target.files.item(0);
-    for (let i = 0; i < this.fileCni.length; i++) {
-      console.log(this.fileCni.at(i).value);
-      this.cniName[i] = this.fichierCni.name;
-      console.log(this.cniName[i]);
-    }
+   // console.log(this.fichierCni);
+    this.cniName = this.fichierCni.name;
+    console.log(this.cniName);
+    
   }
  
   readUrl1(event: any) {
