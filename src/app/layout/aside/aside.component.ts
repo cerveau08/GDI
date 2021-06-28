@@ -40,13 +40,22 @@ export class AsideComponent implements OnInit {
     nomInt: "5"
   }];
   dataInterFin;
+  nouveauxRrecrus;
   color: any;
   user: any;
   showHome = true;
   constructor(private dataService: DataService,private otherService: OthersService) {
-    this.otherService.getInter().subscribe(
+    // this.otherService.getInter().subscribe(
+    //   data => {
+    //    this.dataInterFin = data.data;
+    //    console.log(data);
+    //   }
+    // );
+
+
+    this.otherService.getNouveauRecrus().subscribe(
       data => {
-       this.dataInterFin = data.data;
+       this.nouveauxRrecrus = data.data;
        console.log(data);
       }
     );
