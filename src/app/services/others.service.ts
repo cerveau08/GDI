@@ -123,4 +123,7 @@ addAgence(data) {
   renouvelerContrat(data) {
     return this.http.post<any>(`${this.reqUrl}/ajoutContrat`, data);
   }
+  getAllStructure() {
+    return this.http.get(`${this.reqUrl}/structure/all`);
+  }
 }
