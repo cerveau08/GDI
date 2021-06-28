@@ -51,6 +51,16 @@ export class AddinterComponent implements OnInit {
   proceverbalName;
   diplomeName;
   fileDiplome: FormArray;
+  ListePiece = [
+    {
+      id: 1, 
+      libelle: "CNI",
+    },
+    {
+      id: 2, 
+      libelle: "Passeport"
+    }
+  ];
   constructor(private fb: FormBuilder,
               private dataService: DataService,
               private otherService: OthersService,
@@ -152,6 +162,8 @@ export class AddinterComponent implements OnInit {
     
     const value = this.interForm.value;
     const formdata = new FormData();
+    formdata.append("societeId",this.interForm.value.societeId);
+    formdata.append("typePiece",this.interForm.value.typePiece);
     formdata.append("numeroPiece",this.interForm.value.numeroPiece);
     formdata.append("nom",this.interForm.value.nom);
     formdata.append("prenom",this.interForm.value.prenom);
@@ -167,7 +179,6 @@ export class AddinterComponent implements OnInit {
     formdata.append("departementId",this.interForm.value.departement);
     formdata.append("structureId",this.interForm.value.sevice);
     formdata.append("domaineId",this.interForm.value.domaineId);
-    formdata.append("societeId",this.interForm.value.societeId);
     formdata.append("sitmat",this.interForm.value.sitmat);
     formdata.append("salaireBrut",this.interForm.value.salaireBrut);
     formdata.append("dateNaissance",this.interForm.value.dateNaissance);
@@ -182,7 +193,6 @@ export class AddinterComponent implements OnInit {
     formdata.append("fileproceverbal",this.fichierProceVerbal);
     formdata.append("photo",this.photo);
     formdata.append("matriculeManager",this.interForm.value.matriculeManager);
-    formdata.append("typePiece",value.typePiece);
     formdata.append("fileDiplome",this.diplome.value);
     console.log(this.interForm.value);
     this.otherService.addInter(formdata).subscribe(
@@ -192,7 +202,9 @@ export class AddinterComponent implements OnInit {
          // alert('Intérimaire ajouté avec succées...');
         //}
         //this.route.navigate(['/accueil/listagence']);
-        this.submited = true;
+        if(data.status == true) {
+          this.submited = true;
+        }
       },
         error=> {
           this.errorMsg = 'Probleme de connexion au serveur';
