@@ -249,7 +249,7 @@ formdata.append("document",this.contratForm.value.document);
 
   contrat(e:any) {
     this.urlcontrat= e.files.item(0);
-    console.log(this.urlcontrat.name);
+    console.log(this.urlcontrat);
     this.filenamecontrat = this.urlcontrat.name;
     let reader = new FileReader();
     reader.readAsDataURL( this.urlcontrat)
@@ -260,7 +260,7 @@ formdata.append("document",this.contratForm.value.document);
   }
   fichedeposte(e:any) {
     this.urlfichedeposte= e.files.item(0);
-    console.log(this.urlfichedeposte.type);
+    console.log(this.urlfichedeposte);
     this.filenamefichedeposte = this.urlfichedeposte.name;
     let reader = new FileReader();
     reader.readAsDataURL( this.urlfichedeposte)
