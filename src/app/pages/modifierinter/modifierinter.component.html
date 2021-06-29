@@ -159,18 +159,18 @@
                             </div>
                             <div class="liste-diplome">
                               <div formArrayName="fileDiplome">
-                                <div class="liste-diplome-content" [formGroupName]="0">
-                                  <input formControlName="document" class="buttondiplome" type="file" (change)="getDiplome1($event)" >
+                                <div class="liste-diplome-content" formGroupName="0">
+                                  <input formControlName="diplome" class="buttondiplome" type="file" (change)="getDiplome1($event)" >
                                   <p class="diplomename">{{diplomeName}}</p>
                                   <mat-icon class="add-diplome" fontSet="material-icons-outlined" (click)="addNameField()">add</mat-icon>
                                 </div>
-                                <div class="liste-diplome-content" [formGroupName]="1">
-                                  <input formControlName="document" class="buttondiplome" type="file" (change)="getDiplome1($event)" >
+                                <div class="liste-diplome-content" formGroupName="1">
+                                  <input formControlName="diplome" class="buttondiplome" type="file" (change)="getDiplome1($event)" >
                                   <p class="diplomename">{{diplomeName}}</p>
                                   <mat-icon class="add-diplome" fontSet="material-icons-outlined" (click)="addNameField()">add</mat-icon>
                                 </div>
-                                <div class="liste-diplome-content" [formGroupName]="2">
-                                  <input formControlName="document" class="buttondiplome" type="file" (change)="getDiplome1($event)" >
+                                <div class="liste-diplome-content" formGroupName="2">
+                                  <input formControlName="diplome" class="buttondiplome" type="file" (change)="getDiplome1($event)" >
                                   <p class="diplomename">{{diplomeName}}</p>
                                   <mat-icon class="add-diplome" fontSet="material-icons-outlined" (click)="addNameField()">add</mat-icon>
                                 </div>

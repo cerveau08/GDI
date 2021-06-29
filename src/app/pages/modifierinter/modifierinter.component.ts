@@ -138,6 +138,7 @@ export class ModifierinterComponent implements OnInit {
         dateNaissance: new FormControl(''),
         lieuNaissance: new FormControl(''),
         sexe: new FormControl(''),
+        //adresse: new FormControl(''),
         sitmat: new FormControl(''),
         universite: new FormControl(''),
         photo: new FormControl(''),
@@ -198,13 +199,13 @@ export class ModifierinterComponent implements OnInit {
   
   }
 
-  get diplome(): FormArray {
+  get fileDiplome(): FormArray {
     return this.interForm.get('fileDiplome') as FormArray;
   }
   getDiplomes(e:any) {
     this.fichierDiplome= e.target.files.item(0);
-    for (let i = 0; i < this.diplome.length; i++) {
-      console.log(this.diplome.at(i).value);
+    for (let i = 0; i < this.fileDiplome.length; i++) {
+      console.log(this.fileDiplome.at(i).value);
       this.diplomeName = this.fichierDiplome.name;
       console.log(this.diplomeName);
     }
@@ -243,7 +244,7 @@ export class ModifierinterComponent implements OnInit {
       },
     ];
     console.log(this.lesDiplome);
-    console.log(this.diplome.value);
+    console.log(this.fileDiplome.value);
     console.log(this.interForm.value);
     const value = this.interForm.value;
     const info = new FormData();
