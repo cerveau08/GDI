@@ -61,7 +61,7 @@ export class InterfincontratComponent implements OnInit {
   moisSelect
   demandeForm: FormGroup;
   page = 1;
-  itemsPerPage = 8;
+  itemsPerPage = 7;
   totalItems : any;
   public reqUrl = environment.base_url;
   constructor(private dataService: DataService,
@@ -93,7 +93,7 @@ export class InterfincontratComponent implements OnInit {
   }
 
   gty(page: any){
-    this.http.get(this.reqUrl + `/interimFinContrat?page=${page}&size=${this.itemsPerPage}`).subscribe((data: any) => {
+    this.http.get(this.reqUrl + `/interimFinContrat?page=${page}&limit=${this.itemsPerPage}`).subscribe((data: any) => {
       this.dataFinContrat =  data.data;
       this.totalItems = data.total;
       console.log(data);

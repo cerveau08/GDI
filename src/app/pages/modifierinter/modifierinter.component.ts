@@ -42,7 +42,7 @@ export class ModifierinterComponent implements OnInit {
   nomUpdate;
   prenom;
   nom;
-  ncni;
+  numeroPiece;
   profession;
   datedenaissance;
   lieudenaissance;
@@ -98,7 +98,7 @@ export class ModifierinterComponent implements OnInit {
              console.log(this.dataInter);
              this.prenom = this.dataInter.data.prenom;
               this.nom = this.dataInter.data.nom;
-              this.ncni = this.dataInter.data.ncni;
+              this.numeroPiece = this.dataInter.data.numeroPiece;
               this.profession = this.dataInter.data.profession;
               this.email = this.dataInter.data.email;
               this.sitmat = this.dataInter.data.sitmat;
@@ -130,33 +130,33 @@ export class ModifierinterComponent implements OnInit {
   ngOnInit() {
    /* this.url1 = this.item.photo;*/
     this.interForm = new FormGroup({
-        ncni: new FormControl(''),
+        numeroPiece: new FormControl(''),
         prenom: new FormControl(''),
         nom: new FormControl(''),
         email: new FormControl(''),
-        datedenaissance: new FormControl(''),
-        lieudenaissance: new FormControl(''),
+        adresse: new FormControl(''),
+        dateNaissance: new FormControl(''),
+        lieuNaissance: new FormControl(''),
         sexe: new FormControl(''),
         sitmat: new FormControl(''),
-        diplome: new FormControl(''),
         universite: new FormControl(''),
         photo: new FormControl(''),
-        type: new FormControl(''),
+        typePiece: new FormControl(''),
         agence: new FormControl(''),
         dateDebut: new FormControl(''),
         dateFin: new FormControl(''),
-        categorie: new FormControl(''),
+        categorieId: new FormControl(''),
         salaire_brut: new FormControl(''),
-        structure: new FormControl(''),
+        structureId: new FormControl(''),
         direction: new FormControl(''),
         departement: new FormControl(''),
         service: new FormControl(''),
-        filecontrat: new FormControl(''),
+        contratDoc: new FormControl(''),
         profession: new FormControl(''),
         telephone: new FormControl(''),
         matriculemanager: new FormControl(''),
-        ficheposte: new FormControl(''),
-        proceverbal: new FormControl(''),
+        fileFicheposte: new FormControl(''),
+        fileproceverbal: new FormControl(''),
         fileDiplome: new FormArray([
           new FormGroup({
             id: new FormControl(''),

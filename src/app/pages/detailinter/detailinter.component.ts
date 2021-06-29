@@ -48,7 +48,7 @@ export class DetailinterComponent implements OnInit {
   agence;
   categorie;
   diplome;
-  ncni;
+  numeroPiece;
   email;
   profession;
   matricule;
@@ -87,7 +87,7 @@ export class DetailinterComponent implements OnInit {
             this.prenom = this.dataInter.prenom;
             this.datedenaissance = this.dataInter.datedenaissance;
             this.lieudenaissance = this.dataInter.lieudenaissance;
-            this.ncni = this.dataInter.ncni;
+            this.numeroPiece = this.dataInter.numeroPiece;
             this.diplome = this.dataInter.diplome;
             this.email = this.dataInter.email;
             this.adresse = this.dataInter.adresse;
