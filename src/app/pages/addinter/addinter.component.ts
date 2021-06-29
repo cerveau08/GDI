@@ -37,6 +37,7 @@ export class AddinterComponent implements OnInit {
   dataAgence: any;
   dataDepartement: any;
   dataCategorie;
+  dataDomaine;
   id: any;
   itemd;
   image;
@@ -141,6 +142,13 @@ export class AddinterComponent implements OnInit {
      this.otherService.getAllCategorie().subscribe(
       data => {
         this.dataCategorie = data["data"];
+        console.log(data);
+      }
+    );
+     //recupere les domaines
+     this.otherService.getDomaine().subscribe(
+      data => {
+        this.dataDomaine = data["data"];
         console.log(data);
       }
     );

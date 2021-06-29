@@ -2,6 +2,7 @@ import { PaginationService } from 'src/app/service/pagination.service';
 import { DataService } from 'src/app/service/data.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { OthersService } from 'src/app/services/others.service';
 
 @Component({
   selector: 'app-parametre',
@@ -59,7 +60,10 @@ export class ParametreComponent implements OnInit {
     nomInt: "5"
   }];
   user;
-  constructor(private dataService: DataService, private paginationService: PaginationService) { }
+  constructor(private dataService: DataService,
+             private paginationService: PaginationService,
+             private otherService: OthersService
+             ) { }
 
   ngOnInit() {
     this.user = localStorage.getItem('user');
@@ -78,20 +82,43 @@ export class ParametreComponent implements OnInit {
       confirmpassword: new FormControl('')
     })
   }
-
+//verifier password
   validerPassword() {
-    const password = {
+   /* const password = {
       password: this.passwordForm.value.password
     }
     console.log(password);
-    this.changepassword = true;
-  }
+    this.changepassword = true;*/
+      this.otherService.verifierPassword(this.newpasswordForm.value).subscribe(
+        res => {
+          alert('Password has been updated');
+          this.newpasswordForm.reset();
+          console.log(res);
+        },
+        error => {
+          console.log(error);
+        }
+      );
+    }
+  
+  //changer password
   confirmPassword() {
-    const newpassword = {
+    /*const newpassword = {
       newpassword: this.passwordForm.value.newpassword,
       confirmpassword: this.passwordForm.value.confirmpassword
     }
-    console.log(newpassword);
+    console.log(newpassword);*/
+
+    this.otherService.resetPassword(this.passwordForm.value).subscribe(
+      res => {
+        alert('Password has been updated');
+        this.passwordForm.reset();
+        console.log(res);
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
   
   changeShowa() {

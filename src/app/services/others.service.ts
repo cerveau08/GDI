@@ -126,4 +126,16 @@ addAgence(data) {
   getAllStructure() {
     return this.http.get(`${this.reqUrl}/structure/all`);
   }
+  resetPassword(data){
+    return this.http.post<any>(`${this.reqUrl}/changePassword`, data);
+  }
+  verifierPassword(data){
+    return this.http.post<any>(`${this.reqUrl}/verifiePassword`, data);
+  }
+  getDomaine() {
+    return this.http.get(`${this.reqUrl}/domaines`);
+  }
+  postDemande(data) {
+    return this.http.post<any>(`${this.reqUrl}/ajoutDemande`, data);
+  }
 }

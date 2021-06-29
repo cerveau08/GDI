@@ -55,7 +55,7 @@ export class IntersouscontratComponent implements OnInit {
 
   
   gty(page: any){
-    this.http.get(this.reqUrl + `/interimSousContrat?page=${page}&size=${this.itemsPerPage}`).subscribe((data: any) => {
+    this.http.get(this.reqUrl + `/interimSousContrat?page=${page}&limit=${this.itemsPerPage}`).subscribe((data: any) => {
       this.dataInter =  data.data;
       this.totalItems = data.total;
       console.log(this.dataInter);

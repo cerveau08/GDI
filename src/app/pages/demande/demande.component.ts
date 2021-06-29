@@ -93,6 +93,7 @@ export class DemandeComponent implements OnInit {
       motif: this.demandeForm.value.motif,
       descrition: this.demandeForm.value.description,
       etat: this.demandeForm.value.etat,
+      
     } 
     console.log(info);
     return info;
