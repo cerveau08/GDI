@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from 'src/app/service/data.service';
 import { OthersService } from 'src/app/services/others.service';
@@ -65,6 +65,24 @@ export class ModifierinterComponent implements OnInit {
   image;
   universite;
   dataCategorie;
+  fichierDiplome?: File;
+  fichierContrat?: File;
+  fichierPoste?: File;
+  fichierProceVerbal?: File;
+  fichierCni?: File;
+  fichierdiplome1?: File;
+  fichierdiplome2?: File;
+  fichierdiplome3?: File;
+  contratName;
+  cniName;
+  fichedeposteName;
+  proceverbalName;
+  lesDiplome;
+  diplomeName;
+  diplomeName1;
+  diplomeName2;
+  diplomeName3;
+  idDiplome = 1;
   constructor(private activeroute: ActivatedRoute,
     private fb: FormBuilder,
     private dataService: DataService,
@@ -139,6 +157,20 @@ export class ModifierinterComponent implements OnInit {
         matriculemanager: new FormControl(''),
         ficheposte: new FormControl(''),
         proceverbal: new FormControl(''),
+        fileDiplome: new FormArray([
+          new FormGroup({
+            id: new FormControl(''),
+            diplome: new FormControl('')
+          }),
+          new FormGroup({
+            id: new FormControl(''),
+            diplome: new FormControl('')
+          }),
+          new FormGroup({
+            id: new FormControl(''),
+            diplome: new FormControl('')
+          }),
+        ])
     });
 
       //recupere les societes
@@ -165,42 +197,90 @@ export class ModifierinterComponent implements OnInit {
   submitted2() {
   
   }
+
+  get diplome(): FormArray {
+    return this.interForm.get('fileDiplome') as FormArray;
+  }
+  getDiplomes(e:any) {
+    this.fichierDiplome= e.target.files.item(0);
+    for (let i = 0; i < this.diplome.length; i++) {
+      console.log(this.diplome.at(i).value);
+      this.diplomeName = this.fichierDiplome.name;
+      console.log(this.diplomeName);
+    }
+  }
+
+  //les diplomes
+  getDiplome1(event: any) {
+    this.fichierdiplome1 = event.target.files[0];
+    this.diplomeName1 = this.fichierdiplome1.name;
+    console.log(this.diplomeName1);
+  }
+  getDiplome2(event: any) {
+    this.fichierdiplome2 = event.target.files[0];
+    this.diplomeName2 = this.fichierdiplome2.name;
+    console.log(this.diplomeName2);
+  }
+  getDiplome3(event: any) {
+    this.fichierdiplome3 = event.target.files[0];
+    this.diplomeName3 = this.fichierdiplome3.name;
+    console.log(this.diplomeName3);
+  }
+
   submit() {
-   console.log(this.dataInter);
+    this.lesDiplome = [
+      {
+        id: this.idDiplome,
+        diplome: this.fichierdiplome1
+      },
+      {
+        id: this.idDiplome,
+        diplome: this.fichierdiplome2
+      },
+      {
+        id: this.idDiplome,
+        diplome: this.fichierdiplome3
+      },
+    ];
+    console.log(this.lesDiplome);
+    console.log(this.diplome.value);
     console.log(this.interForm.value);
     const value = this.interForm.value;
     const info = new FormData();
-    info.append("nom",value.nom);
-    info.append("prenom",value.prenom);
-    info.append("ncni",value.ncni);
-    info.append("datedenaissance",value.dateNaissance);
-    info.append("lieudenaissance",value.lieuNaissance);
-    info.append("telephone",value.telephone);
-    info.append("email",value.email);
-    info.append("adresse",value.adresse);
-    info.append("sexe",value.sexe);
-    info.append("sitmat",value.sitmat);
-    info.append("diplome",value.telephone);
-    info.append("universite",value.universite);
-    info.append("type",value.type);
-    info.append("agence",value.agence);
-    info.append("dateDebut",value.dateDebut);
-    info.append("dateFin",value.dateFin);
-    info.append("categorieId",value.categorie);
-    info.append("salaire_brut",value.salaire_brut);
-    info.append("structure",value.structure);
-    info.append("direction",value.direction);
-    info.append("departement",value.departement);
-    info.append("service",value.service);
-    info.append("file_contrat",value.file_contrat);
-    info.append("profession",value.profession);
-    info.append("matriculemanager",value.matriculemanager);
-    info.append("ficheposte",value.ficheposte);
-    info.append("proceverbal",value.proceverbal);
+    info.append("societeId","3");
+    info.append("structureId","14");
+    info.append("domaineId","2");
+    info.append("typePiece",this.interForm.value.typePiece);
+    info.append("numeroPiece",this.interForm.value.numeroPiece);
+    info.append("nom",this.interForm.value.nom);
+    info.append("prenom",this.interForm.value.prenom);
+    info.append("adresse",this.interForm.value.adresse);
+    info.append("email",this.interForm.value.email);
+    info.append("telephone",this.interForm.value.telephone);
+    info.append("universite",this.interForm.value.universite);
+    info.append("sexe",this.interForm.value.sexe);
+    info.append("profession",this.interForm.value.profession);
+    info.append("categorieId",this.interForm.value.categorieId);
+    info.append("directionId",this.interForm.value.direction);
+    info.append("departementId",this.interForm.value.departement);
+    info.append("sitmat",this.interForm.value.sitmat);
+    info.append("salaireBrut",this.interForm.value.salaireBrut);
+    info.append("dateNaissance",this.interForm.value.dateNaissance);
+    info.append("lieuNaissance",this.interForm.value.lieuNaissance);
+    info.append("dateDebut",this.interForm.value.dateDebut);
+    info.append("dateFin",this.interForm.value.dateFin);
+    info.append("dateSignature",this.interForm.value.dateSignature);
+    info.append("poste",this.interForm.value.poste);
+    info.append("contratDoc",this.fichierContrat);
+    info.append("fileCni",this.fichierCni);
+    info.append("fileFicheposte",this.fichierPoste);
+    info.append("fileproceverbal",this.fichierProceVerbal);
     info.append("photo",this.photo);
+    info.append("matriculeManager",this.interForm.value.matriculeManager);
+    info.append("fileDiplome",this.lesDiplome);
     console.log(info);
     console.log(this.item);
-    this.otherService.updateInter(this.interForm.value, this.item).subscribe(
+    this.otherService.updateInter(info, this.item).subscribe(
           (res) =>{
             console.log(res);
             if(res){

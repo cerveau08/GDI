@@ -40,23 +40,38 @@
             <div *ngIf="user == 'agence'">
                 <div class="form-add-user-agent">
                     <form [formGroup]="userAgentForm">
-                        <div class="infoinput2">
-                            <input type="text" formControlName="prenom" placeholder="Prénom">
-                            <input class="input3" type="text" formControlName="nom" placeholder="Nom">
-                        </div>
-                        <div class="infoinput1">
-                            <input type="text" formControlName="email" placeholder="Email">
-                        </div>
-                        <div class="infoinput2">
-                            <input type="text" formControlName="telephone" placeholder="Téléphone">
-                            <input class="input3" type="text" formControlName="poste" placeholder="Poste">
-                        </div>
-                        <div class="infoinput2">
-                            <input type="text" formControlName="login" placeholder="Login">
-                            <input class="input3" type="text" formControlName="password" placeholder="Mot de Passe">
-                        </div>
-                        <div class="content-button">
-                            <button (click)="submitAgent()" class="buttob-envoyer">Valider</button>
+                        <div class="content-form-add-user">
+                            <div class="image">
+                                <img class="image-manager" *ngIf="!image" [src]="url1" alt="">
+                                <img class="image-manager" *ngIf="image" [src]="image" alt="">
+                                <input formControlName="avatar" class="buttonphoto1" type="file" (change)="getPhoto($event)">
+                            </div>
+                            <div>
+                                <div class="infoinput2">
+                                    <input type="text" formControlName="prenom" placeholder="Prénom">
+                                    <input class="input3" type="text" formControlName="nom" placeholder="Nom">
+                                </div>
+                                <div class="infoinput1">
+                                    <input type="text" formControlName="email" placeholder="Email">
+                                </div>
+                                <div class="infoinput2">
+                                    <input type="number" formControlName="telephone" placeholder="Téléphone">
+                                    <select class="select6"  formControlName="profil">
+                                        <option class="option" value="" disabled selected hidden>Profil</option>
+                                        <option *ngFor="let data of donneeService" value="{{data.id}}">{{data.libelle}}</option>
+                                    </select>
+                                </div>
+                                <div class="infoinput1">
+                                    <input type="text" formControlName="fonction" placeholder="Fonction">
+                                </div>
+                                <div class="infoinput2">
+                                    <input type="text" formControlName="login" placeholder="Login">
+                                    <input class="input3" type="text" formControlName="matricule" placeholder="Matricule">
+                                </div>
+                                <div class="content-button">
+                                    <button (click)="ajouterUser()" class="buttob-envoyer">Valider</button>
+                                </div>
+                            </div>
                         </div>
                     </form>
                 </div>
