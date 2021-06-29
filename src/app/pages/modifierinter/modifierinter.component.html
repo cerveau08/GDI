@@ -130,6 +130,59 @@
                 <div>
                   <div *ngIf="!submited">
                     <form [formGroup]="interForm">
+                      <!-- <div formGroupName="poste"> -->
+                        <div>
+                        <div class="center">
+                          <div class="fiche-et-pv" >
+                            <div class="photo" >
+                              <!-- <img class="image-diplome" *ngIf="!url3==true" src="/assets/images/upload.png" alt="">
+                              <img class="image-upload" [src]="url3" height="60" alt=""> -->
+                              <input formControlName="fileCni" class="buttonCNI" type="file" (change)="getFileCni($event)" >
+                              <p class="fileName">{{cniName}}</p>
+                            </div>
+                            <div class="photo" >
+                              <!-- <img class="image-diplome" *ngIf="!url3==true" src="/assets/images/upload.png" alt="">
+                              <img class="image-upload" [src]="url3" height="60" alt=""> -->
+                              <input formControlName="fileFicheposte" class="buttonphoto3" type="file" (change)="getFichePoste($event)" >
+                              <p class="fileName">{{fichedeposteName}}</p>
+                            </div>
+                            <div class="photo" >
+                              <!-- <img class="image-upload" *ngIf="!url4==true" src="/assets/images/upload.png" alt="">
+                              <img class="image-upload" [src]="url4" height="60" alt=""> -->
+                              <input formControlName="fileproceverbal" class="buttonphoto4" type="file" (change)="getProceVerbal($event)" >
+                              <p class="fileName">{{proceverbalName}}</p>
+                            </div>
+                          </div>
+                          <div class="les-diplomes-content">
+                            <div class="diplome-title">
+                              <p class="diplome-title-text">Diplomes</p>
+                            </div>
+                            <div class="liste-diplome">
+                              <div formArrayName="fileDiplome">
+                                <div class="liste-diplome-content" [formGroupName]="0">
+                                  <input formControlName="document" class="buttondiplome" type="file" (change)="getDiplome1($event)" >
+                                  <p class="diplomename">{{diplomeName}}</p>
+                                  <mat-icon class="add-diplome" fontSet="material-icons-outlined" (click)="addNameField()">add</mat-icon>
+                                </div>
+                                <div class="liste-diplome-content" [formGroupName]="1">
+                                  <input formControlName="document" class="buttondiplome" type="file" (change)="getDiplome1($event)" >
+                                  <p class="diplomename">{{diplomeName}}</p>
+                                  <mat-icon class="add-diplome" fontSet="material-icons-outlined" (click)="addNameField()">add</mat-icon>
+                                </div>
+                                <div class="liste-diplome-content" [formGroupName]="2">
+                                  <input formControlName="document" class="buttondiplome" type="file" (change)="getDiplome1($event)" >
+                                  <p class="diplomename">{{diplomeName}}</p>
+                                  <mat-icon class="add-diplome" fontSet="material-icons-outlined" (click)="addNameField()">add</mat-icon>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <button class="button1" mat-button matStepperPrevious>Précédent</button>
+                      <button class="button2" type="button" (click)="submit()" matSteppperNext>Enregistrer</button>
+                  </form>
+                    <!-- <form [formGroup]="interForm">
                         <div>
                         <div class="center">
                           <div class="posteinput2">
@@ -155,7 +208,7 @@
                       </div>
                       <button class="button1" mat-button matStepperPrevious>Précédent</button>
                       <button class="button2" type="submit" (click)="submit()" matSteppperNext>Valider</button>
-                  </form>
+                  </form> -->
                   </div>
                   <div class="message" *ngIf="submited" >
                     <div class="grid1">

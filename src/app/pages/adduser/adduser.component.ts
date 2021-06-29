@@ -1,3 +1,4 @@
+import { OthersService } from './../../services/others.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { DataService } from 'src/app/service/data.service';
@@ -43,9 +44,13 @@ export class AdduserComponent implements OnInit {
   userForm: FormGroup;
   userAgentForm: FormGroup;
   datas: any;
+  fichierPhoto?: File;
+  photoName;
   user;
+  url1="../assets/images/default.png";
+  image ;
   p = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
-  constructor(private dataService: DataService) { }
+  constructor(private dataService: DataService, private otherService: OthersService) { }
 
   ngOnInit() {
     this.user = localStorage.getItem('user');
@@ -62,12 +67,25 @@ export class AdduserComponent implements OnInit {
       nom: new FormControl(''),
       email: new FormControl(''),
       telephone: new FormControl(''),
-      poste: new FormControl(''),
+      fonction: new FormControl(''),
       login: new FormControl(''),
-      password: new FormControl('')
+      profil: new FormControl('8'),
+      avatar: new FormControl(''),
+      agenceID: new FormControl(''),
+      isManager: new FormControl('false'),
+      matricule: new FormControl('')
     })
   }
-
+  getPhoto(event: any) {
+    this.fichierPhoto = event.target.files[0];
+    this.photoName = this.fichierPhoto.name;
+    let reader = new FileReader();
+    reader.readAsDataURL( this.fichierPhoto);
+    reader.onload= ()=>{
+      this.image= reader.result;
+      console.log(this.image);
+    }
+  }
   submitted1() {
     const info = {
         matricule: this.matriculeForm.value.matricule,
@@ -80,17 +98,29 @@ export class AdduserComponent implements OnInit {
     this.show = false;
   }
 
-  submitAgent() {
-    const agent = {
-      prenom: this.userAgentForm.value.prenom,
-      nom: this.userAgentForm.value.nom,
-      email: this.userAgentForm.value.email,
-      telephone: this.userAgentForm.value.telephone,
-      poste: this.userAgentForm.value.poste,
-      login: this.userAgentForm.value.login,
-      password: this.userAgentForm.value.password
-    }
-    console.log(agent);
-    return agent;
+  ajouterUser() {
+    const formdata = new FormData();
+    const value = this.userAgentForm.value;
+    formdata.append("prenom",this.userAgentForm.value.prenom);
+    formdata.append("nom",this.userAgentForm.value.nom);
+   // formdata.append("profil",this.userAgentForm.value.profil);
+    formdata.append("profil","8");
+    formdata.append("fonction",this.userAgentForm.value.poste);
+    formdata.append("agenceId",this.userAgentForm.value.agenceId);
+    formdata.append("email",this.userAgentForm.value.email);
+    formdata.append("telephone",this.userAgentForm.value.telephone);
+    formdata.append("matricule",this.userAgentForm.value.matricule);
+    formdata.append("avatar",this.fichierPhoto);
+    formdata.append("isManager","false");
+    console.log(formdata);
+    console.log(this.userAgentForm.value);
+    this.otherService.addUser(formdata).subscribe(
+      (response) =>{
+        console.log(response)
+      },
+      (error) =>{
+        console.log(error)
+      }
+    )
   }
 }

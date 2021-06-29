@@ -6,11 +6,11 @@
 .all {
     margin-right: 10px;
     background-color: white;
-    padding: 30px;
+    padding: 10px;
 }
 .detail {
-    font-size: 36px;
-    font-weight: normal;
+    font-size: 18px;
+    font-weight: bold;
     font-stretch: normal;
     font-style: normal;
     line-height: normal;
@@ -61,7 +61,7 @@
     padding: 5px;
 }
 .buttob-envoyer {
-    height: 40px;
+    height: 30px;
     width: 90px;
     color: #ff7900;
     border: 1px solid #ff7900;
@@ -69,6 +69,11 @@
     outline: none;
     cursor: pointer;
     font-weight: 600;
+    margin-top: 15px;
+}
+.content-button {
+    width: 90px;
+    margin: 0 auto;
 }
 .form-add-manager {
     margin-top: 20px;
@@ -82,10 +87,10 @@
     position: relative;
 }
 .image-manager {
-    width: 250px;
-    height: 250px;
+    width: 130px;
+    height: 130px;
     object-fit: contain;
-    border-radius: 40px;
+    border-radius: 20px;
     border: solid 3px #009393;
 }
 .information{
@@ -140,29 +145,82 @@
     margin: 20px auto;
 }
 .infoinput1 input {
-    width: 415px;
-    height: 41px;
+    width: 300px;
+    height: 30px;
     background-color: #f5f6f9;
     border-radius: 1px;
     border: solid 1px #d8d8d8;
-    margin-bottom: 20px;
-    padding: 5px;
+    margin-bottom: 10px;
+    padding: 0 5px;
     outline: none;
   }
   .infoinput2 input {
-    width: 195px;
-    height: 41px;
+    width: 138px;
+    height: 30px;
     background-color: #f5f6f9;
     border-radius: 1px;
     border: solid 1px #d8d8d8;
-    margin-bottom: 20px;
-    padding: 5px;
+    margin-bottom: 10px;
+    padding: 0 5px;
     outline: none;
   }
   .input3 {
     margin-left: 10px;
   }
-
+.content-form-add-user {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+}
+select {
+    width: 150px;
+    height: 34px;
+    margin-bottom: 10px;
+    background-color: #f5f6f9;
+    outline: none;
+    color: black;
+    border: 1px solid #d8d8d8;
+    padding: 5px;
+    option {
+        font-size: 14px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 10px;
+        letter-spacing: 0.07px;
+        color: #000;
+        margin-top: 10px;
+        text-align: center;
+    }
+  }
+  .select6 {
+    margin-left: 10px;
+  }
+  .buttonphoto1::-webkit-file-upload-button {
+    visibility: hidden;
+    outline: none;
+  }
+  .buttonphoto1::before {
+    content: 'Ajouter Photo';
+    width: 100px;
+    height: 20px;
+    background-color: white;
+    border: none;
+    color: black;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+    font-size: 14px;
+    cursor: pointer;
+    outline: none;
+    border: 2px solid black;
+    margin-top: 0px;
+    padding-top: 5px;
+  }
+  .buttonphoto1 {
+    width: 110px;
+    margin-left: 15px;
+  }
 @media (max-width: 991px) {
     .chiffre-aside {
         display: grid;

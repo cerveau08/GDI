@@ -300,7 +300,6 @@ export class AddinterComponent implements OnInit {
     this.fichierContrat = event.target.files[0];
     this.contratName = this.fichierContrat.name;
     console.log(this.contratName);
-    
   }
 
   //les diplomes
@@ -308,19 +307,16 @@ export class AddinterComponent implements OnInit {
     this.fichierdiplome1 = event.target.files[0];
     this.diplomeName1 = this.fichierdiplome1.name;
     console.log(this.diplomeName1);
-    
   }
   getDiplome2(event: any) {
     this.fichierdiplome2 = event.target.files[0];
     this.diplomeName2 = this.fichierdiplome2.name;
     console.log(this.diplomeName2);
-    
   }
   getDiplome3(event: any) {
     this.fichierdiplome3 = event.target.files[0];
     this.diplomeName3 = this.fichierdiplome3.name;
     console.log(this.diplomeName3);
-    
   }
 
    //recuperation  du proceverbal
