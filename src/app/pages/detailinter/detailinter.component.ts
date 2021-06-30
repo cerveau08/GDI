@@ -69,6 +69,8 @@ export class DetailinterComponent implements OnInit {
   dataDepartement: any;
   donneeService: any;
   dataCategorie;
+  fileContrat;
+  fileFicheposte;
   constructor(private activeroute: ActivatedRoute,
               private modalService: ModalService,
               private dataService: DataService,
@@ -128,7 +130,7 @@ export class DetailinterComponent implements OnInit {
       poste: new FormControl(''),
       contrat: new FormControl(''),
       ficheposte: new FormControl(''),
-      interimaireId: new FormControl(''),
+      personneId: new FormControl(''),
     });
     this.otherService.getAllSociete().subscribe(
       data => {
@@ -226,7 +228,8 @@ formdata.append("dateDebut",this.contratForm.value.dateDebut);
 formdata.append("dateFin",this.contratForm.value.dateFin);
 formdata.append("dateSignature",this.contratForm.value.dateSignature);
 formdata.append("poste",this.contratForm.value.poste);
-formdata.append("document",this.contratForm.value.document);
+formdata.append("contrat",this.fileContrat);
+formdata.append("fichePoste",this.fileFicheposte);
   //  console.log(contratForm);
     //console.log(this.contratForm.value);
     this.otherService.renouvelerContrat(formdata).subscribe(

@@ -149,7 +149,7 @@
                     <div class="input2">
                         <select class="select5" formControlName="categorieId">
                             <option class="option" value="" disabled selected hidden>Catégorie</option>
-                            <option *ngFor="let data of dataCategorie" value="data.id">{{data.libelle}}</option>
+                            <option *ngFor="let data of dataCategorie" [value]="data.id">{{data.libelle}}</option>
                         </select>
                         <input class="input3" type="text" formControlName="salaireBrut" placeholder="Montant Salaire Brut">
                     </div>
@@ -187,7 +187,7 @@
                             <p class="filename" *ngIf="urlcontrat">{{filenamecontrat}}</p>
                         </div>
                         <div>
-                            <input formControlName="ficheposte"  class="buttonficheposte" type="file" (change)="fichedeposte($event.target)">
+                            <input formControlName="fichePoste"  class="buttonficheposte" type="file" (change)="fichedeposte($event.target)">
                             <p class="filename" *ngIf="urlfichedeposte">{{filenamefichedeposte}}</p>
                         </div>
                     </div>
