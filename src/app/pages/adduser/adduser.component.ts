@@ -73,7 +73,10 @@ export class AdduserComponent implements OnInit {
       avatar: new FormControl(''),
       agenceID: new FormControl(''),
       isManager: new FormControl('false'),
-      matricule: new FormControl('')
+      matricule: new FormControl(''),
+      interimaireId: new FormControl(''),
+      structureId: new FormControl('')
+
     })
   }
   getPhoto(event: any) {
