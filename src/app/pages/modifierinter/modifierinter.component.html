@@ -19,8 +19,8 @@
                         <p class="matri">Matricule: <span>{{matricule}}</span> </p>
                         <div class="grid">
                           <div class="photo">
-                            <!-- <img class="image-upload" *ngIf="!url1==true" src="/assets/images/upload.png" alt=""> -->
-                            <img class="image-upload" [src]="photo" height="60" alt="">
+                            <img class="image-upload" *ngIf="!image" src="image" alt="">
+                            <img class="image-upload" *ngIf="image" [src]="image"  alt="">
                             <input formControlName="photo" class="buttonphoto1" type="file" (change)="getPhoto($event.target)">
                           </div>
                           <div class="others">
@@ -75,9 +75,8 @@
                       <p class="matri">Matricule: <span>{{matricule}}</span> </p>
                       <div class="grid">
                         <div class="photo">
-                          <!-- <img class="image-upload" *ngIf="!url2==true" src="" alt=""> -->
-                          <img class="image-upload" [src]="url2" height="60" alt="">
                           <input formControlName="filecontrat"  class="buttonphoto2" type="file" (change)="getPhoto($event.target)" >
+                          <p class="fileName">{{contratName}}</p>
                         </div>
                         <div class="others">
                           <div class="contratinput2">
