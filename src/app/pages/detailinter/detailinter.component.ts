@@ -127,9 +127,10 @@ export class DetailinterComponent implements OnInit {
       directionId: new FormControl(''),
       departementId: new FormControl(''),
       serviceId: new FormControl(''),
+      profession: new FormControl(''),
       poste: new FormControl(''),
       contrat: new FormControl(''),
-      ficheposte: new FormControl(''),
+      fichePoste: new FormControl(''),
       personneId: new FormControl(''),
     });
     this.otherService.getAllSociete().subscribe(
@@ -222,14 +223,15 @@ formdata.append("domaineId","2");
 //formdata.append("domaineId",this.contratForm.value.domaineId);
 //formdata.append("societeId",this.contratForm.value.societeId);
 formdata.append("salaireBrut",this.contratForm.value.salaireBrut);
-formdata.append("personneId",this.contratForm.value.personneId);
+formdata.append("personneId", '8');
 formdata.append("categorieId",this.contratForm.value.categorieId);
 formdata.append("dateDebut",this.contratForm.value.dateDebut);
 formdata.append("dateFin",this.contratForm.value.dateFin);
 formdata.append("dateSignature",this.contratForm.value.dateSignature);
+formdata.append("profession",this.contratForm.value.profession);
 formdata.append("poste",this.contratForm.value.poste);
-formdata.append("contrat",this.fileContrat);
-formdata.append("fichePoste",this.fileFicheposte);
+formdata.append("contrat",this.urlcontrat);
+formdata.append("fichePoste",this.urlfichedeposte);
   //  console.log(contratForm);
     //console.log(this.contratForm.value);
     this.otherService.renouvelerContrat(formdata).subscribe(
@@ -248,8 +250,7 @@ formdata.append("fichePoste",this.fileFicheposte);
         interimaire: JSON.stringify(this.item)
       }
     })
-  }
-
+  } 
   contrat(e:any) {
     this.urlcontrat= e.files.item(0);
     console.log(this.urlcontrat);
@@ -271,5 +272,9 @@ formdata.append("fichePoste",this.fileFicheposte);
      // this.fil= reader.result
      // console.log(this.image)
     }
+   /* this.fileFicheposte= e.target.files.item(0);
+    console.log(this.fileFicheposte.type);
+    this.filenamefichedeposte = this.fileFicheposte.name;
+    console.log(this.filenamefichedeposte);*/
   }
 }

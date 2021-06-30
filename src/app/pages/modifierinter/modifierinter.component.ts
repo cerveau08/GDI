@@ -135,8 +135,8 @@ export class ModifierinterComponent implements OnInit {
         nom: new FormControl(''),
         email: new FormControl(''),
         adresse: new FormControl(''),
-        dateNaissance: new FormControl(''),
-        lieuNaissance: new FormControl(''),
+        datedenaissance: new FormControl(''),
+        lieudenaissance: new FormControl(''),
         sexe: new FormControl(''),
         //adresse: new FormControl(''),
         sitmat: new FormControl(''),
@@ -266,8 +266,8 @@ export class ModifierinterComponent implements OnInit {
     info.append("departementId",this.interForm.value.departement);
     info.append("sitmat",this.interForm.value.sitmat);
     info.append("salaireBrut",this.interForm.value.salaireBrut);
-    info.append("dateNaissance",this.interForm.value.dateNaissance);
-    info.append("lieuNaissance",this.interForm.value.lieuNaissance);
+    info.append("datedenaissance",this.interForm.value.dateNaissance);
+    info.append("lieudenaissance",this.interForm.value.lieuNaissance);
     info.append("dateDebut",this.interForm.value.dateDebut);
     info.append("dateFin",this.interForm.value.dateFin);
     info.append("dateSignature",this.interForm.value.dateSignature);
@@ -334,6 +334,36 @@ export class ModifierinterComponent implements OnInit {
       } 
     }
 
+  //recuperation du  contrat
+  getFileContrat(event: any) {
+    this.fichierContrat = event.target.files[0];
+    this.contratName = this.fichierContrat.name;
+    console.log(this.contratName);
+  }
+
+    //recuperation  du proceverbal
+    getProceVerbal(e:any) {
+      this.fichierProceVerbal= e.target.files.item(0);
+      console.log(this.fichierProceVerbal.type);
+      this.proceverbalName = this.fichierProceVerbal.name;
+      console.log(this.proceverbalName);
+    }
+  
+     //recuperation du fiche de poste
+     getFichePoste(e:any) {
+      this.fichierPoste= e.target.files.item(0);
+      console.log(this.fichierPoste.type);
+      this.fichedeposteName = this.fichierPoste.name;
+      console.log(this.fichedeposteName);
+    }
+    getFileCni(e:any) {
+      this.fichierCni= e.target.files.item(0);
+     // console.log(this.fichierCni);
+      this.cniName = this.fichierCni.name;
+      console.log(this.cniName);
+      
+    }
+  
   readUrl1(event: any) {
     console.log('readUrl');
       if (event.target.files && event.target.files[0]) {
