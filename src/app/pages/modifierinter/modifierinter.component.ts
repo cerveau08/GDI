@@ -40,8 +40,13 @@ export class ModifierinterComponent implements OnInit {
   donneeService;
   dataInter;
   nomUpdate;
+  structureId;
+  directionId;
+  departementId;
+  societeId;
   prenom;
   nom;
+  adresse;
   numeroPiece;
   profession;
   datedenaissance;
@@ -51,6 +56,7 @@ export class ModifierinterComponent implements OnInit {
   dateFin;
   sitmat;
   email;
+  categorieId;
   ficheposte;
   proceverbal;
   telephone;
@@ -94,31 +100,34 @@ export class ModifierinterComponent implements OnInit {
         console.log(this.item);
         this.otherService.getOneInterById(this.item).subscribe(
           data =>{
-             this.dataInter = data;
-             console.log(this.dataInter);
-             this.prenom = this.dataInter.data.prenom;
-              this.nom = this.dataInter.data.nom;
-              this.numeroPiece = this.dataInter.data.numeroPiece;
-              this.profession = this.dataInter.data.profession;
-              this.email = this.dataInter.data.email;
-              this.sitmat = this.dataInter.data.sitmat;
-              this.matricule = this.dataInter.data.matricule;
-              this.datedenaissance = this.dataInter.data.datedenaissance;
-              this.lieudenaissance = this.dataInter.data.lieudenaissance;
-              this.sexe = this.dataInter.data.sexe;
-              this.dateDebut = this.dataInter.data.dateDebut;
-              this.dateFin = this.dataInter.data.dateFin;
-              this.salaire_brut = this.dataInter.data.salaire_brut;
-              this.categorie = this.dataInter.data.categorie;
-              this.telephone = this.dataInter.data.telephone;
-              this.ficheposte = this.dataInter.data.ficheposte;
-              this.proceverbal = this.dataInter.data.proceverbal;
-              this.universite = this.dataInter.data.universite;
-              this.agence = this.dataInter.data.agence;
-              this.structure = this.dataInter.data.structure;
-              this.direction = this.dataInter.data.direction;
-              this.departement = this.dataInter.data.departement;
-              this.service = this.dataInter.data.service;
+            this.dataInter = data;
+            console.log(this.dataInter);
+            this.photo = this.dataInter.data.photo;
+            this.prenom = this.dataInter.data.prenom;
+            this.nom = this.dataInter.data.nom;
+            this.adresse = this.dataInter.data.adresse;
+            this.numeroPiece = this.dataInter.data.numeroPiece;
+            this.profession = this.dataInter.data.profession;
+            this.email = this.dataInter.data.email;
+            this.sitmat = this.dataInter.data.sitmat;
+            this.matricule = this.dataInter.data.matricule;
+            this.datedenaissance = this.dataInter.data.datedenaissance;
+            this.lieudenaissance = this.dataInter.data.lieudenaissance;
+            this.sexe = this.dataInter.data.sexe;
+            this.dateDebut = this.dataInter.data.contrat.dateDebut;
+            this.dateFin = this.dataInter.data.contrat.dateFin;
+            this.departementId = this.dataInter.data.structure.departement;
+            this.structureId = this.dataInter.data.structure.service;
+            this.directionId = this.dataInter.data.structure.direction;
+            this.societeId = this.dataInter.data.structure.societe;
+            this.salaire_brut = this.dataInter.data.salaire_brut;
+            this.categorie = this.dataInter.data.categorie.libelle;
+            this.categorieId = this.dataInter.data.categorie.id;
+            this.telephone = this.dataInter.data.telephone;
+            this.ficheposte = this.dataInter.data.ficheposte;
+            this.proceverbal = this.dataInter.data.proceverbal;
+            this.universite = this.dataInter.data.universite;
+            this.agence = this.dataInter.data.agence;
           },
           error =>{
             console.log(error)
@@ -150,9 +159,9 @@ export class ModifierinterComponent implements OnInit {
         salaire_brut: new FormControl(''),
         structureId: new FormControl(''),
         direction: new FormControl(''),
+        societeId: new FormControl(''),
         departement: new FormControl(''),
-        service: new FormControl(''),
-        contratDoc: new FormControl(''),
+        filecontrat: new FormControl(''),
         profession: new FormControl(''),
         telephone: new FormControl(''),
         matriculemanager: new FormControl(''),
@@ -211,6 +220,24 @@ export class ModifierinterComponent implements OnInit {
     }
   }
 
+  getFileCni(event: any) {
+    this.fichierCni = event.target.files[0];
+    this.cniName = this.fichierCni.name;
+    console.log(this.cniName);
+  }
+
+  getFichePoste(event: any) {
+    this.fichierPoste = event.target.files[0];
+    this.fichedeposteName = this.fichierPoste.name;
+    console.log(this.fichedeposteName);
+  }
+
+  getProceVerbal(event: any) {
+    this.fichierProceVerbal = event.target.files[0];
+    this.proceverbalName = this.fichierProceVerbal.name;
+    console.log(this.proceverbalName);
+  }
+
   //les diplomes
   getDiplome1(event: any) {
     this.fichierdiplome1 = event.target.files[0];
@@ -243,7 +270,7 @@ export class ModifierinterComponent implements OnInit {
         diplome: this.fichierdiplome3
       },
     ];
-    console.log(this.lesDiplome);
+    console.log(this.lesDiplome[0].diplome);
     console.log(this.fileDiplome.value);
     console.log(this.interForm.value);
     const value = this.interForm.value;
@@ -282,16 +309,16 @@ export class ModifierinterComponent implements OnInit {
     console.log(info);
     console.log(this.item);
     this.otherService.updateInter(info, this.item).subscribe(
-          (res) =>{
-            console.log(res);
-            if(res){
-              this.route.navigate(['/accueil/souscontrat']);
-            }
-          },
-          (error)=>{
-            console.log(error);
-          }
-        )
+      (res) =>{
+        console.log(res);
+        if(res){
+          this.route.navigate(['/accueil/souscontrat']);
+        }
+      },
+      (error)=>{
+        console.log(error);
+      }
+    )
   }
 
   directionsListe(value) {
@@ -332,36 +359,6 @@ export class ModifierinterComponent implements OnInit {
       reader.onload= ()=>{
         this.image= reader.result
       } 
-    }
-
-  //recuperation du  contrat
-  getFileContrat(event: any) {
-    this.fichierContrat = event.target.files[0];
-    this.contratName = this.fichierContrat.name;
-    console.log(this.contratName);
-  }
-
-    //recuperation  du proceverbal
-    getProceVerbal(e:any) {
-      this.fichierProceVerbal= e.target.files.item(0);
-      console.log(this.fichierProceVerbal.type);
-      this.proceverbalName = this.fichierProceVerbal.name;
-      console.log(this.proceverbalName);
-    }
-  
-     //recuperation du fiche de poste
-     getFichePoste(e:any) {
-      this.fichierPoste= e.target.files.item(0);
-      console.log(this.fichierPoste.type);
-      this.fichedeposteName = this.fichierPoste.name;
-      console.log(this.fichedeposteName);
-    }
-    getFileCni(e:any) {
-      this.fichierCni= e.target.files.item(0);
-     // console.log(this.fichierCni);
-      this.cniName = this.fichierCni.name;
-      console.log(this.cniName);
-      
     }
   
   readUrl1(event: any) {

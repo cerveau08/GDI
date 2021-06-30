@@ -20,7 +20,7 @@
                         <div class="grid">
                           <div class="photo">
                             <!-- <img class="image-upload" *ngIf="!url1==true" src="/assets/images/upload.png" alt=""> -->
-                            <img class="image-upload" [src]="url1" height="60" alt="">
+                            <img class="image-upload" [src]="photo" height="60" alt="">
                             <input formControlName="photo" class="buttonphoto1" type="file" (change)="getPhoto($event.target)">
                           </div>
                           <div class="others">
@@ -33,7 +33,9 @@
                             </div>
                             <div class="infoinput1">
                               <input type="text" [(ngModel)]="email" formControlName="email" placeholder="Email">
-                              <input class="input3" [(ngModel)]="adresse" formControlName="adresse" placeholder="Adresse">
+                            </div>
+                            <div class="infoinput1">
+                              <input [(ngModel)]="adresse" formControlName="adresse" placeholder="Adresse">
                             </div>
                             <div class="infoinput2">
                               <input type="text" [(ngModel)]="datedenaissance" formControlName="datedenaissance" placeholder="Date de Naissance">
@@ -79,8 +81,8 @@
                         </div>
                         <div class="others">
                           <div class="contratinput2">
-                            <select class="select5" formControlName="categorie">
-                              <option class="option" value="" >Categorie</option>
+                            <select class="select5" [(ngModel)]="categorieId" formControlName="categorie">
+                              <option class="option" [value]="categorieId" >{{categorie}}</option>
                               <option *ngFor="let data of dataCategorie" [value]="data.id">{{data.libelle}}</option>
                             </select>
                             <input class="input3" [(ngModel)]="salaire_brut" type="text" formControlName="salaire_brut" placeholder="Montant Salaire Brut">
@@ -91,22 +93,22 @@
                           </div> 
                          
                           <div class="contratinput2">
-                            <select class="select5" #societe formControlName="structure" (change)="directionsListe(societe.value)">
+                            <select class="select5" #societe [(ngModel)]="societeId" formControlName="societeId" (change)="directionsListe(societe.value)">
                               <option class="option" value="" >Societe</option>
                               <option *ngFor="let data of dataSociete" [value]="data.id">{{data.libelle}}</option>
                             </select>
-                            <select class="select6" #direction formControlName="direction" (change)="departementListe(direction.value)">
+                            <select class="select6" #direction [(ngModel)]="directionId" formControlName="direction" (change)="departementListe(direction.value)">
                               <option class="option" value="" >Direction</option>
                               <option *ngFor="let data of dataDirection" [value]="data.id">{{data.libelle}}</option>
                             </select>
                           </div>
                           <div class="contratinput2">
-                            <select class="select5" #departement formControlName="departement" (change)="societeListe(departement.value)">
-                              <option class="option" value="">Departement</option>
+                            <select class="select5" #departement [(ngModel)]="departementId" formControlName="departement" (change)="societeListe(departement.value)">
+                              <option class="option" [value]="departementId">{{departementId}}</option>
                               <option *ngFor="let data of dataDepartement" [value]="data.id">{{data.libelle}}</option>
                             </select>
-                            <select class="select6" formControlName="service">
-                              <option class="option" value="">Service</option>
+                            <select class="select6" [(ngModel)]="structureId" formControlName="structureId">
+                              <option class="option" [value]="structureId">{{structureId}}</option>
                               <option *ngFor="let data of donneeService" [value]="data.id">{{data.libelle}}</option>
                             </select>
                           </div>
@@ -161,17 +163,17 @@
                               <div formArrayName="fileDiplome">
                                 <div class="liste-diplome-content" formGroupName="0">
                                   <input formControlName="diplome" class="buttondiplome" type="file" (change)="getDiplome1($event)" >
-                                  <p class="diplomename">{{diplomeName}}</p>
+                                  <p class="diplomename">{{diplomeName1}}</p>
                                   <mat-icon class="add-diplome" fontSet="material-icons-outlined" (click)="addNameField()">add</mat-icon>
                                 </div>
                                 <div class="liste-diplome-content" formGroupName="1">
-                                  <input formControlName="diplome" class="buttondiplome" type="file" (change)="getDiplome1($event)" >
-                                  <p class="diplomename">{{diplomeName}}</p>
+                                  <input formControlName="diplome" class="buttondiplome" type="file" (change)="getDiplome2($event)" >
+                                  <p class="diplomename">{{diplomeName2}}</p>
                                   <mat-icon class="add-diplome" fontSet="material-icons-outlined" (click)="addNameField()">add</mat-icon>
                                 </div>
                                 <div class="liste-diplome-content" formGroupName="2">
-                                  <input formControlName="diplome" class="buttondiplome" type="file" (change)="getDiplome1($event)" >
-                                  <p class="diplomename">{{diplomeName}}</p>
+                                  <input formControlName="diplome" class="buttondiplome" type="file" (change)="getDiplome3($event)" >
+                                  <p class="diplomename">{{diplomeName3}}</p>
                                   <mat-icon class="add-diplome" fontSet="material-icons-outlined" (click)="addNameField()">add</mat-icon>
                                 </div>
                               </div>
