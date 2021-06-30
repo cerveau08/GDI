@@ -220,6 +220,13 @@ export class ModifierinterComponent implements OnInit {
     }
   }
 
+   //recuperation du  contrat
+   getFileContrat(event: any) {
+    this.fichierContrat = event.target.files[0];
+    this.contratName = this.fichierContrat.name;
+    console.log(this.contratName);
+  }
+  
   getFileCni(event: any) {
     this.fichierCni = event.target.files[0];
     this.cniName = this.fichierCni.name;
