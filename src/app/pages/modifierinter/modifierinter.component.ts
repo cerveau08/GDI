@@ -213,6 +213,24 @@ export class ModifierinterComponent implements OnInit {
     }
   }
 
+  getFileCni(event: any) {
+    this.fichierCni = event.target.files[0];
+    this.cniName = this.fichierCni.name;
+    console.log(this.cniName);
+  }
+
+  getFichePoste(event: any) {
+    this.fichierPoste = event.target.files[0];
+    this.fichedeposteName = this.fichierPoste.name;
+    console.log(this.fichedeposteName);
+  }
+
+  getProceVerbal(event: any) {
+    this.fichierProceVerbal = event.target.files[0];
+    this.proceverbalName = this.fichierProceVerbal.name;
+    console.log(this.proceverbalName);
+  }
+
   //les diplomes
   getDiplome1(event: any) {
     this.fichierdiplome1 = event.target.files[0];
@@ -245,7 +263,7 @@ export class ModifierinterComponent implements OnInit {
         diplome: this.fichierdiplome3
       },
     ];
-    console.log(this.lesDiplome);
+    console.log(this.lesDiplome[0].diplome);
     console.log(this.fileDiplome.value);
     console.log(this.interForm.value);
     const value = this.interForm.value;
@@ -284,16 +302,16 @@ export class ModifierinterComponent implements OnInit {
     console.log(info);
     console.log(this.item);
     this.otherService.updateInter(info, this.item).subscribe(
-          (res) =>{
-            console.log(res);
-            if(res){
-              this.route.navigate(['/accueil/souscontrat']);
-            }
-          },
-          (error)=>{
-            console.log(error);
-          }
-        )
+      (res) =>{
+        console.log(res);
+        if(res){
+          this.route.navigate(['/accueil/souscontrat']);
+        }
+      },
+      (error)=>{
+        console.log(error);
+      }
+    )
   }
 
   directionsListe(value) {
