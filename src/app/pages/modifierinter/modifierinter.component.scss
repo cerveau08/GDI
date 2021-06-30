@@ -144,7 +144,7 @@ button {
   line-height: normal;
   letter-spacing: -0.1px;
   color: #222222;
-  margin-top: 20px;
+  margin-top: 10px;
   margin-left: 5px;
   span {
       font-weight: bold;
@@ -429,7 +429,7 @@ select {
 
 
 .center {
-  margin-top: 20px;
+  margin-top: 5px;
 }
 .posteinput2 {
   width: 450px;
@@ -691,6 +691,15 @@ button {
   visibility: hidden;
   outline: none;
 }
+.buttondiplome {
+  width: 130px;
+}
+.buttonphoto3 {
+  width: 130px;
+}
+.buttonphoto4 {
+  width: 130px;
+}
 .buttondiplome::before {
   content: 'uploader';
   width: 125px;
@@ -711,6 +720,9 @@ button {
 .buttonCNI::-webkit-file-upload-button {
   visibility: hidden;
   outline: none;
+}
+.buttonCNI {
+  width: 130px;
 }
 .buttonCNI::before {
   content: 'Fichier Pièce';
