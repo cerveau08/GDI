@@ -1,7 +1,7 @@
 <div class="all-container">
     <div class="all">
       <div class="all1">
-        <p class="ajouter">Ajouter</p>
+        <p class="ajouter">Modifier Interimaire</p>
           <div class="form" [formGroup]="interForm">
             <mat-horizontal-stepper [linear]="isLinear" #stepper labelPosition="bottom">
               <mat-step [stepControl]="interForm" >
@@ -75,7 +75,7 @@
                       <p class="matri">Matricule: <span>{{matricule}}</span> </p>
                       <div class="grid">
                         <div class="photo">
-                          <input formControlName="filecontrat"  class="buttonphoto2" type="file" (change)="getPhoto($event.target)" >
+                          <input formControlName="filecontrat"  class="buttonphoto2" type="file" (change)="getFileContrat($event)" >
                           <p class="fileName">{{contratName}}</p>
                         </div>
                         <div class="others">

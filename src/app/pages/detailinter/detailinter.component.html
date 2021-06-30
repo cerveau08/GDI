@@ -162,8 +162,11 @@
                         </select>
                     </div>
                     <div class="input2">
-                        <input type="text" formControlName="poste" placeholder="Titre du Poste">
+                        <input type="text" formControlName="profession" placeholder="Profession">
                         <input type="date" class="input3" formControlName="dateSignature" placeholder="Date Signature">
+                    </div>
+                    <div class="input2">
+                        <input type="text" formControlName="poste" placeholder="Titre du Poste">
                     </div>
                     <div class="buttons-fichier">
                         <div>
@@ -171,7 +174,7 @@
                             <p class="filename" *ngIf="urlcontrat">{{filenamecontrat}}</p>
                         </div>
                         <div>
-                            <input formControlName="ficheposte"  class="buttonficheposte" type="file" (change)="fichedeposte($event.target)">
+                            <input formControlName="fichePoste"  class="buttonficheposte" type="file" (change)="fichedeposte($event.target)">
                             <p class="filename" *ngIf="urlfichedeposte">{{filenamefichedeposte}}</p>
                         </div>
                     </div>
