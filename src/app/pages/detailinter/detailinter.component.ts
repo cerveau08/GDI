@@ -131,7 +131,7 @@ export class DetailinterComponent implements OnInit {
       poste: new FormControl(''),
       contrat: new FormControl(''),
       fichePoste: new FormControl(''),
-      personneId: new FormControl(''),
+      interimaireId: new FormControl(''),
     });
     this.otherService.getAllSociete().subscribe(
       data => {
@@ -213,7 +213,7 @@ export class DetailinterComponent implements OnInit {
   }
   
   validerContrat() {
-   this.contratForm.patchValue({personneId: this.item});
+   this.contratForm.patchValue({interimaireId: this.item});
  const formdata = new FormData();
 formdata.append("societeId","5");
 formdata.append("structureId","14");
@@ -223,7 +223,7 @@ formdata.append("domaineId","2");
 //formdata.append("domaineId",this.contratForm.value.domaineId);
 //formdata.append("societeId",this.contratForm.value.societeId);
 formdata.append("salaireBrut",this.contratForm.value.salaireBrut);
-formdata.append("personneId", '8');
+formdata.append("interimaireId", '8');
 formdata.append("categorieId",this.contratForm.value.categorieId);
 formdata.append("dateDebut",this.contratForm.value.dateDebut);
 formdata.append("dateFin",this.contratForm.value.dateFin);

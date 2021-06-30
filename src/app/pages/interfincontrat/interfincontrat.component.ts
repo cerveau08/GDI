@@ -71,7 +71,7 @@ export class InterfincontratComponent implements OnInit {
     public datepipe: DatePipe,
     public router: Router,
     private http: HttpClient
-    ) {
+    ) {  
       this.getScreenSize();
     }
 
