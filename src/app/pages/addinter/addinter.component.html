@@ -20,7 +20,7 @@
                       <div class="grid">
                         <div class="photo">
                           <img class="image-upload" *ngIf="!image" [src]="url1" alt="">
-                          <img class="image-upload" *ngIf="image" [src]="image" height="60" alt="">
+                          <img class="image-upload" *ngIf="image" [src]="image"  alt="">
                           <input formControlName="photo" class="buttonphoto1" type="file" (change)="getPhoto($event.target)">
                         </div>
                         <div class="others">
