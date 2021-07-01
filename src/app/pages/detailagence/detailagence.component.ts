@@ -38,17 +38,21 @@ export class DetailagenceComponent implements OnInit {
   fichierContrat?: File;
   data;
   nom;
-  nomdg;
+  responsable;
   numdg;
   email;
-  mobile;
+  telephone;
   fixe;
-  siteweb;
+  site;
   adresse;
   logo;
   contrat;
   cnidg;
   userAgence;
+  dataTotalAgence;
+  total;
+  actifs;
+  inactifs;
   constructor(private activeroute: ActivatedRoute,
     private modalService: ModalService,
     private dataService: DataService,
@@ -64,17 +68,17 @@ export class DetailagenceComponent implements OnInit {
             this.dataAgence = this.data.data;
             console.log(this.dataAgence);
             this.nom = this.dataAgence.nom;
-            this.nomdg = this.dataAgence.responsable;
+            this.responsable = this.dataAgence.responsable;
             this.numdg = this.dataAgence.numdg;
             this.email = this.dataAgence.email;
-            this.mobile = this.dataAgence.telephone;
+            this.telephone = this.dataAgence.telephone;
             this.fixe = this.dataAgence.fixe;
-            this.siteweb = this.dataAgence.siteweb;
+            this.site = this.dataAgence.site;
             this.adresse = this.dataAgence.adresse;
             this.logo = this.dataAgence.logo;
-          //  this.contrat = this.dataAgence.data.contrat;
+            this.contrat = this.dataAgence.data.contrat;
             this.cnidg = this.dataAgence.data.cnidg;
-            this.userAgence = this.dataAgence.data['user'];
+            this.userAgence = this.dataAgence['user'];
             console.log(this.userAgence);
             
           },
@@ -83,6 +87,19 @@ export class DetailagenceComponent implements OnInit {
           }
         );
       })
+
+      this.otherService.getTotalAgenceActifInactif(this.item).subscribe(
+        data =>{
+          this.data = data;
+          this.dataTotalAgence = this.data['data'];
+          console.log(this.dataTotalAgence);
+          this.nom = this.dataTotalAgence[0].nom;
+          console.log(this.nom);
+          
+          this.total = this.dataTotalAgence[0].total;
+          this.actifs = this.dataTotalAgence[0].actifs;
+          this.inactifs = this.dataTotalAgence[0].inactifs;
+        })
     }
 
   ngOnInit() {

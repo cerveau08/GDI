@@ -52,13 +52,13 @@
 .input-form {
     width: 250px;
     font-size: 22px;
-    height: 41px;
+    height: 30px;
     background-color: #f5f6f9;
     border-radius: 1px;
     border: solid 1px #d8d8d8;
     margin-bottom: 15px;
     outline: none;
-    padding: 5px;
+   // padding: 5px;
 }
 .buttob-envoyer {
     height: 30px;
@@ -80,7 +80,7 @@
 }
 .manager {
     display: grid;
-    grid-template-columns: 300px 1fr;
+    grid-template-columns: 140px 1fr;
     grid-gap: 1px;
 }
 .image {
@@ -94,11 +94,11 @@
     border: solid 3px #009393;
 }
 .information{
-    margin-top: 30px;
+    margin-top: 10px;
     margin-left: 10px;
 }
 .nom {
-    font-size: 28px;
+    font-size: 18px;
     font-weight: 900;
     font-stretch: normal;
     font-style: normal;
@@ -108,7 +108,7 @@
     margin: 0;
 }
 .poste {
-    font-size: 24px;
+    font-size: 14px;
     font-weight: normal;
     font-stretch: normal;
     font-style: italic;
@@ -119,7 +119,7 @@
     margin-bottom: 0;
 }
 .matricule{
-    font-size: 28px;
+    font-size: 18px;
     font-weight: 900;
     font-stretch: normal;
     font-style: normal;

@@ -24,8 +24,12 @@
                             <input formControlName="photo" class="buttonphoto1" type="file" (change)="getPhoto($event.target)">
                           </div>
                           <div class="others">
-                            <div class="infoinput1">
-                              <input type="text" [(ngModel)]="numeroPiece" formControlName="numeroPiece" placeholder="Numero CNI">
+                            <div class="contratinput2">
+                              <select class="select5" [(ngModel)]="typePiece" formControlName="typePiece">
+                                <option class="option" [value]="typePiece"  hidden>{{typePiece}}</option>
+                                <option *ngFor="let data of ListePiece" [value]="data.libelle">{{data.libelle}}</option>
+                              </select>
+                              <input type="text" class="input3" [(ngModel)]="numeroPiece" formControlName="numeroPiece" placeholder="Numero CNI">
                             </div>
                             <div class="infoinput2">
                               <input type="text" [(ngModel)]="prenom" formControlName="prenom" placeholder="Prenom">
@@ -38,8 +42,8 @@
                               <input [(ngModel)]="adresse" formControlName="adresse" placeholder="Adresse">
                             </div>
                             <div class="infoinput2">
-                              <input type="text" [(ngModel)]="datedenaissance" formControlName="datedenaissance" placeholder="Date de Naissance">
-                              <input class="input3" [(ngModel)]="lieudenaissance" type="text" formControlName="lieudenaissance" placeholder="Lieu de Naissance">
+                              <input type="text" [(ngModel)]="dateNaissance" formControlName="dateNaissance" placeholder="Date de Naissance">
+                              <input class="input3" [(ngModel)]="lieuNaissance" type="text" formControlName="lieuNaissance" placeholder="Lieu de Naissance">
                             </div>
                             <div class="infoinput2">
                               <input type="text" [(ngModel)]="sexe" formControlName="sexe" placeholder="Genre">
@@ -80,17 +84,20 @@
                         </div>
                         <div class="others">
                           <div class="contratinput2">
-                            <select class="select5" [(ngModel)]="categorieId" formControlName="categorie">
-                              <option class="option" [value]="categorieId" >{{categorie}}</option>
+                            <select class="select5" [(ngModel)]="categorieId" formControlName="categorieId">
+                              <option class="option" [value]="" hidden>{{categorie}}</option>
                               <option *ngFor="let data of dataCategorie" [value]="data.id">{{data.libelle}}</option>
                             </select>
-                            <input class="input3" [(ngModel)]="salaireBrut" type="text" formControlName="salaireBrut" placeholder="Montant Salaire Brut">
+                            <input class="input3" [(ngModel)]="salaire_brut" type="text" formControlName="salaire_brut" placeholder="Montant Salaire Brut">
                           </div>
                           <div class="contratinput2">
                             <input type="date" [(ngModel)]="dateDebut" formControlName="dateDebut" placeholder="Date Début">
                             <input class="input3" [(ngModel)]="dateFin" type="date" formControlName="dateFin" placeholder="Date Fin">
                           </div> 
-                         
+                          <div class="contratinput2">
+                            <input type="date" [(ngModel)]="dateSignature" formControlName="dateSignature" placeholder="Date Signature">
+                            <input class="input3" [(ngModel)]="dateFin" type="date" formControlName="dateFin" placeholder="Date Fin">
+                          </div> 
                           <div class="contratinput2">
                             <select class="select5" #societe [(ngModel)]="societeId" formControlName="societeId" (change)="directionsListe(societe.value)">
                               <option class="option" value="" >Societe</option>
@@ -136,20 +143,14 @@
                         <div class="center">
                           <div class="fiche-et-pv" >
                             <div class="photo" >
-                              <!-- <img class="image-diplome" *ngIf="!url3==true" src="/assets/images/upload.png" alt="">
-                              <img class="image-upload" [src]="url3" height="60" alt=""> -->
                               <input formControlName="fileCni" class="buttonCNI" type="file" (change)="getFileCni($event)" >
                               <p class="fileName">{{cniName}}</p>
                             </div>
                             <div class="photo" >
-                              <!-- <img class="image-diplome" *ngIf="!url3==true" src="/assets/images/upload.png" alt="">
-                              <img class="image-upload" [src]="url3" height="60" alt=""> -->
                               <input formControlName="fileFicheposte" class="buttonphoto3" type="file" (change)="getFichePoste($event)" >
                               <p class="fileName">{{fichedeposteName}}</p>
                             </div>
                             <div class="photo" >
-                              <!-- <img class="image-upload" *ngIf="!url4==true" src="/assets/images/upload.png" alt="">
-                              <img class="image-upload" [src]="url4" height="60" alt=""> -->
                               <input formControlName="fileproceverbal" class="buttonphoto4" type="file" (change)="getProceVerbal($event)" >
                               <p class="fileName">{{proceverbalName}}</p>
                             </div>
@@ -183,33 +184,6 @@
                       <button class="button1" mat-button matStepperPrevious>Précédent</button>
                       <button class="button2" type="button" (click)="submit()" matSteppperNext>Enregistrer</button>
                   </form>
-                    <!-- <form [formGroup]="interForm">
-                        <div>
-                        <div class="center">
-                          <div class="posteinput2">
-                            <input type="text" [(ngModel)]="profession" formControlName="profession" placeholder="Titre du Poste">
-                           <select class="select6" formControlName="matriculemanager">
-                              <option class="option" value="" >Matricule Manager</option>
-                              <option *ngFor="let data of datamanager" [value]="data.id">{{data.libelle}}</option>
-                            </select>
-                          </div>
-                          <div class="fiche-et-pv">
-                            <div class="photo">
-                              <img class="image-upload" *ngIf="!url3==true" src="/assets/images/upload.png" alt="">
-                              <img class="image-upload" [src]="url3" height="60" alt="">
-                              <input formControlName="ficheposte" class="buttonphoto3" type="file" (change)="getPhoto($event.target)" >
-                            </div>
-                            <div class="photo">
-                              <img class="image-upload" *ngIf="!url4==true" src="/assets/images/upload.png" alt="">
-                              <img class="image-upload" [src]="url4" height="60" alt="">
-                              <input formControlName="proceverbal" class="buttonphoto4" type="file" (change)="getPhoto($event.target)" >
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <button class="button1" mat-button matStepperPrevious>Précédent</button>
-                      <button class="button2" type="submit" (click)="submit()" matSteppperNext>Valider</button>
-                  </form> -->
                   </div>
                   <div class="message" *ngIf="submited" >
                     <div class="grid1">
