@@ -144,4 +144,12 @@ addAgence(data) {
   postDemande(data) {
     return this.http.post<any>(`${this.reqUrl}/ajoutDemande`, data);
   }
+
+  matriculeFilter(data) {
+    return this.http.post<any>(`${this.reqUrl}/searchUtilisateur`, data);
+  }
+
+  getListMatricule(): Observable<any> {
+    return this.http.get<any>(this.reqUrl + '/managers/list');
+  }
 }

@@ -41,7 +41,19 @@ export class AdduserComponent implements OnInit {
   };
   dataInterSousContrat;
   show = false;
+
   matriculeForm: FormGroup;
+  dataMatriculeInter;
+  prenom;
+  nom;
+  email;
+  telephone;
+  fonction;
+  profil;
+  login;
+
+
+
   interimaireId: FormGroup;
   structureId: FormGroup;
   userForm: FormGroup;
@@ -68,6 +80,13 @@ export class AdduserComponent implements OnInit {
     this.datas = this.dataService.getData();
     this.matriculeForm = new FormGroup({
       matricule: new FormControl(''),
+      prenom: new FormControl(''),
+      nom: new FormControl(''),
+      email: new FormControl(''),
+      telephone: new FormControl(''),
+      fonction: new FormControl(''),
+      profil: new FormControl(''),
+      login: new FormControl(''),
     });
     this.userForm = new FormGroup({
       id: new FormControl(''),
@@ -89,6 +108,20 @@ export class AdduserComponent implements OnInit {
       structureId: new FormControl('')
 
     })
+
+
+
+  //   this.matriculeForm = new FormGroup({
+  //     prenom: new FormControl(''),
+  //     nom: new FormControl(''),
+  //     email: new FormControl(''),
+  //     telephone: new FormControl(''),
+  //     fonction: new FormControl(''),
+  //     profil: new FormControl(''),
+  //     login: new FormControl(''),
+  // });
+
+
   }
   getPhoto(event: any) {
     this.fichierPhoto = event.target.files[0];
@@ -111,6 +144,44 @@ export class AdduserComponent implements OnInit {
   submitted2() {
     this.show = false;
   }
+
+
+
+
+matriculeResearch() {
+  let matricule = {
+    matricule: this.userAgentForm.value.matricule
+  }
+  this.otherService.matriculeFilter(matricule).subscribe(
+    (response) =>{
+      console.log(response)
+
+      this.dataMatriculeInter = response;
+            console.log(this.dataMatriculeInter);
+            this.prenom = this.dataMatriculeInter.data.prenom;
+            this.nom = this.dataMatriculeInter.data.nom;
+            this.email = this.dataMatriculeInter.data.email;
+            this.telephone = this.dataMatriculeInter.data.telephone;
+            this.fonction = this.dataMatriculeInter.data.fonction;
+            this.profil = this.dataMatriculeInter.data.profil;
+            this.login = this.dataMatriculeInter.data.login;
+
+
+    },
+    (error) =>{
+      console.log(error)
+    }
+  )
+}
+
+
+
+
+
+
+
+
+
 
   ajouterUser() {
     const formdata = new FormData();
