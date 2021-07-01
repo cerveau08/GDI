@@ -61,7 +61,7 @@ export class ModifierinterComponent implements OnInit {
   proceverbal;
   telephone;
   categorie;
-  salaire_brut;
+  salaireBrut;
   agence;
   structure;
   direction;
@@ -120,7 +120,7 @@ export class ModifierinterComponent implements OnInit {
             this.structureId = this.dataInter.data.structure.service;
             this.directionId = this.dataInter.data.structure.direction;
             this.societeId = this.dataInter.data.structure.societe;
-            this.salaire_brut = this.dataInter.data.salaire_brut;
+            this.salaireBrut = this.dataInter.data.salaire_brut;
             this.categorie = this.dataInter.data.categorie.libelle;
             this.categorieId = this.dataInter.data.categorie.id;
             this.telephone = this.dataInter.data.telephone;
@@ -156,7 +156,7 @@ export class ModifierinterComponent implements OnInit {
         dateDebut: new FormControl(''),
         dateFin: new FormControl(''),
         categorieId: new FormControl(''),
-        salaire_brut: new FormControl(''),
+        salaireBrut: new FormControl(''),
         structureId: new FormControl(''),
         direction: new FormControl(''),
         societeId: new FormControl(''),
@@ -300,9 +300,9 @@ export class ModifierinterComponent implements OnInit {
     info.append("directionId",this.interForm.value.direction);
     info.append("departementId",this.interForm.value.departement);
     info.append("sitmat",this.interForm.value.sitmat);
-    info.append("salaireBrut",this.interForm.value.salaire_brut);
-    info.append("datedenaissance",this.interForm.value.dateNaissance);
-    info.append("lieudenaissance",this.interForm.value.lieuNaissance);
+    info.append("salaireBrut",this.interForm.value.salaireBrut);
+    info.append("datedenaissance",this.interForm.value.datedenaissance);
+    info.append("lieudenaissance",this.interForm.value.lieudenaissance);
     info.append("dateDebut",this.interForm.value.dateDebut);
     info.append("dateFin",this.interForm.value.dateFin);
     info.append("dateSignature",this.interForm.value.dateSignature);

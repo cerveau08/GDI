@@ -59,6 +59,7 @@ export class DetailinterComponent implements OnInit {
   departement;
   service
   contratForm: FormGroup;
+  reconduireForm: FormGroup;
   filenamecontrat;
   filenamefichedeposte;
   urlcontrat;
@@ -223,7 +224,7 @@ formdata.append("domaineId","2");
 //formdata.append("domaineId",this.contratForm.value.domaineId);
 //formdata.append("societeId",this.contratForm.value.societeId);
 formdata.append("salaireBrut",this.contratForm.value.salaireBrut);
-formdata.append("interimaireId", '8');
+formdata.append("interimaireId", '38');
 formdata.append("categorieId",this.contratForm.value.categorieId);
 formdata.append("dateDebut",this.contratForm.value.dateDebut);
 formdata.append("dateFin",this.contratForm.value.dateFin);
@@ -232,11 +233,12 @@ formdata.append("profession",this.contratForm.value.profession);
 formdata.append("poste",this.contratForm.value.poste);
 formdata.append("contrat",this.urlcontrat);
 formdata.append("fichePoste",this.urlfichedeposte);
-  //  console.log(contratForm);
-    //console.log(this.contratForm.value);
     this.otherService.renouvelerContrat(formdata).subscribe(
       data => {
         console.log(data);
+        if(data){
+          this.router.navigate(['/accueil/sousContrat']);
+        }
       },
       error =>{
         console.log(error);
@@ -244,6 +246,26 @@ formdata.append("fichePoste",this.urlfichedeposte);
     )
   }
 
+  reconduireContrat() {
+    this.contratForm.patchValue({interimaireId: this.item});
+      const formdata = new FormData();
+    formdata.append("dateSignature",this.contratForm.value.dateSignature);
+    formdata.append("dateDebut",this.contratForm.value.dateDebut);
+    formdata.append("dateFin",this.contratForm.value.dateFin);
+    formdata.append("interimaireId", '37');
+    formdata.append("fileContrat",this.urlcontrat);
+    this.otherService.reconduireContrat(formdata).subscribe(
+      data => {
+        console.log(data);
+        if(data){
+          this.router.navigate(['/accueil/sousContrat']);
+        }
+      },
+      error =>{
+        console.log(error);
+      }
+    )
+  }
   objectif() {
     this.router.navigate(['accueil/objectif'], {
       queryParams: {
