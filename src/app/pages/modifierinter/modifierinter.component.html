@@ -84,7 +84,7 @@
                               <option class="option" [value]="categorieId" >{{categorie}}</option>
                               <option *ngFor="let data of dataCategorie" [value]="data.id">{{data.libelle}}</option>
                             </select>
-                            <input class="input3" [(ngModel)]="salaire_brut" type="text" formControlName="salaire_brut" placeholder="Montant Salaire Brut">
+                            <input class="input3" [(ngModel)]="salaireBrut" type="text" formControlName="salaireBrut" placeholder="Montant Salaire Brut">
                           </div>
                           <div class="contratinput2">
                             <input type="date" [(ngModel)]="dateDebut" formControlName="dateDebut" placeholder="Date Début">

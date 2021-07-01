@@ -48,7 +48,7 @@ export class DetailagenceComponent implements OnInit {
   logo;
   contrat;
   cnidg;
-
+  userAgence;
   constructor(private activeroute: ActivatedRoute,
     private modalService: ModalService,
     private dataService: DataService,
@@ -74,6 +74,9 @@ export class DetailagenceComponent implements OnInit {
             this.logo = this.dataAgence.logo;
           //  this.contrat = this.dataAgence.data.contrat;
             this.cnidg = this.dataAgence.data.cnidg;
+            this.userAgence = this.dataAgence.data['user'];
+            console.log(this.userAgence);
+            
           },
           error =>{
             console.log(error)
@@ -103,7 +106,7 @@ export class DetailagenceComponent implements OnInit {
       contrat: new FormControl(''),
       cnidg: new FormControl(''),
     });
-    this.userAgenceForm = new FormGroup({
+   /* this.userAgenceForm = new FormGroup({
       prenom: new FormControl (''),
       nom: new FormControl(''),
       poste: new FormControl (''),
@@ -113,7 +116,7 @@ export class DetailagenceComponent implements OnInit {
       telephone: new FormControl (''),
       adresse: new FormControl(''),
       logo: new FormControl (''),
-    });
+    });*/
   }
 
   submitted1() {
@@ -146,7 +149,7 @@ export class DetailagenceComponent implements OnInit {
           }
         )
     } 
-    ajouterUser() {
+  /*  ajouterUser() {
       const formdata = new FormData();
       const value = this.userAgenceForm.value;
     formdata.append("prenom",value.prenom);
@@ -167,7 +170,7 @@ export class DetailagenceComponent implements OnInit {
           console.log(error)
         }
       )
-    }
+    }*/
 
     //recuperation de l'image
  getPhoto(e:any) {
