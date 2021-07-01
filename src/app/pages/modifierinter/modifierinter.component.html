@@ -24,8 +24,12 @@
                             <input formControlName="photo" class="buttonphoto1" type="file" (change)="getPhoto($event.target)">
                           </div>
                           <div class="others">
-                            <div class="infoinput1">
-                              <input type="text" [(ngModel)]="numeroPiece" formControlName="numeroPiece" placeholder="Numero CNI">
+                            <div class="contratinput2">
+                              <select class="select5" [(ngModel)]="typePiece" formControlName="typePiece">
+                                <option class="option" [value]="typePiece"  hidden>{{typePiece}}</option>
+                                <option *ngFor="let data of ListePiece" [value]="data.libelle">{{data.libelle}}</option>
+                              </select>
+                              <input type="text" class="input3" [(ngModel)]="numeroPiece" formControlName="numeroPiece" placeholder="Numero CNI">
                             </div>
                             <div class="infoinput2">
                               <input type="text" [(ngModel)]="prenom" formControlName="prenom" placeholder="Prenom">
@@ -38,8 +42,8 @@
                               <input [(ngModel)]="adresse" formControlName="adresse" placeholder="Adresse">
                             </div>
                             <div class="infoinput2">
-                              <input type="text" [(ngModel)]="datedenaissance" formControlName="datedenaissance" placeholder="Date de Naissance">
-                              <input class="input3" [(ngModel)]="lieudenaissance" type="text" formControlName="lieudenaissance" placeholder="Lieu de Naissance">
+                              <input type="text" [(ngModel)]="dateNaissance" formControlName="dateNaissance" placeholder="Date de Naissance">
+                              <input class="input3" [(ngModel)]="lieuNaissance" type="text" formControlName="lieuNaissance" placeholder="Lieu de Naissance">
                             </div>
                             <div class="infoinput2">
                               <input type="text" [(ngModel)]="sexe" formControlName="sexe" placeholder="Genre">
@@ -81,16 +85,19 @@
                         <div class="others">
                           <div class="contratinput2">
                             <select class="select5" [(ngModel)]="categorieId" formControlName="categorieId">
-                              <option class="option" [value]="categorieId" >{{categorie}}</option>
+                              <option class="option" [value]="" hidden>{{categorie}}</option>
                               <option *ngFor="let data of dataCategorie" [value]="data.id">{{data.libelle}}</option>
                             </select>
-                            <input class="input3" [(ngModel)]="salaireBrut" type="text" formControlName="salaire_brut" placeholder="Montant Salaire Brut">
+                            <input class="input3" [(ngModel)]="salaire_brut" type="text" formControlName="salaire_brut" placeholder="Montant Salaire Brut">
                           </div>
                           <div class="contratinput2">
                             <input type="date" [(ngModel)]="dateDebut" formControlName="dateDebut" placeholder="Date Début">
                             <input class="input3" [(ngModel)]="dateFin" type="date" formControlName="dateFin" placeholder="Date Fin">
                           </div> 
-                         
+                          <div class="contratinput2">
+                            <input type="date" [(ngModel)]="dateSignature" formControlName="dateSignature" placeholder="Date Signature">
+                            <input class="input3" [(ngModel)]="dateFin" type="date" formControlName="dateFin" placeholder="Date Fin">
+                          </div> 
                           <div class="contratinput2">
                             <select class="select5" #societe [(ngModel)]="societeId" formControlName="societeId" (change)="directionsListe(societe.value)">
                               <option class="option" value="" >Societe</option>
