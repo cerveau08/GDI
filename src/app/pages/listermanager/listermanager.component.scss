@@ -87,7 +87,7 @@ table {
   
   th {
     text-align: center;
-    padding: 8px;
+   // padding: 8px;
     font-size: 14px;
     font-weight: bold;
     font-stretch: normal;
@@ -108,13 +108,14 @@ table {
   }
   .type {
     display: flex;
-    width: 50px;
+   // width: 70px;
     margin: 0 auto;
     p {
         text-align: center;
     }
   }
   .updown {
+    width: 20px;
     margin-top: 10px;
     margin-left: 0px;
   }

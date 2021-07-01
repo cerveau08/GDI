@@ -165,6 +165,7 @@ export class ModifierinterComponent implements OnInit {
         profession: new FormControl(''),
         telephone: new FormControl(''),
         matriculemanager: new FormControl(''),
+        fileCni: new FormControl(''),
         fileFicheposte: new FormControl(''),
         fileproceverbal: new FormControl(''),
         fileDiplome: new FormArray([
@@ -299,7 +300,7 @@ export class ModifierinterComponent implements OnInit {
     info.append("directionId",this.interForm.value.direction);
     info.append("departementId",this.interForm.value.departement);
     info.append("sitmat",this.interForm.value.sitmat);
-    info.append("salaireBrut",this.interForm.value.salaireBrut);
+    info.append("salaireBrut",this.interForm.value.salaire_brut);
     info.append("datedenaissance",this.interForm.value.dateNaissance);
     info.append("lieudenaissance",this.interForm.value.lieuNaissance);
     info.append("dateDebut",this.interForm.value.dateDebut);

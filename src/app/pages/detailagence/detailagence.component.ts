@@ -38,7 +38,7 @@ export class DetailagenceComponent implements OnInit {
   fichierContrat?: File;
   data;
   nom;
-  nomdg;
+  responsable;
   numdg;
   email;
   telephone;
@@ -68,8 +68,8 @@ export class DetailagenceComponent implements OnInit {
             this.dataAgence = this.data.data;
             console.log(this.dataAgence);
             this.nom = this.dataAgence.nom;
-            this.nomdg = this.dataAgence.responsable;
-            //this.numdg = this.dataAgence.numdg;
+            this.responsable = this.dataAgence.responsable;
+            this.numdg = this.dataAgence.numdg;
             this.email = this.dataAgence.email;
             this.telephone = this.dataAgence.telephone;
             //this.fixe = this.dataAgence.fixe;
