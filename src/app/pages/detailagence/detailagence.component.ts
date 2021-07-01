@@ -41,7 +41,7 @@ export class DetailagenceComponent implements OnInit {
   nomdg;
   numdg;
   email;
-  mobile;
+  telephone;
   fixe;
   siteweb;
   adresse;
@@ -67,7 +67,7 @@ export class DetailagenceComponent implements OnInit {
             this.nomdg = this.dataAgence.responsable;
             this.numdg = this.dataAgence.numdg;
             this.email = this.dataAgence.email;
-            this.mobile = this.dataAgence.telephone;
+            this.telephone = this.dataAgence.telephone;
             this.fixe = this.dataAgence.fixe;
             this.siteweb = this.dataAgence.siteweb;
             this.adresse = this.dataAgence.adresse;
