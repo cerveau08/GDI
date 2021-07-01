@@ -39,8 +39,11 @@ export class AdduserComponent implements OnInit {
     matricule: "060210",
     nomInt: "5"
   };
+  dataInterSousContrat;
   show = false;
   matriculeForm: FormGroup;
+  interimaireId: FormGroup;
+  structureId: FormGroup;
   userForm: FormGroup;
   userAgentForm: FormGroup;
   datas: any;
@@ -54,6 +57,14 @@ export class AdduserComponent implements OnInit {
 
   ngOnInit() {
     this.user = localStorage.getItem('user');
+
+    this.otherService. getInterSousContrat().subscribe(
+      data => {
+       this.dataInterSousContrat = data.data;
+       console.log(data);
+      }
+    );
+
     this.datas = this.dataService.getData();
     this.matriculeForm = new FormGroup({
       matricule: new FormControl(''),
@@ -61,7 +72,7 @@ export class AdduserComponent implements OnInit {
     this.userForm = new FormGroup({
       id: new FormControl(''),
       profil: new FormControl(''),
-    });
+    }); 
     this.userAgentForm = new FormGroup({
       prenom: new FormControl(''),
       nom: new FormControl(''),
@@ -113,6 +124,8 @@ export class AdduserComponent implements OnInit {
     formdata.append("email",this.userAgentForm.value.email);
     formdata.append("telephone",this.userAgentForm.value.telephone);
     formdata.append("matricule",this.userAgentForm.value.matricule);
+    formdata.append("interimaireId",this.userAgentForm.value.interimaireId);
+    formdata.append("structureId",this.userAgentForm.value.structureId);
     formdata.append("avatar",this.fichierPhoto);
     formdata.append("isManager","false");
     console.log(formdata);
