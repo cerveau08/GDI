@@ -143,20 +143,14 @@
                         <div class="center">
                           <div class="fiche-et-pv" >
                             <div class="photo" >
-                              <!-- <img class="image-diplome" *ngIf="!url3==true" src="/assets/images/upload.png" alt="">
-                              <img class="image-upload" [src]="url3" height="60" alt=""> -->
                               <input formControlName="fileCni" class="buttonCNI" type="file" (change)="getFileCni($event)" >
                               <p class="fileName">{{cniName}}</p>
                             </div>
                             <div class="photo" >
-                              <!-- <img class="image-diplome" *ngIf="!url3==true" src="/assets/images/upload.png" alt="">
-                              <img class="image-upload" [src]="url3" height="60" alt=""> -->
                               <input formControlName="fileFicheposte" class="buttonphoto3" type="file" (change)="getFichePoste($event)" >
                               <p class="fileName">{{fichedeposteName}}</p>
                             </div>
                             <div class="photo" >
-                              <!-- <img class="image-upload" *ngIf="!url4==true" src="/assets/images/upload.png" alt="">
-                              <img class="image-upload" [src]="url4" height="60" alt=""> -->
                               <input formControlName="fileproceverbal" class="buttonphoto4" type="file" (change)="getProceVerbal($event)" >
                               <p class="fileName">{{proceverbalName}}</p>
                             </div>
@@ -190,33 +184,6 @@
                       <button class="button1" mat-button matStepperPrevious>Précédent</button>
                       <button class="button2" type="button" (click)="submit()" matSteppperNext>Enregistrer</button>
                   </form>
-                    <!-- <form [formGroup]="interForm">
-                        <div>
-                        <div class="center">
-                          <div class="posteinput2">
-                            <input type="text" [(ngModel)]="profession" formControlName="profession" placeholder="Titre du Poste">
-                           <select class="select6" formControlName="matriculemanager">
-                              <option class="option" value="" >Matricule Manager</option>
-                              <option *ngFor="let data of datamanager" [value]="data.id">{{data.libelle}}</option>
-                            </select>
-                          </div>
-                          <div class="fiche-et-pv">
-                            <div class="photo">
-                              <img class="image-upload" *ngIf="!url3==true" src="/assets/images/upload.png" alt="">
-                              <img class="image-upload" [src]="url3" height="60" alt="">
-                              <input formControlName="ficheposte" class="buttonphoto3" type="file" (change)="getPhoto($event.target)" >
-                            </div>
-                            <div class="photo">
-                              <img class="image-upload" *ngIf="!url4==true" src="/assets/images/upload.png" alt="">
-                              <img class="image-upload" [src]="url4" height="60" alt="">
-                              <input formControlName="proceverbal" class="buttonphoto4" type="file" (change)="getPhoto($event.target)" >
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <button class="button1" mat-button matStepperPrevious>Précédent</button>
-                      <button class="button2" type="submit" (click)="submit()" matSteppperNext>Valider</button>
-                  </form> -->
                   </div>
                   <div class="message" *ngIf="submited" >
                     <div class="grid1">
