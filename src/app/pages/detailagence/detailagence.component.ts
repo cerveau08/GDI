@@ -43,7 +43,7 @@ export class DetailagenceComponent implements OnInit {
   email;
   telephone;
   fixe;
-  siteweb;
+  site;
   adresse;
   logo;
   contrat;
@@ -73,11 +73,11 @@ export class DetailagenceComponent implements OnInit {
             this.email = this.dataAgence.email;
             this.telephone = this.dataAgence.telephone;
             this.fixe = this.dataAgence.fixe;
-            this.siteweb = this.dataAgence.siteweb;
+            this.site = this.dataAgence.site;
             this.adresse = this.dataAgence.adresse;
             this.logo = this.dataAgence.logo;
-           // this.contrat = this.dataAgence.data.contrat;
-          //  this.cnidg = this.dataAgence.data.cnidg;
+            this.contrat = this.dataAgence.data.contrat;
+            this.cnidg = this.dataAgence.data.cnidg;
             this.userAgence = this.dataAgence['user'];
             console.log(this.userAgence);
             

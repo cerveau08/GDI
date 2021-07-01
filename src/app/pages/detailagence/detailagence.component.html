@@ -100,7 +100,7 @@
                         <div class="photo">
                             <img alt="" *ngIf="!url1==true" src="{{image}}">
                             <img alt="" *ngIf="url1" [src]="url1" height="60">
-                            <input formControlName="logo" class="button" type="file" (change)="getPhoto($event)" >
+                            <input formControlName="logo" class="button" type="file" (change)="getPhoto($event.target)" >
                         </div>
                         <div class="others">
                             <div class="input1">
@@ -114,11 +114,11 @@
                                 <input type="text" [(ngModel)]="email"  formControlName="email" placeholder="Email">
                             </div>
                             <div class="input2">
-                                <input type="text" [(ngModel)]="mobile"  formControlName="mobile" placeholder="Numéro téléphone Mobile">
+                                <input type="text" [(ngModel)]="telephone"  formControlName="telephone" placeholder="Numéro téléphone Mobile">
                                 <input class="input3" [(ngModel)]="fixe"  type="text" formControlName="fixe" placeholder="Numéro Fixe">
                             </div>
                             <div class="input1">
-                                <input type="text" [(ngModel)]="siteweb" formControlName="siteweb" placeholder="Site web">
+                                <input type="text" [(ngModel)]="site" formControlName="site" placeholder="Site web">
                             </div>
                             <div class="input4">
                                 <textarea type="textarea" [(ngModel)]="adresse" formControlName="adresse" placeholder="Adresse"></textarea>
