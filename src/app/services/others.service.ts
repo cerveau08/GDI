@@ -144,4 +144,7 @@ addAgence(data) {
   postDemande(data) {
     return this.http.post<any>(`${this.reqUrl}/ajoutDemande`, data);
   }
+  getTotalAgenceActifInactif(id: number) {
+    return this.http.get(`${this.reqUrl}/statInterimaireAgence/${id}`);
+  }
 }

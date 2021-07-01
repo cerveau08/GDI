@@ -5,19 +5,19 @@
                 <img src="{{dataAgence?.logo}}" alt="">
             </div>
             <div class="agence">
-                <p class="nom2">{{dataAgence?.nom}}</p>
+                <p class="nom2">{{dataTotalAgence?.nom}}</p>
                 <div class="nombre">
                     <div class="total">
                         <p class="title">Total</p>
-                        <p class="libelle">{{dataAgence?.dateDebut | date: "Mdd"}}</p>
+                        <p class="libelle">{{total}}</p>
                     </div>
                     <div class="actif">
                         <p class="title">Actifs</p>
-                        <p class="libelle">{{dataAgence?.dateFin | date: "Mdd"}}</p>
+                        <p class="libelle">{{actifs}}</p>
                     </div>
                     <div class="archiv">
                         <p class="title">Archivés</p>
-                        <p class="libelle">{{dataAgence?.dateDebut | date: "Mdd"}}</p>
+                        <p class="libelle">{{inactifs}}</p>
                     </div>
                 </div>
             </div>
@@ -50,10 +50,10 @@
         </div>
         <div class="trait"></div>
         <p class="utilisateur">Liste des utilisateurs</p>
-        <div class="users" *ngFor="let p of dataAgence.user | slice:0:2;">
-            <div class="user1">
+        <div class="users" >
+            <div class="user1" *ngFor="let p of userAgence | slice:0:2;">
                 <div class="photo1">
-                    <img src="../assets/images/{{dataAgence?.avatar}}" alt="">
+                    <img src="{{p.avatar}}" alt="">
                 </div>
                 <div class="profil">
                     <p class="profil1">{{p?.nom}}</p>

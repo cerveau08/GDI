@@ -49,6 +49,10 @@ export class DetailagenceComponent implements OnInit {
   contrat;
   cnidg;
   userAgence;
+  dataTotalAgence;
+  total;
+  actifs;
+  inactifs;
   constructor(private activeroute: ActivatedRoute,
     private modalService: ModalService,
     private dataService: DataService,
@@ -72,9 +76,9 @@ export class DetailagenceComponent implements OnInit {
             this.siteweb = this.dataAgence.siteweb;
             this.adresse = this.dataAgence.adresse;
             this.logo = this.dataAgence.logo;
-            this.contrat = this.dataAgence.data.contrat;
-            this.cnidg = this.dataAgence.data.cnidg;
-            this.userAgence = this.dataAgence.data['user'];
+           // this.contrat = this.dataAgence.data.contrat;
+          //  this.cnidg = this.dataAgence.data.cnidg;
+            this.userAgence = this.dataAgence['user'];
             console.log(this.userAgence);
             
           },
@@ -83,6 +87,19 @@ export class DetailagenceComponent implements OnInit {
           }
         );
       })
+
+      this.otherService.getTotalAgenceActifInactif(this.item).subscribe(
+        data =>{
+          this.data = data;
+          this.dataTotalAgence = this.data['data'];
+          console.log(this.dataTotalAgence);
+          this.nom = this.dataTotalAgence[0].nom;
+          console.log(this.nom);
+          
+          this.total = this.dataTotalAgence[0].total;
+          this.actifs = this.dataTotalAgence[0].actifs;
+          this.inactifs = this.dataTotalAgence[0].inactifs;
+        })
     }
 
   ngOnInit() {
