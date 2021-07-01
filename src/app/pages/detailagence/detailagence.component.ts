@@ -72,7 +72,7 @@ export class DetailagenceComponent implements OnInit {
             this.siteweb = this.dataAgence.siteweb;
             this.adresse = this.dataAgence.adresse;
             this.logo = this.dataAgence.logo;
-            this.contrat = this.dataAgence.data.contrat;
+          //  this.contrat = this.dataAgence.data.contrat;
             this.cnidg = this.dataAgence.data.cnidg;
           },
           error =>{

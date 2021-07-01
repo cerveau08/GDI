@@ -18,7 +18,9 @@ body {
     "footer footer footer";
     height: 100vh;
 }
-
+button {
+  cursor: pointer;
+}
 app-header {
     height: 60px;
     color: black;

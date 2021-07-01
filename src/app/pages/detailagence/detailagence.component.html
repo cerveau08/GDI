@@ -2,7 +2,7 @@
     <div class="all2" >
         <div class="grid2">
             <div class="img">
-                <img src="{{dataAgence?.logo}}" alt="">
+                <img src="{{logo}}" alt="">
             </div>
             <div class="agence">
                 <p class="nom2">{{dataAgence?.nom}}</p>
@@ -50,14 +50,14 @@
         </div>
         <div class="trait"></div>
         <p class="utilisateur">Liste des utilisateurs</p>
-        <div class="users" *ngFor="let p of dataAgence.users | slice:0:2;">
-            <div class="user1">
+        <div class="users" >
+            <div class="user1" *ngFor="let p of dataAgence.user | slice:0:2;">
                 <div class="photo1">
-                    <img src="../assets/images/{{dataAgence?.user.avatar}}" alt="">
+                    <img src="{{p?.avatar}}" alt="">
                 </div>
                 <div class="profil">
-                    <p class="profil1">{{p?.user.nom}}</p>
-                    <p class="profil2">{{p?.user.prenom}}</p>
+                    <p class="profil1">{{p?.nom}}</p>
+                    <p class="profil2">{{p?.prenom}}</p>
                 </div>
             </div>
         </div>
