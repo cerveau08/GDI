@@ -151,12 +151,12 @@ input {
     margin-left: 10px;
 }
 .buttons {
-    width: 176px;
+    width: 106px;
     margin: 0 auto;
 }
 .button2 {
     width: 106px;
-    height: 40px;
+    height: 30px;
     background: #f16e00;
     font-size: 14px;
     font-weight: bold;
@@ -173,7 +173,7 @@ input {
 .trait {
     border: 1px solid #979797;
     background-color: #979797;
-    margin-top: 20px;
+    margin-top: 10px;
 }
 .p2 {
     font-size: 18px;
@@ -195,34 +195,34 @@ input {
     outline: none;
 }
 .button3 {
-    width: 160px;
+    width: 100px;
 }
 .button4 {
-    width: 160px;
+    width: 100px;
 }
 .button5 {
-    width: 160px;
+    width: 100px;
 }
 .button6 {
-    width: 160px;
+    width: 100px;
 }
 .button3::before {
     content: 'NINEA';
-    width: 100px;
-    height: 30px;
+    width: 90px;
+    height: 20px;
     background-color: white;
     color: black;
     text-align: center;
     text-decoration: none;
     font-weight: bold;
     display: inline-block;
-    font-size: 18px;
+    font-size: 14px;
     cursor: pointer;
     outline: none;
-    border: 3px solid black;
+    border: 2px solid black;
     margin-top: 10px;
     margin-left: 0px;
-    padding-top: 10px;
+    padding-top: 5px;
 
 }
 .button4::-webkit-file-upload-button {
@@ -231,21 +231,21 @@ input {
 }
 .button4::before {
     content: 'RCCM';
-    width: 100px;
-    height: 30px;
+    width: 90px;
+    height: 20px;
     background-color: white;
     color: black;
     text-align: center;
     text-decoration: none;
     font-weight: bold;
     display: inline-block;
-    font-size: 18px;
+    font-size: 14px;
     cursor: pointer;
     outline: none;
-    border: 3px solid black;
+    border: 2px solid black;
     margin-top: 10px;
     margin-left: 0px;
-    padding-top: 10px;
+    padding-top: 5px;
 }
 .button5::-webkit-file-upload-button {
     visibility: hidden;
@@ -253,21 +253,21 @@ input {
 }
 .button5::before {
     content: 'Contrat';
-    width: 100px;
-    height: 30px;
+    width: 90px;
+    height: 20px;
     background-color: white;
     color: black;
     text-align: center;
     text-decoration: none;
     font-weight: bold;
     display: inline-block;
-    font-size: 18px;
+    font-size: 14px;
     cursor: pointer;
     outline: none;
-    border: 3px solid black;
+    border: 2px solid black;
     margin-top: 10px;
     margin-left: 0px;
-    padding-top: 10px;
+    padding-top: 5px;
 
 }
 .button6::-webkit-file-upload-button {
@@ -276,21 +276,21 @@ input {
 }
 .button6::before {
     content: 'CNI DG';
-    width: 100px;
-    height: 30px;
+    width: 90px;
+    height: 20px;
     background-color: white;
     color: black;
     text-align: center;
     text-decoration: none;
     font-weight: bold;
     display: inline-block;
-    font-size: 18px;
+    font-size: 14px;
     cursor: pointer;
     outline: none;
-    border: 3px solid black;
+    border: 2px solid black;
     margin-top: 10px;
     margin-left: 0px;
-    padding-top: 10px;
+    padding-top: 5px;
 }
 
 

@@ -14,7 +14,7 @@
     <table style="overflow-x:auto;" aria-describedby = "mydesc">
         <thead>
             <tr class="head">
-                <th class="id1" id="manager">#</th>
+                <!-- <th class="id1" id="manager">#</th> -->
                 <th class="typ" id mois>
                     <div class="type">
                         <p>Mois</p> 
@@ -28,7 +28,7 @@
         </thead>
         <tbody>
             <tr *ngFor="let p of datas | filter:filterterm | paginate: { itemsPerPage: 10, currentPage: p }; let i = index">
-                <td class="id1">{{p.id}}</td>
+                <!-- <td class="id1">{{p.id}}</td> -->
                 <td>{{p.dateFin | date: 'MMMM yyyy'}}</td>
                 <td> {{p.dateFin | date: 'dd/MM/yyyy'}}</td>
                 <td>{{p.dateFin | date: 'dd'}}</td>

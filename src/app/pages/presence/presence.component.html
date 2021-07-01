@@ -31,7 +31,7 @@
             <table style="overflow-x:auto;" aria-describedby = "mydesc">
                 <thead>
                     <tr class="head">
-                        <th *ngIf="scrWidth>991" class="id1" id="manager">#</th>
+                        <!-- <th *ngIf="scrWidth>991" class="id1" id="manager">#</th> -->
                         <th class="typ" id="prenom">
                             <div class="type">
                                 <p>Prenom</p> 
@@ -57,7 +57,7 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let p of dataP | filter:filterterm | paginate: { itemsPerPage: 8, currentPage: p }; let i = index">
-                        <td *ngIf="scrWidth>991" class="id1">{{p.id}}</td>
+                        <!-- <td *ngIf="scrWidth>991" class="id1">{{p.id}}</td> -->
                         <td>{{p.prenom}}</td>
                         <td>{{p.nom}}</td>
                         <td> {{p.dateFin | date: 'dd'}}</td>

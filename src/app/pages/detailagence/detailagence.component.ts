@@ -38,10 +38,10 @@ export class DetailagenceComponent implements OnInit {
   fichierContrat?: File;
   data;
   nom;
-  nomdg;
+  responsable;
   numdg;
   email;
-  mobile;
+  telephone;
   fixe;
   siteweb;
   adresse;
@@ -64,17 +64,17 @@ export class DetailagenceComponent implements OnInit {
             this.dataAgence = this.data.data;
             console.log(this.dataAgence);
             this.nom = this.dataAgence.nom;
-            this.nomdg = this.dataAgence.responsable;
+            this.responsable = this.dataAgence.responsable;
             this.numdg = this.dataAgence.numdg;
             this.email = this.dataAgence.email;
-            this.mobile = this.dataAgence.telephone;
+            this.telephone = this.dataAgence.telephone;
             this.fixe = this.dataAgence.fixe;
-            this.siteweb = this.dataAgence.siteweb;
+            this.siteweb = this.dataAgence.site;
             this.adresse = this.dataAgence.adresse;
             this.logo = this.dataAgence.logo;
           //  this.contrat = this.dataAgence.data.contrat;
-            this.cnidg = this.dataAgence.data.cnidg;
-            this.userAgence = this.dataAgence.data['user'];
+           // this.cnidg = this.dataAgence.data.cnidg;
+            this.userAgence = this.dataAgence['user'];
             console.log(this.userAgence);
             
           },
