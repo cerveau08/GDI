@@ -49,9 +49,8 @@ export class ModifierinterComponent implements OnInit {
   adresse;
   numeroPiece;
   profession;
-  dateNaissance;
-  lieuNaissance;
-  dateSignature
+  datedenaissance;
+  lieudenaissance;
   sexe;
   dateDebut;
   dateFin;
@@ -90,14 +89,6 @@ export class ModifierinterComponent implements OnInit {
   diplomeName2;
   diplomeName3;
   idDiplome = 1;
-  ListePiece = [
-    {
-      libelle: "cni",
-    },
-    {
-      libelle: "passeport"
-    }
-  ];
   constructor(private activeroute: ActivatedRoute,
     private fb: FormBuilder,
     private dataService: DataService,
@@ -116,14 +107,12 @@ export class ModifierinterComponent implements OnInit {
             this.nom = this.dataInter.data.nom;
             this.adresse = this.dataInter.data.adresse;
             this.numeroPiece = this.dataInter.data.numeroPiece;
-            this.typePiece = this.dataInter.data.typePiece;
             this.profession = this.dataInter.data.profession;
             this.email = this.dataInter.data.email;
             this.sitmat = this.dataInter.data.sitmat;
             this.matricule = this.dataInter.data.matricule;
-            this.dateNaissance = this.dataInter.data.datedenaissance;
-            this.lieuNaissance = this.dataInter.data.lieudenaissance;
-            this.dateSignature = this.dataInter.data.dateSignature;
+            this.datedenaissance = this.dataInter.data.datedenaissance;
+            this.lieudenaissance = this.dataInter.data.lieudenaissance;
             this.sexe = this.dataInter.data.sexe;
             this.dateDebut = this.dataInter.data.contrat.dateDebut;
             this.dateFin = this.dataInter.data.contrat.dateFin;
@@ -155,10 +144,10 @@ export class ModifierinterComponent implements OnInit {
         nom: new FormControl(''),
         email: new FormControl(''),
         adresse: new FormControl(''),
-        dateNaissance: new FormControl(''),
-        lieuNaissance: new FormControl(''),
+        datedenaissance: new FormControl(''),
+        lieudenaissance: new FormControl(''),
         sexe: new FormControl(''),
-        dateSignature: new FormControl(''),
+        //adresse: new FormControl(''),
         sitmat: new FormControl(''),
         universite: new FormControl(''),
         photo: new FormControl(''),
@@ -294,34 +283,30 @@ export class ModifierinterComponent implements OnInit {
     console.log(this.interForm.value);
     const value = this.interForm.value;
     const info = new FormData();
-    info.append("adresse",this.interForm.value.adresse);
-    info.append("categorieId",this.interForm.value.categorieId);
+    info.append("societeId","3");
     info.append("structureId","14");
     info.append("domaineId","2");
-    info.append("societeId","3");
-    info.append("universite",this.interForm.value.universite);
-    info.append("sexe",this.interForm.value.sexe);
-    info.append("profession",this.interForm.value.profession);
-    info.append("sitmat",this.interForm.value.sitmat);
-<<<<<<< HEAD
-    info.append("salaireBrut",this.interForm.value.salaireBrut);
-    info.append("datedenaissance",this.interForm.value.datedenaissance);
-    info.append("lieudenaissance",this.interForm.value.lieudenaissance);
-=======
-    info.append("salaireBrut",this.interForm.value.salaire_brut);
-    info.append("dateNaissance",this.interForm.value.dateNaissance);
-    info.append("lieuNaissance",this.interForm.value.lieuNaissance);
->>>>>>> 8f7960176a66ad41972a2cd5c38e725f02edbd86
-    info.append("dateDebut",this.interForm.value.dateDebut);
-    info.append("dateFin",this.interForm.value.dateFin);
-    info.append("dateSignature",this.interForm.value.dateSignature);
-    info.append("poste",this.interForm.value.poste);
     info.append("typePiece",this.interForm.value.typePiece);
     info.append("numeroPiece",this.interForm.value.numeroPiece);
     info.append("nom",this.interForm.value.nom);
     info.append("prenom",this.interForm.value.prenom);
+    info.append("adresse",this.interForm.value.adresse);
     info.append("email",this.interForm.value.email);
     info.append("telephone",this.interForm.value.telephone);
+    info.append("universite",this.interForm.value.universite);
+    info.append("sexe",this.interForm.value.sexe);
+    info.append("profession",this.interForm.value.profession);
+    info.append("categorieId",this.interForm.value.categorieId);
+    info.append("directionId",this.interForm.value.direction);
+    info.append("departementId",this.interForm.value.departement);
+    info.append("sitmat",this.interForm.value.sitmat);
+    info.append("salaireBrut",this.interForm.value.salaireBrut);
+    info.append("datedenaissance",this.interForm.value.datedenaissance);
+    info.append("lieudenaissance",this.interForm.value.lieudenaissance);
+    info.append("dateDebut",this.interForm.value.dateDebut);
+    info.append("dateFin",this.interForm.value.dateFin);
+    info.append("dateSignature",this.interForm.value.dateSignature);
+    info.append("poste",this.interForm.value.poste);
     info.append("contratDoc",this.fichierContrat);
     info.append("fileCni",this.fichierCni);
     info.append("fileFicheposte",this.fichierPoste);
