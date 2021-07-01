@@ -39,8 +39,23 @@ export class AdduserComponent implements OnInit {
     matricule: "060210",
     nomInt: "5"
   };
+  dataInterSousContrat;
   show = false;
+
   matriculeForm: FormGroup;
+  dataMatriculeInter;
+  prenom;
+  nom;
+  email;
+  telephone;
+  fonction;
+  profil;
+  login;
+
+
+
+  interimaireId: FormGroup;
+  structureId: FormGroup;
   userForm: FormGroup;
   userAgentForm: FormGroup;
   datas: any;
@@ -54,14 +69,29 @@ export class AdduserComponent implements OnInit {
 
   ngOnInit() {
     this.user = localStorage.getItem('user');
+
+    this.otherService. getInterSousContrat().subscribe(
+      data => {
+       this.dataInterSousContrat = data.data;
+       console.log(data);
+      }
+    );
+
     this.datas = this.dataService.getData();
     this.matriculeForm = new FormGroup({
       matricule: new FormControl(''),
+      prenom: new FormControl(''),
+      nom: new FormControl(''),
+      email: new FormControl(''),
+      telephone: new FormControl(''),
+      fonction: new FormControl(''),
+      profil: new FormControl(''),
+      login: new FormControl(''),
     });
     this.userForm = new FormGroup({
       id: new FormControl(''),
       profil: new FormControl(''),
-    });
+    }); 
     this.userAgentForm = new FormGroup({
       prenom: new FormControl(''),
       nom: new FormControl(''),
@@ -73,8 +103,25 @@ export class AdduserComponent implements OnInit {
       avatar: new FormControl(''),
       agenceID: new FormControl(''),
       isManager: new FormControl('false'),
-      matricule: new FormControl('')
+      matricule: new FormControl(''),
+      interimaireId: new FormControl(''),
+      structureId: new FormControl('')
+
     })
+
+
+
+  //   this.matriculeForm = new FormGroup({
+  //     prenom: new FormControl(''),
+  //     nom: new FormControl(''),
+  //     email: new FormControl(''),
+  //     telephone: new FormControl(''),
+  //     fonction: new FormControl(''),
+  //     profil: new FormControl(''),
+  //     login: new FormControl(''),
+  // });
+
+
   }
   getPhoto(event: any) {
     this.fichierPhoto = event.target.files[0];
@@ -98,6 +145,44 @@ export class AdduserComponent implements OnInit {
     this.show = false;
   }
 
+
+
+
+matriculeResearch() {
+  let matricule = {
+    matricule: this.userAgentForm.value.matricule
+  }
+  this.otherService.matriculeFilter(matricule).subscribe(
+    (response) =>{
+      console.log(response)
+
+      this.dataMatriculeInter = response;
+            console.log(this.dataMatriculeInter);
+            this.prenom = this.dataMatriculeInter.data.prenom;
+            this.nom = this.dataMatriculeInter.data.nom;
+            this.email = this.dataMatriculeInter.data.email;
+            this.telephone = this.dataMatriculeInter.data.telephone;
+            this.fonction = this.dataMatriculeInter.data.fonction;
+            this.profil = this.dataMatriculeInter.data.profil;
+            this.login = this.dataMatriculeInter.data.login;
+
+
+    },
+    (error) =>{
+      console.log(error)
+    }
+  )
+}
+
+
+
+
+
+
+
+
+
+
   ajouterUser() {
     const formdata = new FormData();
     const value = this.userAgentForm.value;
@@ -110,6 +195,8 @@ export class AdduserComponent implements OnInit {
     formdata.append("email",this.userAgentForm.value.email);
     formdata.append("telephone",this.userAgentForm.value.telephone);
     formdata.append("matricule",this.userAgentForm.value.matricule);
+    formdata.append("interimaireId",this.userAgentForm.value.interimaireId);
+    formdata.append("structureId",this.userAgentForm.value.structureId);
     formdata.append("avatar",this.fichierPhoto);
     formdata.append("isManager","false");
     console.log(formdata);
