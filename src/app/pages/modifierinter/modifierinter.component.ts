@@ -40,9 +40,14 @@ export class ModifierinterComponent implements OnInit {
   donneeService;
   dataInter;
   nomUpdate;
+  structureId;
+  directionId;
+  departementId;
+  societeId;
   prenom;
   nom;
-  ncni;
+  adresse;
+  numeroPiece;
   profession;
   datedenaissance;
   lieudenaissance;
@@ -51,6 +56,7 @@ export class ModifierinterComponent implements OnInit {
   dateFin;
   sitmat;
   email;
+  categorieId;
   ficheposte;
   proceverbal;
   telephone;
@@ -94,31 +100,34 @@ export class ModifierinterComponent implements OnInit {
         console.log(this.item);
         this.otherService.getOneInterById(this.item).subscribe(
           data =>{
-             this.dataInter = data;
-             console.log(this.dataInter);
-             this.prenom = this.dataInter.data.prenom;
-              this.nom = this.dataInter.data.nom;
-              this.ncni = this.dataInter.data.ncni;
-              this.profession = this.dataInter.data.profession;
-              this.email = this.dataInter.data.email;
-              this.sitmat = this.dataInter.data.sitmat;
-              this.matricule = this.dataInter.data.matricule;
-              this.datedenaissance = this.dataInter.data.datedenaissance;
-              this.lieudenaissance = this.dataInter.data.lieudenaissance;
-              this.sexe = this.dataInter.data.sexe;
-              this.dateDebut = this.dataInter.data.dateDebut;
-              this.dateFin = this.dataInter.data.dateFin;
-              this.salaire_brut = this.dataInter.data.salaire_brut;
-              this.categorie = this.dataInter.data.categorie;
-              this.telephone = this.dataInter.data.telephone;
-              this.ficheposte = this.dataInter.data.ficheposte;
-              this.proceverbal = this.dataInter.data.proceverbal;
-              this.universite = this.dataInter.data.universite;
-              this.agence = this.dataInter.data.agence;
-              this.structure = this.dataInter.data.structure;
-              this.direction = this.dataInter.data.direction;
-              this.departement = this.dataInter.data.departement;
-              this.service = this.dataInter.data.service;
+            this.dataInter = data;
+            console.log(this.dataInter);
+            this.photo = this.dataInter.data.photo;
+            this.prenom = this.dataInter.data.prenom;
+            this.nom = this.dataInter.data.nom;
+            this.adresse = this.dataInter.data.adresse;
+            this.numeroPiece = this.dataInter.data.numeroPiece;
+            this.profession = this.dataInter.data.profession;
+            this.email = this.dataInter.data.email;
+            this.sitmat = this.dataInter.data.sitmat;
+            this.matricule = this.dataInter.data.matricule;
+            this.datedenaissance = this.dataInter.data.datedenaissance;
+            this.lieudenaissance = this.dataInter.data.lieudenaissance;
+            this.sexe = this.dataInter.data.sexe;
+            this.dateDebut = this.dataInter.data.contrat.dateDebut;
+            this.dateFin = this.dataInter.data.contrat.dateFin;
+            this.departementId = this.dataInter.data.structure.departement;
+            this.structureId = this.dataInter.data.structure.service;
+            this.directionId = this.dataInter.data.structure.direction;
+            this.societeId = this.dataInter.data.structure.societe;
+            this.salaire_brut = this.dataInter.data.salaire_brut;
+            this.categorie = this.dataInter.data.categorie.libelle;
+            this.categorieId = this.dataInter.data.categorie.id;
+            this.telephone = this.dataInter.data.telephone;
+            this.ficheposte = this.dataInter.data.ficheposte;
+            this.proceverbal = this.dataInter.data.proceverbal;
+            this.universite = this.dataInter.data.universite;
+            this.agence = this.dataInter.data.agence;
           },
           error =>{
             console.log(error)
@@ -134,32 +143,30 @@ export class ModifierinterComponent implements OnInit {
         prenom: new FormControl(''),
         nom: new FormControl(''),
         email: new FormControl(''),
+        adresse: new FormControl(''),
         datedenaissance: new FormControl(''),
         lieudenaissance: new FormControl(''),
         sexe: new FormControl(''),
-        adresse: new FormControl(''),
+        //adresse: new FormControl(''),
         sitmat: new FormControl(''),
-        diplome: new FormControl(''),
         universite: new FormControl(''),
         photo: new FormControl(''),
-        type: new FormControl(''),
+        typePiece: new FormControl(''),
         agence: new FormControl(''),
         dateDebut: new FormControl(''),
         dateFin: new FormControl(''),
-        categorie: new FormControl(''),
+        categorieId: new FormControl(''),
         salaire_brut: new FormControl(''),
-        structure: new FormControl(''),
+        structureId: new FormControl(''),
         direction: new FormControl(''),
+        societeId: new FormControl(''),
         departement: new FormControl(''),
-        service: new FormControl(''),
         filecontrat: new FormControl(''),
         profession: new FormControl(''),
         telephone: new FormControl(''),
         matriculemanager: new FormControl(''),
         fileFicheposte: new FormControl(''),
-        fileCni: new FormControl(''),
         fileproceverbal: new FormControl(''),
-        proceverbal: new FormControl(''),
         fileDiplome: new FormArray([
           new FormGroup({
             id: new FormControl(''),
@@ -213,6 +220,13 @@ export class ModifierinterComponent implements OnInit {
     }
   }
 
+   //recuperation du  contrat
+   getFileContrat(event: any) {
+    this.fichierContrat = event.target.files[0];
+    this.contratName = this.fichierContrat.name;
+    console.log(this.contratName);
+  }
+  
   getFileCni(event: any) {
     this.fichierCni = event.target.files[0];
     this.cniName = this.fichierCni.name;
@@ -286,8 +300,8 @@ export class ModifierinterComponent implements OnInit {
     info.append("departementId",this.interForm.value.departement);
     info.append("sitmat",this.interForm.value.sitmat);
     info.append("salaireBrut",this.interForm.value.salaireBrut);
-    info.append("dateNaissance",this.interForm.value.dateNaissance);
-    info.append("lieuNaissance",this.interForm.value.lieuNaissance);
+    info.append("datedenaissance",this.interForm.value.dateNaissance);
+    info.append("lieudenaissance",this.interForm.value.lieuNaissance);
     info.append("dateDebut",this.interForm.value.dateDebut);
     info.append("dateFin",this.interForm.value.dateFin);
     info.append("dateSignature",this.interForm.value.dateSignature);
@@ -353,7 +367,7 @@ export class ModifierinterComponent implements OnInit {
         this.image= reader.result
       } 
     }
-
+  
   readUrl1(event: any) {
     console.log('readUrl');
       if (event.target.files && event.target.files[0]) {

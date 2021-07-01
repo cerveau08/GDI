@@ -48,7 +48,7 @@ export class DetailinterComponent implements OnInit {
   agence;
   categorie;
   diplome;
-  ncni;
+  numeroPiece;
   email;
   profession;
   matricule;
@@ -69,6 +69,8 @@ export class DetailinterComponent implements OnInit {
   dataDepartement: any;
   donneeService: any;
   dataCategorie;
+  fileContrat;
+  fileFicheposte;
   constructor(private activeroute: ActivatedRoute,
               private modalService: ModalService,
               private dataService: DataService,
@@ -87,7 +89,7 @@ export class DetailinterComponent implements OnInit {
             this.prenom = this.dataInter.prenom;
             this.datedenaissance = this.dataInter.datedenaissance;
             this.lieudenaissance = this.dataInter.lieudenaissance;
-            this.ncni = this.dataInter.ncni;
+            this.numeroPiece = this.dataInter.numeroPiece;
             this.diplome = this.dataInter.diplome;
             this.email = this.dataInter.email;
             this.adresse = this.dataInter.adresse;
@@ -125,9 +127,10 @@ export class DetailinterComponent implements OnInit {
       directionId: new FormControl(''),
       departementId: new FormControl(''),
       serviceId: new FormControl(''),
+      profession: new FormControl(''),
       poste: new FormControl(''),
       contrat: new FormControl(''),
-      ficheposte: new FormControl(''),
+      fichePoste: new FormControl(''),
       interimaireId: new FormControl(''),
     });
     this.otherService.getAllSociete().subscribe(
@@ -210,7 +213,7 @@ export class DetailinterComponent implements OnInit {
   }
   
   validerContrat() {
-   this.contratForm.patchValue({personneId: this.item});
+   this.contratForm.patchValue({interimaireId: this.item});
  const formdata = new FormData();
 formdata.append("societeId","5");
 formdata.append("structureId","14");
@@ -220,13 +223,15 @@ formdata.append("domaineId","2");
 //formdata.append("domaineId",this.contratForm.value.domaineId);
 //formdata.append("societeId",this.contratForm.value.societeId);
 formdata.append("salaireBrut",this.contratForm.value.salaireBrut);
-formdata.append("personneId",this.contratForm.value.personneId);
+formdata.append("interimaireId", '8');
 formdata.append("categorieId",this.contratForm.value.categorieId);
 formdata.append("dateDebut",this.contratForm.value.dateDebut);
 formdata.append("dateFin",this.contratForm.value.dateFin);
 formdata.append("dateSignature",this.contratForm.value.dateSignature);
+formdata.append("profession",this.contratForm.value.profession);
 formdata.append("poste",this.contratForm.value.poste);
-formdata.append("document",this.contratForm.value.document);
+formdata.append("contrat",this.urlcontrat);
+formdata.append("fichePoste",this.urlfichedeposte);
   //  console.log(contratForm);
     //console.log(this.contratForm.value);
     this.otherService.renouvelerContrat(formdata).subscribe(
@@ -245,8 +250,7 @@ formdata.append("document",this.contratForm.value.document);
         interimaire: JSON.stringify(this.item)
       }
     })
-  }
-
+  } 
   contrat(e:any) {
     this.urlcontrat= e.files.item(0);
     console.log(this.urlcontrat);
@@ -268,5 +272,9 @@ formdata.append("document",this.contratForm.value.document);
      // this.fil= reader.result
      // console.log(this.image)
     }
+   /* this.fileFicheposte= e.target.files.item(0);
+    console.log(this.fileFicheposte.type);
+    this.filenamefichedeposte = this.fileFicheposte.name;
+    console.log(this.filenamefichedeposte);*/
   }
 }
