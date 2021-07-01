@@ -90,6 +90,9 @@ addAgence(data) {
   renouvellerContrat(data) {
     return this.http.post<any>(`${this.reqUrl}/ajoutContrat`, data);
   }
+  reconduireContrat(data) {
+    return this.http.post<any>(`${this.reqUrl}/reconduireContrat`, data);
+  }
   getListInterFinContrat(id: number): Observable<any> {
     return this.http.get<any>(`${this.reqUrl}/interimFinContrat?page=1`);
   }
@@ -151,5 +154,8 @@ addAgence(data) {
 
   getListMatricule(): Observable<any> {
     return this.http.get<any>(this.reqUrl + '/managers/list');
+  }
+  getTotalAgenceActifInactif(id: number) {
+    return this.http.get(`${this.reqUrl}/statInterimaireAgence/${id}`);
   }
 }

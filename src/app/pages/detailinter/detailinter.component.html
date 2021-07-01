@@ -204,18 +204,18 @@
         <div class="form-contrat">
             <form [formGroup]="contratForm">
                 <div class="content-form-contrat">
-                    <div class="input2">
+                    <!--<div class="input2">
                         <select class="select5" formControlName="categorieId">
                             <option class="option" value="" disabled selected hidden>Catégorie</option>
                             <option *ngFor="let data of dataCategorie" [value]="data.id">{{data.libelle}}</option>
                         </select>
                         <input class="input3" type="text" formControlName="salaireBrut" placeholder="Montant Salaire Brut">
-                    </div>
+                    </div>-->
                     <div class="input2">
                         <input type="date" formControlName="dateDebut" placeholder="Date Début">
                         <input class="input3" type="date" formControlName="dateFin" placeholder="Date Fin">
                     </div>
-                    <div class="input2">
+                    <!--<div class="input2">
                         <select class="select5" #societe formControlName="societeId" (change)="directionsListe(societe.value)">
                             <option class="option" value="" disabled selected hidden>Societe</option>
                             <option *ngFor="let data of dataSociete" [value]="data.id">{{data.libelle}}</option>
@@ -234,20 +234,20 @@
                             <option class="option" value="" disabled selected hidden>Service</option>
                             <option *ngFor="let data of donneeService" value="{{data.id}}">{{data.libelle}}</option>
                         </select>
-                    </div>
+                    </div>-->
                     <div class="input2">
                         <input type="text" formControlName="poste" placeholder="Titre du Poste">
                         <input type="date" class="input3" formControlName="dateSignature" placeholder="Date Signature">
                     </div>
                     <div class="buttons-fichier">
                         <div>
-                            <input formControlName="contrat"  class="buttoncontrat" type="file" (change)="contrat($event.target)">
+                            <input formControlName="fileContrat"  class="buttoncontrat" type="file" (change)="contrat($event.target)">
                             <p class="filename" *ngIf="urlcontrat">{{filenamecontrat}}</p>
                         </div>
-                        <div>
+                        <!--<div>
                             <input formControlName="fichePoste"  class="buttonficheposte" type="file" (change)="fichedeposte($event.target)">
                             <p class="filename" *ngIf="urlfichedeposte">{{filenamefichedeposte}}</p>
-                        </div>
+                        </div>-->
                     </div>
                     <div class="filenames">
                         <div class="nom-file2">
@@ -259,7 +259,7 @@
                     </div>
                 </div>
                 <div class="buttons-content-valider">
-                   <button class="button-enregistrer-contrat" (click)="validerContrat()" type="button">Valider</button>
+                   <button class="button-enregistrer-contrat" (click)="reconduireContrat()" type="button">Valider</button>
                 </div>
             </form>
         </div>
