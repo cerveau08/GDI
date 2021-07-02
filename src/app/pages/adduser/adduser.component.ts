@@ -111,15 +111,7 @@ export class AdduserComponent implements OnInit {
 
 
 
-  //   this.matriculeForm = new FormGroup({
-  //     prenom: new FormControl(''),
-  //     nom: new FormControl(''),
-  //     email: new FormControl(''),
-  //     telephone: new FormControl(''),
-  //     fonction: new FormControl(''),
-  //     profil: new FormControl(''),
-  //     login: new FormControl(''),
-  // });
+  
 
 
   }
@@ -184,7 +176,7 @@ matriculeResearch() {
 
 
   ajouterUser() {
-    const formdata = new FormData();
+    const formdata = new FormData();  
     const value = this.userAgentForm.value;
     formdata.append("prenom",this.userAgentForm.value.prenom);
     formdata.append("nom",this.userAgentForm.value.nom);
