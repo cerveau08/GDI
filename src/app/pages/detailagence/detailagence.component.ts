@@ -72,7 +72,7 @@ export class DetailagenceComponent implements OnInit {
             this.numdg = this.dataAgence.numdg;
             this.email = this.dataAgence.email;
             this.telephone = this.dataAgence.telephone;
-            this.fixe = this.dataAgence.fixe;
+            //this.fixe = this.dataAgence.fixe;
             this.site = this.dataAgence.site;
             this.adresse = this.dataAgence.adresse;
             this.logo = this.dataAgence.logo;

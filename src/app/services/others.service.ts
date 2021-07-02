@@ -90,6 +90,9 @@ addAgence(data) {
   renouvellerContrat(data) {
     return this.http.post<any>(`${this.reqUrl}/ajoutContrat`, data);
   }
+  reconduireContrat(data) {
+    return this.http.post<any>(`${this.reqUrl}/reconduireContrat`, data);
+  }
   getListInterFinContrat(id: number): Observable<any> {
     return this.http.get<any>(`${this.reqUrl}/interimFinContrat?page=1`);
   }
