@@ -11,6 +11,7 @@ import { AuthService } from '../services/auth.service';
 })
 export class LoginComponent implements OnInit {
 
+  public loading = false;
   loginForm: FormGroup;
   constructor(private route: Router,
               private auth: AuthService) {
@@ -34,6 +35,7 @@ export class LoginComponent implements OnInit {
   }
   
   onSubmit() {
+    this.loading = true;
     const user =
     {
       username: this.loginForm.value.username,
@@ -48,13 +50,15 @@ export class LoginComponent implements OnInit {
         console.log(profil);
         let prenom = data.data.prenom
         console.log(prenom);
-
         localStorage.setItem('token', data.token)
         localStorage.setItem('user', profil)
         localStorage.setItem('prenom', prenom);
+        this.loading = false;
         if(data) {
           this.route.navigate(['accueil/home']);
         }
+      }, error => {
+        this.loading = false;
       }
     )
   }

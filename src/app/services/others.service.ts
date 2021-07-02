@@ -148,8 +148,8 @@ addAgence(data) {
     return this.http.post<any>(`${this.reqUrl}/ajoutDemande`, data);
   }
 
-  matriculeFilter(data) {
-    return this.http.post<any>(`${this.reqUrl}/searchUtilisateur`, data);
+  pieceFilter(data) {
+    return this.http.post<any>(`${this.reqUrl}/interimaireByPiece`, data);
   }
 
   getListMatricule(): Observable<any> {
@@ -173,4 +173,9 @@ addAgence(data) {
   arreterContrat(id: number){
     return this.http.get(`${this.reqUrl}/arreterContrat/${id}`);
   }
+
+  getprofil(): Observable<any> {
+    return this.http.get<any>(this.reqUrl + '/profils');
+  }
+
 }
