@@ -1,4 +1,5 @@
 <div class="all" *ngIf="scrWidth>991">
+    <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
     <div class="all2">
         <div class="login">
             <div class="logo">
@@ -26,6 +27,7 @@
     </div>
 </div>
 <div class="content-mobile" *ngIf="scrWidth<991">
+    <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
     <div class="col-lg-3 col-6 forms-mobile">
         <form [formGroup]="loginForm">
             <h3 class="passe-mobile">Connexion</h3>

@@ -148,8 +148,8 @@ addAgence(data) {
     return this.http.post<any>(`${this.reqUrl}/ajoutDemande`, data);
   }
 
-  matriculeFilter(data) {
-    return this.http.post<any>(`${this.reqUrl}/searchUtilisateur`, data);
+  pieceFilter(data) {
+    return this.http.post<any>(`${this.reqUrl}/interimaireByPiece`, data);
   }
 
   getListMatricule(): Observable<any> {
