@@ -69,11 +69,11 @@
     outline: none;
     cursor: pointer;
     font-weight: 600;
-    margin-top: 15px;
+    margin-top: 0;
 }
 .content-button {
     width: 90px;
-    margin: 0 auto;
+    margin: 20px auto;
 }
 .form-add-manager {
     margin-top: 20px;
@@ -141,8 +141,11 @@
     font-size: 14px;
 }
 .form-add-user-agent {
-    width: 450px;
-    margin: 20px auto;
+    width: 470px;
+    margin: 0 auto;
+}
+.select-societe {
+    margin-left: 10px;
 }
 .infoinput1 input {
     width: 300px;

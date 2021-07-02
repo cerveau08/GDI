@@ -42,7 +42,7 @@ export class AdduserComponent implements OnInit {
   dataInterSousContrat;
   show = false;
 
-  matriculeForm: FormGroup;
+  pieceForm: FormGroup;
   dataMatriculeInter;
   prenom;
   nom;
@@ -51,9 +51,17 @@ export class AdduserComponent implements OnInit {
   fonction;
   profil;
   login;
-
-
-
+  ListePiece = [
+    {
+      id: 1, 
+      libelle: "CNI",
+    },
+    {
+      id: 2, 
+      libelle: "Passeport"
+    }
+  ];
+  dataSociete;
   interimaireId: FormGroup;
   structureId: FormGroup;
   userForm: FormGroup;
@@ -76,17 +84,10 @@ export class AdduserComponent implements OnInit {
        console.log(data);
       }
     );
-
-    this.datas = this.dataService.getData();
-    this.matriculeForm = new FormGroup({
-      matricule: new FormControl(''),
-      prenom: new FormControl(''),
-      nom: new FormControl(''),
-      email: new FormControl(''),
-      telephone: new FormControl(''),
-      fonction: new FormControl(''),
-      profil: new FormControl(''),
-      login: new FormControl(''),
+    this.pieceForm = new FormGroup({
+      typePiece: new FormControl(''),
+      numeroPiece: new FormControl(''),
+      societeId: new FormControl('')
     });
     this.userForm = new FormGroup({
       id: new FormControl(''),
@@ -109,19 +110,13 @@ export class AdduserComponent implements OnInit {
 
     })
 
-
-
-  //   this.matriculeForm = new FormGroup({
-  //     prenom: new FormControl(''),
-  //     nom: new FormControl(''),
-  //     email: new FormControl(''),
-  //     telephone: new FormControl(''),
-  //     fonction: new FormControl(''),
-  //     profil: new FormControl(''),
-  //     login: new FormControl(''),
-  // });
-
-
+    //recupere les societes
+    this.otherService.getAllSociete().subscribe(
+      data => {
+        this.dataSociete = data["data"];
+        console.log(data);
+      }
+    );
   }
   getPhoto(event: any) {
     this.fichierPhoto = event.target.files[0];
@@ -134,45 +129,35 @@ export class AdduserComponent implements OnInit {
     }
   }
   submitted1() {
-    const info = {
-        matricule: this.matriculeForm.value.matricule,
+  /*  const info = {
+      matricule: this.pieceForm.value.matricule,
     } 
     this.show = true;
     console.log(info);
-    return info;
+    return info;*/
   }
   submitted2() {
     this.show = false;
   }
 
-
-
-
-matriculeResearch() {
-  let matricule = {
-    matricule: this.userAgentForm.value.matricule
+  rechercherInterimaire() {  
+    this.otherService.pieceFilter(this.pieceForm.value).subscribe(
+      (response) => {
+        this.dataMatriculeInter = response;
+        console.log(this.dataMatriculeInter);
+        this.prenom = this.dataMatriculeInter.data.personne.prenom;
+        this.nom = this.dataMatriculeInter.data.personne.nom;
+      //  this.email = this.dataMatriculeInter.data.email;
+        this.telephone = this.dataMatriculeInter.data.personne.telephone;
+        this.fonction = this.dataMatriculeInter.data.fonction;
+        this.profil = this.dataMatriculeInter.data.profil;
+        this.login = this.dataMatriculeInter.data.login;
+      },
+      (error) =>{
+        console.log(error)
+      }
+    )
   }
-  this.otherService.matriculeFilter(matricule).subscribe(
-    (response) =>{
-      console.log(response)
-
-      this.dataMatriculeInter = response;
-            console.log(this.dataMatriculeInter);
-            this.prenom = this.dataMatriculeInter.data.prenom;
-            this.nom = this.dataMatriculeInter.data.nom;
-            this.email = this.dataMatriculeInter.data.email;
-            this.telephone = this.dataMatriculeInter.data.telephone;
-            this.fonction = this.dataMatriculeInter.data.fonction;
-            this.profil = this.dataMatriculeInter.data.profil;
-            this.login = this.dataMatriculeInter.data.login;
-
-
-    },
-    (error) =>{
-      console.log(error)
-    }
-  )
-}
 
 
 

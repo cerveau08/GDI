@@ -144,17 +144,15 @@ addAgence(data) {
   postDemande(data) {
     return this.http.post<any>(`${this.reqUrl}/ajoutDemande`, data);
   }
-<<<<<<< HEAD
 
-  matriculeFilter(data) {
-    return this.http.post<any>(`${this.reqUrl}/searchUtilisateur`, data);
+  pieceFilter(data) {
+    return this.http.post<any>(`${this.reqUrl}/interimaireByPiece`, data);
   }
 
   getListMatricule(): Observable<any> {
     return this.http.get<any>(this.reqUrl + '/managers/list');
-=======
+  }
   getTotalAgenceActifInactif(id: number) {
     return this.http.get(`${this.reqUrl}/statInterimaireAgence/${id}`);
->>>>>>> 00e942df4b79c29f2e71d6c4907fca7aee917400
   }
 }

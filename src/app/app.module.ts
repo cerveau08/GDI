@@ -57,6 +57,7 @@ import { AdduserComponent } from './pages/adduser/adduser.component';
 import { LesdemandesComponent } from './pages/lesdemandes/lesdemandes.component';
 import { JwtInterceptorService } from './helpers/jwt-interceptor.service';
 import { ObjectifsComponent } from './pages/objectifs/objectifs.component';
+import { NgxLoadingModule } from 'ngx-loading';
 
 @NgModule({
   declarations: [
@@ -120,7 +121,8 @@ import { ObjectifsComponent } from './pages/objectifs/objectifs.component';
     MatSidenavModule,
     MatInputModule,
     //AlertModule,
-    NgCircleProgressModule.forRoot({})
+    NgCircleProgressModule.forRoot({}),
+    NgxLoadingModule.forRoot({})
   ],
   providers: [DatePipe,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorService, multi: true },
