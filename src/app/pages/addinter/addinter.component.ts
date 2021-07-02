@@ -237,10 +237,11 @@ export class AddinterComponent implements OnInit {
     this.otherService.addInter(formdata).subscribe(
       data => {
         console.log(data);
-        //if (data) {
-         // alert('Intérimaire ajouté avec succées...');
-        //}
-        //this.route.navigate(['/accueil/listagence']);
+        if (data) {
+            // alert('Intérimaire ajouté avec succées...');
+          this.route.navigate(['/accueil/sousContrat']);
+        }
+     
         if(data.status == true) {
           this.submited = true;
         }

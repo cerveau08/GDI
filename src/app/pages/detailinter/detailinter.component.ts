@@ -34,9 +34,9 @@ export class DetailinterComponent implements OnInit {
   
   viewer = 'google';  
   selectedType = 'docx';   
-  DemoDoc="http://www.africau.edu/images/default/sample.pdf" 
-  DemoDoc1="https://file-examples.com/wp-content/uploads/2017/02/file-sample_100kB.doc"
-  DemoDoc2="https://www.le.ac.uk/oerresources/bdra/html/resources/example.txt" 
+  contratDoc="" 
+  fichePosteDoc=""
+  proceVerbalDoc="" 
   data;
   nom;
   prenom;
@@ -107,6 +107,8 @@ export class DetailinterComponent implements OnInit {
             this.categorie = this.dataInter.categorie;
             this.matricule = this.dataInter.matricule;
             this.sexe = this.dataInter.sexe;
+            this.contratDoc = this.dataInter.fileContrat;
+            this.fichePosteDoc = this.dataInter.fileFichePoste;
            /* this.direction = this.dataInter.direction;
             this.departement = this.dataInter.departement;
             this.service = this.dataInter.service;*/
@@ -184,7 +186,7 @@ export class DetailinterComponent implements OnInit {
     this.fileSaver.saveUrl(p.pathfile, p.file);
   }
   public getfilemodal() {
-    this.fileSaver.saveUrl(this.DemoDoc, 'contrat');
+    this.fileSaver.saveUrl(this.contratDoc, 'contrat');
   }
 
   getwidth() {
@@ -298,5 +300,18 @@ formdata.append("fichePoste",this.urlfichedeposte);
     console.log(this.fileFicheposte.type);
     this.filenamefichedeposte = this.fileFicheposte.name;
     console.log(this.filenamefichedeposte);*/
+  }
+  arretContrat() {
+    this.otherService.arreterContrat(this.item).subscribe(
+      (response) =>{
+       console.log(response)
+       if (response) {
+        this.router.navigate(['/accueil/sousContrat']);
+       }
+      },
+      (error)=>{
+        console.log(error);
+      }
+    );
   }
 }

@@ -29,7 +29,7 @@ export class DetailagenceComponent implements OnInit {
   url2;
   urlUser;
   viewer = 'google';
-  DemoDoc="http://www.africau.edu/images/default/sample.pdf";
+  contratDoc="";
   DemoDoc1="https://file-examples.com/wp-content/uploads/2017/02/file-sample_100kB.doc";
   DemoDoc2="https://www.le.ac.uk/oerresources/bdra/html/resources/example.txt"; 
   contratName;
@@ -68,11 +68,11 @@ export class DetailagenceComponent implements OnInit {
             this.dataAgence = this.data.data;
             console.log(this.dataAgence);
             this.nom = this.dataAgence.nom;
-            this.responsable = this.dataAgence.responsable;
+            this.responsable  = this.dataAgence.responsable;
             this.numdg = this.dataAgence.numdg;
             this.email = this.dataAgence.email;
             this.telephone = this.dataAgence.telephone;
-            //this.fixe = this.dataAgence.fixe;
+            this.contratDoc = this.dataAgence.contrat;
             this.site = this.dataAgence.site;
             this.adresse = this.dataAgence.adresse;
             this.logo = this.dataAgence.logo;
@@ -214,7 +214,7 @@ export class DetailagenceComponent implements OnInit {
   }
 
   public getfilemodal() {
-    this.fileSaver.saveUrl(this.DemoDoc, 'contrat');
+    this.fileSaver.saveUrl(this.contratDoc, 'contrat');
   }
 
   openModal(id: string) {
