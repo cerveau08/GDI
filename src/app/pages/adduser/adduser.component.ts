@@ -147,11 +147,8 @@ export class AdduserComponent implements OnInit {
         console.log(this.dataMatriculeInter);
         this.prenom = this.dataMatriculeInter.data.personne.prenom;
         this.nom = this.dataMatriculeInter.data.personne.nom;
-      //  this.email = this.dataMatriculeInter.data.email;
         this.telephone = this.dataMatriculeInter.data.personne.telephone;
-        this.fonction = this.dataMatriculeInter.data.fonction;
-        this.profil = this.dataMatriculeInter.data.profil;
-        this.login = this.dataMatriculeInter.data.login;
+        this.userAgentForm.patchValue({interimaireId: this.dataMatriculeInter.data.interimaire.id});
       },
       (error) =>{
         console.log(error)
