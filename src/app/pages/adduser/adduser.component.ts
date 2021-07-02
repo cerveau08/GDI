@@ -61,6 +61,7 @@ export class AdduserComponent implements OnInit {
       libelle: "Passeport"
     }
   ];
+  dataprofils;
   dataSociete;
   interimaireId: FormGroup;
   structureId: FormGroup;
@@ -77,7 +78,6 @@ export class AdduserComponent implements OnInit {
 
   ngOnInit() {
     this.user = localStorage.getItem('user');
-
     this.otherService. getInterSousContrat().subscribe(
       data => {
        this.dataInterSousContrat = data.data;
@@ -117,6 +117,16 @@ export class AdduserComponent implements OnInit {
         console.log(data);
       }
     );
+
+
+      //recupere les profils
+    this.otherService.getprofil().subscribe(
+      data => {
+        this.dataprofils = data["data"];
+        console.log(data);
+      }
+    );
+
   }
   getPhoto(event: any) {
     this.fichierPhoto = event.target.files[0];
@@ -156,22 +166,13 @@ export class AdduserComponent implements OnInit {
     )
   }
 
-
-
-
-
-
-
-
-
-
   ajouterUser() {
     const formdata = new FormData();  
     const value = this.userAgentForm.value;
     formdata.append("prenom",this.userAgentForm.value.prenom);
     formdata.append("nom",this.userAgentForm.value.nom);
-   // formdata.append("profil",this.userAgentForm.value.profil);
-    formdata.append("profil","8");
+   formdata.append("profil",this.userAgentForm.value.profil);
+    // formdata.append("profil","8");
     formdata.append("fonction",this.userAgentForm.value.poste);
     formdata.append("agenceId",this.userAgentForm.value.agenceId);
     formdata.append("email",this.userAgentForm.value.email);

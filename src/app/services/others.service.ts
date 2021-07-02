@@ -158,4 +158,9 @@ addAgence(data) {
   getTotalAgenceActifInactif(id: number) {
     return this.http.get(`${this.reqUrl}/statInterimaireAgence/${id}`);
   }
+
+  getprofil(): Observable<any> {
+    return this.http.get<any>(this.reqUrl + '/profils');
+  }
+
 }
