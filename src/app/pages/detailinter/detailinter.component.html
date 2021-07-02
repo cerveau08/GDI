@@ -54,12 +54,16 @@
             </div>
         </div>
         <div class="lesbouton">
-            <button  class="button1" (click)="openModal('custom-modal-1')">Contrat</button>
-            <button  class="button2" (click)="openModal('custom-modal-2')">Attestations de présence</button>
-            <button  class="button3" (click)="openModal('custom-modal-3')">Fiche de poste</button>
-            <button  class="button4" (click)="objectif()">Objectifs</button>
-            <button  class="button5" (click)="openModal('custom-modal-4')">Renouveler contrat</button>
-            <button  class="button5" (click)="openModal('custom-modal-5')">Reconduire contrat</button>
+            <button class="button1" (click)="openModal('custom-modal-1')">Contrat</button>
+            <button class="button2" (click)="openModal('custom-modal-2')">Attestations de présence</button>
+            <button class="button3" (click)="openModal('custom-modal-3')">Fiche de poste</button>
+            <button class="button4" (click)="objectif()">Objectifs</button>
+        </div>
+        <div class="lesbouton">
+            <button class="button5" (click)="openModal('custom-modal-4')">Renouveler contrat</button>
+            <button class="button6" (click)="openModal('custom-modal-5')">Reconduire contrat</button>
+            <button class="button7" (click)="openModal('custom-modal-6')">Arrêter contrat</button>
+            <button class="button8" (click)="openModal('custom-modal-7')">Bannir Interimaire</button>
         </div>
     </div>
 </div>
@@ -262,6 +266,92 @@
                    <button class="button-enregistrer-contrat" (click)="reconduireContrat()" type="button">Valider</button>
                 </div>
             </form>
+        </div>
+    </jw-modal>
+</div>
+
+<!--modal6-->
+<div class="modal">
+    <jw-modal id="custom-modal-6">
+        <div class="tableau">
+            <mat-icon style="cursor: pointer;" (click)="closeModal('custom-modal-6');" class="clear">clear</mat-icon>
+            <p class="dtl1">Arreter le Contrat en-cours de {{prenom}} {{nom}}</p>
+            <p>
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
+                Doloribus harum sapiente a voluptatum inventore consectetur 
+                in ipsa explicabo est nulla at tempora doloremque eaque 
+                veritatis consequuntur necessitatibus, eligendi recusandae quia!
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                Laudantium molestiae alias dolores suscipit at voluptatibus
+                reiciendis doloremque voluptate nemo quae unde deserunt temporibus 
+                exercitationem aperiam, corporis recusandae incidunt ratione maxime?
+            </p>
+            <p>
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
+                Doloribus harum sapiente a voluptatum inventore consectetur 
+                in ipsa explicabo est nulla at tempora doloremque eaque 
+                veritatis consequuntur necessitatibus, eligendi recusandae quia!
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                Laudantium molestiae alias dolores suscipit at voluptatibus
+                reiciendis doloremque voluptate nemo quae unde deserunt temporibus 
+                exercitationem aperiam, corporis recusandae incidunt ratione maxime?
+            </p>
+            <p>
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
+                Doloribus harum sapiente a voluptatum inventore consectetur 
+                in ipsa explicabo est nulla at tempora doloremque eaque 
+                veritatis consequuntur necessitatibus, eligendi recusandae quia!
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                Laudantium molestiae alias dolores suscipit at voluptatibus
+                reiciendis doloremque voluptate nemo quae unde deserunt temporibus 
+                exercitationem aperiam, corporis recusandae incidunt ratione maxime?
+            </p>
+            <div class="btns3">
+                <button (click)="getfilemodal()"  class="button7">Arréter</button>
+            </div>
+        </div>
+    </jw-modal>
+</div>
+
+<!--modal7-->
+<div class="modal">
+    <jw-modal id="custom-modal-7">
+        <div class="tableau">
+            <mat-icon style="cursor: pointer;" (click)="closeModal('custom-modal-7');" class="clear">clear</mat-icon>
+            <p class="dtl1">Bannir {{prenom}} {{nom}}</p>
+            <p>
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
+                Doloribus harum sapiente a voluptatum inventore consectetur 
+                in ipsa explicabo est nulla at tempora doloremque eaque 
+                veritatis consequuntur necessitatibus, eligendi recusandae quia!
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                Laudantium molestiae alias dolores suscipit at voluptatibus
+                reiciendis doloremque voluptate nemo quae unde deserunt temporibus 
+                exercitationem aperiam, corporis recusandae incidunt ratione maxime?
+            </p>
+            <p>
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
+                Doloribus harum sapiente a voluptatum inventore consectetur 
+                in ipsa explicabo est nulla at tempora doloremque eaque 
+                veritatis consequuntur necessitatibus, eligendi recusandae quia!
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                Laudantium molestiae alias dolores suscipit at voluptatibus
+                reiciendis doloremque voluptate nemo quae unde deserunt temporibus 
+                exercitationem aperiam, corporis recusandae incidunt ratione maxime?
+            </p>
+            <p>
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
+                Doloribus harum sapiente a voluptatum inventore consectetur 
+                in ipsa explicabo est nulla at tempora doloremque eaque 
+                veritatis consequuntur necessitatibus, eligendi recusandae quia!
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                Laudantium molestiae alias dolores suscipit at voluptatibus
+                reiciendis doloremque voluptate nemo quae unde deserunt temporibus 
+                exercitationem aperiam, corporis recusandae incidunt ratione maxime?
+            </p>
+            <div class="btns3">
+                <button (click)="getfilemodal()"  class="button8">Bannir</button>
+            </div>
         </div>
     </jw-modal>
 </div>
