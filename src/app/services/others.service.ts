@@ -170,12 +170,14 @@ addAgence(data) {
   statInterByAgence(){
     return this.http.get(`${this.reqUrl}/statInterimaireByAgence`);
   }
-  arreterContrat(id: number){
-    return this.http.get(`${this.reqUrl}/arreterContrat/${id}`);
+  arreterContrat(id: number, data: string){
+    //return this.http.put(`${this.reqUrl}/arreterContrat/${id}`, data);
   }
-
   getprofil(): Observable<any> {
     return this.http.get<any>(this.reqUrl + '/profils');
   }
-
+ // recupere les details d'une agence
+ getContratById(id: number) {
+  return this.http.get(this.reqUrl + `/contrat/${id}`);
+}
 }

@@ -24,7 +24,7 @@ export class ObjectifsComponent implements OnInit {
     this.otherService.getListeObjectif(this.item).subscribe(
       data => {
         this.data = data
-        this.objectif = this.data.data;
+        this.objectif = this.data["data"];
         console.log(data);
         
       }

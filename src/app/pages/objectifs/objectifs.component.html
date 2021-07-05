@@ -1,10 +1,10 @@
 <div class="objectif-container">
-    <h1 class="titre-objectif">Liste des objectifs du contrat de {{item}}</h1>
+    <h1 class="titre-objectif">Liste des objectifs de l'interimaire {{item}}</h1>
     <div class="content-list-objectif">
         <div class="item-objectif" *ngFor="let p of objectif">
             <div class="content-item-object">
-                <p class="objectif-title">Objectif 1</p>
-                <p class="objectif-content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facere impedit obcaecati doloribus laborum, ex odio veritatis magni ullam. Harum quasi deserunt, sapiente omnis quaerat reiciendis quis incidunt minus officia unde.</p>
+                <p class="objectif-title">{{p.titre}}</p>
+                <p class="objectif-content">{{p.description}}</p>
             </div>
             <div class="objectif-buttons">
                 <button class="button-evaluer">Evaluer</button>
