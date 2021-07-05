@@ -92,31 +92,31 @@
         <jw-modal id="objectif-modal-7">
             <mat-icon style="cursor: pointer;" (click)="closeModal('objectif-modal-7');" class="clear">clear</mat-icon>
             <div class="all">
-                <h1>Ajouter des Objectifs</h1>
+                <h1 class="titre-objectif">Ajouter un Objectif</h1>
                 <div>
                     <form [formGroup]="objectifForm">
-                        <div class="forms">
+                        <div class="forms-objectif">
                             <div class="content-form">
                                 <div class="input-titre">
-                                    <p for="titre">Titre</p>
+                                    <p class="label-input" for="titre">Titre</p>
                                     <input id="titre" type="text" formControlName="titre" placeholder="Titre">
                                 </div>
                                 <div class="input-description">
-                                    <p for="description">Description</p>
+                                    <p class="label-input" for="description">Description</p>
                                     <textarea id="description" type="textarea" formControlName="description" placeholder="Description"></textarea>
                                 </div>
-                                <div class="infoinput2">
+                                <div class="input-objectif-bareme-date">
                                     <div class="input-bareme">
-                                        <p for="bareme">Bareme</p>
+                                        <p class="label-input" for="bareme">Bareme</p>
                                         <input id="bareme" type="text" formControlName="bareme" placeholder="Bareme">
                                     </div>
                                     <div class="input-date">
-                                        <p for="date">Date Objectif</p>
+                                        <p class="label-input" for="date">Date Objectif</p>
                                         <input id="date" class="input3" type="date" formControlName="date_objectif" placeholder="Date de l'objectif">
                                     </div>
                                 </div>
-                                <div class="content-button-submit">
-                                    <button (click)="addObject()" class="button-submit">Valider</button>
+                                <div class="content-button-submit-objectif">
+                                    <button (click)="addObject()" class="button-submit-objectif">Enregistrer</button>
                                 </div>
                             </div>
                         </div>
