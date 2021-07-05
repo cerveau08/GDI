@@ -19,38 +19,34 @@
                 </div>
             </div>
             <div class="objectif-buttons">
-                <button class="button-evaluer">Evaluer</button>
-                <button class="button-modifier">Modifier</button>
-                <button class="button-commentaire">Les notes</button>
+                <button (click)="openModal('custom-modal-'+p.id);" class="button-evaluer">Evaluer</button>
+                <button (click)="openModal('modif-modal-'+p.id);" class="button-modifier">Modifier</button>
+                <!-- <button class="button-commentaire">Les notes</button> -->
             </div>
             <!--modal-->
-            <!-- <div class="modal">
+            <div class="modal">
                 <jw-modal id="custom-modal-{{p.id}}">
                     <mat-icon style="cursor: pointer;" (click)="closeModal('custom-modal-'+p.id);" class="clear">clear</mat-icon>
                     <div class="all">
-                        <h1>Evaluer l'Interimaire</h1>
+                        <h1 class="titre-objectif">Evaluer l'Interimaire</h1>
                         <div>
-                            <form [formGroup]="objectifForm">
-                                <div class="forms">
-                                    <div>
-                                        <div class="content-item-object">
-                                            <p class="objectif-title">Objectif 1</p>
-                                            <p class="objectif-content">
-                                                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facere impedit
-                                                obcaecati doloribus laborum, ex odio veritatis magni ullam. Harum quasi
-                                                deserunt, sapiente omnis quaerat reiciendis quis incidunt minus officia unde.
-                                            </p>
-                                        </div>
-                                        <div class="input2">
-                                            <input type="month" formControlName="dateDebut" #DateDebut placeholder="Date Debut">
-                                            <input class="input3" type="month" formControlName="dateFin" #DateFin placeholder="Date Fin">
-                                        </div>
-                                        <div class="input2">
+                            <form [formGroup]="noteForm">
+                                <div class="content-item-object">
+                                    <p class="objectif-title">{{p.titre}}</p>
+                                    <p class="objectif-content">{{p.description}}</p>
+                                </div>
+                                <div class="forms-objectif">
+                                    <div class="content-form"> 
+                                        <div class="input-titre">
+                                            <p class="label-input" for="titre">Note</p>
                                             <input type="text" formControlName="note" placeholder="Note" >
+                                        </div>
+                                        <div class="input-description">
+                                            <p class="label-input" for="description">Description</p>
                                             <textarea type="textarea" formControlName="commentaire" placeholder="Commentaires"></textarea>
                                         </div>
-                                        <div class="content-button-submit">
-                                            <button (click)="submit()" class="button-submit">Valider</button>
+                                        <div class="content-button-submit-objectif">
+                                            <button (click)="notezObjectif(p.id)" class="button-submit-objectif">Enregistrer</button>
                                         </div>
                                     </div>
                                 </div>
@@ -58,7 +54,7 @@
                         </div>
                     </div>
                 </jw-modal>
-            </div> -->
+            </div>
             <!-- modal -->
         </div>
         <!-- <div class="item-objectif">

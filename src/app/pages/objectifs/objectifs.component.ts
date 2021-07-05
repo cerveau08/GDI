@@ -19,6 +19,7 @@ export class ObjectifsComponent implements OnInit {
   prenon;
   nom;
   objectifForm: FormGroup;
+  noteForm: FormGroup;
   constructor(private otherService: OthersService,
     private modalService: ModalService,
     private activeroute: ActivatedRoute,) {
@@ -44,6 +45,10 @@ export class ObjectifsComponent implements OnInit {
       bareme: new FormControl(''),
       date_objectif: new FormControl('')
     });
+    this.noteForm = new FormGroup({
+      note: new FormControl(''),
+      commentaire: new FormControl('')
+    });
     this.otherService.getOneInterById(this.item).subscribe(
       data =>{
         this.interimaire = data;
@@ -60,17 +65,27 @@ export class ObjectifsComponent implements OnInit {
 
   addObject() {
     console.log(this.objectifForm.value);
-    this.otherService.addObjectifs(this.objectifForm).subscribe(
+    this.otherService.addObjectifs(this.objectifForm.value).subscribe(
       data =>{
         console.log(data);
       },
       error=>{
         console.log(error);
-        
+      }
+    );
+  }
+
+  notezObjectif(id) {
+    console.log(this.noteForm.value);
+    this.otherService.notezObjectif(this.noteForm.value, id).subscribe(
+      data =>{
+        console.log(data);
+      },
+      error=>{
+        console.log(error);
       }
     )
   }
-
   openModal(id: string) {
     this.modalService.open(id);
   }

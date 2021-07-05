@@ -176,11 +176,14 @@ addAgence(data) {
   getprofil(): Observable<any> {
     return this.http.get<any>(this.reqUrl + '/profils');
   }
- // recupere les details d'une agence
- getContratById(id: number) {
-  return this.http.get(this.reqUrl + `/contrat/${id}`);
-}
-addObjectifs(data){
-  return this.http.post(`${this.reqUrl}/ajoutObjectif`, data);
-}
+  // recupere les details d'une agence
+  getContratById(id: number) {
+    return this.http.get(this.reqUrl + `/contrat/${id}`);
+  }
+  addObjectifs(data){
+    return this.http.post(`${this.reqUrl}/ajoutObjectif`, data);
+  }
+  notezObjectif(data:any, id: number): Observable<any> {
+    return this.http.post<any>(`${this.reqUrl}/noterObjectif/${id}`, data);
+  }
 }
