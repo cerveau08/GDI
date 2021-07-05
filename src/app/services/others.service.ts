@@ -180,4 +180,7 @@ addAgence(data) {
  getContratById(id: number) {
   return this.http.get(this.reqUrl + `/contrat/${id}`);
 }
+addObjectifs(data){
+  return this.http.post(`${this.reqUrl}/ajoutObjectif`, data);
+}
 }

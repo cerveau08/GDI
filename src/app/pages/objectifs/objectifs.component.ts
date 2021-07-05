@@ -47,7 +47,7 @@ export class ObjectifsComponent implements OnInit {
     this.otherService.getOneInterById(this.item).subscribe(
       data =>{
         this.interimaire = data;
-        this.interimaire.data.penom;
+        this.interimaire.data.prenom;
         this.interimaire.data.nom;
         this.objectifForm.patchValue({structure_id: this.interimaire.data.structure.id});
       },
@@ -60,7 +60,15 @@ export class ObjectifsComponent implements OnInit {
 
   addObject() {
     console.log(this.objectifForm.value);
-    
+    this.otherService.addObjectifs(this.objectifForm).subscribe(
+      data =>{
+        console.log(data);
+      },
+      error=>{
+        console.log(error);
+        
+      }
+    )
   }
 
   openModal(id: string) {
