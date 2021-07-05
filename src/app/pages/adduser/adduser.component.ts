@@ -172,7 +172,6 @@ export class AdduserComponent implements OnInit {
     formdata.append("prenom",this.userAgentForm.value.prenom);
     formdata.append("nom",this.userAgentForm.value.nom);
    formdata.append("profil",this.userAgentForm.value.profil);
-    // formdata.append("profil","8");
     formdata.append("fonction",this.userAgentForm.value.poste);
     formdata.append("agenceId",this.userAgentForm.value.agenceId);
     formdata.append("email",this.userAgentForm.value.email);
