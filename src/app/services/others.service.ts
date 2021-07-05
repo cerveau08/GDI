@@ -186,4 +186,7 @@ addAgence(data) {
   notezObjectif(data:any, id: number): Observable<any> {
     return this.http.post<any>(`${this.reqUrl}/noterObjectif/${id}`, data);
   }
+  modifierObjectif(data:any, id: number): Observable<any> {
+    return this.http.post<any>(`${this.reqUrl}/updateObjectif/${id}`, data);
+  }
 }

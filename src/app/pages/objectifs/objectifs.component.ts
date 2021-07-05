@@ -1,6 +1,6 @@
 import { FormControl, FormGroup } from '@angular/forms';
 import { OthersService } from 'src/app/services/others.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BoundText } from '@angular/compiler/src/render3/r3_ast';
 import { ModalService } from 'src/app/_modal';
@@ -20,6 +20,9 @@ export class ObjectifsComponent implements OnInit {
   nom;
   objectifForm: FormGroup;
   noteForm: FormGroup;
+  modifierForm: FormGroup;
+  titremodif;
+  descriptionmodif;
   constructor(private otherService: OthersService,
     private modalService: ModalService,
     private activeroute: ActivatedRoute,) {
@@ -49,18 +52,24 @@ export class ObjectifsComponent implements OnInit {
       note: new FormControl(''),
       commentaire: new FormControl('')
     });
+    this.modifierForm = new FormGroup({
+      titre: new FormControl(''),
+      description: new FormControl('')
+    });
     this.otherService.getOneInterById(this.item).subscribe(
       data =>{
         this.interimaire = data;
         this.interimaire.data.prenom;
         this.interimaire.data.nom;
-        this.objectifForm.patchValue({structure_id: this.interimaire.data.structure.id});
+        this.objectifForm.patchValue({
+          structure_id: this.interimaire.data.structure.id,
+          interimaire: this.item
+        });
       },
       error =>{
         console.log(error)
       }
     );
-    this.objectifForm.patchValue({interimaire: this.item});
   }
 
   addObject() {
@@ -68,6 +77,7 @@ export class ObjectifsComponent implements OnInit {
     this.otherService.addObjectifs(this.objectifForm.value).subscribe(
       data =>{
         console.log(data);
+        this.closeModal('objectif-modal-1');
       },
       error=>{
         console.log(error);
@@ -80,6 +90,19 @@ export class ObjectifsComponent implements OnInit {
     this.otherService.notezObjectif(this.noteForm.value, id).subscribe(
       data =>{
         console.log(data);
+        this.closeModal('custom-modal-'+id);
+      },
+      error=>{
+        console.log(error);
+      }
+    )
+  }
+  modifierObjectif(id) {
+    console.log(this.modifierForm.value);
+    this.otherService.modifierObjectif(this.modifierForm.value, id).subscribe(
+      data =>{
+        console.log(data);
+        this.closeModal('modif-modal-'+id);
       },
       error=>{
         console.log(error);
