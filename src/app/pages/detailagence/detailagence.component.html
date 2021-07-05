@@ -76,7 +76,7 @@
             <mat-icon style="cursor: pointer;" (click)="closeModal('custom-modal-1');" class="clear">clear</mat-icon>
             <p class="dtl1">contrat {{dataAgence?.nom}}</p>
             <ngx-doc-viewer 
-               [url]="DemoDoc" 
+               [url]="contratDoc" 
                [viewer]="viewer" 
                style="width:100%;height:70vh;">
             </ngx-doc-viewer>
@@ -130,7 +130,7 @@
                         <p class="p2">Documents Entreprise</p>
                         <div class="buttons1">
                            <input formControlName="cnidg"  class="button5" type="file" (change)="getCnidg($event.target)" >
-                            <input formControlName="contrat"  class="button6" type="file" (change)="getContrat($event.target)" > 
+                            <input formControlName="contrat"  class="button6" type="file" (change)="getFileContrat($event.target)" > 
                         </div>
                        <!-- <div class="filenames">
                             <div class="nom-file2">

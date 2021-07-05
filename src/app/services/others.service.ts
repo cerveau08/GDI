@@ -158,4 +158,24 @@ addAgence(data) {
   getTotalAgenceActifInactif(id: number) {
     return this.http.get(`${this.reqUrl}/statInterimaireAgence/${id}`);
   }
+  statInterByYear(){
+    return this.http.get(`${this.reqUrl}/statInterimaireByYear`);
+  }
+  statTotalInter(data){
+    return this.http.post(`${this.reqUrl}/statInterimaire`, data);
+  }
+  statInterByMonth(){
+    return this.http.get(`${this.reqUrl}/statInterimaireByMonth`);
+  }
+  statInterByAgence(){
+    return this.http.get(`${this.reqUrl}/statInterimaireByAgence`);
+  }
+  arreterContrat(id: number){
+    return this.http.get(`${this.reqUrl}/arreterContrat/${id}`);
+  }
+
+  getprofil(): Observable<any> {
+    return this.http.get<any>(this.reqUrl + '/profils');
+  }
+
 }
