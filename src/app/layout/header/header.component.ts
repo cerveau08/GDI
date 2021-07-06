@@ -130,6 +130,16 @@ export class HeaderComponent implements OnInit {
   }
 
   logout() {
+    localStorage.removeItem("currentUse");
+    localStorage.removeItem('user');
+    localStorage.removeItem('prenom');
+    localStorage.removeItem('token');
+    localStorage.removeItem('color1');
+    localStorage.removeItem('color2');
+    localStorage.removeItem('color3');
+    localStorage.removeItem('colora');
+    localStorage.removeItem('colorb');
+    localStorage.removeItem('colorc');
     this.authService.logout();
   }
   updown(item) {

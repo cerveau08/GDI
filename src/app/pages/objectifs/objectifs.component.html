@@ -61,52 +61,12 @@
                     <mat-icon style="cursor: pointer;" (click)="closeModal('modif-modal-'+p.id);" class="clear">clear</mat-icon>
                     <div class="all">
                         <h1 class="titre-objectif">Modifier l'Objectif</h1>
-                        <div>
-                            <form [formGroup]="modifierForm">
-                                <div class="forms-objectif">
-                                    <div class="content-form"> 
-                                        <div class="input-titre">
-                                            <p class="label-input" for="titre">Titre</p>
-                                            <input type="text" [value]="p.titre" id="titre" name="titre" formControlName="titre" placeholder="Titre" >
-                                        </div>
-                                        <div class="input-description">
-                                            <p class="label-input" for="description">Description</p>
-                                            <textarea type="textarea" [value]="p.description" name="description" formControlName="description" placeholder="Description"></textarea>
-                                        </div>
-                                        <div class="content-button-submit-objectif">
-                                            <button (click)="modifierObjectif(p.id)" class="button-submit-objectif">Enregistrer</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
+                        <app-modal-modifier [objectifData]=p></app-modal-modifier>
                     </div>
                 </jw-modal>
             </div>
             <!-- modal-2 -->
         </div>
-        <!-- <div class="item-objectif">
-            <div class="content-item-object">
-                <p class="objectif-title">Objectif 1</p>
-                <p class="objectif-content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facere impedit obcaecati doloribus laborum, ex odio veritatis magni ullam. Harum quasi deserunt, sapiente omnis quaerat reiciendis quis incidunt minus officia unde.</p>
-            </div>
-            <div class="objectif-buttons">
-                <button class="button-evaluer">Evaluer</button>
-                <button class="button-modifier">Modifier</button>
-                <button class="button-commentaire">Les Commentaires</button>
-            </div>
-        </div>
-        <div class="item-objectif">
-            <div class="content-item-object">
-                <p class="objectif-title">Objectif 1</p>
-                <p class="objectif-content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facere impedit obcaecati doloribus laborum, ex odio veritatis magni ullam. Harum quasi deserunt, sapiente omnis quaerat reiciendis quis incidunt minus officia unde.</p>
-            </div>
-            <div class="objectif-buttons">
-                <button class="button-evaluer">Evaluer</button>
-                <button class="button-modifier">Modifier</button>
-                <button class="button-commentaire">Les Commentaires</button>
-            </div>
-        </div> -->
     </div>
     <div class="modal">
         <jw-modal id="objectif-modal-1">
