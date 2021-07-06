@@ -22,16 +22,6 @@ export class DetailinterComponent implements OnInit {
   donnees: any;
   dataInter:any;
   dataContrat: any;
-  objetctis = [
-    {
-      title: "Objectif 1",
-      libelle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-    },
-    {
-      title: "Objectif 2",
-      libelle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-    },
-  ];
   
   viewer = 'google';  
   selectedType = 'docx';   
@@ -47,13 +37,16 @@ export class DetailinterComponent implements OnInit {
   sitmat;
   adresse;
   agence;
+  photo;
+  image;
   categorie;
   diplome;
   numeroPiece;
   email;
   profession;
   matricule;
-  salaire_brut;
+  salaireBrut;
+  dateSignature;
   universite;
   sexe;
   direction;
@@ -96,7 +89,7 @@ export class DetailinterComponent implements OnInit {
             this.email = this.dataInter.email;
             this.adresse = this.dataInter.adresse;
             this.profession = this.dataInter.profession;
-            this.salaire_brut = this.dataInter.salaire_brut;
+            this.salaireBrut = this.dataInter.salaireBrut;
             this.profession = this.dataInter.profession;
             this.telephone = this.dataInter.telephone;
             this.universite = this.dataInter.universite;
@@ -106,8 +99,10 @@ export class DetailinterComponent implements OnInit {
             this.service = this.dataInter.service;
             this.agence = this.dataInter.agence;
             this.categorie = this.dataInter.categorie;
+            this.dateSignature = this.dataInter.dateSignature;
             this.matricule = this.dataInter.matricule;
             this.sexe = this.dataInter.sexe;
+            this.photo = this.dataInter.photo;
             this.contratDoc = this.dataInter.fileContrat;
             this.fichePosteDoc = this.dataInter.fileFichePoste;
         },
@@ -277,6 +272,17 @@ formdata.append("fichePoste",this.urlfichedeposte);
       }
     })
   } 
+
+   //recuperation de l'image
+ getPhoto(e:any) {
+  this.photo= e.files.item(0);
+  let reader = new FileReader();
+  reader.readAsDataURL(this.photo)
+  reader.onload= ()=>{
+    this.image= reader.result
+  } 
+}
+
   contrat(e:any) {
     this.urlcontrat= e.files.item(0);
     console.log(this.urlcontrat);

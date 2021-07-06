@@ -27,7 +27,7 @@ export class ListermanagerComponent implements OnInit {
   getScreenSize(event?) {
         this.scrHeight = window.innerHeight;
         this.scrWidth = window.innerWidth;
-        console.log(this.scrHeight, this.scrWidth);
+       // console.log(this.scrHeight, this.scrWidth);
   }
   public reqUrl = environment.base_url;
   constructor(private dataService: DataService,
