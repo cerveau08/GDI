@@ -58,6 +58,7 @@ import { LesdemandesComponent } from './pages/lesdemandes/lesdemandes.component'
 import { JwtInterceptorService } from './helpers/jwt-interceptor.service';
 import { ObjectifsComponent } from './pages/objectifs/objectifs.component';
 import { NgxLoadingModule } from 'ngx-loading';
+import { ModalModifierComponent } from './pages/objectifs/modal-modifier/modal-modifier.component';
 
 @NgModule({
   declarations: [
@@ -98,7 +99,8 @@ import { NgxLoadingModule } from 'ngx-loading';
     ModifierinterComponent,
     AdduserComponent,
     LesdemandesComponent,
-    ObjectifsComponent
+    ObjectifsComponent,
+    ModalModifierComponent
   ],
   imports: [
     BrowserModule,

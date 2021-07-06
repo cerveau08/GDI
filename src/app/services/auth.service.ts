@@ -40,6 +40,12 @@ export class AuthService {
     localStorage.removeItem('user');
     localStorage.removeItem('prenom');
     localStorage.removeItem('token');
+    localStorage.removeItem('color1');
+    localStorage.removeItem('color2');
+    localStorage.removeItem('color3');
+    localStorage.removeItem('colora');
+    localStorage.removeItem('colorb');
+    localStorage.removeItem('colorc');
     this.currentUserSubject.next(null);
     this.router.navigate(['/login']);
 }
