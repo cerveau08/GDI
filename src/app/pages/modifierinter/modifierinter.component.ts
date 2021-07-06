@@ -168,7 +168,7 @@ export class ModifierinterComponent implements OnInit {
         dateDebut: new FormControl(''),
         dateFin: new FormControl(''),
         categorieId: new FormControl(''),
-        salaire_brut: new FormControl(''),
+        salaireBrut: new FormControl(''),
         structureId: new FormControl(''),
         direction: new FormControl(''),
         societeId: new FormControl(''),
@@ -304,7 +304,7 @@ export class ModifierinterComponent implements OnInit {
     info.append("sexe",this.interForm.value.sexe);
     info.append("profession",this.interForm.value.profession);
     info.append("sitmat",this.interForm.value.sitmat);
-    info.append("salaireBrut",this.interForm.value.salaire_brut);
+    info.append("salaireBrut",this.interForm.value.salaireBrut);
     info.append("dateNaissance",this.interForm.value.dateNaissance);
     info.append("lieuNaissance",this.interForm.value.lieuNaissance);
     info.append("dateDebut",this.interForm.value.dateDebut);

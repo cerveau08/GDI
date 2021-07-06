@@ -1,40 +1,51 @@
 <div class="objectif-container">
-    <h1 class="titre-objectif">Liste des objectifs du contrat de {{item}}</h1>
+    <h1 class="titre-objectif">Liste des objectifs du contrat de {{item.prenom}} {{item.nom}}</h1>
+    <button class="button-ajouter" (click)="openModal('objectif-modal-1');">Ajouter Objectif</button>
     <div class="content-list-objectif">
-        <div class="item-objectif" *ngFor="let p of objectif">
+        <div class="item-objectif" *ngFor="let p of objectif; let i=index">
             <div class="content-item-object">
-                <p class="objectif-title">Objectif 1</p>
-                <p class="objectif-content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facere impedit obcaecati doloribus laborum, ex odio veritatis magni ullam. Harum quasi deserunt, sapiente omnis quaerat reiciendis quis incidunt minus officia unde.</p>
+                <p class="objectif-title">{{p.titre}}</p>
+                <p class="objectif-content">{{p.description}}</p>
+                <div class="note-et-comments">
+                    <p class="text-note-comments">
+                        <span class="note-title">NOTE</span>:<span class="la-note"> {{p.note}} / {{p.bareme}} </span>
+                        <span class="comment-title">Commentaires</span>:<span class="le-commentaire">
+                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Labore incidunt, 
+                            neque sint tenetur nulla, totam optio maiores ut quod consequuntur odit hic? 
+                            Facilis labore ea ipsam repudiandae, itaque iusto nobis!
+                        </span>
+                    </p>
+                </div>
             </div>
             <div class="objectif-buttons">
-                <button class="button-evaluer">Evaluer</button>
-                <button class="button-modifier">Modifier</button>
-                <button class="button-commentaire">Les notes</button>
+                <button (click)="openModal('custom-modal-'+p.id);" class="button-evaluer">Evaluer</button>
+                <button (click)="openModal('modif-modal-'+p.id);" class="button-modifier">Modifier</button>
+                <!-- <button class="button-commentaire">Les notes</button> -->
             </div>
-            <!--modal-->
+            <!--modal-1-->
             <div class="modal">
                 <jw-modal id="custom-modal-{{p.id}}">
                     <mat-icon style="cursor: pointer;" (click)="closeModal('custom-modal-'+p.id);" class="clear">clear</mat-icon>
                     <div class="all">
-                        <h1>Evaluer l'Interimaire</h1>
+                        <h1 class="titre-objectif">Evaluer l'Interimaire</h1>
                         <div>
-                            <form [formGroup]="objectifForm">
-                                <div class="forms">
-                                    <div>
-                                        <div class="content-item-object">
-                                            <p class="objectif-title">Objectif 1</p>
-                                            <p class="objectif-content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facere impedit obcaecati doloribus laborum, ex odio veritatis magni ullam. Harum quasi deserunt, sapiente omnis quaerat reiciendis quis incidunt minus officia unde.</p>
+                            <form [formGroup]="noteForm">
+                                <div class="content-item-object">
+                                    <p class="objectif-title">{{p.titre}}</p>
+                                    <p class="objectif-content">{{p.description}}</p>
+                                </div>
+                                <div class="forms-objectif">
+                                    <div class="content-form"> 
+                                        <div class="input-titre">
+                                            <p class="label-input" for="titre">Note</p>
+                                            <input type="text" formControlName="note" placeholder="Note" >
                                         </div>
-                                        <div class="input2">
-                                            <input type="month" formControlName="dateDebut" #DateDebut placeholder="Date Debut">
-                                            <input class="input3" type="month" formControlName="dateFin" #DateFin placeholder="Date Fin">
-                                        </div>
-                                        <div class="input2">
-                                            <input type="text" formControlName="note" placeholder="Agence" >
+                                        <div class="input-description">
+                                            <p class="label-input" for="description">Commentaire</p>
                                             <textarea type="textarea" formControlName="commentaire" placeholder="Commentaires"></textarea>
                                         </div>
-                                        <div class="content-button-submit">
-                                            <button (click)="submit()" class="button-submit">Valider</button>
+                                        <div class="content-button-submit-objectif">
+                                            <button (click)="notezObjectif(p.id)" class="button-submit-objectif">Enregistrer</button>
                                         </div>
                                     </div>
                                 </div>
@@ -43,7 +54,36 @@
                     </div>
                 </jw-modal>
             </div>
-            <!-- modal -->
+            <!-- modal-1 -->
+            <!--modal-2-->
+            <div class="modal">
+                <jw-modal id="modif-modal-{{p.id}}">
+                    <mat-icon style="cursor: pointer;" (click)="closeModal('modif-modal-'+p.id);" class="clear">clear</mat-icon>
+                    <div class="all">
+                        <h1 class="titre-objectif">Modifier l'Objectif</h1>
+                        <div>
+                            <form [formGroup]="modifierForm">
+                                <div class="forms-objectif">
+                                    <div class="content-form"> 
+                                        <div class="input-titre">
+                                            <p class="label-input" for="titre">Titre</p>
+                                            <input type="text" [value]="p.titre" id="titre" name="titre" formControlName="titre" placeholder="Titre" >
+                                        </div>
+                                        <div class="input-description">
+                                            <p class="label-input" for="description">Description</p>
+                                            <textarea type="textarea" [value]="p.description" name="description" formControlName="description" placeholder="Description"></textarea>
+                                        </div>
+                                        <div class="content-button-submit-objectif">
+                                            <button (click)="modifierObjectif(p.id)" class="button-submit-objectif">Enregistrer</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </jw-modal>
+            </div>
+            <!-- modal-2 -->
         </div>
         <!-- <div class="item-objectif">
             <div class="content-item-object">
@@ -67,5 +107,42 @@
                 <button class="button-commentaire">Les Commentaires</button>
             </div>
         </div> -->
+    </div>
+    <div class="modal">
+        <jw-modal id="objectif-modal-1">
+            <mat-icon style="cursor: pointer;" (click)="closeModal('objectif-modal-1');" class="clear">clear</mat-icon>
+            <div class="all">
+                <h1 class="titre-objectif">Ajouter un Objectif</h1>
+                <div>
+                    <form [formGroup]="objectifForm">
+                        <div class="forms-objectif">
+                            <div class="content-form">
+                                <div class="input-titre">
+                                    <p class="label-input" for="titre">Titre</p>
+                                    <input id="titre" type="text" formControlName="titre" placeholder="Titre">
+                                </div>
+                                <div class="input-description">
+                                    <p class="label-input" for="description">Description</p>
+                                    <textarea id="description" type="textarea" formControlName="description" placeholder="Description"></textarea>
+                                </div>
+                                <div class="input-objectif-bareme-date">
+                                    <div class="input-bareme">
+                                        <p class="label-input" for="bareme">Bareme</p>
+                                        <input id="bareme" type="text" formControlName="bareme" placeholder="Bareme">
+                                    </div>
+                                    <div class="input-date">
+                                        <p class="label-input" for="date">Date Objectif</p>
+                                        <input id="date" class="input3" type="date" formControlName="date_objectif" placeholder="Date de l'objectif">
+                                    </div>
+                                </div>
+                                <div class="content-button-submit-objectif">
+                                    <button (click)="addObject()" class="button-submit-objectif">Enregistrer</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </jw-modal>
     </div>
 </div>

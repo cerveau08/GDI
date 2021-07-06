@@ -21,6 +21,7 @@ export class DetailinterComponent implements OnInit {
   public left: any;
   donnees: any;
   dataInter:any;
+  dataContrat: any;
   objetctis = [
     {
       title: "Objectif 1",
@@ -109,15 +110,20 @@ export class DetailinterComponent implements OnInit {
             this.sexe = this.dataInter.sexe;
             this.contratDoc = this.dataInter.fileContrat;
             this.fichePosteDoc = this.dataInter.fileFichePoste;
-           /* this.direction = this.dataInter.direction;
-            this.departement = this.dataInter.departement;
-            this.service = this.dataInter.service;*/
         },
         error =>{
           console.log(error)
         }
       );
     })
+    //detail d'un contrat
+    this.otherService.getContratById(this.id).subscribe(
+      data =>{
+        this.data = data;
+        this.dataContrat = this.data.data;
+        console.log(this.dataContrat);
+      })
+    
   }
   ngOnInit() {
     this.contratForm = new FormGroup({
@@ -217,14 +223,10 @@ export class DetailinterComponent implements OnInit {
   
   validerContrat() {
    this.contratForm.patchValue({interimaireId: this.item});
- const formdata = new FormData();
+   const formdata = new FormData();
 formdata.append("societeId","5");
 formdata.append("structureId","14");
 formdata.append("domaineId","2");
-//formdata.append("structureId",this.contratForm.value.structureId);
-//formdata.append("categorieId",this.contratForm.value.categorieId);
-//formdata.append("domaineId",this.contratForm.value.domaineId);
-//formdata.append("societeId",this.contratForm.value.societeId);
 formdata.append("salaireBrut",this.contratForm.value.salaireBrut);
 formdata.append("interimaireId", '38');
 formdata.append("categorieId",this.contratForm.value.categorieId);
@@ -296,22 +298,19 @@ formdata.append("fichePoste",this.urlfichedeposte);
      // this.fil= reader.result
      // console.log(this.image)
     }
-   /* this.fileFicheposte= e.target.files.item(0);
-    console.log(this.fileFicheposte.type);
-    this.filenamefichedeposte = this.fileFicheposte.name;
-    console.log(this.filenamefichedeposte);*/
   }
-  arretContrat() {
+  /*arretContrat() {
+    console.log(this.item);
     this.otherService.arreterContrat(this.item).subscribe(
       (response) =>{
        console.log(response)
-       if (response) {
-        this.router.navigate(['/accueil/sousContrat']);
-       }
+      // if (response) {
+        //this.router.navigate(['/accueil/sousContrat']);
+      // }
       },
       (error)=>{
         console.log(error);
       }
     );
-  }
+  }*/
 }
