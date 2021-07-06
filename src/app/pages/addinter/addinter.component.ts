@@ -61,11 +61,11 @@ export class AddinterComponent implements OnInit {
   ListePiece = [
     {
       id: 1, 
-      libelle: "CNI",
+      libelle: "cni",
     },
     {
       id: 2, 
-      libelle: "Passeport"
+      libelle: "passeport"
     }
   ];
   selected1 = false;

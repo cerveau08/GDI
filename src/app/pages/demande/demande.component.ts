@@ -68,7 +68,7 @@ export class DemandeComponent implements OnInit {
     } else {
       this.showHome = true;
     }
-    this.datas = this.dataService.getData();
+    //this.datas = this.dataService.getData();
    this.otherService.getListDemandes().subscribe(
      data => {
        this.datas = data.data;
