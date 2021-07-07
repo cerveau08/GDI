@@ -87,7 +87,7 @@ export class DemandeComponent implements OnInit {
 
   onSubmit() {
     const info = {
-      type: this.demandeForm.value.type,
+      type: this.demandeForm.value.typeDemande,
       dateDebut: this.demandeForm.value.dateDebut,
       dateFin: this.demandeForm.value.dateFin,
       motif: this.demandeForm.value.motif,
