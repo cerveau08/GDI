@@ -123,11 +123,11 @@
                         </div>
                         <div class="contratinput2">
                           <input type="text" formControlName="profession" placeholder="Titre du Poste">
-                          <!-- <select class="select7" formControlName="matriculeManager">
-                            <option class="option" value="" disabled selected hidden>Matricule manageur</option>
-                            <option *ngFor="let data of dataManager" [value]="data.id">{{data.libelle}}</option>
-                          </select> -->
                           <input class="input3" type="date" formControlName="dateSignature" placeholder="Date de Signature">
+                          <select class="infoinput1" formControlName="domaineId" placeholder="domaine">
+                            <option class="option" value="" disabled selected hidden>Domaine</option>
+                            <option *ngFor="let data of dataDomaine" [value]="data.id">{{data.libelle}}</option>
+                          </select> 
                         </div>
                     </div>
                     </div>

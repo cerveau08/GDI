@@ -368,7 +368,6 @@ export class ModifierinterComponent implements OnInit {
        }
     ); 
   }
- 
     //recuperation de l'image
     getPhoto(e:any) {
       this.photo= e.files.item(0);

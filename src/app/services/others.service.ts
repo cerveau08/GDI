@@ -189,4 +189,7 @@ addAgence(data) {
   modifierObjectif(data:any, id: number): Observable<any> {
     return this.http.post<any>(`${this.reqUrl}/updateObjectif/${id}`, data);
   }
+  addDemande(data){
+    return this.http.post(`${this.reqUrl}/ajoutDemande`, data);
+  }
 }

@@ -25,7 +25,7 @@ export class DetailinterComponent implements OnInit {
   
   viewer = 'google';  
   selectedType = 'docx';   
-  contratDoc="" 
+  contratDoc;
   fichePosteDoc=""
   proceVerbalDoc="" 
   data;
@@ -104,6 +104,8 @@ export class DetailinterComponent implements OnInit {
             this.sexe = this.dataInter.sexe;
             this.photo = this.dataInter.photo;
             this.contratDoc = this.dataInter.fileContrat;
+            console.log(this.contratDoc);
+            
             this.fichePosteDoc = this.dataInter.fileFichePoste;
         },
         error =>{
