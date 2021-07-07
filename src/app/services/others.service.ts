@@ -160,7 +160,7 @@ addAgence(data) {
   }
   statInterByYear(){
     return this.http.get(`${this.reqUrl}/statInterimaireByYear`);
-  }
+  } 
   statTotalInter(data){
     return this.http.post(`${this.reqUrl}/statInterimaire`, data);
   }
