@@ -230,7 +230,7 @@ export class AddinterComponent implements OnInit {
         console.log(data);
         // if (data) {
         //     // alert('Intérimaire ajouté avec succées...');
-        //   this.route.navigate(['/accueil/souscontrat']);
+        this.route.navigate(['/accueil/souscontrat']);
         // }
      
         if(data.success == true) {
