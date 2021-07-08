@@ -57,6 +57,7 @@ export class ModifierinterComponent implements OnInit {
   dateFin;
   sitmat;
   email;
+  dataDomaine;
   categorieId;
   ficheposte;
   proceverbal;
@@ -168,7 +169,7 @@ export class ModifierinterComponent implements OnInit {
         dateDebut: new FormControl(''),
         dateFin: new FormControl(''),
         categorieId: new FormControl(''),
-        salaireBrut: new FormControl(''),
+        salaire_brut: new FormControl(''),
         structureId: new FormControl(''),
         direction: new FormControl(''),
         societeId: new FormControl(''),
@@ -203,7 +204,13 @@ export class ModifierinterComponent implements OnInit {
           console.log(data);
         }
       );
-
+         //recupere les domaines
+     this.otherService.getDomaine().subscribe(
+      data => {
+        this.dataDomaine = data["data"];
+        console.log(data);
+      }
+    );
        //recupere les categories
        this.otherService.getAllCategorie().subscribe(
         data => {
@@ -298,13 +305,13 @@ export class ModifierinterComponent implements OnInit {
     info.append("adresse",this.interForm.value.adresse);
     info.append("categorieId",this.interForm.value.categorieId);
     info.append("structureId","14");
-    info.append("domaineId","2");
+    info.append("domaineId",this.interForm.value.domaineId);
     info.append("societeId","3");
     info.append("universite",this.interForm.value.universite);
     info.append("sexe",this.interForm.value.sexe);
     info.append("profession",this.interForm.value.profession);
     info.append("sitmat",this.interForm.value.sitmat);
-    info.append("salaireBrut",this.interForm.value.salaireBrut);
+    info.append("salaire_brut",this.interForm.value.salaire_brut);
     info.append("dateNaissance",this.interForm.value.dateNaissance);
     info.append("lieuNaissance",this.interForm.value.lieuNaissance);
     info.append("dateDebut",this.interForm.value.dateDebut);

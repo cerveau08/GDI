@@ -2,6 +2,7 @@ import { OthersService } from './../../services/others.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { DataService } from 'src/app/service/data.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-adduser',
@@ -74,7 +75,10 @@ export class AdduserComponent implements OnInit {
   url1="../assets/images/default.png";
   image ;
   p = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
-  constructor(private dataService: DataService, private otherService: OthersService) { }
+  constructor(private dataService: DataService, 
+              private otherService: OthersService,
+              private route: Router
+    ) { }
 
   ngOnInit() {
     this.user = localStorage.getItem('user');
@@ -186,6 +190,7 @@ export class AdduserComponent implements OnInit {
     this.otherService.addUser(formdata).subscribe(
       (response) =>{
         console.log(response)
+        this.route.navigate(['/accueil/souscontrat']);
       },
       (error) =>{
         console.log(error)

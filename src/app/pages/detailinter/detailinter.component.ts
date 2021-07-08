@@ -77,7 +77,6 @@ export class DetailinterComponent implements OnInit {
     this.activeroute.queryParams.subscribe(params => {
       this.item = JSON.parse(params["user"]);
       console.log(this.item);
-      
       this.otherService.getOneInterById(this.item).subscribe(
            data =>{
             this.data = data;
@@ -193,8 +192,12 @@ export class DetailinterComponent implements OnInit {
   public get(p) {
     this.fileSaver.saveUrl(p.pathfile, p.file);
   }
-  public getfilemodal() {
+  public getContrat() {
     this.fileSaver.saveUrl(this.contratDoc, 'contrat');
+  }
+
+  public getFicheDePoste() {
+    this.fileSaver.saveUrl(this.fichePosteDoc, 'fiche de Poste');
   }
 
   getwidth() {
@@ -228,9 +231,9 @@ export class DetailinterComponent implements OnInit {
    const formdata = new FormData();
 formdata.append("societeId","5");
 formdata.append("structureId","14");
-formdata.append("domaineId","2");
+formdata.append("domaineId",this.contratForm.value.domaineId);
 formdata.append("salaireBrut",this.contratForm.value.salaireBrut);
-formdata.append("interimaireId", '38');
+formdata.append("interimaireId",this.item);
 formdata.append("categorieId",this.contratForm.value.categorieId);
 formdata.append("dateDebut",this.contratForm.value.dateDebut);
 formdata.append("dateFin",this.contratForm.value.dateFin);
@@ -243,7 +246,7 @@ formdata.append("fichePoste",this.urlfichedeposte);
       data => {
         console.log(data);
         if(data){
-          this.router.navigate(['/accueil/sousContrat']);
+          this.router.navigate(['/accueil/souscontrat']);
         }
       },
       error =>{
@@ -258,13 +261,13 @@ formdata.append("fichePoste",this.urlfichedeposte);
     formdata.append("dateSignature",this.contratForm.value.dateSignature);
     formdata.append("dateDebut",this.contratForm.value.dateDebut);
     formdata.append("dateFin",this.contratForm.value.dateFin);
-    formdata.append("interimaireId", '37');
+    formdata.append("interimaireId",this.item);
     formdata.append("fileContrat",this.urlcontrat);
     this.otherService.reconduireContrat(formdata).subscribe(
       data => {
         console.log(data);
         if(data){
-          this.router.navigate(['/accueil/sousContrat']);
+          this.router.navigate(['/accueil/souscontrat']);
         }
       },
       error =>{
