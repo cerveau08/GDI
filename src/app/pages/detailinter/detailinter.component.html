@@ -72,12 +72,17 @@
     <jw-modal id="custom-modal-1">
         <div class="tableau">
             <mat-icon style="cursor: pointer;" (click)="closeModal('custom-modal-1');" class="clear">clear</mat-icon>
-            <p class="dtl1">contrat {{item.prenom}} {{item.nom}}</p>
-            <ngx-doc-viewer 
+            <p class="dtl1">contrat de {{prenom}} {{nom}}</p>
+            <!-- <ngx-doc-viewer 
                [url]="contratDoc" 
                [viewer]="viewer" 
                style="width:100%;height:70vh;">
-            </ngx-doc-viewer>
+            </ngx-doc-viewer> -->
+            <pdf-viewer [src]="contratDoc"
+              [render-text]="true"
+              [autoresize]="true"
+              [original-size]="false"
+            ></pdf-viewer>
             <div class="btns2">
               <button (click)="getfilemodal()"  class="btn2">Télécharger</button>
             </div>
@@ -111,12 +116,12 @@
     <jw-modal id="custom-modal-3">
         <div class="tableau">
             <mat-icon style="cursor: pointer;" (click)="closeModal('custom-modal-3');" class="clear">clear</mat-icon>
-            <p class="dtl1">Fiche de Poste Développeur web</p>
-            <ngx-doc-viewer 
-               [url]="fichePosteDoc" 
-               [viewer]="viewer" 
-               style="width:100%;height:70vh;">
-            </ngx-doc-viewer>
+            <p class="dtl1">Fiche de Poste de {{prenom}} {{nom}}</p>
+            <pdf-viewer [src]="fichePosteDoc"
+              [render-text]="true"
+              [autoresize]="true"
+              [original-size]="false"
+            ></pdf-viewer>
             <div class="btns3">
                 <button (click)="getfilemodal()"  class="btn2">Télécharger</button>
             </div>
@@ -244,7 +249,7 @@
         <div class="tableau">
             <mat-icon style="cursor: pointer;" (click)="closeModal('custom-modal-6');" class="clear">clear</mat-icon>
             <p class="dtl1">Arreter le Contrat en-cours de {{prenom}} {{nom}}</p>
-            <p>
+            <p class="text-droit">
                 Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
                 Doloribus harum sapiente a voluptatum inventore consectetur 
                 in ipsa explicabo est nulla at tempora doloremque eaque 
@@ -254,7 +259,7 @@
                 reiciendis doloremque voluptate nemo quae unde deserunt temporibus 
                 exercitationem aperiam, corporis recusandae incidunt ratione maxime?
             </p>
-            <p>
+            <p class="text-droit">
                 Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
                 Doloribus harum sapiente a voluptatum inventore consectetur 
                 in ipsa explicabo est nulla at tempora doloremque eaque 
@@ -264,16 +269,10 @@
                 reiciendis doloremque voluptate nemo quae unde deserunt temporibus 
                 exercitationem aperiam, corporis recusandae incidunt ratione maxime?
             </p>
-            <p>
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
-                Doloribus harum sapiente a voluptatum inventore consectetur 
-                in ipsa explicabo est nulla at tempora doloremque eaque 
-                veritatis consequuntur necessitatibus, eligendi recusandae quia!
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                Laudantium molestiae alias dolores suscipit at voluptatibus
-                reiciendis doloremque voluptate nemo quae unde deserunt temporibus 
-                exercitationem aperiam, corporis recusandae incidunt ratione maxime?
-            </p>
+            <div class="content-motif">
+                <p class="libelle-motif">Motif de l'arrêt du contrat</p>
+                <textarea class="textarea-motif" name="motif"  placeholder="Motif de l'arrêt du contrat"></textarea>
+            </div>
             <div class="btns3">
                 <button (click)="arretContrat()"  class="button7">Arréter</button>
             </div>
@@ -287,7 +286,7 @@
         <div class="tableau">
             <mat-icon style="cursor: pointer;" (click)="closeModal('custom-modal-7');" class="clear">clear</mat-icon>
             <p class="dtl1">Bannir {{prenom}} {{nom}}</p>
-            <p>
+            <p class="text-droit">
                 Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
                 Doloribus harum sapiente a voluptatum inventore consectetur 
                 in ipsa explicabo est nulla at tempora doloremque eaque 
@@ -297,7 +296,7 @@
                 reiciendis doloremque voluptate nemo quae unde deserunt temporibus 
                 exercitationem aperiam, corporis recusandae incidunt ratione maxime?
             </p>
-            <p>
+            <p class="text-droit">
                 Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
                 Doloribus harum sapiente a voluptatum inventore consectetur 
                 in ipsa explicabo est nulla at tempora doloremque eaque 
@@ -307,16 +306,10 @@
                 reiciendis doloremque voluptate nemo quae unde deserunt temporibus 
                 exercitationem aperiam, corporis recusandae incidunt ratione maxime?
             </p>
-            <p>
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
-                Doloribus harum sapiente a voluptatum inventore consectetur 
-                in ipsa explicabo est nulla at tempora doloremque eaque 
-                veritatis consequuntur necessitatibus, eligendi recusandae quia!
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                Laudantium molestiae alias dolores suscipit at voluptatibus
-                reiciendis doloremque voluptate nemo quae unde deserunt temporibus 
-                exercitationem aperiam, corporis recusandae incidunt ratione maxime?
-            </p>
+            <div class="content-motif">
+                <p class="libelle-motif">Motif pour Bannir {{prenom}} {{nom}}</p>
+                <textarea class="textarea-motif" name="motif"  placeholder="Motif de Bannir l'intérimaire"></textarea>
+            </div>
             <div class="btns3">
                 <button (click)="getfilemodal()"  class="button8">Bannir</button>
             </div>

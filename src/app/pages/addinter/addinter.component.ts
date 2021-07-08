@@ -98,13 +98,13 @@ export class AddinterComponent implements OnInit {
         categorieId: new FormControl(''),
         salaireBrut: new FormControl(''),
         structureId: new FormControl(14),
-        domaineId: new FormControl(2),
+        domaineId: new FormControl(''),
         directionId: new FormControl(''),
         departementId: new FormControl(''),
-        societeId: new FormControl(3),
+        societeId: new FormControl(5),
         profession: new FormControl(''),
+        poste: new FormControl(''),
         contratDoc: new FormControl(''),
-        //profession: new FormControl(''),
         matriculeManager: new FormControl(''),
         fileFicheposte: new FormControl(''),
         fileproceverbal: new FormControl(''),
@@ -189,19 +189,11 @@ export class AddinterComponent implements OnInit {
     localStorage.setItem('colorc', "#ff7900");
   }
   submit() {
-   /* for (let i = 0; i < this.diplome.length; i++) {
-      console.log(this.diplome.at(i).value);
-    }
-    console.log(this.diplome.value);
-    */
     const value = this.interForm.value;
     const formdata = new FormData();
-    // formdata.append("societeId",this.interForm.value.societeId);
-    // formdata.append("structureId",this.interForm.value.sevice);
-    // formdata.append("domaineId",this.interForm.value.domaineId);
-    formdata.append("societeId","3");
+    formdata.append("societeId","5");
     formdata.append("structureId","14");
-    formdata.append("domaineId","2");
+    formdata.append("domaineId",this.interForm.value.domaineId);
     formdata.append("typePiece",this.interForm.value.typePiece);
     formdata.append("numeroPiece",this.interForm.value.numeroPiece);
     formdata.append("nom",this.interForm.value.nom);
@@ -232,17 +224,16 @@ export class AddinterComponent implements OnInit {
     formdata.append("fileDiplome[]",this.fichierdiplome1);
     formdata.append("fileDiplome[]",this.fichierdiplome2);
     formdata.append("fileDiplome[]",this.fichierdiplome3);
-   // formdata.append("fileDiplome",this.diplome.value);
     console.log(this.interForm.value);
     this.otherService.addInter(formdata).subscribe(
       data => {
         console.log(data);
-        if (data) {
-            // alert('Intérimaire ajouté avec succées...');
-          this.route.navigate(['/accueil/sousContrat']);
-        }
+        // if (data) {
+        //     // alert('Intérimaire ajouté avec succées...');
+        //   this.route.navigate(['/accueil/souscontrat']);
+        // }
      
-        if(data.status == true) {
+        if(data.success == true) {
           this.submited = true;
         }
       },

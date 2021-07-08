@@ -59,6 +59,7 @@ import { JwtInterceptorService } from './helpers/jwt-interceptor.service';
 import { ObjectifsComponent } from './pages/objectifs/objectifs.component';
 import { NgxLoadingModule } from 'ngx-loading';
 import { ModalModifierComponent } from './pages/objectifs/modal-modifier/modal-modifier.component';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 @NgModule({
   declarations: [
@@ -123,6 +124,7 @@ import { ModalModifierComponent } from './pages/objectifs/modal-modifier/modal-m
     MatSidenavModule,
     MatInputModule,
     //AlertModule,
+    PdfViewerModule,
     NgCircleProgressModule.forRoot({}),
     NgxLoadingModule.forRoot({})
   ],

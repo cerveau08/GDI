@@ -39,9 +39,9 @@ export class NavComponent implements OnInit {
   getMargin(event) {
     let margin = 10;
     if (event.id == 1) {
-      margin = 50;
+      margin = 30;
     } else if (event.id == 8) {
-      margin = 80;
+      margin = 50;
     } else  {
       margin = 1;
     } 

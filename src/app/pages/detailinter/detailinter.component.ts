@@ -25,7 +25,7 @@ export class DetailinterComponent implements OnInit {
   
   viewer = 'google';  
   selectedType = 'docx';   
-  contratDoc="" 
+  contratDoc;
   fichePosteDoc=""
   proceVerbalDoc="" 
   data;
@@ -53,6 +53,8 @@ export class DetailinterComponent implements OnInit {
   departement;
   service
   contratForm: FormGroup;
+  arretForm: FormGroup;
+  bannirForm: FormGroup;
   reconduireForm: FormGroup;
   filenamecontrat;
   filenamefichedeposte;
@@ -144,14 +146,18 @@ export class DetailinterComponent implements OnInit {
         console.log(data);
       }
     );
-
-       //recupere les categories
-       this.otherService.getAllCategorie().subscribe(
-        data => {
-          this.dataCategorie = data["data"];
-          console.log(data);
-        }
-      );
+    this.otherService.getAllCategorie().subscribe(
+      data => {
+        this.dataCategorie = data["data"];
+        console.log(data);
+      }
+    );
+    this.arretForm = new FormGroup({
+      motif: new FormControl(''),
+    });
+    this.bannirForm = new FormGroup({
+      motif: new FormControl(''),
+    });
   }
 
   directionsListe(value) {
@@ -306,9 +312,9 @@ formdata.append("fichePoste",this.urlfichedeposte);
      // console.log(this.image)
     }
   }
-  /*arretContrat() {
+  arretContrat() {
     console.log(this.item);
-    this.otherService.arreterContrat(this.item).subscribe(
+    this.otherService.arreterContrat(this.item, this.arretForm.value).subscribe(
       (response) =>{
        console.log(response)
       // if (response) {
@@ -319,5 +325,5 @@ formdata.append("fichePoste",this.urlfichedeposte);
         console.log(error);
       }
     );
-  }*/
+  }
 }

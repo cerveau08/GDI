@@ -1,10 +1,12 @@
 import { DatePipe } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 import { Component, HostListener, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { NgxFileSaverService } from '@clemox/ngx-file-saver';
 import { DataService } from 'src/app/service/data.service';
 import { OthersService } from 'src/app/services/others.service';
 import { ModalService } from 'src/app/_modal';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-lesdemandes',
@@ -37,17 +39,20 @@ export class LesdemandesComponent implements OnInit {
   scrHeight:any;
   scrWidth:any;
   validerForm : FormGroup;
+  result;
   @HostListener('window:resize', ['$event'])
   getScreenSize(event?) {
         this.scrHeight = window.innerHeight;
         this.scrWidth = window.innerWidth;
         console.log(this.scrHeight, this.scrWidth);
   }
+  public reqUrl = environment.base_url;
   constructor(private dataService: DataService,
     private fb: FormBuilder,
     private modalService: ModalService,
     private fileSaver: NgxFileSaverService,
     private otherService: OthersService,
+    private http: HttpClient,
     public datepipe: DatePipe) {
       this.form = this.fb.group({
         checkArray: this.fb.array([])
@@ -64,41 +69,49 @@ export class LesdemandesComponent implements OnInit {
   }
  
   getDemandes() {
-  this.otherService.getListDemandes().subscribe(
-    data => {
-      console.log(data.data);
-      this.dd = data.data;
-    },
-    error => {
-      console.log(error);
-    }
-  );
+    this.otherService.getListDemandes().subscribe(
+      data => this.dd = data.data
+    );
   }
 
+  checkAllCheckBox(ev) {
+    console.log(this.dd);
+		this.dd.forEach(x => x.checked = ev.target.checked);
+	}
+
+	isAllCheckBoxChecked() {
+		return this.dd.every(p => p.checked);
+	}
+
   selectAll() {
-    for (var i = 0; i < this.datas.length; i++) {
-      this.datas[i].statut = this.selectedAll;
+    for (var i = 0; i < this.dd.length; i++) {
+      this.dd[i].etat = this.selectedAll;
     }
     this.getCheckedItemList();
   }
   checkIfAllSelected(event) {
-    this.selectedAll = this.datas.every(function(item:any) {
+    this.selectedAll = this.dd.every(function(item:any) {
      // item.s = event.target.checked;
-      return item.statut == true;
+      return item.etat == 0;
     })
     this.getCheckedItemList();
   }
-  getCheckedItemList(){
+  getCheckedItemList() {
     this.checkedList = [];
-    for (var i = 0; i < this.datas.length; i++) {
-      if(this.datas[i].statut) {
-        this.checkedList.push(this.datas[i]);
+    for (var i = 0; i < this.dd.length; i++) {
+      if(this.dd[i].etat) {
+        this.checkedList.push(this.dd[i]);
+        this.http.post(`${this.reqUrl}/validerDemande/${this.dd[i].id}`, null).subscribe(
+          data => {
+            this.result = data;
+            console.log(data);
+          }
+        )
       }
     }
-    this.checkedList = /*JSON.stringify(*/this.checkedList;
+    this.checkedList = this.checkedList;
     console.log(this.checkedList);
   }
- 
 
   getwidth() {
     this.restant = this.nombre + "%";

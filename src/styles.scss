@@ -97,6 +97,23 @@ app-header {
  padding: 0 5px 10px 5px !important;
 }
 
+.ng2-pdf-viewer-container {
+  height: 70vh !important;
+  width: 670px !important;
+  overflow-x: scroll;
+}
+.pdfViewer .page {
+  height: 100% !important;
+  width: 670px !important;
+}
+.canvasWrapper {
+  height: 100% !important;
+  width: 670px !important;
+}
+.textLayer {
+  height: 100% !important;
+  width: 670px !important;
+}
 //  aside scss
 
 .chiffre-aside{

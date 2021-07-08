@@ -80,23 +80,23 @@ export class DemandeComponent implements OnInit {
       dateDebut: new FormControl(''),
       dateFin: new FormControl (''),
       motif: new FormControl(''),
+      interimaire: new FormControl('59'),
+      validateur: new FormControl('52'),
       description: new FormControl(''),
-      etat: new FormControl(''),
+      contrat: new FormControl('72'),
     });
   }
-
   onSubmit() {
-    const info = {
-      type: this.demandeForm.value.typeDemande,
-      dateDebut: this.demandeForm.value.dateDebut,
-      dateFin: this.demandeForm.value.dateFin,
-      motif: this.demandeForm.value.motif,
-      descrition: this.demandeForm.value.description,
-      etat: this.demandeForm.value.etat,
-      
-    } 
-    console.log(info);
-    return info;
+    console.log(this.demandeForm.value);
+    this.otherService.addDemande(this.demandeForm.value).subscribe(
+      data =>{
+        console.log(data);
+        this.closeModal('custom-modal-8');
+      },
+      error =>{
+        console.log(error);
+        
+      })
   }
 
   openModal(id: string) {
