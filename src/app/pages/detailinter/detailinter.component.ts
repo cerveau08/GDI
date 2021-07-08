@@ -192,8 +192,12 @@ export class DetailinterComponent implements OnInit {
   public get(p) {
     this.fileSaver.saveUrl(p.pathfile, p.file);
   }
-  public getfilemodal() {
+  public getContrat() {
     this.fileSaver.saveUrl(this.contratDoc, 'contrat');
+  }
+
+  public getFicheDePoste() {
+    this.fileSaver.saveUrl(this.fichePosteDoc, 'fiche de Poste');
   }
 
   getwidth() {
