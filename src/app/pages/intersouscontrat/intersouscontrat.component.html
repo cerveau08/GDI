@@ -1,0 +1,97 @@
+<div class="all-container">
+    <div class="tableau">
+        <p class="detail1" id="mydesc">Liste des interimaires sous contrat</p>
+        <div class="exporter">
+            <p class="export">Exporter</p>
+            <div class="csv" style="cursor: pointer;">
+                <p class="csv1">CSV</p>
+                <mat-icon fontSet="material-icons-outlined">unfold_more</mat-icon>
+            </div>
+            <div class="filtrer" style="cursor: pointer;">
+                <input class="filtre" type="text" [(ngModel)]="filterterm" placeholder="Filtre">
+                <mat-icon fontSet="material-icons-outlined">tune</mat-icon>
+            </div>
+        </div>
+        <table style="overflow-x:auto;" aria-describedby = "mydesc">
+            <thead>
+                <tr class="head">
+                    <!-- <th class="id1" id="matricule">#</th> -->
+                    <th class="typ" id="prenom">
+                        <div class="type">
+                            <p>Prenom</p> 
+                            <mat-icon class="updown" fontSet="material-icons-outlined">unfold_more</mat-icon>
+                        </div>
+                    </th>
+                    <th class="typ" id="nom">
+                        <div class="type">
+                            <p>Nom</p> 
+                            <mat-icon class="updown" fontSet="material-icons-outlined">unfold_more</mat-icon>
+                        </div>
+                    </th>
+                    <th *ngIf="role != 'manager'" id="manager">Manager</th>
+                    <th *ngIf="role != 'manager'" id="direction">Direction</th>
+                    <th *ngIf="role != 'agence'" id="agence">Agence</th>
+                    <th id="contrat">Fin de Contrat</th>
+                    <th *ngIf="role == 'manager'" id="contrat">Attestation</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr style="cursor: pointer;" *ngFor="let p of dataInter | filter:filterterm | paginate: { 
+                    itemsPerPage: itemsPerPage,
+                    currentPage: page,
+                    totalItems: totalItems
+                    }; let i = index">
+                    <!-- <td (click)="openDetail(p.id)" class="id1">{{p.id}}</td> -->
+                    <td (click)="openDetail(p.id)">{{p.prenom}}</td>
+                    <td (click)="openDetail(p.id)">{{p.nom}}</td>
+                    <td (click)="openDetail(p.id)" *ngIf="role != 'manager'"> <img class="photo" alt="" src="{{p.manager.avatar}}"></td>
+                    <td *ngIf="role != 'manager'" (click)="openDetail(p.id)">{{p.direction}}/{{p.departement}}/{{p.service}}</td>
+                    <td *ngIf="role != 'agence'" (click)="openDetail(p.id)">{{p.agence}}</td>
+                    <td (click)="openDetail(p.id)"> <p>{{p.fin_contrat  | date:'dd/MM/yyyy'}}</p> </td>
+                    <td *ngIf="role == 'manager'" (click)="openModal('custom-modal-'+p.id)" id="contrat"><button  class="buttons-attestation" >Ajouter</button></td>
+                    <!--modal-->
+                    <div class="modal">
+                        <jw-modal id="custom-modal-{{p.id}}">
+                            <mat-icon style="cursor: pointer;" (click)="closeModal('custom-modal-'+p.id);" class="clear">clear</mat-icon>
+                            <div class="all">
+                                <h1>Ajouter Attestation</h1>
+                                <div>
+                                    <form [formGroup]="attestationForm">
+                                        <div class="forms">
+                                            <div>
+                                                <div class="input2">
+                                                    <input type="text" [value]="p.prenom" formControlName="prenom" placeholder="Prenom" >
+                                                    <input class="input3"[value]="p.nom" type="text" formControlName="nom" placeholder="Nom" >
+                                                </div>
+                                                <div class="input2">
+                                                    <input type="text" [value]="p.matricule" formControlName="matricule" placeholder="Matricule" >
+                                                    <input class="input3" [value]="p.poste" type="text" formControlName="poste" placeholder="Profession" >
+                                                </div>
+                                                <div class="input2">
+                                                    <input type="month" formControlName="dateDebut" #DateDebut placeholder="Date Debut">
+                                                    <input class="input3" type="month" formControlName="dateFin" #DateFin placeholder="Date Fin">
+                                                </div>
+                                                <div class="input2">
+                                                    <input type="text" [value]="p.agence" formControlName="agence" placeholder="Agence" >
+                                                    <input type="text" class="input3" formControlName="nbr_jr_absence" #Abscence placeholder="Nombre de jour absent">
+                                                </div>
+                                                <div class="content-button-submit">
+                                                    <button (click)="submit(p.id, Abscence.value, statut, contrat, period, DateDebut.value, DateFin.value)" class="button-submit">Valider</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </jw-modal>
+                    </div>
+                    <!-- modal -->
+                </tr>
+            </tbody>
+            
+        </table> 
+        <div class="pagination">
+            <pagination-controls (pageChange)="gty(page = $event)" previousLabel="Prcédent" nextLabel="Suivant"></pagination-controls>
+        </div>
+    </div>
+</div>

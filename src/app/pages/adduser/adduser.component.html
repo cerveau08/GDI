@@ -1,0 +1,102 @@
+<div class="all-container">
+    <div class="all">
+        <div class="large">
+            <p class="detail">Ajouter un nouveau utilisateur</p>
+            <!-- <div *ngIf="user == 'drh'">
+                <div class="form-add-manager-matricule">
+                    <form [formGroup]="matriculeForm">
+                        <div class="content-input">
+                            <p class="label-form">Matricule</p>
+                            <input class="input-form" formControlName="matricule" type="text">
+                        </div>
+                        <div class="content-button">
+                            <button (click)="submitted1()" class="buttob-envoyer">Envoyer</button>
+                        </div>
+                    </form>
+                </div>
+                <div *ngIf="show" class="form-add-manager">
+                    <form [formGroup]="userForm">
+                        <div class="manager">
+                            <div class="image">
+                                <img class="image-manager" src="../assets/images/manager.png" alt="">
+                            </div>
+                            <div class="information">
+                                <p class="nom">{{item.manager}}</p>
+                                <p class="poste">{{item.postem}}</p>
+                                <p class="matricule">{{item.matricule}}</p>
+                                <select class="select-profil" formControlName="profil">
+                                    <option value="" disabled selected hidden>selectionner</option>
+                                    <option [ngValue]="manager">manager</option>
+                                    <option [ngValue]="agentdrh">agent DRH</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="content-button-valider">
+                            <button (click)="submitted2()"  class="buttob-envoyer">Valider</button>
+                        </div>
+                    </form>
+                </div>
+            </div> -->
+            <!-- <div *ngIf="user == 'agence'"> -->
+            <div>
+                <div class="form-add-user-agent">
+                    <div *ngIf="user == 'manager'">
+                        <form [formGroup]="pieceForm">
+                            <div class="infoinput2">
+                                <select class="select5" formControlName="typePiece" >
+                                    <option class="option" value="" disabled selected hidden>Type Pièce</option>
+                                    <option *ngFor="let data of ListePiece" [value]="data.libelle">{{data.libelle}}</option>
+                                </select>
+                                <input class="input3" type="text" formControlName="numeroPiece" placeholder="Numero Pièce">
+                                <select class="select-societe"  formControlName="societeId">
+                                    <option class="option" value="" disabled selected hidden>Société</option>
+                                    <option *ngFor="let data of dataSociete" [value]="data.id">{{data.libelle}}</option>
+                                </select>
+                            </div>
+                            <div class="content-button">
+                                <button (click)="rechercherInterimaire()" class="buttob-envoyer">Rechercher</button>
+                            </div>
+                        </form>
+                    </div>
+                    <form [formGroup]="userAgentForm">
+                        <div class="content-form-add-user">
+                            <div class="image">
+                                <img class="image-manager" *ngIf="!image" [src]="url1" alt="">
+                                <img class="image-manager" *ngIf="image" [src]="image" alt="">
+                                <input formControlName="avatar" class="buttonphoto1" type="file" (change)="getPhoto($event)">
+                            </div>
+                            <div>
+                                <div class="infoinput1">
+                                    <input  type="text" formControlName="matricule" placeholder="Matricule">
+                                </div>
+                                <div class="infoinput2">
+                                    <input type="text" formControlName="prenom"   [(ngModel)]="prenom" placeholder="Prénom">
+                                    <input class="input3" type="text" formControlName="nom"  [(ngModel)]="nom" placeholder="Nom">
+                                </div>
+                                <div class="infoinput1">
+                                    <input type="text" formControlName="email"  [(ngModel)]="email" placeholder="Email">
+                                </div>
+                                <div class="infoinput2">
+                                    <input type="number" formControlName="telephone"  [(ngModel)]="telephone"  placeholder="Téléphone">
+                                    <select class="select6"  formControlName="profil">
+                                        <option class="option" value="" disabled selected hidden>Profil</option>
+                                        <option *ngFor="let data of dataprofils" value="{{data.id}}">{{data.libelle}}</option>
+                                    </select>
+                                </div>
+                                <div class="infoinput1">
+                                    <input type="text" formControlName="fonction"  [(ngModel)]="fonction"  placeholder="Fonction">
+                                </div>
+                                <div class="infoinput2">
+                                    <input type="text" formControlName="login"  [(ngModel)]="login"  placeholder="Login">
+                                </div>
+                                <div class="content-button">
+                                    <button (click)="ajouterUser()" class="buttob-envoyer">Valider</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

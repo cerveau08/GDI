@@ -1,0 +1,72 @@
+<div class="all-container">
+    <div class="all">
+        <div class="tableau">
+            <p class="detail1" id="mydesc">Liste des Demandes</p>
+            <div class="button-valider-content">
+                <button class="button-validation-demende" (click)="getCheckedItemList()">Valider</button>
+            </div>
+            <table style="overflow-x:auto;" aria-describedby = "mydesc">
+                <thead>
+                    <tr class="head">
+                        <th *ngIf="scrWidth>991" class="id1" id="manager">#</th>
+                        <th class="typ" id="prenom">
+                            <div class="type">
+                                <p>Prenom</p> 
+                            </div>
+                        </th>
+                        <th class="typ" id="nom">
+                            <div class="type">
+                                <p>Nom</p> 
+                            </div>
+                        </th>
+                        <th id="presence">Type</th>
+                        <th id="attestation">Motif</th>
+                        <th id="paiement">Date Debut</th>
+                        <th id="date">Date Fin</th>
+                        <th id="input"><input 
+                             [(ngModel)]="selectedAll"
+                             (change)="selectAll();"
+                             type="checkbox"/>
+                        </th>
+                        <!-- <th>
+                            <input type="checkbox" [checked]="isAllCheckBoxChecked()" (change)="checkAllCheckBox($event)">
+                        </th> -->
+                </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let p of dd | filter:filterterm | paginate: { itemsPerPage: 8, currentPage: p }; let i = index">
+                        <td *ngIf="scrWidth>991" class="id1">{{p.id}}</td>
+                        <td>{{p.prenom}}</td>
+                        <td>{{p.nom}}</td>
+                        <td> {{p.typeDemande}}</td>
+                        <td><button  class="buttons1" (click)="openModal('custom-modal-'+p.id)">Afficher</button></td>
+                        <td>{{p.dateDebut | date: 'dd/MM/yyyy'}}</td>
+                        <td>{{p.dateFin | date: 'dd/MM/yyyy'}}</td>
+                        <td *ngIf="p.etat == 0"><input type="checkbox"
+                                [checked]="p.etat"
+                                [(ngModel)]="p.etat"
+                                [value]="p.id" 
+                                (change)="checkIfAllSelected();"/>
+                        </td>
+                        <td *ngIf="p.etat == 1">Validé</td>
+                        <!--modal1-->
+                        <div class="modal">
+                            <jw-modal id="custom-modal-{{p.id}}">
+                                <div class="tab">
+                                    <mat-icon style="cursor: pointer;" (click)="closeModal('custom-modal-'+p.id);" class="clear">clear</mat-icon>
+                                    <p class="motif-titre">Motif de la demande</p>
+                                    <p class="dtl1">{{p.description}}</p>
+                                </div>
+                            </jw-modal>
+                        </div>
+                        <!--modal1-->
+                    </tr>
+                </tbody>
+                
+            </table>
+            <div class="pagination">
+                <pagination-controls (pageChange)="p = $event" previousLabel="Prcédent" nextLabel="Suivant"></pagination-controls>
+            </div>
+        </div>
+    </div>
+</div>

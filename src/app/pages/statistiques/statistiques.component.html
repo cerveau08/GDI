@@ -1,0 +1,430 @@
+<div class="all-container">
+    <div class="all">
+        <p class="statt-header">Statistiques</p>
+        <div class="liste-sous-header">
+           <div [style.background]="show==1?'white':'#f5f6f9'" class="effectif-content" (click)="changeshow1()">
+               <p id="effectis" class="statt-sous-header">Effectifs</p>
+           </div>
+           <div [style.background]="show==2?'white':'#f5f6f9'" class="effectif-content" (click)="changeshow2()">
+               <p id="genre" class="statt-sous-header">Genre</p>
+           </div>
+           <div [style.background]="show==3?'white':'#f5f6f9'" class="effectif-content" (click)="changeshow3()">
+               <p id="presence" class="statt-sous-header">Présence</p>
+           </div>
+           <div [style.background]="show==4?'white':'#f5f6f9'" class="effectif-content" (click)="changeshow4()">
+            <p id="presence" class="statt-sous-header">Agence</p>
+        </div>
+        </div>
+        
+    
+        <div *ngIf="show==1" class="content-diagram-effectif">
+            <div *ngIf="scrWidth>991" class="stat">
+                <div class="elmt2" title="messages2">
+                    <div class="tit">
+                        <p class="total">Variation de l’effectif</p>
+                        <div class="filter-date">
+                            <div [style.border]="borderfilter1" id="filter-annee" class="filtrer-annees">
+                                <mat-icon [style.color]="colorfilter1" id="icon-calendar-annee"  class="icone-calendar1" fontSet="material-icons-outlined">date_range</mat-icon>
+                                <select class="select-mois" #lAnnee (change)='dateSelectionner(lAnnee.value)'>
+                                    <option class="option" value="" disabled selected hidden>2021</option>
+                                    <option *ngFor="let p of diagram1" class="option" [value]="p.mois">{{p.annee}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                   
+                    <div class="diagra1">
+                        <div id="chart1">
+                            <apx-chart
+                                [series]="chartOptions.series"
+                                [chart]="chartOptions.chart"
+                                [dataLabels]="chartOptions.dataLabels"
+                                [plotOptions]="chartOptions.plotOptions"
+                                [responsive]="chartOptions.responsive"
+                                [xaxis]="chartOptions.xaxis"
+                                [legend]="chartOptions.legend"
+                                [fill]="chartOptions.fill"
+                                [colors]="chartOptions.colors"
+                                [dataLabels]="chartOptions.dataLabels"
+                            ></apx-chart>
+                        </div>
+                    </div>
+                    <div class="lesbouton2">
+                        <div  class="button3"> 
+                            <div class="color"></div> 
+                            <p>Finis</p>
+                        </div>
+                        <div  class="button4"> 
+                            <div class="color"></div> 
+                            <p>Nouveaux</p>
+                        </div>
+                        <div  class="button5"> 
+                            <div class="color"></div> 
+                            <p>Total</p>
+                        </div>
+                    </div>
+               
+                </div>
+            </div>
+            <div *ngIf="scrWidth>991" class="stat-effectif-direction">
+                <div class="elmt2" title="messages2">
+                    <div class="tit">
+                        <p class="total">Répartition des interimaires</p>
+                    </div>
+                    <div class="selects-and-echelle">
+                        <div class="filtre-societe-direction">
+                            <div class="filtrer-societe" style="cursor: pointer;">
+                                <select class="select-societe" #lEffectif (change)='effectifSocieteSelectionner(lEffectif.value)'>
+                                    <option *ngFor="let p of societes" class="option" [value]="p.societe">{{p.societe}}</option>
+                                </select>
+                            </div>
+                            <div class="filtrer-direction" style="cursor: pointer;">
+                                <select class="select-societe" #myDirection (change)='effectifSocieteSelectionner(myDirection.value)'>
+                                    <option class="option" value="" disabled selected hidden>Direction</option>
+                                    <option *ngFor="let p of directions" class="option" [value]="p.direction">{{p.direction}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="diagra1">
+                        <div id="chart1">
+                            <apx-chart
+                              [series]="chartOptions2.series"
+                              [chart]="chartOptions2.chart"
+                              [dataLabels]="chartOptions2.dataLabels"
+                              [plotOptions]="chartOptions2.plotOptions"
+                              [responsive]="chartOptions2.responsive"
+                              [xaxis]="chartOptions2.xaxis"
+                              [legend]="chartOptions2.legend"
+                              [fill]="chartOptions2.fill"
+                              [colors]="chartOptions2.colors"
+                              [dataLabels]="chartOptions2.dataLabels"
+                            ></apx-chart>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="show==2" class="content-diagram-genre">
+            <div class="content-circle-diagram">
+                <div class="detail1">
+                    <div class="elmt" >
+                        <div class="tit">
+                            <p class="total">Total Interimaires</p>
+                        </div>
+                        <div class="per">
+                            <div class="cercle">
+                                <circle-progress
+                                [percent]="progress"
+                                [radius]="60"
+                                [outerStrokeWidth]="40"
+                                [innerStrokeWidth]="20"
+                                [space] = "-32"
+                                [outerStrokeColor]="'#ff7900'"
+                                [innerStrokeColor]="'#009393'"
+                                [outerStrokeLinecap]= "'square'"
+                                [showTitle]="false"
+                                [showUnits]="false"
+                                [showSubtitle] = "false"
+                                [animation]="true"
+                                [animationDuration]="300"
+                                [startFromZero]="false"
+                                [responsive]="false"
+                                ></circle-progress>
+                            </div>
+                            <div id="square"></div>
+                            <div class="fl1">
+                                <mat-icon >arrow_right</mat-icon>
+                            </div>
+                            <div id="square1"></div>
+                            <div class="fl2">
+                                <mat-icon >arrow_left</mat-icon>
+                            </div>
+                            <div class="point1"></div>
+                            <div class="point2"></div>
+                            <div class="femmes">
+                                <div class="fem">
+                                    <p class="fn">315</p>
+                                    <p class="fe">Femmes</p>
+                                </div>
+                            </div>
+                            <div class="hommes">
+                                <div class="hom">
+                                    <p class="hn">520</p>
+                                    <p class="ho">Hommes</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="">
+                        <p class="interimaires-total">835</p>
+                        <div class="lesbouton1">
+                            <div  class="button1"> 
+                                <div class="color"></div> 
+                                <p>Homme</p>
+                            </div>
+                            <div  class="button2"> 
+                                <div class="color"></div> 
+                                <p>Femme</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="scrWidth>991" class="stat-effectif-direction">
+                <div class="elmt2" title="messages2">
+                    <div class="tit">
+                        <p class="total">Répartition des interimaires</p>
+                    </div>
+                    <div class="selects-and-echelle">
+                        <div class="filtre-societe-direction">
+                            <div class="filtrer-societe" style="cursor: pointer;">
+                                <select class="select-societe" #mySelect (change)='societeSelectionner(mySelect.value)'>
+                                    <option *ngFor="let p of societes" class="option" [value]="p.societe">{{p.societe}}</option>
+                                </select>
+                            </div>
+                            <div class="filtrer-direction" style="cursor: pointer;">
+                                <select class="select-societe" #myDirection (change)='societeSelectionner(myDirection.value)'>
+                                    <option class="option" value="" disabled selected hidden>Direction</option>
+                                    <option *ngFor="let p of directions" class="option" [value]="p.direction">{{p.direction}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="">
+                            <div class="lesbouton1">
+                                <div  class="button1"> 
+                                    <div class="color"></div> 
+                                    <p>Homme</p>
+                                </div>
+                                <div  class="button2"> 
+                                    <div class="color"></div> 
+                                    <p>Femme</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="diagra1">
+                        <div id="chart1">
+                            <apx-chart
+                              [series]="chartOptions3.series"
+                              [chart]="chartOptions3.chart"
+                              [dataLabels]="chartOptions3.dataLabels"
+                              [plotOptions]="chartOptions3.plotOptions"
+                              [responsive]="chartOptions3.responsive"
+                              [xaxis]="chartOptions3.xaxis"
+                              [legend]="chartOptions3.legend"
+                              [fill]="chartOptions3.fill"
+                              [colors]="chartOptions3.colors"
+                              [dataLabels]="chartOptions3.dataLabels"
+                            ></apx-chart>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="show==3" class="content-diagram-genre">
+            <div *ngIf="scrWidth>991" class="stat">
+                <div class="elmt2" title="messages2">
+                    <div class="tit">
+                        <p class="total">Variation de Présence par période</p>
+                        <div class="filter-date">
+                            <div [style.border]="borderfilter1" id="filter-annee" class="filtrer-annees">
+                                <mat-icon [style.color]="colorfilter1" id="icon-calendar-annee"  class="icone-calendar1" fontSet="material-icons-outlined">date_range</mat-icon>
+                                <select class="select-mois" #lAnnee (change)='dateSelectionner(lAnnee.value)'>
+                                    <option class="option" value="" disabled selected hidden>2021</option>
+                                    <option *ngFor="let p of diagram1" class="option" [value]="p.mois">{{p.annee}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                   
+                    <div class="diagra1">
+                        <div id="chart1">
+                            <apx-chart
+                                [series]="chartOptions4.series"
+                                [chart]="chartOptions4.chart"
+                                [dataLabels]="chartOptions4.dataLabels"
+                                [plotOptions]="chartOptions4.plotOptions"
+                                [responsive]="chartOptions4.responsive"
+                                [xaxis]="chartOptions4.xaxis"
+                                [legend]="chartOptions4.legend"
+                                [fill]="chartOptions4.fill"
+                                [colors]="chartOptions4.colors"
+                                [dataLabels]="chartOptions4.dataLabels"
+                            ></apx-chart>
+                        </div>
+                    </div>
+                    <div class="lesbouton2">
+                        <div  class="button3"> 
+                            <div class="color"></div> 
+                            <p>Malades</p>
+                        </div>
+                        <div  class="button4"> 
+                            <div class="color"></div> 
+                            <p>Présents</p>
+                        </div>
+                        <div  class="button5"> 
+                            <div class="color"></div> 
+                            <p>Congés</p>
+                        </div>
+                    </div>
+               
+                </div>
+            </div>
+            <div *ngIf="scrWidth>991" class="stat-effectif-direction">
+                <div class="elmt2" title="messages2">
+                    <div class="tit">
+                        <p class="total">Répartition des interimaires</p>
+                    </div>
+                    <div class="selects-and-echelle">
+                        <div class="filtre-societe-direction">
+                            <div class="filtrer-societe" style="cursor: pointer;">
+                                <select class="select-societe" #lEffectif (change)='effectifSocieteSelectionner(lEffectif.value)'>
+                                    <option *ngFor="let p of societes" class="option" [value]="p.societe">{{p.societe}}</option>
+                                </select>
+                            </div>
+                            <div class="filtrer-direction" style="cursor: pointer;">
+                                <select class="select-societe" #myDirection (change)='effectifSocieteSelectionner(myDirection.value)'>
+                                    <option class="option" value="" disabled selected hidden>Direction</option>
+                                    <option *ngFor="let p of directions" class="option" [value]="p.direction">{{p.direction}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="diagra1">
+                        <div id="chart1">
+                            <apx-chart
+                              [series]="chartOptions5.series"
+                              [chart]="chartOptions5.chart"
+                              [dataLabels]="chartOptions5.dataLabels"
+                              [plotOptions]="chartOptions5.plotOptions"
+                              [responsive]="chartOptions5.responsive"
+                              [xaxis]="chartOptions5.xaxis"
+                              [legend]="chartOptions5.legend"
+                              [fill]="chartOptions5.fill"
+                              [colors]="chartOptions5.colors"
+                              [dataLabels]="chartOptions5.dataLabels"
+                            ></apx-chart>
+                        </div>
+                    </div>
+                    <div class="lesbouton2">
+                        <div  class="button3"> 
+                            <div class="color"></div> 
+                            <p>Malades</p>
+                        </div>
+                        <div  class="button4"> 
+                            <div class="color"></div> 
+                            <p>Présents</p>
+                        </div>
+                        <div  class="button5"> 
+                            <div class="color"></div> 
+                            <p>Congés</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="show==4" class="content-diagram-genre">
+            <div *ngIf="scrWidth>991" class="stat">
+                <div class="elmt2" title="messages2">
+                    <div class="tit">
+                        <p class="total">Variation des Agence par période</p>
+                        <div class="filter-date">
+                            <div [style.border]="borderfilter1" id="filter-annee" class="filtrer-annees">
+                                <mat-icon [style.color]="colorfilter1" id="icon-calendar-annee"  class="icone-calendar1" fontSet="material-icons-outlined">date_range</mat-icon>
+                                <select class="select-mois" #lAnnee (change)='dateSelectionner(lAnnee.value)'>
+                                    <option class="option" value="" disabled selected hidden>2021</option>
+                                    <option *ngFor="let p of diagram1" class="option" [value]="p.mois">{{p.annee}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                   
+                    <div class="diagra1">
+                        <div id="chart1">
+                            <apx-chart
+                                [series]="chartOptions6.series"
+                                [chart]="chartOptions6.chart"
+                                [dataLabels]="chartOptions6.dataLabels"
+                                [plotOptions]="chartOptions6.plotOptions"
+                                [responsive]="chartOptions6.responsive"
+                                [xaxis]="chartOptions6.xaxis"
+                                [legend]="chartOptions6.legend"
+                                [fill]="chartOptions6.fill"
+                                [colors]="chartOptions6.colors"
+                                [dataLabels]="chartOptions6.dataLabels"
+                            ></apx-chart>
+                        </div>
+                    </div>
+                    <div class="lesbouton2">
+                        <div  class="button3"> 
+                            <div class="color"></div> 
+                            <p>Malades</p>
+                        </div>
+                        <div  class="button4"> 
+                            <div class="color"></div> 
+                            <p>Présents</p>
+                        </div>
+                        <div  class="button5"> 
+                            <div class="color"></div> 
+                            <p>Congés</p>
+                        </div>
+                    </div>
+               
+                </div>
+            </div>
+            <div *ngIf="scrWidth>991" class="stat-effectif-direction">
+                <div class="elmt2" title="messages2">
+                    <div class="tit">
+                        <p class="total">Répartition des interimaires</p>
+                    </div>
+                    <div class="selects-and-echelle">
+                        <div class="filtre-societe-direction">
+                            <div class="filtrer-societe" style="cursor: pointer;">
+                                <select class="select-societe" #lEffectif (change)='effectifSocieteSelectionner(lEffectif.value)'>
+                                    <option *ngFor="let p of societes" class="option" [value]="p.societe">{{p.societe}}</option>
+                                </select>
+                            </div>
+                            <div class="filtrer-direction" style="cursor: pointer;">
+                                <select class="select-societe" #myDirection (change)='effectifSocieteSelectionner(myDirection.value)'>
+                                    <option class="option" value="" disabled selected hidden>Direction</option>
+                                    <option *ngFor="let p of directions" class="option" [value]="p.direction">{{p.direction}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="diagra1">
+                        <div id="chart1">
+                            <apx-chart
+                              [series]="chartOptions7.series"
+                              [chart]="chartOptions7.chart"
+                              [dataLabels]="chartOptions7.dataLabels"
+                              [plotOptions]="chartOptions7.plotOptions"
+                              [responsive]="chartOptions7.responsive"
+                              [xaxis]="chartOptions7.xaxis"
+                              [legend]="chartOptions7.legend"
+                              [fill]="chartOptions7.fill"
+                              [colors]="chartOptions7.colors"
+                              [dataLabels]="chartOptions7.dataLabels"
+                            ></apx-chart>
+                        </div>
+                    </div>
+                    <div class="lesbouton2">
+                        <div  class="button3"> 
+                            <div class="color"></div> 
+                            <p>Malades</p>
+                        </div>
+                        <div  class="button4"> 
+                            <div class="color"></div> 
+                            <p>Présents</p>
+                        </div>
+                        <div  class="button5"> 
+                            <div class="color"></div> 
+                            <p>Congés</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

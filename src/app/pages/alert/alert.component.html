@@ -1,0 +1,45 @@
+<div class="all-container">
+    <div class="all">
+        <div class="liste" >
+            <div class="list1">
+                <div class="alert1">
+                    <div class="date">
+                        <p class="title">Date</p>
+                    </div>
+                    <div class="title">
+                        <p class="title">Titre</p>
+                    </div>
+                </div>
+                <div class="alert2">
+                    <div class="content">
+                        <p class="title">Contenu</p>
+                    </div>
+                    <div class="ser">
+                        <p class="title">Service</p>
+                    </div>
+                </div>
+            </div>
+            <div class="list2" style="cursor: pointer;" (click)="openDetail(p)" *ngFor="let p of alert | paginate: { itemsPerPage: 12, currentPage: p }; let i = index">
+                <div class="alert1" >
+                    <div class="date">
+                        <p class="heure">{{p.dateNotif | date: "dd-MM-yyyy"}} {{p.heure}}</p>
+                    </div>
+                    <div class="theme">
+                        <p class="sujet">{{p.libelle}}</p>
+                    </div>
+                </div>
+                <div class="alert2">
+                    <div class="content">
+                        <p class="libele">{{p.description}}</p>
+                    </div>
+                    <div class="ser">
+                        <p class="dire">{{p.direction}}/{{p.pole}}/{{p.departement}}/{{p.service}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="pagination">
+                <pagination-controls (pageChange)="p = $event" previousLabel="Prcédent" nextLabel="Suivant"></pagination-controls>
+            </div>
+        </div>
+    </div>
+</div>
