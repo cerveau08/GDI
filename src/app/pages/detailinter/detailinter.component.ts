@@ -75,6 +75,7 @@ export class DetailinterComponent implements OnInit {
     this.activeroute.queryParams.subscribe(params => {
       this.item = JSON.parse(params["user"]);
       console.log(this.item);
+      
       this.otherService.getOneInterById(this.item).subscribe(
            data =>{
             this.data = data;

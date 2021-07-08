@@ -269,7 +269,7 @@ export class HomeComponent implements OnInit {
       this.otherService.getInter().subscribe(
         data => {
         this.dataInterFin = data.data;
-        console.log(data);
+           
         }
       );
   // this.data = this.dataService.getData();

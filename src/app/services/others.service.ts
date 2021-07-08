@@ -7,6 +7,9 @@ import {HttpClient} from '@angular/common/http';
   providedIn: 'root'
 })
 export class OthersService {
+  getItem() {
+    throw new Error('Method not implemented.');
+  }
   public reqUrl = environment.base_url;
   constructor(private http: HttpClient) { }
 
@@ -52,6 +55,7 @@ getDetailsManagerById(id: number) {
    getOneManagerById(id: number) {
     return this.http.get(this.reqUrl + `/detailAgence/${id}`);
   }
+
   // recupere les details d'un interimaire
   getOneInterById(id: number) {
     return this.http.get(this.reqUrl + `/interimaire/${id}`);

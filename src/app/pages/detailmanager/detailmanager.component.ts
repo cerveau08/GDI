@@ -8,7 +8,7 @@ import { OthersService } from 'src/app/services/others.service';
   styleUrls: ['./detailmanager.component.scss']
 })
 export class DetailmanagerComponent implements OnInit {
-  item: any;
+    item;
   dataManager;
   user;
   showupdate;

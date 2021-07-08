@@ -15,7 +15,7 @@
                 <p class="datefin">25 Aou 2021</p>
             </div>
         </div>
-        <div class="grid-container" *ngFor="let d of data">
+        <div class="grid-container">
             <div class="image">
                 <div class="ima">
                     <img class="image-interimaire" alt="" src="../assets/images/inter.png">
@@ -25,25 +25,25 @@
                     <div class="im2">
                         <img class="image-contact" src="../assets/images/phone.png" alt="">
                     </div>
-                    <p class="prenom">{{d.prenom}} {{d.nom}}</p>
-                    <p class="fonction">{{d.poste}}</p>
+                    <p class="prenom">{{prenom}} {{nom}}</p>
+                    <p class="fonction">{{profession}}</p>
                 </div>
             </div>
             <div class="info">
                 <div class="lot1">
-                    <p class="key">Numéro CNI: <span class="value">{{d.cni}}</span> </p>
-                    <p class="key">Date de naissance: <span class="value">{{d.dateNais}}</span> </p>
-                    <p class="key">Lieu de naissance: <span class="value">{{d.lieuNais}}</span> </p>
-                    <p class="key">Genre: <span class="value">{{d.genre}}</span> </p>
+                    <p class="key">Numéro CNI: <span class="value">{{numeroPiece}}</span> </p>
+                    <p class="key">Date de naissance: <span class="value">{{datedenaissance}}</span> </p>
+                    <p class="key">Lieu de naissance: <span class="value">{{lieudenaissance}}</span> </p>
+                    <p class="key">Genre: <span class="value">{{sexe}}</span> </p>
                 </div>
                 <div class="lot">
-                    <p class="lot2">Catégorie: <span class="value">{{d.categorie}}</span> </p>
-                    <p class="key">Agence Interim: <span class="value">{{d.agence}}</span> </p>
-                    <p class="key">Société: <span class="value">{{d.structure}}</span> </p>
-                    <p class="key">Direction: <span class="value">{{d.direction}}</span> </p>
-                    <p class="key">Pole: <span class="value">{{d.pole}}</span> </p>
-                    <p class="key">Département: <span class="value">{{d.departement}}</span> </p>
-                    <p class="key">Service: <span class="value">{{d.service}}</span> </p>
+                    <p class="lot2">Catégorie: <span class="value">{{categorie.libelle}}</span> </p>
+                    <p class="key">Agence Interim: <span class="value">{{agence.nom}}</span> </p>
+                    <!-- <p class="key">Société: <span class="value">{{structure.direction.libelle}}</span> </p> -->
+                    <p class="key">Direction: <span class="value">{{direction}}</span> </p>
+                    <!-- <p class="key">Pole: <span class="value">{{structure.pole}}</span> </p> -->
+                    <p class="key">Département: <span class="value">{{departement}}</span> </p>
+                    <p class="key">Service: <span class="value">{{service}}</span> </p>
                 </div>
             </div>
         </div>
@@ -58,7 +58,7 @@
 <!--modal1-->
 <div class="modal">
     <jw-modal id="custom-modal-1">
-        <div class="tableau" *ngFor="let item of data">
+        <div class="tableau">
             <mat-icon style="cursor: pointer;" (click)="closeModal('custom-modal-1');" class="clear">clear</mat-icon>
             <p class="dtl1">contrat {{item.prenom}} {{item.nom}}</p>
             <ngx-doc-viewer 
