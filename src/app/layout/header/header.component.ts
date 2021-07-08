@@ -172,8 +172,4 @@ export class HeaderComponent implements OnInit {
     } 
     return color;
   }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> f488d30e4ce411e6db3f5d19fadf308db3ce0ab1
