@@ -3,7 +3,6 @@ import { NgxFileSaverService } from '@clemox/ngx-file-saver';
 import { DataService } from 'src/app/service/data.service';
 import { ModalService } from 'src/app/_modal/modal.service';
 
-
 @Component({
   selector: 'app-compte',
   templateUrl: './compte.component.html',

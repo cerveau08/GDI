@@ -52,6 +52,10 @@ getDetailsManagerById(id: number) {
    getOneManagerById(id: number) {
     return this.http.get(this.reqUrl + `/detailAgence/${id}`);
   }
+<<<<<<< HEAD
+=======
+
+>>>>>>> f488d30e4ce411e6db3f5d19fadf308db3ce0ab1
   // recupere les details d'un interimaire
   getOneInterById(id: number) {
     return this.http.get(this.reqUrl + `/interimaire/${id}`);
