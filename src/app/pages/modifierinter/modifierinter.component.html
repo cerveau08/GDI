@@ -19,7 +19,7 @@
                         <p class="matri">Matricule: <span>{{matricule}}</span> </p>
                         <div class="grid">
                           <div class="photo">
-                            <img class="image-upload" *ngIf="!image" src="image" alt="">
+                            <img class="image-upload" *ngIf="!image" [src]="photo" alt="">
                             <img class="image-upload" *ngIf="image" [src]="image"  alt="">
                             <input formControlName="photo" class="buttonphoto1" type="file" (change)="getPhoto($event.target)">
                           </div>

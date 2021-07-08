@@ -171,7 +171,7 @@ addAgence(data) {
     return this.http.get(`${this.reqUrl}/statInterimaireByAgence`);
   }
   arreterContrat(id: number, data: string){
-    //return this.http.put(`${this.reqUrl}/arreterContrat/${id}`, data);
+    return this.http.put(`${this.reqUrl}/arreterContrat/${id}`, data);
   }
   getprofil(): Observable<any> {
     return this.http.get<any>(this.reqUrl + '/profils');

@@ -103,6 +103,7 @@ export class AddinterComponent implements OnInit {
         departementId: new FormControl(''),
         societeId: new FormControl(5),
         profession: new FormControl(''),
+        poste: new FormControl(''),
         contratDoc: new FormControl(''),
         matriculeManager: new FormControl(''),
         fileFicheposte: new FormControl(''),
@@ -227,12 +228,12 @@ export class AddinterComponent implements OnInit {
     this.otherService.addInter(formdata).subscribe(
       data => {
         console.log(data);
-        if (data) {
-            // alert('Intérimaire ajouté avec succées...');
-          this.route.navigate(['/accueil/souscontrat']);
-        }
+        // if (data) {
+        //     // alert('Intérimaire ajouté avec succées...');
+        //   this.route.navigate(['/accueil/souscontrat']);
+        // }
      
-        if(data.status == true) {
+        if(data.success == true) {
           this.submited = true;
         }
       },
