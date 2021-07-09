@@ -137,8 +137,9 @@ export class ModifierinterComponent implements OnInit {
             this.categorie = this.dataInter.data.categorie.libelle;
             this.categorieId = this.dataInter.data.categorie.id;
             this.telephone = this.dataInter.data.telephone;
-            this.ficheposte = this.dataInter.data.ficheposte;
-            this.proceverbal = this.dataInter.data.proceverbal;
+            this.fichierPoste = this.dataInter.data.ficheposte;
+            this.fichierContrat = this.dataInter.data.fileContrat;
+            this.fichierProceVerbal = this.dataInter.data.proceverbal;
             this.universite = this.dataInter.data.universite;
             this.agence = this.dataInter.data.agence;
           },
@@ -241,12 +242,20 @@ export class ModifierinterComponent implements OnInit {
   }
 
    //recuperation du  contrat
-   getFileContrat(event: any) {
-    this.fichierContrat = event.target.files[0];
+  //  getFileContrat(event: any) {
+  //   this.fichierContrat = event.target.files[0];
+  //   this.contratName = this.fichierContrat.name;
+  //   console.log(this.contratName);
+  // }
+  
+  //recuperation de l'image
+  getFileContrat(e:any) {
+    this.fichierContrat= e.target.files.item(0);
+    console.log(this.fichierContrat.type);
     this.contratName = this.fichierContrat.name;
     console.log(this.contratName);
   }
-  
+
   getFileCni(event: any) {
     this.fichierCni = event.target.files[0];
     this.cniName = this.fichierCni.name;
@@ -257,6 +266,7 @@ export class ModifierinterComponent implements OnInit {
     this.fichierPoste = event.target.files[0];
     this.fichedeposteName = this.fichierPoste.name;
     console.log(this.fichedeposteName);
+    
   }
 
   getProceVerbal(event: any) {
