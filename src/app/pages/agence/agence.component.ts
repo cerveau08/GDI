@@ -1,3 +1,4 @@
+import { OthersService } from 'src/app/services/others.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { NgxFileSaverService } from '@clemox/ngx-file-saver';
@@ -11,7 +12,7 @@ import { ModalService } from 'src/app/_modal/modal.service';
 })
 export class AgenceComponent implements OnInit {
 
-  item = {
+  /*item = {
     id: 19,
     prenom: "Amadou Dieye",
     nom: "LEYE",
@@ -44,7 +45,9 @@ export class AgenceComponent implements OnInit {
     pathfile: "../assets/doc/1.pdf",
     postem: "Chef de Services Production et Maintenance Applicatif",
     nomInt: "5"
-  };
+  };*/
+  item: any;
+  dataAgence;
   showHome = true;
   url1;
   url3;
@@ -64,9 +67,41 @@ export class AgenceComponent implements OnInit {
   DemoDoc="http://www.africau.edu/images/default/sample.pdf" 
   DemoDoc1="https://file-examples.com/wp-content/uploads/2017/02/file-sample_100kB.doc"
   DemoDoc2="https://www.le.ac.uk/oerresources/bdra/html/resources/example.txt" 
+  activeroute: any;
   constructor(private fileSaver: NgxFileSaverService,
     private modalService: ModalService,
-    private dataService: DataService,) { }
+    private dataService: DataService,
+    private otherService: OthersService) { 
+      this.activeroute.queryParams.subscribe(params => {
+        this.item = JSON.parse(params["user"]);
+        console.log(this.item);
+        this.otherService.getOneAgenceById(this.item).subscribe(
+          /*data =>{
+            this.data = data;
+            this.dataAgence = this.data.data;
+            console.log(this.dataAgence);
+            this.nom = this.dataAgence.nom;
+            this.responsable  = this.dataAgence.responsable;
+            this.numdg = this.dataAgence.numdg;
+            this.email = this.dataAgence.email;
+            this.telephone = this.dataAgence.telephone;
+            this.contratDoc = this.dataAgence.contrat;
+            this.site = this.dataAgence.site;
+            this.adresse = this.dataAgence.adresse;
+            this.logo = this.dataAgence.logo;
+            this.contrat = this.dataAgence.data.contrat;
+            this.cnidg = this.dataAgence.data.cnidg;
+            this.userAgence = this.dataAgence['user'];
+            console.log(this.userAgence);
+            
+          },*/
+          error =>{
+            console.log(error)
+          }
+        );
+      })
+
+    }
 
   ngOnInit() {
     this.user = localStorage.getItem('user');
