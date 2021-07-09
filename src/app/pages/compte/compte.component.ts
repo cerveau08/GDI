@@ -42,6 +42,7 @@ export class CompteComponent implements OnInit {
   proceVerbalDoc="" 
   nom;
   prenom;
+  pole;
   datedenaissance;
   lieudenaissance;
   telephone;
@@ -60,6 +61,7 @@ export class CompteComponent implements OnInit {
   dateSignature;
   universite;
   sexe;
+  structure;
   direction;
   departement;
   service;
@@ -111,12 +113,14 @@ export class CompteComponent implements OnInit {
        this.direction = this.dataInter.structure.direction.libelle;
        this.departement = this.dataInter.structure.departement;
        this.service = this.dataInter.structure.service;
-       this.agence = this.dataInter.agence;
-       this.categorie = this.dataInter.categorie;
+       this.structure = this.dataInter.structure.bu;
+       this.agence = this.dataInter.agence.nom;
+       this.categorie = this.dataInter.categorie.libelle;
        this.dateSignature = this.dataInter.dateSignature;
        this.matricule = this.dataInter.matricule;
        this.sexe = this.dataInter.sexe;
        this.photo = this.dataInter.photo;
+       this.pole = this.dataInter.structure.pole;
        this.contratDoc = this.dataInter.fileContrat;
        this.fichePosteDoc = this.dataInter.fileFichePoste;
    },
@@ -159,3 +163,4 @@ export class CompteComponent implements OnInit {
     this.modalService.close(id);
   }
 }
+ 
