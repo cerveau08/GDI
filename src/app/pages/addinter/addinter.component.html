@@ -7,7 +7,7 @@
             <mat-step [stepControl]="interForm" >
               <ng-template matStepLabel>
                   <div class="head">
-                    <div class="header" [style.background]="colors1()">
+                    <div class="header" [style.background]="colora">
                         <p class="titre"> 1. Infos personnelles</p>
                     </div>
                 </div>
@@ -70,7 +70,7 @@
             <mat-step [stepControl]="interForm" >
               <ng-template matStepLabel>
                   <div class="head">
-                      <div class="header" [style.background]="colors2()">
+                      <div class="header" [style.background]="colorb">
                           <p class="titre"> 2. Contrat</p>
                         </div>
                   </div> 
@@ -144,7 +144,7 @@
             <mat-step [stepControl]="interForm" label="Email" >
               <ng-template matStepLabel>
                   <div class="head">
-                      <div class="header" [style.background]="colors3()">
+                      <div class="header" [style.background]="colorc">
                           <p class="titre"> 3. Documents</p>
                         </div>
                     </div>
@@ -152,25 +152,18 @@
               <div>
                 <div *ngIf="!submited">
                   <form [formGroup]="interForm">
-                    <!-- <div formGroupName="poste"> -->
                       <div>
                       <div class="center">
                         <div class="fiche-et-pv" >
-                          <div class="photo" >
-                            <!-- <img class="image-diplome" *ngIf="!url3==true" src="/assets/images/upload.png" alt="">
-                            <img class="image-upload" [src]="url3" height="60" alt=""> -->
+                          <div class="otherfile" >
                             <input formControlName="fileCni" class="buttonCNI" type="file" (change)="getFileCni($event)" >
                             <p class="fileName">{{cniName}}</p>
                           </div>
-                          <div class="photo" >
-                            <!-- <img class="image-diplome" *ngIf="!url3==true" src="/assets/images/upload.png" alt="">
-                            <img class="image-upload" [src]="url3" height="60" alt=""> -->
+                          <div class="otherfile" >
                             <input formControlName="fileFicheposte" class="buttonphoto3" type="file" (change)="getFichePoste($event)" >
                             <p class="fileName">{{fichedeposteName}}</p>
                           </div>
-                          <div class="photo" >
-                            <!-- <img class="image-upload" *ngIf="!url4==true" src="/assets/images/upload.png" alt="">
-                            <img class="image-upload" [src]="url4" height="60" alt=""> -->
+                          <div class="otherfile" >
                             <input formControlName="fileproceverbal" class="buttonphoto4" type="file" (change)="getProceVerbal($event)" >
                             <p class="fileName">{{proceverbalName}}</p>
                           </div>
@@ -180,13 +173,6 @@
                             <p class="diplome-title-text">Diplomes</p>
                           </div>
                           <div class="liste-diplome">
-                            <!-- <div formArrayName="fileDiplome">
-                              <div class="liste-diplome-content" *ngFor="let diplome of interForm.get('fileDiplome').controls; index as idx">
-                                <input [formControlName]="idx" class="buttondiplome" type="file" (change)="getDiplomes($event, idx)" >
-                                <p class="diplomename">{{diplomeName}}</p>
-                                <mat-icon class="add-diplome" fontSet="material-icons-outlined" (click)="addNameField()">add</mat-icon>
-                              </div>
-                            </div> -->
                             <div >
                               <div class="liste-diplome-content">
                                 <input fomControlName="diplome1" class="buttondiplome" type="file" (change)="getDiplome1($event)" >
@@ -197,10 +183,12 @@
                                 <input fomControlName="diplome2" class="buttondiplome" type="file" (change)="getDiplome2($event)" >
                                 <p class="diplomename">{{diplomeName2}}</p>
                                 <mat-icon class="add-diplome" fontSet="material-icons-outlined" (click)="addDiplome2()">add</mat-icon>
+                                <mat-icon class="add-diplome"  (click)="deleteDiplome2()">delete</mat-icon>
                               </div>
                               <div class="liste-diplome-content" [style.display]="selected2==true?'flex':'none'">
                                 <input fomControlName="diplome3" class="buttondiplome" type="file" (change)="getDiplome3($event)" >
                                 <p class="diplomename">{{diplomeName3}}</p>
+                                <mat-icon class="add-diplome"  (click)="deleteDiplome3()">delete</mat-icon>
                                 <!-- <mat-icon class="add-diplome" fontSet="material-icons-outlined" (click)="addDiplome3()">add</mat-icon> -->
                               </div>
                             </div>
@@ -231,9 +219,9 @@
             </mat-step>
 
           </mat-horizontal-stepper>
-          <div [style.border-left]="getcolor1()" class="triangle1"></div>
-          <div [style.border-left]="getcolor2()" class="triangle2"></div>
-          <div [style.border-left]="getcolor3()" class="triangle3"></div>
+          <div [style.border-left]="color1" class="triangle1"></div>
+          <div [style.border-left]="color2" class="triangle2"></div>
+          <div [style.border-left]="color3" class="triangle3"></div>
         </div>
     </div>
 </div>

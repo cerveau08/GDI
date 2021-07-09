@@ -70,6 +70,12 @@ export class AddinterComponent implements OnInit {
   ];
   selected1 = false;
   selected2 = false;
+  colora = "#ff7900";
+  colorb = "#000";
+  colorc = "#000";
+  color1 = "20px solid #ff7900"
+  color2 = "20px solid #000"
+  color3 = "20px solid #000"
   constructor(private fb: FormBuilder,
               private dataService: DataService,
               private otherService: OthersService,
@@ -113,23 +119,6 @@ export class AddinterComponent implements OnInit {
         diplome1: new FormControl(''),
         diplome2: new FormControl(''),
         diplome3: new FormControl(''),
-       /* fileDiplome: new FormArray([
-          new FormControl(''),
-        ])
-        diplome: new FormArray([
-          new FormGroup({
-            document: new FormControl(''),
-            typeDocumentId: new FormControl('')
-          }),
-         new FormGroup({
-            document: new FormControl(''),
-            typeDocumentId: new FormControl('')
-          }),
-          new FormGroup({
-            document: new FormControl(''),
-            typeDocumentId: new FormControl('')
-          }),
-        ])*/
     });
       //recupere les societes
     this.otherService.getAllSociete().subscribe(
@@ -166,6 +155,12 @@ export class AddinterComponent implements OnInit {
   addDiplome2() {
     this.selected2 = true;
   }
+  deleteDiplome2() {
+    this.selected1 = false;
+  }
+  deleteDiplome3() {
+    this.selected2 = false;
+  }
 
   //recuperation du fiche de poste
   getDiplomes(e:any) {
@@ -177,18 +172,20 @@ export class AddinterComponent implements OnInit {
     }
   }
   submitted1(){
-    localStorage.setItem('color1', "20px solid #f16e00");
-    localStorage.setItem('color2', "20px solid #ff7900");
-    localStorage.setItem('colora', "#f16e00");
-    localStorage.setItem('colorb', "#ff7900");
+    this.colora = "#f16e00";
+    this.colorb = "#ff7900";
+    this.color1 = "20px solid #f16e00";
+    this.color2 = "20px solid #ff7900";
   }
   submitted2(){
-    localStorage.setItem('color2', "20px solid #f16e00");
-    localStorage.setItem('color3', "20px solid #ff7900");
-    localStorage.setItem('colorb', "#f16e00");
-    localStorage.setItem('colorc', "#ff7900");
+    this.colorb = "#f16e00";
+    this.colorc = "#ff7900";
+    this.color2 = "20px solid #f16e00";
+    this.color3 = "20px solid #ff7900";
   }
   submit() {
+    this.colorc = "#f16e00";
+    this.color3 = "20px solid #f16e00";
     const value = this.interForm.value;
     const formdata = new FormData();
     formdata.append("societeId","5");
@@ -352,107 +349,14 @@ export class AddinterComponent implements OnInit {
     console.log(this.cniName);
     
   }
- 
-  readUrl1(event: any) {
-    console.log('readUrl');
-      if (event.target.files && event.target.files[0]) {
-        var reader = new FileReader();
-      
-        reader.onload = (event: any) => {
-          this.url1 = event.target.result;
-        }
-        reader.readAsDataURL(event.target.files[0]);
-      }
-  }
-  
-  readUrl2(event: any) {
-    console.log('readUrl');
-      if (event.target.files && event.target.files[0]) {
-        var reader = new FileReader();
-      
-        reader.onload = (event: any) => {
-          this.url2 = event.target.result;
-        }
-      
-        reader.readAsDataURL(event.target.files[0]);
-      }
-  }
-
-  readUrl3(event: any) {
-    console.log('readUrl');
-      if (event.target.files && event.target.files[0]) {
-        var reader = new FileReader();
-      
-        reader.onload = (event: any) => {
-          this.url3 = event.target.result;
-        }
-      
-        reader.readAsDataURL(event.target.files[0]);
-      }
-  }
-
-  readUrl4(event: any) {
-    console.log('readUrl');
-      if (event.target.files && event.target.files[0]) {
-        var reader = new FileReader();
-      
-        reader.onload = (event: any) => {
-          this.url4 = event.target.result;
-        }
-      
-        reader.readAsDataURL(event.target.files[0]);
-      }
-  }
-  colors1() {
-    let colora = "#ff7900";
-    if(localStorage.getItem('colora')){
-      colora = localStorage.getItem('colora')
-    } 
-    return colora;
-  }
-  colors2() {
-    let colorb = "black";
-    if(localStorage.getItem('colorb')){
-      colorb = localStorage.getItem('colorb')
-    } 
-    return colorb;
-  }
-  colors3() {
-    let colorb = "black";
-    if(localStorage.getItem('colorc')){
-      colorb = localStorage.getItem('colorc');
-    } 
-    return colorb;
-  }
-  getcolor1() {
-    let color = "20px solid #ff7900" 
-    if(localStorage.getItem('color1')){
-      color = localStorage.getItem('color1');
-    } 
-    return color;
-  }
-  getcolor2() {
-    let color = "20px solid black" 
-    if(localStorage.getItem('color2')){
-      color = localStorage.getItem('color2');
-    } 
-    return color;
-  }
-  getcolor3() {
-    let color = "20px solid black" 
-    if(localStorage.getItem('color3')){
-      color = localStorage.getItem('color3');
-    } 
-    return color;
-  }
 
   removeItem() {
-    localStorage.removeItem('color1');
-    localStorage.removeItem('color2');
-    localStorage.removeItem('color3');
-    localStorage.removeItem('colora');
-    localStorage.removeItem('colorb');
-    localStorage.removeItem('colorc');
+    this.colora = "#ff7900";
+    this.colorb = "#000";
+    this.colorc = "#000";
+    this.color1 = "20px solid #ff7900"
+    this.color2 = "20px solid #000"
+    this.color3 = "20px solid #000"
     this.submited = false;
     this.url1="../assets/images/default.png";
     this.url2="../assets/images/default.png";
