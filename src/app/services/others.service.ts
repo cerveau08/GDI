@@ -192,4 +192,7 @@ addAgence(data) {
   addDemande(data){
     return this.http.post(`${this.reqUrl}/ajoutDemande`, data);
   }
+  sendResetPasswordLink(data) {
+    return this.http.post(`${this.reqUrl}/reset-password-request`, data);
+  }
 }

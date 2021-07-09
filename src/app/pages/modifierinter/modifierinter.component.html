@@ -79,7 +79,7 @@
                       <p class="matri">Matricule: <span>{{matricule}}</span> </p>
                       <div class="grid">
                         <div class="photo">
-                          <input formControlName="filecontrat"  class="buttonphoto2" type="file" (change)="getFileContrat($event)" >
+                          <input formControlName="filecontrat" [(ngModel)]="filecontrat" class="buttonphoto2" type="file" (change)="getFileContrat($event)" >
                           <p class="fileName">{{contratName}}</p>
                         </div>
                         <div class="others">
@@ -143,15 +143,15 @@
                         <div class="center">
                           <div class="fiche-et-pv" >
                             <div class="photo" >
-                              <input formControlName="fileCni" class="buttonCNI" type="file" (change)="getFileCni($event)" >
+                              <input formControlName="fileCni" [(ngModel)]="fileCni" class="buttonCNI" type="file" (change)="getFileCni($event)" >
                               <p class="fileName">{{cniName}}</p>
                             </div>
                             <div class="photo" >
-                              <input formControlName="fileFicheposte" class="buttonphoto3" type="file" (change)="getFichePoste($event)" >
+                              <input formControlName="fileFicheposte" [(ngModel)]="fileFicheposte" class="buttonphoto3" type="file" (change)="getFichePoste($event)" >
                               <p class="fileName">{{fichedeposteName}}</p>
                             </div>
                             <div class="photo" >
-                              <input formControlName="fileproceverbal" class="buttonphoto4" type="file" (change)="getProceVerbal($event)" >
+                              <input formControlName="fileproceverbal" [(ngModel)]="fileproceverbal" class="buttonphoto4" type="file" (change)="getProceVerbal($event)" >
                               <p class="fileName">{{proceverbalName}}</p>
                             </div>
                           </div>
@@ -162,17 +162,17 @@
                             <div class="liste-diplome">
                               <div formArrayName="fileDiplome">
                                 <div class="liste-diplome-content" formGroupName="0">
-                                  <input formControlName="diplome" class="buttondiplome" type="file" (change)="getDiplome1($event)" >
+                                  <input formControlName="diplome" [(ngModel)]="diplome" class="buttondiplome" type="file" (change)="getDiplome1($event)" >
                                   <p class="diplomename">{{diplomeName1}}</p>
                                   <!-- <mat-icon class="add-diplome" fontSet="material-icons-outlined" (click)="addNameField()">add</mat-icon> -->
                                 </div>
                                 <div class="liste-diplome-content" formGroupName="1">
-                                  <input formControlName="diplome" class="buttondiplome" type="file" (change)="getDiplome2($event)" >
+                                  <input formControlName="diplome" [(ngModel)]="diplome" class="buttondiplome" type="file" (change)="getDiplome2($event)" >
                                   <p class="diplomename">{{diplomeName2}}</p>
                                   <!-- <mat-icon class="add-diplome" fontSet="material-icons-outlined" (click)="addNameField()">add</mat-icon> -->
                                 </div>
                                 <div class="liste-diplome-content" formGroupName="2">
-                                  <input formControlName="diplome" class="buttondiplome" type="file" (change)="getDiplome3($event)" >
+                                  <input formControlName="diplome" [(ngModel)]="diplome" class="buttondiplome" type="file" (change)="getDiplome3($event)" >
                                   <p class="diplomename">{{diplomeName3}}</p>
                                 </div>
                               </div>
