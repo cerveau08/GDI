@@ -71,6 +71,7 @@ export class ModifierinterComponent implements OnInit {
   departement;
   service;
   photo;
+  photoUpload;
   image;
   universite;
   dataCategorie;
@@ -82,16 +83,27 @@ export class ModifierinterComponent implements OnInit {
   fichierdiplome1?: File;
   fichierdiplome2?: File;
   fichierdiplome3?: File;
+  fichierDiplomeUpload: File;
+  fichierContratUpload: File;
+  fichierPosteUpload: File;
+  fichierProceVerbalUpload: File;
+  fichierCniUpload: File;
+  fichierdiplome1Upload: File;
+  fichierdiplome2Upload: File;
+  fichierdiplome3Upload: File;
   contratName;
   cniName;
   fichedeposteName;
   proceverbalName;
   lesDiplome;
+  lesDiplomeUpload;
   diplomeName;
   diplomeName1;
   diplomeName2;
   diplomeName3;
-  idDiplome = 1;
+  idDiplome1;
+  idDiplome2;
+  idDiplome3;
   ListePiece = [
     {
       libelle: "cni",
@@ -100,6 +112,7 @@ export class ModifierinterComponent implements OnInit {
       libelle: "passeport"
     }
   ];
+  info = new FormData();
   constructor(private activeroute: ActivatedRoute,
     private fb: FormBuilder,
     private dataService: DataService,
@@ -137,7 +150,7 @@ export class ModifierinterComponent implements OnInit {
             this.categorie = this.dataInter.data.categorie.libelle;
             this.categorieId = this.dataInter.data.categorie.id;
             this.telephone = this.dataInter.data.telephone;
-            this.fichierPoste = this.dataInter.data.ficheposte;
+            this.fichierPoste = this.dataInter.data.fileFichePoste;
             this.fichierContrat = this.dataInter.data.fileContrat;
             this.fichierProceVerbal = this.dataInter.data.proceverbal;
             this.universite = this.dataInter.data.universite;
@@ -247,68 +260,78 @@ export class ModifierinterComponent implements OnInit {
   //   this.contratName = this.fichierContrat.name;
   //   console.log(this.contratName);
   // }
-  
   //recuperation de l'image
+  getPhoto(e:any) {
+    console.log(this.photo);
+    this.photoUpload = e.files.item(0);
+    let reader = new FileReader();
+    reader.readAsDataURL( this.photoUpload)
+    reader.onload= ()=>{
+      this.image= reader.result
+    } 
+  }
+  
   getFileContrat(e:any) {
-    this.fichierContrat= e.target.files.item(0);
-    console.log(this.fichierContrat.type);
-    this.contratName = this.fichierContrat.name;
+    this.fichierContratUpload = e.target.files.item(0);
+    console.log(this.fichierContratUpload.type);
+    this.contratName = this.fichierContratUpload.name;
     console.log(this.contratName);
   }
 
   getFileCni(event: any) {
-    this.fichierCni = event.target.files[0];
-    this.cniName = this.fichierCni.name;
+    this.fichierCniUpload = event.target.files[0];
+    this.cniName = this.fichierCniUpload.name;
     console.log(this.cniName);
   }
 
   getFichePoste(event: any) {
-    this.fichierPoste = event.target.files[0];
-    this.fichedeposteName = this.fichierPoste.name;
+    this.fichierPosteUpload = event.target.files[0];
+    this.fichedeposteName = this.fichierPosteUpload.name;
     console.log(this.fichedeposteName);
     
   }
 
   getProceVerbal(event: any) {
-    this.fichierProceVerbal = event.target.files[0];
-    this.proceverbalName = this.fichierProceVerbal.name;
+    this.fichierProceVerbalUpload = event.target.files[0];
+    this.proceverbalName = this.fichierProceVerbalUpload.name;
     console.log(this.proceverbalName);
   }
 
   //les diplomes
   getDiplome1(event: any) {
-    this.fichierdiplome1 = event.target.files[0];
-    this.diplomeName1 = this.fichierdiplome1.name;
+    this.fichierdiplome1Upload = event.target.files[0];
+    console.log(this.fichierdiplome1Upload);
+    
+    this.diplomeName1 = this.fichierdiplome1Upload.name;
     console.log(this.diplomeName1);
   }
   getDiplome2(event: any) {
-    this.fichierdiplome2 = event.target.files[0];
-    this.diplomeName2 = this.fichierdiplome2.name;
+    this.fichierdiplome2Upload = event.target.files[0];
+    this.diplomeName2 = this.fichierdiplome2Upload.name;
     console.log(this.diplomeName2);
   }
   getDiplome3(event: any) {
-    this.fichierdiplome3 = event.target.files[0];
-    this.diplomeName3 = this.fichierdiplome3.name;
+    this.fichierdiplome3Upload = event.target.files[0];
+    this.diplomeName3 = this.fichierdiplome3Upload.name;
     console.log(this.diplomeName3);
   }
 
   submit() {
-    this.lesDiplome = [
+    this.lesDiplomeUpload = [
       {
-        id: this.idDiplome,
-        diplome: this.fichierdiplome1
+        id: this.idDiplome1,
+        diplome: this.fichierdiplome1Upload,
       },
       {
-        id: this.idDiplome,
-        diplome: this.fichierdiplome2
+        id: this.idDiplome2,
+        diplome: this.fichierdiplome2Upload
       },
       {
-        id: this.idDiplome,
-        diplome: this.fichierdiplome3
+        id: this.idDiplome3,
+        diplome: this.fichierdiplome3Upload
       },
     ];
-    console.log(this.lesDiplome[0].diplome);
-    console.log(this.fileDiplome.value);
+    console.log(this.lesDiplomeUpload[0].diplome);
     console.log(this.interForm.value);
     const value = this.interForm.value;
     const info = new FormData();
@@ -334,13 +357,23 @@ export class ModifierinterComponent implements OnInit {
     info.append("prenom",this.interForm.value.prenom);
     info.append("email",this.interForm.value.email);
     info.append("telephone",this.interForm.value.telephone);
-    info.append("contratDoc",this.fichierContrat);
-    info.append("fileCni",this.fichierCni);
-    info.append("fileFicheposte",this.fichierPoste);
-    info.append("fileproceverbal",this.fichierProceVerbal);
-    info.append("photo",this.photo);
+    if(this.fichierPosteUpload != undefined) {
+      info.append("fileFicheposte",this.fichierPosteUpload);
+    }
+    if(this.fichierContratUpload != undefined) {
+      info.append("contratDoc",this.fichierContratUpload);
+    }
+    if(this.fichierCniUpload != undefined) {
+      info.append("fileCni",this.fichierCniUpload);
+    }
+    if(this.photoUpload != undefined) {
+      info.append("photo",this.photoUpload);
+    }
+    if(this.fichierProceVerbalUpload != undefined) {
+      info.append("fileproceverbal",this.fichierProceVerbalUpload);
+    }
     info.append("matriculeManager",this.interForm.value.matriculeManager);
-    info.append("fileDiplome",this.lesDiplome);
+    info.append("fileDiplome",this.lesDiplomeUpload);
     console.log(info);
     console.log(this.item);
     this.otherService.updateInter(info, this.item).subscribe(
@@ -385,15 +418,7 @@ export class ModifierinterComponent implements OnInit {
        }
     ); 
   }
-    //recuperation de l'image
-    getPhoto(e:any) {
-      this.photo= e.files.item(0);
-      let reader = new FileReader();
-      reader.readAsDataURL( this.photo)
-      reader.onload= ()=>{
-        this.image= reader.result
-      } 
-    }
+    
   
   readUrl1(event: any) {
     console.log('readUrl');

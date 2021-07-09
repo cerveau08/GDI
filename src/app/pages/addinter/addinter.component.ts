@@ -215,15 +215,31 @@ export class AddinterComponent implements OnInit {
     formdata.append("dateFin",this.interForm.value.dateFin);
     formdata.append("dateSignature",this.interForm.value.dateSignature);
     formdata.append("poste",this.interForm.value.poste);
-    formdata.append("contratDoc",this.fichierContrat);
-    formdata.append("fileCni",this.fichierCni);
-    formdata.append("fileFicheposte",this.fichierPoste);
-    formdata.append("fileproceverbal",this.fichierProceVerbal);
-    formdata.append("photo",this.photo);
+    if(this.fichierContrat != undefined) {
+      formdata.append("contratDoc",this.fichierContrat);
+    }
+    if(this.fichierCni != undefined) {
+      formdata.append("fileCni",this.fichierCni);
+    }
+    if(this.fichierPoste != undefined) {
+      formdata.append("fileFicheposte",this.fichierPoste);
+    }
+    if(this.fichierProceVerbal != undefined) {
+      formdata.append("fileproceverbal",this.fichierProceVerbal);
+    }
+    if(this.photo != undefined) {
+      formdata.append("photo",this.photo);
+    }
+    if(this.fichierdiplome1 != undefined) {
+      formdata.append("fileDiplome[]",this.fichierdiplome1);
+    }
+    if(this.fichierdiplome2 != undefined) {
+      formdata.append("fileDiplome[]",this.fichierdiplome2);
+    }
+    if(this.fichierdiplome3 != undefined) {
+      formdata.append("fileDiplome[]",this.fichierdiplome3);
+    }
     formdata.append("matriculeManager",this.interForm.value.matriculeManager);
-    formdata.append("fileDiplome[]",this.fichierdiplome1);
-    formdata.append("fileDiplome[]",this.fichierdiplome2);
-    formdata.append("fileDiplome[]",this.fichierdiplome3);
     console.log(this.interForm.value);
     this.otherService.addInter(formdata).subscribe(
       data => {
