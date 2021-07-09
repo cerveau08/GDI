@@ -13,8 +13,55 @@ export class CompteComponent implements OnInit {
   public restant: any;
   public nombre = 29;
   public left: any;
-
   datas: any;
+  item: any;
+  id: any;
+  donnees: any;
+  dataInter:any;
+  dataContrat: any;
+  viewer = 'google';  
+  selectedType = 'docx';   
+  contratDoc;
+  fichePosteDoc=""
+  proceVerbalDoc="" 
+  data;
+  nom;
+  prenom;
+  datedenaissance;
+  lieudenaissance;
+  telephone;
+  sitmat;
+  adresse;
+  agence;
+  photo;
+  image;
+  categorie;
+  diplome;
+  numeroPiece;
+  email;
+  profession;
+  matricule;
+  salaireBrut;
+  dateSignature;
+  universite;
+  sexe;
+  direction;
+  departement;
+  service;
+  filenamecontrat;
+  filenamefichedeposte;
+  urlcontrat;
+  urlfichedeposte;
+  dataSociete: any;
+  dataDirection: any;
+  dataAgence: any;
+  dataDepartement: any;
+  donneeService: any;
+  dataCategorie;
+  fileContrat;
+  fileFicheposte;
+
+
   objetctis = [
     {
       title: "Objectif 1",
@@ -25,38 +72,9 @@ export class CompteComponent implements OnInit {
       libelle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
     },
   ];
-  data = [{
-    id: 1,
-    prenom: "Amadou Dieye",
-    nom: "LEYE",
-    poste: "Développeur Web",
-    dateDebut: "25/12/2020",
-    dateFin: "25/12/2022",
-    tmp: "tmp_0254",
-    agence: "Set Interim",
-    dateNais: "10/12/1992",
-    lieuNais: "Mbour",
-    genre: "masculin",
-    cni: "1 619 1992 2154",
-    categorie: "Cadre C1C",
-    structure: "Sonatel SA",
-    direction: "DST",
-    pole: "DD",
-    departement: "DASI",
-    service: "PMA",
-    manager: "Madiagne SYLLA",
-    postem: "Chef de Services Production et Maintenance Applicatif",
-    email: "amadou.dieye.leye@orange-sonatel.com",
-    telephone: "+ 221 33 824 91 31",
-    adresse: "mbour",
-    photo: "inter.png",
-    matricule: "060210",
-    nomInt: "5"
-  }];
+  
   user;
   showHome = true;
-  viewer = 'google';  
-  selectedType = 'docx';   
   DemoDoc="http://www.africau.edu/images/default/sample.pdf" 
   DemoDoc1="https://file-examples.com/wp-content/uploads/2017/02/file-sample_100kB.doc"
   DemoDoc2="https://www.le.ac.uk/oerresources/bdra/html/resources/example.txt" 
