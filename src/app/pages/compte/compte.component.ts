@@ -1,3 +1,4 @@
+import { OthersService } from 'src/app/services/others.service';
 import { Component, OnInit } from '@angular/core';
 import { NgxFileSaverService } from '@clemox/ngx-file-saver';
 import { DataService } from 'src/app/service/data.service';
@@ -13,20 +14,35 @@ export class CompteComponent implements OnInit {
   public restant: any;
   public nombre = 29;
   public left: any;
+
   datas: any;
+  objetctis = [
+    {
+      title: "Objectif 1",
+      libelle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+    },
+    {
+      title: "Objectif 2",
+      libelle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+    },
+  ];
+  data;
+  user;
+  id;
+  currentUser;
+  showHome = true;
+  viewer = 'google';  
+  selectedType = 'docx';
   item: any;
-  id: any;
   donnees: any;
   dataInter:any;
   dataContrat: any;
-  viewer = 'google';  
-  selectedType = 'docx';   
-  contratDoc;
+  contratDoc="" 
   fichePosteDoc=""
   proceVerbalDoc="" 
-  data;
   nom;
   prenom;
+  pole;
   datedenaissance;
   lieudenaissance;
   telephone;
@@ -45,6 +61,7 @@ export class CompteComponent implements OnInit {
   dateSignature;
   universite;
   sexe;
+  structure;
   direction;
   departement;
   service;
@@ -61,30 +78,57 @@ export class CompteComponent implements OnInit {
   fileContrat;
   fileFicheposte;
 
-
-  objetctis = [
-    {
-      title: "Objectif 1",
-      libelle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-    },
-    {
-      title: "Objectif 2",
-      libelle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-    },
-  ];
-  
-  user;
-  showHome = true;
   DemoDoc="http://www.africau.edu/images/default/sample.pdf" 
   DemoDoc1="https://file-examples.com/wp-content/uploads/2017/02/file-sample_100kB.doc"
   DemoDoc2="https://www.le.ac.uk/oerresources/bdra/html/resources/example.txt" 
   constructor(private fileSaver: NgxFileSaverService,
+    private otherService: OthersService,
     private modalService: ModalService,
     private dataService: DataService,
   ) { }
 
   ngOnInit() {
-    this.user = localStorage.getItem('user');
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    console.log(this.currentUser.data.id);
+
+    this.otherService.getOneInterById(this.currentUser.data.id).subscribe(
+      data =>{
+       this.data = data;
+       this.dataInter = this.data.data;
+       console.log(this.dataInter);
+       this.nom = this.dataInter.nom;
+       this.prenom = this.dataInter.prenom;
+       this.datedenaissance = this.dataInter.datedenaissance;
+       this.lieudenaissance = this.dataInter.lieudenaissance;
+       this.numeroPiece = this.dataInter.numeroPiece;
+       this.diplome = this.dataInter.diplome;
+       this.email = this.dataInter.email;
+       this.adresse = this.dataInter.adresse;
+       this.profession = this.dataInter.profession;
+       this.salaireBrut = this.dataInter.salaireBrut;
+       this.profession = this.dataInter.profession;
+       this.telephone = this.dataInter.telephone;
+       this.universite = this.dataInter.universite;
+       this.sitmat = this.dataInter.sitmat;
+       this.direction = this.dataInter.structure.direction.libelle;
+       this.departement = this.dataInter.structure.departement;
+       this.service = this.dataInter.structure.service;
+       this.structure = this.dataInter.structure.bu;
+       this.agence = this.dataInter.agence.nom;
+       this.categorie = this.dataInter.categorie.libelle;
+       this.dateSignature = this.dataInter.dateSignature;
+       this.matricule = this.dataInter.matricule;
+       this.sexe = this.dataInter.sexe;
+       this.photo = this.dataInter.photo;
+       this.pole = this.dataInter.structure.pole;
+       this.contratDoc = this.dataInter.fileContrat;
+       this.fichePosteDoc = this.dataInter.fileFichePoste;
+   },
+   error =>{
+     console.log(error)
+   }
+ );
+
     if(this.user == 'inter') {
       this.showHome = false;
     } else {
@@ -119,3 +163,4 @@ export class CompteComponent implements OnInit {
     this.modalService.close(id);
   }
 }
+ 
