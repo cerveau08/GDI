@@ -54,6 +54,28 @@ export class AgenceComponent implements OnInit {
     private otherService: OthersService) { }
 
   ngOnInit() {
+    this.agenceForm = new FormGroup({
+      nom: new FormControl (''),
+      directeur: new FormControl(''),
+      numerodg: new FormControl (''),
+      email: new FormControl(''),
+      mobile: new FormControl (''),
+      fixe: new FormControl(''),
+      website: new FormControl (''),
+      adresse: new FormControl(''),
+      photo: new FormControl (''),
+      contrat: new FormControl(''),
+      cnidg: new FormControl (''),
+    });
+    this.userAgenceForm = new FormGroup({
+      prenom: new FormControl (''),
+      nom: new FormControl(''),
+      poste: new FormControl (''),
+      email: new FormControl(''),
+      mobile: new FormControl (''),
+      adresse: new FormControl(''),
+      photo: new FormControl (''),
+    });
     this.item = JSON.parse(localStorage.getItem('currentUser'));
     console.log(this.item.agence.id)
     this.user = localStorage.getItem('user');
@@ -102,28 +124,7 @@ export class AgenceComponent implements OnInit {
         this.actifs = this.dataTotalAgence[0].actifs;
         this.inactifs = this.dataTotalAgence[0].inactifs;
       });
-    this.agenceForm = new FormGroup({
-      nom: new FormControl (''),
-      directeur: new FormControl(''),
-      numerodg: new FormControl (''),
-      email: new FormControl(''),
-      mobile: new FormControl (''),
-      fixe: new FormControl(''),
-      website: new FormControl (''),
-      adresse: new FormControl(''),
-      photo: new FormControl (''),
-      contrat: new FormControl(''),
-      cnidg: new FormControl (''),
-    });
-    this.userAgenceForm = new FormGroup({
-      prenom: new FormControl (''),
-      nom: new FormControl(''),
-      poste: new FormControl (''),
-      email: new FormControl(''),
-      mobile: new FormControl (''),
-      adresse: new FormControl(''),
-      photo: new FormControl (''),
-    });
+    
   }
 
   submitted1() {

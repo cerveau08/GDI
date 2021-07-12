@@ -77,7 +77,7 @@ export class CompteComponent implements OnInit {
   dataCategorie;
   fileContrat;
   fileFicheposte;
-
+  contrat;
   DemoDoc="http://www.africau.edu/images/default/sample.pdf" 
   DemoDoc1="https://file-examples.com/wp-content/uploads/2017/02/file-sample_100kB.doc"
   DemoDoc2="https://www.le.ac.uk/oerresources/bdra/html/resources/example.txt" 
@@ -89,7 +89,7 @@ export class CompteComponent implements OnInit {
 
   ngOnInit() {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    console.log(this.currentUser.data.id);
+    console.log(this.currentUser.data.id);  
 
     this.otherService.getOneInterById(this.currentUser.data.id).subscribe(
       data =>{
@@ -123,6 +123,9 @@ export class CompteComponent implements OnInit {
        this.pole = this.dataInter.structure.pole;
        this.contratDoc = this.dataInter.fileContrat;
        this.fichePosteDoc = this.dataInter.fileFichePoste;
+       this.contrat = this.dataInter.contrat;
+       console.log(this.contrat);
+       
    },
    error =>{
      console.log(error)
