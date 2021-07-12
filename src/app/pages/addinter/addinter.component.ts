@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
 import { DataService } from 'src/app/service/data.service';
 import { OthersService } from 'src/app/services/others.service';
 
@@ -68,6 +70,30 @@ export class AddinterComponent implements OnInit {
       libelle: "passeport"
     }
   ];
+  ListeSexe = [
+    {
+      libelle: "femme",
+    },
+    {
+      libelle: "homme"
+    }
+  ];
+  ListeSitmat = [
+    {
+      libelle: "marié(e)",
+    },
+    {
+      libelle: "célibataire"
+    },{
+      libelle: "divorcé(e)",
+    },
+    {
+      libelle: "veuf(ve)"
+    }
+  ];
+  streets: string[] = ['Champs-Élysées', 'Lombard Street', 'Abbey Road', 'Fifth Avenue'];
+  filteredStreets: Observable<string[]>;
+  control = new FormControl();
   selected1 = false;
   selected2 = false;
   colora = "#ff7900";
@@ -83,6 +109,10 @@ export class AddinterComponent implements OnInit {
     this.datajson = this.dataService.getData();
    }
   ngOnInit() {
+    this.filteredStreets = this.interForm.value.poste.valueChanges.pipe(
+      startWith(''),
+      map(value => this._filter(value))
+    );
     this.interForm = new FormGroup({
         numeroPiece: new FormControl(''),
         prenom: new FormControl(''),
@@ -141,6 +171,14 @@ export class AddinterComponent implements OnInit {
         console.log(data);
       }
     );
+  }
+  private _filter(value): string[] {
+    const filterValue = this._normalizeValue(value);
+    return this.streets.filter(street => this._normalizeValue(street).includes(filterValue));
+  }
+
+  private _normalizeValue(value: string): string {
+    return value.toLowerCase().replace(/\s/g, '');
   }
   get diplome(): FormArray {
     return this.interForm.get('fileDiplome') as FormArray;
