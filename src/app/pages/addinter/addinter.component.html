@@ -7,14 +7,13 @@
             <mat-step [stepControl]="interForm" >
               <ng-template matStepLabel>
                   <div class="head">
-                    <div class="header" [style.background]="colors1()">
+                    <div class="header" [style.background]="colora">
                         <p class="titre"> 1. Infos personnelles</p>
                     </div>
                 </div>
               </ng-template>
               <div>
                   <form [formGroup]="interForm">
-                    <!-- <div formGroupName="infopersonnel"> -->
                       <div>
                       <p class="matri">Matricule: <span>{{matricule}}</span> </p>
                       <div class="grid">
@@ -49,8 +48,16 @@
                             <input class="input3" type="text" formControlName="lieuNaissance" placeholder="Lieu de Naissance">
                           </div>
                           <div class="infoinput2">
-                            <input type="text" formControlName="sexe" placeholder="Genre">
-                            <input class="input3" type="text" formControlName="sitmat" placeholder="Situation Matrimoniale">
+                            <select class="select5"  formControlName="sexe" >
+                              <option class="option" value="" disabled selected hidden>Genre</option>
+                              <option *ngFor="let data of ListeSexe" [value]="data.libelle">{{data.libelle}}</option>
+                            </select>
+                            <select class="select6"  formControlName="sitmat" >
+                              <option class="option" value="" disabled selected hidden>Situation Matrimoniale</option>
+                              <option *ngFor="let data of ListeSitmat" [value]="data.libelle">{{data.libelle}}</option>
+                            </select>
+                            <!-- <input type="text" formControlName="sexe" placeholder="Genre">
+                            <input class="input3" type="text" formControlName="sitmat" placeholder="Situation Matrimoniale"> -->
                           </div>
                           <div class="infoinput2">
                             <input type="text" formControlName="telephone" placeholder="Telephone"> 
@@ -70,21 +77,18 @@
             <mat-step [stepControl]="interForm" >
               <ng-template matStepLabel>
                   <div class="head">
-                      <div class="header" [style.background]="colors2()">
+                      <div class="header" [style.background]="colorb">
                           <p class="titre"> 2. Contrat</p>
                         </div>
                   </div> 
                 </ng-template>
               <div>
                 <form [formGroup]="interForm">
-                  <!-- <div formGroupName="contrat"> -->
                     <div>
                     <p class="matri">Matricule: <span>{{matricule}}</span> </p>
                     <div class="grid" >
                       <div >
                         <div class="photo">
-                          <!-- <img class="image-upload" *ngIf="!url2==true" src="/assets/images/upload.png" alt="">
-                          <img class="image-upload" [src]="url2" height="60" alt=""> -->
                           <input formControlName="contratDoc"  class="buttonphoto2" type="file" (change)="getFileContrat($event)" >
                           <p class="fileName">{{contratName}}</p>
                         </div>
@@ -123,6 +127,15 @@
                         </div>
                         <div class="contratinput2">
                           <input type="text" formControlName="poste" placeholder="Titre du Poste">
+                          <!-- <input type="text"
+                                placeholder="Search for a street"
+                                formControlName="poste"
+                                [matAutocomplete]="auto">
+                          <mat-autocomplete #auto="matAutocomplete">
+                            <mat-option *ngFor="let street of filteredStreets | async" [value]="street">
+                              {{street}}
+                            </mat-option>
+                          </mat-autocomplete> -->
                           <input class="input3" type="date" formControlName="dateSignature" placeholder="Date de Signature">
                         </div>
                         <div class="contratinput2">
@@ -144,7 +157,7 @@
             <mat-step [stepControl]="interForm" label="Email" >
               <ng-template matStepLabel>
                   <div class="head">
-                      <div class="header" [style.background]="colors3()">
+                      <div class="header" [style.background]="colorc">
                           <p class="titre"> 3. Documents</p>
                         </div>
                     </div>
@@ -152,25 +165,18 @@
               <div>
                 <div *ngIf="!submited">
                   <form [formGroup]="interForm">
-                    <!-- <div formGroupName="poste"> -->
                       <div>
                       <div class="center">
                         <div class="fiche-et-pv" >
-                          <div class="photo" >
-                            <!-- <img class="image-diplome" *ngIf="!url3==true" src="/assets/images/upload.png" alt="">
-                            <img class="image-upload" [src]="url3" height="60" alt=""> -->
+                          <div class="otherfile" >
                             <input formControlName="fileCni" class="buttonCNI" type="file" (change)="getFileCni($event)" >
                             <p class="fileName">{{cniName}}</p>
                           </div>
-                          <div class="photo" >
-                            <!-- <img class="image-diplome" *ngIf="!url3==true" src="/assets/images/upload.png" alt="">
-                            <img class="image-upload" [src]="url3" height="60" alt=""> -->
+                          <div class="otherfile" >
                             <input formControlName="fileFicheposte" class="buttonphoto3" type="file" (change)="getFichePoste($event)" >
                             <p class="fileName">{{fichedeposteName}}</p>
                           </div>
-                          <div class="photo" >
-                            <!-- <img class="image-upload" *ngIf="!url4==true" src="/assets/images/upload.png" alt="">
-                            <img class="image-upload" [src]="url4" height="60" alt=""> -->
+                          <div class="otherfile" >
                             <input formControlName="fileproceverbal" class="buttonphoto4" type="file" (change)="getProceVerbal($event)" >
                             <p class="fileName">{{proceverbalName}}</p>
                           </div>
@@ -180,13 +186,6 @@
                             <p class="diplome-title-text">Diplomes</p>
                           </div>
                           <div class="liste-diplome">
-                            <!-- <div formArrayName="fileDiplome">
-                              <div class="liste-diplome-content" *ngFor="let diplome of interForm.get('fileDiplome').controls; index as idx">
-                                <input [formControlName]="idx" class="buttondiplome" type="file" (change)="getDiplomes($event, idx)" >
-                                <p class="diplomename">{{diplomeName}}</p>
-                                <mat-icon class="add-diplome" fontSet="material-icons-outlined" (click)="addNameField()">add</mat-icon>
-                              </div>
-                            </div> -->
                             <div >
                               <div class="liste-diplome-content">
                                 <input fomControlName="diplome1" class="buttondiplome" type="file" (change)="getDiplome1($event)" >
@@ -197,11 +196,12 @@
                                 <input fomControlName="diplome2" class="buttondiplome" type="file" (change)="getDiplome2($event)" >
                                 <p class="diplomename">{{diplomeName2}}</p>
                                 <mat-icon class="add-diplome" fontSet="material-icons-outlined" (click)="addDiplome2()">add</mat-icon>
+                                <mat-icon class="add-diplome"  (click)="deleteDiplome2()">delete</mat-icon>
                               </div>
                               <div class="liste-diplome-content" [style.display]="selected2==true?'flex':'none'">
                                 <input fomControlName="diplome3" class="buttondiplome" type="file" (change)="getDiplome3($event)" >
                                 <p class="diplomename">{{diplomeName3}}</p>
-                                <!-- <mat-icon class="add-diplome" fontSet="material-icons-outlined" (click)="addDiplome3()">add</mat-icon> -->
+                                <mat-icon class="add-diplome"  (click)="deleteDiplome3()">delete</mat-icon>
                               </div>
                             </div>
                           </div>
@@ -229,11 +229,10 @@
                 </div>
               </div>
             </mat-step>
-
           </mat-horizontal-stepper>
-          <div [style.border-left]="getcolor1()" class="triangle1"></div>
-          <div [style.border-left]="getcolor2()" class="triangle2"></div>
-          <div [style.border-left]="getcolor3()" class="triangle3"></div>
+          <div [style.border-left]="color1" class="triangle1"></div>
+          <div [style.border-left]="color2" class="triangle2"></div>
+          <div [style.border-left]="color3" class="triangle3"></div>
         </div>
     </div>
 </div>

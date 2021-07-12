@@ -7,7 +7,7 @@
               <mat-step [stepControl]="interForm" >
                 <ng-template matStepLabel>
                     <div class="head">
-                      <div class="header" [style.background]="colors1()">
+                      <div class="header" [style.background]="colora">
                         <p class="titre"> 1. Infos personnelles</p>
                       </div>
                   </div>
@@ -58,7 +58,7 @@
                       </div>
                       <div class="buttons">
                         <button class="button1" type="button">Annuler</button>
-                        <button class="button2" type="submit" mat-button matStepperNext>Suivant</button>
+                        <button class="button2" (click)="submitted1()" type="submit" mat-button matStepperNext>Suivant</button>
                       </div>
                     </form>
                 </div>
@@ -67,7 +67,7 @@
               <mat-step [stepControl]="interForm" >
                 <ng-template matStepLabel>
                     <div class="head">
-                        <div class="header" [style.background]="colors2()">
+                        <div class="header" [style.background]="colorb">
                             <p class="titre"> 2. Contrat</p>
                           </div>
                     </div> 
@@ -122,7 +122,7 @@
                       </div>
                     </div>
                     <button class="button1"  type="button" mat-button matStepperPrevious>Précédent</button>
-                    <button class="button2" type="submit"  mat-button matStepperNext>Suivant</button>
+                    <button class="button2" (click)="submitted2()" type="submit"  mat-button matStepperNext>Suivant</button>
                 </form>
                 </div>
               </mat-step>
@@ -130,7 +130,7 @@
               <mat-step [stepControl]="interForm" label="Email" >
                 <ng-template matStepLabel>
                     <div class="head">
-                        <div class="header" [style.background]="colors3()">
+                        <div class="header" [style.background]="colorc">
                             <p class="titre"> 3. Poste</p>
                           </div>
                       </div>
@@ -203,9 +203,9 @@
               </mat-step>
   
             </mat-horizontal-stepper>
-            <div [style.border-left]="getcolor1()" class="triangle1"></div>
-            <div [style.border-left]="getcolor2()" class="triangle2"></div>
-            <div [style.border-left]="getcolor3()" class="triangle3"></div>
+            <div [style.border-left]="color1" class="triangle1"></div>
+            <div [style.border-left]="color2" class="triangle2"></div>
+            <div [style.border-left]="color3" class="triangle3"></div>
           </div>
       </div>
   </div>

@@ -27,6 +27,12 @@ export class ModifierinterComponent implements OnInit {
   url2="../assets/images/{{item.photo}}";
   url3="../assets/images/{{item.photo}}";
   url4="../assets/images/{{item.photo}}";
+  colora = "#ff7900";
+  colorb = "#000";
+  colorc = "#000";
+  color1 = "20px solid #ff7900"
+  color2 = "20px solid #000"
+  color3 = "20px solid #000"
   interForm: FormGroup;
   isLinear = true;
   infoForm : FormGroup;
@@ -236,10 +242,16 @@ export class ModifierinterComponent implements OnInit {
 
   get f() { return this.interForm.controls; }
   submitted1() {
-    
+    this.colora = "#f16e00";
+    this.colorb = "#ff7900";
+    this.color1 = "20px solid #f16e00";
+    this.color2 = "20px solid #ff7900";
   }
   submitted2() {
-  
+    this.colorb = "#f16e00";
+    this.colorc = "#ff7900";
+    this.color2 = "20px solid #f16e00";
+    this.color3 = "20px solid #ff7900";
   }
 
   get fileDiplome(): FormArray {
@@ -317,6 +329,8 @@ export class ModifierinterComponent implements OnInit {
   }
 
   submit() {
+    this.colorc = "#f16e00";
+    this.color3 = "20px solid #f16e00";
     this.lesDiplomeUpload = [
       {
         id: this.idDiplome1,
