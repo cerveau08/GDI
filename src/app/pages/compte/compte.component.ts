@@ -89,7 +89,7 @@ export class CompteComponent implements OnInit {
 
   ngOnInit() {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    console.log(this.currentUser.data.id);
+    console.log(this.currentUser.data.id);  
 
     this.otherService.getOneInterById(this.currentUser.data.id).subscribe(
       data =>{
