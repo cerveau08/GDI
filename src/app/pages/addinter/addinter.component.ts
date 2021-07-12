@@ -109,10 +109,10 @@ export class AddinterComponent implements OnInit {
     this.datajson = this.dataService.getData();
    }
   ngOnInit() {
-    this.filteredStreets = this.interForm.value.poste.valueChanges.pipe(
-      startWith(''),
-      map(value => this._filter(value))
-    );
+    // this.filteredStreets = this.interForm.value.poste.valueChanges.pipe(
+    //   startWith(''),
+    //   map(value => this._filter(value))
+    // );
     this.interForm = new FormGroup({
         numeroPiece: new FormControl(''),
         prenom: new FormControl(''),
@@ -172,14 +172,14 @@ export class AddinterComponent implements OnInit {
       }
     );
   }
-  private _filter(value): string[] {
-    const filterValue = this._normalizeValue(value);
-    return this.streets.filter(street => this._normalizeValue(street).includes(filterValue));
-  }
+  // private _filter(value): string[] {
+  //   const filterValue = this._normalizeValue(value);
+  //   return this.streets.filter(street => this._normalizeValue(street).includes(filterValue));
+  // }
 
-  private _normalizeValue(value: string): string {
-    return value.toLowerCase().replace(/\s/g, '');
-  }
+  // private _normalizeValue(value: string): string {
+  //   return value.toLowerCase().replace(/\s/g, '');
+  // }
   get diplome(): FormArray {
     return this.interForm.get('fileDiplome') as FormArray;
   }
@@ -240,8 +240,8 @@ export class AddinterComponent implements OnInit {
     formdata.append("sexe",this.interForm.value.sexe);
     formdata.append("profession",this.interForm.value.profession);
     formdata.append("categorieId",this.interForm.value.categorieId);
-    formdata.append("directionId",this.interForm.value.direction);
-    formdata.append("departementId",this.interForm.value.departement);
+  //  formdata.append("directionId",this.interForm.value.direction);
+  //  formdata.append("departementId",this.interForm.value.departement);
     formdata.append("sitmat",this.interForm.value.sitmat);
     formdata.append("salaireBrut",this.interForm.value.salaireBrut);
     formdata.append("dateNaissance",this.interForm.value.dateNaissance);
@@ -274,14 +274,14 @@ export class AddinterComponent implements OnInit {
     if(this.fichierdiplome3 != undefined) {
       formdata.append("fileDiplome[]",this.fichierdiplome3);
     }
-    formdata.append("matriculeManager",this.interForm.value.matriculeManager);
+  //  formdata.append("matriculeManager",this.interForm.value.matriculeManager);
     console.log(this.interForm.value);
     this.otherService.addInter(formdata).subscribe(
       data => {
         console.log(data);
         // if (data) {
         //     // alert('Intérimaire ajouté avec succées...');
-        this.route.navigate(['/accueil/souscontrat']);
+       // this.route.navigate(['/accueil/souscontrat']);
         // }
      
         if(data.success == true) {
