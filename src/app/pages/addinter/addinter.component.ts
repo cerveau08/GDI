@@ -109,10 +109,10 @@ export class AddinterComponent implements OnInit {
     this.datajson = this.dataService.getData();
    }
   ngOnInit() {
-    this.filteredStreets = this.interForm.value.poste.valueChanges.pipe(
-      startWith(''),
-      map(value => this._filter(value))
-    );
+    // this.filteredStreets = this.interForm.value.poste.valueChanges.pipe(
+    //   startWith(''),
+    //   map(value => this._filter(value))
+    // );
     this.interForm = new FormGroup({
         numeroPiece: new FormControl(''),
         prenom: new FormControl(''),

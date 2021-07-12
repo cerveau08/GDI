@@ -11,8 +11,8 @@
                 </div>
             </div>
             <div class="datedebutetfin">
-                <p class="datedebut">12 Dec 2020</p>
-                <p class="datefin">25 Aou 2021</p>
+                <p class="datedebut">{{contrat.dateDebut}}</p>
+                <p class="datefin">{{contrat.dateFin}}</p>
             </div>
         </div>
         <div class="grid-container">
@@ -61,11 +61,11 @@
         <div class="tableau" >
             <mat-icon style="cursor: pointer;" (click)="closeModal('custom-modal-1');" class="clear">clear</mat-icon>
             <p class="dtl1">contrat {{prenom}} {{nom}}</p>
-            <ngx-doc-viewer 
-               [url]="DemoDoc1" 
-               [viewer]="viewer" 
-               style="width:100%;height:70vh;">
-            </ngx-doc-viewer>
+            <pdf-viewer [src]="DemoDoc1"
+              [render-text]="true"
+              [autoresize]="true"
+              [original-size]="false"
+            ></pdf-viewer>
             <div class="btns2">
                 <button (click)="getfilemodal()"  class="btn2">Télécharger</button>
                 <button   class="btn2a">Arrêter contrat</button>
@@ -101,11 +101,11 @@
         <div class="tableau">
             <mat-icon style="cursor: pointer;" (click)="closeModal('custom-modal-3');" class="clear">clear</mat-icon>
             <p class="dtl1">Fiche de Poste Développeur web</p>
-            <ngx-doc-viewer 
-               [url]="DemoDoc1" 
-               [viewer]="viewer" 
-               style="width:100%;height:70vh;">
-            </ngx-doc-viewer>
+            <pdf-viewer [src]="DemoDoc1"
+              [render-text]="true"
+              [autoresize]="true"
+              [original-size]="false"
+            ></pdf-viewer>
             <div class="btns3">
                 <button (click)="getfilemodal()"  class="btn2">Télécharger</button>
             </div>
