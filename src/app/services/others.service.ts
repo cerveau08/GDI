@@ -31,7 +31,7 @@ getNouveauRecrus(): Observable<any> {
   // recupere la liste des manager
   getListManager(): Observable<any> {
     return this.http.get<any>(this.reqUrl + '/managers/list');
-  }
+  } 
 // details manager
 getDetailsManagerById(id: number) {
   return this.http.get(this.reqUrl + `/manager/${id}`);

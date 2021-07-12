@@ -25,6 +25,7 @@ export class ManagerComponent implements OnInit {
   showHome = true;
   user;
   item;
+  avatar;
   data;
   dataInterFin;
   managerinfo;
@@ -45,11 +46,12 @@ export class ManagerComponent implements OnInit {
     private http: HttpClient,
     private activeroute: ActivatedRoute) {
       this.getScreenSize();
+
       this.activeroute.queryParams.subscribe(params => {
         this.item = JSON.parse(params["user"]);
         console.log(this.item);
         
-        this.otherService.getDetailsManagerById(this.item).subscribe(
+        this.otherService.getDetailsManagerById(this.item).subscribe( 
           result => {
             this.data = result
             this.managerinfo = this.data.data.detail
