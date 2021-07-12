@@ -90,6 +90,9 @@
                       <div >
                         <div class="photo">
                           <input formControlName="contratDoc"  class="buttonphoto2" type="file" (change)="getFileContrat($event)" >
+                          <button class="button-choisir-fichier" (change)="getFileContrat($event)">
+                            Choisir Fichier <img class="button-choisir-fichier-image" src="../../../assets/images/pdf image.png" alt="">
+                          </button>
                           <p class="fileName">{{contratName}}</p>
                         </div>
                       </div>
