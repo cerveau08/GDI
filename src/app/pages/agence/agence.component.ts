@@ -1,3 +1,4 @@
+import { OthersService } from './../../services/others.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { NgxFileSaverService } from '@clemox/ngx-file-saver';
@@ -11,40 +12,7 @@ import { ModalService } from 'src/app/_modal/modal.service';
 })
 export class AgenceComponent implements OnInit {
 
-  item = {
-    id: 19,
-    prenom: "Amadou Dieye",
-    nom: "LEYE",
-    poste: "Développeur Web",
-    dateDebut: "Mon Jan 01 2021 00:00:00 GMT+0000 (Greenwich Mean Time)",
-    dateFin: "Mon Dec 31 2022 00:00:00 GMT+0000 (Greenwich Mean Time)",
-    tmp: "tmp_0254",
-    agence: "Set Interim",
-    dateNais: "10/12/1992",
-    lieuNais: "Mbour",
-    genre: "masculin",
-    cni: "1 619 1992 2154",
-    categorie: "Cadre C1C",
-    structure: "Sonatel SA",
-    direction: "DST",
-    pole: "DD",
-    departement: "DASI",
-    service: "PMA",
-    site: "www.2t-s.com",
-    adagen: "Sacré Cœur 3 Pyrotechnie, Immeuble USAID à coté de la Pharmacie Mame Oumy GUEYE",
-    manager: "Madiagne SYLLA",
-    email: "amadou.dieye.leye@orange-sonatel.com",
-    telephone: "+ 221 33 824 91 31",
-    adresse: "mbour",
-    photo: "manager.png",
-    matricule: "060210",
-    statut: "non",
-    file: "1.pdf",
-    agentimg: "oval1.png",
-    pathfile: "../assets/doc/1.pdf",
-    postem: "Chef de Services Production et Maintenance Applicatif",
-    nomInt: "5"
-  };
+  item;
   showHome = true;
   url1;
   url3;
@@ -60,28 +28,32 @@ export class AgenceComponent implements OnInit {
   datas: any;
   agenceForm: FormGroup;
   userAgenceForm: FormGroup;
+  dataAgence;
+  nom;
+  responsable;
+  numdg;
+  email;
+  telephone;
+  contratDoc;
+  siteweb;
+  adresse;
+  logo;
+  contrat;
+  userAgence;
+  dataTotalAgence;
+  total;
+  actifs;
+  inactifs;
   viewer = 'google';
   DemoDoc="http://www.africau.edu/images/default/sample.pdf" 
   DemoDoc1="https://file-examples.com/wp-content/uploads/2017/02/file-sample_100kB.doc"
   DemoDoc2="https://www.le.ac.uk/oerresources/bdra/html/resources/example.txt" 
   constructor(private fileSaver: NgxFileSaverService,
     private modalService: ModalService,
-    private dataService: DataService,) { }
+    private dataService: DataService,
+    private otherService: OthersService) { }
 
   ngOnInit() {
-    this.user = localStorage.getItem('user');
-    if(this.user == 'agence' || this.user == 'drh') {
-      this.showupdate = true;
-    } else {
-      this.showupdate = false;
-    }
-    this.user = localStorage.getItem('user');
-    if(this.user == 'inter') {
-      this.showHome = false;
-    } else {
-      this.showHome = true;
-    }
-    this.datas = this.dataService.getData();
     this.agenceForm = new FormGroup({
       nom: new FormControl (''),
       directeur: new FormControl(''),
@@ -104,6 +76,55 @@ export class AgenceComponent implements OnInit {
       adresse: new FormControl(''),
       photo: new FormControl (''),
     });
+    this.item = JSON.parse(localStorage.getItem('currentUser'));
+    console.log(this.item.agence.id)
+    this.user = localStorage.getItem('user');
+    if(this.user == 'agence') {
+      this.showupdate = true;
+    } else {
+      this.showupdate = false;
+    }
+    if(this.user == 'inter') {
+      this.showHome = false;
+    } else {
+      this.showHome = true;
+    }
+    this.otherService.getOneAgenceById(this.item.agence.id).subscribe(
+      data =>{
+        this.dataAgence = data;
+        console.log(this.dataAgence);
+        this.nom = this.dataAgence.data.nom;
+        this.responsable  = this.dataAgence.data.responsable;
+        this.numdg = this.dataAgence.data.numdg;
+        this.email = this.dataAgence.data.email;
+        this.telephone = this.dataAgence.data.telephone;
+        this.contratDoc = this.dataAgence.data.contrat;
+        this.siteweb = this.dataAgence.data.site;
+        this.adresse = this.dataAgence.data.adresse;
+        this.logo = this.dataAgence.data.logo;
+        this.contrat = this.dataAgence.data.contrat;
+      //  this.cnidg = this.dataAgence.data.data.cnidg;
+        this.userAgence = this.dataAgence.data['user'];
+        console.log(this.userAgence);
+        
+      },
+      error =>{
+        console.log(error)
+      }
+    );
+    this.otherService.getTotalAgenceActifInactif(this.item.agence.id).subscribe(
+      data =>{
+        this.dataAgence = data;
+        this.dataTotalAgence = this.dataAgence['data'];
+        console.log(this.dataTotalAgence);
+        this.nom = this.dataTotalAgence[0].nom;
+        console.log(this.nom);
+        
+        this.total = this.dataTotalAgence[0].total;
+        this.actifs = this.dataTotalAgence[0].actifs;
+        this.inactifs = this.dataTotalAgence[0].inactifs;
+      });
+    
   }
 
   submitted1() {

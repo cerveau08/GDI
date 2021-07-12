@@ -43,7 +43,7 @@ export class DetailagenceComponent implements OnInit {
   email;
   telephone;
   fixe;
-  site;
+  siteweb;
   adresse;
   logo;
   contrat;
@@ -73,11 +73,11 @@ export class DetailagenceComponent implements OnInit {
             this.email = this.dataAgence.email;
             this.telephone = this.dataAgence.telephone;
             this.contratDoc = this.dataAgence.contrat;
-            this.site = this.dataAgence.site;
+            this.siteweb = this.dataAgence.site;
             this.adresse = this.dataAgence.adresse;
             this.logo = this.dataAgence.logo;
-            this.contrat = this.dataAgence.data.contrat;
-            this.cnidg = this.dataAgence.data.cnidg;
+            this.contrat = this.dataAgence.contrat;
+          //  this.cnidg = this.dataAgence.data.cnidg;
             this.userAgence = this.dataAgence['user'];
             console.log(this.userAgence);
             
@@ -99,7 +99,7 @@ export class DetailagenceComponent implements OnInit {
           this.total = this.dataTotalAgence[0].total;
           this.actifs = this.dataTotalAgence[0].actifs;
           this.inactifs = this.dataTotalAgence[0].inactifs;
-        })
+        });
     }
 
   ngOnInit() {
@@ -115,7 +115,7 @@ export class DetailagenceComponent implements OnInit {
       nomdg: new FormControl(''),
       numdg: new FormControl(''),
       email: new FormControl(''),
-      mobile: new FormControl(''),
+      telephone: new FormControl(''),
       fixe: new FormControl(''),
       siteweb: new FormControl(''),
       adresse: new FormControl(''),
@@ -145,7 +145,7 @@ export class DetailagenceComponent implements OnInit {
     info.append("nomdg",value.nomdg);
     info.append("numdg",value.numdg);
     info.append("email",value.email);
-    info.append("mobile",value.mobile);
+    info.append("mobile",value.telephone);
     info.append("fixe",value.fixe);
     info.append("siteweb",value.siteweb);
     info.append("adresse",value.adresse);
