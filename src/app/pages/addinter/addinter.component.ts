@@ -305,6 +305,7 @@ export class AddinterComponent implements OnInit {
      
         if(data.success == true) {
           this.submited = true;
+
         }
       },
         error=> {

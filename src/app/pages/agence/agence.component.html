@@ -100,7 +100,7 @@
                 <div >
                 <div class="grid">
                     <div class="photo">
-                        <img alt="" class="photo-agence" *ngIf="!url1==true" src="../assets/images/{{item.agentimg}}">
+                        <img alt="" class="photo-agence" *ngIf="!url1==true" src="../assets/images/{{item?.agentimg}}">
                         <img alt="" class="photo-agence" *ngIf="url1" [src]="url1" height="60">
                         <input formControlName="photo" class="button" type="file" (change)="readUrl($event)" >
                     </div>

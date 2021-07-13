@@ -4,6 +4,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { NgxFileSaverService } from '@clemox/ngx-file-saver';
 import { DataService } from 'src/app/service/data.service';
 import { ModalService } from 'src/app/_modal/modal.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-agence',
@@ -48,6 +49,7 @@ export class AgenceComponent implements OnInit {
   DemoDoc="http://www.africau.edu/images/default/sample.pdf" 
   DemoDoc1="https://file-examples.com/wp-content/uploads/2017/02/file-sample_100kB.doc"
   DemoDoc2="https://www.le.ac.uk/oerresources/bdra/html/resources/example.txt" 
+
   constructor(private fileSaver: NgxFileSaverService,
     private modalService: ModalService,
     private dataService: DataService,
@@ -56,12 +58,12 @@ export class AgenceComponent implements OnInit {
   ngOnInit() {
     this.agenceForm = new FormGroup({
       nom: new FormControl (''),
-      directeur: new FormControl(''),
-      numerodg: new FormControl (''),
+      responsable: new FormControl(''),
+      numdg: new FormControl (''),
       email: new FormControl(''),
-      mobile: new FormControl (''),
+      telephone: new FormControl (''),
       fixe: new FormControl(''),
-      website: new FormControl (''),
+      site: new FormControl (''),
       adresse: new FormControl(''),
       photo: new FormControl (''),
       contrat: new FormControl(''),
