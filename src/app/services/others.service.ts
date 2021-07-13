@@ -152,6 +152,11 @@ addAgence(data) {
     return this.http.post<any>(`${this.reqUrl}/interimaireByPiece`, data);
   }
 
+  matriculeFilter(matricule) {
+    const data = {matricule: matricule};
+    return this.http.post<any>(`${this.reqUrl}/interimaireByMatricule `, data);
+  }
+
   getListMatricule(): Observable<any> {
     return this.http.get<any>(this.reqUrl + '/managers/list');
   }
