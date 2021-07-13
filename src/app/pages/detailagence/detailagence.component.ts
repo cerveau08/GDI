@@ -44,7 +44,7 @@ export class DetailagenceComponent implements OnInit {
   email;
   telephone;
   fixe;
-  siteweb;
+  site;
   adresse;
   logo;
   contrat;
@@ -75,7 +75,7 @@ export class DetailagenceComponent implements OnInit {
             this.email = this.dataAgence.email;
             this.telephone = this.dataAgence.telephone;
             this.contratDoc = this.dataAgence.contrat;
-            this.siteweb = this.dataAgence.site;
+            this.site = this.dataAgence.site;
             this.adresse = this.dataAgence.adresse;
             this.logo = this.dataAgence.logo;
             this.contrat = this.dataAgence.contrat;
@@ -106,7 +106,7 @@ export class DetailagenceComponent implements OnInit {
 
   ngOnInit() {
     this.user = localStorage.getItem('user');
-    if(this.user == 'agence' || this.user == 'drh') {
+    if(this.user == 'AGN' || this.user == 'DRH') {
       this.showupdate = true;
     } else {
       this.showupdate = false;
