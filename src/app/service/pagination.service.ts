@@ -258,13 +258,17 @@ export class PaginationService {
 
   getMenu() {
     this.role = localStorage.getItem('user')
-    if(this.role == "interimaire") {
+    if(this.role == "INT") {
       this.menus = this.internav;
-    } else if(this.role == "drh") {
+    } else if(this.role == "DRH") {
       this.menus = this.drhnav;
-    } else if(this.role == "agence") {
+    } else if(this.role == "AGN") {
       this.menus = this.agencenav;
     } else if(this.role == "manager") {
+      this.menus = this.managernav;
+    }else if(this.role == "assistantDG") {
+      this.menus = this.agencenav;
+    } else if(this.role == "drhAgence") {
       this.menus = this.managernav;
     } else {
       this.menus = this.eventSources

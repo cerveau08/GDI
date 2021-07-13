@@ -1,5 +1,6 @@
+import { OthersService } from 'src/app/services/others.service';
 import { Component, HostListener, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -10,7 +11,11 @@ import { Router } from '@angular/router';
 export class PasswordforgetMailComponent implements OnInit {
 
   loginForm: FormGroup;
-  constructor(private route: Router) {
+  successMsg= null;
+  errors= null;
+  constructor(private route: Router,
+              private formBuilder: FormBuilder,
+              private otherService: OthersService) {
     this.getScreenSize();
   }
 
@@ -24,19 +29,16 @@ export class PasswordforgetMailComponent implements OnInit {
         console.log(this.scrHeight, this.scrWidth);
   }
   ngOnInit() {
-    this.loginForm = new FormGroup({
-      username: new FormControl (''),
-    //  password: new FormControl('')
-    });
+    this.loginForm = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.email]]
+    }); 
   }
-  
   onSubmit() {
-    const user =
-    {
-      username: this.loginForm.value.username,
-     // password: this.loginForm.value.password
-    } 
-    console.log(user);
-    this.route.navigate(['passwordforget']);
+    this.otherService.sendResetPassword(this.loginForm.value).subscribe(
+      (result) => {
+        this.successMsg = result;
+      }, (error) => {
+        this.errors = error.error.message;
+      });
   }
 }

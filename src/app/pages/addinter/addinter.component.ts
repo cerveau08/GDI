@@ -246,10 +246,29 @@ export class AddinterComponent implements OnInit {
     formdata.append("salaireBrut",this.interForm.value.salaireBrut);
     formdata.append("dateNaissance",this.interForm.value.dateNaissance);
     formdata.append("lieuNaissance",this.interForm.value.lieuNaissance);
-    formdata.append("dateDebut",this.interForm.value.dateDebut);
-    formdata.append("dateFin",this.interForm.value.dateFin);
-    formdata.append("dateSignature",this.interForm.value.dateSignature);
-    formdata.append("poste",this.interForm.value.poste);
+    // formdata.append("dateDebut",this.interForm.value.dateDebut);
+    // formdata.append("dateFin",this.interForm.value.dateFin);
+    if(this.interForm.value.categorieId != "") {
+      formdata.append("categorieId", this.interForm.value.categorieId);
+    }
+    if(this.interForm.value.salaireBrut != "") {
+      formdata.append("salaireBrut", this.interForm.value.salaireBrut);
+    }
+    if(this.interForm.value.dateDebut != "") {
+      formdata.append("dateDebut", this.interForm.value.dateDebut);
+    }
+    if(this.interForm.value.dateFin != "") {
+      formdata.append("dateFin", this.interForm.value.dateFin);
+    }
+    if(this.interForm.value.domaineId != "") {
+      formdata.append("domaineId", this.interForm.value.domaineId);
+    }
+    if(this.interForm.value.dateSignature != "") {
+      formdata.append("dateSignature", this.interForm.value.dateSignature);
+    }
+    if(this.interForm.value.poste != "") {
+      formdata.append("poste", this.interForm.value.poste);
+    }
     if(this.fichierContrat != undefined) {
       formdata.append("contratDoc",this.fichierContrat);
     }
@@ -286,6 +305,7 @@ export class AddinterComponent implements OnInit {
      
         if(data.success == true) {
           this.submited = true;
+
         }
       },
         error=> {

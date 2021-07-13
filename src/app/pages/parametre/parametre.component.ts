@@ -1,8 +1,10 @@
 import { PaginationService } from 'src/app/service/pagination.service';
 import { DataService } from 'src/app/service/data.service';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 import { OthersService } from 'src/app/services/others.service';
+import { ActivatedRoute } from '@angular/router';
+import { throwError } from 'rxjs';
 
 @Component({
   selector: 'app-parametre',
@@ -62,8 +64,20 @@ export class ParametreComponent implements OnInit {
   user;
   constructor(private dataService: DataService,
              private paginationService: PaginationService,
-             private otherService: OthersService
-             ) { }
+             private otherService: OthersService,
+             private route: ActivatedRoute,
+             public fb: FormBuilder,
+             ) { 
+              this.passwordForm = this.fb.group({
+                email: [''],
+                password: [''],
+                password_confirmation: [''],
+                passwordToken: ['']
+              });
+              route.queryParams.subscribe((params) => {
+                this.passwordForm.controls.passwordToken.setValue(params.token);
+              });
+             }
 
   ngOnInit() {
     this.user = localStorage.getItem('user');
@@ -84,41 +98,37 @@ export class ParametreComponent implements OnInit {
   }
 //verifier password
   validerPassword() {
-   /* const password = {
+    const password = {
       password: this.passwordForm.value.password
     }
     console.log(password);
-    this.changepassword = true;*/
-      this.otherService.verifierPassword(this.newpasswordForm.value).subscribe(
-        res => {
-          alert('Password has been updated');
-          this.newpasswordForm.reset();
-          console.log(res);
-        },
-        error => {
-          console.log(error);
-        }
-      );
+    this.changepassword = true;
     }
   
   //changer password
   confirmPassword() {
-    /*const newpassword = {
-      newpassword: this.passwordForm.value.newpassword,
-      confirmpassword: this.passwordForm.value.confirmpassword
+      this.otherService.resetPassword(this.passwordForm.value).subscribe(
+        result => {
+          //alert('Password has been updated');
+          console.log(result);
+          this.passwordForm.reset();
+        },
+        error => {
+          this.handleError(error);
+        }
+      );
     }
-    console.log(newpassword);*/
-
-    this.otherService.resetPassword(this.passwordForm.value).subscribe(
-      res => {
-        alert('Password has been updated');
-        this.passwordForm.reset();
-        console.log(res);
-      },
-      error => {
-        console.log(error);
+    handleError(error) {
+      let errorMessage = '';
+      if (error.error instanceof ErrorEvent) {
+          // client-side error
+          errorMessage = `Error: ${error.error.message}`;
+      } else {
+          // server-side error
+          errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
       }
-    );
+      console.log(errorMessage);
+      return throwError(errorMessage);
   }
   
   changeShowa() {

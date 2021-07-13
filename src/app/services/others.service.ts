@@ -136,7 +136,7 @@ addAgence(data) {
     return this.http.get(`${this.reqUrl}/structure/all`);
   }
   resetPassword(data){
-    return this.http.post<any>(`${this.reqUrl}/changePassword`, data);
+    return this.http.post<any>(`${this.reqUrl}/reset/defcc`, data);
   }
   verifierPassword(data){
     return this.http.post<any>(`${this.reqUrl}/verifiePassword`, data);
@@ -191,5 +191,8 @@ addAgence(data) {
   }
   addDemande(data){
     return this.http.post(`${this.reqUrl}/ajoutDemande`, data);
+  }
+  sendResetPassword(data) {
+    return this.http.post(`${this.reqUrl}/reinitialisationMotDePass`, data);
   }
 }

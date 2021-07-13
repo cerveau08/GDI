@@ -184,7 +184,6 @@ export class AdduserComponent implements OnInit {
     formdata.append("interimaireId",this.userAgentForm.value.interimaireId);
     formdata.append("structureId",this.userAgentForm.value.structureId);
     formdata.append("avatar",this.fichierPhoto);
-    formdata.append("isManager","false");
     console.log(formdata);
     console.log(this.userAgentForm.value);
     this.otherService.addUser(formdata).subscribe(
