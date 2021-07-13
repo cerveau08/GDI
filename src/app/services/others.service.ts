@@ -23,20 +23,20 @@ export class OthersService {
     return this.http.get<any>(this.reqUrl + '/interimFinContrat?page=1&limit=3');
   }
 
-// recupere la liste des noueveaux recrus
-getNouveauRecrus(): Observable<any> {
-  return this.http.get<any>(this.reqUrl + '/interimaires/dernierrecrues?page=1');
-}
+  // recupere la liste des noueveaux recrus
+  getNouveauRecrus(): Observable<any> {
+    return this.http.get<any>(this.reqUrl + '/interimaires/dernierrecrues?page=1');
+  }
 
   // recupere la liste des manager
   getListManager(): Observable<any> {
     return this.http.get<any>(this.reqUrl + '/managers/list');
   } 
-// details manager
-getDetailsManagerById(id: number) {
-  return this.http.get(this.reqUrl + `/manager/${id}`);
-}
-//liste des demandes
+  // details manager
+  getDetailsManagerById(id: number) {
+    return this.http.get(this.reqUrl + `/manager/${id}`);
+  }
+  //liste des demandes
   getListDemandes(): Observable<any> {
     return this.http.get<any>(this.reqUrl + '/listeDemandes');
   }
@@ -45,7 +45,7 @@ getDetailsManagerById(id: number) {
     return this.http.get<any>(this.reqUrl + '/listeAgence?page=1');
   }
    // recupere les details d'une agence
-   getOneAgenceById(id: number) {
+  getOneAgenceById(id: number) {
     return this.http.get(this.reqUrl + `/detailAgence/${id}`);
   }
    // recupere les details d'une agence
