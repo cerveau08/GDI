@@ -1,7 +1,4 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { MatIconRegistry } from '@angular/material/icon';
-import { DomSanitizer } from '@angular/platform-browser';
-import { DataService } from 'src/app/service/data.service';
 import { PaginationService } from 'src/app/service/pagination.service';
 ;
 
@@ -43,7 +40,7 @@ export class NavComponent implements OnInit {
     } else if (event.id == 8) {
       margin = 50;
     } else  {
-      margin = 1;
+      margin = 10;
     } 
     return margin;
   }
