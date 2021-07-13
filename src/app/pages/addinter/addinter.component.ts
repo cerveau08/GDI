@@ -226,8 +226,8 @@ export class AddinterComponent implements OnInit {
     this.color3 = "20px solid #f16e00";
     const value = this.interForm.value;
     const formdata = new FormData();
-    formdata.append("societeId","5");
-    formdata.append("structureId","14");
+    formdata.append("societeId","1");
+    formdata.append("structureId","1");
     formdata.append("domaineId",this.interForm.value.domaineId);
     formdata.append("typePiece",this.interForm.value.typePiece);
     formdata.append("numeroPiece",this.interForm.value.numeroPiece);
