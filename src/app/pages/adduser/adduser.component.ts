@@ -106,7 +106,7 @@ export class AdduserComponent implements OnInit {
       login: new FormControl(''),
       profil: new FormControl('8'),
       avatar: new FormControl(''),
-      agenceID: new FormControl(''),
+      agenceId: new FormControl(''),
       isManager: new FormControl('false'),
       matricule: new FormControl(''),
       interimaireId: new FormControl(''),
@@ -180,12 +180,11 @@ export class AdduserComponent implements OnInit {
   }
 
   ajouterUser() {
-    const formdata = new FormData();  
-    const value = this.userAgentForm.value;
+    const formdata = new FormData(); 
     formdata.append("prenom",this.userAgentForm.value.prenom);
     formdata.append("nom",this.userAgentForm.value.nom);
    formdata.append("profil",this.userAgentForm.value.profil);
-    formdata.append("fonction",this.userAgentForm.value.poste);
+    formdata.append("fonction",this.userAgentForm.value.fonction);
     formdata.append("agenceId",this.userAgentForm.value.agenceId);
     formdata.append("email",this.userAgentForm.value.email);
     formdata.append("telephone",this.userAgentForm.value.telephone);
