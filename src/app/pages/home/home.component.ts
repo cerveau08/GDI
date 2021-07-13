@@ -275,7 +275,7 @@ export class HomeComponent implements OnInit {
   // this.data = this.dataService.getData();
     
     this.user = localStorage.getItem('user');
-    if(this.user == 'interimaire') {
+    if(this.user == 'INT') {
       this.showHome = false;
     } else {
       this.showHome = true;
