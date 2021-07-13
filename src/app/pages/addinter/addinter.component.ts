@@ -240,14 +240,10 @@ export class AddinterComponent implements OnInit {
     formdata.append("sexe",this.interForm.value.sexe);
     formdata.append("profession",this.interForm.value.profession);
     formdata.append("categorieId",this.interForm.value.categorieId);
-  //  formdata.append("directionId",this.interForm.value.direction);
-  //  formdata.append("departementId",this.interForm.value.departement);
     formdata.append("sitmat",this.interForm.value.sitmat);
     formdata.append("salaireBrut",this.interForm.value.salaireBrut);
     formdata.append("dateNaissance",this.interForm.value.dateNaissance);
     formdata.append("lieuNaissance",this.interForm.value.lieuNaissance);
-    // formdata.append("dateDebut",this.interForm.value.dateDebut);
-    // formdata.append("dateFin",this.interForm.value.dateFin);
     if(this.interForm.value.categorieId != "") {
       formdata.append("categorieId", this.interForm.value.categorieId);
     }
