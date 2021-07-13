@@ -15,7 +15,6 @@
         <table style="overflow-x:auto;" aria-describedby = "mydesc">
             <thead>
                 <tr class="head">
-                    <!-- <th class="id1" id="matricule">#</th> -->
                     <th class="typ" id="prenom">
                         <div class="type">
                             <p>Prenom</p> 
@@ -28,11 +27,11 @@
                             <mat-icon class="updown" fontSet="material-icons-outlined">unfold_more</mat-icon>
                         </div>
                     </th>
-                    <th *ngIf="role != 'manager'" id="manager">Manager</th>
-                    <th *ngIf="role != 'manager'" id="direction">Direction</th>
-                    <th *ngIf="role != 'agence'" id="agence">Agence</th>
+                    <th *ngIf="role != 'MNG'" id="manager">Manager</th>
+                    <th *ngIf="role != 'MNG'" id="direction">Direction</th>
+                    <th *ngIf="role != 'AGN'" id="agence">Agence</th>
                     <th id="contrat">Fin de Contrat</th>
-                    <th *ngIf="role == 'manager'" id="contrat">Attestation</th>
+                    <th *ngIf="role == 'MNG'" id="contrat">Attestation</th>
             </tr>
             </thead>
             <tbody>
@@ -41,14 +40,13 @@
                     currentPage: page,
                     totalItems: totalItems
                     }; let i = index">
-                    <!-- <td (click)="openDetail(p.id)" class="id1">{{p.id}}</td> -->
                     <td (click)="openDetail(p.id)">{{p.prenom}}</td>
                     <td (click)="openDetail(p.id)">{{p.nom}}</td>
-                    <td (click)="openDetail(p.id)" *ngIf="role != 'manager'"> <img class="photo" alt="" src="{{p.manager.avatar}}"></td>
-                    <td *ngIf="role != 'manager'" (click)="openDetail(p.id)">{{p.direction}}/{{p.departement}}/{{p.service}}</td>
-                    <td *ngIf="role != 'agence'" (click)="openDetail(p.id)">{{p.agence}}</td>
+                    <td (click)="openDetail(p.id)" *ngIf="role != 'MNG'"> <img class="photo" alt="" src="{{p.manager.avatar}}"></td>
+                    <td *ngIf="role != 'MNG'" (click)="openDetail(p.id)">{{p.direction}}/{{p.departement}}/{{p.service}}</td>
+                    <td *ngIf="role != 'AGN'" (click)="openDetail(p.id)">{{p.agence}}</td>
                     <td (click)="openDetail(p.id)"> <p>{{p.fin_contrat  | date:'dd/MM/yyyy'}}</p> </td>
-                    <td *ngIf="role == 'manager'" (click)="openModal('custom-modal-'+p.id)" id="contrat"><button  class="buttons-attestation" >Ajouter</button></td>
+                    <td *ngIf="role == 'MNG'" (click)="openModal('custom-modal-'+p.id)" id="contrat"><button  class="buttons-attestation" >Ajouter</button></td>
                     <!--modal-->
                     <div class="modal">
                         <jw-modal id="custom-modal-{{p.id}}">
