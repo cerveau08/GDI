@@ -80,10 +80,10 @@ export class DemandeComponent implements OnInit {
       dateDebut: new FormControl(''),
       dateFin: new FormControl (''),
       motif: new FormControl(''),
-      interimaire: new FormControl('59'),
-      validateur: new FormControl('52'),
+      interimaire: new FormControl('4'),
+      validateur: new FormControl('7'),
       description: new FormControl(''),
-      contrat: new FormControl('72'),
+      contrat: new FormControl('4'),
     });
   }
   onSubmit() {
