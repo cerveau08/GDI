@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { DataService } from 'src/app/service/data.service';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-adduser',
@@ -72,12 +74,18 @@ export class AdduserComponent implements OnInit {
   fichierPhoto?: File;
   photoName;
   user;
+  page = 1;
+  itemsPerPage = 100;
+  totalItems : any;
+  dataAgence
   url1="../assets/images/default.png";
   image ;
   p = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
+  public reqUrl = environment.base_url;
   constructor(private dataService: DataService, 
               private otherService: OthersService,
-              private route: Router
+              private route: Router,
+              private http: HttpClient,
     ) { }
 
   ngOnInit() {
@@ -131,6 +139,16 @@ export class AdduserComponent implements OnInit {
       }
     );
     this.onChanges();
+    this.gty(this.page);
+  }
+
+  gty(page: any){
+    this.http.get(this.reqUrl + `/listeAgence?page=${page}&limit=${this.itemsPerPage}`).subscribe((data: any) => {
+      this.dataAgence =  data.data;
+      this.totalItems = data.total;
+      console.log(this.dataAgence);
+      console.log(this.totalItems);
+    })
   }
 
   onChanges(): void {
@@ -183,7 +201,7 @@ export class AdduserComponent implements OnInit {
     const formdata = new FormData(); 
     formdata.append("prenom",this.userAgentForm.value.prenom);
     formdata.append("nom",this.userAgentForm.value.nom);
-   formdata.append("profil",this.userAgentForm.value.profil);
+    formdata.append("profil",this.userAgentForm.value.profil);
     formdata.append("fonction",this.userAgentForm.value.fonction);
     formdata.append("agenceId",this.userAgentForm.value.agenceId);
     formdata.append("email",this.userAgentForm.value.email);
