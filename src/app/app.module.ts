@@ -60,6 +60,8 @@ import { ObjectifsComponent } from './pages/objectifs/objectifs.component';
 import { NgxLoadingModule } from 'ngx-loading';
 import { ModalModifierComponent } from './pages/objectifs/modal-modifier/modal-modifier.component';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { InterarchiveComponent } from './pages/interarchive/interarchive.component';
+import { InterenattenteComponent } from './pages/interenattente/interenattente.component';
 
 @NgModule({
   declarations: [
@@ -101,7 +103,9 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
     AdduserComponent,
     LesdemandesComponent,
     ObjectifsComponent,
-    ModalModifierComponent
+    ModalModifierComponent,
+    InterarchiveComponent,
+    InterenattenteComponent
   ],
   imports: [
     BrowserModule,
