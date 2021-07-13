@@ -70,8 +70,12 @@
                                     <input  type="text" formControlName="matricule" placeholder="Matricule">
                                 </div>
                                 <div class="infoinput2">
-                                    <input type="text" formControlName="prenom"   [(ngModel)]="prenom" placeholder="Prénom">
-                                    <input class="input3" type="text" formControlName="nom"  [(ngModel)]="nom" placeholder="Nom">
+                                    <div>
+                                        <input type="text" formControlName="prenom"   [(ngModel)]="prenom" placeholder="Prénom">
+                                    </div>
+                                    <div>
+                                        <input class="input3" type="text" formControlName="nom"  [(ngModel)]="nom" placeholder="Nom">
+                                    </div>
                                 </div>
                                 <div class="infoinput1">
                                     <input type="text" formControlName="email"  [(ngModel)]="email" placeholder="Email">
@@ -85,9 +89,6 @@
                                 </div>
                                 <div class="infoinput1">
                                     <input type="text" formControlName="fonction"  [(ngModel)]="fonction"  placeholder="Fonction">
-                                </div>
-                                <div class="infoinput2">
-                                    <input type="text" formControlName="login"  [(ngModel)]="login"  placeholder="Login">
                                 </div>
                                 <div class="content-button">
                                     <button (click)="ajouterUser()" class="buttob-envoyer">Valider</button>
