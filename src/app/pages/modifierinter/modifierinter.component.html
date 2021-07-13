@@ -94,9 +94,8 @@
                             <input type="date" [(ngModel)]="dateDebut" formControlName="dateDebut" placeholder="Date Début">
                             <input class="input3" [(ngModel)]="dateFin" type="date" formControlName="dateFin" placeholder="Date Fin">
                           </div> 
-                          <div class="contratinput2">
+                          <div class="infoinput1">
                             <input type="date" [(ngModel)]="dateSignature" formControlName="dateSignature" placeholder="Date Signature">
-                            <input class="input3" [(ngModel)]="dateFin" type="date" formControlName="dateFin" placeholder="Date Fin">
                           </div> 
                           <div class="contratinput2">
                             <select class="select5" #societe [(ngModel)]="societeId" formControlName="societeId" (change)="directionsListe(societe.value)">
@@ -114,7 +113,7 @@
                               <option *ngFor="let data of dataDepartement" [value]="data.id">{{data.libelle}}</option>
                             </select>
                             <select class="select6" [(ngModel)]="structureId" formControlName="structureId">
-                              <option class="option" [value]="structureId">{{structureId}}</option>
+                              <option class="option" [value]="structureId">{{structureName}}</option>
                               <option *ngFor="let data of donneeService" [value]="data.id">{{data.libelle}}</option>
                             </select>
                           </div>

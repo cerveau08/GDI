@@ -226,8 +226,8 @@ export class AddinterComponent implements OnInit {
     this.color3 = "20px solid #f16e00";
     const value = this.interForm.value;
     const formdata = new FormData();
-    formdata.append("societeId","5");
-    formdata.append("structureId","14");
+    formdata.append("societeId","1");
+    formdata.append("structureId","1");
     formdata.append("domaineId",this.interForm.value.domaineId);
     formdata.append("typePiece",this.interForm.value.typePiece);
     formdata.append("numeroPiece",this.interForm.value.numeroPiece);
@@ -240,14 +240,10 @@ export class AddinterComponent implements OnInit {
     formdata.append("sexe",this.interForm.value.sexe);
     formdata.append("profession",this.interForm.value.profession);
     formdata.append("categorieId",this.interForm.value.categorieId);
-  //  formdata.append("directionId",this.interForm.value.direction);
-  //  formdata.append("departementId",this.interForm.value.departement);
     formdata.append("sitmat",this.interForm.value.sitmat);
     formdata.append("salaireBrut",this.interForm.value.salaireBrut);
     formdata.append("dateNaissance",this.interForm.value.dateNaissance);
     formdata.append("lieuNaissance",this.interForm.value.lieuNaissance);
-    // formdata.append("dateDebut",this.interForm.value.dateDebut);
-    // formdata.append("dateFin",this.interForm.value.dateFin);
     if(this.interForm.value.categorieId != "") {
       formdata.append("categorieId", this.interForm.value.categorieId);
     }

@@ -35,6 +35,7 @@ import { PasswordforgetMailComponent } from './passwordforget-mail/passwordforge
 import { PasswordforgetComponent } from './passwordforget/passwordforget.component';
 import { AddinterComponent } from './pages/addinter/addinter.component';
 import { AuthGuard } from './helpers/auth.guard';
+import { InterarchiveComponent } from './pages/interarchive/interarchive.component';
 
 
 const routes: Routes = [
@@ -82,6 +83,10 @@ const routes: Routes = [
       { path: 'fincontrat',
         component: InterfincontratComponent,
           canActivate: [AuthGuard]
+      },
+      { path: 'interarchive',
+        component: InterarchiveComponent,
+        canActivate: [AuthGuard]
       },
       { path: 'addinter',
         component: AddinterComponent,

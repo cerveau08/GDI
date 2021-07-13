@@ -107,6 +107,7 @@ export class ModifierinterComponent implements OnInit {
   diplomeName1;
   diplomeName2;
   diplomeName3;
+  structureName;
   idDiplome1;
   idDiplome2;
   idDiplome3;
@@ -144,12 +145,13 @@ export class ModifierinterComponent implements OnInit {
             this.matricule = this.dataInter.data.matricule;
             this.dateNaissance = this.dataInter.data.datedenaissance;
             this.lieuNaissance = this.dataInter.data.lieudenaissance;
-            this.dateSignature = this.dataInter.data.dateSignature;
+            this.dateSignature = this.dataInter.data.contrat.dateSignature;
             this.sexe = this.dataInter.data.sexe;
             this.dateDebut = this.dataInter.data.contrat.dateDebut;
             this.dateFin = this.dataInter.data.contrat.dateFin;
             this.departementId = this.dataInter.data.structure.departement;
-            this.structureId = this.dataInter.data.structure.service;
+            this.structureId = this.dataInter.data.structure.id;
+            this.structureName = this.dataInter.data.structure.libelle;
             this.directionId = this.dataInter.data.structure.direction;
             this.societeId = this.dataInter.data.structure.societe;
             this.salaire_brut = this.dataInter.data.salaire_brut;
@@ -351,9 +353,9 @@ export class ModifierinterComponent implements OnInit {
     const info = new FormData();
     info.append("adresse",this.interForm.value.adresse);
     info.append("categorieId",this.interForm.value.categorieId);
-    info.append("structureId","14");
+    info.append("structureId", this.interForm.value.structureId);
     info.append("domaineId",this.interForm.value.domaineId);
-    info.append("societeId","3");
+    info.append("societeId","1");
     info.append("universite",this.interForm.value.universite);
     info.append("sexe",this.interForm.value.sexe);
     info.append("profession",this.interForm.value.profession);
@@ -363,7 +365,9 @@ export class ModifierinterComponent implements OnInit {
     info.append("lieuNaissance",this.interForm.value.lieuNaissance);
     info.append("dateDebut",this.interForm.value.dateDebut);
     info.append("dateFin",this.interForm.value.dateFin);
-    info.append("dateSignature",this.interForm.value.dateSignature);
+    if(this.dateSignature != undefined) {
+      info.append("dateSignature",this.interForm.value.dateSignature);
+    }
     info.append("poste",this.interForm.value.poste);
     info.append("typePiece",this.interForm.value.typePiece);
     info.append("numeroPiece",this.interForm.value.numeroPiece);
@@ -386,8 +390,8 @@ export class ModifierinterComponent implements OnInit {
     if(this.fichierProceVerbalUpload != undefined) {
       info.append("fileproceverbal",this.fichierProceVerbalUpload);
     }
-    info.append("matriculeManager",this.interForm.value.matriculeManager);
-    info.append("fileDiplome",this.lesDiplomeUpload);
+   // info.append("matriculeManager",this.interForm.value.matriculeManager);
+  //  info.append("fileDiplome",this.lesDiplomeUpload);
     console.log(info);
     console.log(this.item);
     this.otherService.updateInter(info, this.item).subscribe(
