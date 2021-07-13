@@ -130,8 +130,17 @@ export class AdduserComponent implements OnInit {
         console.log(data);
       }
     );
-
+    this.onChanges();
   }
+
+  onChanges(): void {
+    this.userAgentForm.get('matricule').valueChanges.subscribe(val => {
+      if (val) {
+        this.rechercherInterimaire(val);
+      }
+    });
+  }
+
   getPhoto(event: any) {
     this.fichierPhoto = event.target.files[0];
     this.photoName = this.fichierPhoto.name;
@@ -153,9 +162,9 @@ export class AdduserComponent implements OnInit {
   submitted2() {
     this.show = false;
   }
-
-  rechercherInterimaire() {  
-    this.otherService.pieceFilter(this.pieceForm.value).subscribe(
+  
+  rechercherInterimaire(matricule) {  
+    this.otherService.matriculeFilter(matricule).subscribe(
       (response) => {
         this.dataMatriculeInter = response;
         console.log(this.dataMatriculeInter);
