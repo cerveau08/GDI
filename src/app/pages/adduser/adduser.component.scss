@@ -141,42 +141,34 @@
     font-size: 14px;
 }
 .form-add-user-agent {
-    max-width: 570px;
+    width: 470px;
     margin: 0 auto;
 }
 .select-societe {
     margin-left: 10px;
 }
-.infoinput1 {
-    padding-right: 10px;
-}
-.infoinput2 {
-    padding-right: 10px;
-    display: grid;
-    grid-template-columns: 50% 50%;
-}
 .infoinput1 input {
-    width: 100%;
+    width: 300px;
     height: 30px;
     background-color: #f5f6f9;
     border-radius: 1px;
     border: solid 1px #d8d8d8;
     margin-bottom: 10px;
-  //  padding: 0 5px;
+    padding: 0 5px;
     outline: none;
   }
   .infoinput2 input {
-    width: 100%;
+    width: 138px;
     height: 30px;
     background-color: #f5f6f9;
     border-radius: 1px;
     border: solid 1px #d8d8d8;
     margin-bottom: 10px;
-  //  padding: 0 5px;
+    padding: 0 5px;
     outline: none;
   }
   .input3 {
-   // margin-left: 4%;
+    margin-left: 10px;
   }
 .content-form-add-user {
     display: grid;

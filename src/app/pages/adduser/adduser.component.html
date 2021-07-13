@@ -40,7 +40,7 @@
             <!-- <div *ngIf="user == 'agence'"> -->
             <div>
                 <div class="form-add-user-agent">
-                    <div *ngIf="user == 'manager'">
+                    <!-- <div *ngIf="user == 'manager'">
                         <form [formGroup]="pieceForm">
                             <div class="infoinput2">
                                 <select class="select5" formControlName="typePiece" >
@@ -57,7 +57,7 @@
                                 <button (click)="rechercherInterimaire()" class="buttob-envoyer">Rechercher</button>
                             </div>
                         </form>
-                    </div>
+                    </div> -->
                     <form [formGroup]="userAgentForm">
                         <div class="content-form-add-user">
                             <div class="image">
@@ -67,22 +67,19 @@
                             </div>
                             <div>
                                 <div class="infoinput1">
-                                    <input  type="text" formControlName="matricule" placeholder="Matricule">
+                                    <input  type="text" [(ngModel)]="matricule" formControlName="matricule" placeholder="Matricule">
                                 </div>
                                 <div class="infoinput2">
-                                    <div>
-                                        <input type="text" formControlName="prenom"   [(ngModel)]="prenom" placeholder="Prénom">
-                                    </div>
-                                    <div>
-                                        <input class="input3" type="text" formControlName="nom"  [(ngModel)]="nom" placeholder="Nom">
-                                    </div>
+                                    <input type="text" formControlName="prenom"   [(ngModel)]="prenom" placeholder="Prénom">
+                                    <input class="input3" type="text" formControlName="nom"  [(ngModel)]="nom" placeholder="Nom">
                                 </div>
                                 <div class="infoinput1">
                                     <input type="text" formControlName="email"  [(ngModel)]="email" placeholder="Email">
                                 </div>
                                 <div class="infoinput2">
                                     <input type="number" formControlName="telephone"  [(ngModel)]="telephone"  placeholder="Téléphone">
-                                    <select class="select6"  formControlName="profil">
+                                    <!-- <input *ngIf="user == 'MNG'" class="input3" type="text" formControlName="profil"  [(ngModel)]="profil" placeholder="Profil" readonly> -->
+                                    <select  class="select6"  formControlName="profil">
                                         <option class="option" value="" disabled selected hidden>Profil</option>
                                         <option *ngFor="let data of dataprofils" value="{{data.id}}">{{data.libelle}}</option>
                                     </select>
