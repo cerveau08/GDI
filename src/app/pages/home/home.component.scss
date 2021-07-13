@@ -4,7 +4,7 @@
     background-color: #f5f6f9;
 }
 .all{
-    margin-right: 10px;
+    margin-right: 0px;
     padding: 10px;
 }
 .bien{
@@ -290,7 +290,7 @@
     margin-bottom: 15px;
 }
 .alert{
-    font-size: 14px;
+    font-size: 13px;
     font-weight: normal;
     font-stretch: normal;
     font-style: normal;
@@ -781,7 +781,7 @@
     margin-right: 30px;
     position: absolute;
     right: 0;
-    top: 20px;
+    top: 10px;
 }
 .export{
     font-size: 14px;
@@ -829,14 +829,14 @@ table {
 }
   th {
     text-align: center;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: bold;
     font-stretch: normal;
     font-style: normal;
     line-height: normal;
     letter-spacing: normal;
     color: #222222;
-    height: 40px;
+    height: 30px;
   }
   td {
     text-align: center;
@@ -1382,10 +1382,10 @@ table {
     }
     .exporter{
         display: flex;
-        margin-right: 30px;
+        margin-right: 10px;
         position: absolute;
         right: 0;
-        top: 45px;
+        top: 25px;
     }
     .export{
         font-size: 10px;
