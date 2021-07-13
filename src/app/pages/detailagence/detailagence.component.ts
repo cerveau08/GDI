@@ -40,6 +40,7 @@ export class DetailagenceComponent implements OnInit {
   nom;
   responsable;
   numdg;
+  nomdg;
   email;
   telephone;
   fixe;
@@ -70,6 +71,7 @@ export class DetailagenceComponent implements OnInit {
             this.nom = this.dataAgence.nom;
             this.responsable  = this.dataAgence.responsable;
             this.numdg = this.dataAgence.numdg;
+            this.nomdg = this.dataAgence.nomdg;
             this.email = this.dataAgence.email;
             this.telephone = this.dataAgence.telephone;
             this.contratDoc = this.dataAgence.contrat;
@@ -112,28 +114,18 @@ export class DetailagenceComponent implements OnInit {
     //this.datas = this.dataService.getData();
     this.agenceForm = new FormGroup({
       nom: new FormControl(''),
+      responsable: new FormControl(''),
       nomdg: new FormControl(''),
       numdg: new FormControl(''),
       email: new FormControl(''),
-      mobile: new FormControl(''),
+      telephone: new FormControl(''),
       fixe: new FormControl(''),
-      siteweb: new FormControl(''),
+      site: new FormControl(''),
       adresse: new FormControl(''),
       logo: new FormControl(''),
       contrat: new FormControl(''),
       cnidg: new FormControl(''),
     });
-   /* this.userAgenceForm = new FormGroup({
-      prenom: new FormControl (''),
-      nom: new FormControl(''),
-      poste: new FormControl (''),
-      profil: new FormControl('12'),
-      agenceId: new FormControl('32'),
-      email: new FormControl(''),
-      telephone: new FormControl (''),
-      adresse: new FormControl(''),
-      logo: new FormControl (''),
-    });*/
   }
 
   submitted1() {
@@ -142,12 +134,13 @@ export class DetailagenceComponent implements OnInit {
     const value = this.agenceForm.value;
     const info = new FormData();
     info.append("nom",value.nom);
+    info.append("responsable",value.responsable);
     info.append("nomdg",value.nomdg);
     info.append("numdg",value.numdg);
     info.append("email",value.email);
-    info.append("mobile",value.mobile);
+    info.append("telephone",value.telephone);
     info.append("fixe",value.fixe);
-    info.append("siteweb",value.siteweb);
+    info.append("site",value.site);
     info.append("adresse",value.adresse);
     info.append("logo",this.logo);
     info.append("cnidg",this.fichierCnidg);
@@ -166,28 +159,6 @@ export class DetailagenceComponent implements OnInit {
           }
         )
     } 
-  /*  ajouterUser() {
-      const formdata = new FormData();
-      const value = this.userAgenceForm.value;
-    formdata.append("prenom",value.prenom);
-    formdata.append("nom",value.nom);
-    formdata.append("profil",value.profil);
-    formdata.append("poste",value.poste);
-    formdata.append("agenceid",value.agenceId);
-    formdata.append("email",value.email);
-    formdata.append("telephone",value.telephone);
-    formdata.append("adresse",value.adresse);
-    formdata.append("logo",this.logo);
-      console.log(this.userAgenceForm.value);
-      this.otherService.addUser(formdata).subscribe(
-        (response) =>{
-          console.log(response)
-        },
-        (error) =>{
-          console.log(error)
-        }
-      )
-    }*/
 
     //recuperation de l'image
  getPhoto(e:any) {

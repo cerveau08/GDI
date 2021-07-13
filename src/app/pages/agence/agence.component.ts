@@ -4,6 +4,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { NgxFileSaverService } from '@clemox/ngx-file-saver';
 import { DataService } from 'src/app/service/data.service';
 import { ModalService } from 'src/app/_modal/modal.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-agence',
@@ -47,7 +48,24 @@ export class AgenceComponent implements OnInit {
     nomInt: "5"
   };*/
   item: any;
+  data;
   dataAgence;
+  responsable;
+  nom;
+  numdg;
+  email;
+  telephone;
+  site;
+  adresse;
+  logo;
+  contrat;
+  contratDoc;
+  cnidg;
+  userAgence;
+  dataTotalAgence;
+  total;
+  actifs;
+  inactifs;
   showHome = true;
   url1;
   url3;
@@ -67,16 +85,14 @@ export class AgenceComponent implements OnInit {
   DemoDoc="http://www.africau.edu/images/default/sample.pdf" 
   DemoDoc1="https://file-examples.com/wp-content/uploads/2017/02/file-sample_100kB.doc"
   DemoDoc2="https://www.le.ac.uk/oerresources/bdra/html/resources/example.txt" 
-  activeroute: any;
+
   constructor(private fileSaver: NgxFileSaverService,
     private modalService: ModalService,
     private dataService: DataService,
+    private activeroute: ActivatedRoute,
     private otherService: OthersService) { 
-      this.activeroute.queryParams.subscribe(params => {
-        this.item = JSON.parse(params["user"]);
-        console.log(this.item);
         this.otherService.getOneAgenceById(this.item).subscribe(
-          /*data =>{
+          data =>{
             this.data = data;
             this.dataAgence = this.data.data;
             console.log(this.dataAgence);
@@ -90,17 +106,27 @@ export class AgenceComponent implements OnInit {
             this.adresse = this.dataAgence.adresse;
             this.logo = this.dataAgence.logo;
             this.contrat = this.dataAgence.data.contrat;
-            this.cnidg = this.dataAgence.data.cnidg;
             this.userAgence = this.dataAgence['user'];
             console.log(this.userAgence);
             
-          },*/
+          },
           error =>{
             console.log(error)
           }
         );
-      })
 
+        this.otherService.getTotalAgenceActifInactif(this.item).subscribe(
+          data =>{
+            this.data = data;
+            this.dataTotalAgence = this.data['data'];
+            console.log(this.dataTotalAgence);
+            this.nom = this.dataTotalAgence[0].nom;
+            console.log(this.nom);
+            
+            this.total = this.dataTotalAgence[0].total;
+            this.actifs = this.dataTotalAgence[0].actifs;
+            this.inactifs = this.dataTotalAgence[0].inactifs;
+          })
     }
 
   ngOnInit() {
@@ -116,15 +142,15 @@ export class AgenceComponent implements OnInit {
     } else {
       this.showHome = true;
     }
-    this.datas = this.dataService.getData();
+    //this.datas = this.dataService.getData();
     this.agenceForm = new FormGroup({
       nom: new FormControl (''),
-      directeur: new FormControl(''),
-      numerodg: new FormControl (''),
+      responsable: new FormControl(''),
+      numdg: new FormControl (''),
       email: new FormControl(''),
-      mobile: new FormControl (''),
+      telephone: new FormControl (''),
       fixe: new FormControl(''),
-      website: new FormControl (''),
+      site: new FormControl (''),
       adresse: new FormControl(''),
       photo: new FormControl (''),
       contrat: new FormControl(''),
