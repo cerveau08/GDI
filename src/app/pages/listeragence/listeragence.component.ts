@@ -55,6 +55,7 @@ export class ListeragenceComponent implements OnInit {
       email: new FormControl(''),
       mobile: new FormControl (''),
       fixe: new FormControl(''),
+      telephone: new FormControl (''),
       siteweb: new FormControl (''),
       adresse: new FormControl(''),
       photo: new FormControl (''),
