@@ -138,11 +138,7 @@ export class DetailagenceComponent implements OnInit {
     info.append("nomdg",value.nomdg);
     info.append("numdg",value.numdg);
     info.append("email",value.email);
-<<<<<<< HEAD
-    info.append("telephone",value.telephone);
-=======
     info.append("mobile",value.telephone);
->>>>>>> f739e0b4efa7b8db7cd50ebf9ad0e62d1253fe11
     info.append("fixe",value.fixe);
     info.append("site",value.site);
     info.append("adresse",value.adresse);
