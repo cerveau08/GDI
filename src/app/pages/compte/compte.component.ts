@@ -42,6 +42,7 @@ export class CompteComponent implements OnInit {
   proceVerbalDoc="" 
   nom;
   prenom;
+  pole;
   datedenaissance;
   lieudenaissance;
   telephone;
@@ -60,6 +61,7 @@ export class CompteComponent implements OnInit {
   dateSignature;
   universite;
   sexe;
+  structure;
   direction;
   departement;
   service;
@@ -75,7 +77,7 @@ export class CompteComponent implements OnInit {
   dataCategorie;
   fileContrat;
   fileFicheposte;
-
+  contrat;
   DemoDoc="http://www.africau.edu/images/default/sample.pdf" 
   DemoDoc1="https://file-examples.com/wp-content/uploads/2017/02/file-sample_100kB.doc"
   DemoDoc2="https://www.le.ac.uk/oerresources/bdra/html/resources/example.txt" 
@@ -87,7 +89,7 @@ export class CompteComponent implements OnInit {
 
   ngOnInit() {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    console.log(this.currentUser.data.id);
+    console.log(this.currentUser.data.id);  
 
     this.otherService.getOneInterById(this.currentUser.data.id).subscribe(
       data =>{
@@ -111,14 +113,19 @@ export class CompteComponent implements OnInit {
        this.direction = this.dataInter.structure.direction.libelle;
        this.departement = this.dataInter.structure.departement;
        this.service = this.dataInter.structure.service;
-       this.agence = this.dataInter.agence;
-       this.categorie = this.dataInter.categorie;
+       this.structure = this.dataInter.structure.bu;
+       this.agence = this.dataInter.agence.nom;
+       this.categorie = this.dataInter.categorie.libelle;
        this.dateSignature = this.dataInter.dateSignature;
        this.matricule = this.dataInter.matricule;
        this.sexe = this.dataInter.sexe;
        this.photo = this.dataInter.photo;
+       this.pole = this.dataInter.structure.pole;
        this.contratDoc = this.dataInter.fileContrat;
        this.fichePosteDoc = this.dataInter.fileFichePoste;
+       this.contrat = this.dataInter.contrat;
+       console.log(this.contrat);
+       
    },
    error =>{
      console.log(error)
@@ -159,3 +166,4 @@ export class CompteComponent implements OnInit {
     this.modalService.close(id);
   }
 }
+ 

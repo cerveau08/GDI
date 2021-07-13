@@ -47,7 +47,7 @@
                         <td>{{p.prenom}}</td>
                         <td>{{p.nom}}</td>
                         <td>{{p.agence}}</td>
-                        <td>{{p.dateFin | date: "dd/MM/yyyy"}}</td>
+                        <td>{{p.dateFinContrat}}</td>
                         <td *ngIf="scrWidth>991"><button  class="button1" (click)="openModal('custom-modal-'+p.id)">Afficher</button></td>
                         <!--modal1-->
                         <div class="modal">

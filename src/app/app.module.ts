@@ -45,7 +45,7 @@ import { DetailagenceComponent } from './pages/detailagence/detailagence.compone
 import { DatePipe } from '@angular/common';
 import { NgxFileSaverModule } from '@clemox/ngx-file-saver';
 import { NgxDocViewerModule } from 'ngx-doc-viewer';
-import { MatButtonModule, MatInputModule, MatSidenavModule, MatStepperModule, MatToolbarModule } from '@angular/material';
+import { MatAutocompleteModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatSidenavModule, MatStepperModule, MatToolbarModule } from '@angular/material';
 import { PresenceComponent } from './pages/presence/presence.component';
 import { AgenceComponent } from './pages/agence/agence.component';
 import { OffreComponent } from './pages/offre/offre.component';
@@ -123,6 +123,8 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
     MatButtonModule, 
     MatSidenavModule,
     MatInputModule,
+    MatAutocompleteModule, 
+    MatFormFieldModule,
     //AlertModule,
     PdfViewerModule,
     NgCircleProgressModule.forRoot({}),

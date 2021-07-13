@@ -18,7 +18,7 @@ export class ListermanagerComponent implements OnInit {
   public datas: any;
   page = 1;
   passenger: any; 
-  itemsPerPage = 10;
+  itemsPerPage = 7;
   totalItems : any;
   date: any;
   scrHeight:any;
