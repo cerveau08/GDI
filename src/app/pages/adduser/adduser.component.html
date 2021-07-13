@@ -79,12 +79,24 @@
                                 <div class="infoinput2">
                                     <input type="number" formControlName="telephone"  [(ngModel)]="telephone"  placeholder="Téléphone">
                                     <!-- <input *ngIf="user == 'MNG'" class="input3" type="text" formControlName="profil"  [(ngModel)]="profil" placeholder="Profil" readonly> -->
-                                    <select  class="select6"  formControlName="profil">
+                                    <select class="select6" #profil formControlName="profil">
                                         <option class="option" value="" disabled selected hidden>Profil</option>
                                         <option *ngFor="let data of dataprofils" value="{{data.id}}">{{data.libelle}}</option>
                                     </select>
                                 </div>
-                                <div class="infoinput1">
+                                <div *ngIf="user == 'DRH'" class="infoinput2">
+                                    <input type="text" formControlName="fonction"  [(ngModel)]="fonction"  placeholder="Fonction">
+                                    <!-- <input *ngIf="user == 'MNG'" class="input3" type="text" formControlName="profil"  [(ngModel)]="profil" placeholder="Profil" readonly> -->
+                                    <select *ngIf="profil.value == '3'" class="select6"  formControlName="agenceId">
+                                        <option class="option" value="" disabled selected hidden>Agence</option>
+                                        <option *ngFor="let data of dataAgence" value="{{data.id}}">{{data.libelle}}</option>
+                                    </select>
+                                    <select *ngIf="profil.value == '4'" class="select6" formControlName="structureId">
+                                        <option class="option" value="" disabled selected hidden>Structure</option>
+                                        <option *ngFor="let data of dataAgence" value="{{data.id}}">{{data.libelle}}</option>
+                                    </select>
+                                </div>
+                                <div *ngIf="user != 'DRH'" class="infoinput1">
                                     <input type="text" formControlName="fonction"  [(ngModel)]="fonction"  placeholder="Fonction">
                                 </div>
                                 <div class="content-button">
