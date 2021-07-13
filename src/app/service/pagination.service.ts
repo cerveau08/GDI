@@ -264,12 +264,12 @@ export class PaginationService {
       this.menus = this.drhnav;
     } else if(this.role == "AGN") {
       this.menus = this.agencenav;
-    } else if(this.role == "manager") {
+    } else if(this.role == "MNG") {
       this.menus = this.managernav;
-    }else if(this.role == "assistantDG") {
+    }else if(this.role == "ASTDG") {
       this.menus = this.agencenav;
-    } else if(this.role == "drhAgence") {
-      this.menus = this.managernav;
+    } else if(this.role == "DRHAG") {
+      this.menus = this.agencenav;
     } else {
       this.menus = this.eventSources
     }
