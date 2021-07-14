@@ -6,6 +6,8 @@ import { ModalService } from 'src/app/_modal/modal.service';
 import { NgxFileSaverService } from '@clemox/ngx-file-saver';
 import { OthersService } from 'src/app/services/others.service';
 import { formatCurrency } from '@angular/common';
+import { environment } from 'src/environments/environment';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-detailinter',
@@ -56,6 +58,7 @@ export class DetailinterComponent implements OnInit {
   arretForm: FormGroup;
   bannirForm: FormGroup;
   reconduireForm: FormGroup;
+  validerForm: FormGroup;
   filenamecontrat;
   filenamefichedeposte;
   urlcontrat;
@@ -68,11 +71,14 @@ export class DetailinterComponent implements OnInit {
   dataCategorie;
   fileContrat;
   fileFicheposte;
+  role;
+  public reqUrl = environment.base_url;
   constructor(private activeroute: ActivatedRoute,
               private modalService: ModalService,
               private dataService: DataService,
               private otherService: OthersService,
               private fileSaver: NgxFileSaverService,
+              private http: HttpClient,
               public router: Router, ) { 
     this.activeroute.queryParams.subscribe(params => {
       this.item = JSON.parse(params["user"]);
@@ -123,6 +129,7 @@ export class DetailinterComponent implements OnInit {
     
   }
   ngOnInit() {
+    this.role = localStorage.getItem('user')
     this.contratForm = new FormGroup({
       categorieId: new FormControl(''),
       salaireBrut: new FormControl(''),
@@ -139,6 +146,10 @@ export class DetailinterComponent implements OnInit {
       fichePoste: new FormControl(''),
       interimaireId: new FormControl(''),
     });
+    this.validerForm = new FormGroup({
+      matricule: new FormControl(''),
+      email: new FormControl('')
+    })
     this.otherService.getAllSociete().subscribe(
       data => {
         this.dataSociete = data["data"];
@@ -229,8 +240,8 @@ export class DetailinterComponent implements OnInit {
   validerContrat() {
    this.contratForm.patchValue({interimaireId: this.item});
    const formdata = new FormData();
-formdata.append("societeId","5");
-formdata.append("structureId","14");
+formdata.append("societeId","1");
+formdata.append("structureId","1");
 formdata.append("domaineId",this.contratForm.value.domaineId);
 formdata.append("salaireBrut",this.contratForm.value.salaireBrut);
 formdata.append("interimaireId",this.item);
@@ -283,15 +294,27 @@ formdata.append("fichePoste",this.urlfichedeposte);
     })
   } 
 
+  validerInterimaire() {
+    this.http.post(`${this.reqUrl}/validerInterimaire/${this.item}`, null).subscribe(
+      data => {
+        console.log(data);
+        this.data = data
+        if(this.data.success == true) {
+          this.router.navigate(['accueil/souscontrat']);
+        }
+      }
+    )
+  }
+
    //recuperation de l'image
- getPhoto(e:any) {
-  this.photo= e.files.item(0);
-  let reader = new FileReader();
-  reader.readAsDataURL(this.photo)
-  reader.onload= ()=>{
-    this.image= reader.result
-  } 
-}
+  getPhoto(e:any) {
+    this.photo= e.files.item(0);
+    let reader = new FileReader();
+    reader.readAsDataURL(this.photo)
+    reader.onload= ()=>{
+      this.image= reader.result
+    } 
+  }
 
   contrat(e:any) {
     this.urlcontrat= e.files.item(0);

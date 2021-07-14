@@ -75,7 +75,7 @@
                         <div class="sele1">
                             <select class="custom-select" formControlName="type">
                                 <option value="" disabled selected hidden>Type de Demande</option>
-                                <option *ngFor="let moi of demandes" [ngValue]="moi">{{moi}}</option>
+                                <option *ngFor="let d of demandes" [value]="d.id">{{d.libelle}}</option>
                             </select>
                         </div>
                         </div>

@@ -14,12 +14,26 @@ import { FormControl, FormGroup } from '@angular/forms';
 export class DemandeComponent implements OnInit {
 
   demandes: any = [
-    'Conge maladie', 
-    'convenance personnelle', 
-    'mission', 
-    'conge annuelle',
+    {
+      id: 1,
+      libelle: 'mission', 
+    },
+    {
+      id: 2,
+      libelle: 'convenance personnelle', 
+    },
+    {
+      id: 3,
+      libelle: 'conge maladie', 
+    },
+    {
+      id: 4,
+      libelle: 'conge annuelle', 
+    }
   ];
+ // demandes;
   demandeForm: FormGroup;
+  currentUser;
   public datas: any;
   // pager object
   pager: any = {};
@@ -63,6 +77,7 @@ export class DemandeComponent implements OnInit {
 
   ngOnInit() {
     this.user = localStorage.getItem('user');
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     if(this.user == 'inter') {
       this.showHome = false;
     } else {
@@ -75,18 +90,26 @@ export class DemandeComponent implements OnInit {
        console.log(data);
      }
    )
+    // this.otherService.getTypeDemande().subscribe(
+    //   data => {
+    //     this.demandes = data.data;
+    //     console.log(data);
+    //   }
+    // )
     this.demandeForm = new FormGroup({
       type: new FormControl (''),
       dateDebut: new FormControl(''),
       dateFin: new FormControl (''),
       motif: new FormControl(''),
-      interimaire: new FormControl('4'),
-      validateur: new FormControl('7'),
       description: new FormControl(''),
-      contrat: new FormControl('4'),
     });
+
   }
   onSubmit() {
+    // this.demandeForm.patchValue({
+    //   interimaire: this.currentUser.interimaire.id,
+    //   validateur: this.currentUser.manager.id,
+    // });
     console.log(this.demandeForm.value);
     this.otherService.addDemande(this.demandeForm.value).subscribe(
       data =>{
