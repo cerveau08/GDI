@@ -65,10 +65,16 @@
                                                     <input type="text" [value]="p.matricule" formControlName="matricule" placeholder="Matricule" >
                                                     <input class="input3" [value]="p.poste" type="text" formControlName="poste" placeholder="Profession" >
                                                 </div>
-                                                <div class="input2">
-                                                    <input type="month" formControlName="dateDebut" #DateDebut placeholder="Date Debut">
-                                                    <input class="input3" type="month" formControlName="dateFin" #DateFin placeholder="Date Fin">
+
+                                                <div class="">
+                                                            <select  formControlName="mois" class="style" >
+                                                                <option *ngFor="let data of ListeMois"  [value]="data.libelle">{{data.libelle}}</option>
+                                                            </select>
+                                                            <select  formControlName="annee" class="style" >
+                                                                <option *ngFor="let data of ListeAnnee" [value]="data.libelle">{{data.libelle}}</option>
+                                                            </select>
                                                 </div>
+
                                                 <div class="input2">
                                                     <input type="text" [value]="p.agence" formControlName="agence" placeholder="Agence" >
                                                     <input type="text" class="input3" formControlName="nbr_jr_absence" #Abscence placeholder="Nombre de jour absent">
