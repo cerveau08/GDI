@@ -25,6 +25,81 @@ export class IntersouscontratComponent implements OnInit {
   itemsPerPage = 8;
   totalItems : any;
   public reqUrl = environment.base_url;
+
+  ListeMois = [
+    {
+      libelle: "Janvier",
+    },
+    {
+      libelle: "Février"
+    },
+    {
+      libelle: "Mars",
+    },
+    {
+      libelle: "Avril"
+    },{
+      libelle: "Mai",
+    },
+    {
+      libelle: "Juin",
+    },
+    {
+      libelle: "Juillet",
+    },
+    {
+      libelle: "Aôut",
+    },
+    {
+      libelle: "Septembre",
+    },
+    {
+      libelle: "Octobre",
+    },
+    {
+      libelle: "Novembre",
+    },
+    {
+      libelle: "Décembre",
+    },
+  ];
+
+
+  ListeAnnee = [
+    {
+      libelle: 2020,
+    },
+    {
+      libelle: 2021,
+    },
+    {
+      libelle: 2023,
+    },
+    {
+      libelle: 2024,
+    },{
+      libelle:  2025,
+    },
+    {
+      libelle:  2026,
+    },
+    {
+      libelle:  2026,
+    },
+    {
+      libelle:  2027,
+    },
+    {
+      libelle:  2028,
+    },
+    {
+      libelle: 2029,
+    },
+    {
+      libelle: 2030
+    }
+  ];
+
   constructor(private dataService: DataService,
     public datepipe: DatePipe,
     public router: Router,
@@ -38,8 +113,8 @@ export class IntersouscontratComponent implements OnInit {
    // this.getcolor(this.p);
     this.attestationForm = new FormGroup({
       interim_id: new FormControl(''),
-      dateDebut: new FormControl(''),
-      dateFin: new FormControl(''),
+      mois: new FormControl(''),
+     annee: new FormControl(''),
       contrat_id: new FormControl(''),
       nbr_jr_absence: new FormControl(''),
       periode_id: new FormControl(''),
@@ -63,6 +138,8 @@ export class IntersouscontratComponent implements OnInit {
     })
   }
 
+  // submit(interim, nbr, statut, contrat, period, mois, annee) {
+  //   console.log(interim, mois,annee);
   submit(interim, nbr, statut, contrat, period, dateDebut, dateFin) {
     console.log(interim, dateDebut);
     
