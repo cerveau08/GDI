@@ -321,44 +321,46 @@
 <!--modal 8-->
 <div class="modal">
     <jw-modal id="custom-modal-8">
-        <div class="tableau">
-            <mat-icon style="cursor: pointer;" (click)="closeModal('custom-modal-8');" class="clear">clear</mat-icon>
-            <p class="dtl1">Valider Création {{prenom}} {{nom}} en tant  qu'intérimaire</p>
-            <p class="text-droit">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
-                Doloribus harum sapiente a voluptatum inventore consectetur 
-                in ipsa explicabo est nulla at tempora doloremque eaque 
-                veritatis consequuntur necessitatibus, eligendi recusandae quia!
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                Laudantium molestiae alias dolores suscipit at voluptatibus
-                reiciendis doloremque voluptate nemo quae unde deserunt temporibus 
-                exercitationem aperiam, corporis recusandae incidunt ratione maxime?
-            </p>
-            <p class="text-droit">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
-                Doloribus harum sapiente a voluptatum inventore consectetur 
-                in ipsa explicabo est nulla at tempora doloremque eaque 
-                veritatis consequuntur necessitatibus, eligendi recusandae quia!
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                Laudantium molestiae alias dolores suscipit at voluptatibus
-                reiciendis doloremque voluptate nemo quae unde deserunt temporibus 
-                exercitationem aperiam, corporis recusandae incidunt ratione maxime?
-            </p>
-            <div class="content-motif">
-                <p class="libelle-motif">Matricule</p>
-                <input type="text" formControlName="matricule" placeholder="Matricule">
+        <form [formGroup]="validerForm">
+            <div class="tableau">
+                <mat-icon style="cursor: pointer;" (click)="closeModal('custom-modal-8');" class="clear">clear</mat-icon>
+                <p class="dtl1">Valider Création {{prenom}} {{nom}} en tant  qu'intérimaire</p>
+                <p class="text-droit">
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
+                    Doloribus harum sapiente a voluptatum inventore consectetur 
+                    in ipsa explicabo est nulla at tempora doloremque eaque 
+                    veritatis consequuntur necessitatibus, eligendi recusandae quia!
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                    Laudantium molestiae alias dolores suscipit at voluptatibus
+                    reiciendis doloremque voluptate nemo quae unde deserunt temporibus 
+                    exercitationem aperiam, corporis recusandae incidunt ratione maxime?
+                </p>
+                <p class="text-droit">
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
+                    Doloribus harum sapiente a voluptatum inventore consectetur 
+                    in ipsa explicabo est nulla at tempora doloremque eaque 
+                    veritatis consequuntur necessitatibus, eligendi recusandae quia!
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                    Laudantium molestiae alias dolores suscipit at voluptatibus
+                    reiciendis doloremque voluptate nemo quae unde deserunt temporibus 
+                    exercitationem aperiam, corporis recusandae incidunt ratione maxime?
+                </p>
+                <div class="content-motif">
+                    <p class="libelle-motif">Matricule</p>
+                    <input type="text" formControlName="matricule" placeholder="Matricule">
+                </div>
+                <div class="content-motif">
+                    <p class="libelle-motif">Email</p>
+                    <input type="text" formControlName="email" placeholder="Email">
+                </div>
+                <div class="btns3">
+                    <button (click)="validerInterimaire() "  class="button8">Bannir</button>
+                </div>
             </div>
-            <div class="content-motif">
-                <p class="libelle-motif">Email</p>
-                <input type="text" formControlName="email" placeholder="Email">
-            </div>
-            <div class="btns3">
-                <button (click)="validerInterimaire() "  class="button8">Bannir</button>
-            </div>
-        </div>
+        </form>
     </jw-modal>
 </div>
- <!--modal-8-->
+ <!-- modal-8
  <div class="modal">
     <jw-modal id="custom-modal-5">
         <h1 class="modal-renouveler">Valider Création d'intérimaire</h1>
@@ -395,4 +397,4 @@
             </form>
         </div>
     </jw-modal>
-</div>
+</div> -->

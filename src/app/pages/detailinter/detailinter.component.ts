@@ -238,8 +238,8 @@ export class DetailinterComponent implements OnInit {
   validerContrat() {
    this.contratForm.patchValue({interimaireId: this.item});
    const formdata = new FormData();
-formdata.append("societeId","5");
-formdata.append("structureId","14");
+formdata.append("societeId","1");
+formdata.append("structureId","1");
 formdata.append("domaineId",this.contratForm.value.domaineId);
 formdata.append("salaireBrut",this.contratForm.value.salaireBrut);
 formdata.append("interimaireId",this.item);
@@ -293,9 +293,13 @@ formdata.append("fichePoste",this.urlfichedeposte);
   } 
 
   validerInterimaire() {
-    this.http.post(`${this.reqUrl}/validerDemande/${this.item}`, null).subscribe(
+    this.http.post(`${this.reqUrl}/validerInterimaire/${this.item}`, null).subscribe(
       data => {
         console.log(data);
+        this.data = data
+        if(this.data.success == true) {
+          this.router.navigate(['accueil/souscontrat']);
+        }
       }
     )
   }
