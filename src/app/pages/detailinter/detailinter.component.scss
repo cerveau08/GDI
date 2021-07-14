@@ -614,6 +614,15 @@ select {
     height: 60px;
     outline: none;
 }
+.input-valider {
+    width: 95%;
+    height: 30px;
+    background-color: #f5f6f9;
+    border-radius: 1px;
+    border: solid 1px #d8d8d8;
+    margin-bottom: 10px;
+    padding: 0 10px;
+}
 @media (max-width: 991px) {
     .chiffre-aside {
         display: grid;

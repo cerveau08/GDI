@@ -61,10 +61,10 @@
             <button class="button4" (click)="objectif()">Objectifs</button>
         </div>
         <div class="lesbouton">
-            <button class="button5" (click)="openModal('custom-modal-4')">Renouveler contrat</button>
-            <button class="button6" (click)="openModal('custom-modal-5')">Reconduire contrat</button>
-            <button class="button7" (click)="openModal('custom-modal-6')">Arrêter contrat</button>
-            <button class="button8" (click)="openModal('custom-modal-7')">Bannir Interimaire</button>
+            <button *ngIf="role == 'AGN'" class="button5" (click)="openModal('custom-modal-4')">Renouveler contrat</button>
+            <button *ngIf="role == 'AGN'" class="button6" (click)="openModal('custom-modal-5')">Reconduire contrat</button>
+            <button *ngIf="role == 'DRH'" class="button7" (click)="openModal('custom-modal-6')">Arrêter contrat</button>
+            <button *ngIf="role == 'DRH'" class="button8" (click)="openModal('custom-modal-7')">Bannir Interimaire</button>
         </div>
     </div>
 </div>
@@ -345,16 +345,16 @@
                     reiciendis doloremque voluptate nemo quae unde deserunt temporibus 
                     exercitationem aperiam, corporis recusandae incidunt ratione maxime?
                 </p>
-                <div class="input2">
+                <div class="input-v">
                     <p class="libelle-motif">Matricule</p>
-                    <input type="text" formControlName="matricule" placeholder="Matricule">
+                    <input class="input-valider" type="text" formControlName="matricule" placeholder="Matricule">
                 </div>
-                <div class="input2">
+                <div class="input-v">
                     <p class="libelle-motif">Email</p>
-                    <input type="text" formControlName="email" placeholder="Email">
+                    <input class="input-valider" type="text" formControlName="email" placeholder="Email">
                 </div>
                 <div class="btns3">
-                    <button (click)="validerInterimaire() "  class="button8">Bannir</button>
+                    <button (click)="validerInterimaire() "  class="button8">Valider</button>
                 </div>
             </div>
         </form>
