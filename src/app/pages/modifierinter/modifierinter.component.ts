@@ -69,7 +69,7 @@ export class ModifierinterComponent implements OnInit {
   proceverbal;
   telephone;
   categorie;
-  salaire_brut;
+  salaireBrut;
   typePiece;
   agence;
   structure;
@@ -98,6 +98,7 @@ export class ModifierinterComponent implements OnInit {
   fichierdiplome2Upload: File;
   fichierdiplome3Upload: File;
   contratName;
+  societeName;
   cniName;
   fichedeposteName;
   proceverbalName;
@@ -154,7 +155,7 @@ export class ModifierinterComponent implements OnInit {
             this.structureName = this.dataInter.data.structure.libelle;
             this.directionId = this.dataInter.data.structure.direction;
             this.societeId = this.dataInter.data.structure.societe;
-            this.salaire_brut = this.dataInter.data.salaire_brut;
+            this.salaireBrut = this.dataInter.data.salaire_brut;
             this.categorie = this.dataInter.data.categorie.libelle;
             this.categorieId = this.dataInter.data.categorie.id;
             this.telephone = this.dataInter.data.telephone;
@@ -191,7 +192,7 @@ export class ModifierinterComponent implements OnInit {
         dateDebut: new FormControl(''),
         dateFin: new FormControl(''),
         categorieId: new FormControl(''),
-        salaire_brut: new FormControl(''),
+        salaireBrut: new FormControl(''),
         structureId: new FormControl(''),
         direction: new FormControl(''),
         societeId: new FormControl(''),
@@ -360,7 +361,7 @@ export class ModifierinterComponent implements OnInit {
     info.append("sexe",this.interForm.value.sexe);
     info.append("profession",this.interForm.value.profession);
     info.append("sitmat",this.interForm.value.sitmat);
-    info.append("salaire_brut",this.interForm.value.salaire_brut);
+    info.append("salaireBrut",this.interForm.value.salaireBrut);
     info.append("dateNaissance",this.interForm.value.dateNaissance);
     info.append("lieuNaissance",this.interForm.value.lieuNaissance);
     info.append("dateDebut",this.interForm.value.dateDebut);
