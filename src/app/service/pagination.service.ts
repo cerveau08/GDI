@@ -97,7 +97,11 @@ export class PaginationService {
           id: 1,  title: 'Liste sous contrat',  path: 'souscontrat',
         }, {
           id: 2, title: 'Liste en fin de contrat',  path: 'fincontrat',
-        },
+        }, {
+          id: 2, title: 'Liste en attente',  path: 'interenattente',
+        }, {
+          id: 2, title: 'Liste archivé',  path: 'interarchive',
+        }
       ]
     }, {
       id: 4,  title: 'Agence d\'interim',
@@ -107,7 +111,7 @@ export class PaginationService {
           title: 'Liste Agence',  path: 'listagence',
         },{
           title: 'Ajouter Agence',  path: 'ajouteragence',
-        },
+        }
       ]
     },{
       id: 5,  title: 'Manager',  icon: "grade",
@@ -153,6 +157,10 @@ export class PaginationService {
         id: 1,  title: 'Liste sous contrat',  path: 'souscontrat',
       }, {
         id: 2, title: 'Liste en fin de contrat',  path: 'fincontrat',
+      }, {
+        id: 2, title: 'Liste en attente',  path: 'interenattente',
+      }, {
+        id: 2, title: 'Liste archivé',  path: 'interarchive',
       },{
         id: 4,  title: 'Ajouter',  path: 'addinter',
       },

@@ -98,6 +98,7 @@ export class ModifierinterComponent implements OnInit {
   fichierdiplome2Upload: File;
   fichierdiplome3Upload: File;
   contratName;
+  societeName;
   cniName;
   fichedeposteName;
   proceverbalName;
@@ -153,7 +154,8 @@ export class ModifierinterComponent implements OnInit {
             this.structureId = this.dataInter.data.structure.id;
             this.structureName = this.dataInter.data.structure.libelle;
             this.directionId = this.dataInter.data.structure.direction;
-            this.societeId = this.dataInter.data.structure.societe;
+            this.societeId = this.dataInter.data.societe.id;
+            this.societeName = this.dataInter.data.societe.libelle;
             this.salaire_brut = this.dataInter.data.salaire_brut;
             this.categorie = this.dataInter.data.categorie.libelle;
             this.categorieId = this.dataInter.data.categorie.id;
