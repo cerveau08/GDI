@@ -229,8 +229,8 @@ export class DetailinterComponent implements OnInit {
   validerContrat() {
    this.contratForm.patchValue({interimaireId: this.item});
    const formdata = new FormData();
-formdata.append("societeId","5");
-formdata.append("structureId","14");
+formdata.append("societeId","1");
+formdata.append("structureId","1");
 formdata.append("domaineId",this.contratForm.value.domaineId);
 formdata.append("salaireBrut",this.contratForm.value.salaireBrut);
 formdata.append("interimaireId",this.item);
