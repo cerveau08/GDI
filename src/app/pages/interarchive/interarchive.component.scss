@@ -108,7 +108,15 @@
     }
     .type {
       display: flex;
-    //  width: 50px;
+      width: 60px;
+      margin: 0 auto;
+      p {
+          text-align: center;
+      }
+    }
+    .type2 {
+      display: flex;
+      width: 40px;
       margin: 0 auto;
       p {
           text-align: center;
