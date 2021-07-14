@@ -20,9 +20,11 @@ export class OthersService {
   }
   // recupere la liste des interimaire fin de contrat
   getInter(): Observable<any> {
-    return this.http.get<any>(this.reqUrl + '/interimFinContrat?page=1&limit=3');
+    return this.http.get<any>(this.reqUrl + '/interimFinContrat');
   }
-
+  getInterEnAttente(): Observable<any> {
+    return this.http.get<any>(this.reqUrl + '/interimEnAttente');
+  }
   // recupere la liste des noueveaux recrus
   getNouveauRecrus(): Observable<any> {
     return this.http.get<any>(this.reqUrl + '/interimaires/dernierrecrues?page=1');
@@ -42,7 +44,7 @@ export class OthersService {
   }
   // recupere la liste des agences
   getListAgence(): Observable<any> {
-    return this.http.get<any>(this.reqUrl + '/listeAgence?page=1');
+    return this.http.get<any>(this.reqUrl + '/listeAgence');
   }
    // recupere les details d'une agence
   getOneAgenceById(id: number) {
@@ -94,7 +96,7 @@ addAgence(data) {
     return this.http.post<any>(`${this.reqUrl}/reconduireContrat`, data);
   }
   getListInterFinContrat(id: number): Observable<any> {
-    return this.http.get<any>(`${this.reqUrl}/interimFinContrat?page=1`);
+    return this.http.get<any>(`${this.reqUrl}/interimFinContrat`);
   }
   getAllSociete(){
     return this.http.get(this.reqUrl + '/societe/all');
