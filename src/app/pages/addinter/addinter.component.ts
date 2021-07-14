@@ -133,11 +133,11 @@ export class AddinterComponent implements OnInit {
         dateSignature: new FormControl(''),
         categorieId: new FormControl(''),
         salaireBrut: new FormControl(''),
-        structureId: new FormControl(14),
+        structureId: new FormControl(''),
         domaineId: new FormControl(''),
         directionId: new FormControl(''),
         departementId: new FormControl(''),
-        societeId: new FormControl(5),
+        societeId: new FormControl(''),
         profession: new FormControl(''),
         poste: new FormControl(''),
         contratDoc: new FormControl(''),
@@ -226,8 +226,8 @@ export class AddinterComponent implements OnInit {
     this.color3 = "20px solid #f16e00";
     const value = this.interForm.value;
     const formdata = new FormData();
-    formdata.append("societeId","1");
-    formdata.append("structureId","1");
+    formdata.append("societeId", this.interForm.value.societeId);
+    formdata.append("structureId",this.interForm.value.structureId);
     formdata.append("domaineId",this.interForm.value.domaineId);
     formdata.append("typePiece",this.interForm.value.typePiece);
     formdata.append("numeroPiece",this.interForm.value.numeroPiece);
