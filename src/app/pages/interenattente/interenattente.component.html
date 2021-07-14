@@ -31,11 +31,11 @@
                     <th id="direction">Direction</th>
                     <th *ngIf="role == 'DRH'" id="agence">Agence</th>
                     <th *ngIf="role != 'DRH'" id="direction">Manager</th>
-                    <th *ngIf="role == 'DRH'" id="input"><input 
+                    <!-- <th *ngIf="role == 'DRH'" id="input"><input 
                         [(ngModel)]="selectedAll"
                         (change)="selectAll();"
                         type="checkbox"/>
-                   </th>
+                   </th> -->
             </tr>
             </thead>
             <tbody>
@@ -50,13 +50,13 @@
                     <td (click)="openDetail(p.id)">{{p.direction}}</td>
                     <td *ngIf="role == 'DRH'" (click)="openDetail(p.id)">{{p.agence}}</td>
                     <td *ngIf="role != 'DRH'" (click)="openDetail(p.id)">{{p.manager.prenom}} {{p.manager.nom}}</td>
-                    <td *ngIf="role == 'DRH'"><input *ngIf="p.etat == 'en attente'" type="checkbox"
+                    <!-- <td *ngIf="role == 'DRH'"><input *ngIf="p.etat == 'en attente'" type="checkbox"
                         [checked]="p.etat"
                         [(ngModel)]="p.etat"
                         [value]="p.id" 
                         (change)="checkIfAllSelected();"/>
                         <p *ngIf="p.etat == 'actif'">Validé</p>
-                    </td>
+                    </td> -->
                     <!--modal-->
                     <div class="modal">
                         <jw-modal id="custom-modal-{{p.id}}">

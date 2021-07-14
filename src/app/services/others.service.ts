@@ -200,4 +200,7 @@ addAgence(data) {
   sendResetPassword(data) {
     return this.http.post(`${this.reqUrl}/reinitialisationMotDePass`, data);
   }
+  validerInter(id: number, data): Observable<any> {
+    return this.http.post<any>(`${this.reqUrl}/validerInterimaire/${id}`, data);
+  }
 }
