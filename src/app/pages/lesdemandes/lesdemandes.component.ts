@@ -74,14 +74,14 @@ export class LesdemandesComponent implements OnInit {
     );
   }
 
-  checkAllCheckBox(ev) {
-    console.log(this.dd);
-		this.dd.forEach(x => x.checked = ev.target.checked);
-	}
+  // checkAllCheckBox(ev) {
+  //   console.log(this.dd);
+	// 	this.dd.forEach(x => x.checked = ev.target.checked);
+	// }
 
-	isAllCheckBoxChecked() {
-		return this.dd.every(p => p.checked);
-	}
+	// isAllCheckBoxChecked() {
+	// 	return this.dd.every(p => p.checked);
+	// }
 
   selectAll() {
     for (var i = 0; i < this.dd.length; i++) {

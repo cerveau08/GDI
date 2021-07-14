@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 import { environment } from 'src/environments/environment';
 import { DataService } from 'src/app/service/data.service';
 import { DatePipe } from '@angular/common';
@@ -24,14 +24,23 @@ export class InterenattenteComponent implements OnInit {
   page = 1;
   itemsPerPage = 8;
   totalItems : any;
+  form: FormGroup;
+  checkedList:any;
+  selectedAll: any;
+  result;
   public reqUrl = environment.base_url;
   constructor(private dataService: DataService,
     public datepipe: DatePipe,
     public router: Router,
+    private fb: FormBuilder,
     private modalService: ModalService,
     private otherService: OthersService,
     private http: HttpClient
-    ) { }
+    ) {
+      this.form = this.fb.group({
+        checkArray: this.fb.array([])
+      });
+    }
 
   ngOnInit() {
     this.role = localStorage.getItem('user')
@@ -55,12 +64,8 @@ export class InterenattenteComponent implements OnInit {
 
   
   gty(page: any){
-    this.http.get(this.reqUrl + `/interimSousContrat?page=${page}&limit=${this.itemsPerPage}`).subscribe((data: any) => {
-      this.dataInter =  data.data;
-      this.totalItems = data.total;
-      console.log(data);
-      console.log(this.totalItems);
-    })
+    this.http.get(this.reqUrl + `/interimSousContrat?page=${page}&limit=${this.itemsPerPage}`).subscribe((data: any) => 
+      this.dataInter =  data.data)
   }
 
   submit(interim, nbr, statut, contrat, period, dateDebut, dateFin) {
@@ -75,6 +80,36 @@ export class InterenattenteComponent implements OnInit {
         user: JSON.stringify(data)
       }
     })
+  }
+
+  selectAll() {
+    for (var i = 0; i < this.dataInter.length; i++) {
+      this.dataInter[i].etat = this.selectedAll;
+    }
+    this.getCheckedItemList();
+  }
+  checkIfAllSelected(event) {
+    this.selectedAll = this.dataInter.every(function(item:any) {
+     // item.s = event.target.checked;
+      return item.etat == 0;
+    })
+    this.getCheckedItemList();
+  }
+  getCheckedItemList() {
+    this.checkedList = [];
+    for (var i = 0; i < this.dataInter.length; i++) {
+      if(this.dataInter[i].etat) {
+        this.checkedList.push(this.dataInter[i]);
+        this.http.post(`${this.reqUrl}/validerDemande/${this.dataInter[i].id}`, null).subscribe(
+          data => {
+            this.result = data;
+            console.log(data);
+          }
+        )
+      }
+    }
+    this.checkedList = this.checkedList;
+    console.log(this.checkedList);
   }
 
   /*getcolor(p) {
