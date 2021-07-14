@@ -98,6 +98,7 @@ export class ModifierinterComponent implements OnInit {
   fichierdiplome2Upload: File;
   fichierdiplome3Upload: File;
   contratName;
+  societeName;
   cniName;
   fichedeposteName;
   proceverbalName;

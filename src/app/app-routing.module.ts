@@ -36,6 +36,7 @@ import { PasswordforgetComponent } from './passwordforget/passwordforget.compone
 import { AddinterComponent } from './pages/addinter/addinter.component';
 import { AuthGuard } from './helpers/auth.guard';
 import { InterarchiveComponent } from './pages/interarchive/interarchive.component';
+import { InterenattenteComponent } from './pages/interenattente/interenattente.component';
 
 
 const routes: Routes = [
@@ -86,6 +87,10 @@ const routes: Routes = [
       },
       { path: 'interarchive',
         component: InterarchiveComponent,
+        canActivate: [AuthGuard]
+      },
+      { path: 'interenattente',
+        component: InterenattenteComponent,
         canActivate: [AuthGuard]
       },
       { path: 'addinter',
