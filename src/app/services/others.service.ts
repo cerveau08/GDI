@@ -205,4 +205,7 @@ addAgence(data) {
   validerInter(id: number, data): Observable<any> {
     return this.http.post<any>(`${this.reqUrl}/validerInterimaire/${id}`, data);
   }
+  getTypeDemande(): Observable<any> {
+    return this.http.get<any>(this.reqUrl + '/typeDemande');
+  }
 }

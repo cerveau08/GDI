@@ -31,6 +31,7 @@ export class DemandeComponent implements OnInit {
       libelle: 'conge annuelle', 
     }
   ];
+ // demandes;
   demandeForm: FormGroup;
   currentUser;
   public datas: any;
@@ -89,23 +90,26 @@ export class DemandeComponent implements OnInit {
        console.log(data);
      }
    )
+    // this.otherService.getTypeDemande().subscribe(
+    //   data => {
+    //     this.demandes = data.data;
+    //     console.log(data);
+    //   }
+    // )
     this.demandeForm = new FormGroup({
       type: new FormControl (''),
       dateDebut: new FormControl(''),
       dateFin: new FormControl (''),
       motif: new FormControl(''),
-      interimaire: new FormControl('4'),
-      validateur: new FormControl('15'),
       description: new FormControl(''),
-      contrat: new FormControl('8'),
     });
 
   }
   onSubmit() {
-    this.demandeForm.patchValue({
-      interimaire: this.currentUser.interimaire.id,
-      validateur: this.currentUser.manager.id,
-    });
+    // this.demandeForm.patchValue({
+    //   interimaire: this.currentUser.interimaire.id,
+    //   validateur: this.currentUser.manager.id,
+    // });
     console.log(this.demandeForm.value);
     this.otherService.addDemande(this.demandeForm.value).subscribe(
       data =>{

@@ -71,6 +71,7 @@ export class DetailinterComponent implements OnInit {
   dataCategorie;
   fileContrat;
   fileFicheposte;
+  role;
   public reqUrl = environment.base_url;
   constructor(private activeroute: ActivatedRoute,
               private modalService: ModalService,
@@ -128,6 +129,7 @@ export class DetailinterComponent implements OnInit {
     
   }
   ngOnInit() {
+    this.role = localStorage.getItem('user')
     this.contratForm = new FormGroup({
       categorieId: new FormControl(''),
       salaireBrut: new FormControl(''),

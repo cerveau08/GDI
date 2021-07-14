@@ -6,7 +6,7 @@
             </div>
             <div class="content-buttons-modifier">
                 <button (click)="modifierInter()" class="button-modifier">Modifier</button>
-                <button (click)="openModal('custom-modal-8')" class="button-modifier">Valider</button>
+                <button *ngIf="role == 'DRH'" (click)="openModal('custom-modal-8')" class="button-modifier">Valider</button>
             </div>
         </div>
         <div class="progres">
@@ -345,11 +345,11 @@
                     reiciendis doloremque voluptate nemo quae unde deserunt temporibus 
                     exercitationem aperiam, corporis recusandae incidunt ratione maxime?
                 </p>
-                <div class="content-motif">
+                <div class="input2">
                     <p class="libelle-motif">Matricule</p>
                     <input type="text" formControlName="matricule" placeholder="Matricule">
                 </div>
-                <div class="content-motif">
+                <div class="input2">
                     <p class="libelle-motif">Email</p>
                     <input type="text" formControlName="email" placeholder="Email">
                 </div>
