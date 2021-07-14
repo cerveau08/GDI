@@ -91,7 +91,7 @@ export class CompteComponent implements OnInit {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     console.log(this.currentUser.data.id);  
 
-    this.otherService.getOneInterById(this.currentUser.data.id).subscribe(
+    this.otherService.getOneInterById(this.currentUser.interimaire.id).subscribe(
       data =>{
        this.data = data;
        this.dataInter = this.data.data;
