@@ -14,7 +14,6 @@
                 </ng-template>
                 <div>
                     <form [formGroup]="interForm">
-                      <!-- <div formGroupName="infopersonnel"> -->
                         <div>
                         <p class="matri">Matricule: <span>{{matricule}}</span> </p>
                         <div class="grid">
@@ -74,7 +73,6 @@
                   </ng-template>
                 <div>
                   <form [formGroup]="interForm">
-                    <!-- <div formGroupName="contrat"> -->
                       <div>
                       <p class="matri">Matricule: <span>{{matricule}}</span> </p>
                       <div class="grid">
@@ -108,7 +106,7 @@
                             </select>
                           </div>
                           <div class="contratinput2">
-                            <select class="select5" #departement [(ngModel)]="departementId" formControlName="departement" (change)="societeListe(departement.value)">
+                            <select class="select5" #departement [(ngModel)]="departementId" formControlName="departement" (change)="serviceListe(departement.value)">
                               <option class="option" [value]="departementId">{{departementId}}</option>
                               <option *ngFor="let data of dataDepartement" [value]="data.id">{{data.libelle}}</option>
                             </select>
@@ -137,7 +135,6 @@
                 <div>
                   <div *ngIf="!submited">
                     <form [formGroup]="interForm">
-                      <!-- <div formGroupName="poste"> -->
                         <div>
                         <div class="center">
                           <div class="fiche-et-pv" >

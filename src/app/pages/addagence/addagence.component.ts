@@ -38,7 +38,6 @@ export class AddagenceComponent implements OnInit {
 
   
   ngOnInit() {
-  //  this.datas = this.dataService.getData();
     this.infoForm = new FormGroup({
       nom: new FormControl (''),
       nomdg: new FormControl(''),
@@ -49,8 +48,6 @@ export class AddagenceComponent implements OnInit {
       siteweb: new FormControl (''),
       adresse: new FormControl(''),
       logo: new FormControl (''),
-     // login: new FormControl(''),
-     // password: new FormControl (''),
       ninea: new FormControl(''),
       rccm: new FormControl (''),
       cnidg: new FormControl(''),
@@ -125,8 +122,6 @@ export class AddagenceComponent implements OnInit {
       data => {
         console.log(data);
         if (data) {
-         // alert('Agence ajouté avec succées...');
-        //}
         this.route.navigate(['/accueil/listagence']);
         }
       },
@@ -134,7 +129,6 @@ export class AddagenceComponent implements OnInit {
           this.errorMsg = 'Probleme de connexion au serveur';
           console.log(error)
         }
-        //this.ndm.navigateByUrl('/accueil/listUsers');
       ) 
   }
 

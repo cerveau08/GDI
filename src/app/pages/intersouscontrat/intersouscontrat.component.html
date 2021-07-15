@@ -66,15 +66,11 @@
                                                     <input class="input3" [value]="p.poste" type="text" formControlName="poste" placeholder="Profession" >
                                                 </div>
 
-                                                <div class="">
+                                                <div class="input2">
                                                             <select  formControlName="mois" class="style" >
                                                                 <option *ngFor="let data of ListeMois"  [value]="data.libelle">{{data.libelle}}</option>
                                                             </select>
-                                                            <!-- <select  formControlName="chosenYearDate" class="style" >
-                                                                <option *ngFor="let data of ListeAnnee" [value]="data.libelle">{{data.libelle}}</option>
-                                                            </select> -->
-                                                </div>
-                                                <div><jp-multi-datepicker formControlName="annee" tabindex="-1"  mode="YEAR" label="Choose a year" [(ngModel)]="annee" [max]="2020"></jp-multi-datepicker><br>
+                                                            <jp-multi-datepicker formControlName="annee" tabindex="-1"  mode="YEAR" label="Choisir une Date" [(ngModel)]="annee" [min]="2000"></jp-multi-datepicker>
                                                 </div>
                                                 <div class="input2">
                                                     <input type="text" [value]="p.agence" formControlName="agence" placeholder="Agence" >

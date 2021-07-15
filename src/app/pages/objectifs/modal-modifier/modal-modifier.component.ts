@@ -13,6 +13,9 @@ export class ModalModifierComponent implements OnInit {
 
   @Input('objectifData') itemobjectif= '';
   modifierForm: FormGroup;
+  description;
+  titre;
+  id;
   constructor(private otherService: OthersService,
     private modalService: ModalService,
     private activeroute: ActivatedRoute,

@@ -23,17 +23,16 @@ export class AttestationpresenceComponent implements OnInit {
               private otherService: OthersService) { }
 
   ngOnInit() {
-     //this.datas = this.dataService.getData();
 
   this.gty(this.page);
-}
-gty(page: any){
-  this.http.get(this.reqUrl + `/listeAttestationByMonth?page=${page}&size=${this.itemsPerPage}`).subscribe((data: any) => {
-    this.dataAttest =  data.data;
-    this.totalItems = data.total;
-    console.log(this.dataAttest);
-    console.log(this.totalItems);
-    
-  })
-}
   }
+  gty(page: any){
+    this.http.get(this.reqUrl + `/listeAttestationByMonth?page=${page}&size=${this.itemsPerPage}`).subscribe((data: any) => {
+      this.dataAttest =  data.data;
+      this.totalItems = data.total;
+      console.log(this.dataAttest);
+      console.log(this.totalItems);
+      
+    })
+  }
+}

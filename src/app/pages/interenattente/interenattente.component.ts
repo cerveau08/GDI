@@ -116,24 +116,6 @@ export class InterenattenteComponent implements OnInit {
     this.checkedList = this.checkedList;
     console.log(this.checkedList);
   }
-
-  /*getcolor(p) {
-    let color = "#ff0000"
-    let d = new Date();
-    var g1 = new Date(d.getFullYear(), d.getMonth()+1, d.getDate());
-    let date = new Date(p.dateFin);
-    let now = this.datepipe.transform(g1, 'yyyyMMdd');
-    let dates = this.datepipe.transform(date, 'yyyyMMdd');
-    console.log(date);
-    console.log(now);
-    console.log(dates);
-    if(now > dates) {
-      color = "#ff0000"
-    } else {
-      color = "#000000"
-    }  
-    return color; 
-  } */
   downloadFile(data: any) {
     const replacer = (key, value) => (value === null ? '' : value); // specify how you want to handle null values here
     const header = Object.keys(data[0]);

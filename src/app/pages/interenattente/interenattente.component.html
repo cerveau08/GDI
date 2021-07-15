@@ -31,11 +31,6 @@
                     <th id="direction">Direction</th>
                     <th *ngIf="role == 'DRH'" id="agence">Agence</th>
                     <th *ngIf="role != 'DRH'" id="direction">Manager</th>
-                    <!-- <th *ngIf="role == 'DRH'" id="input"><input 
-                        [(ngModel)]="selectedAll"
-                        (change)="selectAll();"
-                        type="checkbox"/>
-                   </th> -->
             </tr>
             </thead>
             <tbody>
@@ -50,50 +45,6 @@
                     <td (click)="openDetail(p.id)">{{p.direction}}</td>
                     <td *ngIf="role == 'DRH'" (click)="openDetail(p.id)">{{p.agence}}</td>
                     <td *ngIf="role != 'DRH'" (click)="openDetail(p.id)">{{p.manager.prenom}} {{p.manager.nom}}</td>
-                    <!-- <td *ngIf="role == 'DRH'"><input *ngIf="p.etat == 'en attente'" type="checkbox"
-                        [checked]="p.etat"
-                        [(ngModel)]="p.etat"
-                        [value]="p.id" 
-                        (change)="checkIfAllSelected();"/>
-                        <p *ngIf="p.etat == 'actif'">Validé</p>
-                    </td> -->
-                    <!--modal-->
-                    <!-- <div class="modal">
-                        <jw-modal id="custom-modal-{{p.id}}">
-                            <mat-icon style="cursor: pointer;" (click)="closeModal('custom-modal-'+p.id);" class="clear">clear</mat-icon>
-                            <div class="all">
-                                <h1>Ajouter Attestation</h1>
-                                <div>
-                                    <form [formGroup]="attestationForm">
-                                        <div class="forms">
-                                            <div>
-                                                <div class="input2">
-                                                    <input type="text" [value]="p.prenom" formControlName="prenom" placeholder="Prenom" >
-                                                    <input class="input3"[value]="p.nom" type="text" formControlName="nom" placeholder="Nom" >
-                                                </div>
-                                                <div class="input2">
-                                                    <input type="text" [value]="p.matricule" formControlName="matricule" placeholder="Matricule" >
-                                                    <input class="input3" [value]="p.poste" type="text" formControlName="poste" placeholder="Profession" >
-                                                </div>
-                                                <div class="input2">
-                                                    <input type="month" formControlName="dateDebut" #DateDebut placeholder="Date Debut">
-                                                    <input class="input3" type="month" formControlName="dateFin" #DateFin placeholder="Date Fin">
-                                                </div>
-                                                <div class="input2">
-                                                    <input type="text" [value]="p.agence" formControlName="agence" placeholder="Agence" >
-                                                    <input type="text" class="input3" formControlName="nbr_jr_absence" #Abscence placeholder="Nombre de jour absent">
-                                                </div>
-                                                <div class="content-button-submit">
-                                                    <button (click)="submit(p.id, Abscence.value, statut, contrat, period, DateDebut.value, DateFin.value)" class="button-submit">Valider</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </jw-modal>
-                    </div> -->
-                    <!-- modal -->
                 </tr>
             </tbody>
             
