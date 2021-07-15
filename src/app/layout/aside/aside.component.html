@@ -24,7 +24,7 @@
     </div>
     <div *ngIf="showHome" class="interi-aside">
         <p class="dernier-aside">En fin de contrat</p>
-        <div *ngFor="let p of dataInterFin | slice:0:4; let i = index">
+        <div *ngFor="let p of dataInterFin | slice:0:3; let i = index">
             <div class="list-aside">
                 <div style="cursor: pointer;" class="grid-container-aside" [ngStyle]="{'border-bottom' : ((i > 2) ? 'none' : '1px solid #f5f6f9') }">
                     <div  class="item4-aside" >
@@ -61,7 +61,7 @@
     </div> -->
     <div class="annonce-aside">
         <p class="dernier-aside">Nouveaux recrus</p>
-        <div *ngFor="let p of nouveauxRrecrus | slice:0:4; let i = index">
+        <div *ngFor="let p of nouveauxRrecrus | slice:0:3; let i = index">
             <div class="list-aside">
                 <div style="cursor: pointer;" class="grid-container1-aside" [ngStyle]="{'border-bottom' : ((i > 2) ? 'none' : '1px solid #f5f6f9') }">
                     <div  class="item4-aside" >

@@ -187,20 +187,24 @@ table {
     margin-top: 5px;
 }
   
-  th {
+th {
     text-align: center;
-    padding: 0px;
+    //padding: 8px;
     font-size: 13px;
-    font-weight: bold;
+    font-weight:  bold;
     font-stretch: normal;
     font-style: normal;
     line-height: normal;
     letter-spacing: normal;
     color: #222222;
+    p{
+      margin-top: 5px;
+      margin-bottom: 5px;
+    }
   }
   td {
     text-align: center;
-    padding: 8px;
+  //  padding: 8px;
     font-size: 12px;
     font-weight: normal;
     font-stretch: normal;
@@ -208,6 +212,20 @@ table {
     line-height: normal;
     letter-spacing: normal;
     color: #000000;
+    p{
+      margin-top: 5px;
+      margin-bottom: 5px;
+    }
+  }
+  .updown {
+    margin-top: 2px;
+    margin-left: 0px;
+  }
+  tr {
+    height: 25px !important;
+    border: 1px solid #f5f6f9;
+    border-radius: 100%;
+  //  margin-top: 20px;
   }
   .motif-titre {
       font-size: 18px;
@@ -224,16 +242,7 @@ table {
         text-align: center;
     }
   }
-  .updown {
-    margin-top: 10px;
-    margin-left: 20px;
-  }
-  tr {
-    height: 50px;
-    border: 1px solid #f5f6f9;
-    border-radius: 100%;
-    margin-top: 20px;
-  }
+  
   .head{
       background-color: #f5f6f9;
   }
