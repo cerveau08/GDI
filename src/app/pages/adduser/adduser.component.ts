@@ -48,6 +48,7 @@ export class AdduserComponent implements OnInit {
   pieceForm: FormGroup;
   dataMatriculeInter;
   prenom;
+  matricule;
   nom;
   email;
   telephone;

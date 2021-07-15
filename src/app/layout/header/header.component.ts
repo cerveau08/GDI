@@ -14,6 +14,8 @@ import {OthersService} from '../../services/others.service';
 })
 export class HeaderComponent implements OnInit {
 
+  selected = 0;
+  selected1 = 0;
   public click: any;
   filterterm: string;
   dataInterFin;
