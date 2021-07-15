@@ -23,6 +23,7 @@ export class ListermanagerComponent implements OnInit {
   date: any;
   scrHeight:any;
   scrWidth:any;
+  filterterm;
   @HostListener('window:resize', ['$event'])
   getScreenSize(event?) {
         this.scrHeight = window.innerHeight;

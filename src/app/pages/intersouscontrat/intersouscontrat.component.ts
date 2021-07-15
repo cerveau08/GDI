@@ -24,6 +24,7 @@ export class IntersouscontratComponent implements OnInit {
   page = 1;
   itemsPerPage = 10;
   totalItems : any;
+  filterterm
   public reqUrl = environment.base_url;
 
   ListeMois = [
@@ -99,7 +100,8 @@ export class IntersouscontratComponent implements OnInit {
       libelle: 2030
     }
   ];
-
+  annee: Date;
+  yearOnly;
   constructor(private dataService: DataService,
     public datepipe: DatePipe,
     public router: Router,
@@ -114,7 +116,7 @@ export class IntersouscontratComponent implements OnInit {
     this.attestationForm = new FormGroup({
       interim_id: new FormControl(''),
       mois: new FormControl(''),
-     annee: new FormControl(''),
+      annee: new FormControl(''),
       contrat_id: new FormControl(''),
       nbr_jr_absence: new FormControl(''),
       periode_id: new FormControl(''),
@@ -140,10 +142,12 @@ export class IntersouscontratComponent implements OnInit {
 
   // submit(interim, nbr, statut, contrat, period, mois, annee) {
   //   console.log(interim, mois,annee);
-  submit(interim, nbr, statut, contrat, period, dateDebut, dateFin) {
-    console.log(interim, dateDebut);
-    
+  submit() {
     console.log(this.attestationForm.value);
+    console.log(this.attestationForm.value.annee);
+    this.yearOnly = this.attestationForm.value.annee.getFullYear();
+    console.log(this.yearOnly);
+    
   }
 
   openDetail(data) {

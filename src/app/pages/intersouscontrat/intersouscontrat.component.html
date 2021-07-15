@@ -70,17 +70,18 @@
                                                             <select  formControlName="mois" class="style" >
                                                                 <option *ngFor="let data of ListeMois"  [value]="data.libelle">{{data.libelle}}</option>
                                                             </select>
-                                                            <select  formControlName="annee" class="style" >
+                                                            <!-- <select  formControlName="chosenYearDate" class="style" >
                                                                 <option *ngFor="let data of ListeAnnee" [value]="data.libelle">{{data.libelle}}</option>
-                                                            </select>
+                                                            </select> -->
                                                 </div>
-
+                                                <div><jp-multi-datepicker formControlName="annee" tabindex="-1"  mode="YEAR" label="Choose a year" [(ngModel)]="annee" [max]="2020"></jp-multi-datepicker><br>
+                                                </div>
                                                 <div class="input2">
                                                     <input type="text" [value]="p.agence" formControlName="agence" placeholder="Agence" >
                                                     <input type="text" class="input3" formControlName="nbr_jr_absence" #Abscence placeholder="Nombre de jour absent">
                                                 </div>
                                                 <div class="content-button-submit">
-                                                    <button (click)="submit(p.id, Abscence.value, statut, contrat, period, DateDebut.value, DateFin.value)" class="button-submit">Valider</button>
+                                                    <button (click)="submit()" class="button-submit">Valider</button>
                                                 </div>
                                             </div>
                                         </div>

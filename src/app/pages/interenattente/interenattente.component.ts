@@ -28,6 +28,7 @@ export class InterenattenteComponent implements OnInit {
   checkedList:any;
   selectedAll: any;
   result;
+  filterterm;
   public reqUrl = environment.base_url;
   constructor(private dataService: DataService,
     public datepipe: DatePipe,

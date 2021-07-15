@@ -40,6 +40,7 @@ export class PresenceComponent implements OnInit {
   DemoDoc2="https://www.le.ac.uk/oerresources/bdra/html/resources/example.txt" 
   scrHeight:any;
   scrWidth:any;
+  chosenYearDate: Date;
   @HostListener('window:resize', ['$event'])
   getScreenSize(event?) {
         this.scrHeight = window.innerHeight;

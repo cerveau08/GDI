@@ -45,7 +45,7 @@ import { DetailagenceComponent } from './pages/detailagence/detailagence.compone
 import { DatePipe } from '@angular/common';
 import { NgxFileSaverModule } from '@clemox/ngx-file-saver';
 import { NgxDocViewerModule } from 'ngx-doc-viewer';
-import { MatAutocompleteModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatSidenavModule, MatStepperModule, MatToolbarModule } from '@angular/material';
+import { MatAutocompleteModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatSidenavModule, MatStepperModule, MatToolbarModule, MatDatepickerModule, MatDialogModule, MatNativeDateModule, MatButtonToggleModule, MatCardModule, MatCheckboxModule, MatChipsModule, MatDividerModule, MatExpansionModule, MatGridListModule, MatIconModule, MatListModule, MatMenuModule, MatPaginatorModule, MatProgressBarModule, MatProgressSpinnerModule, MatRadioModule, MatRippleModule, MatSelectModule, MatSliderModule, MatSlideToggleModule, MatSnackBarModule, MatSortModule, MatTableModule, MatTabsModule, MatTooltipModule } from '@angular/material';
 import { PresenceComponent } from './pages/presence/presence.component';
 import { AgenceComponent } from './pages/agence/agence.component';
 import { OffreComponent } from './pages/offre/offre.component';
@@ -62,6 +62,11 @@ import { ModalModifierComponent } from './pages/objectifs/modal-modifier/modal-m
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { InterarchiveComponent } from './pages/interarchive/interarchive.component';
 import { InterenattenteComponent } from './pages/interenattente/interenattente.component';
+import {MultiDatepickerModule} from './multidatepicker/multidatepicker.module';
+import { MultiDatepickerComponent } from './multidatepicker/multidatepicker.component';
+import { MonthPickerComponent } from './multidatepicker/month-picker-component/month-picker.component';
+import { YearPickerComponent } from './multidatepicker/year-picker-component/year-picker.component';
+import { RegularDatepickerComponent } from './multidatepicker/regular-datepicker-component/regular-datepicker.component';
 
 @NgModule({
   declarations: [
@@ -105,7 +110,11 @@ import { InterenattenteComponent } from './pages/interenattente/interenattente.c
     ObjectifsComponent,
     ModalModifierComponent,
     InterarchiveComponent,
-    InterenattenteComponent
+    InterenattenteComponent,
+    MultiDatepickerComponent,
+    MonthPickerComponent,
+    YearPickerComponent,
+    RegularDatepickerComponent,
   ],
   imports: [
     BrowserModule,
@@ -129,6 +138,42 @@ import { InterenattenteComponent } from './pages/interenattente/interenattente.c
     MatInputModule,
     MatAutocompleteModule, 
     MatFormFieldModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatDialogModule,
+    MatAutocompleteModule,
+    MatButtonModule,
+    MatButtonToggleModule,
+    MatCardModule,
+    MatCheckboxModule,
+    MatChipsModule,
+    MatDatepickerModule,
+    MatDialogModule,
+    MatDividerModule,
+    MatExpansionModule,
+    MatFormFieldModule,
+    MatGridListModule,
+    MatIconModule,
+    MatInputModule,
+    MatListModule,
+    MatMenuModule,
+    MatNativeDateModule,
+    MatPaginatorModule,
+    MatProgressBarModule,
+    MatProgressSpinnerModule,
+    MatRadioModule,
+    MatRippleModule,
+    MatSelectModule,
+    MatSidenavModule,
+    MatSliderModule,
+    MatSlideToggleModule,
+    MatSnackBarModule,
+    MatSortModule,
+    MatStepperModule,
+    MatTableModule,
+    MatTabsModule,
+    MatToolbarModule,
+    MatTooltipModule,
     //AlertModule,
     PdfViewerModule,
     NgCircleProgressModule.forRoot({}),
