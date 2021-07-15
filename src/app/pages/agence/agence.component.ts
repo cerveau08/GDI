@@ -31,22 +31,24 @@ export class AgenceComponent implements OnInit {
   userAgenceForm: FormGroup;
   dataAgence;
   nom;
+  id;
   responsable;
   numdg;
   email;
   telephone;
   contratDoc;
-  siteweb;
+  site;
   adresse;
   logo;
   contrat;
+  dataContrat;
+  data;
   userAgence;
   dataTotalAgence;
   total;
   actifs;
   inactifs;
   viewer = 'google';
-  DemoDoc="http://www.africau.edu/images/default/sample.pdf" 
   DemoDoc1="https://file-examples.com/wp-content/uploads/2017/02/file-sample_100kB.doc"
   DemoDoc2="https://www.le.ac.uk/oerresources/bdra/html/resources/example.txt" 
 
@@ -59,7 +61,7 @@ export class AgenceComponent implements OnInit {
     this.agenceForm = new FormGroup({
       nom: new FormControl (''),
       responsable: new FormControl(''),
-      numdg: new FormControl (''),
+      numerodg: new FormControl (''),
       email: new FormControl(''),
       telephone: new FormControl (''),
       fixe: new FormControl(''),
@@ -97,11 +99,10 @@ export class AgenceComponent implements OnInit {
         console.log(this.dataAgence);
         this.nom = this.dataAgence.data.nom;
         this.responsable  = this.dataAgence.data.responsable;
-        this.numdg = this.dataAgence.data.numdg;
         this.email = this.dataAgence.data.email;
         this.telephone = this.dataAgence.data.telephone;
         this.contratDoc = this.dataAgence.data.contrat;
-        this.siteweb = this.dataAgence.data.site;
+        this.site = this.dataAgence.data.site;
         this.adresse = this.dataAgence.data.adresse;
         this.logo = this.dataAgence.data.logo;
         this.contrat = this.dataAgence.data.contrat;
@@ -126,6 +127,14 @@ export class AgenceComponent implements OnInit {
         this.actifs = this.dataTotalAgence[0].actifs;
         this.inactifs = this.dataTotalAgence[0].inactifs;
       });
+
+      //detail d'un contrat
+    this.otherService.getContratById(this.id).subscribe(
+      data =>{
+        this.data = data;
+        this.dataContrat = this.data.data;
+        console.log(this.dataContrat);
+      })
     
   }
 
@@ -137,7 +146,7 @@ export class AgenceComponent implements OnInit {
         email: this.agenceForm.value.email,
         mobile: this.agenceForm.value.mobile,
         fixe: this.agenceForm.value.fixe,
-        site: this.agenceForm.value.siteweb,
+        site: this.agenceForm.value.site,
         adresse: this.agenceForm.value.adresse,
         photo: this.agenceForm.value.photo,
         contrat: this.agenceForm.value.contrat,
@@ -151,8 +160,8 @@ export class AgenceComponent implements OnInit {
     console.log(this.userAgenceForm.value);
   }
 
-  public getfilemodal() {
-    this.fileSaver.saveUrl(this.DemoDoc, 'contrat');
+  public getContrat() {
+    this.fileSaver.saveUrl(this.contratDoc, 'contrat');
   }
 
   openModal(id: string) {

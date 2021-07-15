@@ -72,6 +72,10 @@ export class DetailinterComponent implements OnInit {
   fileContrat;
   fileFicheposte;
   role;
+  url3;
+  url2;
+  filename3;
+  filename2;
   public reqUrl = environment.base_url;
   constructor(private activeroute: ActivatedRoute,
               private modalService: ModalService,
@@ -119,13 +123,14 @@ export class DetailinterComponent implements OnInit {
         }
       );
     })
+
     //detail d'un contrat
-    this.otherService.getContratById(this.id).subscribe(
+  /*  this.otherService.getContratById(this.id).subscribe(
       data =>{
         this.data = data;
         this.dataContrat = this.data.data;
         console.log(this.dataContrat);
-      })
+      })*/
     
   }
   ngOnInit() {
@@ -240,8 +245,8 @@ export class DetailinterComponent implements OnInit {
   validerContrat() {
    this.contratForm.patchValue({interimaireId: this.item});
    const formdata = new FormData();
-formdata.append("societeId","1");
-formdata.append("structureId","1");
+formdata.append("societeId",this.contratForm.value.societeId);
+formdata.append("structureId",this.contratForm.value.structureId);
 formdata.append("domaineId",this.contratForm.value.domaineId);
 formdata.append("salaireBrut",this.contratForm.value.salaireBrut);
 formdata.append("interimaireId",this.item);
@@ -339,8 +344,8 @@ formdata.append("fichePoste",this.urlfichedeposte);
     }
   }
   arretContrat() {
-    console.log(this.item);
-    this.otherService.arreterContrat(this.item, this.arretForm.value).subscribe(
+    console.log(this.dataInter);
+    this.otherService.arreterContrat(this.dataInter.contrat.id, this.arretForm.value).subscribe(
       (response) =>{
        console.log(response)
       // if (response) {

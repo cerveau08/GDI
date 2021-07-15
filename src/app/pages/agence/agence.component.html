@@ -76,14 +76,14 @@
     <jw-modal id="custom-modal-1">
         <div class="tableau">
             <mat-icon style="cursor: pointer;" (click)="closeModal('custom-modal-1');" class="clear">clear</mat-icon>
-            <p class="dtl1">contrat {{item.agence}}</p>
+            <p class="dtl1">contrat {{nom}}</p>
             <pdf-viewer [src]="contratDoc"
               [render-text]="true"
               [autoresize]="true"
               [original-size]="false"
             ></pdf-viewer>
             <div class="btns2">
-                <button (click)="getfilemodal()" class="btn2">Télécharger</button>
+                <button (click)="getContrat()" class="btn2">Télécharger</button>
                 <button   class="btn2a">Arrêter contrat</button>
             </div>
         </div>
@@ -109,18 +109,18 @@
                         <input type="text" [(ngModel)]="nom" formControlName="nom" placeholder="Nom entreprise">
                         </div>
                         <div class="input2">
-                            <input type="text" [(ngModel)]="responsable" formControlName="directeur" placeholder="Nom Directeur Général">
-                            <input class="input3" [(ngModel)]="telephone"  type="text" formControlName="numerodg" placeholder="Numéro DG">
+                            <input type="text" [(ngModel)]="responsable" formControlName="responsable" placeholder="Nom Directeur Général">
+                            <input class="input3" [(ngModel)]="numerodg"  type="text" formControlName="numerodg" placeholder="Numéro DG">
                         </div>
                         <div class="input1">
                             <input type="text" [(ngModel)]="email"  formControlName="email" placeholder="Email">
                         </div>
                         <div class="input2">
-                            <input type="text" [(ngModel)]="mobile" formControlName="mobile" placeholder="Numéro téléphone Mobile">
+                           <!-- <input type="text" [(ngModel)]="mobile" formControlName="mobile" placeholder="Numéro téléphone Mobile">-->
                             <input class="input3" [(ngModel)]="fixe"  type="text" formControlName="fixe" placeholder="Numéro Fixe">
                         </div>
                         <div class="input1">
-                            <input type="text" [(ngModel)]="siteweb" formControlName="website" placeholder="Site web">
+                            <input type="text" [(ngModel)]="site" formControlName="site" placeholder="Site web">
                         </div>
                         <div class="input4">
                             <textarea type="textarea" [(ngModel)]="agence" formControlName="adresse" placeholder="Adresse"></textarea>

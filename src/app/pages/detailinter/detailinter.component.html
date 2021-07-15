@@ -165,7 +165,7 @@
                             <option class="option" value="" disabled selected hidden>Département</option>
                             <option *ngFor="let data of dataDepartement" value="{{data.id}}">{{data.libelle}}</option>
                         </select>
-                        <select class="input3"  formControlName="serviceId" >
+                        <select class="input3"  formControlName="structureId" >
                             <option class="option" value="" disabled selected hidden>Service</option>
                             <option *ngFor="let data of donneeService" value="{{data.id}}">{{data.libelle}}</option>
                         </select>
@@ -312,7 +312,7 @@
                 <textarea class="textarea-motif" name="motif"  placeholder="Motif de Bannir l'intérimaire"></textarea>
             </div>
             <div class="btns3">
-                <button (click)="getfilemodal()"  class="button8">Bannir</button>
+                <button (click)="arretContrat()"  class="button8">Bannir</button>
             </div>
         </div>
     </jw-modal>

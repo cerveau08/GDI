@@ -13,7 +13,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 export class DemandeComponent implements OnInit {
 
-  demandes: any = [
+ /* demandes: any = [
     {
       id: 1,
       libelle: 'mission', 
@@ -30,8 +30,8 @@ export class DemandeComponent implements OnInit {
       id: 4,
       libelle: 'conge annuelle', 
     }
-  ];
- // demandes;
+  ];*/
+  demandes;
   demandeForm: FormGroup;
   currentUser;
   public datas: any;
@@ -90,12 +90,12 @@ export class DemandeComponent implements OnInit {
        console.log(data);
      }
    )
-    // this.otherService.getTypeDemande().subscribe(
-    //   data => {
-    //     this.demandes = data.data;
-    //     console.log(data);
-    //   }
-    // )
+     this.otherService.getTypeDemande().subscribe(
+     data => {
+       this.demandes = data.data;
+       console.log(data);
+     }
+    )
     this.demandeForm = new FormGroup({
       type: new FormControl (''),
       dateDebut: new FormControl(''),
