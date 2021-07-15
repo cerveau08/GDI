@@ -36,7 +36,7 @@ export class AgenceComponent implements OnInit {
   email;
   telephone;
   contratDoc;
-  siteweb;
+  site;
   adresse;
   logo;
   contrat;
@@ -97,11 +97,10 @@ export class AgenceComponent implements OnInit {
         console.log(this.dataAgence);
         this.nom = this.dataAgence.data.nom;
         this.responsable  = this.dataAgence.data.responsable;
-        this.numdg = this.dataAgence.data.numdg;
         this.email = this.dataAgence.data.email;
         this.telephone = this.dataAgence.data.telephone;
         this.contratDoc = this.dataAgence.data.contrat;
-        this.siteweb = this.dataAgence.data.site;
+        this.site = this.dataAgence.data.site;
         this.adresse = this.dataAgence.data.adresse;
         this.logo = this.dataAgence.data.logo;
         this.contrat = this.dataAgence.data.contrat;
@@ -137,7 +136,7 @@ export class AgenceComponent implements OnInit {
         email: this.agenceForm.value.email,
         mobile: this.agenceForm.value.mobile,
         fixe: this.agenceForm.value.fixe,
-        site: this.agenceForm.value.siteweb,
+        site: this.agenceForm.value.site,
         adresse: this.agenceForm.value.adresse,
         photo: this.agenceForm.value.photo,
         contrat: this.agenceForm.value.contrat,

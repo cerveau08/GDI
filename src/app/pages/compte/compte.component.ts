@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { OthersService } from 'src/app/services/others.service';
 import { Component, OnInit } from '@angular/core';
 import { NgxFileSaverService } from '@clemox/ngx-file-saver';
@@ -85,6 +86,7 @@ export class CompteComponent implements OnInit {
     private otherService: OthersService,
     private modalService: ModalService,
     private dataService: DataService,
+    private router: Router,
   ) { }
 
   ngOnInit() {
@@ -110,17 +112,15 @@ export class CompteComponent implements OnInit {
        this.telephone = this.dataInter.telephone;
        this.universite = this.dataInter.universite;
        this.sitmat = this.dataInter.sitmat;
-       this.direction = this.dataInter.structure.direction.libelle;
-       this.departement = this.dataInter.structure.departement;
-       this.service = this.dataInter.structure.service;
-       this.structure = this.dataInter.structure.bu;
-       this.agence = this.dataInter.agence.nom;
-       this.categorie = this.dataInter.categorie.libelle;
+       this.direction = this.dataInter.direction;
+       this.departement = this.dataInter.departement;
+       this.service = this.dataInter.service;
+       this.agence = this.dataInter.agence;
+       this.categorie = this.dataInter.categorie;
        this.dateSignature = this.dataInter.dateSignature;
        this.matricule = this.dataInter.matricule;
        this.sexe = this.dataInter.sexe;
        this.photo = this.dataInter.photo;
-       this.pole = this.dataInter.structure.pole;
        this.contratDoc = this.dataInter.fileContrat;
        this.fichePosteDoc = this.dataInter.fileFichePoste;
        this.contrat = this.dataInter.contrat;
@@ -165,5 +165,12 @@ export class CompteComponent implements OnInit {
   closeModal(id: string) {
     this.modalService.close(id);
   }
+  objectif() {
+    this.router.navigate(['accueil/objectif'], {
+      queryParams: {
+        interimaire: JSON.stringify(this.item)
+      }
+    })
+  } 
 }
  
