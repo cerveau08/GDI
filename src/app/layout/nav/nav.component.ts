@@ -34,13 +34,13 @@ export class NavComponent implements OnInit {
   }
 
   getMargin(event) {
-    let margin = 10;
+    let margin = 5;
     if (event.id == 1) {
       margin = 30;
     } else if (event.id == 8) {
-      margin = 50;
+      margin = 40;
     } else  {
-      margin = 10;
+      margin = 5;
     } 
     return margin;
   }
