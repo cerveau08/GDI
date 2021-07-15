@@ -11,8 +11,8 @@
                 </div>
             </div>
             <div class="datedebutetfin">
-                <p class="datedebut">{{contrat.dateDebut}}</p>
-                <p class="datefin">{{contrat.dateFin}}</p>
+                <p class="datedebut">{{contrat?.dateDebut}}</p>
+                <p class="datefin">{{contrat?.dateFin}}</p>
             </div>
         </div>
         <div class="grid-container">
@@ -25,19 +25,19 @@
             </div>
             <div class="info">
                 <div class="lot1">
-                    <p class="key">Numéro CNI: <span class="value">{{numeroPiece}}</span> </p>
-                    <p class="key">Date de naissance: <span class="value">{{datedenaissance}}</span> </p>
-                    <p class="key">Lieu de naissance: <span class="value">{{lieudenaissance}}</span> </p>
-                    <p class="key">Genre: <span class="value">{{sexe}}</span> </p>
+                    <p class="key">Numéro CNI: <span class="value">{{dataInter?.numeroPiece}}</span> </p>
+                    <p class="key">Date de naissance: <span class="value">{{dataInter?.datedenaissance}}</span> </p>
+                    <p class="key">Lieu de naissance: <span class="value">{{dataInter?.lieudenaissance}}</span> </p>
+                    <p class="key">Genre: <span class="value">{{dataInter?.sexe}}</span> </p>
                 </div>
                 <div class="lot">
-                    <p class="lot2">Catégorie: <span class="value">{{categorie}}</span> </p>
-                    <p class="key">Agence Interim: <span class="value">{{agence}}</span> </p>
-                    <p class="key">Société: <span class="value">{{structure}}</span> </p>
-                    <p class="key">Direction: <span class="value">{{direction}}</span> </p>
-                    <p class="key">Pole: <span class="value">{{pole}}</span> </p>
-                    <p class="key">Département: <span class="value">{{departement}}</span> </p>
-                    <p class="key">Service: <span class="value">{{service}}</span> </p>
+                    <p class="lot2">Catégorie: <span class="value">{{dataInter?.categorie.libelle}}</span> </p>
+                    <p class="key">Agence Interim: <span class="value">{{dataInter?.agence.nom}}</span> </p>
+                    <p class="key">Société: <span class="value">{{dataInter?.structure.libelle}}</span> </p>
+                    <p class="key">Direction: <span class="value">{{dataInter?.direction.libelle}}</span> </p>
+                    <p class="key">Pole: <span class="value">{{dataInter?.pole}}</span> </p>
+                    <p class="key">Département: <span class="value">{{dataInter?.structure.departement}}</span> </p>
+                    <p class="key">Service: <span class="value">{{dataInter?.structure.service}}</span> </p>
                 </div>
             </div>
         </div>
@@ -45,7 +45,7 @@
             <button  class="button1" (click)="openModal('custom-modal-1')">Contrat</button>
             <button  class="button2" (click)="openModal('custom-modal-2')">Attestations de présence</button>
             <button  class="button3" (click)="openModal('custom-modal-3')">Fiche de poste</button>
-            <button  class="button4" (click)="openModal('custom-modal-4')">Objectifs</button>
+            <button  class="button4"(click)="objectif()">Objectifs</button>
         </div>
     </div>
 </div>
