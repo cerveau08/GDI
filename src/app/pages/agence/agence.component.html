@@ -34,7 +34,7 @@
                 </div>
                 <div class="siteweb">
                     <mat-icon class="icon-item">language</mat-icon>
-                    <p class="info-item">{{site}}</p>
+                    <p class="info-item">{{siteweb}}</p>
                 </div>
             </div>
             <div class="pa">
@@ -64,7 +64,6 @@
         <div class="btns">
             <button class="buttonaffi" (click)="openModal('custom-modal-1')" type="button">Afficher contrat</button>
             <button class="buttonmodif" *ngIf="showupdate" (click)="openModal('custom-modal-2')" type="button">Modifier</button>
-            <!-- <button class="buttonsupp" *ngIf="showupdate" (click)="delete()" type="button">Supprimer</button> -->
             <button class="buttonadduser" *ngIf="showupdate" (click)="openModal('custom-modal-3')" type="button">Ajouter Utilisateur</button>
         </div>
     </div>
@@ -116,14 +115,14 @@
                             <input type="text" [(ngModel)]="email"  formControlName="email" placeholder="Email">
                         </div>
                         <div class="input2">
-                            <input type="text" [(ngModel)]="mobile" formControlName="mobile" placeholder="Numéro téléphone Mobile">
-                            <input class="input3" [(ngModel)]="fixe"  type="text" formControlName="fixe" placeholder="Numéro Fixe">
+                            <input type="text" [(ngModel)]="telephone" formControlName="mobile" placeholder="Numéro téléphone Mobile">
+                            <input class="input3" [(ngModel)]="telephone"  type="text" formControlName="fixe" placeholder="Numéro Fixe">
                         </div>
                         <div class="input1">
                             <input type="text" [(ngModel)]="siteweb" formControlName="website" placeholder="Site web">
                         </div>
                         <div class="input4">
-                            <textarea type="textarea" [(ngModel)]="agence" formControlName="adresse" placeholder="Adresse"></textarea>
+                            <textarea type="textarea" [(ngModel)]="adresse" formControlName="adresse" placeholder="Adresse"></textarea>
                         </div>
                     </div>
                 </div>

@@ -18,6 +18,8 @@ export class NewinterComponent implements OnInit {
   public p: any;
   pagedItems: any[];
   date: any;
+  scrHeight:any;
+  scrWidth:any;
   constructor(private dataService: DataService,private otherService: OthersService,
     public datepipe: DatePipe,
     public router: Router){

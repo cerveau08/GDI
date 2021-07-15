@@ -12,6 +12,11 @@ import { OthersService } from 'src/app/services/others.service';
 export class ModifierinterComponent implements OnInit {
 
   item;
+  filecontrat;
+  fileCni;
+  fileFicheposte;
+  fileproceverbal;
+  diplome;
   sommes: any = [
     '20.000f', 
     '30.000f', 
