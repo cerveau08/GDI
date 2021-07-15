@@ -76,14 +76,14 @@
     <jw-modal id="custom-modal-1">
         <div class="tableau">
             <mat-icon style="cursor: pointer;" (click)="closeModal('custom-modal-1');" class="clear">clear</mat-icon>
-            <p class="dtl1">contrat {{item.agence}}</p>
+            <p class="dtl1">contrat {{nom}}</p>
             <pdf-viewer [src]="contratDoc"
               [render-text]="true"
               [autoresize]="true"
               [original-size]="false"
             ></pdf-viewer>
             <div class="btns2">
-                <button (click)="getfilemodal()" class="btn2">Télécharger</button>
+                <button (click)="getContrat()" class="btn2">Télécharger</button>
                 <button   class="btn2a">Arrêter contrat</button>
             </div>
         </div>
@@ -116,7 +116,7 @@
                             <input type="text" [(ngModel)]="email"  formControlName="email" placeholder="Email">
                         </div>
                         <div class="input2">
-                            <input type="text" [(ngModel)]="mobile" formControlName="mobile" placeholder="Numéro téléphone Mobile">
+                           <!-- <input type="text" [(ngModel)]="mobile" formControlName="mobile" placeholder="Numéro téléphone Mobile">-->
                             <input class="input3" [(ngModel)]="fixe"  type="text" formControlName="fixe" placeholder="Numéro Fixe">
                         </div>
                         <div class="input1">

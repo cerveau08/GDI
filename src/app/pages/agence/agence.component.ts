@@ -31,6 +31,7 @@ export class AgenceComponent implements OnInit {
   userAgenceForm: FormGroup;
   dataAgence;
   nom;
+  id;
   responsable;
   numdg;
   email;
@@ -40,13 +41,14 @@ export class AgenceComponent implements OnInit {
   adresse;
   logo;
   contrat;
+  dataContrat;
+  data;
   userAgence;
   dataTotalAgence;
   total;
   actifs;
   inactifs;
   viewer = 'google';
-  DemoDoc="http://www.africau.edu/images/default/sample.pdf" 
   DemoDoc1="https://file-examples.com/wp-content/uploads/2017/02/file-sample_100kB.doc"
   DemoDoc2="https://www.le.ac.uk/oerresources/bdra/html/resources/example.txt" 
 
@@ -59,7 +61,7 @@ export class AgenceComponent implements OnInit {
     this.agenceForm = new FormGroup({
       nom: new FormControl (''),
       responsable: new FormControl(''),
-      numdg: new FormControl (''),
+      numerodg: new FormControl (''),
       email: new FormControl(''),
       telephone: new FormControl (''),
       fixe: new FormControl(''),
@@ -125,6 +127,14 @@ export class AgenceComponent implements OnInit {
         this.actifs = this.dataTotalAgence[0].actifs;
         this.inactifs = this.dataTotalAgence[0].inactifs;
       });
+
+      //detail d'un contrat
+    this.otherService.getContratById(this.id).subscribe(
+      data =>{
+        this.data = data;
+        this.dataContrat = this.data.data;
+        console.log(this.dataContrat);
+      })
     
   }
 
@@ -150,8 +160,8 @@ export class AgenceComponent implements OnInit {
     console.log(this.userAgenceForm.value);
   }
 
-  public getfilemodal() {
-    this.fileSaver.saveUrl(this.DemoDoc, 'contrat');
+  public getContrat() {
+    this.fileSaver.saveUrl(this.contratDoc, 'contrat');
   }
 
   openModal(id: string) {
