@@ -15,6 +15,7 @@ export class PasswordforgetMailComponent implements OnInit {
   errors= null;
   constructor(private route: Router,
               private formBuilder: FormBuilder,
+              private router: Router,
               private otherService: OthersService) {
     this.getScreenSize();
   }
@@ -37,6 +38,8 @@ export class PasswordforgetMailComponent implements OnInit {
     this.otherService.sendResetPassword(this.loginForm.value).subscribe(
       (result) => {
         this.successMsg = result;
+        console.log(result);
+        
       }, (error) => {
         this.errors = error.error.message;
       });
