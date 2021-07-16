@@ -5,8 +5,10 @@
                 <p class="detail">Détails</p>
             </div>
             <div class="content-buttons-modifier">
-                <button (click)="modifierInter()" class="button-modifier">Modifier</button>
-                <button *ngIf="role == 'DRH'" (click)="openModal('custom-modal-8')" class="button-modifier">Valider</button>
+                <button *ngIf="etat == 'actif'" (click)="modifierInter()" class="button-modifier">Modifier</button>
+                <div *ngIf="etat == 'En attente'">
+                    <button *ngIf="role == 'DRH'" (click)="openModal('custom-modal-8')" class="button-modifier">Valider</button>
+                </div>
             </div>
         </div>
         <div class="progres">
@@ -354,47 +356,9 @@
                     <input class="input-valider" type="text" formControlName="email" placeholder="Email">
                 </div>
                 <div class="btns3">
-                    <button (click)="validerInterimaire() "  class="button8">Valider</button>
+                    <button (click)="validerInterimaire() "  class="button5">Valider</button>
                 </div>
             </div>
         </form>
     </jw-modal>
 </div>
- <!-- modal-8
- <div class="modal">
-    <jw-modal id="custom-modal-5">
-        <h1 class="modal-renouveler">Valider Création d'intérimaire</h1>
-        <mat-icon style="cursor: pointer;" (click)="closeModal('custom-modal-5');" class="clear-renouveler">clear</mat-icon>
-        <div class="form-contrat">
-            <form [formGroup]="validerForm">
-                <div class="content-form-contrat">
-                    <div class="input2">
-                        <input type="date" formControlName="dateDebut" placeholder="Date Début">
-                        <input class="input3" type="date" formControlName="dateFin" placeholder="Date Fin">
-                    </div>
-                    <div class="input2">
-                        <input type="text" formControlName="poste" placeholder="Titre du Poste">
-                        <input type="date" class="input3" formControlName="dateSignature" placeholder="Date Signature">
-                    </div>
-                    <div class="buttons-fichier">
-                        <div>
-                            <input formControlName="contrat"  class="buttoncontrat" type="file" (change)="contrat($event.target)">
-                            <p class="filename" *ngIf="urlcontrat">{{filenamecontrat}}</p>
-                        </div>
-                    </div>
-                    <div class="filenames">
-                        <div class="nom-file2">
-                            <p class="filename2" *ngIf="url2">{{filename2}}</p>
-                        </div>
-                        <div class="nom-file3">
-                            <p class="filename3" *ngIf="url3">{{filename3}}</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="buttons-content-valider">
-                   <button class="button-enregistrer-contrat" (click)="reconduireContrat()" type="button">Valider</button>
-                </div>
-            </form>
-        </div>
-    </jw-modal>
-</div> -->

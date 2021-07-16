@@ -12,6 +12,7 @@ import { ModalService } from 'src/app/_modal';
 })
 export class ObjectifsComponent implements OnInit {
 
+  role;
   objectif;
   item;
   data;
@@ -33,6 +34,7 @@ export class ObjectifsComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.role = localStorage.getItem('user');
     this.otherService.getListeObjectif(this.item).subscribe(
       data => {
         this.data = data

@@ -111,7 +111,7 @@ export class IntersouscontratComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-    this.role = localStorage.getItem('user')
+    this.role = localStorage.getItem('user');
    // this.getcolor(this.p);
     this.attestationForm = new FormGroup({
       interim_id: new FormControl(''),

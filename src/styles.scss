@@ -92,11 +92,24 @@ app-header {
 .mat-stepper-horizontal-line {
   display: none;
 }
+.mat-form-field-wrapper {
+  position: relative;
+  margin-left: 12px !important;
+}
 .mat-horizontal-content-container {
   overflow: hidden;
  padding: 0 5px 10px 5px !important;
 }
-
+.mat-form-field-appearance-standard .mat-form-field-flex {
+  padding-top: 0 !important;
+  width: 310px;
+  
+  border-bottom: none;
+}
+.mat-form-field-infix {
+  background: #f5f6f9 !important;
+  border: solid 1px #d8d8d8;
+}
 .ng2-pdf-viewer-container {
   height: 70vh !important;
   width: 670px !important;
