@@ -95,6 +95,7 @@ export class ListeragenceComponent implements OnInit {
     info.append("numdg",value.numdg);
     info.append("email",value.email);
     info.append("mobile",value.mobile);
+    info.append("telephone",value.telephone);
     info.append("fixe",value.fixe);
     info.append("siteweb",value.siteweb);
     info.append("adresse",value.adresse);
@@ -105,19 +106,6 @@ export class ListeragenceComponent implements OnInit {
     info.append("rccm",value.rccm);
    console.log(info);
   }
-
- // submitted2() {
-   // const info = {
-      //  prenom: this.userForm.value.prenom,
-       // nom: this.userForm.value.nom,
-       // email: this.userForm.value.email,
-      //  telephone: this.userForm.value.telephone,
-     //   profil: this.userForm.value.profil,
-    //    photot: this.userForm.value.photo,
-   // } 
-   // console.log(info);
-   // return info;
-  //}
 
   openModal(id: string) {
     this.modalService.open(id);

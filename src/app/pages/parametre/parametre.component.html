@@ -18,7 +18,7 @@
             <form [formGroup]="passwordForm">
                 <div class="actuel-password">
                     <p class="label-input">Mot de passe actuel</p>
-                    <input formControlName="password" class="parametre-input" type="text" >
+                    <input formControlName="password" class="parametre-input" type="password" >
                 </div>
                 <button (click)="validerPassword()" class="valider-password">Envoyer</button>
             </form>
@@ -27,11 +27,11 @@
                     <p class="message-change-password">Voulez-vous changer de mot de passe ? </p>
                     <div class="new-password">
                         <p class="label-input">Nouveau mot de passe</p>
-                        <input formControlName="newpassword" class="parametre-input" type="text">
+                        <input formControlName="newpassword" class="parametre-input" type="password">
                     </div>
                     <div class="confirm-password">
                         <p class="label-input">Confirmer mot de passe</p>
-                        <input formControlName="confirmpassword" class="parametre-input" type="text">
+                        <input formControlName="confirmpassword" class="parametre-input" type="password">
                     </div>
                     <button (click)="confirmPassword()" class="enregistrer-password">Enregistrer</button>
                 </div>

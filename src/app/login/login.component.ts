@@ -13,6 +13,7 @@ export class LoginComponent implements OnInit {
 
   public loading = false;
   loginForm: FormGroup;
+  errorMsg: string;
   constructor(private route: Router,
               private auth: AuthService) {
     this.getScreenSize();
@@ -58,7 +59,8 @@ export class LoginComponent implements OnInit {
           this.route.navigate(['accueil/home']);
         }
       }, error => {
-        this.loading = false;
+        this.errorMsg = 'Login ou Password incorrect';
+        console.log(error);
       }
     )
   }

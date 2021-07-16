@@ -51,6 +51,7 @@ export class CompteComponent implements OnInit {
   adresse;
   agence;
   photo;
+  dateFin;
   image;
   categorie;
   diplome;

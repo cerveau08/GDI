@@ -42,6 +42,9 @@
             <button type="submit" (click)="onSubmit()" class="button-mobile">Se connecter</button>
             <p class="forget-mobile" routerLink="/passwordforgetmail">Mot de passe oublié?</p>
         </form>
+        <div *ngIf="errorMsg" class="alert">
+            {{errorMsg}}
+          </div>
     </div>
 </div>
 

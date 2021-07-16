@@ -33,7 +33,9 @@ export class AgenceComponent implements OnInit {
   nom;
   id;
   responsable;
-  numdg;
+  numerodg;
+  fixe;
+  agence;
   email;
   telephone;
   contratDoc;
