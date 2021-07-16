@@ -71,6 +71,7 @@ export class DetailinterComponent implements OnInit {
   dataCategorie;
   fileContrat;
   fileFicheposte;
+  etat;
   role;
   url3;
   url2;
@@ -115,6 +116,7 @@ export class DetailinterComponent implements OnInit {
             this.matricule = this.dataInter.matricule;
             this.sexe = this.dataInter.sexe;
             this.photo = this.dataInter.photo;
+            this.etat = this.dataInter.etat;
             this.contratDoc = this.dataInter.fileContrat;
             this.fichePosteDoc = this.dataInter.fileFichePoste;
         },
@@ -144,7 +146,7 @@ export class DetailinterComponent implements OnInit {
       societeId: new FormControl(''),
       directionId: new FormControl(''),
       departementId: new FormControl(''),
-      serviceId: new FormControl(''),
+      structureId: new FormControl(''),
       profession: new FormControl(''),
       poste: new FormControl(''),
       contrat: new FormControl(''),

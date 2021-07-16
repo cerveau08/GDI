@@ -64,11 +64,7 @@ export class ManagerComponent implements OnInit {
         this.data = result;
         this.managerinfo = this.data.data.detail
         this.datas = this.data.data.interimaires
-
-        console.log(this.data);
-        
       }
-      
     )
     if(this.user == 'inter') {
       this.showHome = false;

@@ -171,7 +171,7 @@ table {
         line-height: normal;
         letter-spacing: 1px;
         color: #222222;
-        margin-top: 30px;
+        margin-top: 10px;
         margin-left: 30px;
       }
       .clear {
@@ -187,7 +187,7 @@ table {
   }
 .forms {
     width: 620px;
-    margin: 30px auto;
+    margin: 15px auto;
     
 }
 .sele {
@@ -234,29 +234,52 @@ table {
   height: 30px;
 }
 .input2 input {
-  width: 280px;
+  width: 305px;
   height: 30px;
+  border: solid 1px #d8d8d8;
+  outline: none;
+//  padding: 0 10px;
+  background-color: #f5f6f9;
+}
+.input3 input {
+  width: 305px;
+  height: 30px;
+  border: solid 1px #d8d8d8;
+  outline: none;
+//  padding: 0 10px;
+  background-color: #f5f6f9;
+}
+
+.input3{
+//  background-color: #f5f6f9;
   margin-bottom: 10px;
+//  margin-left: 10px;
+}
+.input-mois-content {
   background-color: #f5f6f9;
   border-radius: 1px;
   border: solid 1px #d8d8d8;
-  outline: none;
-  padding: 0 10px;
+  height: 50px;
 }
-
-.style {
-
-  width: 280px;
+.input-content-grid-two {
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+.select-mois {
+  width: 290px;
   height: 30px;
-  margin-bottom: 10px;
-  background-color: #f5f6f9;
-  border-radius: 1px;
-  border: solid 1px #d8d8d8;
+  margin-bottom: 0px;
   outline: none;
-  padding: 0 10px;
-
+  background-color: #f5f6f9;
+  border: none;
+//  padding: 0 10px;
 }
-
+.label-input {
+//  margin-left: 10px;
+  font-size: 12px;
+  margin-top: 5px;
+  margin-bottom: 2px;
+}
 .input3 {
   margin-left: 10px;
 }

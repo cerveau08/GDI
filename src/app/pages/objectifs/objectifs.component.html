@@ -17,7 +17,7 @@
                     </p>
                 </div>
             </div>
-            <div class="objectif-buttons">
+            <div *ngIf="role == 'MNG'" class="objectif-buttons">
                 <button (click)="openModal('custom-modal-'+p.id);" class="button-evaluer">Evaluer</button>
                 <button (click)="openModal('modif-modal-'+p.id);" class="button-modifier">Modifier</button>
             </div>

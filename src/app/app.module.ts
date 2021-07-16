@@ -67,6 +67,7 @@ import { MultiDatepickerComponent } from './multidatepicker/multidatepicker.comp
 import { MonthPickerComponent } from './multidatepicker/month-picker-component/month-picker.component';
 import { YearPickerComponent } from './multidatepicker/year-picker-component/year-picker.component';
 import { RegularDatepickerComponent } from './multidatepicker/regular-datepicker-component/regular-datepicker.component';
+import { PasswordResetComponent } from './password-reset/password-reset.component';
 
 @NgModule({
   declarations: [
@@ -115,6 +116,7 @@ import { RegularDatepickerComponent } from './multidatepicker/regular-datepicker
     MonthPickerComponent,
     YearPickerComponent,
     RegularDatepickerComponent,
+    PasswordResetComponent,
   ],
   imports: [
     BrowserModule,
