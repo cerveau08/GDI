@@ -1,14 +1,14 @@
-import { OthersService } from 'src/app/services/others.service';
-import { Component, HostListener, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { Component, OnInit, HostListener } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { OthersService } from '../services/others.service';
 
 @Component({
-  selector: 'app-passwordforget-mail',
-  templateUrl: './passwordforget-mail.component.html',
-  styleUrls: ['./passwordforget-mail.component.scss']
+  selector: 'app-password-reset',
+  templateUrl: './password-reset.component.html',
+  styleUrls: ['./password-reset.component.scss']
 })
-export class PasswordforgetMailComponent implements OnInit {
+export class PasswordResetComponent implements OnInit {
 
   loginForm: FormGroup;
   successMsg= null;
@@ -31,15 +31,16 @@ export class PasswordforgetMailComponent implements OnInit {
   }
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]]
+      newpassword: ['', [Validators.required]],
+      confirmpassword: ['', [Validators.required]],
     }); 
   }
   onSubmit() {
-    this.otherService.sendResetPassword(this.loginForm.value).subscribe(
+    this.otherService.nouveauPassword(this.loginForm.value).subscribe(
       (result) => {
         this.successMsg = result;
         console.log(result);
-        this.router.navigate(['passwordforget']);
+        this.router.navigate(['login']);
       }, (error) => {
         this.errors = error.error.message;
       });

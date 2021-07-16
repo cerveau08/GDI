@@ -37,6 +37,7 @@ import { AddinterComponent } from './pages/addinter/addinter.component';
 import { AuthGuard } from './helpers/auth.guard';
 import { InterarchiveComponent } from './pages/interarchive/interarchive.component';
 import { InterenattenteComponent } from './pages/interenattente/interenattente.component';
+import { PasswordResetComponent } from './password-reset/password-reset.component';
 
 
 const routes: Routes = [
@@ -188,6 +189,10 @@ const routes: Routes = [
   { 
     path: 'passwordforget', 
     component: PasswordforgetComponent
+  },
+  { 
+    path: 'passwordreset', 
+    component: PasswordResetComponent
   },
   { 
     path: 'login', 
