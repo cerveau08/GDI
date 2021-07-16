@@ -63,7 +63,6 @@ export class HomeComponent implements OnInit {
   getScreenSize(event?) {
         this.scrHeight = window.innerHeight;
         this.scrWidth = window.innerWidth;
-        //console.log(this.scrHeight, this.scrWidth);
   }
 
   constructor(private dataService: DataService ,
@@ -325,5 +324,8 @@ export class HomeComponent implements OnInit {
     this.left = left1 + "%";
     return this.left;
   }
-  
+  moisSelectionner(mois) {
+    console.log(mois);
+    
+  }
 }

@@ -87,7 +87,6 @@ export class InterfincontratComponent implements OnInit {
       moi: new FormControl (''),
       somme: new FormControl('')
     });
-    //this.datas = this.dataService.getData();;
 
     this.gty(this.page);
   }
@@ -125,20 +124,6 @@ export class InterfincontratComponent implements OnInit {
     this.modalService.close(id);
   }
 
-  /*getcolor(p) {
-    let color = "#ff0000"
-    let d = new Date();
-    var g1 = new Date(d.getFullYear(), d.getMonth()+1, d.getDate());
-    let now = this.datepipe.transform(g1, 'yyyyMMdd');
-    let dates = this.datepipe.transform(p.fin_contrat, 'yyyyMMdd');
-    if(now > dates) {
-      color = "#ff0000"
-    } else {
-      color = "#000000"
-    }  
-    return color; 
-  } 
-  */
   getcolor1(p) {
     let color = "#10a900"
   

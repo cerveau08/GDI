@@ -26,7 +26,6 @@ export class LoginComponent implements OnInit {
   getScreenSize(event?) {
         this.scrHeight = window.innerHeight;
         this.scrWidth = window.innerWidth;
-        //console.log(this.scrHeight, this.scrWidth);
   }
   ngOnInit() {
     this.loginForm = new FormGroup({
@@ -42,15 +41,11 @@ export class LoginComponent implements OnInit {
       username: this.loginForm.value.username,
       password: this.loginForm.value.password
     } 
-    //console.log(user);
     this.auth.login(user).subscribe(
       data => {
         console.log(data)
-        //console.log(data.data['role'][0])
         let profil = data.data.profil
-        console.log(profil);
         let prenom = data.data.prenom
-        console.log(prenom);
         localStorage.setItem('token', data.token)
         localStorage.setItem('user', profil)
         localStorage.setItem('prenom', prenom);

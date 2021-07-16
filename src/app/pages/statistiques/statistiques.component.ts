@@ -35,6 +35,8 @@ export type ChartOptions3 = {
 })
 export class StatistiquesComponent implements OnInit {
 
+  borderfilter1;
+  colorfilter1;
   societes = [
     {
       societe: "SONATEL",

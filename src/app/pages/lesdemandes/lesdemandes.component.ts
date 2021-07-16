@@ -61,7 +61,6 @@ export class LesdemandesComponent implements OnInit {
     }
 
   ngOnInit() {
-    //this.datas = this.dataService.getData();
     this.validerForm = new FormGroup({
       status: new FormControl('')
     })
@@ -74,14 +73,6 @@ export class LesdemandesComponent implements OnInit {
     );
   }
 
-  // checkAllCheckBox(ev) {
-  //   console.log(this.dd);
-	// 	this.dd.forEach(x => x.checked = ev.target.checked);
-	// }
-
-	// isAllCheckBoxChecked() {
-	// 	return this.dd.every(p => p.checked);
-	// }
 
   selectAll() {
     for (var i = 0; i < this.dd.length; i++) {
@@ -91,7 +82,6 @@ export class LesdemandesComponent implements OnInit {
   }
   checkIfAllSelected(event) {
     this.selectedAll = this.dd.every(function(item:any) {
-     // item.s = event.target.checked;
       return item.etat == 0;
     })
     this.getCheckedItemList();
@@ -122,12 +112,6 @@ export class LesdemandesComponent implements OnInit {
     this.left = left1 + "%";
     return this.left;
   }
-  
-/*
-  onChangeCategory(event, cat: any){
-    this.tempArr.brands.push(cat.statutr);
-    console.log(this.tempArr.brands.push(cat.id));
-  }*/
 
   getcolor1(p) {
     let color = "#8c8c8c"

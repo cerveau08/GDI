@@ -66,7 +66,7 @@ export class ListeragenceComponent implements OnInit {
     });
     this.gty(this.page);
   }
-  //URL/api?page=1&limite=8
+  
   gty(page: any){
     this.http.get(this.reqUrl + `/listeAgence?page=${page}&limit=${this.itemsPerPage}`).subscribe((data: any) => {
       this.dataAgence =  data.data;
@@ -84,7 +84,6 @@ export class ListeragenceComponent implements OnInit {
       }
     })
 
-    //this.getAgence();
   }
   submitted1() {
     console.log(this.agenceForm.value);
