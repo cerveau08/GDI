@@ -211,4 +211,7 @@ addAgence(data) {
   getTypeDemande(): Observable<any> {
     return this.http.get<any>(this.reqUrl + '/typeDemande');
   }
+  addAttestation(data) {
+    return this.http.post(`${this.reqUrl}/ajoutAttestation`, data);
+  }
 }

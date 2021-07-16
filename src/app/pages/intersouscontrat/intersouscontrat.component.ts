@@ -29,39 +29,51 @@ export class IntersouscontratComponent implements OnInit {
 
   ListeMois = [
     {
-      libelle: "Janvier",
+      id: 1,
+      libelle: "janvier",
     },
     {
-      libelle: "Février"
+      id: 2,
+      libelle: "fevrier"
     },
     {
-      libelle: "Mars",
+      id: 3,
+      libelle: "mars",
     },
     {
-      libelle: "Avril"
+      id: 4,
+      libelle: "avril"
     },{
-      libelle: "Mai",
+      id: 5,
+      libelle: "mai",
     },
     {
-      libelle: "Juin",
+      id: 6,
+      libelle: "juin",
     },
     {
-      libelle: "Juillet",
+      id: 7,
+      libelle: "juillet",
     },
     {
-      libelle: "Aôut",
+      id: 8,
+      libelle: "aout",
     },
     {
-      libelle: "Septembre",
+      id: 9,
+      libelle: "septembre",
     },
     {
-      libelle: "Octobre",
+      id: 10,
+      libelle: "octobre",
     },
     {
-      libelle: "Novembre",
+      id: 11,
+      libelle: "novembre",
     },
     {
-      libelle: "Décembre",
+      id: 12,
+      libelle: "decembre",
     },
   ];
 
@@ -119,8 +131,6 @@ export class IntersouscontratComponent implements OnInit {
       annee: new FormControl(''),
       contrat_id: new FormControl(''),
       nbr_jr_absence: new FormControl(''),
-      periode_id: new FormControl(''),
-      statut_id: new FormControl(''),
       prenom: new FormControl(''),
       nom: new FormControl(''),
       poste: new FormControl(''),
@@ -140,12 +150,24 @@ export class IntersouscontratComponent implements OnInit {
     })
   }
 
-  submit() {
-    console.log(this.attestationForm.value);
-    console.log(this.attestationForm.value.annee);
+  submit(interimaire_id) {
+    console.log(interimaire_id);
     this.yearOnly = this.attestationForm.value.annee.getFullYear();
     console.log(this.yearOnly);
-    
+    let donneeForm = {
+      interim_id: interimaire_id,
+    //  contrat_id: contrat_interimaire_id,
+      mois: this.attestationForm.value.mois,
+      annee: this.yearOnly,
+      nbr_jr_absence: this.attestationForm.value.nbr_jr_absence,
+    }
+    console.log(donneeForm);
+    this.otherService.addAttestation(donneeForm).subscribe(
+      data => {
+        console.log(data);
+        
+      }
+    )
   }
 
   openDetail(data) {

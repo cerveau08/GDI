@@ -97,11 +97,11 @@
                                                     </div>
                                                     <div class="input3">
                                                         <p class="label-input" for="titre">Nombre de jour absent</p>
-                                                        <input type="text" formControlName="nbr_jr_absence" #Abscence placeholder="Nombre de jour absent">
+                                                        <input type="number" formControlName="nbr_jr_absence" #Abscence placeholder="Nombre de jour absent">
                                                     </div>
                                                 </div>
                                                 <div class="content-button-submit">
-                                                    <button (click)="submit()" class="button-submit">Valider</button>
+                                                    <button (click)="submit(p.id)" class="button-submit">Valider</button>
                                                 </div>
                                             </div>
                                         </div>
