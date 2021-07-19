@@ -50,7 +50,9 @@ const routes: Routes = [
     component: PasswordforgetComponent
   },
   { path: 'passwordreset', 
-  loadChildren: 'app/password-reset/password-reset.module#PasswordResetModule' },
+  loadChildren: () => import('src/app/password-reset/password-reset.module').then(m => m.PasswordResetModule) },
+  // { path: 'passwordreset', 
+  // loadChildren: 'app/password-reset/password-reset.module#PasswordResetModule' },
   // { 
   //   path: 'passwordreset', 
   //   component: PasswordResetComponent

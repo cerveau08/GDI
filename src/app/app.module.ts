@@ -117,7 +117,7 @@ import { PasswordResetModule } from './password-reset/password-reset.module';
     MonthPickerComponent,
     YearPickerComponent,
     RegularDatepickerComponent,
-    PasswordResetComponent,
+  //  PasswordResetComponent,
   ],
   imports: [
     BrowserModule,
