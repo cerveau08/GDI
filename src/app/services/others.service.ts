@@ -202,10 +202,16 @@ addAgence(data) {
   sendResetPassword(data) {
     return this.http.post(`${this.reqUrl}/reinitialisationMotDePass`, data);
   }
+  nouveauPassword(data) {
+    return this.http.post(`${this.reqUrl}/reset/defcc`, data);
+  }
   validerInter(id: number, data): Observable<any> {
     return this.http.post<any>(`${this.reqUrl}/validerInterimaire/${id}`, data);
   }
   getTypeDemande(): Observable<any> {
     return this.http.get<any>(this.reqUrl + '/typeDemande');
+  }
+  addAttestation(data) {
+    return this.http.post(`${this.reqUrl}/ajoutAttestation`, data);
   }
 }
