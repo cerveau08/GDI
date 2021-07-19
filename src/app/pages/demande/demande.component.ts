@@ -106,10 +106,6 @@ export class DemandeComponent implements OnInit {
 
   }
   onSubmit() {
-    // this.demandeForm.patchValue({
-    //   interimaire: this.currentUser.interimaire.id,
-    //   validateur: this.currentUser.manager.id,
-    // });
     console.log(this.demandeForm.value);
     this.otherService.addDemande(this.demandeForm.value).subscribe(
       data =>{
@@ -129,6 +125,5 @@ export class DemandeComponent implements OnInit {
 
   closeModal(id: string) {
     this.modalService.close(id);
-    
   }
 }

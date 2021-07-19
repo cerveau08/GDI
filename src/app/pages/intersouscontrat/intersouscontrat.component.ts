@@ -26,7 +26,8 @@ export class IntersouscontratComponent implements OnInit {
   totalItems : any;
   filterterm
   public reqUrl = environment.base_url;
-
+  result;
+  success;
   ListeMois = [
     {
       id: 1,
@@ -165,7 +166,11 @@ export class IntersouscontratComponent implements OnInit {
     this.otherService.addAttestation(donneeForm).subscribe(
       data => {
         console.log(data);
-        
+        this.result = data
+        this.success = this.result.success
+        if(this.success == true) {
+          this.closeModal('custom-modal-'+interimaire_id);
+        }
       }
     )
   }
