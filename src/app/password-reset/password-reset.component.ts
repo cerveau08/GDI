@@ -19,9 +19,9 @@ export class PasswordResetComponent implements OnInit {
               private router: Router,
               private otherService: OthersService) {
     this.getScreenSize();
-    route.queryParams.subscribe((params) => {
-      this.loginForm.controls.passwordToken.setValue(params.token);
-    });
+    // route.queryParams.subscribe((params) => {
+    //   this.loginForm.controls.passwordToken.setValue(params.token);
+    // });
   }
 
   scrHeight:any;
