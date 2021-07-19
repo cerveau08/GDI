@@ -212,7 +212,9 @@ export class AdduserComponent implements OnInit {
     formdata.append("agenceId",this.userAgentForm.value.agenceId);
     formdata.append("email",this.userAgentForm.value.email);
     formdata.append("telephone",this.userAgentForm.value.telephone);
-    formdata.append("matricule",this.userAgentForm.value.matricule);
+    if(this.userAgentForm.value.matricule != undefined) {
+      formdata.append("matricule",this.userAgentForm.value.matricule);
+    }
     formdata.append("interimaireId",this.userAgentForm.value.interimaireId);
     formdata.append("structureId",this.userAgentForm.value.structureId);
     formdata.append("avatar",this.fichierPhoto);
