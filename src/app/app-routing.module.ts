@@ -41,6 +41,22 @@ import { PasswordResetComponent } from './password-reset/password-reset.componen
 
 
 const routes: Routes = [
+  { 
+    path: 'passwordforgetmail', 
+    component: PasswordforgetMailComponent
+  },
+  { 
+    path: 'passwordforget', 
+    component: PasswordforgetComponent
+  },
+  { 
+    path: 'passwordreset', 
+    component: PasswordResetComponent
+  },
+  { 
+    path: 'login', 
+    component: LoginComponent
+  },
   {
     path: 'accueil',
     component: DefaultComponent,
@@ -182,22 +198,7 @@ const routes: Routes = [
       { path: '**', redirectTo: 'accueil/home' },
     ]
   },
-  { 
-    path: 'passwordforgetmail', 
-    component: PasswordforgetMailComponent
-  },
-  { 
-    path: 'passwordforget', 
-    component: PasswordforgetComponent
-  },
-  { 
-    path: 'passwordreset', 
-    component: PasswordResetComponent
-  },
-  { 
-    path: 'login', 
-    component: LoginComponent
-  },
+  
   {
     path: '',
     redirectTo: 'login',

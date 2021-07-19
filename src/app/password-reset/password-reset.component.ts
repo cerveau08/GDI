@@ -1,6 +1,6 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { OthersService } from '../services/others.service';
 
 @Component({
@@ -14,10 +14,14 @@ export class PasswordResetComponent implements OnInit {
   successMsg= null;
   errors= null;
   constructor(
+              private route: ActivatedRoute,
               private formBuilder: FormBuilder,
               private router: Router,
               private otherService: OthersService) {
     this.getScreenSize();
+    route.queryParams.subscribe((params) => {
+      this.loginForm.controls.passwordToken.setValue(params.token);
+    });
   }
 
   scrHeight:any;
