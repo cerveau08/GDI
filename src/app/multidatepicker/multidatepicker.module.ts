@@ -14,7 +14,6 @@ import { InfoDialogComponent } from './month-picker-component/dialog/info-dialog
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-
     MatButtonModule,
     MatIconModule,
     MatDatepickerModule,
