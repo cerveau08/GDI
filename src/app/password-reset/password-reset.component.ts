@@ -41,6 +41,8 @@ export class PasswordResetComponent implements OnInit {
         console.log(this.scrHeight, this.scrWidth);
   }
   ngOnInit() {
+    const token = this.route.snapshot.queryParams['token'];
+    console.log(token);
     this.loginForm = this.formBuilder.group({
       password: ['', [Validators.required]],
       plainPassword: ['', [Validators.required]]
@@ -54,6 +56,7 @@ export class PasswordResetComponent implements OnInit {
         this.router.navigate(['login']);
       }, (error) => {
         this.errors = error.error.message;
-      });
+      }
+    );
   }
 }

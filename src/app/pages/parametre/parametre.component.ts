@@ -92,6 +92,7 @@ export class ParametreComponent implements OnInit {
       password: new FormControl('')
     });
     this.newpasswordForm = new FormGroup({
+      password: new FormControl(''),
       newpassword: new FormControl(''),
       confirmpassword: new FormControl('')
     })
@@ -103,21 +104,21 @@ export class ParametreComponent implements OnInit {
     }
     console.log(password);
     this.changepassword = true;
-    }
+  }
   
   //changer password
   confirmPassword() {
-      this.otherService.resetPassword(this.passwordForm.value).subscribe(
-        result => {
-          //alert('Password has been updated');
-          console.log(result);
-          this.passwordForm.reset();
-        },
-        error => {
-          this.handleError(error);
-        }
-      );
-    }
+    this.otherService.resetPassword(this.passwordForm.value).subscribe(
+      result => {
+        //alert('Password has been updated');
+        console.log(result);
+        this.passwordForm.reset();
+      },
+      error => {
+        this.handleError(error);
+      }
+    );
+  }
     handleError(error) {
       let errorMessage = '';
       if (error.error instanceof ErrorEvent) {
