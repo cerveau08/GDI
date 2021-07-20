@@ -20,14 +20,15 @@ export class AttestationpresenceComponent implements OnInit {
   page = 1;
   itemsPerPage = 10;
   totalItems : any;
+  user;
   public reqUrl = environment.base_url;
   constructor(private dataService: DataService,
               private http: HttpClient,
               private otherService: OthersService) { }
 
   ngOnInit() {
-
-  this.gty(this.page);
+    this.user = localStorage.getItem('user');
+    this.gty(this.page);
   }
   gty(page: any){
     this.http.get(this.reqUrl + `/listeAttestationByMonth?page=${page}&size=${this.itemsPerPage}`).subscribe((data: any) => 
@@ -51,7 +52,7 @@ export class AttestationpresenceComponent implements OnInit {
     for (var i = 0; i < this.dataAttest.length; i++) {
       if(this.dataAttest[i].etat) {
         this.checkedList.push(this.dataAttest[i]);
-        this.http.post(`${this.reqUrl}/validerAttestation/${this.dataAttest[i].id}`, null).subscribe(
+        this.http.get(`${this.reqUrl}/validerAttestation/${this.dataAttest[i].id}`).subscribe(
           data => {
             this.result = data;
             console.log(data);

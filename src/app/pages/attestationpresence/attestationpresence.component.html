@@ -22,7 +22,7 @@
                         <th id="datefin">Date Fin</th>
                         <th id="action">Agence</th>
                         <th id="action">Etat</th>
-                        <th id="input"><input 
+                        <th *ngIf="user == 'AGN'" id="input"><input 
                             [(ngModel)]="selectedAll"
                             (change)="selectAll();"
                             type="checkbox"/>
@@ -41,13 +41,13 @@
                         <td>{{p.dateFin | date: "dd/MM/yyyy"}}</td>
                         <td>{{p.agence}}</td>
                         <td>{{p.statut}}</td>
-                        <td *ngIf="p.etat == 0"><input type="checkbox"
+                        <td *ngIf="user == 'AGN'" ><input *ngIf="p.etat == 0" type="checkbox"
                             [checked]="p.etat"
                             [(ngModel)]="p.etat"
                             [value]="p.id" 
                             (change)="checkIfAllSelected();"/>
+                            <p *ngIf="p.etat == 1">Validé</p>
                     </td>
-                    <td *ngIf="p.etat == 1">Validé</td>
                     </tr>
                 </tbody>
                 

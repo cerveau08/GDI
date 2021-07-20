@@ -139,6 +139,9 @@ export class IntersouscontratComponent implements OnInit {
       agence: new FormControl(''),
     });
     this.gty(this.page);
+    this.http.get(this.reqUrl + `/interimFinContrat?page=${1}&limit=${this.itemsPerPage}`).subscribe((data: any) => {
+      console.log(data);
+    })
   }
 
   
@@ -168,9 +171,9 @@ export class IntersouscontratComponent implements OnInit {
         console.log(data);
         this.result = data
         this.success = this.result.success
-        if(this.success == true) {
-          this.closeModal('custom-modal-'+interimaire_id);
-        }
+        // if(this.success == true) {
+        //   this.closeModal('custom-modal-'+interimaire_id);
+        // }
       }
     )
   }
