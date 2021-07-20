@@ -13,6 +13,7 @@ export class PasswordResetComponent implements OnInit {
   loginForm: FormGroup;
   successMsg= null;
   errors= null;
+  resetToken
   constructor(
               private route: ActivatedRoute,
               private formBuilder: FormBuilder,
@@ -22,6 +23,12 @@ export class PasswordResetComponent implements OnInit {
     // route.queryParams.subscribe((params) => {
     //   this.loginForm.controls.passwordToken.setValue(params.token);
     // });
+    this.route.params.subscribe(params => {
+      this.resetToken = params.token;
+      console.log(this.resetToken);
+      console.log(params);
+    //  this.VerifyToken();
+    });
   }
 
   scrHeight:any;
@@ -35,12 +42,12 @@ export class PasswordResetComponent implements OnInit {
   }
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
-      newpassword: ['', [Validators.required]],
-      confirmpassword: ['', [Validators.required]],
+      password: ['', [Validators.required]],
+      plainPassword: ['', [Validators.required]]
     }); 
   }
   onSubmit() {
-    this.otherService.nouveauPassword(this.loginForm.value).subscribe(
+    this.otherService.resetPassword(this.loginForm.value).subscribe(
       (result) => {
         this.successMsg = result;
         console.log(result);
