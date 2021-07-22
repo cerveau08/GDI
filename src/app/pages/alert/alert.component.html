@@ -19,7 +19,11 @@
                     </div>
                 </div>
             </div>
-            <div class="list2" style="cursor: pointer;" (click)="openDetail(p)" *ngFor="let p of alert | paginate: { itemsPerPage: 12, currentPage: p }; let i = index">
+            <div class="list2" style="cursor: pointer;" (click)="openDetail(p.interimaire.id)" *ngFor="let p of alert | paginate: { 
+                itemsPerPage: itemsPerPage,
+                currentPage: page,
+                totalItems: totalItems
+                }; let i = index">
                 <div class="alert1" >
                     <div class="date">
                         <p class="heure">{{p.dateNotif | date: "dd-MM-yyyy"}} {{p.heure}}</p>
@@ -39,7 +43,7 @@
                 </div>
             </div>
             <div class="pagination">
-                <pagination-controls (pageChange)="p = $event" previousLabel="Prcédent" nextLabel="Suivant"></pagination-controls>
+                <pagination-controls (pageChange)="gty(page = $event)" previousLabel="Prcédent" nextLabel="Suivant"></pagination-controls>
             </div>
         </div>
     </div>

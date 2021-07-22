@@ -2,6 +2,8 @@ import { OthersService } from 'src/app/services/others.service';
 import { DataService } from './../../service/data.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
+import { HttpClient } from '@angular/common/http';
 
 
 @Component({
@@ -15,9 +17,14 @@ export class AlertComponent implements OnInit {
   showHome = true;
   user;
   alert;
+  page = 1;
+  itemsPerPage = 7;
+  totalItems : any;
+  public reqUrl = environment.base_url;
   constructor(public router: Router,
     private otherService: OthersService,
-    private dataService: DataService) { }
+    private dataService: DataService,
+    private http: HttpClient) { }
 
   ngOnInit() {
     this.user = localStorage.getItem('user');
@@ -26,17 +33,16 @@ export class AlertComponent implements OnInit {
     } else {
       this.showHome = true;
     }
-    this.datas = this.dataService.getData();
-
-    this.otherService.getListeNotification().subscribe(
-      data => {
-       this.alert = data.data;
-       console.log(data);
-      }
-    );
-
+    this.gty(this.page)
   }
-  
+  gty(page: any){
+    this.http.get(this.reqUrl + `/notification/all?page=${page}&limit=${this.itemsPerPage}`).subscribe((data: any) => {
+      this.alert =  data.data;
+      this.totalItems = data.total;
+      console.log(data);
+      
+    })
+  }
   openDetail(data) {
     this.router.navigate(['/accueil/detailinter'], {
       queryParams: {
