@@ -54,7 +54,9 @@ export class PasswordResetComponent implements OnInit {
       (result) => {
         this.successMsg = result;
         console.log(result);
-        this.router.navigate(['login']);
+        if (this.successMsg.status == true) {
+          this.router.navigate(['login']);
+        }
       }, (error) => {
         this.errors = error.error.message;
       }
