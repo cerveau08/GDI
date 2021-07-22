@@ -25,7 +25,6 @@
             <table style="overflow-x:auto;" aria-describedby = "mydesc">
                 <thead>
                     <tr class="head">
-                        <th class="id1" id="matricule">#</th>
                         <th class="typ" id="preno;">
                             <div class="type">
                                 <p>Prénom</p> 
@@ -42,11 +41,14 @@
                 </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let p of datas | filter:filterterm | paginate: { itemsPerPage: 5, currentPage: p }; let i = index">
-                        <td class="id1">{{p.id}}</td>
+                    <tr *ngFor="let p of datas | paginate: { 
+                        itemsPerPage: itemsPerPage,
+                        currentPage: page,
+                        totalItems: totalItems
+                        }; let i = index">
                         <td>{{p.prenom}}</td>
                         <td>{{p.nom}}</td>
-                        <td>{{p.agence}}</td>
+                        <td>{{p.nomAgence}}</td>
                         <td>{{p.dateFinContrat}}</td>
                         <td *ngIf="scrWidth>991"><button  class="button1" (click)="openModal('custom-modal-'+p.id)">Afficher</button></td>
                         <!--modal1-->
@@ -71,7 +73,7 @@
                 </tbody>
                 
             </table>
-            <pagination-controls (pageChange)="p = $event" previousLabel="Prcédent" nextLabel="Suivant"></pagination-controls>
+            <pagination-controls (pageChange)="gty(page = $event)" previousLabel="Prcédent" nextLabel="Suivant"></pagination-controls>
         </div>
     </div>
 </div>

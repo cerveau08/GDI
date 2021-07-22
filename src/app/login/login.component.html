@@ -1,5 +1,5 @@
 <div class="all" *ngIf="scrWidth>991">
-    <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+    <!-- <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading> -->
     <div class="all2">
         <div class="login">
             <div class="logo">
@@ -18,6 +18,9 @@
                     <div class="field">
                         <label class="label" for="password">Mot de Passe</label>
                         <input formControlName="password" class="input-text" type="password" name="password" id="password">
+                    </div>
+                    <div class="content-error-msg" *ngIf="statusLogin == false">
+                        <p class="error-alert">{{ dataLogin?.message}}</p>
                     </div>
                     <button (click)="onSubmit()" class="button">Se connecter</button>
                     <p class="forget" routerLink="/passwordforgetmail">Mot de passe oublié?</p>

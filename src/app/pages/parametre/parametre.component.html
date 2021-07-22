@@ -15,23 +15,27 @@
             </div>
         </div>
         <div *ngIf="!show1" class="content-securite">
-            <form [formGroup]="passwordForm">
+            <!-- <form [formGroup]="passwordForm">
                 <div class="actuel-password">
                     <p class="label-input">Mot de passe actuel</p>
-                    <input formControlName="password" class="parametre-input" type="text" >
+                    <input formControlName="oldPassword" class="parametre-input" type="text" >
                 </div>
                 <button (click)="validerPassword()" class="valider-password">Envoyer</button>
-            </form>
-            <form *ngIf="changepassword" [formGroup]="newpasswordForm">
+            </form> -->
+            <form [formGroup]="newpasswordForm">
                 <div>
                     <p class="message-change-password">Voulez-vous changer de mot de passe ? </p>
+                    <div class="actuel-password">
+                        <p class="label-input">Mot de passe actuel</p>
+                        <input formControlName="oldPassword" class="parametre-input" type="text" >
+                    </div>
                     <div class="new-password">
                         <p class="label-input">Nouveau mot de passe</p>
-                        <input formControlName="newpassword" class="parametre-input" type="text">
+                        <input formControlName="password" class="parametre-input" type="text">
                     </div>
                     <div class="confirm-password">
                         <p class="label-input">Confirmer mot de passe</p>
-                        <input formControlName="confirmpassword" class="parametre-input" type="text">
+                        <input formControlName="plainPassword" class="parametre-input" type="text">
                     </div>
                     <button (click)="confirmPassword()" class="enregistrer-password">Enregistrer</button>
                 </div>
