@@ -15,6 +15,8 @@ import {OthersService} from '../../services/others.service';
 export class HeaderComponent implements OnInit {
 
   selected = 0;
+  messageError;
+  successRequest;
   selected1 = 0;
   public click: any;
   filterterm: string;
@@ -28,29 +30,7 @@ export class HeaderComponent implements OnInit {
         this.scrWidth = window.innerWidth;
         //console.log(this.scrHeight, this.scrWidth);
   }
-  mois: any = [
-    'Janvier', 
-    'Février', 
-    'Mars', 
-    'Avril',
-    'Mai',
-    'Juin',
-    'Juillet', 
-    'Aout', 
-    'Septembre', 
-    'Octobre',
-    'Novembre',
-    'Décembre',
-  ];
-  sommes: any = [
-    '20.000f', 
-    '30.000f', 
-    '40.000f', 
-    '50.000f',
-    '60.000f',
-    '70.000f',
-    '80.000f', 
-  ];
+  donneesSearch;
   moisSelect
   demandeForm: FormGroup;
   name;
@@ -114,15 +94,33 @@ export class HeaderComponent implements OnInit {
     const info = {
       prenom: this.demandeForm.value.prenom,
       nom: this.demandeForm.value.nom,
-      matricule: this.demandeForm.value.matricule,
       email: this.demandeForm.value.email,
-      direction: this.demandeForm.value.direction,
-      departement: this.demandeForm.value.departement,
-      service: this.demandeForm.value.service,
-      agence: this.demandeForm.value.agence,
-      annee: this.demandeForm.value.annee,
-      poste: this.demandeForm.value.poste,
+      // matricule: this.demandeForm.value.matricule,
+      // direction: this.demandeForm.value.direction,
+      // departement: this.demandeForm.value.departement,
+      // service: this.demandeForm.value.service,
+      // agence: this.demandeForm.value.agence,
+      // annee: this.demandeForm.value.annee,
+      // poste: this.demandeForm.value.poste,
     }
+    console.log(info);
+    this.otherService.rechercheAvance(info).subscribe(
+      data => {
+        console.log(data);
+        this.donneesSearch = data
+        this.successRequest = this.donneesSearch.success
+        if(this.successRequest == true) {
+          this.closeModal('custom-modal-50')
+          this.route.navigate(['/accueil/detailinter'], {
+            queryParams: {
+              user: JSON.stringify(this.donneesSearch['data'][0].id)
+            }
+          });
+        } else {
+          this.messageError = this.donneesSearch.message;
+        }
+      }
+    )
   }
 
   logout() {

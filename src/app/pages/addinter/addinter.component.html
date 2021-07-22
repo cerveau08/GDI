@@ -35,9 +35,6 @@
                           <div class="infoinput1">
                             <input type="text" [(ngModel)]="numeroPiece" formControlName="numeroPiece" placeholder="Numero Pièce">
                           </div>
-                          <!-- <div class="infoinput1">
-                            <input type="text" formControlName="nPassport" placeholder="Numero Passport">
-                          </div> -->
                           <div class="infoinput2">
                             <input type="text" formControlName="prenom" placeholder="Prenom">
                             <input class="input3" type="text" formControlName="nom" placeholder="Nom">
@@ -61,8 +58,6 @@
                               <option class="option" value="" disabled selected hidden>Situation Matrimoniale</option>
                               <option *ngFor="let data of ListeSitmat" [value]="data.libelle">{{data.libelle}}</option>
                             </select>
-                            <!-- <input type="text" formControlName="sexe" placeholder="Genre">
-                            <input class="input3" type="text" formControlName="sitmat" placeholder="Situation Matrimoniale"> -->
                           </div>
                           <div class="infoinput2">
                             <input type="text" formControlName="telephone" placeholder="Telephone"> 
@@ -146,9 +141,20 @@
                           </mat-autocomplete> -->
                           <input class="input3" type="date" formControlName="dateSignature" placeholder="Date de Signature">
                         </div>
+                        <!-- <mat-autocomplete (optionSelected)="onSelectionChanged($event)"> 
+                          <mat-option *ngFor="let item of dataSociete" [value]="item">
+                            {{ item }}
+                          </mat-option>
+                        </mat-autocomplete>
+                        <mat-autocomplete>
+                          <mat-option *ngFor="let option of dataSociete" [value]="option">
+                            {{ option }}
+                          </mat-option>
+                        </mat-autocomplete> -->
                         <div class="infoinput1">
                           <input type="text" formControlName="profession" placeholder="Votre Profession">
                         </div>
+                        
                     </div>
                     </div>
                   </div>

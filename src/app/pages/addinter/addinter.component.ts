@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { DataService } from 'src/app/service/data.service';
 import { OthersService } from 'src/app/services/others.service';
+//import { MatAutocompleteSelectedEvent } from '@angular/material';
 
 @Component({
   selector: 'app-addinter',
@@ -220,6 +221,9 @@ export class AddinterComponent implements OnInit {
       }
     )
   }
+  // onSelectionChanged(event: MatAutocompleteSelectedEvent) {
+  //   console.log(event.option.value);
+  // }
   // private _filter(value): string[] {
   //   const filterValue = this._normalizeValue(value);
   //   return this.streets.filter(street => this._normalizeValue(street).includes(filterValue));
