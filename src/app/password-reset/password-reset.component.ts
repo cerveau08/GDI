@@ -21,15 +21,6 @@ export class PasswordResetComponent implements OnInit {
               private router: Router,
               private otherService: OthersService) {
     this.getScreenSize();
-    // route.queryParams.subscribe((params) => {
-    //   this.loginForm.controls.passwordToken.setValue(params.token);
-    // });
-    this.route.params.subscribe(params => {
-      this.resetToken = params.token;
-      console.log(this.resetToken);
-      console.log(params);
-    //  this.VerifyToken();
-    });
   }
 
   scrHeight:any;
@@ -43,7 +34,6 @@ export class PasswordResetComponent implements OnInit {
   }
   ngOnInit() {
     this.token = this.route.snapshot.queryParams['token'];
-    console.log(this.token);
     this.loginForm = this.formBuilder.group({
       password: ['', [Validators.required]],
       plainPassword: ['', [Validators.required]]

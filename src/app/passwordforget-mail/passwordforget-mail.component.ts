@@ -13,6 +13,7 @@ export class PasswordforgetMailComponent implements OnInit {
   loginForm: FormGroup;
   successMsg= null;
   errors= null;
+  statusLogin;
   constructor(
               private formBuilder: FormBuilder,
               private router: Router,
@@ -38,8 +39,10 @@ export class PasswordforgetMailComponent implements OnInit {
     this.otherService.sendResetPassword(this.loginForm.value).subscribe(
       (result) => {
         this.successMsg = result;
-        console.log(result);
-        this.router.navigate(['passwordforget']);
+        this.statusLogin = this.successMsg.status;
+        if(this.statusLogin == true) {
+          this.router.navigate(['passwordforget']);
+        }
       }, (error) => {
         this.errors = error.error.message;
       });
