@@ -97,10 +97,6 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.prenom = localStorage.getItem('prenom');
-    
-
-
-
     this.demandeForm = new FormGroup({
       prenom: new FormControl (''),
       nom: new FormControl(''),
@@ -114,7 +110,7 @@ export class HeaderComponent implements OnInit {
       poste: new FormControl(''),
     });
   }
-  onSubmit(id: string) {
+  onSubmit() {
     const info = {
       prenom: this.demandeForm.value.prenom,
       nom: this.demandeForm.value.nom,
@@ -126,9 +122,7 @@ export class HeaderComponent implements OnInit {
       agence: this.demandeForm.value.agence,
       annee: this.demandeForm.value.annee,
       poste: this.demandeForm.value.poste,
-    } 
-    //console.log(info);
-    return info;
+    }
   }
 
   logout() {

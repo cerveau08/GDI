@@ -214,4 +214,7 @@ addAgence(data) {
   addAttestation(data) {
     return this.http.post(`${this.reqUrl}/ajoutAttestation`, data);
   }
+  rechercheAvance(data) {
+    return this.http.post(`${this.reqUrl}/recherche`, data);
+  }
 }
