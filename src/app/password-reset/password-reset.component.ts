@@ -14,6 +14,7 @@ export class PasswordResetComponent implements OnInit {
   successMsg= null;
   errors= null;
   resetToken
+  token;
   constructor(
               private route: ActivatedRoute,
               private formBuilder: FormBuilder,
@@ -41,15 +42,15 @@ export class PasswordResetComponent implements OnInit {
         console.log(this.scrHeight, this.scrWidth);
   }
   ngOnInit() {
-    const token = this.route.snapshot.queryParams['token'];
-    console.log(token);
+    this.token = this.route.snapshot.queryParams['token'];
+    console.log(this.token);
     this.loginForm = this.formBuilder.group({
       password: ['', [Validators.required]],
       plainPassword: ['', [Validators.required]]
     }); 
   }
   onSubmit() {
-    this.otherService.resetPassword(this.loginForm.value).subscribe(
+    this.otherService.resetPassword(this.token, this.loginForm.value).subscribe(
       (result) => {
         this.successMsg = result;
         console.log(result);

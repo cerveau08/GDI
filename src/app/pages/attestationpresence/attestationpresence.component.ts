@@ -32,7 +32,8 @@ export class AttestationpresenceComponent implements OnInit {
   }
   gty(page: any){
     this.http.get(this.reqUrl + `/listeAttestationByMonth?page=${page}&size=${this.itemsPerPage}`).subscribe((data: any) => 
-      this.dataAttest =  data.data[0])
+      this.dataAttest =  data.data[0]
+    )
   }
   selectAll() {
     for (var i = 0; i < this.dataAttest.length; i++) {

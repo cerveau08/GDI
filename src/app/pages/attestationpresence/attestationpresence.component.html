@@ -20,7 +20,7 @@
                         </th>
                         <th id="datedebut">Date Début</th>
                         <th id="datefin">Date Fin</th>
-                        <th id="action">Agence</th>
+                        <th *ngIf="user != 'AGN' && user != 'INT'" id="action">Agence</th>
                         <th id="action">Etat</th>
                         <th *ngIf="user == 'AGN'" id="input"><input 
                             [(ngModel)]="selectedAll"
@@ -39,7 +39,7 @@
                         <td>{{p.nom}}</td>
                         <td>{{p.dateDebut | date: "dd/MM/yyyy"}}</td>
                         <td>{{p.dateFin | date: "dd/MM/yyyy"}}</td>
-                        <td>{{p.agence}}</td>
+                        <td *ngIf="user != 'AGN' && user != 'INT'">{{p.agence}}</td>
                         <td>{{p.statut}}</td>
                         <td *ngIf="user == 'AGN'" ><input *ngIf="p.etat == 0" type="checkbox"
                             [checked]="p.etat"

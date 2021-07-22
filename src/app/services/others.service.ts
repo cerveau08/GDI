@@ -137,8 +137,8 @@ addAgence(data) {
   getAllStructure() {
     return this.http.get(`${this.reqUrl}/structure/all`);
   }
-  resetPassword(data){
-    return this.http.post<any>(`${this.reqUrl}/reset/defcc`, data);
+  resetPassword(token, data){
+    return this.http.post<any>(`${this.reqUrl}/reset/${token}`, data);
   }
   verifierPassword(data){
     return this.http.post<any>(`${this.reqUrl}/verifiePassword`, data);

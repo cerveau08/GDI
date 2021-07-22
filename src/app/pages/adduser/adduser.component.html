@@ -12,7 +12,7 @@
                                 <input formControlName="avatar" class="buttonphoto1" type="file" (change)="getPhoto($event)">
                             </div>
                             <div>
-                                <div class="infoinput1">
+                                <div *ngIf="profil.value != '3'" class="infoinput1">
                                     <input  type="text" [(ngModel)]="matricule" formControlName="matricule" placeholder="Matricule">
                                 </div>
                                 <div class="infoinput2">

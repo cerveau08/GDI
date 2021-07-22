@@ -88,13 +88,13 @@ export class ParametreComponent implements OnInit {
     }
     this.datas = this.dataService.getData();
     this.videos = this.paginationService.getVidoes();
-    this.passwordForm = new FormGroup({
-      password: new FormControl('')
-    });
+    // this.passwordForm = new FormGroup({
+    //   password: new FormControl('')
+    // });
     this.newpasswordForm = new FormGroup({
       password: new FormControl(''),
-      newpassword: new FormControl(''),
-      confirmpassword: new FormControl('')
+      plainPassword: new FormControl(''),
+      oldPassword: new FormControl('')
     })
   }
 //verifier password
@@ -108,7 +108,7 @@ export class ParametreComponent implements OnInit {
   
   //changer password
   confirmPassword() {
-    this.otherService.resetPassword(this.passwordForm.value).subscribe(
+    this.otherService.changePassword(this.passwordForm.value).subscribe(
       result => {
         //alert('Password has been updated');
         console.log(result);
