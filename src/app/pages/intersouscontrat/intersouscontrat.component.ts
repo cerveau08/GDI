@@ -139,9 +139,6 @@ export class IntersouscontratComponent implements OnInit {
       agence: new FormControl(''),
     });
     this.gty(this.page);
-    this.http.get(this.reqUrl + `/interimFinContrat?page=${1}&limit=${this.itemsPerPage}`).subscribe((data: any) => {
-      console.log(data);
-    })
   }
 
   

@@ -62,14 +62,13 @@ import { ModalModifierComponent } from './pages/objectifs/modal-modifier/modal-m
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { InterarchiveComponent } from './pages/interarchive/interarchive.component';
 import { InterenattenteComponent } from './pages/interenattente/interenattente.component';
-import {MultiDatepickerModule} from './multidatepicker/multidatepicker.module';
 import { MultiDatepickerComponent } from './multidatepicker/multidatepicker.component';
 import { MonthPickerComponent } from './multidatepicker/month-picker-component/month-picker.component';
 import { YearPickerComponent } from './multidatepicker/year-picker-component/year-picker.component';
 import { RegularDatepickerComponent } from './multidatepicker/regular-datepicker-component/regular-datepicker.component';
-import { PasswordResetComponent } from './password-reset/password-reset.component';
 import { PasswordResetModule } from './password-reset/password-reset.module';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import {AutocompleteLibModule} from 'angular-ng-autocomplete';
 
 @NgModule({
   declarations: [
@@ -118,7 +117,6 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
     MonthPickerComponent,
     YearPickerComponent,
     RegularDatepickerComponent,
-  //  PasswordResetComponent,
   ],
   imports: [
     BrowserModule,
@@ -178,6 +176,7 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule,
+    AutocompleteLibModule,
     //AlertModule,
     PdfViewerModule,
     NgCircleProgressModule.forRoot({}),
