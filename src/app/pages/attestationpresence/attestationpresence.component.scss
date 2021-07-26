@@ -71,13 +71,12 @@
 table {
     border-collapse: collapse;;
     width: 100%;
-    margin-top: 50px;
+    margin-top: 10px;
 }
   
   th {
     text-align: center;
-    padding: 8px;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 500;
     font-stretch: normal;
     font-style: normal;
@@ -87,8 +86,7 @@ table {
   }
   td {
     text-align: center;
-    padding: 8px;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: normal;
     font-stretch: normal;
     font-style: normal;
@@ -97,7 +95,7 @@ table {
     color: #000000;
   }
   tr {
-    height: 50px;
+    height: 30px;
     border: 1px solid #f5f6f9;
     border-radius: 100%;
     margin-top: 20px;
@@ -106,14 +104,15 @@ table {
       background-color: #f5f6f9;
   }
   .detail1 {
-    font-size: 24px;
+    font-size: 18px;
     font-weight: 900;
     font-stretch: normal;
     font-style: normal;
     line-height: normal;
     letter-spacing: -0.13px;
     color: #222222;
-    margin-top: 30px;
+    margin-top: 10px;
+    margin-bottom: 15px;
   }
 .button1 {
     width: 100px;
@@ -141,7 +140,7 @@ table {
   }
   .updown {
     margin-top: 10px;
-    margin-left: 20px;
+    margin-left: 0px;
   }
 
 @media (max-width: 991px) {

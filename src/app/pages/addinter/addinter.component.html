@@ -15,7 +15,6 @@
               <div>
                   <form [formGroup]="interForm">
                       <div>
-                      <p class="matri">Matricule: <span>{{matricule}}</span> </p>
                       <div class="grid">
                         <div class="photo">
                           <img class="image-upload" *ngIf="!image" [src]="url1" alt="">
@@ -24,15 +23,18 @@
                         </div>
                         <div class="others">
                           <div class="infoinput2">
-                            <select class="select5"  formControlName="typePiece" >
+                            <select class="select5" [(ngModel)]="societeId" #societe formControlName="societeId" (change)="directionsListe(societe.value)">
+                              <option class="option" value="" disabled selected hidden>Societe</option>
+                              <option *ngFor="let data of dataSociete" [value]="data.id">{{data.libelle}}</option>
+                            </select>
+                            <select class="select6" [(ngModel)]="typePiece"  formControlName="typePiece" >
                               <option class="option" value="" disabled selected hidden>Type Pièce</option>
                               <option *ngFor="let data of ListePiece" [value]="data.libelle">{{data.libelle}}</option>
                             </select>
-                            <input class="input3" type="text" formControlName="numeroPiece" placeholder="Numero Pièce">
                           </div>
-                          <!-- <div class="infoinput1">
-                            <input type="text" formControlName="nPassport" placeholder="Numero Passport">
-                          </div> -->
+                          <div class="infoinput1">
+                            <input type="text" [(ngModel)]="numeroPiece" formControlName="numeroPiece" placeholder="Numero Pièce">
+                          </div>
                           <div class="infoinput2">
                             <input type="text" formControlName="prenom" placeholder="Prenom">
                             <input class="input3" type="text" formControlName="nom" placeholder="Nom">
@@ -56,8 +58,6 @@
                               <option class="option" value="" disabled selected hidden>Situation Matrimoniale</option>
                               <option *ngFor="let data of ListeSitmat" [value]="data.libelle">{{data.libelle}}</option>
                             </select>
-                            <!-- <input type="text" formControlName="sexe" placeholder="Genre">
-                            <input class="input3" type="text" formControlName="sitmat" placeholder="Situation Matrimoniale"> -->
                           </div>
                           <div class="infoinput2">
                             <input type="text" formControlName="telephone" placeholder="Telephone"> 
@@ -85,7 +85,6 @@
               <div>
                 <form [formGroup]="interForm">
                     <div>
-                    <p class="matri">Matricule: <span>{{matricule}}</span> </p>
                     <div class="grid" >
                       <div >
                         <div class="photo">
@@ -110,24 +109,24 @@
                           <input class="input3" type="date" formControlName="dateFin" placeholder="Date de Fin">
                         </div>  
                         <div class="contratinput2">
-                          <select class="select5" #societe formControlName="societeId" (change)="directionsListe(societe.value)">
-                            <option class="option" value="" disabled selected hidden>Societe</option>
-                            <option *ngFor="let data of dataSociete" [value]="data.id">{{data.libelle}}</option>
-                          </select>
-                          <select class="select6" #direction  formControlName="directionId" (change)="departementListe(direction.value)">
+                          <select class="select5" #direction  formControlName="directionId" (change)="departementListe(direction.value)">
                             <option class="option" value="" disabled selected hidden>Direction</option>
                             <option *ngFor="let data of dataDirection" value="{{data.id}}">{{data.libelle}}</option>
                           </select>
-                        </div>
-                        <div class="contratinput2">
-                          <select class="select5" #departement formControlName="departementId" (change)="serviceListe(departement.value)">
+                          <select class="select6" #departement formControlName="departementId" (change)="serviceListe(departement.value)">
                             <option class="option" value="" disabled selected hidden>Département</option>
                             <option *ngFor="let data of dataDepartement" value="{{data.id}}">{{data.libelle}}</option>
                           </select>
-                          <select class="select6"  formControlName="structureId">
+                        </div>
+                        <div class="contratinput2">
+                          <select class="select5"  formControlName="structureId">
                             <option class="option" value="" disabled selected hidden>Service</option>
                             <option *ngFor="let data of donneeService" value="{{data.id}}">{{data.libelle}}</option>
                           </select>
+                          <select class="select6" formControlName="domaineId" placeholder="domaine">
+                            <option class="option" value="" disabled selected hidden>Domaine</option>
+                            <option *ngFor="let data of dataDomaine" [value]="data.id">{{data.libelle}}</option>
+                          </select> 
                         </div>
                         <div class="contratinput2">
                           <input type="text" formControlName="poste" placeholder="Titre du Poste">
@@ -142,13 +141,20 @@
                           </mat-autocomplete> -->
                           <input class="input3" type="date" formControlName="dateSignature" placeholder="Date de Signature">
                         </div>
-                        <div class="contratinput2">
-                          <select class="infoinput1" formControlName="domaineId" placeholder="domaine">
-                            <option class="option" value="" disabled selected hidden>Domaine</option>
-                            <option *ngFor="let data of dataDomaine" [value]="data.id">{{data.libelle}}</option>
-                          </select> 
-                          <input class="input3" type="text" formControlName="profession" placeholder="Votre Profession">
+                        <!-- <mat-autocomplete (optionSelected)="onSelectionChanged($event)"> 
+                          <mat-option *ngFor="let item of dataSociete" [value]="item">
+                            {{ item }}
+                          </mat-option>
+                        </mat-autocomplete>
+                        <mat-autocomplete>
+                          <mat-option *ngFor="let option of dataSociete" [value]="option">
+                            {{ option }}
+                          </mat-option>
+                        </mat-autocomplete> -->
+                        <div class="infoinput1">
+                          <input type="text" formControlName="profession" placeholder="Votre Profession">
                         </div>
+                        
                     </div>
                     </div>
                   </div>

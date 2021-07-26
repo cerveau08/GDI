@@ -88,12 +88,13 @@ export class ParametreComponent implements OnInit {
     }
     this.datas = this.dataService.getData();
     this.videos = this.paginationService.getVidoes();
-    this.passwordForm = new FormGroup({
-      password: new FormControl('')
-    });
+    // this.passwordForm = new FormGroup({
+    //   password: new FormControl('')
+    // });
     this.newpasswordForm = new FormGroup({
-      newpassword: new FormControl(''),
-      confirmpassword: new FormControl('')
+      password: new FormControl(''),
+      plainPassword: new FormControl(''),
+      oldPassword: new FormControl('')
     })
   }
 //verifier password
@@ -103,21 +104,21 @@ export class ParametreComponent implements OnInit {
     }
     console.log(password);
     this.changepassword = true;
-    }
+  }
   
   //changer password
   confirmPassword() {
-      this.otherService.resetPassword(this.passwordForm.value).subscribe(
-        result => {
-          //alert('Password has been updated');
-          console.log(result);
-          this.passwordForm.reset();
-        },
-        error => {
-          this.handleError(error);
-        }
-      );
-    }
+    this.otherService.changePassword(this.passwordForm.value).subscribe(
+      result => {
+        //alert('Password has been updated');
+        console.log(result);
+        this.passwordForm.reset();
+      },
+      error => {
+        this.handleError(error);
+      }
+    );
+  }
     handleError(error) {
       let errorMessage = '';
       if (error.error instanceof ErrorEvent) {

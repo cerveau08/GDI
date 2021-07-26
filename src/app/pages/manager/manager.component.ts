@@ -36,7 +36,7 @@ export class ManagerComponent implements OnInit {
         console.log(this.scrHeight, this.scrWidth);
   }
   page = 1;
-  itemsPerPage = 3;
+  itemsPerPage = 10;
   totalItems : any;
   public reqUrl = environment.base_url;
   constructor(private dataService: DataService,
@@ -47,12 +47,10 @@ export class ManagerComponent implements OnInit {
     private activeroute: ActivatedRoute) {
       this.getScreenSize();
 
-      this.activeroute.queryParams.subscribe(params => {
-        this.item = JSON.parse(params["user"]);
-        console.log(this.item);
-        
-        
-      })
+      // this.activeroute.queryParams.subscribe(params => {
+      //   this.item = JSON.parse(params["user"]);
+      //   console.log(this.item);
+      // })
     }
 
   ngOnInit() {
@@ -64,29 +62,35 @@ export class ManagerComponent implements OnInit {
         this.data = result;
         this.managerinfo = this.data.data.detail
         this.datas = this.data.data.interimaires
-
-        console.log(this.data);
+        console.log(result);
         
       }
-      
     )
     if(this.user == 'inter') {
       this.showHome = false;
     } else {
       this.showHome = true;
     }
-     this.datas = this.dataService.getData();
 
      this.otherService.getInter().subscribe(
       data => {
        this.dataInterFin = data.data;
        console.log(data);
       }
-    );
-     
-     
-     
+    ); 
+    this.gty(this.page);
   }
+
+  gty(page: any){
+    this.http.get(this.reqUrl + `/manager/${this.item.manager.id}?page=${page}&limit=${this.itemsPerPage}`).subscribe((data: any) => {
+      this.datas =  data.data;
+      this.totalItems = this.datas.total
+      console.log(this.datas);
+      console.log(this.totalItems);
+      
+    })
+  }
+
   openModal(id: string) {
     this.modalService.open(id);
   }

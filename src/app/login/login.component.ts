@@ -13,6 +13,8 @@ export class LoginComponent implements OnInit {
 
   public loading = false;
   loginForm: FormGroup;
+  dataLogin;
+  statusLogin;
   constructor(private route: Router,
               private auth: AuthService) {
     this.getScreenSize();
@@ -35,23 +37,22 @@ export class LoginComponent implements OnInit {
   
   onSubmit() {
     this.loading = true;
-    const user =
-    {
-      username: this.loginForm.value.username,
-      password: this.loginForm.value.password
-    } 
-    this.auth.login(user).subscribe(
+    this.auth.login(this.loginForm.value).subscribe(
       data => {
-        console.log(data)
-        let profil = data.data.profil
-        let prenom = data.data.prenom
-        localStorage.setItem('token', data.token)
-        localStorage.setItem('user', profil)
-        localStorage.setItem('prenom', prenom);
-        this.loading = false;
-        if(data) {
+        this.dataLogin = data;
+        console.log(data);
+        this.statusLogin = this.dataLogin.success;
+        if(this.statusLogin == true) {
+          let profil = data.data.profil
+          let prenom = data.data.prenom
+          localStorage.setItem('token', data.token)
+          localStorage.setItem('user', profil)
+          localStorage.setItem('prenom', prenom);
           this.route.navigate(['accueil/home']);
+        } else {
+          this.loading == false;
         }
+
       }, error => {
         this.loading = false;
       }

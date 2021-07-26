@@ -52,32 +52,61 @@
                         <jw-modal id="custom-modal-{{p.id}}">
                             <mat-icon style="cursor: pointer;" (click)="closeModal('custom-modal-'+p.id);" class="clear">clear</mat-icon>
                             <div class="all">
-                                <h1>Ajouter Attestation</h1>
+                                <h1>Créer une Attestation de Présence pour {{p.prenom}} {{p.nom}}</h1>
                                 <div>
                                     <form [formGroup]="attestationForm">
                                         <div class="forms">
                                             <div>
-                                                <div class="input2">
-                                                    <input type="text" [value]="p.prenom" formControlName="prenom" placeholder="Prenom" >
-                                                    <input class="input3"[value]="p.nom" type="text" formControlName="nom" placeholder="Nom" >
+                                                <!-- <div class="input-content-grid-two">
+                                                    <div class="input2">
+                                                        <p class="label-input" for="titre">Prénom</p>
+                                                        <input type="text" [value]="p.prenom" formControlName="prenom" placeholder="Prénom" readonly>
+                                                    </div>
+                                                    <div class="input3">
+                                                        <p class="label-input" for="titre">Nom</p>
+                                                        <input [value]="p.nom" type="text" formControlName="nom" placeholder="Nom" readonly>
+                                                    </div>
                                                 </div>
-                                                <div class="input2">
-                                                    <input type="text" [value]="p.matricule" formControlName="matricule" placeholder="Matricule" >
-                                                    <input class="input3" [value]="p.poste" type="text" formControlName="poste" placeholder="Profession" >
+                                                <div class="input-content-grid-two">
+                                                    <div class="input2">
+                                                        <p class="label-input" for="titre">Matricule</p>
+                                                        <input type="text" [ngModel]="p.matricule" formControlName="matricule" placeholder="Matricule" readonly>
+                                                    </div>
+                                                    <div class="input3">
+                                                        <p class="label-input" for="titre">Fonction</p>
+                                                        <input [ngModel]="p.poste" type="text" formControlName="poste" placeholder="Profession" readonly>
+                                                    </div>
+                                                </div> -->
+                                                <p class="text-attestation">
+                                                    Bonjour M. <span class="text-span-attestation">{{p.manager.prenom}} {{p.manager.nom}}</span>, 
+                                                    vous attestez que M. <span class="text-span-attestation">{{p.prenom}} {{p.nom}}</span>
+                                                    <span class="text-span-attestation">{{p.matricule}}</span>, a travaillé dans la 
+                                                    structure durant la période que vous allez choisir dans le formulaire.
+                                                </p>
+                                                <div class="input-content-grid-two">
+                                                    <div class="input-mois-content">
+                                                        <p class="label-input" for="titre">Choisir le mois</p>
+                                                        <select  formControlName="mois" class="select-mois" >
+                                                            <option class="option" value="" disabled selected hidden>Mois</option>
+                                                            <option *ngFor="let data of ListeMois"  [value]="data.libelle">{{data.libelle}}</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="input-annee">
+                                                        <jp-multi-datepicker formControlName="annee" tabindex="-1"  mode="YEAR" label="Choisir une Date" [(ngModel)]="annee" [min]="2000"></jp-multi-datepicker>
+                                                    </div>
                                                 </div>
-
-                                                <div class="input2">
-                                                            <select  formControlName="mois" class="style" >
-                                                                <option *ngFor="let data of ListeMois"  [value]="data.libelle">{{data.libelle}}</option>
-                                                            </select>
-                                                            <jp-multi-datepicker formControlName="annee" tabindex="-1"  mode="YEAR" label="Choisir une Date" [(ngModel)]="annee" [min]="2000"></jp-multi-datepicker>
-                                                </div>
-                                                <div class="input2">
-                                                    <input type="text" [value]="p.agence" formControlName="agence" placeholder="Agence" >
-                                                    <input type="text" class="input3" formControlName="nbr_jr_absence" #Abscence placeholder="Nombre de jour absent">
+                                                <div class="input-content-grid-two">
+                                                    <div class="input2">
+                                                        <p class="label-input" for="titre">Agence</p>
+                                                        <input type="text" [ngModel]="p.agence" formControlName="agence" placeholder="Agence" readonly>
+                                                    </div>
+                                                    <div class="input3">
+                                                        <p class="label-input" for="titre">Nombre de jour absent</p>
+                                                        <input type="number" formControlName="nbr_jr_absence" #Abscence placeholder="Nombre de jour absent">
+                                                    </div>
                                                 </div>
                                                 <div class="content-button-submit">
-                                                    <button (click)="submit()" class="button-submit">Valider</button>
+                                                    <button (click)="submit(p.id)" class="button-submit">Valider</button>
                                                 </div>
                                             </div>
                                         </div>

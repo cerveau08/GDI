@@ -39,7 +39,7 @@ export class DetailagenceComponent implements OnInit {
   data;
   nom;
   responsable;
-  numdg;
+  numDg;
   nomdg;
   email;
   telephone;
@@ -70,7 +70,7 @@ export class DetailagenceComponent implements OnInit {
             console.log(this.dataAgence);
             this.nom = this.dataAgence.nom;
             this.responsable  = this.dataAgence.responsable;
-            this.numdg = this.dataAgence.numdg;
+            this.numDg = this.dataAgence.numDg;
             this.nomdg = this.dataAgence.nomdg;
             this.email = this.dataAgence.email;
             this.telephone = this.dataAgence.telephone;
@@ -116,7 +116,7 @@ export class DetailagenceComponent implements OnInit {
       nom: new FormControl(''),
       responsable: new FormControl(''),
       nomdg: new FormControl(''),
-      numdg: new FormControl(''),
+      numDg: new FormControl(''),
       email: new FormControl(''),
       telephone: new FormControl(''),
       fixe: new FormControl(''),
@@ -136,7 +136,7 @@ export class DetailagenceComponent implements OnInit {
     info.append("nom",value.nom);
     info.append("responsable",value.responsable);
     info.append("nomdg",value.nomdg);
-    info.append("numdg",value.numdg);
+    info.append("numdg",value.numDg);
     info.append("email",value.email);
     info.append("mobile",value.telephone);
     info.append("fixe",value.fixe);

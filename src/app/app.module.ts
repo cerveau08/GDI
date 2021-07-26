@@ -67,6 +67,9 @@ import { MultiDatepickerComponent } from './multidatepicker/multidatepicker.comp
 import { MonthPickerComponent } from './multidatepicker/month-picker-component/month-picker.component';
 import { YearPickerComponent } from './multidatepicker/year-picker-component/year-picker.component';
 import { RegularDatepickerComponent } from './multidatepicker/regular-datepicker-component/regular-datepicker.component';
+import { PasswordResetComponent } from './password-reset/password-reset.component';
+import { PasswordResetModule } from './password-reset/password-reset.module';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -115,6 +118,7 @@ import { RegularDatepickerComponent } from './multidatepicker/regular-datepicker
     MonthPickerComponent,
     YearPickerComponent,
     RegularDatepickerComponent,
+  //  PasswordResetComponent,
   ],
   imports: [
     BrowserModule,
@@ -177,10 +181,12 @@ import { RegularDatepickerComponent } from './multidatepicker/regular-datepicker
     //AlertModule,
     PdfViewerModule,
     NgCircleProgressModule.forRoot({}),
-    NgxLoadingModule.forRoot({})
+    NgxLoadingModule.forRoot({}),
+    PasswordResetModule,
   ],
   providers: [DatePipe,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorService, multi: true },
+    {provide: LocationStrategy, useClass: HashLocationStrategy}
   ],
   bootstrap: [AppComponent]
 })

@@ -37,9 +37,30 @@ import { AddinterComponent } from './pages/addinter/addinter.component';
 import { AuthGuard } from './helpers/auth.guard';
 import { InterarchiveComponent } from './pages/interarchive/interarchive.component';
 import { InterenattenteComponent } from './pages/interenattente/interenattente.component';
+import { PasswordResetComponent } from './password-reset/password-reset.component';
 
 
 const routes: Routes = [
+  { 
+    path: 'passwordforgetmail', 
+    component: PasswordforgetMailComponent
+  },
+  { 
+    path: 'passwordforget', 
+    component: PasswordforgetComponent
+  },
+  { path: 'passwordreset', 
+  loadChildren: () => import('src/app/password-reset/password-reset.module').then(m => m.PasswordResetModule) },
+  // { path: 'passwordreset', 
+  // loadChildren: 'app/password-reset/password-reset.module#PasswordResetModule' },
+  // { 
+  //   path: 'passwordreset', 
+  //   component: PasswordResetComponent
+  // },
+  { 
+    path: 'login', 
+    component: LoginComponent
+  },
   {
     path: 'accueil',
     component: DefaultComponent,
@@ -181,24 +202,13 @@ const routes: Routes = [
       { path: '**', redirectTo: 'accueil/home' },
     ]
   },
-  { 
-    path: 'passwordforgetmail', 
-    component: PasswordforgetMailComponent
-  },
-  { 
-    path: 'passwordforget', 
-    component: PasswordforgetComponent
-  },
-  { 
-    path: 'login', 
-    component: LoginComponent
-  },
+  
   {
     path: '',
     redirectTo: 'login',
     pathMatch: 'full'
   },
-  { path: '**', redirectTo: 'login' },
+//  { path: '**', redirectTo: 'login' },
 ];
 
 @NgModule({

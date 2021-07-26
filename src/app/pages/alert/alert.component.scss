@@ -16,6 +16,7 @@
     display: grid;
     grid-template-columns: 40% 60%;
     border-bottom: 3px solid #f5f6f9;
+    padding-left: 10px;
 }
 .alert1 {
     display: grid;
@@ -23,7 +24,7 @@
 }
 .alert2 {
     display: grid;
-    grid-template-columns: 70% 15%;
+    grid-template-columns: 60% 40%;
 }
 .title {
     margin-top: 10px;

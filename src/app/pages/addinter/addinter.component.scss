@@ -232,7 +232,7 @@ input {
 }
 .infoinput1 input {
   width: 319px;
-  height: 30px;
+  height: 20px;
   background-color: #f5f6f9;
   border-radius: 1px;
   border: solid 1px #d8d8d8;
@@ -240,7 +240,7 @@ input {
 }
 .infoinput2 input {
   width: 147px;
-  height: 30px;
+  height: 20px;
   background-color: #f5f6f9;
   border-radius: 1px;
   border: solid 1px #d8d8d8;
@@ -465,7 +465,7 @@ input {
 }
 .contratinput2 input {
   width: 145px;
-  height: 30px;
+  height: 20px;
   background-color: #f5f6f9;
   border-radius: 1px;
   border: solid 1px #d8d8d8;
@@ -476,13 +476,13 @@ input {
 }
 select {
   width: 159px;
-  height: 34px;
+  height: 24px;
   margin-bottom: 10px;
   background-color: #f5f6f9;
   outline: none;
   color: black;
   border: 1px solid #d8d8d8;
-  padding: 5px;
+  padding: 0px;
   option {
       font-size: 14px;
       font-weight: normal;

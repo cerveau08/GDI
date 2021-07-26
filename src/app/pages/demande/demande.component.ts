@@ -4,6 +4,7 @@ import { DataService } from './../../service/data.service';
 import { Component, OnInit } from '@angular/core';
 import { ModalService } from 'src/app/_modal/modal.service';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -72,6 +73,7 @@ export class DemandeComponent implements OnInit {
   user
   constructor(private dataService: DataService,
     private modalService: ModalService, 
+    private router: Router,
     private pagerService: PaginationService, private otherService: OthersService
     ) { }
 
@@ -106,15 +108,12 @@ export class DemandeComponent implements OnInit {
 
   }
   onSubmit() {
-    // this.demandeForm.patchValue({
-    //   interimaire: this.currentUser.interimaire.id,
-    //   validateur: this.currentUser.manager.id,
-    // });
     console.log(this.demandeForm.value);
     this.otherService.addDemande(this.demandeForm.value).subscribe(
       data =>{
         console.log(data);
-        this.closeModal('custom-modal-8');
+        this.router.navigate(['accueil/demande'])
+        window.location.reload();
       },
       error =>{
         console.log(error);
@@ -129,6 +128,5 @@ export class DemandeComponent implements OnInit {
 
   closeModal(id: string) {
     this.modalService.close(id);
-    
   }
 }
