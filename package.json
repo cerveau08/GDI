@@ -23,7 +23,6 @@
     "@angular/platform-browser-dynamic": "~8.2.14",
     "@angular/router": "~8.2.14",
     "@clemox/ngx-file-saver": "^1.1.0",
-    "angular-ng-autocomplete": "^2.0.5",
     "apexcharts": "^3.25.0",
     "hammerjs": "^2.0.8",
     "multiple-date-picker": "^2.1.6",

@@ -68,7 +68,7 @@ import { YearPickerComponent } from './multidatepicker/year-picker-component/yea
 import { RegularDatepickerComponent } from './multidatepicker/regular-datepicker-component/regular-datepicker.component';
 import { PasswordResetModule } from './password-reset/password-reset.module';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
-import {AutocompleteLibModule} from 'angular-ng-autocomplete';
+import { DetailuserComponent } from './pages/detailuser/detailuser.component';
 
 @NgModule({
   declarations: [
@@ -117,6 +117,7 @@ import {AutocompleteLibModule} from 'angular-ng-autocomplete';
     MonthPickerComponent,
     YearPickerComponent,
     RegularDatepickerComponent,
+    DetailuserComponent,
   ],
   imports: [
     BrowserModule,
@@ -176,7 +177,6 @@ import {AutocompleteLibModule} from 'angular-ng-autocomplete';
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule,
-    AutocompleteLibModule,
     //AlertModule,
     PdfViewerModule,
     NgCircleProgressModule.forRoot({}),

@@ -1,0 +1,162 @@
+<div class="all-container">
+    <div class="compte">
+        <div class="content-header">
+            <div class="content-details">
+                <p class="detail">Détails</p>
+            </div>
+            <div class="content-buttons-modifier">
+                <button *ngIf="etat == 'actif'" (click)="modifierInter()" class="button-modifier">Modifier</button>
+                <div *ngIf="etat == 'En attente'">
+                    <button *ngIf="role == 'DRH'" (click)="openModal('custom-modal-8')" class="button-modifier">Valider</button>
+                </div>
+            </div>
+        </div>
+        <div class="progres">
+            <p class="duree">Contrat <span>5 mois ( 35 jours</span> restant )</p>
+            <div class="bar">
+                <div id="progress_bar">
+                    <div id="green_bar" [style.width]="getwidth()">&nbsp;</div>
+                </div>
+                <div class="position" [style.left]="getposition()">
+                </div>
+            </div>
+            <div class="date">
+                <p class="datedebut">12 Dec 2020</p>
+                <p class="datefin">25 Aou 2021</p>
+            </div>
+        </div>
+        <div class="grid-container" *ngIf="item">
+            <div class="image">
+                <div class="ima">
+                    <img class="image-interimaire"  src="{{photo}}" alt="photo">
+                   
+                    <p class="prenom">{{dataInter?.prenom}} {{dataInter?.nom}}</p>
+                    <p class="fonction">{{dataInter?.profil}}</p>
+                </div>
+            </div>
+            <div class="info">
+                <div class="lot1">
+                    <p class="key">Numéro CNI: <span class="value">{{dataInter?.numeroPiece}}</span> </p>
+                    <p class="key">Email: <span class="value">{{dataInter?.datedenaissance}}</span> </p>
+                    <p class="key">Téléphone: <span class="value">{{dataInter?.lieudenaissance}}</span> </p>
+                    <p class="key">Fonction: <span class="value">{{dataInter?.sexe}}</span> </p>
+                </div>
+                <!--<div class="lot">
+                    <p class="lot2">Catégorie: <span class="value">{{dataInter?.categorie.libelle}}</span> </p>
+                    <p class="key">Agence Interim: <span class="value">{{dataInter?.agence.nom}}</span> </p>
+                    <p class="key">Société: <span class="value">{{dataInter?.structure.libelle}}</span> </p>
+                    <p class="key">Direction: <span class="value">{{dataInter?.structure.direction?.libelle}}</span> </p>
+                    <p class="key">Département: <span class="value">{{dataInter?.structure.departement}}</span> </p>
+                    <p class="key">Service: <span class="value">{{dataInter?.structure.service}}</span> </p>
+                </div>-->
+            </div>
+        </div>
+        <div class="lesbouton">
+            <button class="button1" (click)="openModal('custom-modal-1')">Modifier</button>
+            <button *ngIf="role == 'DRH'" class="button8" (click)="openModal('custom-modal-7')">Bloquer Interimaire</button>
+        </div>
+    </div>
+</div>
+<!--modal1-->
+<div class="modal">
+    <jw-modal id="custom-modal-1">
+        <div class="tableau">
+            <mat-icon style="cursor: pointer;" (click)="closeModal('custom-modal-1');" class="clear">clear</mat-icon>
+            <p class="dtl1">contrat de {{prenom}} {{nom}}</p>
+            <!-- <ngx-doc-viewer 
+               [url]="contratDoc" 
+               [viewer]="viewer" 
+               style="width:100%;height:70vh;">
+            </ngx-doc-viewer> -->
+            <pdf-viewer [src]="contratDoc"
+              [render-text]="true"
+              [autoresize]="true"
+              [original-size]="false"
+            ></pdf-viewer>
+            <div class="btns2">
+              <button (click)="getContrat()"  class="btn2">Télécharger</button>
+            </div>
+        </div>
+    </jw-modal>
+</div>
+
+
+<!--modal7-->
+<div class="modal">
+    <jw-modal id="custom-modal-7">
+        <div class="tableau">
+            <mat-icon style="cursor: pointer;" (click)="closeModal('custom-modal-7');" class="clear">clear</mat-icon>
+            <p class="dtl1">Bannir {{prenom}} {{nom}}</p>
+            <p class="text-droit">
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
+                Doloribus harum sapiente a voluptatum inventore consectetur 
+                in ipsa explicabo est nulla at tempora doloremque eaque 
+                veritatis consequuntur necessitatibus, eligendi recusandae quia!
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                Laudantium molestiae alias dolores suscipit at voluptatibus
+                reiciendis doloremque voluptate nemo quae unde deserunt temporibus 
+                exercitationem aperiam, corporis recusandae incidunt ratione maxime?
+            </p>
+            <p class="text-droit">
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
+                Doloribus harum sapiente a voluptatum inventore consectetur 
+                in ipsa explicabo est nulla at tempora doloremque eaque 
+                veritatis consequuntur necessitatibus, eligendi recusandae quia!
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                Laudantium molestiae alias dolores suscipit at voluptatibus
+                reiciendis doloremque voluptate nemo quae unde deserunt temporibus 
+                exercitationem aperiam, corporis recusandae incidunt ratione maxime?
+            </p>
+            <div class="content-motif">
+                <p class="libelle-motif">Motif pour Bannir {{prenom}} {{nom}}</p>
+                <textarea class="textarea-motif" name="motif"  placeholder="Motif de Bannir l'intérimaire"></textarea>
+            </div>
+            <div class="btns3">
+                <button (click)="arretContrat()"  class="button8">Bannir</button>
+            </div>
+        </div>
+    </jw-modal>
+</div>
+
+<!--modal 8-->
+<div class="modal">
+    <jw-modal id="custom-modal-8">
+        <form [formGroup]="validerForm">
+            <div class="tableau">
+                <mat-icon style="cursor: pointer;" (click)="closeModal('custom-modal-8');" class="clear">clear</mat-icon>
+                <p class="dtl1">Valider Création {{prenom}} {{nom}} en tant  qu'intérimaire</p>
+                <p class="text-droit">
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
+                    Doloribus harum sapiente a voluptatum inventore consectetur 
+                    in ipsa explicabo est nulla at tempora doloremque eaque 
+                    veritatis consequuntur necessitatibus, eligendi recusandae quia!
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                    Laudantium molestiae alias dolores suscipit at voluptatibus
+                    reiciendis doloremque voluptate nemo quae unde deserunt temporibus 
+                    exercitationem aperiam, corporis recusandae incidunt ratione maxime?
+                </p>
+                <p class="text-droit">
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
+                    Doloribus harum sapiente a voluptatum inventore consectetur 
+                    in ipsa explicabo est nulla at tempora doloremque eaque 
+                    veritatis consequuntur necessitatibus, eligendi recusandae quia!
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                    Laudantium molestiae alias dolores suscipit at voluptatibus
+                    reiciendis doloremque voluptate nemo quae unde deserunt temporibus 
+                    exercitationem aperiam, corporis recusandae incidunt ratione maxime?
+                </p>
+                <div class="input-v">
+                    <p class="libelle-motif">Matricule</p>
+                    <input class="input-valider" type="text" formControlName="matricule" placeholder="Matricule">
+                </div>
+                <div class="input-v">
+                    <p class="libelle-motif">Email</p>
+                    <input class="input-valider" type="text" formControlName="email" placeholder="Email">
+                </div>
+                <div class="btns3">
+                    <button (click)="validerInterimaire() "  class="button5">Valider</button>
+                </div>
+            </div>
+        </form>
+    </jw-modal>
+</div>

@@ -52,12 +52,12 @@
         <p class="utilisateur">Liste des utilisateurs</p>
         <div class="users" >
             <div class="user1" *ngFor="let p of userAgence | slice:0:2;">
-                <div class="photo1">
+                <div (click)="openDetail(p.id)" class="photo1">
                     <img src="{{p.avatar}}" alt="">
                 </div>
                 <div class="profil">
-                    <p class="profil1">{{p?.nom}}</p>
-                    <p class="profil2">{{p?.prenom}}</p>
+                    <p (click)="openDetail(p.id)" class="profil1">{{p?.nom}}</p>
+                    <p (click)="openDetail(p.id)" class="profil2">{{p?.prenom}}</p>
                 </div>
             </div>
         </div>
