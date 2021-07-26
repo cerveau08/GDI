@@ -33,7 +33,9 @@ export class AgenceComponent implements OnInit {
   nom;
   id;
   responsable;
-  numdg;
+  numerodg;
+  fixe;
+  agence;
   email;
   telephone;
   contratDoc;
@@ -48,7 +50,6 @@ export class AgenceComponent implements OnInit {
   total;
   actifs;
   cnidg;
-  numerodg;
   inactifs;
   viewer = 'google';
   DemoDoc1="https://file-examples.com/wp-content/uploads/2017/02/file-sample_100kB.doc"
@@ -109,7 +110,7 @@ export class AgenceComponent implements OnInit {
         this.logo = this.dataAgence.data.logo;
         this.contrat = this.dataAgence.data.contrat;
         this.cnidg = this.dataAgence.data.data.cnidg;
-        this.numerodg = this.dataAgence.data.data.cnidg;
+        this.numerodg = this.dataAgence.data.data.numerodg;
         this.userAgence = this.dataAgence.data['user'];
         console.log(this.userAgence);
         

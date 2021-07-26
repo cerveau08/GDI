@@ -18,7 +18,6 @@ export class AddinterComponent implements OnInit {
   typePieceSearch;
   numeroPieceSearch;
   submited = false;
-  matricule = "Tmp_02568";
   url1="../assets/images/default.png";
   url2="../assets/images/default.png";
   url3="../assets/images/default.png";
@@ -341,15 +340,10 @@ export class AddinterComponent implements OnInit {
     if(this.fichierdiplome3 != undefined) {
       formdata.append("fileDiplome[]",this.fichierdiplome3);
     }
-  //  formdata.append("matriculeManager",this.interForm.value.matriculeManager);
     console.log(this.interForm.value);
     this.otherService.addInter(formdata).subscribe(
       data => {
         console.log(data);
-        // if (data) {
-        //     // alert('Intérimaire ajouté avec succées...');
-       // this.route.navigate(['/accueil/souscontrat']);
-        // }
      
         if(data.success == true) {
           this.submited = true;
