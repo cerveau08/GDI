@@ -18,7 +18,6 @@ export class AddinterComponent implements OnInit {
   typePieceSearch;
   numeroPieceSearch;
   submited = false;
-  matricule = "Tmp_02568";
   url1="../assets/images/default.png";
   url2="../assets/images/default.png";
   url3="../assets/images/default.png";
@@ -349,6 +348,7 @@ export class AddinterComponent implements OnInit {
     this.otherService.addInter(formdata).subscribe(
       data => {
         console.log(data);
+     
         if(data.success == true) {
           this.submited = true;
 

@@ -94,6 +94,7 @@ export class ListeragenceComponent implements OnInit {
     info.append("numdg",value.numdg);
     info.append("email",value.email);
     info.append("mobile",value.mobile);
+    info.append("telephone",value.telephone);
     info.append("fixe",value.fixe);
     info.append("siteweb",value.siteweb);
     info.append("adresse",value.adresse);

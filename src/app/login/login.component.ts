@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
   public loading = false;
   loginForm: FormGroup;
   dataLogin;
+  errorMsg: string;
   statusLogin;
   constructor(private route: Router,
               private auth: AuthService) {
@@ -54,7 +55,8 @@ export class LoginComponent implements OnInit {
         }
 
       }, error => {
-        this.loading = false;
+        this.errorMsg = 'Login ou Password incorrect';
+        console.log(error);
       }
     )
   }
