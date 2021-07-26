@@ -26,7 +26,7 @@
                             <div [style.border]="borderfilter1" id="filter-annee" class="filtrer-annees">
                                 <mat-icon [style.color]="colorfilter1" id="icon-calendar-annee"  class="icone-calendar1" fontSet="material-icons-outlined">date_range</mat-icon>
                                 <select class="select-mois" #lAnnee (change)='dateSelectionner(lAnnee.value)'>
-                                    <option class="option" value="" disabled selected hidden>2021</option>
+                                    <option class="option" value="" disabled selected hidden>Annee</option>
                                     <option *ngFor="let p of diagram1" class="option" [value]="p.mois">{{p.annee}}</option>
                                 </select>
                             </div>
