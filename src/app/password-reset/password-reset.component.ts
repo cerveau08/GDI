@@ -1,6 +1,6 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { OthersService } from '../services/others.service';
 
 @Component({
@@ -13,7 +13,10 @@ export class PasswordResetComponent implements OnInit {
   loginForm: FormGroup;
   successMsg= null;
   errors= null;
+  resetToken
+  token;
   constructor(
+              private route: ActivatedRoute,
               private formBuilder: FormBuilder,
               private router: Router,
               private otherService: OthersService) {
@@ -30,19 +33,23 @@ export class PasswordResetComponent implements OnInit {
         console.log(this.scrHeight, this.scrWidth);
   }
   ngOnInit() {
+    this.token = this.route.snapshot.queryParams['token'];
     this.loginForm = this.formBuilder.group({
-      newpassword: ['', [Validators.required]],
-      confirmpassword: ['', [Validators.required]],
+      password: ['', [Validators.required]],
+      plainPassword: ['', [Validators.required]]
     }); 
   }
   onSubmit() {
-    this.otherService.nouveauPassword(this.loginForm.value).subscribe(
+    this.otherService.resetPassword(this.token, this.loginForm.value).subscribe(
       (result) => {
         this.successMsg = result;
         console.log(result);
-        this.router.navigate(['login']);
+        if (this.successMsg.status == true) {
+          this.router.navigate(['login']);
+        }
       }, (error) => {
         this.errors = error.error.message;
-      });
+      }
+    );
   }
 }

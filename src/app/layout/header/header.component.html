@@ -100,6 +100,9 @@
                         <input class="input4" type="text" formControlName="poste" placeholder="Poste">
                       </div>
                     </div>
+                    <div class="content-error-msg" *ngIf="successRequest == false">
+                      <p class="error-alert">{{messageError}}</p>
+                    </div>
                     <div class="boutonsea">
                         <button (click)="onSubmit()" class="buttonsea">Rechercher</button>
                     </div>

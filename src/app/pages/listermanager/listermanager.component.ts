@@ -60,7 +60,7 @@ gty(page: any){
 }
 
   openDetail(data) {
-    this.router.navigate(['/accueil/manager'], {
+    this.router.navigate(['/accueil/detailmanager'], {
       queryParams: {
         user: JSON.stringify(data.id)
       }

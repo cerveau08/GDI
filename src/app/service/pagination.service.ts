@@ -126,12 +126,14 @@ export class PaginationService {
           title: 'Ajouter',  path: 'ajoutermanager',
         },
       ]
-    }, {
-      id: 4,  title: 'Présence',
-      icon: "done_all", path: 'presence',   
-    }, {
+    }
+    // , {
+    //   id: 4,  title: 'Présence',
+    //   icon: "done_all", path: 'presence',   
+    // }
+    , {
       id: 4,  title: 'Liste Attestations',
-      path: 'attestation',  icon: "grade",
+      path: 'attestation',  icon: "done_all",
     },{
       id: 5,  title: 'Demandes',
       path: 'lesdemande',  icon: "local_mall",
@@ -171,12 +173,14 @@ export class PaginationService {
         id: 4,  title: 'Ajouter',  path: 'addinter',
       },
       ]
-    }, {
-      id: 4,  title: 'Présence',
-      icon: "done_all", path: 'presence',   
-    }, {
+    }
+    // , {
+    //   id: 4,  title: 'Présence',
+    //   icon: "done_all", path: 'presence',   
+    // }
+    , {
       id: 4,  title: 'Liste Attestations',
-      path: 'attestation',  icon: "grade",
+      path: 'attestation',  icon: "done_all",
     },{
       id: 5,  title: 'Demandes',
       path: 'lesdemande',  icon: "local_mall",
@@ -214,12 +218,14 @@ export class PaginationService {
     },{
       id: 3,  title: 'Agence d\'interim',
       icon: "local_mall",  path: 'listagence',
-    }, {
-      id: 4,  title: 'Présence',
-      icon: "done_all", path: 'presence',   
-    }, {
+    }
+    // , {
+    //   id: 4,  title: 'Présence',
+    //   icon: "done_all", path: 'presence',   
+    // }
+    , {
       id: 4,  title: 'Liste Attestations',
-      path: 'attestation',  icon: "grade",
+      path: 'attestation',  icon: "done_all",
     },{
       id: 5,  title: 'Demandes',
       path: 'lesdemande',  icon: "local_mall",

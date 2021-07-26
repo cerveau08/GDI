@@ -82,21 +82,25 @@ export class AddagenceComponent implements OnInit {
   getCnidg(e: any) {
     console.log('getCnidg');
     this.cnidg= e.files.item(0);
+    this.filename5 = this.cnidg.name;
     console.log(this.cnidg)
   }
   getContrat(e: any) {
     console.log('getContrat');
     this.contrat= e.files.item(0);
+    this.filename4 = this.contrat.name;
     console.log(this.contrat)
   }
   getNinea(e: any) {
     console.log('getNinea');
     this.ninea= e.files.item(0);
+    this.filename2 = this.ninea.name;
     console.log(this.ninea)
   }
   getRccm(e: any) {
     console.log('getRccm');
     this.rccm= e.files.item(0);
+    this.filename3 = this.rccm.name;
     console.log(this.rccm)
   }
 

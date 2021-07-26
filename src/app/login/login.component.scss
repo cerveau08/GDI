@@ -114,7 +114,7 @@
   font-family: bold;
   display: inline-block;
   font-size: 16px;
-  margin: 30px 50px;
+  margin: 15px 50px;
   cursor: pointer;
   outline: none;
 }
@@ -199,8 +199,17 @@
 }
  
 .forget-mobile {
+  cursor: pointer;
   outline: none;
   margin: 20px 30px;
+}
+.content-error-msg{
+  width: 300px;
+  margin-left: 50px;
+}
+.error-alert{
+  color: #ff0000;
+  font-size: 12px;
 }
 @media (min-width: 680px) and (max-width: 991px) {
  /*

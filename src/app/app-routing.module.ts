@@ -41,6 +41,26 @@ import { PasswordResetComponent } from './password-reset/password-reset.componen
 
 
 const routes: Routes = [
+  { 
+    path: 'passwordforgetmail', 
+    component: PasswordforgetMailComponent
+  },
+  { 
+    path: 'passwordforget', 
+    component: PasswordforgetComponent
+  },
+  { path: 'passwordreset', 
+  loadChildren: () => import('src/app/password-reset/password-reset.module').then(m => m.PasswordResetModule) },
+  // { path: 'passwordreset', 
+  // loadChildren: 'app/password-reset/password-reset.module#PasswordResetModule' },
+  // { 
+  //   path: 'passwordreset', 
+  //   component: PasswordResetComponent
+  // },
+  { 
+    path: 'login', 
+    component: LoginComponent
+  },
   {
     path: 'accueil',
     component: DefaultComponent,
@@ -182,28 +202,13 @@ const routes: Routes = [
       { path: '**', redirectTo: 'accueil/home' },
     ]
   },
-  { 
-    path: 'passwordforgetmail', 
-    component: PasswordforgetMailComponent
-  },
-  { 
-    path: 'passwordforget', 
-    component: PasswordforgetComponent
-  },
-  { 
-    path: 'passwordreset', 
-    component: PasswordResetComponent
-  },
-  { 
-    path: 'login', 
-    component: LoginComponent
-  },
+  
   {
     path: '',
     redirectTo: 'login',
     pathMatch: 'full'
   },
-  { path: '**', redirectTo: 'login' },
+//  { path: '**', redirectTo: 'login' },
 ];
 
 @NgModule({

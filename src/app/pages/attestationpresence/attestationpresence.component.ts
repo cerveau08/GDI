@@ -11,28 +11,57 @@ import { environment } from 'src/environments/environment';
 })
 export class AttestationpresenceComponent implements OnInit {
 
+  checkedList:any;
+  selectedAll: any;
+  result;
   datas: any;
   filterterm: string;
   dataAttest: any;
   page = 1;
-  itemsPerPage = 3;
+  itemsPerPage = 10;
   totalItems : any;
+  user;
   public reqUrl = environment.base_url;
   constructor(private dataService: DataService,
               private http: HttpClient,
               private otherService: OthersService) { }
 
   ngOnInit() {
-
-  this.gty(this.page);
+    this.user = localStorage.getItem('user');
+    this.gty(this.page);
   }
   gty(page: any){
-    this.http.get(this.reqUrl + `/listeAttestationByMonth?page=${page}&size=${this.itemsPerPage}`).subscribe((data: any) => {
-      this.dataAttest =  data.data;
-      this.totalItems = data.total;
-      console.log(this.dataAttest);
-      console.log(this.totalItems);
-      
+    this.http.get(this.reqUrl + `/listeAttestationByMonth?page=${page}&size=${this.itemsPerPage}`).subscribe((data: any) => 
+      this.dataAttest =  data.data[0]
+    )
+  }
+  selectAll() {
+    for (var i = 0; i < this.dataAttest.length; i++) {
+      this.dataAttest[i].etat = this.selectedAll;
+    }
+    this.getCheckedItemList();
+  }
+  checkIfAllSelected(event) {
+    this.selectedAll = this.dataAttest.every(function(item:any) {
+      return item.etat == 0;
     })
+    this.getCheckedItemList();
+  }
+  getCheckedItemList() {
+    console.log(this.dataAttest);
+    this.checkedList = [];
+    for (var i = 0; i < this.dataAttest.length; i++) {
+      if(this.dataAttest[i].etat) {
+        this.checkedList.push(this.dataAttest[i]);
+        this.http.get(`${this.reqUrl}/validerAttestation/${this.dataAttest[i].id}`).subscribe(
+          data => {
+            this.result = data;
+            console.log(data);
+          }
+        )
+      }
+    }
+    this.checkedList = this.checkedList;
+    console.log(this.checkedList);
   }
 }
