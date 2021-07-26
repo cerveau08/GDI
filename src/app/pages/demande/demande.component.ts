@@ -39,7 +39,7 @@ export class DemandeComponent implements OnInit {
   currentUser;
   public datas: any;
   // pager object
-  pager: any = {};
+  //pager: any = {};
   filterterm: string;
   dataDemande;
   pagedItems: any[];
@@ -93,13 +93,7 @@ export class DemandeComponent implements OnInit {
     } else {
       this.showHome = true;
     }
-    //this.datas = this.dataService.getData();
-   this.otherService.getListDemandes().subscribe(
-     data => {
-       this.datas = data.data;
-       console.log(data);
-     }
-   )
+   
      this.otherService.getTypeDemande().subscribe(
      data => {
        this.demandes = data.data;
@@ -116,7 +110,6 @@ export class DemandeComponent implements OnInit {
     this.gty(this.page);
   }
 
-  
   gty(page: any){
     this.http.get(this.reqUrl + `/lesdemande?page=${page}&limit=${this.itemsPerPage}`).subscribe((data: any) => {
       this.dataDemande =  data.data;
