@@ -45,7 +45,11 @@
                     </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let p of datas | filter:filterterm | paginate: { itemsPerPage: 8, currentPage: p }; let i = index">
+                        <tr *ngFor="let p of dataDemande | filter:filterterm | paginate: { 
+                            itemsPerPage: itemsPerPage,
+                            currentPage: page,
+                            totalItems: totalItems
+                            }; let i = index">
                             <td class="id1">{{p.id}}</td>
                             <td>{{p.typeDemande}}</td>
                             <td>{{p.etat}}</td>
@@ -55,7 +59,7 @@
                     </tbody>
                     
                 </table>
-                <pagination-controls (pageChange)="p = $event" previousLabel="Prcédent" nextLabel="Suivant"></pagination-controls>
+                <pagination-controls (pageChange)="gty(page = $event)" previousLabel="Prcédent" nextLabel="Suivant"></pagination-controls>
             </div>
     </div>
 </div>

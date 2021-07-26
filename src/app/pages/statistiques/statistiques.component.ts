@@ -1,3 +1,4 @@
+import { OthersService } from 'src/app/services/others.service';
 import { Component, HostListener, OnInit } from '@angular/core';
 import { ApexAxisChartSeries, ApexChart, ApexDataLabels, ApexFill, ApexLegend, ApexPlotOptions, ApexResponsive, ApexXAxis, ApexYAxis, ChartComponent } from 'ng-apexcharts';
 import { DataService } from 'src/app/service/data.service';
@@ -692,7 +693,8 @@ export class StatistiquesComponent implements OnInit {
   scrWidth:any;
   item;
   dates;
-  dataStat: any;
+  dataStatEffectifAnnee: any;
+  dataStatistique;
   /*@ViewChild("chart")*/ chart: ChartComponent;
   public chartOptions: Partial<ChartOptions>;
   public chartOptions2: Partial<ChartOptions>;
@@ -701,9 +703,10 @@ export class StatistiquesComponent implements OnInit {
   public chartOptions5: Partial<ChartOptions>;
   public chartOptions6: Partial<ChartOptions>;
   public chartOptions7: Partial<ChartOptions>;
-  constructor(private dataService: DataService,) {
+  constructor(private dataService: DataService,
+              private otherService: OthersService) {
     this.getScreenSize();
-    this.dataStat = this.dataService.getDataStatistique();
+  //  this.dataStat = this.dataService.getDataStatistique();
   }
   @HostListener('window:resize', ['$event'])
   getScreenSize(event?) {
@@ -729,8 +732,27 @@ export class StatistiquesComponent implements OnInit {
     this.serviceSelectionnerPresence(this.item);
     this.dateSelectionnerAgence(this.item);
     this.serviceSelectionnerAgence(this.item);
+
+    //stat des interimaires par annees
+    this.functiondataStatEffectifAnnee()
+  }
+
+  //stats des interimaires par mois
+  statInterMonth(value) {
+    console.log(value);
+    this.otherService.statInterByMonth(value).subscribe(
+      data => {
+        this.dataStatistique = data['data'];
+       console.log(data);
+       }
+    ); 
+  }
+  functiondataStatEffectifAnnee() {
+    this.otherService.statInterByYear().subscribe(
+      data => this.dataStatEffectifAnnee = data['data'][0]);
   }
   dateSelectionner(value){
+    console.log(this.dataStatEffectifAnnee);
     this.axex = this.diagram1.map(valueOfDirection => valueOfDirection.annee);
     this.nouveau = this.diagram1.map(valueOfNouveau => valueOfNouveau.nouveau);
     this.fini = this.diagram1.map(valueOfFini => valueOfFini.fini);
