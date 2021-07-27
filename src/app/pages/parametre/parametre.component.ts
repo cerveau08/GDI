@@ -62,6 +62,7 @@ export class ParametreComponent implements OnInit {
     nomInt: "5"
   }];
   user;
+  successMsg;
   constructor(private dataService: DataService,
              private paginationService: PaginationService,
              private otherService: OthersService,
@@ -112,7 +113,12 @@ export class ParametreComponent implements OnInit {
       result => {
         //alert('Password has been updated');
         console.log(result);
-        this.passwordForm.reset();
+        this.datas = result;
+        this.successMsg = this.datas.success;
+        if(this.successMsg == true) {
+          this.passwordForm.reset();
+        }
+        
       },
       error => {
         this.handleError(error);

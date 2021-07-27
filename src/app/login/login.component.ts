@@ -15,11 +15,12 @@ export class LoginComponent implements OnInit {
   dataLogin;
   errorMsg: string;
   statusLogin;
-  scrHeight: number;
-  scrWidth: number;
+  scrHeight:any;
+  scrWidth:any;
   loading: boolean;
   constructor(private route: Router,
               private auth: AuthService) {
+                this.getScreenSize()
   }
 
   @HostListener('window:resize', ['$event'])
@@ -59,3 +60,4 @@ export class LoginComponent implements OnInit {
     )
   }
 }
+

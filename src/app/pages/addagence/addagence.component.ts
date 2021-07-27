@@ -1,6 +1,6 @@
 import { DataService } from './../../service/data.service';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { OthersService } from '../../services/others.service';
 import { from } from 'rxjs';
 import { Router } from '@angular/router';
@@ -32,6 +32,8 @@ export class AddagenceComponent implements OnInit {
   filename4 = "";
   filename5 = "";
   filenameUser = "";
+  data;
+  successMsg;
   constructor(private dataService: DataService,
               private route: Router,
               private otherService: OthersService ) { }
@@ -39,19 +41,25 @@ export class AddagenceComponent implements OnInit {
   
   ngOnInit() {
     this.infoForm = new FormGroup({
-      nom: new FormControl (''),
-      nomdg: new FormControl(''),
-      numdg: new FormControl (''),
-      email: new FormControl(''),
-      mobile: new FormControl (''),
+      nom: new FormControl ('', [
+        Validators.required,
+        Validators.pattern('^[a-zA-Z0-9_.+-]')
+      ]),
+      nomdg: new FormControl('', [
+        Validators.required,
+        Validators.pattern('^[a-zA-Z]')
+      ]),
+      numdg: new FormControl ('', Validators.required,),
+      email: new FormControl('', Validators.required,),
+      mobile: new FormControl ('', Validators.required,),
       fixe: new FormControl(''),
       siteweb: new FormControl (''),
       adresse: new FormControl(''),
-      logo: new FormControl (''),
-      ninea: new FormControl(''),
-      rccm: new FormControl (''),
-      cnidg: new FormControl(''),
-      contrat: new FormControl (''),
+      logo: new FormControl ('', Validators.required,),
+      ninea: new FormControl('', Validators.required,),
+      rccm: new FormControl ('', Validators.required,),
+      cnidg: new FormControl('', Validators.required,),
+      contrat: new FormControl ('', Validators.required,),
     });
   }
 
@@ -125,9 +133,12 @@ export class AddagenceComponent implements OnInit {
    this.otherService.addAgence(info).subscribe(
       data => {
         console.log(data);
-        if (data) {
-        this.route.navigate(['/accueil/listagence']);
+        this.data = data;
+        this.successMsg = this.data.status;
+        if (this.successMsg == true) {
+          this.route.navigate(['/accueil/listagence']);
         }
+        
       },
         error=> {
           this.errorMsg = 'Probleme de connexion au serveur';
