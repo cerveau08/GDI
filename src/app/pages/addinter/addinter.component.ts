@@ -101,7 +101,9 @@ export class AddinterComponent implements OnInit {
   colorc = "#000";
   color1 = "20px solid #ff7900"
   color2 = "20px solid #000"
-  color3 = "20px solid #000"
+  color3 = "20px solid #000";
+  listeFonction;
+  item;
   constructor(private fb: FormBuilder,
               private dataService: DataService,
               private otherService: OthersService,
@@ -114,11 +116,7 @@ export class AddinterComponent implements OnInit {
     { code: 'INF', name: 'infos' }
     ];
     
-    public saveCode(e): void {
-      let name = e.target.value;
-      let list = this.codeList.filter(x => x.name === name)[0];
-      console.log(list.code);
-    }
+    
   ngOnInit() {
     this.interForm = new FormGroup({
         numeroPiece: new FormControl(''),
@@ -172,12 +170,19 @@ export class AddinterComponent implements OnInit {
         console.log(data);
       }
     );
-     //recupere les domaines
-     this.otherService.getDomaine().subscribe(data => this.dataDomaine = data["data"]);
-     
+    this.otherService.getDomaine().subscribe(data => this.dataDomaine = data["data"]);
+  //  this.saveCode(this.item)
+  this.otherService.getFonctions().subscribe(
+    data => 
+      this.listeFonction = data.data)
     this.onChanges();
   }
-  
+  public saveCode(e): void {
+    let libelle = e.target.value;
+    let list = this.listeFonction.filter(x => x.libelle === libelle)[0];
+    console.log(list.libelle);
+    this.interForm.patchValue({profession: list.libelle});
+  }
   onChanges(): void {
     this.interForm.get('societeId').valueChanges.subscribe(val => {
       this.societeSearch = val;
@@ -190,15 +195,6 @@ export class AddinterComponent implements OnInit {
         });
       });
     });
-    
-    
-    const donneSearch = {
-      societeId: this.societeSearch,
-      typePiece: this.typePieceSearch,
-      numeroPiece: this.numeroPieceSearch,
-    }
-    console.log(donneSearch);
-    
   }
   rechercherInterimaire(piece, type, societe) {  
     const donneeSearch = {
@@ -206,8 +202,6 @@ export class AddinterComponent implements OnInit {
       typePiece: type,
       numeroPiece: piece
     }
-    console.log(donneeSearch);
-    
     this.otherService.pieceFilter(donneeSearch).subscribe(
       (response) => {
         console.log(response);

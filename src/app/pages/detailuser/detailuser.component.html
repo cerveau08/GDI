@@ -2,27 +2,7 @@
     <div class="compte">
         <div class="content-header">
             <div class="content-details">
-                <p class="detail">Détails</p>
-            </div>
-            <div class="content-buttons-modifier">
-                <button *ngIf="etat == 'actif'" (click)="modifierInter()" class="button-modifier">Modifier</button>
-                <div *ngIf="etat == 'En attente'">
-                    <button *ngIf="role == 'DRH'" (click)="openModal('custom-modal-8')" class="button-modifier">Valider</button>
-                </div>
-            </div>
-        </div>
-      <!--  <div class="progres">
-            <p class="duree">Contrat <span>5 mois ( 35 jours</span> restant )</p>
-            <div class="bar">
-                <div id="progress_bar">
-                    <div id="green_bar" [style.width]="getwidth()">&nbsp;</div>
-                </div>
-                <div class="position" [style.left]="getposition()">
-                </div>
-            </div>
-            <div class="date">
-                <p class="datedebut">12 Dec 2020</p>
-                <p class="datefin">25 Aou 2021</p>
+                <p class="detail">Détails Utilisateur</p>
             </div>
         </div>-->
         <div class="grid-container" *ngIf="item">
@@ -57,26 +37,35 @@
         </div>
     </div>
 </div>
-<!--modal1-->
+
+<!--modal 8-->
 <div class="modal">
     <jw-modal id="custom-modal-1">
-        <div class="tableau">
-            <mat-icon style="cursor: pointer;" (click)="closeModal('custom-modal-1');" class="clear">clear</mat-icon>
-            <p class="dtl1">contrat de {{prenom}} {{nom}}</p>
-            <!-- <ngx-doc-viewer 
-               [url]="contratDoc" 
-               [viewer]="viewer" 
-               style="width:100%;height:70vh;">
-            </ngx-doc-viewer> -->
-            <pdf-viewer [src]="contratDoc"
-              [render-text]="true"
-              [autoresize]="true"
-              [original-size]="false"
-            ></pdf-viewer>
-            <div class="btns2">
-              <button (click)="getContrat()"  class="btn2">Télécharger</button>
+        <form [formGroup]="validerForm">
+            <div class="tableau">
+                <mat-icon style="cursor: pointer;" (click)="closeModal('custom-modal-1');" class="clear">clear</mat-icon>
+                <p class="dtl1">Modifier Utilisateur</p>
+                <div class="input-v">
+                    <p class="libelle-motif">Matricule</p>
+                    <input class="input-valider" type="text" formControlName="matricule" placeholder="Matricule">
+                </div>
+                <div class="input-v">
+                    <p class="libelle-motif">Email</p>
+                    <input class="input-valider" type="text" formControlName="email" placeholder="Email">
+                </div>
+                <div class="input-v">
+                    <p class="libelle-motif">Matricule</p>
+                    <input class="input-valider" type="text" formControlName="matricule" placeholder="Matricule">
+                </div>
+                <div class="input-v">
+                    <p class="libelle-motif">Email</p>
+                    <input class="input-valider" type="text" formControlName="email" placeholder="Email">
+                </div>
+                <div class="btns3">
+                    <button (click)="validerInterimaire() "  class="button5">Valider</button>
+                </div>
             </div>
-        </div>
+        </form>
     </jw-modal>
 </div>
 
@@ -115,48 +104,5 @@
                 <button (click)="arretContrat()"  class="button8">Bloquer</button>
             </div>
         </div>
-    </jw-modal>
-</div>
-
-<!--modal 8-->
-<div class="modal">
-    <jw-modal id="custom-modal-8">
-        <form [formGroup]="validerForm">
-            <div class="tableau">
-                <mat-icon style="cursor: pointer;" (click)="closeModal('custom-modal-8');" class="clear">clear</mat-icon>
-                <p class="dtl1">Valider Création {{prenom}} {{nom}} en tant  qu'intérimaire</p>
-                <p class="text-droit">
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
-                    Doloribus harum sapiente a voluptatum inventore consectetur 
-                    in ipsa explicabo est nulla at tempora doloremque eaque 
-                    veritatis consequuntur necessitatibus, eligendi recusandae quia!
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                    Laudantium molestiae alias dolores suscipit at voluptatibus
-                    reiciendis doloremque voluptate nemo quae unde deserunt temporibus 
-                    exercitationem aperiam, corporis recusandae incidunt ratione maxime?
-                </p>
-                <p class="text-droit">
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
-                    Doloribus harum sapiente a voluptatum inventore consectetur 
-                    in ipsa explicabo est nulla at tempora doloremque eaque 
-                    veritatis consequuntur necessitatibus, eligendi recusandae quia!
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                    Laudantium molestiae alias dolores suscipit at voluptatibus
-                    reiciendis doloremque voluptate nemo quae unde deserunt temporibus 
-                    exercitationem aperiam, corporis recusandae incidunt ratione maxime?
-                </p>
-                <div class="input-v">
-                    <p class="libelle-motif">Matricule</p>
-                    <input class="input-valider" type="text" formControlName="matricule" placeholder="Matricule">
-                </div>
-                <div class="input-v">
-                    <p class="libelle-motif">Email</p>
-                    <input class="input-valider" type="text" formControlName="email" placeholder="Email">
-                </div>
-                <div class="btns3">
-                    <button (click)="validerInterimaire() "  class="button5">Valider</button>
-                </div>
-            </div>
-        </form>
     </jw-modal>
 </div>

@@ -18,15 +18,10 @@ export class DetailuserComponent implements OnInit {
 
   item: any;
   id: any;
-  public restant: any;
-  public nombre = 59;
   public left: any;
   donnees: any;
   dataUser:any;
-  dataContrat: any;
-  
-  viewer = 'google';  
-  selectedType = 'docx';   
+  dataContrat: any;  
   data;
   nom;
   prenom;
@@ -62,10 +57,7 @@ export class DetailuserComponent implements OnInit {
   public reqUrl = environment.base_url;
   constructor(private activeroute: ActivatedRoute,
               private modalService: ModalService,
-              private dataService: DataService,
               private otherService: OthersService,
-              private fileSaver: NgxFileSaverService,
-              private http: HttpClient,
               public router: Router, ) { 
     this.activeroute.queryParams.subscribe(params => {
       this.item = JSON.parse(params["user"]);
@@ -80,8 +72,6 @@ export class DetailuserComponent implements OnInit {
             this.email = this.dataUser.email;
             this.fonction = this.dataUser.fonction;
            this.telephone = this.dataUser.telephone;
-            //this.departement = this.dataUser.departement;
-            //this.service = this.dataUser.service;
             //this.agence = this.dataUser.agence;
             this.matricule = this.dataUser.matricule;
             this.photo = this.dataUser.photo;
@@ -91,14 +81,6 @@ export class DetailuserComponent implements OnInit {
         }
       );
     })
-
-    //detail d'un contrat
-  /*  this.otherService.getContratById(this.id).subscribe(
-      data =>{
-        this.data = data;
-        this.dataContrat = this.data.data;
-        console.log(this.dataContrat);
-      })*/
     
   }
   ngOnInit() {
@@ -124,12 +106,6 @@ export class DetailuserComponent implements OnInit {
         console.log(data);
       }
     );
-   // this.otherService.getAllCategorie().subscribe(
-    //  data => {
-    //    this.dataCategorie = data["data"];
-    //    console.log(data);
-    //  }
-   // );
     this.arretForm = new FormGroup({
       motif: new FormControl(''),
     });
@@ -168,34 +144,12 @@ export class DetailuserComponent implements OnInit {
     ); 
   }
 
-  public get(p) {
-    this.fileSaver.saveUrl(p.pathfile, p.file);
-  }
-  
-  getwidth() {
-    this.restant = this.nombre + "%";
-    return this.restant;
-  }
-  getposition() {
-    let left1 = this.nombre - 1;
-    this.left = left1 + "%";
-    return this.left;
-  }
-
   openModal(id: string) {
     this.modalService.open(id);
   }
 
   closeModal(id: string) {
     this.modalService.close(id);
-  }
-
-  modifierInter() {
-    this.router.navigate(['accueil/modifierinter'], {
-      queryParams: {
-        user: JSON.stringify(this.item)
-      }
-    })
   }
   
   

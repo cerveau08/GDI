@@ -69,6 +69,7 @@ import { RegularDatepickerComponent } from './multidatepicker/regular-datepicker
 import { PasswordResetModule } from './password-reset/password-reset.module';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { DetailuserComponent } from './pages/detailuser/detailuser.component';
+import { ErrorInterceptor } from './helpers/error.interceptor';
 import { ListuserComponent } from './pages/listuser/listuser.component';
 
 @NgModule({
@@ -187,7 +188,8 @@ import { ListuserComponent } from './pages/listuser/listuser.component';
   ],
   providers: [DatePipe,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorService, multi: true },
-    {provide: LocationStrategy, useClass: HashLocationStrategy}
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    {provide: LocationStrategy, useClass: HashLocationStrategy},
   ],
   bootstrap: [AppComponent]
 })
