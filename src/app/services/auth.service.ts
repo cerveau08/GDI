@@ -20,16 +20,14 @@ export class AuthService {
     this.currentUser = this.currentUserSubject.asObservable();
   }
 
-  login(user): Observable<any>{
-    return this.http.post(`${this.url}/login_check`, user)
+  login(data): Observable<any>{
+    return this.http.post(`${this.url}/login_check`, data)
     .pipe(map(user => {
-      // store user details and jwt token in local storage
-      //to keep user logged in between page refreshes
       localStorage.setItem('currentUser', JSON.stringify(user));
       this.currentUserSubject.next(user);
       console.log(user);
       return user;
-  })); 
+    })); 
   }
   public get currentUserValue() {
     return this.currentUserSubject.value;
@@ -37,15 +35,10 @@ export class AuthService {
 
   logout() {
     // remove user from local storage and set current user to null
-    localStorage.removeItem('user');
-    localStorage.removeItem('prenom');
-    localStorage.removeItem('token');
-    localStorage.removeItem('color1');
-    localStorage.removeItem('color2');
-    localStorage.removeItem('color3');
-    localStorage.removeItem('colora');
-    localStorage.removeItem('colorb');
-    localStorage.removeItem('colorc');
+    // localStorage.removeItem('user');
+    // localStorage.removeItem('prenom');
+    // localStorage.removeItem('token');
+    localStorage.clear();
     this.currentUserSubject.next(null);
     this.router.navigate(['/login']);
 }

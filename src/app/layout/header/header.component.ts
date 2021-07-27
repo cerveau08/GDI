@@ -95,13 +95,13 @@ export class HeaderComponent implements OnInit {
       prenom: this.demandeForm.value.prenom,
       nom: this.demandeForm.value.nom,
       email: this.demandeForm.value.email,
-      // matricule: this.demandeForm.value.matricule,
-      // direction: this.demandeForm.value.direction,
-      // departement: this.demandeForm.value.departement,
-      // service: this.demandeForm.value.service,
-      // agence: this.demandeForm.value.agence,
-      // annee: this.demandeForm.value.annee,
-      // poste: this.demandeForm.value.poste,
+      matricule: this.demandeForm.value.matricule,
+      direction: this.demandeForm.value.direction,
+      departement: this.demandeForm.value.departement,
+      service: this.demandeForm.value.service,
+      agence: this.demandeForm.value.agence,
+      annee: this.demandeForm.value.annee,
+      poste: this.demandeForm.value.poste,
     }
     console.log(info);
     this.otherService.rechercheAvance(info).subscribe(
@@ -128,12 +128,6 @@ export class HeaderComponent implements OnInit {
     localStorage.removeItem('user');
     localStorage.removeItem('prenom');
     localStorage.removeItem('token');
-    localStorage.removeItem('color1');
-    localStorage.removeItem('color2');
-    localStorage.removeItem('color3');
-    localStorage.removeItem('colora');
-    localStorage.removeItem('colorb');
-    localStorage.removeItem('colorc');
     this.authService.logout();
   }
   updown(item) {

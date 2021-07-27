@@ -63,6 +63,12 @@
                             <input type="text" formControlName="telephone" placeholder="Telephone"> 
                             <input class="input3" type="text" formControlName="universite" placeholder="Université ou Ecole">
                           </div>
+                          <div class="infoinput1">
+                            <input type="text"  list="codes" formControlName="profession" placeholder="Votre Profession" [(ngModel)]="profession" (change)="saveCode($event)">
+                            <datalist id="codes">
+                              <option *ngFor="let c of listeFonction" [value]="c.libelle" >{{c.libelle}}</option>
+                            </datalist>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -130,35 +136,8 @@
                         </div>
                         <div class="contratinput2">
                           <input type="text" formControlName="poste" placeholder="Titre du Poste">
-                          <!-- <input type="text"
-                                placeholder="Search for a street"
-                                formControlName="poste"
-                                [matAutocomplete]="auto">
-                          <mat-autocomplete #auto="matAutocomplete">
-                            <mat-option *ngFor="let street of filteredStreets | async" [value]="street">
-                              {{street}}
-                            </mat-option>
-                          </mat-autocomplete> -->
-                          
                           <input class="input3" type="date" formControlName="dateSignature" placeholder="Date de Signature">
                         </div>
-                        <!-- <mat-form-field>
-                          <input type="text" matInput formControlName="profession"
-                               [matAutocomplete]="auto">
-                             <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-                               <mat-option *ngFor="let option of professionsMap" [value]="option">
-                                 {{option}}
-                              </mat-option>
-                          </mat-autocomplete>
-                       </mat-form-field> -->
-                        <div class="infoinput1">
-                          <input type="text"  list="codes" formControlName="profession" placeholder="Votre Profession" [(ngModel)]="profession" (change)="saveCode($event)">
-                          <datalist id="codes">
-                            <option *ngFor="let c of codeList" [value]="c.name" >{{c.name}}</option>
-                          </datalist>
-                          <!-- <input type="text" formControlName="profession" placeholder="Votre Profession"> -->
-                        </div>
-                        
                     </div>
                     </div>
                   </div>
