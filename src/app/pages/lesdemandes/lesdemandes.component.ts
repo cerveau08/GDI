@@ -69,7 +69,6 @@ export class LesdemandesComponent implements OnInit {
  
   getDemandes() {
     this.otherService.getListDemandes().subscribe(
-    //  data => this.dd = data.data
     data => {
       console.log(data);
       this.dd = data.data
