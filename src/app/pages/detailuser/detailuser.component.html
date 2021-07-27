@@ -45,7 +45,14 @@
             <div class="tableau">
                 <mat-icon style="cursor: pointer;" (click)="closeModal('custom-modal-1');" class="clear">clear</mat-icon>
                 <p class="dtl1">Modifier Utilisateur</p>
-                
+                <div class="input-v">
+                    <p class="libelle-motif">Matricule</p>
+                    <input class="input-valider" type="text" formControlName="matricule" placeholder="Matricule">
+                </div>
+                <div class="input-v">
+                    <p class="libelle-motif">Email</p>
+                    <input class="input-valider" type="text" formControlName="email" placeholder="Email">
+                </div>
                 <div class="input-v">
                     <p class="libelle-motif">Matricule</p>
                     <input class="input-valider" type="text" formControlName="matricule" placeholder="Matricule">
