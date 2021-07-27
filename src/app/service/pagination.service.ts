@@ -144,6 +144,9 @@ export class PaginationService {
       id: 8,  title: 'Ajouter Utilisateur',
       path: 'adduser',  icon: "person_add",
     },{
+      id: 11,  title: 'Liste Utilisateur',
+      path: 'listeuser',  icon: "person",
+    },{
       id: 9,  title: 'Statistiques',
       path: 'statistique',  icon: "leaderboard",
     },{
@@ -193,6 +196,9 @@ export class PaginationService {
     },{
       id: 11,  title: 'Ajouter Utilisateur',
       path: 'adduser',  icon: "person_add",
+    },{
+      id: 11,  title: 'Liste Utilisateur',
+      path: 'listeuser',  icon: "person",
     },{
       id: 9,  title: 'Statistiques',
       path: 'statistique',  icon: "leaderboard",

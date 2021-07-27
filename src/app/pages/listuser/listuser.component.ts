@@ -28,8 +28,6 @@ export class ListuserComponent implements OnInit {
   result;
   success;
   successMsg;
-  annee: Date;
-  yearOnly;
   constructor(private dataService: DataService,
     public datepipe: DatePipe,
     public router: Router,
@@ -41,10 +39,11 @@ export class ListuserComponent implements OnInit {
   ngOnInit() {
     this.role = localStorage.getItem('user');
    // this.getcolor(this.p);
-   
+    
     this.gty(this.page);
   }
 
+  
   gty(page: any){
     this.http.get(this.reqUrl + `/users/all?page=${page}&limit=${this.itemsPerPage}`).subscribe((data: any) => {
       this.dataUser =  data.data;
@@ -54,30 +53,6 @@ export class ListuserComponent implements OnInit {
     })
   }
 
-  submit(interimaire_id) {
-    console.log(interimaire_id);
-    this.yearOnly = this.attestationForm.value.annee.getFullYear();
-    console.log(this.yearOnly);
-    let donneeForm = {
-      interim_id: interimaire_id,
-    //  contrat_id: contrat_interimaire_id,
-      mois: this.attestationForm.value.mois,
-      annee: this.yearOnly,
-      nbr_jr_absence: this.attestationForm.value.nbr_jr_absence,
-    }
-    console.log(donneeForm);
-    this.otherService.addAttestation(donneeForm).subscribe(
-      data => {
-        console.log(data);
-        this.result = data
-        this.successMsg = this.result.success
-
-        if(this.successMsg == true) {
-          this.closeModal('custom-modal-'+interimaire_id);
-        }
-      }
-    )
-  }
 
   openDetail(data) {
     this.router.navigate(['/accueil/detailuser'], {
