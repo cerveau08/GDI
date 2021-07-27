@@ -19,6 +19,8 @@ export class ObjectifsComponent implements OnInit {
   data;
   interimaire;
   prenon;
+  prenom;
+  note;
   nom;
   objectifForm: FormGroup;
   noteForm: FormGroup;
