@@ -68,7 +68,6 @@ import { YearPickerComponent } from './multidatepicker/year-picker-component/yea
 import { RegularDatepickerComponent } from './multidatepicker/regular-datepicker-component/regular-datepicker.component';
 import { PasswordResetModule } from './password-reset/password-reset.module';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
-import { DetailuserComponent } from './pages/detailuser/detailuser.component';
 import { ListuserComponent } from './pages/listuser/listuser.component';
 
 @NgModule({
@@ -118,7 +117,6 @@ import { ListuserComponent } from './pages/listuser/listuser.component';
     MonthPickerComponent,
     YearPickerComponent,
     RegularDatepickerComponent,
-    DetailuserComponent,
     ListuserComponent,
   ],
   imports: [

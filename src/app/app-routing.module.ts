@@ -1,4 +1,3 @@
-import { DetailuserComponent } from './pages/detailuser/detailuser.component';
 import { ObjectifsComponent } from './pages/objectifs/objectifs.component';
 import { LesdemandesComponent } from './pages/lesdemandes/lesdemandes.component';
 import { AdduserComponent } from './pages/adduser/adduser.component';
@@ -195,10 +194,10 @@ const routes: Routes = [
         component: ObjectifsComponent,
           canActivate: [AuthGuard]
       },
-      { path: 'detailuser',
-        component: DetailuserComponent,
-          canActivate: [AuthGuard]
-      },
+     // { path: 'detailuser',
+       // component: DetailuserComponent,
+       //   canActivate: [AuthGuard]
+     // },
       {
         path: '',
         redirectTo: 'accueil/home',

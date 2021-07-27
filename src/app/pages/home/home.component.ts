@@ -279,6 +279,7 @@ export class HomeComponent implements OnInit {
     } else {
       this.showHome = true;
     }
+
     const getDownloadProgress = () => {
       console.log("getDownload", this);
       if (this.progress <= 99) {
@@ -291,6 +292,7 @@ export class HomeComponent implements OnInit {
     };
     this.intervalId = setInterval(getDownloadProgress, 1000);
   }
+  
   ngOnDestroy() {
     clearInterval(this.intervalId);
   }
