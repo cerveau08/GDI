@@ -72,7 +72,7 @@ export class LesdemandesComponent implements OnInit {
   }
     gty(page: any){
       this.http.get(this.reqUrl + `/listeDemandes?page=${page}&limit=${this.itemsPerPage}`).subscribe((data: any) => {
-        this.dataDemande =  data.data;
+        this.dd =  data.data;
         this.totalItems = data.total;
         console.log(data);
         console.log(this.totalItems);
