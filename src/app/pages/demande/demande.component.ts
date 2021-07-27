@@ -44,7 +44,7 @@ export class DemandeComponent implements OnInit {
   dataDemande;
   pagedItems: any[];
   page = 1;
-  itemsPerPage = 5;
+  itemsPerPage = 4;
   totalItems : any;
   public reqUrl = environment.base_url;
   showHome = true;
@@ -111,7 +111,7 @@ export class DemandeComponent implements OnInit {
   }
 
   gty(page: any){
-    this.http.get(this.reqUrl + `/lesdemande?page=${page}&limit=${this.itemsPerPage}`).subscribe((data: any) => {
+    this.http.get(this.reqUrl + `/listeDemandes?page=${page}&limit=${this.itemsPerPage}`).subscribe((data: any) => {
       this.dataDemande =  data.data;
       this.totalItems = data.total;
       console.log(data);

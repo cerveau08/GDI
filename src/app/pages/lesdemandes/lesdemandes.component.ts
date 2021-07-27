@@ -25,7 +25,11 @@ export class LesdemandesComponent implements OnInit {
   pager: any = {};
   filterterm: string;
   public p: any;
+  dataDemande;
   pagedItems: any[];
+  page = 1;
+  itemsPerPage = 4;
+  totalItems : any;
   date: any;
   tempArr: any = { "brands": [] };
   form: FormGroup;
@@ -64,19 +68,18 @@ export class LesdemandesComponent implements OnInit {
     this.validerForm = new FormGroup({
       status: new FormControl('')
     })
-    this.getDemandes();
+    this.gty(this.page);
   }
- 
-  getDemandes() {
-    this.otherService.getListDemandes().subscribe(
-    //  data => this.dd = data.data
-    data => {
-      console.log(data);
-      this.dd = data.data
+    gty(page: any){
+      this.http.get(this.reqUrl + `/listeDemandes?page=${page}&limit=${this.itemsPerPage}`).subscribe((data: any) => {
+        this.dataDemande =  data.data;
+        this.totalItems = data.total;
+        console.log(data);
+        console.log(this.totalItems);
+      })
+    
     }
-    );
-  }
-
+  
 
   selectAll() {
     for (var i = 0; i < this.dd.length; i++) {
