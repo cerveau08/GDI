@@ -745,7 +745,7 @@ export class StatistiquesComponent implements OnInit {
        }
     ); 
   }
-  
+  //stats interimaire par annee
   dateSelectionner(value){
     this.otherService.statInterByYear().subscribe(
       data => {
@@ -1002,15 +1002,15 @@ export class StatistiquesComponent implements OnInit {
       ],
       series: [
         {
-          name: "Malades",
+          name: "Fini",
           data: this.fini
         },
         {
-          name: "Présents",
+          name: "Nouveau",
           data: this.nouveau
         },
         {
-          name: "Congés",
+          name: "Total",
           data: this.total
         },
       ],
