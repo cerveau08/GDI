@@ -70,11 +70,11 @@ export class DetailuserComponent implements OnInit {
     this.activeroute.queryParams.subscribe(params => {
       this.item = JSON.parse(params["user"]);
       console.log(this.item);
-      this.otherService.getOneInterById(this.item).subscribe(
+      this.otherService.detailUser(this.item).subscribe(
            data =>{
             this.data = data;
             this.dataInter = this.data.data;
-            console.log(this.dataInter);
+            console.log(this.data);
             this.nom = this.dataInter.nom;
             this.prenom = this.dataInter.prenom;
             this.email = this.dataInter.email;

@@ -223,5 +223,10 @@ addAgence(data) {
   rechercheAvance(data) {
     return this.http.post(`${this.reqUrl}/recherche`, data);
   }
-
+  detailUser(id: number) {
+    return this.http.get(`${this.reqUrl}/user/${id}`);
+  }
+  getFonctions(): Observable<any> {
+    return this.http.get<any>(this.reqUrl + '/fonctions');
+  }
 }
