@@ -196,6 +196,14 @@ export class DetailagenceComponent implements OnInit {
     this.modalService.close(id);
   }
 
+  openDetail(data) {
+    this.route.navigate(['/accueil/detailuser'], {
+      queryParams: {
+        user: JSON.stringify(data)
+      }
+    })
+  }
+
   delete() {
     this.otherService.deleteAgence(this.item).subscribe(
       (response) =>{

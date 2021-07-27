@@ -22,7 +22,7 @@ export class IntersouscontratComponent implements OnInit {
   dataInter: any;
   attestationForm: FormGroup;
   page = 1;
-  itemsPerPage = 10;
+  itemsPerPage = 7;
   totalItems : any;
   filterterm
   public reqUrl = environment.base_url;
@@ -139,9 +139,6 @@ export class IntersouscontratComponent implements OnInit {
       agence: new FormControl(''),
     });
     this.gty(this.page);
-    this.http.get(this.reqUrl + `/interimFinContrat?page=${1}&limit=${this.itemsPerPage}`).subscribe((data: any) => {
-      console.log(data);
-    })
   }
 
   

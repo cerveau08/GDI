@@ -5,6 +5,8 @@ import { Component, OnInit } from '@angular/core';
 import { ModalService } from 'src/app/_modal/modal.service';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -37,10 +39,14 @@ export class DemandeComponent implements OnInit {
   currentUser;
   public datas: any;
   // pager object
-  pager: any = {};
+  //pager: any = {};
   filterterm: string;
-  // paged items
+  dataDemande;
   pagedItems: any[];
+  page = 1;
+  itemsPerPage = 5;
+  totalItems : any;
+  public reqUrl = environment.base_url;
   showHome = true;
   data = [{
     id: 1,
@@ -74,7 +80,9 @@ export class DemandeComponent implements OnInit {
   constructor(private dataService: DataService,
     private modalService: ModalService, 
     private router: Router,
-    private pagerService: PaginationService, private otherService: OthersService
+    private pagerService: PaginationService, 
+    private otherService: OthersService,
+    private http: HttpClient
     ) { }
 
   ngOnInit() {
@@ -85,13 +93,7 @@ export class DemandeComponent implements OnInit {
     } else {
       this.showHome = true;
     }
-    //this.datas = this.dataService.getData();
-   this.otherService.getListDemandes().subscribe(
-     data => {
-       this.datas = data.data;
-       console.log(data);
-     }
-   )
+   
      this.otherService.getTypeDemande().subscribe(
      data => {
        this.demandes = data.data;
@@ -105,7 +107,17 @@ export class DemandeComponent implements OnInit {
       motif: new FormControl(''),
       description: new FormControl(''),
     });
+    this.gty(this.page);
+  }
 
+  gty(page: any){
+    this.http.get(this.reqUrl + `/lesdemande?page=${page}&limit=${this.itemsPerPage}`).subscribe((data: any) => {
+      this.dataDemande =  data.data;
+      this.totalItems = data.total;
+      console.log(data);
+      console.log(this.totalItems);
+    })
+  
   }
   onSubmit() {
     console.log(this.demandeForm.value);

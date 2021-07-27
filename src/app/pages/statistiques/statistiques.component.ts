@@ -1,3 +1,4 @@
+import { OthersService } from 'src/app/services/others.service';
 import { Component, HostListener, OnInit } from '@angular/core';
 import { ApexAxisChartSeries, ApexChart, ApexDataLabels, ApexFill, ApexLegend, ApexPlotOptions, ApexResponsive, ApexXAxis, ApexYAxis, ChartComponent } from 'ng-apexcharts';
 import { DataService } from 'src/app/service/data.service';
@@ -690,9 +691,11 @@ export class StatistiquesComponent implements OnInit {
   intervalId;
   scrHeight:any;
   scrWidth:any;
-  item;
   dates;
-  dataStat: any;
+  currentDate = new Date().getFullYear();
+  item;
+  dataStatEffectifAnnee: any;
+  dataStatistique;
   /*@ViewChild("chart")*/ chart: ChartComponent;
   public chartOptions: Partial<ChartOptions>;
   public chartOptions2: Partial<ChartOptions>;
@@ -701,9 +704,9 @@ export class StatistiquesComponent implements OnInit {
   public chartOptions5: Partial<ChartOptions>;
   public chartOptions6: Partial<ChartOptions>;
   public chartOptions7: Partial<ChartOptions>;
-  constructor(private dataService: DataService,) {
+  constructor(private dataService: DataService,
+              private otherService: OthersService) {
     this.getScreenSize();
-    this.dataStat = this.dataService.getDataStatistique();
   }
   @HostListener('window:resize', ['$event'])
   getScreenSize(event?) {
@@ -723,91 +726,110 @@ export class StatistiquesComponent implements OnInit {
     };
     this.intervalId = setInterval(getDownloadProgress, 1000);
     this.societeSelectionner(this.item);
-    this.dateSelectionner(this.item);
+    this.dateSelectionner(this.currentDate);
     this.effectifSocieteSelectionner(this.item);
     this.dateSelectionnerPresence(this.item);
     this.serviceSelectionnerPresence(this.item);
     this.dateSelectionnerAgence(this.item);
     this.serviceSelectionnerAgence(this.item);
+
   }
+
+  //stats des interimaires par mois
+  statInterMonth(value) {
+    console.log(value);
+    this.otherService.statInterByMonth(value).subscribe(
+      data => {
+        this.dataStatistique = data['data'];
+       console.log(data);
+       }
+    ); 
+  }
+  //stats interimaire par annee
   dateSelectionner(value){
-    this.axex = this.diagram1.map(valueOfDirection => valueOfDirection.annee);
-    this.nouveau = this.diagram1.map(valueOfNouveau => valueOfNouveau.nouveau);
-    this.fini = this.diagram1.map(valueOfFini => valueOfFini.fini);
-    this.total = this.diagram1.map(valueOfTotal => valueOfTotal.total);
-    this.chartOptions = {
-      colors: [
-        "#ff0000",
-        "#009393",
-        "#000000",
-      ],
-      series: [
-        {
-          name: "Finis",
-          data: this.fini
-        },
-        {
-          name: "Nouveaux",
-          data: this.nouveau
-        },
-        {
-          name: "Total",
-          data: this.total
-        },
-      ],
-      chart: {
-        type: "bar",
-        height: 300,
-        width: 550,
-        stacked: true,
-        toolbar: {
-          show: false
-        },
-        zoom: {
-          enabled: false
-        }
-      },
-      responsive: [
-        {
-          breakpoint: 480,
-          options: {
-            legend: {
-              show: false,
-              position: "bottom",
-              offsetX: -10,
-              offsetY: 0
+    this.otherService.statInterByYear().subscribe(
+      data => {
+        this.dataStatEffectifAnnee = data['data'][0];
+        console.log(this.dataStatEffectifAnnee);
+        this.axex = this.dataStatEffectifAnnee.map(valueOfDirection => valueOfDirection.annee);
+        this.nouveau = this.dataStatEffectifAnnee.map(valueOfNouveau => valueOfNouveau.new);
+        this.fini = this.dataStatEffectifAnnee.map(valueOfFini => valueOfFini.fini);
+        this.total = this.dataStatEffectifAnnee.map(valueOfTotal => valueOfTotal.total);
+        this.chartOptions = {
+          colors: [
+            "#ff0000",
+            "#009393",
+            "#000000",
+          ],
+          series: [
+            {
+              name: "Finis",
+              data: this.fini
+            },
+            {
+              name: "Nouveaux",
+              data: this.nouveau
+            },
+            {
+              name: "Total",
+              data: this.total
+            },
+          ],
+          chart: {
+            type: "bar",
+            height: 300,
+            width: 550,
+            stacked: true,
+            toolbar: {
+              show: false
+            },
+            zoom: {
+              enabled: false
             }
-          }
-        }
-      ],
-      plotOptions: {
-        bar: {
-          horizontal: false,
-          columnWidth: "10px",
-          endingShape: "rounded",
-        },
-      },
-      dataLabels: {
-        enabled: false,
-        style: {
-          colors: ['#f3f4f5', '#fff']
-        }
-      },
-      xaxis: {
-        type: "category",
-        categories: 
-          this.axex
-      },
-      legend: {
-        show: false,
-      },
-      fill: {
-        opacity: 4,
-      },
-    };
-    return this.chartOptions3;
+          },
+          responsive: [
+            {
+              breakpoint: 480,
+              options: {
+                legend: {
+                  show: false,
+                  position: "bottom",
+                  offsetX: -10,
+                  offsetY: 0
+                }
+              }
+            }
+          ],
+          plotOptions: {
+            bar: {
+              horizontal: false,
+              columnWidth: "10px",
+              endingShape: "rounded",
+            },
+          },
+          dataLabels: {
+            enabled: false,
+            style: {
+              colors: ['#f3f4f5', '#fff']
+            }
+          },
+          xaxis: {
+            type: "category",
+            categories: 
+              this.axex
+          },
+          legend: {
+            show: false,
+          },
+          fill: {
+            opacity: 4,
+          },
+        };
+        return this.chartOptions;
+    })
   }
   effectifSocieteSelectionner(value:string){
+    
     console.log(value);
     this.directs = this.directions1;
     this.directions = this.directions1.map(valueOfDirection => valueOfDirection.direction);
@@ -980,15 +1002,15 @@ export class StatistiquesComponent implements OnInit {
       ],
       series: [
         {
-          name: "Malades",
+          name: "Fini",
           data: this.fini
         },
         {
-          name: "Présents",
+          name: "Nouveau",
           data: this.nouveau
         },
         {
-          name: "Congés",
+          name: "Total",
           data: this.total
         },
       ],

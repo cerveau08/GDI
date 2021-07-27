@@ -83,6 +83,9 @@ addAgence(data) {
   getAgenceById(id: number): Observable<any> {
     return this.http.get<any>(`${this.reqUrl}/detailAgence/${id}`);
   }
+  getUserById(id: number): Observable<any> {
+    return this.http.get<any>(`${this.reqUrl}/users/${id}`);
+  }
   delete(id: string) {
     return this.http.delete(`${this.reqUrl}/users/${id}`)
   }

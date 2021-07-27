@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { map, startWith } from 'rxjs/operators';
+import { Observable, OperatorFunction, Subject, merge } from 'rxjs';
+import { map, startWith, debounceTime, distinctUntilChanged, filter } from 'rxjs/operators';
 import { DataService } from 'src/app/service/data.service';
 import { OthersService } from 'src/app/services/others.service';
 //import { MatAutocompleteSelectedEvent } from '@angular/material';
@@ -61,6 +61,7 @@ export class AddinterComponent implements OnInit {
   diplomeName1;
   diplomeName2;
   diplomeName3;
+  keyword = 'name';
   fileDiplome: FormArray;
   ListePiece = [
     {
@@ -93,9 +94,6 @@ export class AddinterComponent implements OnInit {
       libelle: "veuf(ve)"
     }
   ];
-  streets: string[] = ['Champs-Élysées', 'Lombard Street', 'Abbey Road', 'Fifth Avenue'];
-  filteredStreets: Observable<string[]>;
-  control = new FormControl();
   selected1 = false;
   selected2 = false;
   colora = "#ff7900";
@@ -110,11 +108,18 @@ export class AddinterComponent implements OnInit {
               private route: Router) {
     this.datajson = this.dataService.getData();
    }
+   codeList = [
+    { code: 'MAC', name: 'macon' },
+    { code: 'COM', name: 'compta' },
+    { code: 'INF', name: 'infos' }
+    ];
+    
+    public saveCode(e): void {
+      let name = e.target.value;
+      let list = this.codeList.filter(x => x.name === name)[0];
+      console.log(list.code);
+    }
   ngOnInit() {
-    // this.filteredStreets = this.interForm.value.poste.valueChanges.pipe(
-    //   startWith(''),
-    //   map(value => this._filter(value))
-    // );
     this.interForm = new FormGroup({
         numeroPiece: new FormControl(''),
         prenom: new FormControl(''),
@@ -151,6 +156,7 @@ export class AddinterComponent implements OnInit {
         diplome1: new FormControl(''),
         diplome2: new FormControl(''),
         diplome3: new FormControl(''),
+        fonction: new FormControl('')
     });
       //recupere les societes
     this.otherService.getAllSociete().subscribe(
@@ -167,14 +173,11 @@ export class AddinterComponent implements OnInit {
       }
     );
      //recupere les domaines
-     this.otherService.getDomaine().subscribe(
-      data => {
-        this.dataDomaine = data["data"];
-        console.log(data);
-      }
-    );
+     this.otherService.getDomaine().subscribe(data => this.dataDomaine = data["data"]);
+     
     this.onChanges();
   }
+  
   onChanges(): void {
     this.interForm.get('societeId').valueChanges.subscribe(val => {
       this.societeSearch = val;
@@ -220,16 +223,18 @@ export class AddinterComponent implements OnInit {
       }
     )
   }
-  // onSelectionChanged(event: MatAutocompleteSelectedEvent) {
-  //   console.log(event.option.value);
-  // }
-  // private _filter(value): string[] {
-  //   const filterValue = this._normalizeValue(value);
-  //   return this.streets.filter(street => this._normalizeValue(street).includes(filterValue));
+  
+  // selectEvent(item) {
+  //   // do something with selected item
   // }
 
-  // private _normalizeValue(value: string): string {
-  //   return value.toLowerCase().replace(/\s/g, '');
+  // onChangeSearch(val: string) {
+  //   // fetch remote data from here
+  //   // And reassign the 'data' which is binded to 'data' property.
+  // }
+  
+  // onFocused(e){
+  //   // do something when input is focused
   // }
   get diplome(): FormArray {
     return this.interForm.get('fileDiplome') as FormArray;
@@ -275,7 +280,6 @@ export class AddinterComponent implements OnInit {
   submit() {
     this.colorc = "#f16e00";
     this.color3 = "20px solid #f16e00";
-    const value = this.interForm.value;
     const formdata = new FormData();
     formdata.append("societeId", this.interForm.value.societeId);
     formdata.append("structureId",this.interForm.value.structureId);
@@ -354,7 +358,6 @@ export class AddinterComponent implements OnInit {
           this.errorMsg = 'Probleme de connexion au serveur';
           console.log(error)
         }
-        //this.ndm.navigateByUrl('/accueil/listUsers');
       )
   }
 
