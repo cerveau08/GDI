@@ -16,6 +16,8 @@ export class ModalModifierComponent implements OnInit {
   description;
   titre;
   id;
+  successMsg;
+  data;
   constructor(private otherService: OthersService,
     private modalService: ModalService,
     private activeroute: ActivatedRoute,
@@ -34,7 +36,12 @@ export class ModalModifierComponent implements OnInit {
     this.otherService.modifierObjectif(this.modifierForm.value, id).subscribe(
       data =>{
         console.log(data);
-        this.closeModal('modif-modal-'+id);
+        this.data = data;
+        this.successMsg = this.data.success
+        if(this.successMsg == true) {
+          this.closeModal('modif-modal-'+id);
+          //this.ngOnInit();
+        }
       },
       error=>{
         console.log(error);

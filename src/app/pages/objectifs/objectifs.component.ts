@@ -22,6 +22,7 @@ export class ObjectifsComponent implements OnInit {
   prenom;
   note;
   nom;
+  successMsg;
   objectifForm: FormGroup;
   noteForm: FormGroup;
   modifierForm: FormGroup;
@@ -82,7 +83,12 @@ export class ObjectifsComponent implements OnInit {
     this.otherService.addObjectifs(this.objectifForm.value).subscribe(
       data =>{
         console.log(data);
-        this.closeModal('objectif-modal-1');
+        this.data = data;
+        this.successMsg = this.data.success
+        if(this.successMsg == true) {
+          this.ngOnInit();
+          this.closeModal('objectif-modal-1');
+        }
       },
       error=>{
         console.log(error);
@@ -95,7 +101,12 @@ export class ObjectifsComponent implements OnInit {
     this.otherService.notezObjectif(this.noteForm.value, id).subscribe(
       data =>{
         console.log(data);
-        this.closeModal('custom-modal-'+id);
+        this.data = data;
+        this.successMsg = this.data.success
+        if(this.successMsg == true) {
+          this.ngOnInit();
+          this.closeModal('custom-modal-'+id);
+        }
       },
       error=>{
         console.log(error);
@@ -106,8 +117,12 @@ export class ObjectifsComponent implements OnInit {
     console.log(this.modifierForm.value);
     this.otherService.modifierObjectif(this.modifierForm.value, id).subscribe(
       data =>{
-        console.log(data);
-        this.closeModal('modif-modal-'+id);
+        this.data = data;
+        this.successMsg = this.data.success
+        if(this.successMsg == true) {
+          this.ngOnInit();
+          this.closeModal('custom-modal-'+id);
+        }
       },
       error=>{
         console.log(error);

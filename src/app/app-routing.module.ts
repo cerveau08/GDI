@@ -38,6 +38,7 @@ import { AuthGuard } from './helpers/auth.guard';
 import { InterarchiveComponent } from './pages/interarchive/interarchive.component';
 import { InterenattenteComponent } from './pages/interenattente/interenattente.component';
 import { PasswordResetComponent } from './password-reset/password-reset.component';
+import { ListuserComponent } from './pages/listuser/listuser.component';
 import { DetailuserComponent } from './pages/detailuser/detailuser.component';
 
 
@@ -198,7 +199,11 @@ const routes: Routes = [
       { path: 'detailuser',
         component: DetailuserComponent,
           canActivate: [AuthGuard]
-     },
+      },
+      { path: 'listeuser',
+        component: ListuserComponent,
+          canActivate: [AuthGuard]
+      },
       {
         path: '',
         redirectTo: 'accueil/home',
