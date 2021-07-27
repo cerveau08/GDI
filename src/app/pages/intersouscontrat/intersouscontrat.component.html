@@ -57,26 +57,6 @@
                                     <form [formGroup]="attestationForm">
                                         <div class="forms">
                                             <div>
-                                                <!-- <div class="input-content-grid-two">
-                                                    <div class="input2">
-                                                        <p class="label-input" for="titre">Prénom</p>
-                                                        <input type="text" [value]="p.prenom" formControlName="prenom" placeholder="Prénom" readonly>
-                                                    </div>
-                                                    <div class="input3">
-                                                        <p class="label-input" for="titre">Nom</p>
-                                                        <input [value]="p.nom" type="text" formControlName="nom" placeholder="Nom" readonly>
-                                                    </div>
-                                                </div>
-                                                <div class="input-content-grid-two">
-                                                    <div class="input2">
-                                                        <p class="label-input" for="titre">Matricule</p>
-                                                        <input type="text" [ngModel]="p.matricule" formControlName="matricule" placeholder="Matricule" readonly>
-                                                    </div>
-                                                    <div class="input3">
-                                                        <p class="label-input" for="titre">Fonction</p>
-                                                        <input [ngModel]="p.poste" type="text" formControlName="poste" placeholder="Profession" readonly>
-                                                    </div>
-                                                </div> -->
                                                 <p class="text-attestation">
                                                     Bonjour M. <span class="text-span-attestation">{{p.manager.prenom}} {{p.manager.nom}}</span>, 
                                                     vous attestez que M. <span class="text-span-attestation">{{p.prenom}} {{p.nom}}</span>
@@ -102,8 +82,16 @@
                                                     </div>
                                                     <div class="input3">
                                                         <p class="label-input" for="titre">Nombre de jour absent</p>
-                                                        <input type="number" formControlName="nbr_jr_absence" #Abscence placeholder="Nombre de jour absent">
+                                                        <input type="number" formControlName="nbr_jr_absence" #Abscence placeholder="Nombre de jour absent" required>
+                                                        <div class="form-control-feedback"
+                                                            *ngIf="attestationForm.controls['nbr_jr_absence'].errors && (attestationForm.controls['nbr_jr_absence'].dirty || attestationForm.controls['nbr_jr_absence'].touched)">
+                                                            <p class="error-alert" *ngIf="attestationForm.controls['nbr_jr_absence'].errors.required">le nombre de jour d'absence est obligatoire</p>
+                                                            <p class="error-alert" *ngIf="attestationForm.controls['nbr_jr_absence'].errors.pattern">le nombre de jour d'absence ne doit pas dépasser 30 jours</p>
+                                                        </div>
                                                     </div>
+                                                </div>
+                                                <div class="content-error-msg" *ngIf="successMsg == false">
+                                                    <p class="error-alert">{{ result?.message}}</p>
                                                 </div>
                                                 <div class="content-button-submit">
                                                     <button (click)="submit(p.id)" class="button-submit">Valider</button>

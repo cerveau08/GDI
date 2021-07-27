@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -28,6 +28,7 @@ export class IntersouscontratComponent implements OnInit {
   public reqUrl = environment.base_url;
   result;
   success;
+  successMsg;
   ListeMois = [
     {
       id: 1,
@@ -128,10 +129,13 @@ export class IntersouscontratComponent implements OnInit {
    // this.getcolor(this.p);
     this.attestationForm = new FormGroup({
       interim_id: new FormControl(''),
-      mois: new FormControl(''),
-      annee: new FormControl(''),
+      mois: new FormControl('', Validators.required),
+      annee: new FormControl('', [
+        Validators.required,
+        Validators.pattern("[^ @]*@[^ @]*")
+      ]),
       contrat_id: new FormControl(''),
-      nbr_jr_absence: new FormControl(''),
+      nbr_jr_absence: new FormControl('', Validators.required),
       prenom: new FormControl(''),
       nom: new FormControl(''),
       poste: new FormControl(''),
@@ -167,10 +171,11 @@ export class IntersouscontratComponent implements OnInit {
       data => {
         console.log(data);
         this.result = data
-        this.success = this.result.success
-        // if(this.success == true) {
-        //   this.closeModal('custom-modal-'+interimaire_id);
-        // }
+        this.successMsg = this.result.success
+
+        if(this.successMsg == true) {
+          this.closeModal('custom-modal-'+interimaire_id);
+        }
       }
     )
   }

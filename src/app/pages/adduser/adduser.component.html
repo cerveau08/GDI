@@ -21,6 +21,11 @@
                                 </div>
                                 <div class="infoinput1">
                                     <input type="text" formControlName="email"  [(ngModel)]="email" placeholder="Email">
+                                    <div class="form-control-feedback"
+                                        *ngIf="userAgentForm.controls['email'].errors && (userAgentForm.controls['email'].dirty || userAgentForm.controls['email'].touched)">
+                                        <p class="error-alert" *ngIf="userAgentForm.controls['email'].errors.required">l'email est obligatoire</p>
+                                        <p class="error-alert" *ngIf="userAgentForm.controls['email'].errors.pattern">l'email doit ètre de ce format example@domaine.nom</p>
+                                    </div>
                                 </div>
                                 <div class="infoinput2">
                                     <input type="number" formControlName="telephone"  [(ngModel)]="telephone"  placeholder="Téléphone">

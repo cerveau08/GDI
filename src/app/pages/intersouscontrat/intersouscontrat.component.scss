@@ -328,17 +328,24 @@ table {
     width: 400px;
     margin: 0 auto;
 }
-  @media (max-width: 991px) {
-    .exporter{
-        display: flex;
-        margin-right: 30px;
-        position: absolute;
-        right: 0;
-        top: 60px;
-    }
+.content-error-msg{
+  width: 300px;
+  margin-left: 0px;
 }
+.error-alert{
+  color: #ff0000;
+  font-size: 12px;
+}
+ 
 
 @media (max-width: 991px) {
+  .exporter{
+    display: flex;
+    margin-right: 30px;
+    position: absolute;
+    right: 0;
+    top: 60px;
+}
     .chiffre-aside {
         display: grid;
         grid-template-columns: 33% 33% 33%;

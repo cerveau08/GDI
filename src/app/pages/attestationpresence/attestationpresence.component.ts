@@ -14,7 +14,8 @@ export class AttestationpresenceComponent implements OnInit {
   checkedList:any;
   selectedAll: any;
   result;
-  datas: any;
+  data: any;
+  successMsg;
   filterterm: string;
   dataAttest: any;
   page = 1;
