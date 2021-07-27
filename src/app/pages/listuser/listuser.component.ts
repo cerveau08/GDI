@@ -1,4 +1,11 @@
+import { DatePipe } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { DataService } from 'src/app/service/data.service';
+import { OthersService } from 'src/app/services/others.service';
+import { ModalService } from 'src/app/_modal/modal.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -7,14 +14,107 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./listuser.component.scss']
 })
 export class ListuserComponent implements OnInit {
+  public data; any;
+  public datas: any;
+  date: any;
+  role;
+  dataUser: any;
+  attestationForm: FormGroup;
   page = 1;
   itemsPerPage = 7;
   totalItems : any;
   filterterm
   public reqUrl = environment.base_url;
-  constructor() { }
+  result;
+  success;
+  successMsg;
+  annee: Date;
+  yearOnly;
+  constructor(private dataService: DataService,
+    public datepipe: DatePipe,
+    public router: Router,
+    private modalService: ModalService,
+    private otherService: OthersService,
+    private http: HttpClient
+    ) { }
 
   ngOnInit() {
+    this.role = localStorage.getItem('user');
+   // this.getcolor(this.p);
+   
+    this.gty(this.page);
+  }
+
+  gty(page: any){
+    this.http.get(this.reqUrl + `/users/all?page=${page}&limit=${this.itemsPerPage}`).subscribe((data: any) => {
+      this.dataUser =  data.data;
+      this.totalItems = data.total;
+      console.log(data);
+      console.log(this.totalItems);
+    })
+  }
+
+  submit(interimaire_id) {
+    console.log(interimaire_id);
+    this.yearOnly = this.attestationForm.value.annee.getFullYear();
+    console.log(this.yearOnly);
+    let donneeForm = {
+      interim_id: interimaire_id,
+    //  contrat_id: contrat_interimaire_id,
+      mois: this.attestationForm.value.mois,
+      annee: this.yearOnly,
+      nbr_jr_absence: this.attestationForm.value.nbr_jr_absence,
+    }
+    console.log(donneeForm);
+    this.otherService.addAttestation(donneeForm).subscribe(
+      data => {
+        console.log(data);
+        this.result = data
+        this.successMsg = this.result.success
+
+        if(this.successMsg == true) {
+          this.closeModal('custom-modal-'+interimaire_id);
+        }
+      }
+    )
+  }
+
+  openDetail(data) {
+    this.router.navigate(['/accueil/detailuser'], {
+      queryParams: {
+        user: JSON.stringify(data)
+      }
+    })
+  }
+
+  downloadFile(data: any) {
+    const replacer = (key, value) => (value === null ? '' : value); 
+    const header = Object.keys(data[0]);
+    const csv = data.map((row) =>
+      header
+        .map((fieldName) => JSON.stringify(row[fieldName], replacer))
+        .join(',')
+    );
+    csv.unshift(header.join(','));
+    const csvArray = csv.join('\r\n');
+  
+    const a = document.createElement('a');
+    const blob = new Blob([csvArray], { type: 'text/csv' });
+    const url = window.URL.createObjectURL(blob);
+  
+    a.href = url;
+    a.download = 'myFile.csv';
+    a.click();
+    window.URL.revokeObjectURL(url);
+    a.remove();
+  }
+
+  openModal(id: string) {
+    this.modalService.open(id);
+  }
+
+  closeModal(id: string) {
+    this.modalService.close(id);
   }
 
 }
