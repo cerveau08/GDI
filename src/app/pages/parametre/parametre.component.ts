@@ -68,7 +68,7 @@ export class ParametreComponent implements OnInit {
              private route: ActivatedRoute,
              public fb: FormBuilder,
              ) { 
-              this.passwordForm = this.fb.group({
+              /*this.passwordForm = this.fb.group({
                 email: [''],
                 password: [''],
                 password_confirmation: [''],
@@ -76,7 +76,7 @@ export class ParametreComponent implements OnInit {
               });
               route.queryParams.subscribe((params) => {
                 this.passwordForm.controls.passwordToken.setValue(params.token);
-              });
+              });*/
              }
 
   ngOnInit() {
@@ -108,7 +108,7 @@ export class ParametreComponent implements OnInit {
   
   //changer password
   confirmPassword() {
-    this.otherService.changePassword(this.passwordForm.value).subscribe(
+    this.otherService.changePassword(this.newpasswordForm.value).subscribe(
       result => {
         //alert('Password has been updated');
         console.log(result);
