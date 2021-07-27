@@ -696,6 +696,7 @@ export class StatistiquesComponent implements OnInit {
   item;
   dataStatEffectifAnnee: any;
   dataStatistique;
+  dataInterimByAgence: any;
   /*@ViewChild("chart")*/ chart: ChartComponent;
   public chartOptions: Partial<ChartOptions>;
   public chartOptions2: Partial<ChartOptions>;
@@ -828,6 +829,7 @@ export class StatistiquesComponent implements OnInit {
         return this.chartOptions;
     })
   }
+
   effectifSocieteSelectionner(value:string){
     
     console.log(value);
@@ -1146,10 +1148,13 @@ export class StatistiquesComponent implements OnInit {
   }
 
   dateSelectionnerAgence(value){
-    this.axex = this.diagram1.map(valueOfDirection => valueOfDirection.annee);
-    this.nouveau = this.diagram1.map(valueOfNouveau => valueOfNouveau.nouveau);
-    this.fini = this.diagram1.map(valueOfFini => valueOfFini.fini);
-    this.total = this.diagram1.map(valueOfTotal => valueOfTotal.total);
+    // this.otherService.statInterByAgence().subscribe(
+    //   data => {
+    //     this.dataInterimByAgence = data['data'][0];
+    this.axex = this.dataInterimByAgence.map(valueOfDirection => valueOfDirection.annee);
+    this.nouveau = this.dataInterimByAgence.map(valueOfNouveau => valueOfNouveau.nouveau);
+    this.fini = this.dataInterimByAgence.map(valueOfFini => valueOfFini.fini);
+    this.total = this.dataInterimByAgence.map(valueOfTotal => valueOfTotal.total);
     this.chartOptions6 = {
       colors: [
         "#ff0000",

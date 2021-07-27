@@ -168,6 +168,8 @@ addAgence(data) {
   getTotalAgenceActifInactif(id: number) {
     return this.http.get(`${this.reqUrl}/statInterimaireAgence/${id}`);
   }
+  
+
   statInterByYear(){
     return this.http.get(`${this.reqUrl}/statInterimaireByYear`);
   } 
@@ -177,12 +179,15 @@ addAgence(data) {
   statInterByMonth(data){
     return this.http.post(`${this.reqUrl}/statInterimaireByMonth`, data);
   }
+  
   statInterByAgence(){
     return this.http.get(`${this.reqUrl}/statInterimaireByAgence`);
   }
   statInterAgence(id: number){
     return this.http.get(`${this.reqUrl}/statInterimaireAgence/${id}`);
   }
+
+
   arreterContrat(id: number, data: string){
     return this.http.put(`${this.reqUrl}/arreterContrat/${id}`, data);
   }

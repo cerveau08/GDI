@@ -13,11 +13,14 @@ import { ModalService } from 'src/app/_modal';
 export class ObjectifsComponent implements OnInit {
 
   role;
+  commentaire;
   objectif;
   item;
   data;
   interimaire;
   prenon;
+  prenom;
+  note;
   nom;
   successMsg;
   objectifForm: FormGroup;
