@@ -1,1 +1,56 @@
-<p>listuser works!</p>
+<div class="all-container">
+    <div class="tableau">
+        <p class="detail1" id="mydesc">Liste des utilisateurs</p>
+        <div class="exporter">
+            <p class="export">Exporter</p>
+            <div class="csv" style="cursor: pointer;">
+                <p class="csv1">CSV</p>
+                <mat-icon fontSet="material-icons-outlined">unfold_more</mat-icon>
+            </div>
+            <div class="filtrer" style="cursor: pointer;">
+                <input class="filtre" type="text" [(ngModel)]="filterterm" placeholder="Filtre">
+                <mat-icon fontSet="material-icons-outlined">tune</mat-icon>
+            </div>
+        </div>
+        <table style="overflow-x:auto;" aria-describedby = "mydesc">
+            <thead>
+                <tr class="head">
+                    <th class="typ" id="prenom">
+                        <div class="type">
+                            <p>Prenom</p> 
+                            <mat-icon class="updown" fontSet="material-icons-outlined">unfold_more</mat-icon>
+                        </div>
+                    </th>
+                    <th class="typ" id="nom">
+                        <div class="type2">
+                            <p>Nom</p> 
+                            <mat-icon class="updown" fontSet="material-icons-outlined">unfold_more</mat-icon>
+                        </div>
+                    </th>
+                    <th *ngIf="role != 'DRH'" id="direction">Matricule</th>
+                    <th *ngIf="role != 'DRH'" id="direction">Direction</th>
+                    <th *ngIf="role != 'AGN'" id="agence">Agence</th>
+                    <th  id="contrat">Fonction</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr style="cursor: pointer;" *ngFor="let p of dataInter | filter:filterterm | paginate: { 
+                    itemsPerPage: itemsPerPage,
+                    currentPage: page,
+                    totalItems: totalItems
+                    }; let i = index">
+                    <td (click)="openDetail(p.id)">{{p.prenom}}</td>
+                    <td (click)="openDetail(p.id)">{{p.nom}}</td>
+                    <td *ngIf="role != 'DRH'" (click)="openDetail(p.id)">{{p.matricule}}</td>
+                    <td *ngIf="role != 'DRH'" (click)="openDetail(p.id)">{{p.direction}}/{{p.departement}}/{{p.service}}</td>
+                    <td *ngIf="role != 'AGN'" (click)="openDetail(p.id)">{{p.agence}}</td>
+                    <td (click)="openDetail(p.id)" id="contrat">{{p.fonction}</td>
+                </tr>
+            </tbody>
+            
+        </table> 
+        <div class="pagination">
+            <pagination-controls (pageChange)="gty(page = $event)" previousLabel="Prcédent" nextLabel="Suivant"></pagination-controls>
+        </div>
+    </div>
+</div>
