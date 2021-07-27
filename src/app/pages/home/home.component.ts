@@ -298,6 +298,7 @@ this.otherService.statInterAgence(this.manager.id).subscribe(
     } else {
       this.showHome = true;
     }
+
     const getDownloadProgress = () => {
       console.log("getDownload", this);
       if (this.progress <= 99) {
@@ -310,6 +311,7 @@ this.otherService.statInterAgence(this.manager.id).subscribe(
     };
     this.intervalId = setInterval(getDownloadProgress, 1000);
   }
+  
   ngOnDestroy() {
     clearInterval(this.intervalId);
   }

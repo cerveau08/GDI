@@ -234,4 +234,7 @@ addAgence(data) {
   getFonctions(): Observable<any> {
     return this.http.get<any>(this.reqUrl + '/fonctions');
   }
+  validerInterimaire(data:any, id: number): Observable<any> {
+    return this.http.post<any>(`${this.reqUrl}/validerInterimaire/${id}`, data);
+  }
 }

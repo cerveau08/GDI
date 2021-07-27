@@ -11,18 +11,16 @@ import { AuthService } from '../services/auth.service';
 })
 export class LoginComponent implements OnInit {
 
-  public loading = false;
   loginForm: FormGroup;
   dataLogin;
   errorMsg: string;
   statusLogin;
+  scrHeight: number;
+  scrWidth: number;
+  loading: boolean;
   constructor(private route: Router,
               private auth: AuthService) {
-    this.getScreenSize();
   }
-
-  scrHeight:any;
-  scrWidth:any;
 
   @HostListener('window:resize', ['$event'])
   getScreenSize(event?) {

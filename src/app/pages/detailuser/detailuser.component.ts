@@ -1,13 +1,9 @@
-import { FormGroup, FormControl } from '@angular/forms';
-import { DataService } from './../../service/data.service';
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ModalService } from 'src/app/_modal/modal.service';
-import { NgxFileSaverService } from '@clemox/ngx-file-saver';
 import { OthersService } from 'src/app/services/others.service';
-import { formatCurrency } from '@angular/common';
+import { ModalService } from 'src/app/_modal';
 import { environment } from 'src/environments/environment';
-import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-detailuser',
@@ -194,9 +190,6 @@ export class DetailuserComponent implements OnInit {
     ); 
   }
 
-  openModal(id: string) {
-    this.modalService.open(id);
-  }
 
   closeModal(id: string) {
     this.modalService.close(id);

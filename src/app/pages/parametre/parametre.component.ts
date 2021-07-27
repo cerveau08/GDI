@@ -69,7 +69,7 @@ export class ParametreComponent implements OnInit {
              private route: ActivatedRoute,
              public fb: FormBuilder,
              ) { 
-              this.passwordForm = this.fb.group({
+              /*this.passwordForm = this.fb.group({
                 email: [''],
                 password: [''],
                 password_confirmation: [''],
@@ -77,7 +77,7 @@ export class ParametreComponent implements OnInit {
               });
               route.queryParams.subscribe((params) => {
                 this.passwordForm.controls.passwordToken.setValue(params.token);
-              });
+              });*/
              }
 
   ngOnInit() {
