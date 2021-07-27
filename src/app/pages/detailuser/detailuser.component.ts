@@ -22,7 +22,7 @@ export class DetailuserComponent implements OnInit {
   public nombre = 59;
   public left: any;
   donnees: any;
-  dataInter:any;
+  dataUser:any;
   dataContrat: any;
   
   viewer = 'google';  
@@ -70,21 +70,21 @@ export class DetailuserComponent implements OnInit {
     this.activeroute.queryParams.subscribe(params => {
       this.item = JSON.parse(params["user"]);
       console.log(this.item);
-      this.otherService.getOneInterById(this.item).subscribe(
+      this.otherService.getUserById(this.item).subscribe(
            data =>{
             this.data = data;
-            this.dataInter = this.data.data;
-            console.log(this.dataInter);
-            this.nom = this.dataInter.nom;
-            this.prenom = this.dataInter.prenom;
-            this.email = this.dataInter.email;
-            this.fonction = this.dataInter.fonction;
-            this.direction = this.dataInter.direction;
-            this.departement = this.dataInter.departement;
-            this.service = this.dataInter.service;
-            this.agence = this.dataInter.agence;
-            this.matricule = this.dataInter.matricule;
-            this.photo = this.dataInter.photo;
+            this.dataUser = this.data.data;
+            console.log(this.dataUser);
+            this.nom = this.dataUser.nom;
+            this.prenom = this.dataUser.prenom;
+            this.email = this.dataUser.email;
+            this.fonction = this.dataUser.fonction;
+           this.telephone = this.dataUser.telephone;
+            //this.departement = this.dataUser.departement;
+            //this.service = this.dataUser.service;
+            //this.agence = this.dataUser.agence;
+            this.matricule = this.dataUser.matricule;
+            this.photo = this.dataUser.photo;
         },
         error =>{
           console.log(error)

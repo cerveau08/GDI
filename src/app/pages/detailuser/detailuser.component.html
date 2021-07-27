@@ -11,7 +11,7 @@
                 </div>
             </div>
         </div>
-        <div class="progres">
+      <!--  <div class="progres">
             <p class="duree">Contrat <span>5 mois ( 35 jours</span> restant )</p>
             <div class="bar">
                 <div id="progress_bar">
@@ -24,22 +24,22 @@
                 <p class="datedebut">12 Dec 2020</p>
                 <p class="datefin">25 Aou 2021</p>
             </div>
-        </div>
+        </div>-->
         <div class="grid-container" *ngIf="item">
             <div class="image">
                 <div class="ima">
                     <img class="image-interimaire"  src="{{photo}}" alt="photo">
                    
-                    <p class="prenom">{{dataInter?.prenom}} {{dataInter?.nom}}</p>
-                    <p class="fonction">{{dataInter?.profil}}</p>
+                    <p class="prenom">{{dataUser?.prenom}} {{dataUser?.nom}}</p>
+                    <p class="fonction">{{dataUser?.profil.libelle}}</p>
                 </div>
             </div>
             <div class="info">
                 <div class="lot1">
-                    <p class="key">Numéro CNI: <span class="value">{{dataInter?.numeroPiece}}</span> </p>
-                    <p class="key">Email: <span class="value">{{dataInter?.datedenaissance}}</span> </p>
-                    <p class="key">Téléphone: <span class="value">{{dataInter?.lieudenaissance}}</span> </p>
-                    <p class="key">Fonction: <span class="value">{{dataInter?.sexe}}</span> </p>
+                    <p class="key">Numéro CNI: <span class="value">{{dataUser?.numeroPiece}}</span> </p>
+                    <p class="key">Email: <span class="value">{{dataUser?.email}}</span> </p>
+                    <p class="key">Téléphone: <span class="value">{{dataUser?.telephone}}</span> </p>
+                    <p class="key">Fonction: <span class="value">{{dataUser?.fonction}}</span> </p>
                 </div>
                 <!--<div class="lot">
                     <p class="lot2">Catégorie: <span class="value">{{dataInter?.categorie.libelle}}</span> </p>
@@ -53,7 +53,7 @@
         </div>
         <div class="lesbouton">
             <button class="button1" (click)="openModal('custom-modal-1')">Modifier</button>
-            <button *ngIf="role == 'DRH'" class="button8" (click)="openModal('custom-modal-7')">Bloquer Interimaire</button>
+            <button *ngIf="role == 'DRH'" class="button8" (click)="openModal('custom-modal-7')">Bloquer Utilisateur</button>
         </div>
     </div>
 </div>
@@ -86,7 +86,7 @@
     <jw-modal id="custom-modal-7">
         <div class="tableau">
             <mat-icon style="cursor: pointer;" (click)="closeModal('custom-modal-7');" class="clear">clear</mat-icon>
-            <p class="dtl1">Bannir {{prenom}} {{nom}}</p>
+            <p class="dtl1">Bloquer {{prenom}} {{nom}}</p>
             <p class="text-droit">
                 Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
                 Doloribus harum sapiente a voluptatum inventore consectetur 
@@ -108,11 +108,11 @@
                 exercitationem aperiam, corporis recusandae incidunt ratione maxime?
             </p>
             <div class="content-motif">
-                <p class="libelle-motif">Motif pour Bannir {{prenom}} {{nom}}</p>
+                <p class="libelle-motif">Motif pour Bloquer {{prenom}} {{nom}}</p>
                 <textarea class="textarea-motif" name="motif"  placeholder="Motif de Bannir l'intérimaire"></textarea>
             </div>
             <div class="btns3">
-                <button (click)="arretContrat()"  class="button8">Bannir</button>
+                <button (click)="arretContrat()"  class="button8">Bloquer</button>
             </div>
         </div>
     </jw-modal>
