@@ -70,6 +70,7 @@ import { PasswordResetModule } from './password-reset/password-reset.module';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { ErrorInterceptor } from './helpers/error.interceptor';
 import { ListuserComponent } from './pages/listuser/listuser.component';
+import { DetailuserComponent } from './pages/detailuser/detailuser.component';
 
 @NgModule({
   declarations: [
@@ -119,6 +120,7 @@ import { ListuserComponent } from './pages/listuser/listuser.component';
     YearPickerComponent,
     RegularDatepickerComponent,
     ListuserComponent,
+    DetailuserComponent,
   ],
   imports: [
     BrowserModule,
