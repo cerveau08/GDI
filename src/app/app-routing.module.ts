@@ -1,4 +1,3 @@
-import { DetailuserComponent } from './pages/detailuser/detailuser.component';
 import { ObjectifsComponent } from './pages/objectifs/objectifs.component';
 import { LesdemandesComponent } from './pages/lesdemandes/lesdemandes.component';
 import { AdduserComponent } from './pages/adduser/adduser.component';
@@ -40,6 +39,7 @@ import { InterarchiveComponent } from './pages/interarchive/interarchive.compone
 import { InterenattenteComponent } from './pages/interenattente/interenattente.component';
 import { PasswordResetComponent } from './password-reset/password-reset.component';
 import { ListuserComponent } from './pages/listuser/listuser.component';
+import { DetailuserComponent } from './pages/detailuser/detailuser.component';
 
 
 const routes: Routes = [

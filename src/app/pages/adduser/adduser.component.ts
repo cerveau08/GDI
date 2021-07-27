@@ -1,6 +1,6 @@
 import { OthersService } from './../../services/others.service';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { DataService } from 'src/app/service/data.service';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
@@ -81,11 +81,14 @@ export class AdduserComponent implements OnInit {
       profil: new FormControl(''),
     }); 
     this.userAgentForm = new FormGroup({
-      prenom: new FormControl(''),
-      nom: new FormControl(''),
-      email: new FormControl(''),
-      telephone: new FormControl(''),
-      fonction: new FormControl(''),
+      prenom: new FormControl('', Validators.required,),
+      nom: new FormControl('', Validators.required,),
+      email: new FormControl('', [
+        Validators.required,
+        Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
+      ]),
+      telephone: new FormControl('', Validators.required,),
+      fonction: new FormControl('', Validators.required,),
       login: new FormControl(''),
       profil: new FormControl('8'),
       avatar: new FormControl(''),

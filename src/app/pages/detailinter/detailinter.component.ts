@@ -155,7 +155,7 @@ export class DetailinterComponent implements OnInit {
     });
     this.validerForm = new FormGroup({
       matricule: new FormControl(''),
-      email: new FormControl('')
+      telephone: new FormControl('')
     })
     this.otherService.getAllSociete().subscribe(
       data => {
@@ -302,7 +302,7 @@ formdata.append("fichePoste",this.urlfichedeposte);
   } 
 
   validerInterimaire() {
-    this.http.post(`${this.reqUrl}/validerInterimaire/${this.item}`, null).subscribe(
+    this.otherService.validerInterimaire(this.validerForm.value, this.item).subscribe(
       data => {
         console.log(data);
         this.data = data

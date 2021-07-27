@@ -93,7 +93,9 @@
                       <div class="input2">
                         <textarea class="motif-demande" type="text" formControlName="motif" placeholder="motif"></textarea>
                       </div>
-                      
+                      <div class="content-error-msg" *ngIf="successMsg == false">
+                        <p class="error-alert">{{ data?.message}}</p>
+                     </div>
                       <div class="boutonsea">
                           <button (click)="onSubmit()"
                           class="buttonsea">Demander</button>
