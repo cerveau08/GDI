@@ -43,6 +43,9 @@
                                 <div *ngIf="user != 'DRH'" class="infoinput1">
                                     <input type="text" formControlName="fonction"  [(ngModel)]="fonction"  placeholder="Fonction">
                                 </div>
+                                <div class="content-error-msg" *ngIf="successMsg == false">
+                                    <p class="error-alert">{{ data?.message}}</p>
+                                </div>
                                 <div class="content-button">
                                     <button (click)="ajouterUser()" class="buttob-envoyer">Valider</button>
                                 </div>

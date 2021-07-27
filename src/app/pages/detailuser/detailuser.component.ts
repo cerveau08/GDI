@@ -39,7 +39,7 @@ export class DetailuserComponent implements OnInit {
   arretForm: FormGroup;
   bannirForm: FormGroup;
   reconduireForm: FormGroup;
-  validerForm: FormGroup;
+  userForm: FormGroup;
   filenamecontrat;
   filenamefichedeposte;
   urlcontrat;
@@ -52,8 +52,8 @@ export class DetailuserComponent implements OnInit {
   role;
   url3;
   url2;
-  filename3;
-  filename2;
+  fichierPhoto?: File;
+  photoName;
   public reqUrl = environment.base_url;
   constructor(private activeroute: ActivatedRoute,
               private modalService: ModalService,
@@ -96,9 +96,20 @@ export class DetailuserComponent implements OnInit {
       email: new FormControl(''),
       telephone: new FormControl(''),
     });
-    this.validerForm = new FormGroup({
+    this.userForm = new FormGroup({
+      prenom: new FormControl(''),
+      nom: new FormControl(''),
+      email: new FormControl(''),
+      telephone: new FormControl(''),
+      fonction: new FormControl(''),
+      login: new FormControl(''),
+      profil: new FormControl('8'),
+      avatar: new FormControl(''),
+      agenceId: new FormControl(''),
+      isManager: new FormControl('false'),
       matricule: new FormControl(''),
-      email: new FormControl('')
+      interimaireId: new FormControl(''),
+      structureId: new FormControl('')
     })
     this.otherService.getAllSociete().subscribe(
       data => {
@@ -112,6 +123,45 @@ export class DetailuserComponent implements OnInit {
     this.bannirForm = new FormGroup({
       motif: new FormControl(''),
     });
+  }
+
+  getPhoto(event: any) {
+    this.fichierPhoto = event.target.files[0];
+    this.photoName = this.fichierPhoto.name;
+    let reader = new FileReader();
+    reader.readAsDataURL( this.fichierPhoto);
+    reader.onload= ()=>{
+      this.image= reader.result;
+      console.log(this.image);
+    }
+  }
+
+  ajouterUser() {
+    const formdata = new FormData(); 
+    formdata.append("prenom",this.userForm.value.prenom);
+    formdata.append("nom",this.userForm.value.nom);
+    formdata.append("profil",this.userForm.value.profil);
+    formdata.append("fonction",this.userForm.value.fonction);
+    formdata.append("agenceId",this.userForm.value.agenceId);
+    formdata.append("email",this.userForm.value.email);
+    formdata.append("telephone",this.userForm.value.telephone);
+    if(this.userForm.value.matricule != undefined) {
+      formdata.append("matricule",this.userForm.value.matricule);
+    }
+    formdata.append("interimaireId",this.userForm.value.interimaireId);
+    formdata.append("structureId",this.userForm.value.structureId);
+    formdata.append("avatar",this.fichierPhoto);
+    console.log(formdata);
+    console.log(this.userForm.value);
+    this.otherService.addUser(formdata).subscribe(
+      (response) =>{
+        console.log(response)
+        this.router.navigate(['/accueil/listeuser']);
+      },
+      (error) =>{
+        console.log(error)
+      }
+    )
   }
 
   directionsListe(value) {
@@ -151,16 +201,4 @@ export class DetailuserComponent implements OnInit {
   closeModal(id: string) {
     this.modalService.close(id);
   }
-  
-  
-   //recuperation de l'image
-  getPhoto(e:any) {
-    this.photo= e.files.item(0);
-    let reader = new FileReader();
-    reader.readAsDataURL(this.photo)
-    reader.onload= ()=>{
-      this.image= reader.result
-    } 
-  }
- 
 }

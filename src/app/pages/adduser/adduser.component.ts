@@ -46,6 +46,8 @@ export class AdduserComponent implements OnInit {
   fichierPhoto?: File;
   photoName;
   user;
+  successMsg;
+  data;
   page = 1;
   itemsPerPage = 100;
   totalItems : any;
@@ -92,7 +94,6 @@ export class AdduserComponent implements OnInit {
       matricule: new FormControl(''),
       interimaireId: new FormControl(''),
       structureId: new FormControl('')
-
     })
 
     //recupere les societes
@@ -194,7 +195,13 @@ export class AdduserComponent implements OnInit {
     this.otherService.addUser(formdata).subscribe(
       (response) =>{
         console.log(response)
-        this.route.navigate(['/accueil/souscontrat']);
+        this.data = response;
+        this.successMsg = this.data.status
+        console.log(this.successMsg);
+        
+        if (this.successMsg == true) {
+          this.route.navigate(['/accueil/souscontrat']);
+        }
       },
       (error) =>{
         console.log(error)
