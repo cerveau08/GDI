@@ -4,6 +4,8 @@ import { Component, ElementRef, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BoundText } from '@angular/compiler/src/render3/r3_ast';
 import { ModalService } from 'src/app/_modal';
+import { environment } from 'src/environments/environment';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-objectifs',
@@ -28,9 +30,14 @@ export class ObjectifsComponent implements OnInit {
   modifierForm: FormGroup;
   titremodif;
   descriptionmodif;
+  page = 1;
+  itemsPerPage = 4;
+  totalItems : any;
+  public reqUrl = environment.base_url;
   constructor(private otherService: OthersService,
     private modalService: ModalService,
-    private activeroute: ActivatedRoute,) {
+    private activeroute: ActivatedRoute,
+    private http: HttpClient,) {
     this.activeroute.queryParams.subscribe(params => {
       this.item = JSON.parse(params["interimaire"]);
       console.log(this.item);
@@ -65,8 +72,6 @@ export class ObjectifsComponent implements OnInit {
     this.otherService.getOneInterById(this.item).subscribe(
       data =>{
         this.interimaire = data;
-        this.interimaire.data.prenom;
-        this.interimaire.data.nom;
         this.objectifForm.patchValue({
           structure_id: this.interimaire.data.structure.id,
           interimaire: this.item
@@ -76,6 +81,15 @@ export class ObjectifsComponent implements OnInit {
         console.log(error)
       }
     );
+    this.gty(this.page);
+  }
+
+  gty(page: any){
+    this.http.get(this.reqUrl + `/listeObjectifs/${this.item}?page=${page}&limit=${this.itemsPerPage}`).subscribe((data: any) => {
+      this.data = data
+      this.objectif = this.data["data"];
+      console.log(data);
+    })
   }
 
   addObject() {

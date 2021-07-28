@@ -30,6 +30,10 @@ export class DetailinterComponent implements OnInit {
   contratDoc;
   fichePosteDoc=""
   proceVerbalDoc="" 
+  dataValidation;
+  dataReconduire;
+  dataRenouveler;
+  dataBannir;
   data;
   nom;
   prenom;
@@ -77,6 +81,10 @@ export class DetailinterComponent implements OnInit {
   url2;
   filename3;
   filename2;
+  successMsgValider;
+  successMsgReconduire;
+  successMsgRenouveler;
+  successMsgBannir;
   public reqUrl = environment.base_url;
   constructor(private activeroute: ActivatedRoute,
               private modalService: ModalService,
@@ -244,27 +252,30 @@ export class DetailinterComponent implements OnInit {
     })
   }
   
-  validerContrat() {
-   this.contratForm.patchValue({interimaireId: this.item});
-   const formdata = new FormData();
-formdata.append("societeId",this.contratForm.value.societeId);
-formdata.append("structureId",this.contratForm.value.structureId);
-formdata.append("domaineId",this.contratForm.value.domaineId);
-formdata.append("salaireBrut",this.contratForm.value.salaireBrut);
-formdata.append("interimaireId",this.item);
-formdata.append("categorieId",this.contratForm.value.categorieId);
-formdata.append("dateDebut",this.contratForm.value.dateDebut);
-formdata.append("dateFin",this.contratForm.value.dateFin);
-formdata.append("dateSignature",this.contratForm.value.dateSignature);
-formdata.append("profession",this.contratForm.value.profession);
-formdata.append("poste",this.contratForm.value.poste);
-formdata.append("contrat",this.urlcontrat);
-formdata.append("fichePoste",this.urlfichedeposte);
+  renouvelerContrat() {
+    this.contratForm.patchValue({interimaireId: this.item});
+    const formdata = new FormData();
+    formdata.append("societeId",this.contratForm.value.societeId);
+    formdata.append("structureId",this.contratForm.value.structureId);
+    formdata.append("domaineId",this.contratForm.value.domaineId);
+    formdata.append("salaireBrut",this.contratForm.value.salaireBrut);
+    formdata.append("interimaireId",this.item);
+    formdata.append("categorieId",this.contratForm.value.categorieId);
+    formdata.append("dateDebut",this.contratForm.value.dateDebut);
+    formdata.append("dateFin",this.contratForm.value.dateFin);
+    formdata.append("dateSignature",this.contratForm.value.dateSignature);
+    formdata.append("profession",this.contratForm.value.profession);
+    formdata.append("poste",this.contratForm.value.poste);
+    formdata.append("contrat",this.urlcontrat);
+    formdata.append("fichePoste",this.urlfichedeposte);
     this.otherService.renouvelerContrat(formdata).subscribe(
       data => {
         console.log(data);
-        if(data){
-          this.router.navigate(['/accueil/souscontrat']);
+        this.dataValidation = data;
+        this.successMsgValider = this.dataValidation.status;
+        if(this.successMsgValider == true){
+          this.ngOnInit();
+          this.closeModal('custom-modal-4');
         }
       },
       error =>{
@@ -284,8 +295,11 @@ formdata.append("fichePoste",this.urlfichedeposte);
     this.otherService.reconduireContrat(formdata).subscribe(
       data => {
         console.log(data);
-        if(data){
-          this.router.navigate(['/accueil/souscontrat']);
+        this.dataReconduire = data;
+        this.successMsgReconduire = this.dataReconduire.status;
+        if(this.successMsgReconduire == true){
+          this.ngOnInit();
+          this.closeModal('custom-modal-5');
         }
       },
       error =>{
@@ -305,8 +319,10 @@ formdata.append("fichePoste",this.urlfichedeposte);
     this.otherService.validerInterimaire(this.validerForm.value, this.item).subscribe(
       data => {
         console.log(data);
-        this.data = data
-        if(this.data.success == true) {
+        this.dataValidation = data;
+        this.successMsgValider = this.dataValidation.status;
+        if(this.successMsgValider == true) {
+          this.closeModal('custom-modal-8');
           this.router.navigate(['accueil/souscontrat']);
         }
       }
@@ -349,10 +365,13 @@ formdata.append("fichePoste",this.urlfichedeposte);
     console.log(this.dataInter);
     this.otherService.arreterContrat(this.dataInter.contrat.id, this.arretForm.value).subscribe(
       (response) =>{
-       console.log(response)
-      // if (response) {
-        //this.router.navigate(['/accueil/sousContrat']);
-      // }
+        console.log(response)
+        this.dataBannir = response;
+        this.successMsgBannir = this.dataBannir.status;
+        if(this.successMsgBannir == true) {
+          this.closeModal('custom-modal-7');
+          this.ngOnInit();
+        }
       },
       (error)=>{
         console.log(error);

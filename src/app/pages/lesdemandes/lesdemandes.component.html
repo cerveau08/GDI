@@ -8,7 +8,6 @@
             <table style="overflow-x:auto;" aria-describedby = "mydesc">
                 <thead>
                     <tr class="head">
-                        <th *ngIf="scrWidth>991" class="id1" id="manager">#</th>
                         <th class="typ" id="prenom">
                             <div class="type">
                                 <p>Prenom</p> 
@@ -31,8 +30,10 @@
                 </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let p of dd | filter:filterterm | paginate: { itemsPerPage: 8, currentPage: p }; let i = index">
-                        <td *ngIf="scrWidth>991" class="id1">{{p.id}}</td>
+                    <tr *ngFor="let p of dd | filter:filterterm | paginate: {  itemsPerPage: itemsPerPage,
+                        currentPage: page,
+                        totalItems: totalItems
+                        }; let i = index">
                         <td>{{p.prenom}}</td>
                         <td>{{p.nom}}</td>
                         <td> {{p.typeDemande}}</td>
@@ -62,7 +63,7 @@
                 
             </table>
             <div class="pagination">
-                <pagination-controls (pageChange)="p = $event" previousLabel="Prcédent" nextLabel="Suivant"></pagination-controls>
+                <pagination-controls (pageChange)="gty(page = $event)" previousLabel="Prcédent" nextLabel="Suivant"></pagination-controls>
             </div>
         </div>
     </div>

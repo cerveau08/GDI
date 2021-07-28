@@ -37,8 +37,8 @@
                         <p class="label-input">Confirmer mot de passe</p>
                         <input formControlName="plainPassword" class="parametre-input" type="password">
                     </div>
-                    <div class="content-error-msg" *ngIf="statusLogin == false">
-                        <p class="error-alert">{{ dataLogin?.message}}</p>
+                    <div class="content-error-msg" *ngIf="successMsg == false">
+                        <p class="error-alert">{{ datas?.message}}</p>
                     </div>
                     <button (click)="confirmPassword()" class="enregistrer-password">Enregistrer</button>
                 </div>

@@ -201,6 +201,9 @@
                         </div>
                       </div>
                     </div>
+                    <div class="content-error-msg" *ngIf="successMsg == false">
+                      <p class="error-alert">{{ data?.message}}</p>
+                   </div>
                     <button class="button1" mat-button matStepperPrevious>Précédent</button>
                     <button class="button2" type="button" (click)="submit()" matSteppperNext>Enregistrer</button>
                 </form>
@@ -212,7 +215,7 @@
                     </div>
                     <div class="text">
                       <p class="p1">
-                        L’agent <span>Mouhamadou Lamine MBODJI</span>  a été ajouté avec succès à la liste des interimaires pour une durée de <span>7 mois</span>. <br> Une notification sera envoyée à <span>son manageur</span> et à l’<span>agence d’interim</span>.
+                        L’agent <span>{{data.data.interimaire.prenom}} {{data.data.interimaire.nom}}</span>  a été ajouté avec succès à la liste des interimaires. <br> Une notification sera envoyée à <span>son manageur</span> et à l’<span>agence d’interim</span>.
                       </p>
                     </div>
                   </div>

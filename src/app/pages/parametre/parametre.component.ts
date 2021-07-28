@@ -3,8 +3,9 @@ import { DataService } from 'src/app/service/data.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 import { OthersService } from 'src/app/services/others.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { throwError } from 'rxjs';
+// import { timingSafeEqual } from 'crypto';
 
 @Component({
   selector: 'app-parametre',
@@ -66,7 +67,7 @@ export class ParametreComponent implements OnInit {
   constructor(private dataService: DataService,
              private paginationService: PaginationService,
              private otherService: OthersService,
-             private route: ActivatedRoute,
+             private router: Router,
              public fb: FormBuilder,
              ) { 
               /*this.passwordForm = this.fb.group({
@@ -114,8 +115,9 @@ export class ParametreComponent implements OnInit {
         //alert('Password has been updated');
         console.log(result);
         this.datas = result;
-        this.successMsg = this.datas.success;
+        this.successMsg = this.datas.status;
         if(this.successMsg == true) {
+          this.router.navigate(['/login'])
           this.passwordForm.reset();
         }
         
