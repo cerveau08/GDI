@@ -258,36 +258,38 @@
         <div class="tableau">
             <mat-icon style="cursor: pointer;" (click)="closeModal('custom-modal-6');" class="clear">clear</mat-icon>
             <p class="dtl1">Arreter le Contrat en-cours de {{prenom}} {{nom}}</p>
-            <p class="text-droit">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
-                Doloribus harum sapiente a voluptatum inventore consectetur 
-                in ipsa explicabo est nulla at tempora doloremque eaque 
-                veritatis consequuntur necessitatibus, eligendi recusandae quia!
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                Laudantium molestiae alias dolores suscipit at voluptatibus
-                reiciendis doloremque voluptate nemo quae unde deserunt temporibus 
-                exercitationem aperiam, corporis recusandae incidunt ratione maxime?
-            </p>
-            <p class="text-droit">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
-                Doloribus harum sapiente a voluptatum inventore consectetur 
-                in ipsa explicabo est nulla at tempora doloremque eaque 
-                veritatis consequuntur necessitatibus, eligendi recusandae quia!
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                Laudantium molestiae alias dolores suscipit at voluptatibus
-                reiciendis doloremque voluptate nemo quae unde deserunt temporibus 
-                exercitationem aperiam, corporis recusandae incidunt ratione maxime?
-            </p>
-            <div class="content-motif">
-                <p class="libelle-motif">Motif de l'arrêt du contrat</p>
-                <textarea class="textarea-motif" name="motif"  placeholder="Motif de l'arrêt du contrat"></textarea>
-            </div>
-            <div class="content-error-msg" *ngIf="successMsgBannir == false">
-                <p class="error-alert">{{ dataBannir?.message}}</p>
-            </div>
-            <div class="btns3">
-                <button (click)="arretContrat()"  class="button7">Arréter</button>
-            </div>
+            <form [formGroup]="arretForm">
+                <p class="text-droit">
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
+                    Doloribus harum sapiente a voluptatum inventore consectetur 
+                    in ipsa explicabo est nulla at tempora doloremque eaque 
+                    veritatis consequuntur necessitatibus, eligendi recusandae quia!
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                    Laudantium molestiae alias dolores suscipit at voluptatibus
+                    reiciendis doloremque voluptate nemo quae unde deserunt temporibus 
+                    exercitationem aperiam, corporis recusandae incidunt ratione maxime?
+                </p>
+                <p class="text-droit">
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
+                    Doloribus harum sapiente a voluptatum inventore consectetur 
+                    in ipsa explicabo est nulla at tempora doloremque eaque 
+                    veritatis consequuntur necessitatibus, eligendi recusandae quia!
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                    Laudantium molestiae alias dolores suscipit at voluptatibus
+                    reiciendis doloremque voluptate nemo quae unde deserunt temporibus 
+                    exercitationem aperiam, corporis recusandae incidunt ratione maxime?
+                </p>
+                <div class="content-motif">
+                    <p class="libelle-motif">Motif de l'arrêt du contrat</p>
+                    <textarea class="textarea-motif" formControlName="motif" name="motif"  placeholder="Motif de l'arrêt du contrat"></textarea>
+                </div>
+                <div class="content-error-msg" *ngIf="successMsgBannir == false">
+                    <p class="error-alert">{{ dataBannir?.message}}</p>
+                </div>
+                <div class="btns3">
+                    <button (click)="arretContrat()"  class="button7">Arréter</button>
+                </div>
+            </form>
         </div>
     </jw-modal>
 </div>
