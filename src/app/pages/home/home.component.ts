@@ -229,7 +229,7 @@ export class HomeComponent implements OnInit {
         bar: {
           horizontal: false,
           columnWidth: "20px",
-        //  endingShape: "rounded",
+          //endingShape: "rounded",
         },
       },
       dataLabels: {
