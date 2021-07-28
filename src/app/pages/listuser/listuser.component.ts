@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { environment } from 'src/environments/environment';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { DataService } from 'src/app/service/data.service';
 import { DatePipe } from '@angular/common';
-import { Router } from '@angular/router';
-import { ModalService } from 'src/app/_modal';
-import { OthersService } from 'src/app/services/others.service';
 import { HttpClient } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { DataService } from 'src/app/service/data.service';
+import { OthersService } from 'src/app/services/others.service';
+import { ModalService } from 'src/app/_modal/modal.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-listuser',
