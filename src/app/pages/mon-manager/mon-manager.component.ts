@@ -1,19 +1,19 @@
-import { HttpClient } from '@angular/common/http';
-import { DataService } from './../../service/data.service';
-import { Component, HostListener, OnInit } from '@angular/core';
-import { NgxFileSaverService } from '@clemox/ngx-file-saver';
-import { ModalService } from 'src/app/_modal/modal.service';
-import { ActivatedRoute } from '@angular/router';
-import {OthersService} from '../../services/others.service';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { environment } from 'src/environments/environment';
-
+import { DataService } from 'src/app/service/data.service';
+import { ModalService } from 'src/app/_modal';
+import { NgxFileSaverService } from '@clemox/ngx-file-saver';
+import { OthersService } from 'src/app/services/others.service';
+import { HttpClient } from '@angular/common/http';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-manager',
-  templateUrl: './manager.component.html',
-  styleUrls: ['./manager.component.scss']
+  selector: 'app-mon-manager',
+  templateUrl: './mon-manager.component.html',
+  styleUrls: ['./mon-manager.component.scss']
 })
-export class ManagerComponent implements OnInit {
+export class MonManagerComponent implements OnInit {
+
   scrHeight:any;
   scrWidth:any;
   viewer = 'google';   
@@ -57,7 +57,7 @@ export class ManagerComponent implements OnInit {
     this.user = localStorage.getItem('user');
     this.item = JSON.parse(localStorage.getItem('currentUser'));
     console.log(this.item);
-    this.otherService.getDetailsManagerById(this.item.data.id).subscribe( 
+    this.otherService.getDetailsManagerById(this.item.manager.id).subscribe( 
       result => {
         this.data = result;
         this.managerinfo = this.data.data.detail

@@ -1,5 +1,5 @@
 <div class="all-container" >
-    <div class="all" *ngIf="!showHome">
+    <div class="all" *ngIf="user=='INT'">
         <div class="content-web">
             <p routerLink="/accueil/homedrh" class="bien">Bienvenue {{prenom}}</p>
             <p class="alert">Vous n’avez pas encore fait votre demande de suvention restauration. <span routerLink="/accueil/alertes" style="cursor: pointer; outline: none;">Je fais ma demande</span></p>
@@ -63,7 +63,7 @@
             </div>
         </div>   
     </div>
-    <div class="main" *ngIf="showHome">
+    <div class="main" *ngIf="user!='INT'">
             <p routerLink="/accueil/home" class="bien">Bienvenue {{prenom}} </p>
             <p class="alert">Le contrat de <span class="inter" style="cursor: pointer;">Lamine MBODJI</span>  fini dans 10 jours.  <span class="alertes" style="cursor: pointer; outline: none;" routerLink="/accueil/alertes">Voir les autres alertes</span></p>
             <div class="detail1">

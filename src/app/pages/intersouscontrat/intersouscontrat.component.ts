@@ -171,7 +171,7 @@ export class IntersouscontratComponent implements OnInit {
       data => {
         console.log(data);
         this.result = data
-        this.successMsg = this.result.success
+        this.successMsg = this.result.status
 
         if(this.successMsg == true) {
           this.closeModal('custom-modal-'+interimaire_id);

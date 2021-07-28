@@ -1,18 +1,18 @@
-import { OthersService } from './../../services/others.service';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormGroup, FormControl } from '@angular/forms';
 import { NgxFileSaverService } from '@clemox/ngx-file-saver';
+import { ModalService } from 'src/app/_modal';
 import { DataService } from 'src/app/service/data.service';
-import { ModalService } from 'src/app/_modal/modal.service';
-import { ActivatedRoute } from '@angular/router';
+import { OthersService } from 'src/app/services/others.service';
 
 @Component({
-  selector: 'app-agence',
-  templateUrl: './agence.component.html',
-  styleUrls: ['./agence.component.scss']
+  selector: 'app-mon-agence',
+  templateUrl: './mon-agence.component.html',
+  styleUrls: ['./mon-agence.component.scss']
 })
-export class AgenceComponent implements OnInit {
+export class MonAgenceComponent implements OnInit {
 
+  
   item;
   showHome = true;
   url1;
@@ -96,7 +96,7 @@ export class AgenceComponent implements OnInit {
     } else {
       this.showHome = true;
     }
-    this.otherService.getOneAgenceById(this.item.data.agence).subscribe(
+    this.otherService.getOneAgenceById(this.item.agence.id).subscribe(
       data =>{
         this.dataAgence = data;
         console.log(this.dataAgence);
@@ -119,7 +119,7 @@ export class AgenceComponent implements OnInit {
         console.log(error)
       }
     );
-    this.otherService.getTotalAgenceActifInactif(this.item.data.agence).subscribe(
+    this.otherService.getTotalAgenceActifInactif(this.item.agence.id).subscribe(
       data =>{
         this.dataAgence = data;
         console.log(data);
@@ -230,4 +230,5 @@ export class AgenceComponent implements OnInit {
 
   delete(id) {
   }
+
 }

@@ -33,6 +33,7 @@ export class ObjectifsComponent implements OnInit {
   page = 1;
   itemsPerPage = 4;
   totalItems : any;
+  interimConnect;
   public reqUrl = environment.base_url;
   constructor(private otherService: OthersService,
     private modalService: ModalService,
@@ -46,6 +47,9 @@ export class ObjectifsComponent implements OnInit {
 
   ngOnInit() {
     this.role = localStorage.getItem('user');
+    // this.interimConnect = JSON.parse(localStorage.getItem('currentUser'));
+    // this.item = this.interimConnect.interimaire.id
+    // console.log(this.interimConnect);
     this.otherService.getListeObjectif(this.item).subscribe(
       data => {
         this.data = data
@@ -98,7 +102,7 @@ export class ObjectifsComponent implements OnInit {
       data =>{
         console.log(data);
         this.data = data;
-        this.successMsg = this.data.success
+        this.successMsg = this.data.status
         if(this.successMsg == true) {
           this.ngOnInit();
           this.closeModal('objectif-modal-1');
@@ -116,7 +120,7 @@ export class ObjectifsComponent implements OnInit {
       data =>{
         console.log(data);
         this.data = data;
-        this.successMsg = this.data.success
+        this.successMsg = this.data.status
         if(this.successMsg == true) {
           this.ngOnInit();
           this.closeModal('custom-modal-'+id);
@@ -132,7 +136,7 @@ export class ObjectifsComponent implements OnInit {
     this.otherService.modifierObjectif(this.modifierForm.value, id).subscribe(
       data =>{
         this.data = data;
-        this.successMsg = this.data.success
+        this.successMsg = this.data.status
         if(this.successMsg == true) {
           this.ngOnInit();
           this.closeModal('custom-modal-'+id);

@@ -134,7 +134,7 @@ export class AddagenceComponent implements OnInit {
       data => {
         console.log(data);
         this.data = data;
-        this.successMsg = this.data.success;
+        this.successMsg = this.data.status;
         if (this.successMsg == true) {
           this.route.navigate(['/accueil/listagence']);
         }

@@ -1,0 +1,79 @@
+<div class="all-container">
+    <div class="demande">
+        <p class="detail">Détail</p>
+        <div class="manager" >
+            <div class="image">
+                <img class="image-manager" src="{{managerinfo?.avatar}}" alt="">
+                <div class="im1">
+                    <img class="image-contact" src="../assets/images/phone.png" alt="">
+                </div>
+                <div class="im2">
+                    <a href="mailto:malick">
+                      <img class="image-contact" src="../assets/images/phone.png" alt="">
+                    </a>
+                </div>
+            </div>
+            <div class="information">
+                <p class="nom">{{managerinfo?.prenom}} {{managerinfo?.nom}}</p>
+                <p class="poste">{{managerinfo?.fonction}}</p>
+                <p class="matricule">{{managerinfo?.matricule}}</p>
+                </div>
+        </div>
+        <hr>
+        <div class="tableau">
+            <p class="detail1" id="mydesc">Liste des Intérimaires managés</p>
+            <table style="overflow-x:auto;" aria-describedby = "mydesc">
+                <thead>
+                    <tr class="head">
+                        <th class="typ" id="preno;">
+                            <div class="type">
+                                <p>Prénom</p> 
+                            </div>
+                        </th>
+                        <th class="typ" id="nom">
+                            <div class="type">
+                                <p>Nom</p> 
+                            </div>
+                        </th>
+                        <th id="agence">Agence</th>
+                        <th id="contrat">Fin de contrat</th>
+                        <th *ngIf="scrWidth>991" id="action">Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let p of datas | paginate: { 
+                        itemsPerPage: itemsPerPage,
+                        currentPage: page,
+                        totalItems: totalItems
+                        }; let i = index">
+                        <td>{{p.prenom}}</td>
+                        <td>{{p.nom}}</td>
+                        <td>{{p.nomAgence}}</td>
+                        <td>{{p.dateFinContrat}}</td>
+                        <td *ngIf="scrWidth>991"><button  class="button1" (click)="openModal('custom-modal-'+p.id)">Afficher</button></td>
+                        <!--modal1-->
+                        <div class="modal">
+                            <jw-modal id="custom-modal-{{p.id}}">
+                                <div class="tab">
+                                    <mat-icon style="cursor: pointer;" (click)="closeModal('custom-modal-'+p.id);" class="clear">clear</mat-icon>
+                                    <p class="dtl1">Attestation de Présence de {{p.prenom}} {{p.nom}}</p>
+                                    <ngx-doc-viewer 
+                                    [url]="DemoDoc1" 
+                                    [viewer]="viewer" 
+                                    style="width:100%;height:70vh;">
+                                    </ngx-doc-viewer>
+                                    <div class="btns2">
+                                        <button (click)="getfilemodal()"  class="btn2">Télécharger</button>
+                                    </div>
+                                </div>
+                            </jw-modal>
+                        </div>
+                        <!--modal1-->
+                    </tr>
+                </tbody>
+                
+            </table>
+            <pagination-controls (pageChange)="gty(page = $event)" previousLabel="Prcédent" nextLabel="Suivant"></pagination-controls>
+        </div>
+    </div>
+</div>
