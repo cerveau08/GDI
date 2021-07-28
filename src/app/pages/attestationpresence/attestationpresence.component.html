@@ -1,0 +1,58 @@
+<div class="all-container">
+    <div class="demande">
+        <div class="tableau">
+            <p class="detail1" id="mydesc">Liste des Attestations de Presence</p>
+            <table style="overflow-x:auto;" aria-describedby = "mydesc">
+                <thead>
+                    <tr class="head">
+                        <th class="id1" id="matricule">#</th>
+                        <th class="typ" id="prenom">
+                            <div class="type">
+                                <p>Prénom</p> 
+                                <mat-icon class="updown" fontSet="material-icons-outlined">unfold_more</mat-icon>
+                            </div>
+                        </th>
+                        <th class="typ" id="nom">
+                            <div class="type">
+                                <p>Nom</p> 
+                                <mat-icon class="updown" fontSet="material-icons-outlined">unfold_more</mat-icon>
+                            </div>
+                        </th>
+                        <th id="datedebut">Date Début</th>
+                        <th id="datefin">Date Fin</th>
+                        <th *ngIf="user != 'AGN' && user != 'INT'" id="action">Agence</th>
+                        <th id="action">Etat</th>
+                        <th *ngIf="user == 'AGN'" id="input"><input 
+                            [(ngModel)]="selectedAll"
+                            (change)="selectAll();"
+                            type="checkbox"/>
+                       </th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let p of dataAttest | filter:filterterm | paginate: { 
+                        itemsPerPage: itemsPerPage,
+                        currentPage: page,
+                        totalItems: totalItems}; let i = index">
+                        <td class="id1">{{p.id}}</td>
+                        <td>{{p.prenom}}</td>
+                        <td>{{p.nom}}</td>
+                        <td>{{p.dateDebut | date: "dd/MM/yyyy"}}</td>
+                        <td>{{p.dateFin | date: "dd/MM/yyyy"}}</td>
+                        <td *ngIf="user != 'AGN' && user != 'INT'">{{p.agence}}</td>
+                        <td>{{p.statut}}</td>
+                        <td *ngIf="user == 'AGN'" ><input *ngIf="p.etat == 0" type="checkbox"
+                            [checked]="p.etat"
+                            [(ngModel)]="p.etat"
+                            [value]="p.id" 
+                            (change)="checkIfAllSelected();"/>
+                            <p *ngIf="p.etat == 1">Validé</p>
+                    </td>
+                    </tr>
+                </tbody>
+                
+            </table>
+            <pagination-controls (pageChange)="gty(page = $event)" previousLabel="Prcédent" nextLabel="Suivant"></pagination-controls>
+        </div>
+    </div>
+</div>

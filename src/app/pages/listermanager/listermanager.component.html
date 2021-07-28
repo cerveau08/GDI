@@ -1,0 +1,56 @@
+<div class="all-container">
+    <div class="tableau">
+        <p class="detail1" id="mydesc">Liste des Managers</p>
+        <div class="exporter">
+            <p class="export">Exporter</p>
+            <div class="csv" style="cursor: pointer;">
+                <p class="csv1">CSV</p>
+                <mat-icon fontSet="material-icons-outlined">unfold_more</mat-icon>
+            </div>
+            <div class="filtrer" style="cursor: pointer;">
+                <input class="filtre" type="text" [(ngModel)]="filterterm" placeholder="Filtre">
+                <mat-icon fontSet="material-icons-outlined">tune</mat-icon>
+            </div>
+        </div>
+        <table style="overflow-x:auto;" aria-describedby = "mydesc">
+            <thead>
+                <tr class="head">
+                    <th class="typ" id="prenom">
+                        <div class="type">
+                            <p>Prenom</p> 
+                            <mat-icon class="updown" fontSet="material-icons-outlined">unfold_more</mat-icon>
+                        </div>
+                    </th>
+                    <th class="typ" id="nom">
+                        <div class="type2">
+                            <p>Nom</p> 
+                            <mat-icon class="updown" fontSet="material-icons-outlined">unfold_more</mat-icon>
+                        </div>
+                    </th>
+                    <th *ngIf="scrWidth>991" id="profil">Profil</th>
+                    <th id="direction">Direction</th>
+                    <th id="dep">Dep/serv</th>
+                    <th id="nbr">Nbre Interimaires</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr (click)="openDetail(p)" style="cursor: pointer;" *ngFor="let p of datas | filter:filterterm | paginate: { 
+                    itemsPerPage: itemsPerPage,
+                    currentPage: page,
+                    totalItems: totalItems
+                    }; let i = index">
+                    <td>{{p.prenom}}</td>
+                    <td>{{p.nom}}</td>
+                    <td *ngIf="scrWidth>991"> <img alt="" class="photo" src="{{p.photo}}"></td>
+                    <td>{{p.direction.libelle}}</td>
+                    <td>{{p.structure.departement}}/{{p.service}}</td>
+                    <td> <p>{{p.nbreInterimaires}}</p> </td>
+                </tr>
+            </tbody>
+            
+        </table>
+        <div class="pagination">
+            <pagination-controls (pageChange)="gty(page = $event)" previousLabel="Prcédent" nextLabel="Suivant"></pagination-controls>
+        </div>
+    </div>
+</div>
