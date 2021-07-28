@@ -34,6 +34,7 @@ export class DetailinterComponent implements OnInit {
   dataReconduire;
   dataRenouveler;
   dataBannir;
+  dataArret;
   data;
   nom;
   prenom;
@@ -85,6 +86,7 @@ export class DetailinterComponent implements OnInit {
   successMsgReconduire;
   successMsgRenouveler;
   successMsgBannir;
+  successMsgArret;
   public reqUrl = environment.base_url;
   constructor(private activeroute: ActivatedRoute,
               private modalService: ModalService,
@@ -181,7 +183,8 @@ export class DetailinterComponent implements OnInit {
       motif: new FormControl(''),
     });
     this.bannirForm = new FormGroup({
-      motif: new FormControl(''),
+      libelle: new FormControl(''),
+      commentaire: new FormControl(''),
     });
   }
 
@@ -271,9 +274,9 @@ export class DetailinterComponent implements OnInit {
     this.otherService.renouvelerContrat(formdata).subscribe(
       data => {
         console.log(data);
-        this.dataValidation = data;
-        this.successMsgValider = this.dataValidation.status;
-        if(this.successMsgValider == true){
+        this.dataRenouveler = data;
+        this.successMsgRenouveler = this.dataRenouveler.status;
+        if(this.successMsgRenouveler == true){
           this.ngOnInit();
           this.closeModal('custom-modal-4');
         }
@@ -364,6 +367,23 @@ export class DetailinterComponent implements OnInit {
   arretContrat() {
     console.log(this.dataInter);
     this.otherService.arreterContrat(this.dataInter.contrat.id, this.arretForm.value).subscribe(
+      (response) =>{
+        console.log(response)
+        this.dataArret = response;
+        this.successMsgArret = this.dataArret.status;
+        if(this.successMsgArret == true) {
+          this.closeModal('custom-modal-7');
+          this.ngOnInit();
+        }
+      },
+      (error)=>{
+        console.log(error);
+      }
+    );
+  }
+  bloquerInterimaire() {
+    console.log(this.dataInter);
+    this.otherService.bolquerInter(this.item, this.bannirForm.value).subscribe(
       (response) =>{
         console.log(response)
         this.dataBannir = response;
