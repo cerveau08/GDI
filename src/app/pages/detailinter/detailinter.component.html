@@ -198,6 +198,9 @@
                         </div>
                     </div>
                 </div>
+                <div class="content-error-msg" *ngIf="successMsgRenouveler == false">
+                    <p class="error-alert">{{ dataRenouveler?.message}}</p>
+                </div>
                 <div class="buttons-content-valider">
                    <button class="button-enregistrer-contrat" (click)="renouvelerContrat()" type="button">Valider</button>
                 </div>
@@ -238,6 +241,9 @@
                         </div>
                     </div>
                 </div>
+                <div class="content-error-msg" *ngIf="successMsgReconduire == false">
+                    <p class="error-alert">{{ dataReconduire?.message}}</p>
+                </div>
                 <div class="buttons-content-valider">
                    <button class="button-enregistrer-contrat" (click)="reconduireContrat()" type="button">Valider</button>
                 </div>
@@ -276,6 +282,9 @@
                 <p class="libelle-motif">Motif de l'arrêt du contrat</p>
                 <textarea class="textarea-motif" name="motif"  placeholder="Motif de l'arrêt du contrat"></textarea>
             </div>
+            <div class="content-error-msg" *ngIf="successMsgBannir == false">
+                <p class="error-alert">{{ dataBannir?.message}}</p>
+            </div>
             <div class="btns3">
                 <button (click)="arretContrat()"  class="button7">Arréter</button>
             </div>
@@ -313,8 +322,11 @@
                 <p class="libelle-motif">Motif pour Bannir {{prenom}} {{nom}}</p>
                 <textarea class="textarea-motif" name="motif"  placeholder="Motif de Bannir l'intérimaire"></textarea>
             </div>
+            <div class="content-error-msg" *ngIf="successMsgBannir == false">
+                <p class="error-alert">{{ dataBannir?.message}}</p>
+            </div>
             <div class="btns3">
-                <button (click)="arretContrat()"  class="button8">Bannir</button>
+                <button (click)="bloquerInterimaire()"  class="button8">Bannir</button>
             </div>
         </div>
     </jw-modal>

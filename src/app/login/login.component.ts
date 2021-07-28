@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
       data => {
         this.dataLogin = data;
         console.log(data);
-        this.statusLogin = this.dataLogin.success;
+        this.statusLogin = this.dataLogin.status;
         if(this.statusLogin == true) {
           let profil = data.data.profil
           let prenom = data.data.prenom
