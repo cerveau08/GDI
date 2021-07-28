@@ -94,6 +94,8 @@ export class AddinterComponent implements OnInit {
       libelle: "veuf(ve)"
     }
   ];
+  data;
+  successMsg;
   selected1 = false;
   selected2 = false;
   colora = "#ff7900";
@@ -342,10 +344,10 @@ export class AddinterComponent implements OnInit {
     this.otherService.addInter(formdata).subscribe(
       data => {
         console.log(data);
-     
-        if(data.success == true) {
+        this.data = data
+        this.successMsg = this.data.status
+        if(this.successMsg == true) {
           this.submited = true;
-
         }
       },
         error=> {

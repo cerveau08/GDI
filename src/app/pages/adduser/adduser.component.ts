@@ -203,7 +203,7 @@ export class AdduserComponent implements OnInit {
         console.log(this.successMsg);
         
         if (this.successMsg == true) {
-          this.route.navigate(['/accueil/souscontrat']);
+          this.route.navigate(['/accueil/listeuser']);
         }
       },
       (error) =>{

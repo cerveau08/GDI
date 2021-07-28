@@ -1,7 +1,6 @@
 import { SidenavModule } from './sidenav';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-//import { AlertModule } from './_modal';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
