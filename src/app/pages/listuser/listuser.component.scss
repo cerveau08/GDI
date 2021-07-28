@@ -87,7 +87,7 @@ table {
 }
   
   th {
-    text-align: center;
+    text-align: left;
     //padding: 8px;
     font-size: 13px;
     font-weight:  bold;
@@ -129,7 +129,7 @@ table {
   .type {
     display: flex;
     width: 60px;
-    margin: 0 auto;
+    margin-left: 0px;
     p {
         text-align: center;
     }
@@ -137,7 +137,7 @@ table {
   .type2 {
     display: flex;
     width: 40px;
-    margin: 0 auto;
+    margin-left: 0px;
     p {
         text-align: center;
     }

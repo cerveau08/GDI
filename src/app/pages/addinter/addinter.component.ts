@@ -106,6 +106,18 @@ export class AddinterComponent implements OnInit {
   color3 = "20px solid #000";
   listeFonction;
   item;
+  dataMatriculeInter;
+  prenom;
+  nom;
+  telephone;
+  sitmat;
+  sexe;
+  lieuNaissance;
+  dateNaissance;
+  email;
+  universite;
+  adresse;
+  profession;
   constructor(private fb: FormBuilder,
               private dataService: DataService,
               private otherService: OthersService,
@@ -200,19 +212,26 @@ export class AddinterComponent implements OnInit {
   }
   rechercherInterimaire(piece, type, societe) {  
     const donneeSearch = {
-      societeId: societe,
+      societe: societe,
       typePiece: type,
       numeroPiece: piece
     }
     this.otherService.pieceFilter(donneeSearch).subscribe(
       (response) => {
         console.log(response);
-        // this.dataMatriculeInter = response;
-        // console.log(this.dataMatriculeInter);
-        // this.prenom = this.dataMatriculeInter.data.personne.prenom;
-        // this.nom = this.dataMatriculeInter.data.personne.nom;
-        // this.telephone = this.dataMatriculeInter.data.personne.telephone;
-        // this.userAgentForm.patchValue({interimaireId: this.dataMatriculeInter.data.interimaire.id});
+        this.dataMatriculeInter = response;
+        this.prenom = this.dataMatriculeInter.data.personne.prenom;
+        this.nom = this.dataMatriculeInter.data.personne.nom;
+        this.telephone = this.dataMatriculeInter.data.personne.telephone;
+        this.sitmat = this.dataMatriculeInter.data.personne.sitmat;
+        this.sexe = this.dataMatriculeInter.data.personne.sexe;
+        this.email = this.dataMatriculeInter.data.personne.email;
+        this.lieuNaissance = this.dataMatriculeInter.data.personne.lieuNaissance;
+        this.dateNaissance = this.dataMatriculeInter.data.personne.dateNaissance;
+        this.photo = this.dataMatriculeInter.data.personne.photo;
+        this.adresse = this.dataMatriculeInter.data.interimaire.adresse;
+        this.profession = this.dataMatriculeInter.data.interimaire.profession;
+        this.universite = this.dataMatriculeInter.data.interimaire.universite;
       },
       (error) =>{
         console.log(error)
