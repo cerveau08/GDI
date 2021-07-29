@@ -227,7 +227,7 @@ addAgence(data) {
     return this.http.post(`${this.reqUrl}/recherche`, data);
   }
   detailUser(id: number) {
-    return this.http.get(`${this.reqUrl}/user/${id}`);
+    return this.http.get(`${this.reqUrl}/users/${id}`);
   }
   getFonctions(): Observable<any> {
     return this.http.get<any>(this.reqUrl + '/fonctions');
@@ -239,6 +239,6 @@ addAgence(data) {
     return this.http.post<any>(`${this.reqUrl}/block/${id}`, data);
   }
   updateUser(data, id: number){
-    return this.http.post<any>(`${this.reqUrl}/update/${id}`, data);
+    return this.http.post<any>(`${this.reqUrl}/users/update/${id}`, data);
   }
 }

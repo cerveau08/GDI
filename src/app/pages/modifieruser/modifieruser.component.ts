@@ -19,10 +19,12 @@ telephone;
 dataUser;
 photoUpload;
 avatar;
+dataprofils;
+image;
+email;
 listeFonction;
 userAgentForm: FormGroup;
   constructor(private activeroute: ActivatedRoute,
-    private fb: FormBuilder,
     private route: Router,
     private otherService: OthersService) {
       this.activeroute.queryParams.subscribe(params => {
@@ -35,6 +37,7 @@ userAgentForm: FormGroup;
             this.matricule = this.dataUser.data.matricule;
             this.prenom = this.dataUser.data.prenom;
             this.nom = this.dataUser.data.nom;
+            this.email = this.dataUser.data.email;
             this.fonction = this.dataUser.data.fonction;
             this.profil = this.dataUser.data.profil;
             this.telephone = this.dataUser.data.telephone;
@@ -52,6 +55,16 @@ userAgentForm: FormGroup;
         avatar: new FormControl(''),
         fonction: new FormControl(''),
     })
+
+      //recupere les profils
+      this.otherService.getprofil().subscribe(
+        data => {
+          this.dataprofils = data["data"];
+          console.log(data);
+        }
+      );
+  
+      this.otherService.getFonctions().subscribe(data => this.listeFonction = data.data);
   }
   public saveFonction(e): void {
     let libelle = e.target.value;
@@ -68,7 +81,7 @@ userAgentForm: FormGroup;
     info.append("fonction", this.userAgentForm.value.fonction);
     info.append("telephone",this.userAgentForm.value.telephone);
     info.append("email",this.userAgentForm.value.email);
-    info.append("profil",this.userAgentForm.value.profil);
+    info.append("profilId",this.userAgentForm.value.profilId);
     if(this.photoUpload != undefined) {
       info.append("avatar",this.photoUpload);
     }
@@ -85,5 +98,13 @@ userAgentForm: FormGroup;
       }
     )
     }
- 
+    getPhoto(e:any) {
+      console.log(this.avatar);
+      this.photoUpload = e.files.item(0);
+      let reader = new FileReader();
+      reader.readAsDataURL( this.photoUpload)
+      reader.onload= ()=>{
+        this.image= reader.result
+      } 
+    }
 }
