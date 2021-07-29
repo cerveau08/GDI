@@ -39,7 +39,7 @@ userAgentForm: FormGroup;
             this.nom = this.dataUser.data.nom;
             this.email = this.dataUser.data.email;
             this.fonction = this.dataUser.data.fonction;
-            this.profil = this.dataUser.data.profil;
+            this.profil = this.dataUser.data.profil.libelle;
             this.telephone = this.dataUser.data.telephone;
           })
         })
@@ -81,7 +81,7 @@ userAgentForm: FormGroup;
     info.append("fonction", this.userAgentForm.value.fonction);
     info.append("telephone",this.userAgentForm.value.telephone);
     info.append("email",this.userAgentForm.value.email);
-    info.append("profilId",this.userAgentForm.value.profilId);
+    info.append("profil",this.userAgentForm.value.profil);
     if(this.photoUpload != undefined) {
       info.append("avatar",this.photoUpload);
     }
