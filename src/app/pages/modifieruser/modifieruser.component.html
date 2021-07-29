@@ -29,7 +29,7 @@
                                 </div>
                                 <div class="infoinput2">
                                     <input type="number" formControlName="telephone"  [(ngModel)]="telephone"  placeholder="Téléphone">
-                                    <select class="select6" #profil formControlName="profil">
+                                    <select class="select6" [(ngModel)]="profil" #profil formControlName="profil">
                                         <option class="option" value="" disabled selected hidden>Profil</option>
                                         <option *ngFor="let data of dataprofils" value="{{data.id}}">{{data.libelle}}</option>
                                     </select>
