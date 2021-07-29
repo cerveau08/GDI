@@ -1,7 +1,7 @@
 <div class="all-container">
     <div class="all">
         <div class="large">
-            <p class="detail">Modifier utilisateur</p>
+            <p class="detail">Ajouter un nouveau utilisateur</p>
             <div>
                 <div class="form-add-user-agent">
                     <form [formGroup]="userAgentForm">
@@ -12,8 +12,8 @@
                                 <input formControlName="avatar" class="buttonphoto1" type="file" (change)="getPhoto($event)">
                             </div>
                             <div>
-                                <div *ngIf="profil.value != '3'" class="infoinput1">
-                                    <input  type="text" [(ngModel)]="matricule" readonly formControlName="matricule" placeholder="Matricule">
+                                <div *ngIf="profilId != '3'" class="infoinput1">
+                                    <input  type="text" [(ngModel)]="matricule" formControlName="matricule" placeholder="Matricule" readonly>
                                 </div>
                                 <div class="infoinput2">
                                     <input type="text" formControlName="prenom"   [(ngModel)]="prenom" placeholder="Prénom">
@@ -29,18 +29,18 @@
                                 </div>
                                 <div class="infoinput2">
                                     <input type="number" formControlName="telephone"  [(ngModel)]="telephone"  placeholder="Téléphone">
-                                    <select class="select6" [(ngModel)]="profil" #profil formControlName="profil">
-                                        <option class="option" value="" disabled selected hidden>Profil</option>
+                                    <select class="select6" [(ngModel)]="profil" formControlName="profil">
+                                        <option class="option" value="" disabled selected hidden>{{profil}}</option>
                                         <option *ngFor="let data of dataprofils" value="{{data.id}}">{{data.libelle}}</option>
                                     </select>
                                 </div>
                                 <div *ngIf="user == 'DRH'" class="infoinput2">
                                     <input type="text" formControlName="fonction"  [(ngModel)]="fonction"  placeholder="Fonction">
-                                    <select *ngIf="profil.value == '3'" class="select6"  formControlName="agenceId">
-                                        <option class="option" value="" disabled selected hidden>Agence</option>
+                                    <select *ngIf="profilId == '3'" class="select6"  formControlName="agenceId">
+                                        <option class="option" value=""  hidden>Agence</option>
                                         <option *ngFor="let data of dataAgence" value="{{data.id}}">{{data.nom}}</option>
                                     </select>
-                                    <select *ngIf="profil.value == '4'" class="select6" formControlName="structureId">
+                                    <select *ngIf="profilId == '4'" class="select6" formControlName="structureId">
                                         <option class="option" value="" disabled selected hidden>Structure</option>
                                         <option *ngFor="let data of dataStructure" value="{{data.id}}">{{data.libelle}}</option>
                                     </select>
@@ -55,7 +55,7 @@
                                     <p class="error-alert">{{ data?.message}}</p>
                                 </div>
                                 <div class="content-button">
-                                    <button (click)="modifierUser()" class="buttob-envoyer">Valider</button>
+                                    <button (click)="ajouterUser()" class="buttob-envoyer">Valider</button>
                                 </div>
                             </div>
                         </div>

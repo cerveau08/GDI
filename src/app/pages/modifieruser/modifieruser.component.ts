@@ -23,6 +23,7 @@ dataprofils;
 image;
 email;
 listeFonction;
+profilId;
 userAgentForm: FormGroup;
   constructor(private activeroute: ActivatedRoute,
     private route: Router,
@@ -40,6 +41,7 @@ userAgentForm: FormGroup;
             this.email = this.dataUser.data.email;
             this.fonction = this.dataUser.data.fonction;
             this.profil = this.dataUser.data.profil.libelle;
+            this.profilId = this.dataUser.data.profil.id;
             this.telephone = this.dataUser.data.telephone;
           })
         })
