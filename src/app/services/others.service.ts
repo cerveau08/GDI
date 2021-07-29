@@ -62,9 +62,9 @@ export class OthersService {
  getListAttest(): Observable<any> {
   return this.http.get<any>(this.reqUrl + '/listeAttestationByMonth');
 }
-updateUser(user, id: number): Observable<any> {
-  return this.http.put<any>(`${this.reqUrl}/users/update/${id}`, user);
-}
+//updateUser(user, id: number): Observable<any> {
+  //return this.http.put<any>(`${this.reqUrl}/users/update/${id}`, user);
+//}
 getAllUser() {
   return this.http.get(`${this.reqUrl}/users/all`);
 }
@@ -237,5 +237,8 @@ addAgence(data) {
   }
   bolquerInter(id: number, data:any): Observable<any> {
     return this.http.post<any>(`${this.reqUrl}/block/${id}`, data);
+  }
+  updateUser(data, id: number){
+    return this.http.post<any>(`${this.reqUrl}/update/${id}`, data);
   }
 }

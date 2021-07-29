@@ -55,6 +55,7 @@ export class AdduserComponent implements OnInit {
   dataStructure;
   url1="../assets/images/default.png";
   image ;
+  listeFonction
   p = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
   public reqUrl = environment.base_url;
   constructor(private dataService: DataService, 
@@ -120,7 +121,10 @@ export class AdduserComponent implements OnInit {
       }
     );
     this.onChanges();
+
     this.gty(this.page);
+
+    this.otherService.getFonctions().subscribe(data => this.listeFonction = data.data);
   }
 
   gty(page: any){
@@ -176,6 +180,13 @@ export class AdduserComponent implements OnInit {
         console.log(error)
       }
     )
+  }
+
+  public saveFonction(e): void {
+    let libelle = e.target.value;
+    let list = this.listeFonction.filter(x => x.libelle === libelle)[0];
+    console.log(list.libelle);
+    this.userAgentForm.patchValue({fonction: list.libelle});
   }
 
   ajouterUser() {

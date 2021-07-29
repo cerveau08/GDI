@@ -41,6 +41,9 @@ import { PasswordResetComponent } from './password-reset/password-reset.componen
 import { ListuserComponent } from './pages/listuser/listuser.component';
 import { DetailuserComponent } from './pages/detailuser/detailuser.component';
 import { ModifieruserComponent } from './pages/modifieruser/modifieruser.component';
+import { MesObjectifsComponent } from './pages/mes-objectifs/mes-objectifs.component';
+import { MonAgenceComponent } from './pages/mon-agence/mon-agence.component';
+import { MonManagerComponent } from './pages/mon-manager/mon-manager.component';
 
 
 const routes: Routes = [
@@ -208,6 +211,16 @@ const routes: Routes = [
       { path: 'modifieruser',
         component: ModifieruserComponent,
           canActivate: [AuthGuard]
+    },
+      { path: 'mesobjectif',
+        component: MesObjectifsComponent,
+          canActivate: [AuthGuard]
+      },{ path: 'monagence',
+        component: MonAgenceComponent,
+        canActivate: [AuthGuard]
+      },{ path: 'monmanager',
+        component: MonManagerComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: '',

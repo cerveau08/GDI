@@ -46,7 +46,10 @@
                                     </select>
                                 </div>
                                 <div *ngIf="user != 'DRH'" class="infoinput1">
-                                    <input type="text" formControlName="fonction"  [(ngModel)]="fonction"  placeholder="Fonction">
+                                    <input type="text" list="fonctions" formControlName="fonction" (change)="saveFonction($event)"  [(ngModel)]="fonction"  placeholder="Fonction">
+                                    <datalist id="fonctions">
+                                        <option *ngFor="let c of listeFonction" [value]="c.libelle" >{{c.libelle}}</option>
+                                    </datalist>
                                 </div>
                                 <div class="content-error-msg" *ngIf="successMsg == false">
                                     <p class="error-alert">{{ data?.message}}</p>

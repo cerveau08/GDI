@@ -37,7 +37,7 @@ export class ModalModifierComponent implements OnInit {
       data =>{
         console.log(data);
         this.data = data;
-        this.successMsg = this.data.success
+        this.successMsg = this.data.status
         if(this.successMsg == true) {
           this.closeModal('modif-modal-'+id);
           //this.ngOnInit();

@@ -274,21 +274,19 @@ export class HomeComponent implements OnInit {
         console.log(data);
         }
       );
+      // this.otherService.statInterByAgence().subscribe(
+      //   data => {
+      //   this.statInterimByAgnece = data;
+      //   console.log(data);
+      //   }
+      // );
 
-
-      this.otherService.statInterByAgence().subscribe(
-        data => {
-        this.statInterimByAgnece = data;
-        console.log(data);
-        }
-      );
-
-this.otherService.statInterAgence(this.manager.id).subscribe(
-        data => {
-        this.statInterAgence = data;
-        console.log(data);
-        }
-      );
+      // this.otherService.statInterAgence(this.manager.id).subscribe(
+      //   data => {
+      //   this.statInterAgence = data;
+      //   console.log(data);
+      //   }
+      // );
 
   // this.data = this.dataService.getData();
     

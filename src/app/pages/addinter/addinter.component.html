@@ -64,8 +64,8 @@
                             <input class="input3" [(ngModel)]="universite" type="text" formControlName="universite" placeholder="Université ou Ecole">
                           </div>
                           <div class="infoinput1">
-                            <input type="text"  list="codes" [(ngModel)]="profession" formControlName="profession" placeholder="Votre Profession" [(ngModel)]="profession" (change)="saveCode($event)">
-                            <datalist id="codes">
+                            <input type="text"  list="professions" formControlName="profession" placeholder="Votre Profession" [(ngModel)]="profession" (change)="saveProfession($event)">
+                            <datalist id="professions">
                               <option *ngFor="let c of listeFonction" [value]="c.libelle" >{{c.libelle}}</option>
                             </datalist>
                           </div>
@@ -135,7 +135,10 @@
                           </select> 
                         </div>
                         <div class="contratinput2">
-                          <input type="text" formControlName="poste" placeholder="Titre du Poste">
+                          <input type="text" list="postes" [(ngModel)]="poste" (change)="savePoste($event)" formControlName="poste" placeholder="Titre du Poste">
+                          <datalist id="postes">
+                            <option *ngFor="let c of listeFonction" [value]="c.libelle" >{{c.libelle}}</option>
+                          </datalist>
                           <input class="input3" type="date" formControlName="dateSignature" placeholder="Date de Signature">
                         </div>
                     </div>

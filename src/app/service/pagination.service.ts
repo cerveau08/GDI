@@ -62,16 +62,19 @@ export class PaginationService {
     {
       id: 1, title: 'Tableau de bord',
       path: 'home', icon: "home",
+    },{
+      id: 7,  title: 'Objectifs',
+      path: 'mesobjectif',  icon: "done_all",
     }, {
       id: 5,  title: 'Mes Demandes',
       path: 'demande',  icon: "local_mall",
     },{
       id: 4,  title: 'Mon Manager',
-      path: 'manager',  icon: "grade",
+      path: 'monmanager',  icon: "grade",
     },
     {
       id: 3,  title: 'Mon Agence',
-      icon: "local_mall",  path: 'agence',
+      icon: "local_mall",  path: 'monagence',
       click: false,  activeChoice: -1,
     }, {
       id: 4,  title: 'Liste Attestations',
