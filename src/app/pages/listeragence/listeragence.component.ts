@@ -75,7 +75,10 @@ export class ListeragenceComponent implements OnInit {
       this.totalItems = data.total;
       console.log(this.dataAgence);
       console.log(this.totalItems);
-      
+    }, error=> {
+      this.errorMsg = error;
+      this.errormodalService.open('error-modal-1');
+      console.log(error)
     })
   }
 

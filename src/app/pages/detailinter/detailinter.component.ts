@@ -89,6 +89,7 @@ export class DetailinterComponent implements OnInit {
   successMsgBannir;
   successMsgArret;
   public reqUrl = environment.base_url;
+  errorMsg: any;
   constructor(private activeroute: ActivatedRoute,
               private modalService: ModalService,
               private dataService: DataService,
@@ -132,7 +133,9 @@ export class DetailinterComponent implements OnInit {
             this.contratDoc = this.dataInter.fileContrat;
             this.fichePosteDoc = this.dataInter.fileFichePoste;
         },
-        error =>{
+        error=> {
+          this.errorMsg = error;
+          this.errormodalService.open('error-modal-1');
           console.log(error)
         }
       );
@@ -173,12 +176,20 @@ export class DetailinterComponent implements OnInit {
       data => {
         this.dataSociete = data["data"];
         console.log(data);
+      }, error=> {
+        this.errorMsg = error;
+        this.errormodalService.open('error-modal-1');
+        console.log(error)
       }
     );
     this.otherService.getAllCategorie().subscribe(
       data => {
         this.dataCategorie = data["data"];
         console.log(data);
+      }, error=> {
+        this.errorMsg = error;
+        this.errormodalService.open('error-modal-1');
+        console.log(error)
       }
     );
     this.arretForm = new FormGroup({
@@ -283,8 +294,10 @@ export class DetailinterComponent implements OnInit {
           this.closeModal('custom-modal-4');
         }
       },
-      error =>{
-        console.log(error);
+      error=> {
+        this.errorMsg = error;
+        this.errormodalService.open('error-modal-1');
+        console.log(error)
       }
     )
   }
@@ -305,10 +318,16 @@ export class DetailinterComponent implements OnInit {
         if(this.successMsgReconduire == true){
           this.ngOnInit();
           this.closeModal('custom-modal-5');
-        }
+        } 
+        // else {
+        //   this.errorMsg = this.dataReconduire.message;
+        //   this.errormodalService.open('error-modal-1');
+        // }
       },
-      error =>{
-        console.log(error);
+      error=> {
+        this.errorMsg = error;
+        this.errormodalService.open('error-modal-1');
+        console.log(error)
       }
     )
   }
@@ -330,6 +349,10 @@ export class DetailinterComponent implements OnInit {
           this.closeModal('custom-modal-8');
           this.router.navigate(['accueil/souscontrat']);
         }
+      }, error=> {
+        this.errorMsg = error;
+        this.errormodalService.open('error-modal-1');
+        console.log(error)
       }
     )
   }
@@ -379,8 +402,10 @@ export class DetailinterComponent implements OnInit {
           this.ngOnInit();
         }
       },
-      (error)=>{
-        console.log(error);
+      error=> {
+        this.errorMsg = error;
+        this.errormodalService.open('error-modal-1');
+        console.log(error)
       }
     );
   }
@@ -396,8 +421,10 @@ export class DetailinterComponent implements OnInit {
           this.ngOnInit();
         }
       },
-      (error)=>{
-        console.log(error);
+      error=> {
+        this.errorMsg = error;
+        this.errormodalService.open('error-modal-1');
+        console.log(error)
       }
     );
   }

@@ -59,6 +59,7 @@ export class AdduserComponent implements OnInit {
   listeFonction
   p = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
   public reqUrl = environment.base_url;
+  errorMsg: any;
   constructor(private dataService: DataService, 
               private otherService: OthersService,
               private route: Router,
@@ -72,6 +73,10 @@ export class AdduserComponent implements OnInit {
       data => {
        this.dataInterSousContrat = data.data;
        console.log(data);
+      }, error=> {
+        this.errorMsg = error;
+        this.errormodalService.open('error-modal-1');
+        console.log(error)
       }
     );
     this.pieceForm = new FormGroup({
@@ -107,12 +112,20 @@ export class AdduserComponent implements OnInit {
       data => {
         this.dataSociete = data["data"];
         console.log(data);
+      }, error=> {
+        this.errorMsg = error;
+        this.errormodalService.open('error-modal-1');
+        console.log(error)
       }
     );
 
     this.otherService.getAllStructure().subscribe(data => {
       console.log(data);
       this.dataStructure = data['data'];
+    }, error=> {
+      this.errorMsg = error;
+      this.errormodalService.open('error-modal-1');
+      console.log(error)
     })
 
       //recupere les profils
@@ -120,6 +133,10 @@ export class AdduserComponent implements OnInit {
       data => {
         this.dataprofils = data["data"];
         console.log(data);
+      }, error=> {
+        this.errorMsg = error;
+        this.errormodalService.open('error-modal-1');
+        console.log(error)
       }
     );
     this.onChanges();
@@ -135,6 +152,10 @@ export class AdduserComponent implements OnInit {
       this.totalItems = data.total;
       console.log(this.dataAgence);
       console.log(this.totalItems);
+    }, error=> {
+      this.errorMsg = error;
+      this.errormodalService.open('error-modal-1');
+      console.log(error)
     })
   }
 
@@ -219,7 +240,9 @@ export class AdduserComponent implements OnInit {
           this.route.navigate(['/accueil/listeuser']);
         }
       },
-      (error) =>{
+      error=> {
+        this.errorMsg = error;
+        this.errormodalService.open('error-modal-1');
         console.log(error)
       }
     )

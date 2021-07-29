@@ -55,6 +55,7 @@ export class DetailagenceComponent implements OnInit {
   total;
   actifs;
   inactifs;
+  errorMsg: any;
   constructor(private activeroute: ActivatedRoute,
     private modalService: ModalService,
     private dataService: DataService,
@@ -86,7 +87,9 @@ export class DetailagenceComponent implements OnInit {
             console.log(this.userAgence);
             
           },
-          error =>{
+          error=> {
+            this.errorMsg = error;
+            this.errormodalService.open('error-modal-1');
             console.log(error)
           }
         );
@@ -103,6 +106,10 @@ export class DetailagenceComponent implements OnInit {
           this.total = this.dataTotalAgence[0].total;
           this.actifs = this.dataTotalAgence[0].actifs;
           this.inactifs = this.dataTotalAgence[0].inactifs;
+        }, error=> {
+          this.errorMsg = error;
+          this.errormodalService.open('error-modal-1');
+          console.log(error)
         });
     }
 
@@ -150,16 +157,18 @@ export class DetailagenceComponent implements OnInit {
     console.log(info);
     console.log(this.item);
     this.otherService.updateAgence(info, this.item).subscribe(
-          (res) =>{
-            console.log(res);
-            if(res){
-              this.route.navigate(['/accueil/listagence']);
-            }
-          },
-          (error)=>{
-            console.log(error);
-          }
-        )
+      (res) =>{
+        console.log(res);
+        if(res){
+          this.route.navigate(['/accueil/listagence']);
+        }
+      },
+      error=> {
+        this.errorMsg = error;
+        this.errormodalService.open('error-modal-1');
+        console.log(error)
+      }
+    )
     } 
 
     //recuperation de l'image
@@ -208,14 +217,16 @@ export class DetailagenceComponent implements OnInit {
 
   delete() {
     this.otherService.deleteAgence(this.item).subscribe(
-      (response) =>{
+      (response) => {
        console.log(response)
        if (response) {
         this.route.navigate(['/accueil/listagence']);
        }
       },
-      (error)=>{
-        console.log(error);
+      error => {
+        this.errorMsg = error;
+        this.errormodalService.open('error-modal-1');
+        console.log(error)
       }
     );
   }

@@ -142,11 +142,11 @@ export class AddagenceComponent implements OnInit {
           this.route.navigate(['/accueil/listagence']);
         }
       },
-        error=> {
-          this.errorMsg = error;
-          this.modalService.open('error-modal-1');
-          console.log(error)
-        }
+      error=> {
+        this.errorMsg = error;
+        this.errormodalService.open('error-modal-1');
+        console.log(error)
+      }
       ) 
   }
 

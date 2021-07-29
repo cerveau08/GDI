@@ -706,6 +706,7 @@ export class StatistiquesComponent implements OnInit {
   public chartOptions5: Partial<ChartOptions>;
   public chartOptions6: Partial<ChartOptions>;
   public chartOptions7: Partial<ChartOptions>;
+  errorMsg: any;
   constructor(private dataService: DataService,
     private errormodalService: ErrormodalService,
               private otherService: OthersService) {
@@ -745,7 +746,11 @@ export class StatistiquesComponent implements OnInit {
       data => {
         this.dataStatistique = data['data'];
        console.log(data);
-       }
+       }, error=> {
+        this.errorMsg = error;
+        this.errormodalService.open('error-modal-1');
+        console.log(error)
+      }
     ); 
   }
   //stats interimaire par annee
@@ -829,6 +834,10 @@ export class StatistiquesComponent implements OnInit {
           },
         };
         return this.chartOptions;
+    }, error=> {
+      this.errorMsg = error;
+      this.errormodalService.open('error-modal-1');
+      console.log(error)
     })
   }
 

@@ -29,6 +29,7 @@ export class ListuserComponent implements OnInit {
   result;
   success;
   successMsg;
+  errorMsg: any;
   constructor(private dataService: DataService,
     public datepipe: DatePipe,
     private errormodalService: ErrormodalService,
@@ -52,6 +53,10 @@ export class ListuserComponent implements OnInit {
       this.totalItems = data.total;
       console.log(data);
       console.log(this.totalItems);
+    }, error=> {
+      this.errorMsg = error;
+      this.errormodalService.open('error-modal-1');
+      console.log(error)
     })
   }
 

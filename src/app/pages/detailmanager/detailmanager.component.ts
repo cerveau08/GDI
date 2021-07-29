@@ -29,6 +29,7 @@ export class DetailmanagerComponent implements OnInit {
   data;
   dataInterFin;
   managerinfo;
+  errorMsg: any;
   @HostListener('window:resize', ['$event'])
   getScreenSize(event?) {
         this.scrHeight = window.innerHeight;
@@ -62,7 +63,10 @@ export class DetailmanagerComponent implements OnInit {
         this.managerinfo = this.data.data.detail
         this.datas = this.data.data.interimaires
         console.log(result);
-        
+      }, error=> {
+        this.errorMsg = error;
+        this.errormodalService.open('error-modal-1');
+        console.log(error)
       }
     )
     if(this.user == 'inter') {
@@ -75,6 +79,10 @@ export class DetailmanagerComponent implements OnInit {
       data => {
        this.dataInterFin = data.data;
        console.log(data);
+      }, error=> {
+        this.errorMsg = error;
+        this.errormodalService.open('error-modal-1');
+        console.log(error)
       }
     ); 
     this.gty(this.page);
@@ -86,7 +94,10 @@ export class DetailmanagerComponent implements OnInit {
       this.totalItems = this.datas.total
       console.log(this.datas);
       console.log(this.totalItems);
-      
+    }, error=> {
+      this.errorMsg = error;
+      this.errormodalService.open('error-modal-1');
+      console.log(error)
     })
   }
 
