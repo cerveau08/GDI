@@ -190,7 +190,13 @@ export class DetailuserComponent implements OnInit {
     ); 
   }
 
-
+  modifierUser() {
+    this.router.navigate(['accueil/modifieruser'], {
+      queryParams: {
+        user: JSON.stringify(this.item)
+      }
+    })
+  }
   closeModal(id: string) {
     this.modalService.close(id);
   }

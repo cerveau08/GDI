@@ -70,6 +70,7 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { ErrorInterceptor } from './helpers/error.interceptor';
 import { ListuserComponent } from './pages/listuser/listuser.component';
 import { DetailuserComponent } from './pages/detailuser/detailuser.component';
+import { ModifieruserComponent } from './pages/modifieruser/modifieruser.component';
 
 @NgModule({
   declarations: [
@@ -120,6 +121,7 @@ import { DetailuserComponent } from './pages/detailuser/detailuser.component';
     RegularDatepickerComponent,
     ListuserComponent,
     DetailuserComponent,
+    ModifieruserComponent,
   ],
   imports: [
     BrowserModule,

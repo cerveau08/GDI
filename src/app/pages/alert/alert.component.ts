@@ -18,7 +18,7 @@ export class AlertComponent implements OnInit {
   user;
   alert;
   page = 1;
-  itemsPerPage = 7;
+  itemsPerPage = 5;
   totalItems : any;
   public reqUrl = environment.base_url;
   constructor(public router: Router,

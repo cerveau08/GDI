@@ -40,6 +40,7 @@ import { InterenattenteComponent } from './pages/interenattente/interenattente.c
 import { PasswordResetComponent } from './password-reset/password-reset.component';
 import { ListuserComponent } from './pages/listuser/listuser.component';
 import { DetailuserComponent } from './pages/detailuser/detailuser.component';
+import { ModifieruserComponent } from './pages/modifieruser/modifieruser.component';
 
 
 const routes: Routes = [
@@ -202,6 +203,10 @@ const routes: Routes = [
       },
       { path: 'listeuser',
         component: ListuserComponent,
+          canActivate: [AuthGuard]
+      },
+      { path: 'modifieruser',
+        component: ModifieruserComponent,
           canActivate: [AuthGuard]
       },
       {
