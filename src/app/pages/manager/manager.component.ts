@@ -6,6 +6,7 @@ import { ModalService } from 'src/app/_modal/modal.service';
 import { ActivatedRoute } from '@angular/router';
 import {OthersService} from '../../services/others.service';
 import { environment } from 'src/environments/environment';
+import { ErrormodalService } from 'src/app/_errormodals';
 
 
 @Component({
@@ -36,11 +37,12 @@ export class ManagerComponent implements OnInit {
         console.log(this.scrHeight, this.scrWidth);
   }
   page = 1;
-  itemsPerPage = 10;
+  itemsPerPage = 5;
   totalItems : any;
   public reqUrl = environment.base_url;
   constructor(private dataService: DataService,
     private modalService: ModalService,
+    private errormodalService: ErrormodalService,
     private fileSaver: NgxFileSaverService,
     private otherService: OthersService,
     private http: HttpClient,
@@ -82,7 +84,7 @@ export class ManagerComponent implements OnInit {
   }
 
   gty(page: any){
-    this.http.get(this.reqUrl + `/manager/${this.item.manager.id}?page=${page}&limit=${this.itemsPerPage}`).subscribe((data: any) => {
+    this.http.get(this.reqUrl + `/manager/${this.item.data.id}?page=${page}&limit=${this.itemsPerPage}`).subscribe((data: any) => {
       this.datas =  data.data;
       this.totalItems = this.datas.total
       console.log(this.datas);
@@ -102,4 +104,11 @@ export class ManagerComponent implements OnInit {
     this.fileSaver.saveUrl(this.DemoDoc, 'contrat');
   }
 
+  openErrorModal(id: string) {
+    this.errormodalService.open(id);
+  }
+
+  closeErrorModal(id: string) {
+    this.errormodalService.close(id);
+  }
 }

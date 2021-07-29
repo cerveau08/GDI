@@ -7,6 +7,7 @@ import { DataService } from 'src/app/service/data.service';
 import { OthersService } from 'src/app/services/others.service';
 import { ModalService } from 'src/app/_modal';
 import { environment } from 'src/environments/environment';
+import { ErrormodalService } from 'src/app/_errormodals';
 
 @Component({
   selector: 'app-lesdemandes',
@@ -54,6 +55,7 @@ export class LesdemandesComponent implements OnInit {
   constructor(private dataService: DataService,
     private fb: FormBuilder,
     private modalService: ModalService,
+    private errormodalService: ErrormodalService,
     private fileSaver: NgxFileSaverService,
     private otherService: OthersService,
     private http: HttpClient,
@@ -144,5 +146,13 @@ export class LesdemandesComponent implements OnInit {
 
   public getfilemodal() {
     this.fileSaver.saveUrl(this.DemoDoc, 'contrat');
+  }
+
+  openErrorModal(id: string) {
+    this.errormodalService.open(id);
+  }
+
+  closeErrorModal(id: string) {
+    this.errormodalService.close(id);
   }
 }

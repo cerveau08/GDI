@@ -3,6 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { OthersService } from 'src/app/services/others.service';
 import { ModalService } from 'src/app/_modal';
+import { ErrormodalService } from 'src/app/_errormodals';
 
 @Component({
   selector: 'app-modal-modifier',
@@ -21,6 +22,7 @@ export class ModalModifierComponent implements OnInit {
   constructor(private otherService: OthersService,
     private modalService: ModalService,
     private activeroute: ActivatedRoute,
+    private errormodalService: ErrormodalService,
     public router: Router,
     ) { }
 
@@ -51,6 +53,14 @@ export class ModalModifierComponent implements OnInit {
 
   closeModal(id: string) {
     this.modalService.close(id);
+  }
+
+  openErrorModal(id: string) {
+    this.errormodalService.open(id);
+  }
+
+  closeErrorModal(id: string) {
+    this.errormodalService.close(id);
   }
 
 }

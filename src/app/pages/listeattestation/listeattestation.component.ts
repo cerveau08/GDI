@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgxFileSaverService } from '@clemox/ngx-file-saver';
 import { DataService } from 'src/app/service/data.service';
 import { ModalService } from 'src/app/_modal/modal.service';
+import { ErrormodalService } from 'src/app/_errormodals';
 
 @Component({
   selector: 'app-listeattestation',
@@ -18,6 +19,7 @@ export class ListeattestationComponent implements OnInit {
   DemoDoc2="https://www.le.ac.uk/oerresources/bdra/html/resources/example.txt" 
   constructor(private dataService: DataService,
     private modalService: ModalService,
+    private errormodalService: ErrormodalService,
     private fileSaver: NgxFileSaverService,) { }
 
   ngOnInit() {
@@ -34,5 +36,13 @@ export class ListeattestationComponent implements OnInit {
 
   public getfilemodal() {
     this.fileSaver.saveUrl(this.DemoDoc, 'contrat');
+  }
+
+  openErrorModal(id: string) {
+    this.errormodalService.open(id);
+  }
+
+  closeErrorModal(id: string) {
+    this.errormodalService.close(id);
   }
 }

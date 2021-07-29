@@ -5,6 +5,7 @@ import { NgxFileSaverService } from '@clemox/ngx-file-saver';
 import { DataService } from 'src/app/service/data.service';
 import { OthersService } from 'src/app/services/others.service';
 import { ModalService } from 'src/app/_modal/modal.service';
+import { ErrormodalService } from 'src/app/_errormodals';
 
 @Component({
   selector: 'app-detailagence',
@@ -59,6 +60,7 @@ export class DetailagenceComponent implements OnInit {
     private dataService: DataService,
     private fileSaver: NgxFileSaverService,
     private otherService: OthersService,
+    private errormodalService: ErrormodalService,
     private route: Router) { 
       this.activeroute.queryParams.subscribe(params => {
         this.item = JSON.parse(params["user"]);
@@ -216,5 +218,12 @@ export class DetailagenceComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+  openErrorModal(id: string) {
+    this.errormodalService.open(id);
+  }
+
+  closeErrorModal(id: string) {
+    this.errormodalService.close(id);
   }
 }

@@ -3,6 +3,7 @@ import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from 'src/app/service/data.service';
 import { OthersService } from 'src/app/services/others.service';
+import { ErrormodalService } from 'src/app/_errormodals';
 
 @Component({
   selector: 'app-modifierinter',
@@ -130,6 +131,7 @@ export class ModifierinterComponent implements OnInit {
     private fb: FormBuilder,
     private dataService: DataService,
     private route: Router,
+    private errormodalService: ErrormodalService,
     private otherService: OthersService) {
       //this.datas = this.dataService.getData();
       this.activeroute.queryParams.subscribe(params => {
@@ -548,6 +550,14 @@ export class ModifierinterComponent implements OnInit {
     this.url1="../assets/images/default.png";
     this.url2="../assets/images/default.png";
     this.url3="../assets/images/default.png";
+  }
+
+  openErrorModal(id: string) {
+    this.errormodalService.open(id);
+  }
+
+  closeErrorModal(id: string) {
+    this.errormodalService.close(id);
   }
 
 }

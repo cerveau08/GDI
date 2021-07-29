@@ -8,6 +8,7 @@ import { PaginationService } from 'src/app/service/pagination.service';
 import { ModalService } from 'src/app/_modal';
 import { OthersService } from 'src/app/services/others.service';
 import { environment } from 'src/environments/environment';
+import { ErrormodalService } from 'src/app/_errormodals';
 
 @Component({
   selector: 'app-intersouscontrat',
@@ -121,6 +122,7 @@ export class IntersouscontratComponent implements OnInit {
     public router: Router,
     private modalService: ModalService,
     private otherService: OthersService,
+    private errormodalService: ErrormodalService,
     private http: HttpClient
     ) { }
 
@@ -216,5 +218,13 @@ export class IntersouscontratComponent implements OnInit {
 
   closeModal(id: string) {
     this.modalService.close(id);
+  }
+
+  openErrorModal(id: string) {
+    this.errormodalService.open(id);
+  }
+
+  closeErrorModal(id: string) {
+    this.errormodalService.close(id);
   }
 }

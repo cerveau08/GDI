@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { DataService } from 'src/app/service/data.service';
 import { PaginationService } from 'src/app/service/pagination.service';
 import { ModalService } from 'src/app/_modal';
+import { ErrormodalService } from 'src/app/_errormodals';
 
 @Component({
   selector: 'app-restauration',
@@ -46,6 +47,7 @@ export class RestaurationComponent implements OnInit {
   demandeForm: FormGroup;
   constructor(private dataService: DataService,
     private pagerService: PaginationService,
+    private errormodalService: ErrormodalService,
     private modalService: ModalService,
     public fb: FormBuilder) { }
 
@@ -73,5 +75,13 @@ export class RestaurationComponent implements OnInit {
 
   closeModal(id: string) {
     this.modalService.close(id);
+  }
+
+  openErrorModal(id: string) {
+    this.errormodalService.open(id);
+  }
+
+  closeErrorModal(id: string) {
+    this.errormodalService.close(id);
   }
 }

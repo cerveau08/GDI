@@ -4,6 +4,7 @@ import { NgxFileSaverService } from '@clemox/ngx-file-saver';
 import { ModalService } from 'src/app/_modal';
 import { DataService } from 'src/app/service/data.service';
 import { OthersService } from 'src/app/services/others.service';
+import { ErrormodalService } from 'src/app/_errormodals';
 
 @Component({
   selector: 'app-mon-agence',
@@ -58,6 +59,7 @@ export class MonAgenceComponent implements OnInit {
   constructor(private fileSaver: NgxFileSaverService,
     private modalService: ModalService,
     private dataService: DataService,
+    private errormodalService: ErrormodalService,
     private otherService: OthersService) { }
 
   ngOnInit() {
@@ -161,9 +163,7 @@ export class MonAgenceComponent implements OnInit {
     return info;
   }
 
-  ajouterUser() {
-    console.log(this.userAgenceForm.value);
-  }
+  
 
   public getContrat() {
     this.fileSaver.saveUrl(this.contratDoc, 'contrat');
@@ -229,6 +229,14 @@ export class MonAgenceComponent implements OnInit {
   }
 
   delete(id) {
+  }
+
+  openErrorModal(id: string) {
+    this.errormodalService.open(id);
+  }
+
+  closeErrorModal(id: string) {
+    this.errormodalService.close(id);
   }
 
 }

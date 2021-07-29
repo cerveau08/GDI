@@ -4,6 +4,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { OthersService } from '../../services/others.service';
 import { from } from 'rxjs';
 import { Router } from '@angular/router';
+import { ModalService } from 'src/app/_modal/modal.service';
+import { ErrormodalService } from 'src/app/_errormodals';
 
 @Component({
   selector: 'app-addagence',
@@ -34,8 +36,9 @@ export class AddagenceComponent implements OnInit {
   filenameUser = "";
   data;
   successMsg;
-  constructor(private dataService: DataService,
+  constructor(private modalService: ModalService,
               private route: Router,
+              private errormodalService: ErrormodalService,
               private otherService: OthersService ) { }
 
   
@@ -138,10 +141,10 @@ export class AddagenceComponent implements OnInit {
         if (this.successMsg == true) {
           this.route.navigate(['/accueil/listagence']);
         }
-        
       },
         error=> {
-          this.errorMsg = 'Probleme de connexion au serveur';
+          this.errorMsg = error;
+          this.modalService.open('error-modal-1');
           console.log(error)
         }
       ) 
@@ -158,5 +161,12 @@ export class AddagenceComponent implements OnInit {
       this.image= reader.result
       console.log(this.image)
     }
+  }
+  openErrorModal(id: string) {
+    this.errormodalService.open(id);
+  }
+
+  closeErrorModal(id: string) {
+    this.errormodalService.close(id);
   }
 }

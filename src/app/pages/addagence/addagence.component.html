@@ -95,3 +95,17 @@
     </div>
 </div>
 </div>
+<!--modal1-->
+<div class="modal">
+  <jw-modal id="error-modal-1">
+      <div class="tableau" >
+          <mat-icon style="cursor: pointer;" (click)="closeModal('error-modal-1');" class="clear">clear</mat-icon>
+          <p class="error-title">Erreur:</p>
+          <img class="error-image" src="../../../assets/images/error-message.png" alt="">
+          <p class="dtl1">{{errorMsg}}</p>
+          <div class="btns2">
+              <button  class="btn2">Ok</button>
+          </div>
+      </div>
+  </jw-modal>
+</div>

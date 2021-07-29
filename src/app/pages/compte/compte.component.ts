@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgxFileSaverService } from '@clemox/ngx-file-saver';
 import { DataService } from 'src/app/service/data.service';
 import { ModalService } from 'src/app/_modal/modal.service';
+import { ErrormodalService } from 'src/app/_errormodals';
 
 @Component({
   selector: 'app-compte',
@@ -87,6 +88,7 @@ export class CompteComponent implements OnInit {
     private otherService: OthersService,
     private modalService: ModalService,
     private dataService: DataService,
+    private errormodalService: ErrormodalService,
     private router: Router,
   ) { }
 
@@ -173,5 +175,12 @@ export class CompteComponent implements OnInit {
       }
     })
   } 
+  openErrorModal(id: string) {
+    this.errormodalService.open(id);
+  }
+
+  closeErrorModal(id: string) {
+    this.errormodalService.close(id);
+  }
 }
  

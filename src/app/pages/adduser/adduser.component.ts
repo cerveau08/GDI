@@ -5,6 +5,7 @@ import { DataService } from 'src/app/service/data.service';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
+import { ErrormodalService } from 'src/app/_errormodals';
 
 @Component({
   selector: 'app-adduser',
@@ -62,6 +63,7 @@ export class AdduserComponent implements OnInit {
               private otherService: OthersService,
               private route: Router,
               private http: HttpClient,
+              private errormodalService: ErrormodalService,
     ) { }
 
   ngOnInit() {
@@ -221,5 +223,12 @@ export class AdduserComponent implements OnInit {
         console.log(error)
       }
     )
+  }
+  openErrorModal(id: string) {
+    this.errormodalService.open(id);
+  }
+
+  closeErrorModal(id: string) {
+    this.errormodalService.close(id);
   }
 }
