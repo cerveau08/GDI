@@ -28,7 +28,7 @@ export class LesdemandesComponent implements OnInit {
   dataDemande;
   pagedItems: any[];
   page = 1;
-  itemsPerPage = 7;
+  itemsPerPage = 10;
   totalItems : any;
   date: any;
   tempArr: any = { "brands": [] };
