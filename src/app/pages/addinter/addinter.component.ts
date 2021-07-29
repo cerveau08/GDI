@@ -118,18 +118,13 @@ export class AddinterComponent implements OnInit {
   universite;
   adresse;
   profession;
+  poste;
   constructor(private fb: FormBuilder,
               private dataService: DataService,
               private otherService: OthersService,
               private route: Router) {
-    this.datajson = this.dataService.getData();
+   // this.datajson = this.dataService.getData();
    }
-   codeList = [
-    { code: 'MAC', name: 'macon' },
-    { code: 'COM', name: 'compta' },
-    { code: 'INF', name: 'infos' }
-    ];
-    
     
   ngOnInit() {
     this.interForm = new FormGroup({
@@ -186,16 +181,20 @@ export class AddinterComponent implements OnInit {
     );
     this.otherService.getDomaine().subscribe(data => this.dataDomaine = data["data"]);
   //  this.saveCode(this.item)
-  this.otherService.getFonctions().subscribe(
-    data => 
-      this.listeFonction = data.data)
+  this.otherService.getFonctions().subscribe(data => this.listeFonction = data.data);
     this.onChanges();
   }
-  public saveCode(e): void {
+  public saveProfession(e): void {
     let libelle = e.target.value;
     let list = this.listeFonction.filter(x => x.libelle === libelle)[0];
     console.log(list.libelle);
     this.interForm.patchValue({profession: list.libelle});
+  }
+  public savePoste(e): void {
+    let libelle = e.target.value;
+    let list = this.listeFonction.filter(x => x.libelle === libelle)[0];
+    console.log(list.libelle);
+    this.interForm.patchValue({poste: list.libelle});
   }
   onChanges(): void {
     this.interForm.get('societeId').valueChanges.subscribe(val => {
