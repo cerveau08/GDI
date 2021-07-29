@@ -272,7 +272,7 @@ export class HomedrhComponent implements OnInit {
         bar: {
           horizontal: false,
           columnWidth: "30px",
-          endingShape: "rounded",
+        //  endingShape: "rounded",
         },
       },
       dataLabels: {

@@ -805,7 +805,7 @@ export class StatistiquesComponent implements OnInit {
             bar: {
               horizontal: false,
               columnWidth: "10px",
-              endingShape: "rounded",
+            //  endingShape: "rounded",
             },
           },
           dataLabels: {
@@ -884,7 +884,7 @@ export class StatistiquesComponent implements OnInit {
         bar: {
           horizontal: false,
           columnWidth: "20px",
-          endingShape: "rounded",
+        //  endingShape: "rounded",
         },
       },
       dataLabels: {
@@ -967,7 +967,7 @@ export class StatistiquesComponent implements OnInit {
         bar: {
           horizontal: false,
           columnWidth: "50px",
-          endingShape: "rounded",
+        //  endingShape: "rounded",
         },
       },
       dataLabels: {
@@ -1045,7 +1045,7 @@ export class StatistiquesComponent implements OnInit {
         bar: {
           horizontal: false,
           columnWidth: "10px",
-          endingShape: "rounded",
+        //  endingShape: "rounded",
         },
       },
       dataLabels: {
@@ -1123,7 +1123,7 @@ export class StatistiquesComponent implements OnInit {
         bar: {
           horizontal: false,
           columnWidth: "10px",
-          endingShape: "rounded",
+        //  endingShape: "rounded",
         },
       },
       dataLabels: {
@@ -1204,7 +1204,7 @@ export class StatistiquesComponent implements OnInit {
         bar: {
           horizontal: false,
           columnWidth: "10px",
-          endingShape: "rounded",
+        //  endingShape: "rounded",
         },
       },
       dataLabels: {
@@ -1282,7 +1282,7 @@ export class StatistiquesComponent implements OnInit {
         bar: {
           horizontal: false,
           columnWidth: "10px",
-          endingShape: "rounded",
+        //  endingShape: "rounded",
         },
       },
       dataLabels: {

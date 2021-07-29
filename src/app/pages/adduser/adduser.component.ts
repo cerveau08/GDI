@@ -182,7 +182,7 @@ export class AdduserComponent implements OnInit {
     )
   }
 
-  public savePoste(e): void {
+  public saveFonction(e): void {
     let libelle = e.target.value;
     let list = this.listeFonction.filter(x => x.libelle === libelle)[0];
     console.log(list.libelle);
