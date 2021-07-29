@@ -93,7 +93,7 @@ export class InterarchiveComponent implements OnInit {
   }
 
   gty(page: any){
-    this.http.get(this.reqUrl + `/interimFinContrat?page=${page}&limit=${this.itemsPerPage}`).subscribe((data: any) => {
+    this.http.get(this.reqUrl + `/listArchived?page=${page}&limit=${this.itemsPerPage}`).subscribe((data: any) => {
       this.dataFinContrat =  data.data;
       this.totalItems = data.total;
       console.log(data);

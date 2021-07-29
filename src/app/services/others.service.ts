@@ -241,4 +241,10 @@ addAgence(data) {
   updateUser(data, id: number){
     return this.http.post<any>(`${this.reqUrl}/users/update/${id}`, data);
   }
+  listArchive(){
+    return this.http.get<any>(this.reqUrl + '/listArchived');
+  }
+  bolquerUser(id: number, data:any): Observable<any> {
+    return this.http.post<any>(`${this.reqUrl}/users/activeDesactive/${id}`, data);
+  }
 }

@@ -197,6 +197,24 @@ export class DetailuserComponent implements OnInit {
       }
     })
   }
+
+  bloquerUser() {
+    console.log(this.dataUser);
+    this.otherService.bolquerUser(this.item, this.bannirForm.value).subscribe(
+      (response) =>{
+        console.log(response)
+       // this.dataBannir = response;
+       // this.successMsgBannir = this.dataBannir.status;
+       // if(this.successMsgBannir == true) {
+        //  this.closeModal('custom-modal-7');
+        //  this.ngOnInit();
+        //}
+      },
+      (error)=>{
+        console.log(error);
+      }
+    );
+  }
   closeModal(id: string) {
     this.modalService.close(id);
   }

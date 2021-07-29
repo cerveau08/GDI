@@ -31,9 +31,9 @@
                 </div>-->
             </div>
         </div>
-        <div class="lesbouton">
-            <button class="button1" (click)="modifierUser()">Modifier</button>
-            <button *ngIf="role == 'DRH'" class="button8" (click)="openModal('custom-modal-7')">Bloquer Utilisateur</button>
+        <div *ngIf="role != 'INT'" class="lesbouton">
+            <button *ngIf="role != 'MNG'" class="button1" (click)="modifierUser()">Modifier</button>
+            <button *ngIf="role == 'DRH'" class="button8" (click)="bloquerUser()">Bloquer Utilisateur</button>
         </div>
     </div>
 </div>

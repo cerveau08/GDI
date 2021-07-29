@@ -81,7 +81,7 @@ userAgentForm: FormGroup;
     info.append("fonction", this.userAgentForm.value.fonction);
     info.append("telephone",this.userAgentForm.value.telephone);
     info.append("email",this.userAgentForm.value.email);
-    info.append("profil",this.userAgentForm.value.profil);
+    info.append("profilId",this.userAgentForm.value.profil);
     if(this.photoUpload != undefined) {
       info.append("avatar",this.photoUpload);
     }
