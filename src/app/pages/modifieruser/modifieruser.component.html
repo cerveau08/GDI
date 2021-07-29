@@ -1,7 +1,7 @@
 <div class="all-container">
     <div class="all">
         <div class="large">
-            <p class="detail">Modifier utilisateur</p>
+            <p class="detail">Ajouter un nouveau utilisateur</p>
             <div>
                 <div class="form-add-user-agent">
                     <form [formGroup]="userAgentForm">
@@ -12,8 +12,8 @@
                                 <input formControlName="avatar" class="buttonphoto1" type="file" (change)="getPhoto($event)">
                             </div>
                             <div>
-                                <div *ngIf="profil.value != '3'" class="infoinput1">
-                                    <input  type="text" [(ngModel)]="matricule" readonly formControlName="matricule" placeholder="Matricule">
+                                <div *ngIf="profilId != '3'" class="infoinput1">
+                                    <input  type="text" [(ngModel)]="matricule" formControlName="matricule" placeholder="Matricule" readonly>
                                 </div>
                                 <div class="infoinput2">
                                     <input type="text" formControlName="prenom"   [(ngModel)]="prenom" placeholder="Prénom">
@@ -29,18 +29,18 @@
                                 </div>
                                 <div class="infoinput2">
                                     <input type="number" formControlName="telephone"  [(ngModel)]="telephone"  placeholder="Téléphone">
-                                    <select class="select6"  #profil formControlName="profil">
-                                        <option class="option" value="" disabled selected hidden>Profil</option>
+                                    <select class="select6" [(ngModel)]="profil" formControlName="profil">
+                                        <option class="option" value="" disabled selected hidden>{{profil}}</option>
                                         <option *ngFor="let data of dataprofils" value="{{data.id}}">{{data.libelle}}</option>
                                     </select>
                                 </div>
                                 <div *ngIf="user == 'DRH'" class="infoinput2">
                                     <input type="text" formControlName="fonction"  [(ngModel)]="fonction"  placeholder="Fonction">
-                                    <select *ngIf="profil.value == '3'" class="select6"  formControlName="agenceId">
-                                        <option class="option" value="" disabled selected hidden>Agence</option>
+                                    <select *ngIf="profilId == '3'" class="select6"  formControlName="agenceId">
+                                        <option class="option" value=""  hidden>Agence</option>
                                         <option *ngFor="let data of dataAgence" value="{{data.id}}">{{data.nom}}</option>
                                     </select>
-                                    <select *ngIf="profil.value == '4'" class="select6" formControlName="structureId">
+                                    <select *ngIf="profilId == '4'" class="select6" formControlName="structureId">
                                         <option class="option" value="" disabled selected hidden>Structure</option>
                                         <option *ngFor="let data of dataStructure" value="{{data.id}}">{{data.libelle}}</option>
                                     </select>
@@ -65,3 +65,20 @@
         </div>
     </div>
 </div>
+
+<!--modal1-->
+<div class="modal">
+    <sonatel-pma-errormodal id="error-modal-1">
+        <div class="error-modal-all" >
+            <mat-icon style="cursor: pointer;" (click)="closeErrorModal('error-modal-1');" class="clear-error">clear</mat-icon>
+            <div class="error-content-image">
+                <img class="error-image" src="../../../assets/images/error-message.png" alt="">
+            </div>
+            <p class="error-text">{{errorMsg}}</p>
+            <p class="error-message-admin">Veuillez contacter l'administrateur du site à partir de la page paramètre</p> 
+            <div class="error-content-button">
+                <button (click)="closeErrorModal('error-modal-1');" class="error-button">Ok</button>
+            </div>
+        </div>
+    </sonatel-pma-errormodal>
+  </div>

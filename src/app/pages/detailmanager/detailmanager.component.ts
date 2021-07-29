@@ -6,6 +6,7 @@ import { DataService } from 'src/app/service/data.service';
 import { ModalService } from 'src/app/_modal';
 import { NgxFileSaverService } from '@clemox/ngx-file-saver';
 import { HttpClient } from '@angular/common/http';
+import { ErrormodalService } from 'src/app/_errormodals';
 
 @Component({
   selector: 'app-detailmanager',
@@ -40,6 +41,7 @@ export class DetailmanagerComponent implements OnInit {
   public reqUrl = environment.base_url;
   constructor(private dataService: DataService,
     private modalService: ModalService,
+    private errormodalService: ErrormodalService,
     private fileSaver: NgxFileSaverService,
     private otherService: OthersService,
     private http: HttpClient,
@@ -97,5 +99,12 @@ export class DetailmanagerComponent implements OnInit {
   }
   public getfilemodal() {
     this.fileSaver.saveUrl(this.DemoDoc, 'contrat');
+  }
+  openErrorModal(id: string) {
+    this.errormodalService.open(id);
+  }
+
+  closeErrorModal(id: string) {
+    this.errormodalService.close(id);
   }
 }

@@ -5,6 +5,7 @@ import { NgxFileSaverService } from '@clemox/ngx-file-saver';
 import { DataService } from 'src/app/service/data.service';
 import { ModalService } from 'src/app/_modal/modal.service';
 import { ActivatedRoute } from '@angular/router';
+import { ErrormodalService } from 'src/app/_errormodals';
 
 @Component({
   selector: 'app-agence',
@@ -57,6 +58,7 @@ export class AgenceComponent implements OnInit {
 
   constructor(private fileSaver: NgxFileSaverService,
     private modalService: ModalService,
+    private errormodalService: ErrormodalService,
     private dataService: DataService,
     private otherService: OthersService) { }
 
@@ -229,5 +231,12 @@ export class AgenceComponent implements OnInit {
   }
 
   delete(id) {
+  }
+  openErrorModal(id: string) {
+    this.errormodalService.open(id);
+  }
+
+  closeErrorModal(id: string) {
+    this.errormodalService.close(id);
   }
 }

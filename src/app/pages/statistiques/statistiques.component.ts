@@ -2,6 +2,7 @@ import { OthersService } from 'src/app/services/others.service';
 import { Component, HostListener, OnInit } from '@angular/core';
 import { ApexAxisChartSeries, ApexChart, ApexDataLabels, ApexFill, ApexLegend, ApexPlotOptions, ApexResponsive, ApexXAxis, ApexYAxis, ChartComponent } from 'ng-apexcharts';
 import { DataService } from 'src/app/service/data.service';
+import { ErrormodalService } from 'src/app/_errormodals';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -706,6 +707,7 @@ export class StatistiquesComponent implements OnInit {
   public chartOptions6: Partial<ChartOptions>;
   public chartOptions7: Partial<ChartOptions>;
   constructor(private dataService: DataService,
+    private errormodalService: ErrormodalService,
               private otherService: OthersService) {
     this.getScreenSize();
   }
@@ -1347,4 +1349,12 @@ export class StatistiquesComponent implements OnInit {
     } 
     return this.jan;
   } 
+
+  openErrorModal(id: string) {
+    this.errormodalService.open(id);
+  }
+
+  closeErrorModal(id: string) {
+    this.errormodalService.close(id);
+  }
 }

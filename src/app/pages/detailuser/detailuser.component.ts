@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { OthersService } from 'src/app/services/others.service';
 import { ModalService } from 'src/app/_modal';
 import { environment } from 'src/environments/environment';
+import { ErrormodalService } from 'src/app/_errormodals';
 
 @Component({
   selector: 'app-detailuser',
@@ -54,6 +55,7 @@ export class DetailuserComponent implements OnInit {
   constructor(private activeroute: ActivatedRoute,
               private modalService: ModalService,
               private otherService: OthersService,
+              private errormodalService: ErrormodalService,
               public router: Router, ) { 
     this.activeroute.queryParams.subscribe(params => {
       this.item = JSON.parse(params["user"]);
@@ -217,5 +219,12 @@ export class DetailuserComponent implements OnInit {
   }
   closeModal(id: string) {
     this.modalService.close(id);
+  }
+  openErrorModal(id: string) {
+    this.errormodalService.open(id);
+  }
+
+  closeErrorModal(id: string) {
+    this.errormodalService.close(id);
   }
 }

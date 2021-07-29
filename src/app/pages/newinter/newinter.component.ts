@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataService } from 'src/app/service/data.service';
 import { OthersService } from 'src/app/services/others.service';
+import { ErrormodalService } from 'src/app/_errormodals';
 
 @Component({
   selector: 'app-newinter',
@@ -20,7 +21,9 @@ export class NewinterComponent implements OnInit {
   date: any;
   scrHeight:any;
   scrWidth:any;
-  constructor(private dataService: DataService,private otherService: OthersService,
+  constructor(private dataService: DataService,
+    private errormodalService: ErrormodalService,
+    private otherService: OthersService,
     public datepipe: DatePipe,
     public router: Router){
 
@@ -51,4 +54,12 @@ export class NewinterComponent implements OnInit {
       }
     })
   } 
+
+  openErrorModal(id: string) {
+    this.errormodalService.open(id);
+  }
+
+  closeErrorModal(id: string) {
+    this.errormodalService.close(id);
+  }
 }

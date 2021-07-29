@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from 'src/app/service/data.service';
 import { OthersService } from 'src/app/services/others.service';
 import { environment } from 'src/environments/environment';
+import { ErrormodalService } from 'src/app/_errormodals';
 
 @Component({
   selector: 'app-attestationpresence',
@@ -25,6 +26,7 @@ export class AttestationpresenceComponent implements OnInit {
   public reqUrl = environment.base_url;
   constructor(private dataService: DataService,
               private http: HttpClient,
+              private errormodalService: ErrormodalService,
               private otherService: OthersService) { }
 
   ngOnInit() {
@@ -64,5 +66,12 @@ export class AttestationpresenceComponent implements OnInit {
     }
     this.checkedList = this.checkedList;
     console.log(this.checkedList);
+  }
+  openErrorModal(id: string) {
+    this.errormodalService.open(id);
+  }
+
+  closeErrorModal(id: string) {
+    this.errormodalService.close(id);
   }
 }

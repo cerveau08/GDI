@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { DataService } from 'src/app/service/data.service';
 import { PaginationService } from 'src/app/service/pagination.service';
 import { ModalService } from 'src/app/_modal';
+import { ErrormodalService } from 'src/app/_errormodals';
 
 @Component({
   selector: 'app-interimaire',
@@ -48,6 +49,7 @@ export class InterimaireComponent implements OnInit {
     private pagerService: PaginationService,
     private modalService: ModalService,
     public datepipe: DatePipe,
+    private errormodalService: ErrormodalService,
     public router: Router
     ) { }
 
@@ -118,6 +120,14 @@ export class InterimaireComponent implements OnInit {
       color = "#10a900"
     }  
     return color; 
+  }
+
+  openErrorModal(id: string) {
+    this.errormodalService.open(id);
+  }
+
+  closeErrorModal(id: string) {
+    this.errormodalService.close(id);
   }
 
 }

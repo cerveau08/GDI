@@ -6,6 +6,7 @@ import { NgxFileSaverService } from '@clemox/ngx-file-saver';
 import { OthersService } from 'src/app/services/others.service';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
+import { ErrormodalService } from 'src/app/_errormodals';
 
 @Component({
   selector: 'app-mon-manager',
@@ -43,6 +44,7 @@ export class MonManagerComponent implements OnInit {
     private modalService: ModalService,
     private fileSaver: NgxFileSaverService,
     private otherService: OthersService,
+    private errormodalService: ErrormodalService,
     private http: HttpClient,
     private activeroute: ActivatedRoute) {
       this.getScreenSize();
@@ -100,6 +102,14 @@ export class MonManagerComponent implements OnInit {
   }
   public getfilemodal() {
     this.fileSaver.saveUrl(this.DemoDoc, 'contrat');
+  }
+
+  openErrorModal(id: string) {
+    this.errormodalService.open(id);
+  }
+
+  closeErrorModal(id: string) {
+    this.errormodalService.close(id);
   }
 
 }

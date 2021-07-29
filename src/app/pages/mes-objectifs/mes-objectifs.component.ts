@@ -5,6 +5,7 @@ import { OthersService } from 'src/app/services/others.service';
 import { ModalService } from 'src/app/_modal';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { ErrormodalService } from 'src/app/_errormodals';
 
 @Component({
   selector: 'app-mes-objectifs',
@@ -36,6 +37,7 @@ export class MesObjectifsComponent implements OnInit {
   interimConnect;
   public reqUrl = environment.base_url;
   constructor(private otherService: OthersService,
+    private errormodalService: ErrormodalService,
     private modalService: ModalService,
     private http: HttpClient,) {
   }
@@ -61,5 +63,13 @@ export class MesObjectifsComponent implements OnInit {
       this.objectif = this.data["data"];
       console.log(data);
     })
+  }
+
+  openErrorModal(id: string) {
+    this.errormodalService.open(id);
+  }
+
+  closeErrorModal(id: string) {
+    this.errormodalService.close(id);
   }
 }

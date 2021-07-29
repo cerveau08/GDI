@@ -6,6 +6,7 @@ import { BoundText } from '@angular/compiler/src/render3/r3_ast';
 import { ModalService } from 'src/app/_modal';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
+import { ErrormodalService } from 'src/app/_errormodals';
 
 @Component({
   selector: 'app-objectifs',
@@ -38,6 +39,7 @@ export class ObjectifsComponent implements OnInit {
   constructor(private otherService: OthersService,
     private modalService: ModalService,
     private activeroute: ActivatedRoute,
+    private errormodalService: ErrormodalService,
     private http: HttpClient,) {
     this.activeroute.queryParams.subscribe(params => {
       this.item = JSON.parse(params["interimaire"]);
@@ -153,6 +155,14 @@ export class ObjectifsComponent implements OnInit {
   
   closeModal(id: string) {
     this.modalService.close(id);
+  }
+
+  openErrorModal(id: string) {
+    this.errormodalService.open(id);
+  }
+
+  closeErrorModal(id: string) {
+    this.errormodalService.close(id);
   }
 
 }

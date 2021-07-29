@@ -5,6 +5,8 @@ import { Observable, OperatorFunction, Subject, merge } from 'rxjs';
 import { map, startWith, debounceTime, distinctUntilChanged, filter } from 'rxjs/operators';
 import { DataService } from 'src/app/service/data.service';
 import { OthersService } from 'src/app/services/others.service';
+import { ModalService } from 'src/app/_modal/modal.service';
+import { ErrormodalService } from 'src/app/_errormodals';
 //import { MatAutocompleteSelectedEvent } from '@angular/material';
 
 @Component({
@@ -120,8 +122,9 @@ export class AddinterComponent implements OnInit {
   profession;
   poste;
   constructor(private fb: FormBuilder,
-              private dataService: DataService,
+              private modalService: ModalService,
               private otherService: OthersService,
+              private errormodalService: ErrormodalService,
               private route: Router) {
    // this.datajson = this.dataService.getData();
    }
@@ -170,6 +173,10 @@ export class AddinterComponent implements OnInit {
       data => {
         this.dataSociete = data["data"];
         console.log(data);
+      },error=> {
+        this.errorMsg = error;
+        this.modalService.open('error-modal-1');
+        console.log(error)
       }
     );
      //recupere les categories
@@ -177,6 +184,10 @@ export class AddinterComponent implements OnInit {
       data => {
         this.dataCategorie = data["data"];
         console.log(data);
+      },error=> {
+        this.errorMsg = error;
+        this.modalService.open('error-modal-1');
+        console.log(error)
       }
     );
     this.otherService.getDomaine().subscribe(data => this.dataDomaine = data["data"]);
@@ -231,25 +242,10 @@ export class AddinterComponent implements OnInit {
         this.adresse = this.dataMatriculeInter.data.interimaire.adresse;
         this.profession = this.dataMatriculeInter.data.interimaire.profession;
         this.universite = this.dataMatriculeInter.data.interimaire.universite;
-      },
-      (error) =>{
-        console.log(error)
       }
     )
   }
   
-  // selectEvent(item) {
-  //   // do something with selected item
-  // }
-
-  // onChangeSearch(val: string) {
-  //   // fetch remote data from here
-  //   // And reassign the 'data' which is binded to 'data' property.
-  // }
-  
-  // onFocused(e){
-  //   // do something when input is focused
-  // }
   get diplome(): FormArray {
     return this.interForm.get('fileDiplome') as FormArray;
   }
@@ -368,10 +364,11 @@ export class AddinterComponent implements OnInit {
           this.submited = true;
         }
       },
-        error=> {
-          this.errorMsg = 'Probleme de connexion au serveur';
-          console.log(error)
-        }
+      error=> {
+        this.errorMsg = error;
+        this.modalService.open('error-modal-1');
+        console.log(error)
+      }
       )
   }
 
@@ -478,6 +475,13 @@ export class AddinterComponent implements OnInit {
     this.url1="../assets/images/default.png";
     this.url2="../assets/images/default.png";
     this.url3="../assets/images/default.png";
+  }
+  openErrorModal(id: string) {
+    this.errormodalService.open(id);
+  }
+
+  closeErrorModal(id: string) {
+    this.errormodalService.close(id);
   }
 }
 

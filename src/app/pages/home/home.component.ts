@@ -3,6 +3,7 @@ import { QueryBindingType } from '@angular/compiler/src/core';
 import { OthersService } from 'src/app/services/others.service';
 import { Component, HostListener, OnInit } from '@angular/core';
 import { ApexAxisChartSeries, ApexChart, ApexDataLabels, ApexPlotOptions, ApexResponsive, ApexXAxis, ApexYAxis, ApexLegend, ApexFill, ChartComponent } from 'ng-apexcharts';
+import { ErrormodalService } from 'src/app/_errormodals';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -69,6 +70,7 @@ export class HomeComponent implements OnInit {
   }
 
   constructor(private dataService: DataService ,
+    private errormodalService: ErrormodalService,
     private otherService: OthersService) {
     this.getScreenSize();
     this.chartOptions = {
@@ -346,5 +348,12 @@ export class HomeComponent implements OnInit {
   moisSelectionner(mois) {
     console.log(mois);
     
+  }
+  openErrorModal(id: string) {
+    this.errormodalService.open(id);
+  }
+
+  closeErrorModal(id: string) {
+    this.errormodalService.close(id);
   }
 }

@@ -8,6 +8,7 @@ import { OthersService } from 'src/app/services/others.service';
 import { formatCurrency } from '@angular/common';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
+import { ErrormodalService } from 'src/app/_errormodals';
 
 @Component({
   selector: 'app-detailinter',
@@ -93,6 +94,7 @@ export class DetailinterComponent implements OnInit {
               private dataService: DataService,
               private otherService: OthersService,
               private fileSaver: NgxFileSaverService,
+              private errormodalService: ErrormodalService,
               private http: HttpClient,
               public router: Router, ) { 
     this.activeroute.queryParams.subscribe(params => {
@@ -398,5 +400,12 @@ export class DetailinterComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+  openErrorModal(id: string) {
+    this.errormodalService.open(id);
+  }
+
+  closeErrorModal(id: string) {
+    this.errormodalService.close(id);
   }
 }

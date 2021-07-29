@@ -7,6 +7,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { ErrormodalService } from 'src/app/_errormodals';
 
 
 @Component({
@@ -56,6 +57,7 @@ export class DemandeComponent implements OnInit {
     private router: Router,
     private pagerService: PaginationService, 
     private otherService: OthersService,
+    private errormodalService: ErrormodalService,
     private http: HttpClient
     ) { }
 
@@ -118,5 +120,12 @@ export class DemandeComponent implements OnInit {
 
   closeModal(id: string) {
     this.modalService.close(id);
+  }
+  openErrorModal(id: string) {
+    this.errormodalService.open(id);
+  }
+
+  closeErrorModal(id: string) {
+    this.errormodalService.close(id);
   }
 }

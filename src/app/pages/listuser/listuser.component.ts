@@ -7,6 +7,7 @@ import { DataService } from 'src/app/service/data.service';
 import { OthersService } from 'src/app/services/others.service';
 import { ModalService } from 'src/app/_modal/modal.service';
 import { environment } from 'src/environments/environment';
+import { ErrormodalService } from 'src/app/_errormodals';
 
 @Component({
   selector: 'app-listuser',
@@ -30,6 +31,7 @@ export class ListuserComponent implements OnInit {
   successMsg;
   constructor(private dataService: DataService,
     public datepipe: DatePipe,
+    private errormodalService: ErrormodalService,
     public router: Router,
     private modalService: ModalService,
     private otherService: OthersService,
@@ -90,6 +92,14 @@ export class ListuserComponent implements OnInit {
 
   closeModal(id: string) {
     this.modalService.close(id);
+  }
+
+  openErrorModal(id: string) {
+    this.errormodalService.open(id);
+  }
+
+  closeErrorModal(id: string) {
+    this.errormodalService.close(id);
   }
 
 }

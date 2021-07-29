@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
+import { ErrormodalService } from 'src/app/_errormodals';
 
 
 @Component({
@@ -23,6 +24,7 @@ export class AlertComponent implements OnInit {
   public reqUrl = environment.base_url;
   constructor(public router: Router,
     private otherService: OthersService,
+    private errormodalService: ErrormodalService,
     private dataService: DataService,
     private http: HttpClient) { }
 
@@ -40,7 +42,6 @@ export class AlertComponent implements OnInit {
       this.alert =  data.data;
       this.totalItems = data.total;
       console.log(data);
-      
     })
   }
   openDetail(data) {
@@ -49,5 +50,12 @@ export class AlertComponent implements OnInit {
         user: JSON.stringify(data)
       }
     })
+  }
+  openErrorModal(id: string) {
+    this.errormodalService.open(id);
+  }
+
+  closeErrorModal(id: string) {
+    this.errormodalService.close(id);
   }
 }

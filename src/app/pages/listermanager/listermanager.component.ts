@@ -7,6 +7,7 @@ import { PaginationService } from 'src/app/service/pagination.service';
 import { ModalService } from 'src/app/_modal';
 import {OthersService} from '../../services/others.service';
 import { environment } from 'src/environments/environment';
+import { ErrormodalService } from 'src/app/_errormodals';
 
 @Component({
   selector: 'app-listermanager',
@@ -35,6 +36,7 @@ export class ListermanagerComponent implements OnInit {
     private pagerService: PaginationService,
     private modalService: ModalService,
     public datepipe: DatePipe,
+    private errormodalService: ErrormodalService,
     public router: Router,
     private otherService: OthersService,
     private http: HttpClient
@@ -65,6 +67,14 @@ gty(page: any){
         user: JSON.stringify(data.id)
       }
     })
+  }
+
+  openErrorModal(id: string) {
+    this.errormodalService.open(id);
+  }
+
+  closeErrorModal(id: string) {
+    this.errormodalService.close(id);
   }
 
 }
