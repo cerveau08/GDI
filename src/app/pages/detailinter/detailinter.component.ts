@@ -371,8 +371,9 @@ export class DetailinterComponent implements OnInit {
         console.log(response)
         this.dataArret = response;
         this.successMsgArret = this.dataArret.status;
+        console.log(this.dataArret.status)
         if(this.successMsgArret == true) {
-          this.closeModal('custom-modal-7');
+          this.closeModal('custom-modal-6');
           this.ngOnInit();
         }
       },

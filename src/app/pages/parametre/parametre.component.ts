@@ -4,8 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 import { OthersService } from 'src/app/services/others.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { throwError } from 'rxjs';
-// import { timingSafeEqual } from 'crypto';
+
 
 @Component({
   selector: 'app-parametre',
@@ -122,22 +121,7 @@ export class ParametreComponent implements OnInit {
         }
         
       },
-      error => {
-        this.handleError(error);
-      }
     );
-  }
-    handleError(error) {
-      let errorMessage = '';
-      if (error.error instanceof ErrorEvent) {
-          // client-side error
-          errorMessage = `Error: ${error.error.message}`;
-      } else {
-          // server-side error
-          errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
-      }
-      console.log(errorMessage);
-      return throwError(errorMessage);
   }
   
   changeShowa() {
