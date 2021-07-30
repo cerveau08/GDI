@@ -232,6 +232,7 @@ export class DetailuserComponent implements OnInit {
         this.successMsgBannir = this.dataBannir.status;
         if(this.successMsgBannir == true) {
          this.closeModal('custom-modal-7');
+         this.closeModal('custom-modal-8');
           this.ngOnInit();
         }
       },

@@ -31,7 +31,6 @@
                     <th *ngIf="user != 'MNG'" id="direction">Direction</th>
                     <th *ngIf="user != 'AGN'" id="agence">Agence</th>
                     <th id="admissible">Admissible</th>
-                    <th id="contrat">Fin de Contrat</th>
             </tr>
             </thead>
             <tbody>
@@ -46,7 +45,6 @@
                     <td *ngIf="user != 'MNG'" (click)="openDetail(p.id)" >{{p.direction}}</td>
                     <td *ngIf="user != 'AGN'" (click)="openDetail(p.id)" >{{p.agence}}</td>
                     <td (click)="openDetail(p.id)"><div [style.background]="getcolor1(p)" class="status"></div></td>
-                    <td (click)="openDetail(p.id)"> <p [style.color]="p.color">{{p.fin_contrat  | date:'dd/MM/yyyy'}}</p> </td>
                 </tr>
             </tbody>
             
