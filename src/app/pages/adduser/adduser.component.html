@@ -13,7 +13,7 @@
                             </div>
                             <div>
                                 <div *ngIf="profil.value != '3'" class="infoinput1">
-                                    <input  type="text" [(ngModel)]="matricule" formControlName="matricule" placeholder="Matricule">
+                                    <input  type="text" *ngIf="user != 'AGN'" [(ngModel)]="matricule" formControlName="matricule" placeholder="Matricule">
                                 </div>
                                 <div class="infoinput2">
                                     <input type="text" formControlName="prenom"   [(ngModel)]="prenom" placeholder="Prénom">

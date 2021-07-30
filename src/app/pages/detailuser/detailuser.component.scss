@@ -373,7 +373,7 @@
     font-weight: bold;
     position: absolute;
     right: 20px;
-    top: -10px;
+    top: 0px;
 }
 .grid {
     display: grid;
@@ -609,6 +609,132 @@ select {
     border: solid 1px #d8d8d8;
     margin-bottom: 10px;
     padding: 0 10px;
+}
+.content-error-msg{
+    width: 300px;
+    margin-left: 0px;
+}
+.error-alert{
+    color: #ff0000;
+    font-size: 12px;
+}
+.button-desactiver {
+    width: 150px;
+    height: 30px;
+    background-color: #ff0000;
+    color: white;
+    padding: 2px 2px;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+    font-size: 14px;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.button-activer {
+    width: 150px;
+    height: 30px;
+    background-color: #ff7900;
+    color: white;
+    padding: 2px 2px;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+    font-size: 14px;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.button-desactiver-user{
+    width: 150px;
+    height: 30px;
+    background-color: #ff0000;
+    color: white;
+    padding: 2px 2px;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+    font-size: 14px;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    margin-left: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;  
+}
+.button-activer-user{
+    width: 150px;
+    height: 30px;
+    background-color: #ff7900;
+    color: white;
+    padding: 2px 2px;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+    font-size: 14px;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    margin-left: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;  
+}
+.content-button-block{
+    width: 150px;
+    margin: 0 auto;
+}
+.lesbouton {
+    display: flex;
+}
+
+.error-content-image{
+    width: 150px;
+    height: 150px;
+    margin: 0 auto;
+}
+.error-image {
+    width: 150px;
+    height: 150px;
+}
+.error-text{
+    text-align: center;
+    color: #ff0000;
+    font-size: 28px;
+}
+.error-message-admin{
+    text-align: center;
+    font-size: 18px;
+}
+.clear-error {
+    width: 10px;
+    height: 10px;
+    font-weight: bold;
+    position: absolute;
+    right: 20px;
+    top: 5px;
+}
+.error-content-button{
+    width: 50px;
+    margin: 0 auto;
+}
+.error-button{
+    width: 50px;
+    height: 30px;
+    font-size: 16px;
+    color: #ff0000;
+    background-color: #f5f6f9;
+    border-radius: 5px;
+    outline: none;
+    border: solid 1px #ff0000;
 }
 @media (max-width: 991px) {
     .chiffre-aside {

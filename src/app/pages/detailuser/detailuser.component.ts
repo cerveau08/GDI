@@ -34,7 +34,7 @@ export class DetailuserComponent implements OnInit {
   service
   contratForm: FormGroup;
   arretForm: FormGroup;
-  bannirForm: FormGroup;
+  bloquerForm: FormGroup;
   reconduireForm: FormGroup;
   userForm: FormGroup;
   filenamecontrat;
@@ -53,6 +53,8 @@ export class DetailuserComponent implements OnInit {
   photoName;
   public reqUrl = environment.base_url;
   errorMsg: any;
+  successMsgBannir: any;
+  dataBannir: any;
   constructor(private activeroute: ActivatedRoute,
               private modalService: ModalService,
               private otherService: OthersService,
@@ -61,31 +63,32 @@ export class DetailuserComponent implements OnInit {
     this.activeroute.queryParams.subscribe(params => {
       this.item = JSON.parse(params["user"]);
       console.log(this.item);
-      this.otherService.getUserById(this.item).subscribe(
-           data =>{
-            this.data = data;
-            this.dataUser = this.data.data;
-            console.log(this.dataUser);
-            this.nom = this.dataUser.nom;
-            this.prenom = this.dataUser.prenom;
-            this.email = this.dataUser.email;
-            this.fonction = this.dataUser.fonction;
-           this.telephone = this.dataUser.telephone;
-            //this.agence = this.dataUser.agence;
-            this.matricule = this.dataUser.matricule;
-            this.photo = this.dataUser.photo;
-        },
-        error=> {
-          this.errorMsg = error;
-          this.errormodalService.open('error-modal-1');
-          console.log(error)
-        }
-      );
+      
     })
     
   }
   ngOnInit() {
-    this.role = localStorage.getItem('user')
+    this.role = localStorage.getItem('user');
+    this.otherService.getUserById(this.item).subscribe(
+      data =>{
+       this.data = data;
+       this.dataUser = this.data.data;
+       console.log(this.dataUser);
+       this.nom = this.dataUser.nom;
+       this.prenom = this.dataUser.prenom;
+       this.email = this.dataUser.email;
+       this.fonction = this.dataUser.fonction;
+      this.telephone = this.dataUser.telephone;
+       //this.agence = this.dataUser.agence;
+       this.matricule = this.dataUser.matricule;
+       this.photo = this.dataUser.photo;
+      },
+      error=> {
+        this.errorMsg = error;
+        this.errormodalService.open('error-modal-1');
+        console.log(error)
+      }
+    );
     this.contratForm = new FormGroup({
       societeId: new FormControl(''),
       directionId: new FormControl(''),
@@ -125,8 +128,8 @@ export class DetailuserComponent implements OnInit {
     this.arretForm = new FormGroup({
       motif: new FormControl(''),
     });
-    this.bannirForm = new FormGroup({
-      motif: new FormControl(''),
+    this.bloquerForm = new FormGroup({
+      action: new FormControl(''),
     });
   }
 
@@ -220,8 +223,52 @@ export class DetailuserComponent implements OnInit {
       }
     })
   }
+
+  bloquerUser() {
+    console.log(this.dataUser);
+    const inputAction = {
+      action: 'desactivate'
+    }
+    this.otherService.bloquerUser(this.item, inputAction).subscribe(
+      (response) =>{
+        console.log(response)
+        this.dataBannir = response;
+        this.successMsgBannir = this.dataBannir.status;
+        if(this.successMsgBannir == true) {
+          this.closeModal('custom-modal-7');
+          this.ngOnInit();
+        }
+      },
+      (error)=>{
+        console.log(error);
+      }
+    );
+  }
+  activerUser() {
+    console.log(this.dataUser);
+    const inputAction = {
+      action: 'activate'
+    }
+    this.otherService.bloquerUser(this.item, inputAction).subscribe(
+      (response) =>{
+        console.log(response)
+        this.dataBannir = response;
+        this.successMsgBannir = this.dataBannir.status;
+        if(this.successMsgBannir == true) {
+         this.closeModal('custom-modal-8');
+          this.ngOnInit();
+        }
+      },
+      (error)=>{
+        console.log(error);
+      }
+    );
+  }
   closeModal(id: string) {
     this.modalService.close(id);
+  }
+  openModal(id: string) {
+    this.modalService.open(id);
   }
   openErrorModal(id: string) {
     this.errormodalService.open(id);
