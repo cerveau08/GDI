@@ -19,6 +19,7 @@ export class HeaderComponent implements OnInit {
   successRequest;
   selected1 = 0;
   public click: any;
+  direction;
   filterterm: string;
   dataInterFin;
   scrHeight:any;
@@ -36,6 +37,7 @@ export class HeaderComponent implements OnInit {
   name;
   public menus: any;
   prenom;
+  role;
   constructor(private modalService: ModalService, 
     private sidenavService: SidenavService,
     private authService: AuthService,
@@ -77,6 +79,10 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.prenom = localStorage.getItem('prenom');
+
+    this.role = localStorage.getItem('role');
+    
+    this.redirection()
     this.demandeForm = new FormGroup({
       prenom: new FormControl (''),
       nom: new FormControl(''),
@@ -90,6 +96,7 @@ export class HeaderComponent implements OnInit {
       poste: new FormControl(''),
     });
   }
+
   onSubmit() {
     const info = {
       prenom: this.demandeForm.value.prenom,
@@ -123,6 +130,10 @@ export class HeaderComponent implements OnInit {
     )
   }
 
+
+
+
+
   logout() {
     localStorage.removeItem("currentUse");
     localStorage.removeItem('user');
@@ -130,7 +141,24 @@ export class HeaderComponent implements OnInit {
     localStorage.removeItem('token');
     this.authService.logout();
   }
-  updown(item) {
+
+
+redirection() {
+  if(this.role == 'MNG') {
+    this.direction = '/accueil/manager';
+    this.click = null;
+  } else if (this.role == 'AGN') {
+    this.direction = '/accueil/agence';
+    this.click = null;
+  }else if (this.role == 'INT') {
+    this.direction = '/accueil/compte';
+    this.click = null;
+  }
+}
+
+  
+
+  updown() {
     if (!this.click) {
       this.click = 1;
       return this.click;

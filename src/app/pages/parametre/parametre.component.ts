@@ -6,6 +6,7 @@ import { OthersService } from 'src/app/services/others.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ErrormodalService } from 'src/app/_errormodals';
 
+
 @Component({
   selector: 'app-parametre',
   templateUrl: './parametre.component.html',

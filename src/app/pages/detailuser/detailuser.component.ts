@@ -63,31 +63,32 @@ export class DetailuserComponent implements OnInit {
     this.activeroute.queryParams.subscribe(params => {
       this.item = JSON.parse(params["user"]);
       console.log(this.item);
-      this.otherService.getUserById(this.item).subscribe(
-           data =>{
-            this.data = data;
-            this.dataUser = this.data.data;
-            console.log(this.dataUser);
-            this.nom = this.dataUser.nom;
-            this.prenom = this.dataUser.prenom;
-            this.email = this.dataUser.email;
-            this.fonction = this.dataUser.fonction;
-           this.telephone = this.dataUser.telephone;
-            //this.agence = this.dataUser.agence;
-            this.matricule = this.dataUser.matricule;
-            this.photo = this.dataUser.photo;
-        },
-        error=> {
-          this.errorMsg = error;
-          this.errormodalService.open('error-modal-1');
-          console.log(error)
-        }
-      );
+      
     })
     
   }
   ngOnInit() {
-    this.role = localStorage.getItem('user')
+    this.role = localStorage.getItem('user');
+    this.otherService.getUserById(this.item).subscribe(
+      data =>{
+       this.data = data;
+       this.dataUser = this.data.data;
+       console.log(this.dataUser);
+       this.nom = this.dataUser.nom;
+       this.prenom = this.dataUser.prenom;
+       this.email = this.dataUser.email;
+       this.fonction = this.dataUser.fonction;
+      this.telephone = this.dataUser.telephone;
+       //this.agence = this.dataUser.agence;
+       this.matricule = this.dataUser.matricule;
+       this.photo = this.dataUser.photo;
+      },
+      error=> {
+        this.errorMsg = error;
+        this.errormodalService.open('error-modal-1');
+        console.log(error)
+      }
+    );
     this.contratForm = new FormGroup({
       societeId: new FormControl(''),
       directionId: new FormControl(''),
@@ -234,8 +235,8 @@ export class DetailuserComponent implements OnInit {
         this.dataBannir = response;
         this.successMsgBannir = this.dataBannir.status;
         if(this.successMsgBannir == true) {
+          this.closeModal('custom-modal-7');
           this.ngOnInit();
-         this.closeModal('custom-modal-7');
         }
       },
       (error)=>{
