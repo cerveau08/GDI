@@ -48,6 +48,10 @@ userAgentForm: FormGroup;
             this.profil = this.dataUser.data.profil.libelle;
             this.profilId = this.dataUser.data.profil.id;
             this.telephone = this.dataUser.data.telephone;
+          }, error=> {
+            this.errorMsg = error;
+            this.errormodalService.open('error-modal-1');
+            console.log(error)
           })
         })
      }

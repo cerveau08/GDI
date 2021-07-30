@@ -13,6 +13,7 @@ export class OffreComponent implements OnInit {
 
   nouveauxRrecrus;
   datas: any;
+  errorMsg: any;
   constructor(public router: Router,
     private dataService: DataService ,
     private errormodalService: ErrormodalService,
@@ -22,6 +23,10 @@ export class OffreComponent implements OnInit {
         data => {
          this.nouveauxRrecrus = data.data;
          console.log(data);
+        }, error=> {
+          this.errorMsg = error;
+          this.errormodalService.open('error-modal-1');
+          console.log(error)
         }
       );
 

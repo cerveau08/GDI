@@ -63,6 +63,7 @@ export class ParametreComponent implements OnInit {
   }];
   user;
   successMsg;
+  errorMsg: any;
   constructor(private dataService: DataService,
              private paginationService: PaginationService,
              private otherService: OthersService,
@@ -120,8 +121,11 @@ export class ParametreComponent implements OnInit {
           this.router.navigate(['/login'])
           this.passwordForm.reset();
         }
-        
-      },
+      }, error=> {
+        this.errorMsg = error;
+        this.errormodalService.open('error-modal-1');
+        console.log(error)
+      }
     );
   }
   

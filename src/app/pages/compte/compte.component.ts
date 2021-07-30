@@ -84,6 +84,7 @@ export class CompteComponent implements OnInit {
   DemoDoc="http://www.africau.edu/images/default/sample.pdf" 
   DemoDoc1="https://file-examples.com/wp-content/uploads/2017/02/file-sample_100kB.doc"
   DemoDoc2="https://www.le.ac.uk/oerresources/bdra/html/resources/example.txt" 
+  errorMsg: any;
   constructor(private fileSaver: NgxFileSaverService,
     private otherService: OthersService,
     private modalService: ModalService,
@@ -129,10 +130,11 @@ export class CompteComponent implements OnInit {
        this.contrat = this.dataInter.contrat;
        console.log(this.contrat);
        
-   },
-   error =>{
-     console.log(error)
-   }
+    },error=> {
+      this.errorMsg = error;
+      this.errormodalService.open('error-modal-1');
+      console.log(error)
+    }
  );
 
     if(this.user == 'inter') {

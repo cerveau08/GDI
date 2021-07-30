@@ -36,6 +36,7 @@ export class MesObjectifsComponent implements OnInit {
   totalItems : any;
   interimConnect;
   public reqUrl = environment.base_url;
+  errorMsg: any;
   constructor(private otherService: OthersService,
     private errormodalService: ErrormodalService,
     private modalService: ModalService,
@@ -52,6 +53,10 @@ export class MesObjectifsComponent implements OnInit {
         this.data = data
         this.objectif = this.data["data"];
         console.log(data);
+      }, error=> {
+        this.errorMsg = error;
+        this.errormodalService.open('error-modal-1');
+        console.log(error)
       }
     );
     this.gty(this.page);
@@ -62,6 +67,10 @@ export class MesObjectifsComponent implements OnInit {
       this.data = data
       this.objectif = this.data["data"];
       console.log(data);
+    }, error=> {
+      this.errorMsg = error;
+      this.errormodalService.open('error-modal-1');
+      console.log(error)
     })
   }
 

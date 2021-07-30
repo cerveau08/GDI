@@ -52,8 +52,7 @@ export class DetailuserComponent implements OnInit {
   fichierPhoto?: File;
   photoName;
   public reqUrl = environment.base_url;
-  successMsgBannir: boolean;
-  dataBannir: any;
+  errorMsg: any;
   constructor(private activeroute: ActivatedRoute,
               private modalService: ModalService,
               private otherService: OthersService,
@@ -76,7 +75,9 @@ export class DetailuserComponent implements OnInit {
             this.matricule = this.dataUser.matricule;
             this.photo = this.dataUser.photo;
         },
-        error =>{
+        error=> {
+          this.errorMsg = error;
+          this.errormodalService.open('error-modal-1');
           console.log(error)
         }
       );
@@ -115,6 +116,10 @@ export class DetailuserComponent implements OnInit {
       data => {
         this.dataSociete = data["data"];
         console.log(data);
+      }, error=> {
+        this.errorMsg = error;
+        this.errormodalService.open('error-modal-1');
+        console.log(error)
       }
     );
     this.arretForm = new FormGroup({
@@ -158,7 +163,9 @@ export class DetailuserComponent implements OnInit {
         console.log(response)
         this.router.navigate(['/accueil/listeuser']);
       },
-      (error) =>{
+      error=> {
+        this.errorMsg = error;
+        this.errormodalService.open('error-modal-1');
         console.log(error)
       }
     )
@@ -170,7 +177,11 @@ export class DetailuserComponent implements OnInit {
       data => {
         this.dataDirection = data['data'];
        console.log(data);
-       }
+      }, error=> {
+        this.errorMsg = error;
+        this.errormodalService.open('error-modal-1');
+        console.log(error)
+      }
     ); 
   }
 
@@ -180,7 +191,11 @@ export class DetailuserComponent implements OnInit {
       data => {
         this.dataDepartement = data['data'];
        console.log(data);
-       }
+      }, error=> {
+        this.errorMsg = error;
+        this.errormodalService.open('error-modal-1');
+        console.log(error)
+      }
     ); 
   }
 
@@ -190,7 +205,11 @@ export class DetailuserComponent implements OnInit {
       data => {
         this.donneeService = data['data'];
        console.log(data);
-       }
+      }, error=> {
+        this.errorMsg = error;
+        this.errormodalService.open('error-modal-1');
+        console.log(error)
+      }
     ); 
   }
 

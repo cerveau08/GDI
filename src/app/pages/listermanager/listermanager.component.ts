@@ -25,6 +25,7 @@ export class ListermanagerComponent implements OnInit {
   scrHeight:any;
   scrWidth:any;
   filterterm;
+  errorMsg: any;
   @HostListener('window:resize', ['$event'])
   getScreenSize(event?) {
         this.scrHeight = window.innerHeight;
@@ -57,7 +58,10 @@ gty(page: any){
     this.totalItems = data.total;
     console.log(this.datas);
     console.log(this.totalItems);
-    
+  }, error=> {
+    this.errorMsg = error;
+    this.errormodalService.open('error-modal-1');
+    console.log(error)
   })
 }
 

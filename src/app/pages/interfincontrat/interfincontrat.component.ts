@@ -53,6 +53,7 @@ export class InterfincontratComponent implements OnInit {
   ];
   scrHeight:any;
   scrWidth:any;
+  errorMsg: any;
   @HostListener('window:resize', ['$event'])
   getScreenSize(event?) {
         this.scrHeight = window.innerHeight;
@@ -99,6 +100,10 @@ export class InterfincontratComponent implements OnInit {
       this.totalItems = data.total;
       console.log(data);
       
+    }, error=> {
+      this.errorMsg = error;
+      this.errormodalService.open('error-modal-1');
+      console.log(error)
     })
   }
   openDetail(data) {

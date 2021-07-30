@@ -36,6 +36,7 @@ export class ObjectifsComponent implements OnInit {
   totalItems : any;
   interimConnect;
   public reqUrl = environment.base_url;
+  errorMsg: any;
   constructor(private otherService: OthersService,
     private modalService: ModalService,
     private activeroute: ActivatedRoute,
@@ -57,6 +58,10 @@ export class ObjectifsComponent implements OnInit {
         this.data = data
         this.objectif = this.data["data"];
         console.log(data);
+      }, error=> {
+        this.errorMsg = error;
+        this.errormodalService.open('error-modal-1');
+        console.log(error)
       }
     );
     this.objectifForm = new FormGroup({
@@ -83,7 +88,9 @@ export class ObjectifsComponent implements OnInit {
           interimaire: this.item
         });
       },
-      error =>{
+      error=> {
+        this.errorMsg = error;
+        this.errormodalService.open('error-modal-1');
         console.log(error)
       }
     );
@@ -95,6 +102,10 @@ export class ObjectifsComponent implements OnInit {
       this.data = data
       this.objectif = this.data["data"];
       console.log(data);
+    }, error=> {
+      this.errorMsg = error;
+      this.errormodalService.open('error-modal-1');
+      console.log(error)
     })
   }
 
@@ -110,8 +121,11 @@ export class ObjectifsComponent implements OnInit {
           this.closeModal('objectif-modal-1');
         }
       },
-      error=>{
-        console.log(error);
+      error=> {
+        this.errorMsg = error;
+        this.closeModal('objectif-modal-1');
+        this.errormodalService.open('error-modal-1');
+        console.log(error)
       }
     );
   }
@@ -128,8 +142,11 @@ export class ObjectifsComponent implements OnInit {
           this.closeModal('custom-modal-'+id);
         }
       },
-      error=>{
-        console.log(error);
+      error=> {
+        this.errorMsg = error;
+        this.closeModal('custom-modal-'+id);
+        this.errormodalService.open('error-modal-1');
+        console.log(error)
       }
     )
   }
@@ -144,8 +161,11 @@ export class ObjectifsComponent implements OnInit {
           this.closeModal('custom-modal-'+id);
         }
       },
-      error=>{
-        console.log(error);
+      error=> {
+        this.errorMsg = error;
+        this.closeModal('custom-modal-'+id);
+        this.errormodalService.open('error-modal-1');
+        console.log(error)
       }
     )
   }

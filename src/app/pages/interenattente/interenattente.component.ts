@@ -31,6 +31,7 @@ export class InterenattenteComponent implements OnInit {
   result;
   filterterm;
   public reqUrl = environment.base_url;
+  errorMsg: any;
   constructor(private dataService: DataService,
     public datepipe: DatePipe,
     public router: Router,
@@ -72,6 +73,10 @@ export class InterenattenteComponent implements OnInit {
       this.totalItems = data.total;
       console.log(data);
       console.log(this.totalItems);
+    }, error=> {
+      this.errorMsg = error;
+      this.errormodalService.open('error-modal-1');
+      console.log(error)
     })
   }
 

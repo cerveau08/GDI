@@ -21,6 +21,7 @@ export class NewinterComponent implements OnInit {
   date: any;
   scrHeight:any;
   scrWidth:any;
+  errorMsg: any;
   constructor(private dataService: DataService,
     private errormodalService: ErrormodalService,
     private otherService: OthersService,
@@ -31,6 +32,10 @@ export class NewinterComponent implements OnInit {
         data => {
          this.dataInterFin = data.data;
          console.log(data);
+        }, error=> {
+          this.errorMsg = error;
+          this.errormodalService.open('error-modal-1');
+          console.log(error)
         }
       );
 
@@ -38,6 +43,10 @@ export class NewinterComponent implements OnInit {
         data => {
          this.nouveauxRrecrus = data.data;
          console.log(data);
+        }, error=> {
+          this.errorMsg = error;
+          this.errormodalService.open('error-modal-1');
+          console.log(error)
         }
       );
 

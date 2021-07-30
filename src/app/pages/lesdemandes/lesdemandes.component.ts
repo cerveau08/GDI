@@ -45,6 +45,7 @@ export class LesdemandesComponent implements OnInit {
   scrWidth:any;
   validerForm : FormGroup;
   result;
+  errorMsg: any;
   @HostListener('window:resize', ['$event'])
   getScreenSize(event?) {
         this.scrHeight = window.innerHeight;
@@ -78,6 +79,10 @@ export class LesdemandesComponent implements OnInit {
       this.totalItems = data.total;
       console.log(data);
       console.log(this.totalItems);
+    }, error=> {
+      this.errorMsg = error;
+      this.errormodalService.open('error-modal-1');
+      console.log(error)
     })
   }
   

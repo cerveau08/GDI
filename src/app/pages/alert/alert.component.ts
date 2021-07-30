@@ -22,6 +22,7 @@ export class AlertComponent implements OnInit {
   itemsPerPage = 6;
   totalItems : any;
   public reqUrl = environment.base_url;
+  errorMsg: any;
   constructor(public router: Router,
     private otherService: OthersService,
     private errormodalService: ErrormodalService,
@@ -42,6 +43,10 @@ export class AlertComponent implements OnInit {
       this.alert =  data.data;
       this.totalItems = data.total;
       console.log(data);
+    }, error=> {
+      this.errorMsg = error;
+      this.errormodalService.open('error-modal-1');
+      console.log(error)
     })
   }
   openDetail(data) {

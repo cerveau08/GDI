@@ -52,6 +52,7 @@ export class DemandeComponent implements OnInit {
   user;
   data;
   successMsg;
+  errorMsg: any;
   constructor(private dataService: DataService,
     private modalService: ModalService, 
     private router: Router,
@@ -74,7 +75,11 @@ export class DemandeComponent implements OnInit {
      data => {
        this.demandes = data.data;
        console.log(data);
-     }
+     }, error=> {
+      this.errorMsg = error;
+      this.errormodalService.open('error-modal-1');
+      console.log(error)
+    }
     )
     this.demandeForm = new FormGroup({
       type: new FormControl (''),
@@ -92,6 +97,10 @@ export class DemandeComponent implements OnInit {
       this.totalItems = data.total;
       console.log(data);
       console.log(this.totalItems);
+    }, error=> {
+      this.errorMsg = error;
+      this.errormodalService.open('error-modal-1');
+      console.log(error)
     })
   
   }
@@ -107,9 +116,10 @@ export class DemandeComponent implements OnInit {
           this.closeModal('custom-modal-8')
         }
       },
-      error =>{
-        console.log(error);
-        
+      error=> {
+        this.errorMsg = error;
+        this.errormodalService.open('error-modal-1');
+        console.log(error)
       })
   }
 

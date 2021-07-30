@@ -155,43 +155,19 @@
     </jw-modal>
 </div>
 
-
- <!--modal-3-->
-<!-- <div class="modal">
-    <jw-modal id="custom-modal-3">
-        <h1 class="modal-modification">Ajouter un nouveau Utilisateur</h1>
-        <mat-icon style="cursor: pointer;" (click)="closeModal('custom-modal-3');" class="clear">clear</mat-icon>
-        <div class="form">
-            <form [formGroup]="userAgenceForm">
-                <div >
-                <div class="grid">
-                    <div class="photo">
-                        <img alt="" class="photo-agence" *ngIf="!urlUser==true" src="">
-                        <img alt="" class="photo-agence" *ngIf="urlUser" [src]="urlUser" height="60">
-                        <input formControlName="logo" class="buttonPhotoUser" type="file" (change)="getPhoto($event)" >
-                    </div>
-                    <div class="others">
-                        <div class="input2">
-                            <input type="text"  formControlName="prenom" placeholder="Prénom">
-                            <input class="input3"   type="text" formControlName="nom" placeholder="Nom">
-                        </div>
-                        <div class="input1">
-                            <input type="text"  formControlName="email" placeholder="Email">
-                        </div>
-                        <div class="input2">
-                            <input type="text" formControlName="telephone" placeholder="Numéro téléphone Mobile">
-                            <input class="input3"  type="text" formControlName="poste" placeholder="Titre Poste">
-                        </div>
-                        <div class="input4">
-                            <textarea type="textarea" formControlName="adresse" placeholder="Adresse"></textarea>
-                        </div>
-                    </div>
-                </div>
-                <div class="buttons">
-                   <button class="buttonenregistrer" (click)="ajouterUser()" type="button">Valider</button>
-                </div>
-                </div>
-            </form>
+<!--modal1-->
+<div class="modal">
+    <sonatel-pma-errormodal id="error-modal-1">
+        <div class="error-modal-all" >
+            <mat-icon style="cursor: pointer;" (click)="closeErrorModal('error-modal-1');" class="clear-error">clear</mat-icon>
+            <div class="error-content-image">
+                <img class="error-image" src="../../../assets/images/error-message.png" alt="">
+            </div>
+            <p class="error-text">{{errorMsg}}</p>
+            <p class="error-message-admin">Veuillez contacter l'administrateur du site à partir de la page paramètre</p> 
+            <div class="error-content-button">
+                <button (click)="closeErrorModal('error-modal-1');" class="error-button">Ok</button>
+            </div>
         </div>
-    </jw-modal>
-</div> -->
+    </sonatel-pma-errormodal>
+  </div>

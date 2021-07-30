@@ -42,6 +42,7 @@ export class PresenceComponent implements OnInit {
   scrHeight:any;
   scrWidth:any;
   chosenYearDate: Date;
+  errorMsg: any;
   @HostListener('window:resize', ['$event'])
   getScreenSize(event?) {
         this.scrHeight = window.innerHeight;
@@ -74,6 +75,10 @@ export class PresenceComponent implements OnInit {
       this.totalItems = data.total;
       console.log(this.dataP);
       console.log(this.totalItems);
+    }, error=> {
+      this.errorMsg = error;
+      this.errormodalService.open('error-modal-1');
+      console.log(error)
     })
   }
 

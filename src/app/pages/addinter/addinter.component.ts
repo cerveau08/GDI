@@ -175,7 +175,7 @@ export class AddinterComponent implements OnInit {
         console.log(data);
       },error=> {
         this.errorMsg = error;
-        this.modalService.open('error-modal-1');
+        this.errormodalService.open('error-modal-1');
         console.log(error)
       }
     );
@@ -186,7 +186,7 @@ export class AddinterComponent implements OnInit {
         console.log(data);
       },error=> {
         this.errorMsg = error;
-        this.modalService.open('error-modal-1');
+        this.errormodalService.open('error-modal-1');
         console.log(error)
       }
     );
@@ -366,10 +366,10 @@ export class AddinterComponent implements OnInit {
       },
       error=> {
         this.errorMsg = error;
-        this.modalService.open('error-modal-1');
+        this.errormodalService.open('error-modal-1');
         console.log(error)
       }
-      )
+    )
   }
 
   directionsListe(value) {

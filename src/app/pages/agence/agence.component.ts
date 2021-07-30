@@ -55,6 +55,7 @@ export class AgenceComponent implements OnInit {
   viewer = 'google';
   DemoDoc1="https://file-examples.com/wp-content/uploads/2017/02/file-sample_100kB.doc"
   DemoDoc2="https://www.le.ac.uk/oerresources/bdra/html/resources/example.txt" 
+  errorMsg: any;
 
   constructor(private fileSaver: NgxFileSaverService,
     private modalService: ModalService,
@@ -117,7 +118,9 @@ export class AgenceComponent implements OnInit {
         console.log(this.userAgence);
         
       },
-      error =>{
+      error=> {
+        this.errorMsg = error;
+        this.errormodalService.open('error-modal-1');
         console.log(error)
       }
     );
@@ -133,6 +136,10 @@ export class AgenceComponent implements OnInit {
         this.total = this.dataTotalAgence[0].total;
         this.actifs = this.dataTotalAgence[0].actifs;
         this.inactifs = this.dataTotalAgence[0].inactifs;
+      }, error=> {
+        this.errorMsg = error;
+        this.errormodalService.open('error-modal-1');
+        console.log(error)
       });
 
       //detail d'un contrat
@@ -141,6 +148,10 @@ export class AgenceComponent implements OnInit {
         this.data = data;
         this.dataContrat = this.data.data;
         console.log(this.dataContrat);
+      }, error=> {
+        this.errorMsg = error;
+        this.errormodalService.open('error-modal-1');
+        console.log(error)
       })
     
   }

@@ -24,6 +24,7 @@ export class AttestationpresenceComponent implements OnInit {
   totalItems : any;
   user;
   public reqUrl = environment.base_url;
+  errorMsg: any;
   constructor(private dataService: DataService,
               private http: HttpClient,
               private errormodalService: ErrormodalService,
@@ -60,6 +61,10 @@ export class AttestationpresenceComponent implements OnInit {
           data => {
             this.result = data;
             console.log(data);
+          }, error=> {
+            this.errorMsg = error;
+            this.errormodalService.open('error-modal-1');
+            console.log(error)
           }
         )
       }
