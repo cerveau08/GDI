@@ -64,8 +64,8 @@
                             <input class="input3" [(ngModel)]="universite" type="text" formControlName="universite" placeholder="Université ou Ecole">
                           </div>
                           <div class="infoinput1">
-                            <input type="text"  list="codes" [(ngModel)]="profession" formControlName="profession" placeholder="Votre Profession" [(ngModel)]="profession" (change)="saveCode($event)">
-                            <datalist id="codes">
+                            <input type="text"  list="professions" formControlName="profession" placeholder="Votre Profession" [(ngModel)]="profession" (change)="saveProfession($event)">
+                            <datalist id="professions">
                               <option *ngFor="let c of listeFonction" [value]="c.libelle" >{{c.libelle}}</option>
                             </datalist>
                           </div>
@@ -135,7 +135,10 @@
                           </select> 
                         </div>
                         <div class="contratinput2">
-                          <input type="text" formControlName="poste" placeholder="Titre du Poste">
+                          <input type="text" list="postes" [(ngModel)]="poste" (change)="savePoste($event)" formControlName="poste" placeholder="Titre du Poste">
+                          <datalist id="postes">
+                            <option *ngFor="let c of listeFonction" [value]="c.libelle" >{{c.libelle}}</option>
+                          </datalist>
                           <input class="input3" type="date" formControlName="dateSignature" placeholder="Date de Signature">
                         </div>
                     </div>
@@ -232,4 +235,21 @@
         </div>
     </div>
 </div>
+</div>
+
+<!--modal1-->
+<div class="modal">
+  <sonatel-pma-errormodal id="error-modal-1">
+      <div class="error-modal-all" >
+          <mat-icon style="cursor: pointer;" (click)="closeErrorModal('error-modal-1');" class="clear-error">clear</mat-icon>
+          <div class="error-content-image">
+              <img class="error-image" src="../../../assets/images/error-message.png" alt="">
+          </div>
+          <p class="error-text">{{errorMsg}}</p>
+          <p class="error-message-admin">Veuillez contacter l'administrateur du site à partir de la page paramètre</p> 
+          <div class="error-content-button">
+              <button (click)="closeErrorModal('error-modal-1');" class="error-button">Ok</button>
+          </div>
+      </div>
+  </sonatel-pma-errormodal>
 </div>

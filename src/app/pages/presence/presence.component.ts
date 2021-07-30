@@ -6,6 +6,7 @@ import { NgxFileSaverService } from '@clemox/ngx-file-saver';
 import { DataService } from 'src/app/service/data.service';
 import { ModalService } from 'src/app/_modal/modal.service';
 import { environment } from 'src/environments/environment';
+import { ErrormodalService } from 'src/app/_errormodals';
 
 @Component({
   selector: 'app-presence',
@@ -41,6 +42,7 @@ export class PresenceComponent implements OnInit {
   scrHeight:any;
   scrWidth:any;
   chosenYearDate: Date;
+  errorMsg: any;
   @HostListener('window:resize', ['$event'])
   getScreenSize(event?) {
         this.scrHeight = window.innerHeight;
@@ -53,6 +55,7 @@ export class PresenceComponent implements OnInit {
     private fb: FormBuilder,
     private modalService: ModalService,
     private fileSaver: NgxFileSaverService,
+    private errormodalService: ErrormodalService,
     private http: HttpClient,
     public datepipe: DatePipe) {
       this.form = this.fb.group({
@@ -72,6 +75,10 @@ export class PresenceComponent implements OnInit {
       this.totalItems = data.total;
       console.log(this.dataP);
       console.log(this.totalItems);
+    }, error=> {
+      this.errorMsg = error;
+      this.errormodalService.open('error-modal-1');
+      console.log(error)
     })
   }
 
@@ -141,5 +148,13 @@ export class PresenceComponent implements OnInit {
 
   public getfilemodal() {
     this.fileSaver.saveUrl(this.DemoDoc, 'contrat');
+  }
+
+  openErrorModal(id: string) {
+    this.errormodalService.open(id);
+  }
+
+  closeErrorModal(id: string) {
+    this.errormodalService.close(id);
   }
 }

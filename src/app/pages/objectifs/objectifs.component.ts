@@ -6,6 +6,7 @@ import { BoundText } from '@angular/compiler/src/render3/r3_ast';
 import { ModalService } from 'src/app/_modal';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
+import { ErrormodalService } from 'src/app/_errormodals';
 
 @Component({
   selector: 'app-objectifs',
@@ -33,10 +34,13 @@ export class ObjectifsComponent implements OnInit {
   page = 1;
   itemsPerPage = 4;
   totalItems : any;
+  interimConnect;
   public reqUrl = environment.base_url;
+  errorMsg: any;
   constructor(private otherService: OthersService,
     private modalService: ModalService,
     private activeroute: ActivatedRoute,
+    private errormodalService: ErrormodalService,
     private http: HttpClient,) {
     this.activeroute.queryParams.subscribe(params => {
       this.item = JSON.parse(params["interimaire"]);
@@ -46,11 +50,18 @@ export class ObjectifsComponent implements OnInit {
 
   ngOnInit() {
     this.role = localStorage.getItem('user');
+    // this.interimConnect = JSON.parse(localStorage.getItem('currentUser'));
+    // this.item = this.interimConnect.interimaire.id
+    // console.log(this.interimConnect);
     this.otherService.getListeObjectif(this.item).subscribe(
       data => {
         this.data = data
         this.objectif = this.data["data"];
         console.log(data);
+      }, error=> {
+        this.errorMsg = error;
+        this.errormodalService.open('error-modal-1');
+        console.log(error)
       }
     );
     this.objectifForm = new FormGroup({
@@ -77,7 +88,9 @@ export class ObjectifsComponent implements OnInit {
           interimaire: this.item
         });
       },
-      error =>{
+      error=> {
+        this.errorMsg = error;
+        this.errormodalService.open('error-modal-1');
         console.log(error)
       }
     );
@@ -89,6 +102,10 @@ export class ObjectifsComponent implements OnInit {
       this.data = data
       this.objectif = this.data["data"];
       console.log(data);
+    }, error=> {
+      this.errorMsg = error;
+      this.errormodalService.open('error-modal-1');
+      console.log(error)
     })
   }
 
@@ -98,14 +115,17 @@ export class ObjectifsComponent implements OnInit {
       data =>{
         console.log(data);
         this.data = data;
-        this.successMsg = this.data.success
+        this.successMsg = this.data.status
         if(this.successMsg == true) {
           this.ngOnInit();
           this.closeModal('objectif-modal-1');
         }
       },
-      error=>{
-        console.log(error);
+      error=> {
+        this.errorMsg = error;
+        this.closeModal('objectif-modal-1');
+        this.errormodalService.open('error-modal-1');
+        console.log(error)
       }
     );
   }
@@ -116,14 +136,17 @@ export class ObjectifsComponent implements OnInit {
       data =>{
         console.log(data);
         this.data = data;
-        this.successMsg = this.data.success
+        this.successMsg = this.data.status
         if(this.successMsg == true) {
           this.ngOnInit();
           this.closeModal('custom-modal-'+id);
         }
       },
-      error=>{
-        console.log(error);
+      error=> {
+        this.errorMsg = error;
+        this.closeModal('custom-modal-'+id);
+        this.errormodalService.open('error-modal-1');
+        console.log(error)
       }
     )
   }
@@ -132,14 +155,17 @@ export class ObjectifsComponent implements OnInit {
     this.otherService.modifierObjectif(this.modifierForm.value, id).subscribe(
       data =>{
         this.data = data;
-        this.successMsg = this.data.success
+        this.successMsg = this.data.status
         if(this.successMsg == true) {
           this.ngOnInit();
           this.closeModal('custom-modal-'+id);
         }
       },
-      error=>{
-        console.log(error);
+      error=> {
+        this.errorMsg = error;
+        this.closeModal('custom-modal-'+id);
+        this.errormodalService.open('error-modal-1');
+        console.log(error)
       }
     )
   }
@@ -149,6 +175,14 @@ export class ObjectifsComponent implements OnInit {
   
   closeModal(id: string) {
     this.modalService.close(id);
+  }
+
+  openErrorModal(id: string) {
+    this.errormodalService.open(id);
+  }
+
+  closeErrorModal(id: string) {
+    this.errormodalService.close(id);
   }
 
 }

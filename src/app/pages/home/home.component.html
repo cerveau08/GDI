@@ -1,5 +1,5 @@
 <div class="all-container" >
-    <div class="all" *ngIf="!showHome">
+    <div class="all" *ngIf="user=='INT'">
         <div class="content-web">
             <p routerLink="/accueil/homedrh" class="bien">Bienvenue {{prenom}}</p>
             <p class="alert">Vous n’avez pas encore fait votre demande de suvention restauration. <span routerLink="/accueil/alertes" style="cursor: pointer; outline: none;">Je fais ma demande</span></p>
@@ -63,7 +63,7 @@
             </div>
         </div>   
     </div>
-    <div class="main" *ngIf="showHome">
+    <div class="main" *ngIf="user!='INT'">
             <p routerLink="/accueil/home" class="bien">Bienvenue {{prenom}} </p>
             <p class="alert">Le contrat de <span class="inter" style="cursor: pointer;">Lamine MBODJI</span>  fini dans 10 jours.  <span class="alertes" style="cursor: pointer; outline: none;" routerLink="/accueil/alertes">Voir les autres alertes</span></p>
             <div class="detail1">
@@ -221,3 +221,20 @@
             </div>
     </div>
 </div>
+
+<!--modal1-->
+<div class="modal">
+    <sonatel-pma-errormodal id="error-modal-1">
+        <div class="error-modal-all" >
+            <mat-icon style="cursor: pointer;" (click)="closeErrorModal('error-modal-1');" class="clear-error">clear</mat-icon>
+            <div class="error-content-image">
+                <img class="error-image" src="../../../assets/images/error-message.png" alt="">
+            </div>
+            <p class="error-text">{{errorMsg}}</p>
+            <p class="error-message-admin">Veuillez contacter l'administrateur du site à partir de la page paramètre</p> 
+            <div class="error-content-button">
+                <button (click)="closeErrorModal('error-modal-1');" class="error-button">Ok</button>
+            </div>
+        </div>
+    </sonatel-pma-errormodal>
+  </div>

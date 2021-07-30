@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { OthersService } from 'src/app/services/others.service';
 import { ModalService } from 'src/app/_modal';
 import { environment } from 'src/environments/environment';
+import { ErrormodalService } from 'src/app/_errormodals';
 
 @Component({
   selector: 'app-detailuser',
@@ -51,9 +52,11 @@ export class DetailuserComponent implements OnInit {
   fichierPhoto?: File;
   photoName;
   public reqUrl = environment.base_url;
+  errorMsg: any;
   constructor(private activeroute: ActivatedRoute,
               private modalService: ModalService,
               private otherService: OthersService,
+              private errormodalService: ErrormodalService,
               public router: Router, ) { 
     this.activeroute.queryParams.subscribe(params => {
       this.item = JSON.parse(params["user"]);
@@ -72,7 +75,9 @@ export class DetailuserComponent implements OnInit {
             this.matricule = this.dataUser.matricule;
             this.photo = this.dataUser.photo;
         },
-        error =>{
+        error=> {
+          this.errorMsg = error;
+          this.errormodalService.open('error-modal-1');
           console.log(error)
         }
       );
@@ -111,6 +116,10 @@ export class DetailuserComponent implements OnInit {
       data => {
         this.dataSociete = data["data"];
         console.log(data);
+      }, error=> {
+        this.errorMsg = error;
+        this.errormodalService.open('error-modal-1');
+        console.log(error)
       }
     );
     this.arretForm = new FormGroup({
@@ -154,7 +163,9 @@ export class DetailuserComponent implements OnInit {
         console.log(response)
         this.router.navigate(['/accueil/listeuser']);
       },
-      (error) =>{
+      error=> {
+        this.errorMsg = error;
+        this.errormodalService.open('error-modal-1');
         console.log(error)
       }
     )
@@ -166,7 +177,11 @@ export class DetailuserComponent implements OnInit {
       data => {
         this.dataDirection = data['data'];
        console.log(data);
-       }
+      }, error=> {
+        this.errorMsg = error;
+        this.errormodalService.open('error-modal-1');
+        console.log(error)
+      }
     ); 
   }
 
@@ -176,7 +191,11 @@ export class DetailuserComponent implements OnInit {
       data => {
         this.dataDepartement = data['data'];
        console.log(data);
-       }
+      }, error=> {
+        this.errorMsg = error;
+        this.errormodalService.open('error-modal-1');
+        console.log(error)
+      }
     ); 
   }
 
@@ -186,12 +205,29 @@ export class DetailuserComponent implements OnInit {
       data => {
         this.donneeService = data['data'];
        console.log(data);
-       }
+      }, error=> {
+        this.errorMsg = error;
+        this.errormodalService.open('error-modal-1');
+        console.log(error)
+      }
     ); 
   }
 
-
+  modifierUser() {
+    this.router.navigate(['accueil/modifieruser'], {
+      queryParams: {
+        user: JSON.stringify(this.item)
+      }
+    })
+  }
   closeModal(id: string) {
     this.modalService.close(id);
+  }
+  openErrorModal(id: string) {
+    this.errormodalService.open(id);
+  }
+
+  closeErrorModal(id: string) {
+    this.errormodalService.close(id);
   }
 }

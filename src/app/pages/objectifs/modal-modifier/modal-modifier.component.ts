@@ -3,6 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { OthersService } from 'src/app/services/others.service';
 import { ModalService } from 'src/app/_modal';
+import { ErrormodalService } from 'src/app/_errormodals';
 
 @Component({
   selector: 'app-modal-modifier',
@@ -18,9 +19,11 @@ export class ModalModifierComponent implements OnInit {
   id;
   successMsg;
   data;
+  errorMsg: any;
   constructor(private otherService: OthersService,
     private modalService: ModalService,
     private activeroute: ActivatedRoute,
+    private errormodalService: ErrormodalService,
     public router: Router,
     ) { }
 
@@ -37,20 +40,30 @@ export class ModalModifierComponent implements OnInit {
       data =>{
         console.log(data);
         this.data = data;
-        this.successMsg = this.data.success
+        this.successMsg = this.data.status
         if(this.successMsg == true) {
           this.closeModal('modif-modal-'+id);
-          //this.ngOnInit();
         }
       },
-      error=>{
-        console.log(error);
+      error=> {
+        this.errorMsg = error;
+        this.closeModal('modif-modal-'+id);
+        this.errormodalService.open('error-modal-1');
+        console.log(error)
       }
     )
   }
 
   closeModal(id: string) {
     this.modalService.close(id);
+  }
+
+  openErrorModal(id: string) {
+    this.errormodalService.open(id);
+  }
+
+  closeErrorModal(id: string) {
+    this.errormodalService.close(id);
   }
 
 }

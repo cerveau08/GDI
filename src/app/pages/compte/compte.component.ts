@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgxFileSaverService } from '@clemox/ngx-file-saver';
 import { DataService } from 'src/app/service/data.service';
 import { ModalService } from 'src/app/_modal/modal.service';
+import { ErrormodalService } from 'src/app/_errormodals';
 
 @Component({
   selector: 'app-compte',
@@ -83,10 +84,12 @@ export class CompteComponent implements OnInit {
   DemoDoc="http://www.africau.edu/images/default/sample.pdf" 
   DemoDoc1="https://file-examples.com/wp-content/uploads/2017/02/file-sample_100kB.doc"
   DemoDoc2="https://www.le.ac.uk/oerresources/bdra/html/resources/example.txt" 
+  errorMsg: any;
   constructor(private fileSaver: NgxFileSaverService,
     private otherService: OthersService,
     private modalService: ModalService,
     private dataService: DataService,
+    private errormodalService: ErrormodalService,
     private router: Router,
   ) { }
 
@@ -127,10 +130,11 @@ export class CompteComponent implements OnInit {
        this.contrat = this.dataInter.contrat;
        console.log(this.contrat);
        
-   },
-   error =>{
-     console.log(error)
-   }
+    },error=> {
+      this.errorMsg = error;
+      this.errormodalService.open('error-modal-1');
+      console.log(error)
+    }
  );
 
     if(this.user == 'inter') {
@@ -173,5 +177,12 @@ export class CompteComponent implements OnInit {
       }
     })
   } 
+  openErrorModal(id: string) {
+    this.errormodalService.open(id);
+  }
+
+  closeErrorModal(id: string) {
+    this.errormodalService.close(id);
+  }
 }
  

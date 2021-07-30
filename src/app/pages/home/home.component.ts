@@ -3,6 +3,7 @@ import { QueryBindingType } from '@angular/compiler/src/core';
 import { OthersService } from 'src/app/services/others.service';
 import { Component, HostListener, OnInit } from '@angular/core';
 import { ApexAxisChartSeries, ApexChart, ApexDataLabels, ApexPlotOptions, ApexResponsive, ApexXAxis, ApexYAxis, ApexLegend, ApexFill, ChartComponent } from 'ng-apexcharts';
+import { ErrormodalService } from 'src/app/_errormodals';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -62,6 +63,7 @@ export class HomeComponent implements OnInit {
   user: any;
   showHome = true;
   id=1;
+  errorMsg: any;
   @HostListener('window:resize', ['$event'])
   getScreenSize(event?) {
         this.scrHeight = window.innerHeight;
@@ -69,6 +71,7 @@ export class HomeComponent implements OnInit {
   }
 
   constructor(private dataService: DataService ,
+    private errormodalService: ErrormodalService,
     private otherService: OthersService) {
     this.getScreenSize();
     this.chartOptions = {
@@ -229,7 +232,7 @@ export class HomeComponent implements OnInit {
         bar: {
           horizontal: false,
           columnWidth: "20px",
-          endingShape: "rounded",
+          //endingShape: "rounded",
         },
       },
       dataLabels: {
@@ -272,23 +275,25 @@ export class HomeComponent implements OnInit {
         data => {
         this.dataInterFin = data.data;
         console.log(data);
+        }, error=> {
+          this.errorMsg = error;
+          this.errormodalService.open('error-modal-1');
+          console.log(error)
         }
       );
+      // this.otherService.statInterByAgence().subscribe(
+      //   data => {
+      //   this.statInterimByAgnece = data;
+      //   console.log(data);
+      //   }
+      // );
 
-
-      this.otherService.statInterByAgence().subscribe(
-        data => {
-        this.statInterimByAgnece = data;
-        console.log(data);
-        }
-      );
-
-this.otherService.statInterAgence(this.manager.id).subscribe(
-        data => {
-        this.statInterAgence = data;
-        console.log(data);
-        }
-      );
+      // this.otherService.statInterAgence(this.manager.id).subscribe(
+      //   data => {
+      //   this.statInterAgence = data;
+      //   console.log(data);
+      //   }
+      // );
 
   // this.data = this.dataService.getData();
     
@@ -348,5 +353,12 @@ this.otherService.statInterAgence(this.manager.id).subscribe(
   moisSelectionner(mois) {
     console.log(mois);
     
+  }
+  openErrorModal(id: string) {
+    this.errormodalService.open(id);
+  }
+
+  closeErrorModal(id: string) {
+    this.errormodalService.close(id);
   }
 }

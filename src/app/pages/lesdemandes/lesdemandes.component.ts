@@ -7,6 +7,7 @@ import { DataService } from 'src/app/service/data.service';
 import { OthersService } from 'src/app/services/others.service';
 import { ModalService } from 'src/app/_modal';
 import { environment } from 'src/environments/environment';
+import { ErrormodalService } from 'src/app/_errormodals';
 
 @Component({
   selector: 'app-lesdemandes',
@@ -28,7 +29,7 @@ export class LesdemandesComponent implements OnInit {
   dataDemande;
   pagedItems: any[];
   page = 1;
-  itemsPerPage = 4;
+  itemsPerPage = 10;
   totalItems : any;
   date: any;
   tempArr: any = { "brands": [] };
@@ -44,6 +45,7 @@ export class LesdemandesComponent implements OnInit {
   scrWidth:any;
   validerForm : FormGroup;
   result;
+  errorMsg: any;
   @HostListener('window:resize', ['$event'])
   getScreenSize(event?) {
         this.scrHeight = window.innerHeight;
@@ -54,6 +56,7 @@ export class LesdemandesComponent implements OnInit {
   constructor(private dataService: DataService,
     private fb: FormBuilder,
     private modalService: ModalService,
+    private errormodalService: ErrormodalService,
     private fileSaver: NgxFileSaverService,
     private otherService: OthersService,
     private http: HttpClient,
@@ -76,6 +79,10 @@ export class LesdemandesComponent implements OnInit {
       this.totalItems = data.total;
       console.log(data);
       console.log(this.totalItems);
+    }, error=> {
+      this.errorMsg = error;
+      this.errormodalService.open('error-modal-1');
+      console.log(error)
     })
   }
   
@@ -144,5 +151,13 @@ export class LesdemandesComponent implements OnInit {
 
   public getfilemodal() {
     this.fileSaver.saveUrl(this.DemoDoc, 'contrat');
+  }
+
+  openErrorModal(id: string) {
+    this.errormodalService.open(id);
+  }
+
+  closeErrorModal(id: string) {
+    this.errormodalService.close(id);
   }
 }

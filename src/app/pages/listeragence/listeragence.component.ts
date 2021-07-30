@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import {OthersService} from '../../services/others.service';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { ErrormodalService } from 'src/app/_errormodals';
 
 @Component({
   selector: 'app-listeragence',
@@ -36,6 +37,7 @@ export class ListeragenceComponent implements OnInit {
     private modalService: ModalService,
     private activeroute: ActivatedRoute,
     public router: Router,
+    private errormodalService: ErrormodalService,
     private http: HttpClient,
     private otherService: OthersService) {}
 
@@ -73,7 +75,10 @@ export class ListeragenceComponent implements OnInit {
       this.totalItems = data.total;
       console.log(this.dataAgence);
       console.log(this.totalItems);
-      
+    }, error=> {
+      this.errorMsg = error;
+      this.errormodalService.open('error-modal-1');
+      console.log(error)
     })
   }
 
@@ -136,5 +141,13 @@ export class ListeragenceComponent implements OnInit {
       
         reader.readAsDataURL(event.target.files[0]);
       }
+  }
+
+  openErrorModal(id: string) {
+    this.errormodalService.open(id);
+  }
+
+  closeErrorModal(id: string) {
+    this.errormodalService.close(id);
   }
 }

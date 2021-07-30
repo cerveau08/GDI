@@ -8,6 +8,7 @@ import { OthersService } from 'src/app/services/others.service';
 import { DatePipe } from '@angular/common';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { ErrormodalService } from 'src/app/_errormodals';
 
 @Component({
   selector: 'app-interarchive',
@@ -52,6 +53,7 @@ export class InterarchiveComponent implements OnInit {
   ];
   scrHeight:any;
   scrWidth:any;
+  errorMsg: any;
   @HostListener('window:resize', ['$event'])
   getScreenSize(event?) {
         this.scrHeight = window.innerHeight;
@@ -68,6 +70,7 @@ export class InterarchiveComponent implements OnInit {
     private pagerService: PaginationService,
     private modalService: ModalService,
     private otherService: OthersService,
+    private errormodalService: ErrormodalService,
     public datepipe: DatePipe,
     public router: Router,
     private http: HttpClient
@@ -98,6 +101,10 @@ export class InterarchiveComponent implements OnInit {
       this.totalItems = data.total;
       console.log(data);
       
+    }, error=> {
+      this.errorMsg = error;
+      this.errormodalService.open('error-modal-1');
+      console.log(error)
     })
   }
   openDetail(data) {
@@ -149,5 +156,13 @@ export class InterarchiveComponent implements OnInit {
     }  
     return color; 
   } 
+
+  openErrorModal(id: string) {
+    this.errormodalService.open(id);
+  }
+
+  closeErrorModal(id: string) {
+    this.errormodalService.close(id);
+  }
 
 }

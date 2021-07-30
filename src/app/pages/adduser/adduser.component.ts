@@ -5,6 +5,7 @@ import { DataService } from 'src/app/service/data.service';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
+import { ErrormodalService } from 'src/app/_errormodals';
 
 @Component({
   selector: 'app-adduser',
@@ -55,12 +56,15 @@ export class AdduserComponent implements OnInit {
   dataStructure;
   url1="../assets/images/default.png";
   image ;
+  listeFonction
   p = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
   public reqUrl = environment.base_url;
+  errorMsg: any;
   constructor(private dataService: DataService, 
               private otherService: OthersService,
               private route: Router,
               private http: HttpClient,
+              private errormodalService: ErrormodalService,
     ) { }
 
   ngOnInit() {
@@ -69,6 +73,10 @@ export class AdduserComponent implements OnInit {
       data => {
        this.dataInterSousContrat = data.data;
        console.log(data);
+      }, error=> {
+        this.errorMsg = error;
+        this.errormodalService.open('error-modal-1');
+        console.log(error)
       }
     );
     this.pieceForm = new FormGroup({
@@ -104,12 +112,20 @@ export class AdduserComponent implements OnInit {
       data => {
         this.dataSociete = data["data"];
         console.log(data);
+      }, error=> {
+        this.errorMsg = error;
+        this.errormodalService.open('error-modal-1');
+        console.log(error)
       }
     );
 
     this.otherService.getAllStructure().subscribe(data => {
       console.log(data);
       this.dataStructure = data['data'];
+    }, error=> {
+      this.errorMsg = error;
+      this.errormodalService.open('error-modal-1');
+      console.log(error)
     })
 
       //recupere les profils
@@ -117,10 +133,17 @@ export class AdduserComponent implements OnInit {
       data => {
         this.dataprofils = data["data"];
         console.log(data);
+      }, error=> {
+        this.errorMsg = error;
+        this.errormodalService.open('error-modal-1');
+        console.log(error)
       }
     );
     this.onChanges();
+
     this.gty(this.page);
+
+    this.otherService.getFonctions().subscribe(data => this.listeFonction = data.data);
   }
 
   gty(page: any){
@@ -129,6 +152,10 @@ export class AdduserComponent implements OnInit {
       this.totalItems = data.total;
       console.log(this.dataAgence);
       console.log(this.totalItems);
+    }, error=> {
+      this.errorMsg = error;
+      this.errormodalService.open('error-modal-1');
+      console.log(error)
     })
   }
 
@@ -178,6 +205,13 @@ export class AdduserComponent implements OnInit {
     )
   }
 
+  public saveFonction(e): void {
+    let libelle = e.target.value;
+    let list = this.listeFonction.filter(x => x.libelle === libelle)[0];
+    console.log(list.libelle);
+    this.userAgentForm.patchValue({fonction: list.libelle});
+  }
+
   ajouterUser() {
     const formdata = new FormData(); 
     formdata.append("prenom",this.userAgentForm.value.prenom);
@@ -206,9 +240,18 @@ export class AdduserComponent implements OnInit {
           this.route.navigate(['/accueil/listeuser']);
         }
       },
-      (error) =>{
+      error=> {
+        this.errorMsg = error;
+        this.errormodalService.open('error-modal-1');
         console.log(error)
       }
     )
+  }
+  openErrorModal(id: string) {
+    this.errormodalService.open(id);
+  }
+
+  closeErrorModal(id: string) {
+    this.errormodalService.close(id);
   }
 }

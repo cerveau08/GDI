@@ -2,6 +2,7 @@ import { OthersService } from 'src/app/services/others.service';
 import { Component, HostListener, OnInit } from '@angular/core';
 import { ApexAxisChartSeries, ApexChart, ApexDataLabels, ApexFill, ApexLegend, ApexPlotOptions, ApexResponsive, ApexXAxis, ApexYAxis, ChartComponent } from 'ng-apexcharts';
 import { DataService } from 'src/app/service/data.service';
+import { ErrormodalService } from 'src/app/_errormodals';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -705,7 +706,9 @@ export class StatistiquesComponent implements OnInit {
   public chartOptions5: Partial<ChartOptions>;
   public chartOptions6: Partial<ChartOptions>;
   public chartOptions7: Partial<ChartOptions>;
+  errorMsg: any;
   constructor(private dataService: DataService,
+    private errormodalService: ErrormodalService,
               private otherService: OthersService) {
     this.getScreenSize();
   }
@@ -743,7 +746,11 @@ export class StatistiquesComponent implements OnInit {
       data => {
         this.dataStatistique = data['data'];
        console.log(data);
-       }
+       }, error=> {
+        this.errorMsg = error;
+        this.errormodalService.open('error-modal-1');
+        console.log(error)
+      }
     ); 
   }
   //stats interimaire par annee
@@ -805,7 +812,7 @@ export class StatistiquesComponent implements OnInit {
             bar: {
               horizontal: false,
               columnWidth: "10px",
-              endingShape: "rounded",
+            //  endingShape: "rounded",
             },
           },
           dataLabels: {
@@ -827,6 +834,10 @@ export class StatistiquesComponent implements OnInit {
           },
         };
         return this.chartOptions;
+    }, error=> {
+      this.errorMsg = error;
+      this.errormodalService.open('error-modal-1');
+      console.log(error)
     })
   }
 
@@ -884,7 +895,7 @@ export class StatistiquesComponent implements OnInit {
         bar: {
           horizontal: false,
           columnWidth: "20px",
-          endingShape: "rounded",
+        //  endingShape: "rounded",
         },
       },
       dataLabels: {
@@ -967,7 +978,7 @@ export class StatistiquesComponent implements OnInit {
         bar: {
           horizontal: false,
           columnWidth: "50px",
-          endingShape: "rounded",
+        //  endingShape: "rounded",
         },
       },
       dataLabels: {
@@ -1045,7 +1056,7 @@ export class StatistiquesComponent implements OnInit {
         bar: {
           horizontal: false,
           columnWidth: "10px",
-          endingShape: "rounded",
+        //  endingShape: "rounded",
         },
       },
       dataLabels: {
@@ -1123,7 +1134,7 @@ export class StatistiquesComponent implements OnInit {
         bar: {
           horizontal: false,
           columnWidth: "10px",
-          endingShape: "rounded",
+        //  endingShape: "rounded",
         },
       },
       dataLabels: {
@@ -1204,7 +1215,7 @@ export class StatistiquesComponent implements OnInit {
         bar: {
           horizontal: false,
           columnWidth: "10px",
-          endingShape: "rounded",
+        //  endingShape: "rounded",
         },
       },
       dataLabels: {
@@ -1282,7 +1293,7 @@ export class StatistiquesComponent implements OnInit {
         bar: {
           horizontal: false,
           columnWidth: "10px",
-          endingShape: "rounded",
+        //  endingShape: "rounded",
         },
       },
       dataLabels: {
@@ -1347,4 +1358,12 @@ export class StatistiquesComponent implements OnInit {
     } 
     return this.jan;
   } 
+
+  openErrorModal(id: string) {
+    this.errormodalService.open(id);
+  }
+
+  closeErrorModal(id: string) {
+    this.errormodalService.close(id);
+  }
 }

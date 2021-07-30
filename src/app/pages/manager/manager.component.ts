@@ -6,6 +6,7 @@ import { ModalService } from 'src/app/_modal/modal.service';
 import { ActivatedRoute } from '@angular/router';
 import {OthersService} from '../../services/others.service';
 import { environment } from 'src/environments/environment';
+import { ErrormodalService } from 'src/app/_errormodals';
 
 
 @Component({
@@ -29,6 +30,7 @@ export class ManagerComponent implements OnInit {
   data;
   dataInterFin;
   managerinfo;
+  errorMsg: any;
   @HostListener('window:resize', ['$event'])
   getScreenSize(event?) {
         this.scrHeight = window.innerHeight;
@@ -36,11 +38,12 @@ export class ManagerComponent implements OnInit {
         console.log(this.scrHeight, this.scrWidth);
   }
   page = 1;
-  itemsPerPage = 10;
+  itemsPerPage = 5;
   totalItems : any;
   public reqUrl = environment.base_url;
   constructor(private dataService: DataService,
     private modalService: ModalService,
+    private errormodalService: ErrormodalService,
     private fileSaver: NgxFileSaverService,
     private otherService: OthersService,
     private http: HttpClient,
@@ -57,13 +60,16 @@ export class ManagerComponent implements OnInit {
     this.user = localStorage.getItem('user');
     this.item = JSON.parse(localStorage.getItem('currentUser'));
     console.log(this.item);
-    this.otherService.getDetailsManagerById(this.item.manager.id).subscribe( 
+    this.otherService.getDetailsManagerById(this.item.data.id).subscribe( 
       result => {
         this.data = result;
         this.managerinfo = this.data.data.detail
         this.datas = this.data.data.interimaires
         console.log(result);
-        
+      }, error=> {
+        this.errorMsg = error;
+        this.errormodalService.open('error-modal-1');
+        console.log(error)
       }
     )
     if(this.user == 'inter') {
@@ -76,18 +82,25 @@ export class ManagerComponent implements OnInit {
       data => {
        this.dataInterFin = data.data;
        console.log(data);
+      }, error=> {
+        this.errorMsg = error;
+        this.errormodalService.open('error-modal-1');
+        console.log(error)
       }
     ); 
     this.gty(this.page);
   }
 
   gty(page: any){
-    this.http.get(this.reqUrl + `/manager/${this.item.manager.id}?page=${page}&limit=${this.itemsPerPage}`).subscribe((data: any) => {
+    this.http.get(this.reqUrl + `/manager/${this.item.data.id}?page=${page}&limit=${this.itemsPerPage}`).subscribe((data: any) => {
       this.datas =  data.data;
       this.totalItems = this.datas.total
       console.log(this.datas);
       console.log(this.totalItems);
-      
+    }, error=> {
+      this.errorMsg = error;
+      this.errormodalService.open('error-modal-1');
+      console.log(error)
     })
   }
 
@@ -102,4 +115,11 @@ export class ManagerComponent implements OnInit {
     this.fileSaver.saveUrl(this.DemoDoc, 'contrat');
   }
 
+  openErrorModal(id: string) {
+    this.errormodalService.open(id);
+  }
+
+  closeErrorModal(id: string) {
+    this.errormodalService.close(id);
+  }
 }

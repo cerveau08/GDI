@@ -3,6 +3,7 @@ import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from 'src/app/service/data.service';
 import { OthersService } from 'src/app/services/others.service';
+import { ErrormodalService } from 'src/app/_errormodals';
 
 @Component({
   selector: 'app-modifierinter',
@@ -126,10 +127,12 @@ export class ModifierinterComponent implements OnInit {
     }
   ];
   info = new FormData();
+  errorMsg: any;
   constructor(private activeroute: ActivatedRoute,
     private fb: FormBuilder,
     private dataService: DataService,
     private route: Router,
+    private errormodalService: ErrormodalService,
     private otherService: OthersService) {
       //this.datas = this.dataService.getData();
       this.activeroute.queryParams.subscribe(params => {
@@ -170,7 +173,9 @@ export class ModifierinterComponent implements OnInit {
             this.universite = this.dataInter.data.universite;
             this.agence = this.dataInter.data.agence;
           },
-          error =>{
+          error=> {
+            this.errorMsg = error;
+            this.errormodalService.open('error-modal-1');
             console.log(error)
           }
         );
@@ -230,6 +235,10 @@ export class ModifierinterComponent implements OnInit {
         data => {
           this.dataSociete = data["data"];
           console.log(data);
+        }, error=> {
+          this.errorMsg = error;
+          this.errormodalService.open('error-modal-1');
+          console.log(error)
         }
       );
          //recupere les domaines
@@ -237,6 +246,10 @@ export class ModifierinterComponent implements OnInit {
       data => {
         this.dataDomaine = data["data"];
         console.log(data);
+      }, error=> {
+        this.errorMsg = error;
+        this.errormodalService.open('error-modal-1');
+        console.log(error)
       }
     );
        //recupere les categories
@@ -244,6 +257,10 @@ export class ModifierinterComponent implements OnInit {
         data => {
           this.dataCategorie = data["data"];
           console.log(data);
+        }, error=> {
+          this.errorMsg = error;
+          this.errormodalService.open('error-modal-1');
+          console.log(error)
         }
       );
   }
@@ -407,8 +424,10 @@ export class ModifierinterComponent implements OnInit {
           this.route.navigate(['/accueil/souscontrat']);
         }
       },
-      (error)=>{
-        console.log(error);
+       error=> {
+        this.errorMsg = error;
+        this.errormodalService.open('error-modal-1');
+        console.log(error)
       }
     )
   }
@@ -419,7 +438,11 @@ export class ModifierinterComponent implements OnInit {
       data => {
         this.dataDirection = data['data'];
        console.log(data);
-       }
+      }, error=> {
+        this.errorMsg = error;
+        this.errormodalService.open('error-modal-1');
+        console.log(error)
+      }
     ); 
   }
 
@@ -429,7 +452,11 @@ export class ModifierinterComponent implements OnInit {
       data => {
         this.dataDepartement = data['data'];
        console.log(data);
-       }
+      }, error=> {
+        this.errorMsg = error;
+        this.errormodalService.open('error-modal-1');
+        console.log(error)
+      }
     ); 
   }
 
@@ -439,7 +466,11 @@ export class ModifierinterComponent implements OnInit {
       data => {
         this.donneeService = data['data'];
        console.log(data);
-       }
+      }, error=> {
+        this.errorMsg = error;
+        this.errormodalService.open('error-modal-1');
+        console.log(error)
+      }
     ); 
   }
     
@@ -548,6 +579,14 @@ export class ModifierinterComponent implements OnInit {
     this.url1="../assets/images/default.png";
     this.url2="../assets/images/default.png";
     this.url3="../assets/images/default.png";
+  }
+
+  openErrorModal(id: string) {
+    this.errormodalService.open(id);
+  }
+
+  closeErrorModal(id: string) {
+    this.errormodalService.close(id);
   }
 
 }

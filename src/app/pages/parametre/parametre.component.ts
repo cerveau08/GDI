@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 import { OthersService } from 'src/app/services/others.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ErrormodalService } from 'src/app/_errormodals';
 
 
 @Component({
@@ -63,11 +64,13 @@ export class ParametreComponent implements OnInit {
   }];
   user;
   successMsg;
+  errorMsg: any;
   constructor(private dataService: DataService,
              private paginationService: PaginationService,
              private otherService: OthersService,
              private router: Router,
              public fb: FormBuilder,
+             private errormodalService: ErrormodalService,
              ) { 
               /*this.passwordForm = this.fb.group({
                 email: [''],
@@ -119,8 +122,11 @@ export class ParametreComponent implements OnInit {
           this.router.navigate(['/login'])
           this.passwordForm.reset();
         }
-        
-      },
+      }, error=> {
+        this.errorMsg = error;
+        this.errormodalService.open('error-modal-1');
+        console.log(error)
+      }
     );
   }
   
@@ -169,5 +175,13 @@ export class ParametreComponent implements OnInit {
     this.bordera = "1px solid #000";
     this.colora = "#000";
     return this.display;
+  }
+
+  openErrorModal(id: string) {
+    this.errormodalService.open(id);
+  }
+
+  closeErrorModal(id: string) {
+    this.errormodalService.close(id);
   }
 }

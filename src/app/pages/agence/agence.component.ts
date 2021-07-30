@@ -5,6 +5,7 @@ import { NgxFileSaverService } from '@clemox/ngx-file-saver';
 import { DataService } from 'src/app/service/data.service';
 import { ModalService } from 'src/app/_modal/modal.service';
 import { ActivatedRoute } from '@angular/router';
+import { ErrormodalService } from 'src/app/_errormodals';
 
 @Component({
   selector: 'app-agence',
@@ -54,9 +55,11 @@ export class AgenceComponent implements OnInit {
   viewer = 'google';
   DemoDoc1="https://file-examples.com/wp-content/uploads/2017/02/file-sample_100kB.doc"
   DemoDoc2="https://www.le.ac.uk/oerresources/bdra/html/resources/example.txt" 
+  errorMsg: any;
 
   constructor(private fileSaver: NgxFileSaverService,
     private modalService: ModalService,
+    private errormodalService: ErrormodalService,
     private dataService: DataService,
     private otherService: OthersService) { }
 
@@ -84,7 +87,7 @@ export class AgenceComponent implements OnInit {
       photo: new FormControl (''),
     });
     this.item = JSON.parse(localStorage.getItem('currentUser'));
-    console.log(this.item.agence.id)
+    console.log(this.item.data.agence)
     this.user = localStorage.getItem('user');
     if(this.user == 'agence') {
       this.showupdate = true;
@@ -96,7 +99,7 @@ export class AgenceComponent implements OnInit {
     } else {
       this.showHome = true;
     }
-    this.otherService.getOneAgenceById(this.item.agence.id).subscribe(
+    this.otherService.getOneAgenceById(this.item.data.agence).subscribe(
       data =>{
         this.dataAgence = data;
         console.log(this.dataAgence);
@@ -109,19 +112,22 @@ export class AgenceComponent implements OnInit {
         this.adresse = this.dataAgence.data.adresse;
         this.logo = this.dataAgence.data.logo;
         this.contrat = this.dataAgence.data.contrat;
-        this.cnidg = this.dataAgence.data.data.cnidg;
-        this.numerodg = this.dataAgence.data.data.numerodg;
+      //  this.cnidg = this.dataAgence.data.data.cnidg;
+        this.numerodg = this.dataAgence.data.numdg;
         this.userAgence = this.dataAgence.data['user'];
         console.log(this.userAgence);
         
       },
-      error =>{
+      error=> {
+        this.errorMsg = error;
+        this.errormodalService.open('error-modal-1');
         console.log(error)
       }
     );
-    this.otherService.getTotalAgenceActifInactif(this.item.agence.id).subscribe(
+    this.otherService.getTotalAgenceActifInactif(this.item.data.agence).subscribe(
       data =>{
         this.dataAgence = data;
+        console.log(data);
         this.dataTotalAgence = this.dataAgence['data'];
         console.log(this.dataTotalAgence);
         this.nom = this.dataTotalAgence[0].nom;
@@ -130,6 +136,10 @@ export class AgenceComponent implements OnInit {
         this.total = this.dataTotalAgence[0].total;
         this.actifs = this.dataTotalAgence[0].actifs;
         this.inactifs = this.dataTotalAgence[0].inactifs;
+      }, error=> {
+        this.errorMsg = error;
+        this.errormodalService.open('error-modal-1');
+        console.log(error)
       });
 
       //detail d'un contrat
@@ -138,6 +148,10 @@ export class AgenceComponent implements OnInit {
         this.data = data;
         this.dataContrat = this.data.data;
         console.log(this.dataContrat);
+      }, error=> {
+        this.errorMsg = error;
+        this.errormodalService.open('error-modal-1');
+        console.log(error)
       })
     
   }
@@ -228,5 +242,12 @@ export class AgenceComponent implements OnInit {
   }
 
   delete(id) {
+  }
+  openErrorModal(id: string) {
+    this.errormodalService.open(id);
+  }
+
+  closeErrorModal(id: string) {
+    this.errormodalService.close(id);
   }
 }

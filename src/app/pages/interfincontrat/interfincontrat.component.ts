@@ -8,6 +8,7 @@ import { PaginationService } from 'src/app/service/pagination.service';
 import { OthersService } from 'src/app/services/others.service';
 import { ModalService } from 'src/app/_modal';
 import { environment } from 'src/environments/environment';
+import { ErrormodalService } from 'src/app/_errormodals';
 
 @Component({
   selector: 'app-interfincontrat',
@@ -52,6 +53,7 @@ export class InterfincontratComponent implements OnInit {
   ];
   scrHeight:any;
   scrWidth:any;
+  errorMsg: any;
   @HostListener('window:resize', ['$event'])
   getScreenSize(event?) {
         this.scrHeight = window.innerHeight;
@@ -69,6 +71,7 @@ export class InterfincontratComponent implements OnInit {
     private modalService: ModalService,
     private otherService: OthersService,
     public datepipe: DatePipe,
+    private errormodalService: ErrormodalService,
     public router: Router,
     private http: HttpClient
     ) {  
@@ -97,6 +100,10 @@ export class InterfincontratComponent implements OnInit {
       this.totalItems = data.total;
       console.log(data);
       
+    }, error=> {
+      this.errorMsg = error;
+      this.errormodalService.open('error-modal-1');
+      console.log(error)
     })
   }
   openDetail(data) {
@@ -134,4 +141,12 @@ export class InterfincontratComponent implements OnInit {
     }  
     return color; 
   } 
+
+  openErrorModal(id: string) {
+    this.errormodalService.open(id);
+  }
+
+  closeErrorModal(id: string) {
+    this.errormodalService.close(id);
+  }
 }

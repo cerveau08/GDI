@@ -8,6 +8,7 @@ import { PaginationService } from 'src/app/service/pagination.service';
 import { ModalService } from 'src/app/_modal';
 import { OthersService } from 'src/app/services/others.service';
 import { environment } from 'src/environments/environment';
+import { ErrormodalService } from 'src/app/_errormodals';
 
 @Component({
   selector: 'app-intersouscontrat',
@@ -116,11 +117,13 @@ export class IntersouscontratComponent implements OnInit {
   ];
   annee: Date;
   yearOnly;
+  errorMsg: any;
   constructor(private dataService: DataService,
     public datepipe: DatePipe,
     public router: Router,
     private modalService: ModalService,
     private otherService: OthersService,
+    private errormodalService: ErrormodalService,
     private http: HttpClient
     ) { }
 
@@ -152,6 +155,10 @@ export class IntersouscontratComponent implements OnInit {
       this.totalItems = data.total;
       console.log(data);
       console.log(this.totalItems);
+    }, error=> {
+      this.errorMsg = error;
+      this.errormodalService.open('error-modal-1');
+      console.log(error)
     })
   }
 
@@ -171,11 +178,15 @@ export class IntersouscontratComponent implements OnInit {
       data => {
         console.log(data);
         this.result = data
-        this.successMsg = this.result.success
+        this.successMsg = this.result.status
 
         if(this.successMsg == true) {
           this.closeModal('custom-modal-'+interimaire_id);
         }
+      }, error=> {
+        this.errorMsg = error;
+        this.errormodalService.open('error-modal-1');
+        console.log(error)
       }
     )
   }
@@ -216,5 +227,13 @@ export class IntersouscontratComponent implements OnInit {
 
   closeModal(id: string) {
     this.modalService.close(id);
+  }
+
+  openErrorModal(id: string) {
+    this.errormodalService.open(id);
+  }
+
+  closeErrorModal(id: string) {
+    this.errormodalService.close(id);
   }
 }

@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApexAxisChartSeries, ApexChart, ApexDataLabels, ApexFill, ApexLegend, ApexPlotOptions, ApexResponsive, ApexXAxis, ApexYAxis, ChartComponent } from 'ng-apexcharts';
 import { DataService } from 'src/app/service/data.service';
 import { PaginationService } from 'src/app/service/pagination.service';
+import { ErrormodalService } from 'src/app/_errormodals';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -113,6 +114,7 @@ export class HomedrhComponent implements OnInit {
   public chartOptions: Partial<ChartOptions>;
 
   constructor(private dataService: DataService,
+    private errormodalService: ErrormodalService,
     private pagerService: PaginationService,) {
     this.chartOptions = {
       series: [
@@ -272,7 +274,7 @@ export class HomedrhComponent implements OnInit {
         bar: {
           horizontal: false,
           columnWidth: "30px",
-          endingShape: "rounded",
+        //  endingShape: "rounded",
         },
       },
       dataLabels: {
@@ -306,5 +308,13 @@ export class HomedrhComponent implements OnInit {
       //  shown: 
       },
     };
+  }
+
+  openErrorModal(id: string) {
+    this.errormodalService.open(id);
+  }
+
+  closeErrorModal(id: string) {
+    this.errormodalService.close(id);
   }
 }
