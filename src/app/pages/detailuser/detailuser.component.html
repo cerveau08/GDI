@@ -109,10 +109,10 @@
                 reiciendis doloremque voluptate nemo quae unde deserunt temporibus 
                 exercitationem aperiam, corporis recusandae incidunt ratione maxime?
             </p>
-            <div class="content-motif">
+            <!-- <div class="content-motif">
                 <p class="libelle-motif">Motif pour désactiver {{prenom}} {{nom}}</p>
                 <textarea class="textarea-motif" formControlName="action" name="motif"  placeholder="Motif de Bannir l'intérimaire"></textarea>
-            </div>
+            </div> -->
             <div class="content-error-msg" *ngIf="successMsgBannir == false">
                 <p class="error-alert">{{ dataBannir?.message}}</p>
             </div>
@@ -151,15 +151,15 @@
                 reiciendis doloremque voluptate nemo quae unde deserunt temporibus 
                 exercitationem aperiam, corporis recusandae incidunt ratione maxime?
             </p>
-            <div class="content-motif">
+            <!-- <div class="content-motif">
                 <p class="libelle-motif">Motif pour activer {{prenom}} {{nom}}</p>
                 <textarea class="textarea-motif" formControlName="action" name="motif"  placeholder="Motif de Bannir l'intérimaire"></textarea>
-            </div>
+            </div> -->
             <div class="content-error-msg" *ngIf="successMsgBannir == false">
                 <p class="error-alert">{{ dataBannir?.message}}</p>
             </div>
             <div class="content-button-block">
-                <button (click)="bloquerUser()" class="button-activer">Activer</button>
+                <button (click)="activerUser()" class="button-activer">Activer</button>
             </div>
         </div>
     </form>
