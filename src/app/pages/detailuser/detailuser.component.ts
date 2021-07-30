@@ -225,13 +225,36 @@ export class DetailuserComponent implements OnInit {
 
   bloquerUser() {
     console.log(this.dataUser);
-    this.otherService.bloquerUser(this.item, this.bloquerForm.value).subscribe(
+    const inputAction = {
+      action: 'desactivate'
+    }
+    this.otherService.bloquerUser(this.item, inputAction).subscribe(
       (response) =>{
         console.log(response)
         this.dataBannir = response;
         this.successMsgBannir = this.dataBannir.status;
         if(this.successMsgBannir == true) {
          this.closeModal('custom-modal-7');
+         this.closeModal('custom-modal-8');
+          this.ngOnInit();
+        }
+      },
+      (error)=>{
+        console.log(error);
+      }
+    );
+  }
+  activerUser() {
+    console.log(this.dataUser);
+    const inputAction = {
+      action: 'activate'
+    }
+    this.otherService.bloquerUser(this.item, inputAction).subscribe(
+      (response) =>{
+        console.log(response)
+        this.dataBannir = response;
+        this.successMsgBannir = this.dataBannir.status;
+        if(this.successMsgBannir == true) {
          this.closeModal('custom-modal-8');
           this.ngOnInit();
         }
