@@ -145,13 +145,13 @@ export class HeaderComponent implements OnInit {
 
 redirection() {
   if(this.role == 'MNG') {
-    this.direction = '/accueil/manager';
+    this.direction = 'manager';
     this.click = null;
   } else if (this.role == 'AGN') {
-    this.direction = '/accueil/agence';
+    this.direction = 'agence';
     this.click = null;
   }else if (this.role == 'INT') {
-    this.direction = '/accueil/compte';
+    this.direction = 'compte';
     this.click = null;
   }
 }

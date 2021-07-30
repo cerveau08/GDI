@@ -37,7 +37,7 @@
         </div>
         <div  *ngIf="click" class="profilinfo" style="cursor: pointer;">
           <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset" style="will-change: transform;">
-            <p class="profi" *ngIf="role != 'DRH'" routerLink={{direction}}>profil</p>
+            <p class="profi" *ngIf="role != 'DRH'" routerLink="{{direction}}">profil</p>
             <br>
             <p class="deconnecte" (click)="updown()" routerLink="/login">déconnexion</p>
           </div>

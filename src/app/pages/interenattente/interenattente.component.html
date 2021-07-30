@@ -44,7 +44,7 @@
                     <td (click)="openDetail(p.id)">{{p.poste}}</td>
                     <td (click)="openDetail(p.id)">{{p.direction}}</td>
                     <td *ngIf="role == 'DRH'" (click)="openDetail(p.id)">{{p.agence}}</td>
-                    <td *ngIf="role != 'DRH'" (click)="openDetail(p.id)">{{p.manager.prenom}} {{p.manager.nom}}</td>
+                    <td *ngIf="role != 'DRH'" (click)="openDetail(p.id)">{{p.manager?.prenom}} {{p.manager?.nom}}</td>
                 </tr>
             </tbody>
             

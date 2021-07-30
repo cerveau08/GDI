@@ -171,7 +171,7 @@ export class CompteComponent implements OnInit {
     this.modalService.close(id);
   }
   objectif() {
-    this.router.navigate(['accueil/objectif'], {
+    this.router.navigate(['accueil/mesobjectif'], {
       queryParams: {
         interimaire: JSON.stringify(this.item)
       }
