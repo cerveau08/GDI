@@ -34,7 +34,7 @@ export class DetailuserComponent implements OnInit {
   service
   contratForm: FormGroup;
   arretForm: FormGroup;
-  bannirForm: FormGroup;
+  bloquerForm: FormGroup;
   reconduireForm: FormGroup;
   userForm: FormGroup;
   filenamecontrat;
@@ -52,6 +52,8 @@ export class DetailuserComponent implements OnInit {
   fichierPhoto?: File;
   photoName;
   public reqUrl = environment.base_url;
+  successMsgBannir: boolean;
+  dataBannir: any;
   constructor(private activeroute: ActivatedRoute,
               private modalService: ModalService,
               private otherService: OthersService,
@@ -118,8 +120,8 @@ export class DetailuserComponent implements OnInit {
     this.arretForm = new FormGroup({
       motif: new FormControl(''),
     });
-    this.bannirForm = new FormGroup({
-      motif: new FormControl(''),
+    this.bloquerForm = new FormGroup({
+      action: new FormControl(''),
     });
   }
 
@@ -202,15 +204,15 @@ export class DetailuserComponent implements OnInit {
 
   bloquerUser() {
     console.log(this.dataUser);
-    this.otherService.bolquerUser(this.item, this.bannirForm.value).subscribe(
+    this.otherService.bolquerUser(this.item, this.bloquerForm.value).subscribe(
       (response) =>{
         console.log(response)
-       // this.dataBannir = response;
-       // this.successMsgBannir = this.dataBannir.status;
-       // if(this.successMsgBannir == true) {
-        //  this.closeModal('custom-modal-7');
-        //  this.ngOnInit();
-        //}
+        /*this.dataBannir = response;
+        this.successMsgBannir = this.dataBannir.status;
+        if(this.successMsgBannir == true) {
+         this.closeModal('custom-modal-7');
+          this.ngOnInit();
+        }*/
       },
       (error)=>{
         console.log(error);
