@@ -143,8 +143,8 @@ export class DetailagenceComponent implements OnInit {
     const value = this.agenceForm.value;
     const info = new FormData();
     info.append("nom",value.nom);
+  //  info.append("responsable",value.responsable);
     info.append("nomdg",value.responsable);
-  //  info.append("nomdg",value.nomdg);
     info.append("numdg",value.numDg);
     info.append("email",value.email);
     info.append("mobile",value.mobile);
