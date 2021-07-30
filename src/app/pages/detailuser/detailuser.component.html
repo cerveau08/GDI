@@ -16,7 +16,7 @@
             </div>
             <div class="info">
                 <div class="lot1">
-                    <p class="key">Numéro CNI: <span class="value">{{dataUser?.numeroPiece}}</span> </p>
+                    <p *ngIf="dataUser?.profil.id != 3" class="key">Matricule: <span class="value">{{dataUser?.matricule}}</span> </p>
                     <p class="key">Email: <span class="value">{{dataUser?.email}}</span> </p>
                     <p class="key">Téléphone: <span class="value">{{dataUser?.telephone}}</span> </p>
                     <p class="key">Fonction: <span class="value">{{dataUser?.fonction}}</span> </p>
@@ -34,8 +34,8 @@
         <div *ngIf="role != 'INT'" class="lesbouton">
             <button *ngIf="role != 'MNG'" class="button1" (click)="modifierUser()">Modifier</button>
             <div *ngIf="role == 'DRH'">
-                <button (click)="openModal('custom-modal-7');" class="button8" >Désactiver Utilisateur</button>
-            <button *ngIf="role == 'DRH'" (click)="openModal('custom-modal-8');" class="button8" >Activer Utilisateur</button>
+                <button (click)="openModal('custom-modal-7');" class="button-desactiver-user" >Désactiver Utilisateur</button>
+                <button *ngIf="role == 'DRH'" (click)="openModal('custom-modal-8');" class="button-activer-user" >Activer Utilisateur</button>
             </div>
         </div>
     </div>
@@ -88,7 +88,7 @@
         <form [formGroup]="bloquerForm">
         <div class="tableau">
             <mat-icon style="cursor: pointer;" (click)="closeModal('custom-modal-7');" class="clear">clear</mat-icon>
-            <p class="dtl1">Bloquer {{prenom}} {{nom}}</p>
+            <p class="dtl1">Désactiver {{prenom}} {{nom}}</p>
             <p class="text-droit">
                 Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
                 Doloribus harum sapiente a voluptatum inventore consectetur 
@@ -110,20 +110,61 @@
                 exercitationem aperiam, corporis recusandae incidunt ratione maxime?
             </p>
             <div class="content-motif">
-                <p class="libelle-motif">Motif pour Bloquer {{prenom}} {{nom}}</p>
+                <p class="libelle-motif">Motif pour désactiver {{prenom}} {{nom}}</p>
                 <textarea class="textarea-motif" formControlName="action" name="motif"  placeholder="Motif de Bannir l'intérimaire"></textarea>
             </div>
             <div class="content-error-msg" *ngIf="successMsgBannir == false">
                 <p class="error-alert">{{ dataBannir?.message}}</p>
             </div>
-            <div class="btns3">
-                <button (click)="bloquerUser()" class="button8">Bloquer</button>
+            <div class="content-button-block">
+                <button (click)="bloquerUser()" class="button-desactiver">Désactiver</button>
             </div>
         </div>
     </form>
     </jw-modal>
 </div>
 
+<!--modal7-->
+<div class="modal">
+    <jw-modal id="custom-modal-8">
+        <form [formGroup]="bloquerForm">
+        <div class="tableau">
+            <mat-icon style="cursor: pointer;" (click)="closeModal('custom-modal-8');" class="clear">clear</mat-icon>
+            <p class="dtl1">Activer {{prenom}} {{nom}}</p>
+            <p class="text-droit">
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
+                Doloribus harum sapiente a voluptatum inventore consectetur 
+                in ipsa explicabo est nulla at tempora doloremque eaque 
+                veritatis consequuntur necessitatibus, eligendi recusandae quia!
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                Laudantium molestiae alias dolores suscipit at voluptatibus
+                reiciendis doloremque voluptate nemo quae unde deserunt temporibus 
+                exercitationem aperiam, corporis recusandae incidunt ratione maxime?
+            </p>
+            <p class="text-droit">
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
+                Doloribus harum sapiente a voluptatum inventore consectetur 
+                in ipsa explicabo est nulla at tempora doloremque eaque 
+                veritatis consequuntur necessitatibus, eligendi recusandae quia!
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                Laudantium molestiae alias dolores suscipit at voluptatibus
+                reiciendis doloremque voluptate nemo quae unde deserunt temporibus 
+                exercitationem aperiam, corporis recusandae incidunt ratione maxime?
+            </p>
+            <div class="content-motif">
+                <p class="libelle-motif">Motif pour activer {{prenom}} {{nom}}</p>
+                <textarea class="textarea-motif" formControlName="action" name="motif"  placeholder="Motif de Bannir l'intérimaire"></textarea>
+            </div>
+            <div class="content-error-msg" *ngIf="successMsgBannir == false">
+                <p class="error-alert">{{ dataBannir?.message}}</p>
+            </div>
+            <div class="content-button-block">
+                <button (click)="bloquerUser()" class="button-activer">Activer</button>
+            </div>
+        </div>
+    </form>
+    </jw-modal>
+</div>
 <!--modal1-->
 <div class="modal">
     <sonatel-pma-errormodal id="error-modal-1">

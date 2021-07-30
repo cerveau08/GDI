@@ -225,7 +225,7 @@ export class DetailuserComponent implements OnInit {
 
   bloquerUser() {
     console.log(this.dataUser);
-    this.otherService.bolquerUser(this.item, this.bloquerForm.value).subscribe(
+    this.otherService.bloquerUser(this.item, this.bloquerForm.value).subscribe(
       (response) =>{
         console.log(response)
         this.dataBannir = response;

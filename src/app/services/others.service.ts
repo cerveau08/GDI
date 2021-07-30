@@ -244,7 +244,7 @@ addAgence(data) {
   listArchive(){
     return this.http.get<any>(this.reqUrl + '/listArchived');
   }
-  bolquerUser(id: number, data:any): Observable<any> {
+  bloquerUser(id: number, data:any): Observable<any> {
     return this.http.post<any>(`${this.reqUrl}/users/activeDesactive/${id}`, data);
   }
 }
