@@ -4,7 +4,7 @@ pipeline {
         label 'dst-preprod'
     }
     environment {
-        EMAIL_RECIPIENTS = 'MoctarThiam.MBODJ@orange-sonatel.com, Madiagne.Sylla@orange-sonatel.com, Mohamed.SALL@orange-sonatel.com, malick.coly@orange-sonatel.com'
+        EMAIL_RECIPIENTS = 'MoctarThiam.MBODJ@orange-sonatel.com, Madiagne.Sylla@orange-sonatel.com, Mohamed.SALL@orange-sonatel.com, malick.coly1@orange-sonatel.com'
         IMAGE = 'registry.tools.orange-sonatel.com/dd/gdi-front'
         VERSION = readMavenPom().getVersion()
         NAME = readMavenPom().getArtifactId()

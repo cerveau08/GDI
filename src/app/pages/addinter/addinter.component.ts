@@ -20,7 +20,7 @@ export class AddinterComponent implements OnInit {
   typePieceSearch;
   numeroPieceSearch;
   submited = false;
-  url1="../assets/images/default.png";
+  url1="../../assets/images/default.png";
   url2="../assets/images/default.png";
   url3="../assets/images/default.png";
   url4="../assets/images/default.png";

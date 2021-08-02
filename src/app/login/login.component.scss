@@ -1,5 +1,5 @@
 .all {
-  background-image: url("/./assets/images/rectangle.png");
+  background-image: url("../../assets/images/rectangle.png");
   width: 100%;
   height: 100%;
   background-repeat: no-repeat;
@@ -22,7 +22,7 @@
   grid-template-columns: 423px 423px;
 }
 .logo {
-  background-image: url("/./assets/images/group.png");
+  background-image: url("../../assets/images/group.png");
   width: 483px;
   height: 600px;
   background-size: cover;

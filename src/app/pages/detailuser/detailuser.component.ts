@@ -255,8 +255,9 @@ export class DetailuserComponent implements OnInit {
         this.dataBannir = response;
         this.successMsgBannir = this.dataBannir.status;
         if(this.successMsgBannir == true) {
-         this.closeModal('custom-modal-8');
           this.ngOnInit();
+         this.closeModal('custom-modal-8');
+          
         }
       },
       (error)=>{
