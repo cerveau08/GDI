@@ -25,6 +25,55 @@ export class AttestationpresenceComponent implements OnInit {
   user;
   public reqUrl = environment.base_url;
   errorMsg: any;
+  ListeMois = [
+    {
+      id: 1,
+      libelle: "janvier",
+    },
+    {
+      id: 2,
+      libelle: "fevrier"
+    },
+    {
+      id: 3,
+      libelle: "mars",
+    },
+    {
+      id: 4,
+      libelle: "avril"
+    },{
+      id: 5,
+      libelle: "mai",
+    },
+    {
+      id: 6,
+      libelle: "juin",
+    },
+    {
+      id: 7,
+      libelle: "juillet",
+    },
+    {
+      id: 8,
+      libelle: "aout",
+    },
+    {
+      id: 9,
+      libelle: "septembre",
+    },
+    {
+      id: 10,
+      libelle: "octobre",
+    },
+    {
+      id: 11,
+      libelle: "novembre",
+    },
+    {
+      id: 12,
+      libelle: "decembre",
+    },
+  ];
   constructor(private dataService: DataService,
               private http: HttpClient,
               private errormodalService: ErrormodalService,

@@ -4,8 +4,12 @@
 .demande {
     background-color: white;
     margin-right: 0px;
-    padding: 20px;
+    padding: 10px;
+    position: relative;
 }
+
+
+
 .tableau {
     margin-top: 0px;
     background-color: white;
@@ -13,7 +17,6 @@
 }
 .exporter{
     display: flex;
-    margin-right: 30px;
     position: absolute;
     right: 0;
     top: 20px;
@@ -30,48 +33,80 @@
 }
 .csv {
     display: flex;
-    margin-left: 20px;
+    margin-left: 10px;
     margin-top: 5px;
     border: 1px solid #f5f6f9;
     padding: 0px;
-    height: 40px;
+    height: 30px;
     border-radius: 5px;
     p {
-        margin-top: 12px;
+        margin-top: 6px;
         margin-right: 10px;
         margin-bottom: 0;
         margin-left: 10px;
     }
     mat-icon{
-        margin-top: 10px;
+        margin-top: 5px;
         margin-right: 5px;
         margin-bottom: 0;
     }
 }
 .filtrer {
     display: flex;
-    margin-left: 20px;
+    margin-left: 10px;
     margin-top: 5px;
     border: 1px solid #f5f6f9;
     padding: 0px;
-    height: 40px;
+    height: 30px;
     border-radius: 5px;
+    .filtre{
+        width: 80px;
+        border: none;
+        outline: none;
+    }
     p {
-        margin-top: 12px;
+        margin-top: 6px;
         margin-right: 30px;
         margin-bottom: 0;
         margin-left: 10px;
     }
     mat-icon{
-        margin-top: 10px;
+        margin-top: 5px;
         margin-right: 10px;
         margin-bottom: 0;
     }
 }
+.filtrer-mois {
+    display: flex;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 5px;
+    border: 1px solid #f5f6f9;
+    padding: 0px;
+    height: 30px;
+    border-radius: 5px;
+    p {
+        margin-top: 6px;
+        margin-bottom: 0;
+        margin-left: 5px;
+    }
+    mat-icon{
+        margin-top: 5px;
+        margin-right: 10px;
+        margin-bottom: 0;
+    }
+}
+.select-mois{
+    border: none;
+    outline: none;
+}
+.input-annee{
+    width: 90px;
+}
 table {
     border-collapse: collapse;;
     width: 100%;
-    margin-top: 10px;
+    margin-top: 50px;
 }
   
   th {

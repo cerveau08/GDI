@@ -1,0 +1,141 @@
+<div class="all-container">
+    <div class="tableau">
+        <p class="detail1" id="mydesc">Ajouter des Attestations</p>
+        <div class="exporter">
+            <div class="filtrer-mois">
+                <p class="label-input" for="titre">Mois: </p>
+                <select  formControlName="mois" class="select-mois" >
+                    <option class="option" value="" disabled selected hidden>Mois: </option>
+                    <option *ngFor="let data of ListeMois"  [value]="data.libelle">{{data.libelle}}</option>
+                </select>
+            </div>
+            <div class="input-annee">
+                <jp-multi-datepicker formControlName="annee" tabindex="-1"  mode="YEAR" label="Année" [(ngModel)]="annee" [min]="2000"></jp-multi-datepicker>
+            </div>
+        </div>
+        <table style="overflow-x:auto;" aria-describedby = "mydesc">
+            <thead>
+                <tr class="head">
+                    <th id="manager">Matricule</th>
+                    <th class="typ" id="prenom">
+                        <div class="type">
+                            <p>Prenom</p> 
+                            <mat-icon class="updown" fontSet="material-icons-outlined">unfold_more</mat-icon>
+                        </div>
+                    </th>
+                    <th class="typ" id="nom">
+                        <div class="type2">
+                            <p>Nom</p> 
+                            <mat-icon class="updown" fontSet="material-icons-outlined">unfold_more</mat-icon>
+                        </div>
+                    </th>
+                    <th  id="agence">Agence</th>
+                    <th id="contrat">Absence</th>
+                    <th id="contrat">Commentaire</th>
+                    <th id="contrat">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr style="cursor: pointer;" *ngFor="let p of dataInter | filter:filterterm | paginate: { 
+                    itemsPerPage: itemsPerPage,
+                    currentPage: page,
+                    totalItems: totalItems
+                    }; let i = index">
+                    <td >{{p.fin_contrat  | date:'ddMMyyyy'}}</td>
+                    <td >{{p.prenom}}</td>
+                    <td >{{p.nom}}</td>
+                    <td  >{{p.agence}}</td>
+                    <td  >
+                        <input type="number" class="nombre-jour-absent">
+                        jours
+                    </td>
+                    <td > 
+                        <input type="text" class="commentaire-attestation">
+                    </td>
+                    <td  (click)="openModal('custom-modal-'+p.id)" id="contrat">
+                        <mat-icon *ngIf="action == true" class="updown" fontSet="material-icons-outlined">delete</mat-icon>
+                        <mat-icon *ngIf="action == false" class="updown" fontSet="material-icons-outlined">add</mat-icon>
+                    </td>
+                    <!--modal-->
+                    <!-- <div class="modal">
+                        <jw-modal id="custom-modal-{{p.id}}">
+                            <mat-icon style="cursor: pointer;" (click)="closeModal('custom-modal-'+p.id);" class="clear">clear</mat-icon>
+                            <div class="all">
+                                <h1>Créer une Attestation de Présence pour {{p.prenom}} {{p.nom}}</h1>
+                                <div>
+                                    <form [formGroup]="attestationForm">
+                                        <div class="forms">
+                                            <div>
+                                                <p class="text-attestation">
+                                                    Bonjour M. <span class="text-span-attestation">{{p.manager?.prenom}} {{p.manager?.nom}}</span>, 
+                                                    vous attestez que M. <span class="text-span-attestation">{{p.prenom}} {{p.nom}}</span>
+                                                    <span class="text-span-attestation">{{p.matricule}}</span>, a travaillé dans la 
+                                                    structure durant la période que vous allez choisir dans le formulaire.
+                                                </p>
+                                                <div class="input-content-grid-two">
+                                                    <div class="input-mois-content">
+                                                        <p class="label-input" for="titre">Choisir le mois</p>
+                                                        <select  formControlName="mois" class="select-mois" >
+                                                            <option class="option" value="" disabled selected hidden>Mois</option>
+                                                            <option *ngFor="let data of ListeMois"  [value]="data.libelle">{{data.libelle}}</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="input-annee">
+                                                        <jp-multi-datepicker formControlName="annee" tabindex="-1"  mode="YEAR" label="Choisir une Date" [(ngModel)]="annee" [min]="2000"></jp-multi-datepicker>
+                                                    </div>
+                                                </div>
+                                                <div class="input-content-grid-two">
+                                                    <div class="input2">
+                                                        <p class="label-input" for="titre">Agence</p>
+                                                        <input type="text" [ngModel]="p.agence" formControlName="agence" placeholder="Agence" readonly>
+                                                    </div>
+                                                    <div class="input3">
+                                                        <p class="label-input" for="titre">Nombre de jour absent</p>
+                                                        <input type="number" formControlName="nbr_jr_absence" #Abscence placeholder="Nombre de jour absent" required>
+                                                        <div class="form-control-feedback"
+                                                            *ngIf="attestationForm.controls['nbr_jr_absence'].errors && (attestationForm.controls['nbr_jr_absence'].dirty || attestationForm.controls['nbr_jr_absence'].touched)">
+                                                            <p class="error-alert" *ngIf="attestationForm.controls['nbr_jr_absence'].errors.required">le nombre de jour d'absence est obligatoire</p>
+                                                            <p class="error-alert" *ngIf="attestationForm.controls['nbr_jr_absence'].errors.pattern">le nombre de jour d'absence ne doit pas dépasser 30 jours</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="content-error-msg" *ngIf="successMsg == false">
+                                                    <p class="error-alert">{{ result?.message}}</p>
+                                                </div>
+                                                <div class="content-button-submit">
+                                                    <button (click)="submit(p.id)" class="button-submit">Valider</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </jw-modal>
+                    </div> -->
+                    <!-- modal -->
+                </tr>
+            </tbody>
+            
+        </table> 
+        <div class="pagination">
+            <pagination-controls (pageChange)="gty(page = $event)" previousLabel="Prcédent" nextLabel="Suivant"></pagination-controls>
+        </div>
+    </div>
+</div>
+
+<!--modal1-->
+<div class="modal">
+    <sonatel-pma-errormodal id="error-modal-1">
+        <div class="error-modal-all" >
+            <mat-icon style="cursor: pointer;" (click)="closeErrorModal('error-modal-1');" class="clear-error">clear</mat-icon>
+            <div class="error-content-image">
+                <div class="error-image"></div>
+            </div>
+            <p class="error-text">{{errorMsg}}</p>
+            <p class="error-message-admin">Veuillez contacter l'administrateur du site à partir de la page paramètre</p> 
+            <div class="error-content-button">
+                <button (click)="closeErrorModal('error-modal-1');" class="error-button">Ok</button>
+            </div>
+        </div>
+    </sonatel-pma-errormodal>
+  </div>
