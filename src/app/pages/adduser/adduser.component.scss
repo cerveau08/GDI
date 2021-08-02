@@ -18,6 +18,15 @@
     color: #222222;
     margin-top: 0;
 }
+.content-image-upload {
+    width: 130px;
+    height: 130px;
+    margin-left: 0px;
+    border-radius: 20px;
+    border: solid 3px #009393;
+    background-image: url("../../../assets/images/default.png");
+    background-size: cover;
+}
 .bouton {
     width: 320px;
     margin: 50px auto;

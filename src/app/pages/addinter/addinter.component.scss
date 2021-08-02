@@ -162,6 +162,15 @@ button {
   border-radius: 20px;
   border: solid 3px #009393;
 }
+.content-image-upload {
+  width: 140px;
+  height: 140px;
+  margin-left: 0px;
+  border-radius: 20px;
+  border: solid 3px #009393;
+  background-image: url("../../../assets/images/default.png");
+  background-size: cover;
+}
 ::-webkit-file-upload-button {
   
   width: 148px;
