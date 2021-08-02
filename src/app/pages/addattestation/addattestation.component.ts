@@ -1,21 +1,21 @@
-import { HttpClient } from '@angular/common/http';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { environment } from 'src/environments/environment';
 import { DataService } from 'src/app/service/data.service';
-import { PaginationService } from 'src/app/service/pagination.service';
+import { DatePipe } from '@angular/common';
+import { Router } from '@angular/router';
 import { ModalService } from 'src/app/_modal';
 import { OthersService } from 'src/app/services/others.service';
-import { environment } from 'src/environments/environment';
 import { ErrormodalService } from 'src/app/_errormodals';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
-  selector: 'app-intersouscontrat',
-  templateUrl: './intersouscontrat.component.html',
-  styleUrls: ['./intersouscontrat.component.scss']
+  selector: 'app-addattestation',
+  templateUrl: './addattestation.component.html',
+  styleUrls: ['./addattestation.component.scss']
 })
-export class IntersouscontratComponent implements OnInit {
+export class AddattestationComponent implements OnInit {
+
   public data; any;
   public datas: any;
   date: any;
@@ -82,6 +82,7 @@ export class IntersouscontratComponent implements OnInit {
   annee: Date;
   yearOnly;
   errorMsg: any;
+  action = true;
   constructor(private dataService: DataService,
     public datepipe: DatePipe,
     public router: Router,
@@ -154,7 +155,12 @@ export class IntersouscontratComponent implements OnInit {
       }
     )
   }
-
+  changeActionFalse() {
+    this.action = false;
+  }
+  changeActionTrue() {
+    this.action = true;
+  }
   openDetail(data) {
     this.router.navigate(['/accueil/detailinter'], {
       queryParams: {

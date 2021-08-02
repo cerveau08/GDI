@@ -129,20 +129,12 @@ export class PaginationService {
           title: 'Ajouter',  path: 'ajoutermanager',
         },
       ]
-    }
-    // , {
-    //   id: 4,  title: 'Présence',
-    //   icon: "done_all", path: 'presence',   
-    // }
-    , {
+    }, {
       id: 4,  title: 'Liste Attestations',
       path: 'attestation',  icon: "done_all",
     },{
       id: 5,  title: 'Demandes',
       path: 'lesdemande',  icon: "local_mall",
-    },{
-      id: 6,  title: 'Alertes',
-      path: 'alertes',  icon: "query_builder",
     },{
       id: 8,  title: 'Ajouter Utilisateur',
       path: 'adduser',  icon: "person_add",
@@ -150,8 +142,14 @@ export class PaginationService {
       id: 11,  title: 'Liste Utilisateur',
       path: 'listeuser',  icon: "person",
     },{
+      id: 6,  title: 'Alertes',
+      path: 'alertes',  icon: "query_builder",
+    },{
       id: 9,  title: 'Statistiques',
       path: 'statistique',  icon: "leaderboard",
+    },{
+      id: 11,  title: 'Liste Noire',
+      path: 'blacklist',  icon: "person_off",
     },{
       id: 10,  title: 'Paramètres',
       path: 'parametre',  icon: "settings",
@@ -179,23 +177,12 @@ export class PaginationService {
         id: 4,  title: 'Ajouter',  path: 'addinter',
       },
       ]
-    }
-    // , {
-    //   id: 4,  title: 'Présence',
-    //   icon: "done_all", path: 'presence',   
-    // }
-    , {
+    }, {
       id: 4,  title: 'Liste Attestations',
       path: 'attestation',  icon: "done_all",
     },{
       id: 5,  title: 'Demandes',
       path: 'lesdemande',  icon: "local_mall",
-    },{
-      id: 6,  title: 'Alertes',
-      path: 'alertes',  icon: "query_builder",
-    },{
-      id: 8,  title: 'Mon Compte',
-      path: 'agence',  icon: "folder_shared",
     },{
       id: 11,  title: 'Ajouter Utilisateur',
       path: 'adduser',  icon: "person_add",
@@ -203,8 +190,17 @@ export class PaginationService {
       id: 11,  title: 'Liste Utilisateur',
       path: 'listeuser',  icon: "person",
     },{
+      id: 6,  title: 'Alertes',
+      path: 'alertes',  icon: "query_builder",
+    },{
+      id: 8,  title: 'Mon Compte',
+      path: 'agence',  icon: "folder_shared",
+    },{
       id: 9,  title: 'Statistiques',
       path: 'statistique',  icon: "leaderboard",
+    },{
+      id: 11,  title: 'Liste Noire',
+      path: 'blacklist',  icon: "person_off",
     },{
       id: 10,  title: 'Paramètres',
       path: 'parametre',  icon: "settings",
@@ -224,20 +220,25 @@ export class PaginationService {
           id: 2, title: 'Liste en fin de contrat',  path: 'fincontrat',
         },
       ]
-    },{
+    }, {
+      id: 3,  title: 'Attestation',
+      icon: "done_all",  icon2: "expand_more", icon3: "expand_less",
+      liste: [{
+          id: 1,  title: 'Ajouter Attestation',  path: 'addattestation',
+        }, {
+          id: 2, title: 'Liste Attestations',  path: 'attestation',
+        },
+      ]
+    }
+    ,{
       id: 3,  title: 'Agence d\'interim',
       icon: "local_mall",  path: 'listagence',
-    }
-    // , {
-    //   id: 4,  title: 'Présence',
-    //   icon: "done_all", path: 'presence',   
-    // }
-    , {
-      id: 4,  title: 'Liste Attestations',
-      path: 'attestation',  icon: "done_all",
     },{
       id: 5,  title: 'Demandes',
       path: 'lesdemande',  icon: "local_mall",
+    },{
+      id: 11,  title: 'Ajouter Utilisateur',
+      path: 'adduser',  icon: "person_add",
     },{
       id: 6,  title: 'Alertes',
       path: 'alertes',  icon: "query_builder",
@@ -246,11 +247,11 @@ export class PaginationService {
       id: 8,  title: 'Mon Compte',
       path: 'manager',  icon: "folder_shared",
     },{
-      id: 11,  title: 'Ajouter Utilisateur',
-      path: 'adduser',  icon: "person_add",
-    },{
       id: 9,  title: 'Statistiques',
       path: 'statistique',  icon: "leaderboard",
+    },{
+      id: 11,  title: 'Liste Noire',
+      path: 'blacklist',  icon: "person_off",
     },{
       id: 10,  title: 'Paramètres',
       path: 'parametre',  icon: "settings",

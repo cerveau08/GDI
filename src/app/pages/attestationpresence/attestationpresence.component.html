@@ -2,10 +2,31 @@
     <div class="demande">
         <div class="tableau">
             <p class="detail1" id="mydesc">Liste des Attestations de Presence</p>
+            <div class="exporter">
+                <p class="export">Exporter</p>
+                <div class="csv" style="cursor: pointer;">
+                    <p class="csv1">CSV</p>
+                    <mat-icon fontSet="material-icons-outlined">unfold_more</mat-icon>
+                </div>
+                <div class="filtrer" style="cursor: pointer;">
+                    <input class="filtre" type="text" [(ngModel)]="filterterm" placeholder="Filtre">
+                    <mat-icon fontSet="material-icons-outlined">tune</mat-icon>
+                </div>
+                <div class="filtrer-mois">
+                    <p class="label-input" for="titre">Mois: </p>
+                    <select  formControlName="mois" class="select-mois" >
+                        <option class="option" value="" disabled selected hidden>Mois: </option>
+                        <option *ngFor="let data of ListeMois"  [value]="data.libelle">{{data.libelle}}</option>
+                    </select>
+                </div>
+                <div class="input-annee">
+                    <jp-multi-datepicker formControlName="annee" tabindex="-1"  mode="YEAR" label="Année" [(ngModel)]="annee" [min]="2000"></jp-multi-datepicker>
+                </div>
+            </div>
             <table style="overflow-x:auto;" aria-describedby = "mydesc">
                 <thead>
                     <tr class="head">
-                        <th class="id1" id="matricule">#</th>
+                        <th id="manager">Matricule</th>
                         <th class="typ" id="prenom">
                             <div class="type">
                                 <p>Prénom</p> 
@@ -18,9 +39,9 @@
                                 <mat-icon class="updown" fontSet="material-icons-outlined">unfold_more</mat-icon>
                             </div>
                         </th>
-                        <th id="datedebut">Date Début</th>
-                        <th id="datefin">Date Fin</th>
                         <th *ngIf="user != 'AGN' && user != 'INT'" id="action">Agence</th>
+                        <th id="contrat">Période</th>
+                        <th id="contrat">Absence</th>
                         <th id="action">Etat</th>
                         <th *ngIf="user == 'AGN'" id="input"><input 
                             [(ngModel)]="selectedAll"
@@ -34,12 +55,12 @@
                         itemsPerPage: itemsPerPage,
                         currentPage: page,
                         totalItems: totalItems}; let i = index">
-                        <td class="id1">{{p.id}}</td>
+                        <td >{{p.dateFin  | date:'ddMMyyyy'}}</td>
                         <td>{{p.prenom}}</td>
                         <td>{{p.nom}}</td>
-                        <td>{{p.dateDebut | date: "dd/MM/yyyy"}}</td>
-                        <td>{{p.dateFin | date: "dd/MM/yyyy"}}</td>
-                        <td *ngIf="user != 'AGN' && user != 'INT'">{{p.agence}}</td>
+                        <td  >{{p.agence}}</td>
+                        <td >{{p.dateFin  | date:'MMMM yyyy'}}</td>
+                        <td  >{{p.dateFin  | date:'dd'}} jours</td>
                         <td>{{p.statut}}</td>
                         <td *ngIf="user == 'AGN'" ><input *ngIf="p.etat == 0" type="checkbox"
                             [checked]="p.etat"
