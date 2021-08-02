@@ -82,7 +82,7 @@ export class HeaderComponent implements OnInit {
 
     this.role = localStorage.getItem('role');
     
-    this.redirection()
+    this.redirection();
     this.demandeForm = new FormGroup({
       prenom: new FormControl (''),
       nom: new FormControl(''),
