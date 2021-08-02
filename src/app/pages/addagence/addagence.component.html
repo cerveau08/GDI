@@ -8,7 +8,8 @@
               <div class="grid">
                 <div class="photo">
                   <img class="image-upload" *ngIf="image" src="{{image}}" alt="logo">
-                  <img class="image-upload" *ngIf="!image" alt="" [src]="url1" height="60">
+                  <div *ngIf="!image" class="content-image-upload"></div>
+                  <!-- <img class="image-upload" *ngIf="!image" alt="" [src]="url1" height="60"> -->
                   <input formControlName="logo" class="button" type="file" (change)="getLogo($event.target)" >
                 </div>
                 <div class="others">

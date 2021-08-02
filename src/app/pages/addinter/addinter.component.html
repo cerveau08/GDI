@@ -17,7 +17,7 @@
                       <div>
                       <div class="grid">
                         <div class="photo">
-                          <img class="image-upload" *ngIf="!image" [src]="url1" alt="">
+                          <div *ngIf="!image" class="content-image-upload"></div>
                           <img class="image-upload" *ngIf="image" [src]="image"  alt="">
                           <input formControlName="photo" class="buttonphoto1" type="file" (change)="getPhoto($event.target)">
                         </div>

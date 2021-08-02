@@ -7,7 +7,7 @@
                     <form [formGroup]="userAgentForm">
                         <div class="content-form-add-user">
                             <div class="image">
-                                <img class="image-manager" *ngIf="!image" [src]="url1" alt="">
+                                <div *ngIf="!image" class="content-image-upload"></div>
                                 <img class="image-manager" *ngIf="image" [src]="image" alt="">
                                 <input formControlName="avatar" class="buttonphoto1" type="file" (change)="getPhoto($event)">
                             </div>
