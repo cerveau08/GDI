@@ -14,7 +14,7 @@ import { ErrormodalService } from 'src/app/_errormodals';
 })
 export class AddagenceComponent implements OnInit {
 
-  url1="../assets/images/default.png";
+  url1="assets/images/default.png";
   url2;
   url3;
   url4;

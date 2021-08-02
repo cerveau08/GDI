@@ -54,7 +54,7 @@ export class AdduserComponent implements OnInit {
   totalItems : any;
   dataAgence;
   dataStructure;
-  url1="../assets/images/default.png";
+  url1="dist/assets/images/default.png";
   image ;
   listeFonction
   p = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
