@@ -162,6 +162,15 @@ button {
   border-radius: 20px;
   border: solid 3px #009393;
 }
+.content-image-upload {
+  width: 140px;
+  height: 140px;
+  margin-left: 0px;
+  border-radius: 20px;
+  border: solid 3px #009393;
+  background-image: url("../../../assets/images/default.png");
+  background-size: cover;
+}
 ::-webkit-file-upload-button {
   
   width: 148px;
@@ -753,10 +762,7 @@ button {
   outline: none;
   border: 3px solid black;
 }
-.fiche-et-pv {
-//  display: grid;
-//  grid-template-columns: 50% 50%;
-}
+
 .otherfile {
   display: flex;
 }
@@ -774,8 +780,10 @@ button {
   margin: 0 auto;
 }
 .error-image {
-  width: 150px;
+  width: 160px;
   height: 150px;
+  background-image: url("../../../assets/images/error-message.png");
+  background-size: cover;
 }
 .error-text{
   text-align: center;

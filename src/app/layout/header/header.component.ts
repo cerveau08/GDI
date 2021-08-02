@@ -25,6 +25,8 @@ export class HeaderComponent implements OnInit {
   scrHeight:any;
   scrWidth:any;
   side = false;
+  currentUser;
+  photo;
   @HostListener('window:resize', ['$event'])
   getScreenSize(event?) {
         this.scrHeight = window.innerHeight;
@@ -79,7 +81,8 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.prenom = localStorage.getItem('prenom');
-
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    this.photo = this.currentUser.data.photo;
     this.role = localStorage.getItem('role');
     
     this.redirection()

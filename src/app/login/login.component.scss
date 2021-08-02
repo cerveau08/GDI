@@ -1,5 +1,5 @@
 .all {
-  background-image: url("/./assets/images/rectangle.png");
+  background-image: url("../../assets/images/rectangle.png");
   width: 100%;
   height: 100%;
   background-repeat: no-repeat;
@@ -22,13 +22,19 @@
   grid-template-columns: 423px 423px;
 }
 .logo {
-  background-image: url("/./assets/images/group.png");
+  background-image: url("../../assets/images/group.png");
   width: 483px;
   height: 600px;
   background-size: cover;
   margin-top: -65px;
   margin-left: -35px;
   position: relative;
+}
+.content-image-orange{
+  width: 90px;
+  height: 90px;
+  background-image: url("../../assets/images/orange.png");
+  background-size: cover;
 }
 .img {
   position: absolute;
@@ -38,6 +44,7 @@
     width: 90px;
     height: 90px;
   }
+  
   p {
     width: 184px;
     font-size: 24px;

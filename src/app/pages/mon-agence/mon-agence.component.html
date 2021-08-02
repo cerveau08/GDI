@@ -66,6 +66,88 @@
 </div>
 
 
+<<<<<<< HEAD
+=======
+<!--modal-1-->
+<div class="modal">
+    <jw-modal id="custom-modal-1">
+        <div class="tableau">
+            <mat-icon style="cursor: pointer;" (click)="closeModal('custom-modal-1');" class="clear">clear</mat-icon>
+            <p class="dtl1">contrat {{nom}}</p>
+            <pdf-viewer [src]="contratDoc"
+              [render-text]="true"
+              [autoresize]="true"
+              [original-size]="false"
+            ></pdf-viewer>
+            <div class="btns2">
+                <button (click)="getContrat()" class="btn2">Télécharger</button>
+                <button   class="btn2a">Arrêter contrat</button>
+            </div>
+        </div>
+    </jw-modal>
+</div>
+
+ <!--modal-2-->
+ <div class="modal">
+    <jw-modal id="custom-modal-2">
+        <h1 class="modal-modification">Modification</h1>
+        <mat-icon style="cursor: pointer;" (click)="closeModal('custom-modal-2');" class="clear">clear</mat-icon>
+        <div class="form">
+            <form [formGroup]="agenceForm">
+                <div >
+                <div class="grid">
+                    <div class="photo">
+                        <img alt="" class="photo-agence" *ngIf="!url1==true" src="../assets/images/{{item?.agentimg}}">
+                        <img alt="" class="photo-agence" *ngIf="url1" [src]="url1" height="60">
+                        <input formControlName="photo" class="button" type="file" (change)="readUrl($event)" >
+                    </div>
+                    <div class="others">
+                        <div class="input1">
+                        <input type="text" [(ngModel)]="nom" formControlName="nom" placeholder="Nom entreprise">
+                        </div>
+                        <div class="input2">
+                            <input type="text" [(ngModel)]="responsable" formControlName="responsable" placeholder="Nom Directeur Général">
+                            <input class="input3" [(ngModel)]="numerodg"  type="text" formControlName="numerodg" placeholder="Numéro DG">
+                        </div>
+                        <div class="input1">
+                            <input type="text" [(ngModel)]="email"  formControlName="email" placeholder="Email">
+                        </div>
+                        <div class="input2">
+                           <input class="input3" [(ngModel)]="telephone"  type="text" formControlName="fixe" placeholder="Numéro Fixe">
+                        </div>
+                        <div class="input1">
+                            <input type="text" [(ngModel)]="site" formControlName="site" placeholder="Site web">
+                        </div>
+                        <div class="input4">
+                            <textarea type="textarea" [(ngModel)]="adresse" formControlName="adresse" placeholder="Adresse"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="trait"></div>
+                <div class="boutons">
+                    <p class="p2">Documents Entreprise</p>
+                    <div class="buttons1">
+                        <input formControlName="contrat" class="button5" type="file" (change)="readUrl1($event)" >
+                        <input formControlName="cnidg" class="button6" type="file" (change)="readUrl2($event)" >
+                    </div>
+                    <div class="filenames">
+                        <div class="nom-file2">
+                            <p class="filename2" *ngIf="url2">{{filename2}}</p>
+                        </div>
+                        <div class="nom-file3">
+                            <p class="filename3" *ngIf="url3">{{filename3}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="buttons">
+                <button class="buttonenregistrer" (click)="submitted1()" type="button">Valider</button>
+                </div>
+                </div>
+            </form>
+        </div>
+    </jw-modal>
+</div>
+>>>>>>> 325e57001e5e7f9055fe5b95303413f44a18529b
 
 
 <!--modal1-->
@@ -74,7 +156,7 @@
         <div class="error-modal-all" >
             <mat-icon style="cursor: pointer;" (click)="closeErrorModal('error-modal-1');" class="clear-error">clear</mat-icon>
             <div class="error-content-image">
-                <img class="error-image" src="../../../assets/images/error-message.png" alt="">
+                <div class="error-image"></div>
             </div>
             <p class="error-text">{{errorMsg}}</p>
             <p class="error-message-admin">Veuillez contacter l'administrateur du site à partir de la page paramètre</p> 

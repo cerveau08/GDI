@@ -575,8 +575,10 @@ input {
     margin: 0 auto;
 }
 .error-image {
-    width: 150px;
+    width: 160px;
     height: 150px;
+    background-image: url("../../../assets/images/error-message.png");
+    background-size: cover;
 }
 .error-text{
     text-align: center;
