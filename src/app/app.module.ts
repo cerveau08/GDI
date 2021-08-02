@@ -74,6 +74,10 @@ import { ModifieruserComponent } from './pages/modifieruser/modifieruser.compone
 import { MesObjectifsComponent } from './pages/mes-objectifs/mes-objectifs.component';
 import { MonAgenceComponent } from './pages/mon-agence/mon-agence.component';
 import { MonManagerComponent } from './pages/mon-manager/mon-manager.component';import { ErrormodalModule } from './_errormodals';
+import { ListehistoriquecontratComponent } from './pages/listehistoriquecontrat/listehistoriquecontrat.component';
+import { DetailcontratComponent } from './pages/detailcontrat/detailcontrat.component';
+import { ListeblacklisterComponent } from './pages/listeblacklister/listeblacklister.component';
+import { AddattestationComponent } from './pages/addattestation/addattestation.component';
 ;
 
 @NgModule({
@@ -129,6 +133,10 @@ import { MonManagerComponent } from './pages/mon-manager/mon-manager.component';
     MesObjectifsComponent,
     MonAgenceComponent,
     MonManagerComponent,
+    ListehistoriquecontratComponent,
+    DetailcontratComponent,
+    ListeblacklisterComponent,
+    AddattestationComponent,
   ],
   imports: [
     BrowserModule,

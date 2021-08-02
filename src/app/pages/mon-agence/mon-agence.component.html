@@ -61,15 +61,13 @@
                 </div>
             </div>
         </div>
-        <div class="btns">
-            <button class="buttonaffi" (click)="openModal('custom-modal-1')" type="button">Afficher contrat</button>
-            <button class="buttonmodif" *ngIf="showupdate" (click)="openModal('custom-modal-2')" type="button">Modifier</button>
-            <button class="buttonadduser" *ngIf="showupdate" (click)="openModal('custom-modal-3')" type="button">Ajouter Utilisateur</button>
-        </div>
+        
     </div>
 </div>
 
 
+<<<<<<< HEAD
+=======
 <!--modal-1-->
 <div class="modal">
     <jw-modal id="custom-modal-1">
@@ -149,6 +147,7 @@
         </div>
     </jw-modal>
 </div>
+>>>>>>> 325e57001e5e7f9055fe5b95303413f44a18529b
 
 
 <!--modal1-->
@@ -157,7 +156,7 @@
         <div class="error-modal-all" >
             <mat-icon style="cursor: pointer;" (click)="closeErrorModal('error-modal-1');" class="clear-error">clear</mat-icon>
             <div class="error-content-image">
-                <img class="error-image" src="../../../assets/images/error-message.png" alt="">
+                <div class="error-image"></div>
             </div>
             <p class="error-text">{{errorMsg}}</p>
             <p class="error-message-admin">Veuillez contacter l'administrateur du site à partir de la page paramètre</p> 

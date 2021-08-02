@@ -1,3 +1,6 @@
+import { AddattestationComponent } from './pages/addattestation/addattestation.component';
+import { ListehistoriquecontratComponent } from './pages/listehistoriquecontrat/listehistoriquecontrat.component';
+import { ListeblacklisterComponent } from './pages/listeblacklister/listeblacklister.component';
 import { ObjectifsComponent } from './pages/objectifs/objectifs.component';
 import { LesdemandesComponent } from './pages/lesdemandes/lesdemandes.component';
 import { AdduserComponent } from './pages/adduser/adduser.component';
@@ -44,6 +47,7 @@ import { ModifieruserComponent } from './pages/modifieruser/modifieruser.compone
 import { MesObjectifsComponent } from './pages/mes-objectifs/mes-objectifs.component';
 import { MonAgenceComponent } from './pages/mon-agence/mon-agence.component';
 import { MonManagerComponent } from './pages/mon-manager/mon-manager.component';
+import { DetailcontratComponent } from './pages/detailcontrat/detailcontrat.component';
 
 
 const routes: Routes = [
@@ -222,6 +226,19 @@ const routes: Routes = [
         component: MonManagerComponent,
         canActivate: [AuthGuard]
       },
+      { path: 'blacklist',
+        component: ListeblacklisterComponent,
+          canActivate: [AuthGuard]
+      },{ path: 'historiquecontrat',
+        component: ListehistoriquecontratComponent,
+        canActivate: [AuthGuard]
+      },{ path: 'detailcontrat',
+        component: DetailcontratComponent,
+        canActivate: [AuthGuard]
+      },{ path: 'addattestation',
+      component: AddattestationComponent,
+      canActivate: [AuthGuard]
+    },
       {
         path: '',
         redirectTo: 'accueil/home',

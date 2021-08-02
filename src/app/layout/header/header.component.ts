@@ -25,6 +25,8 @@ export class HeaderComponent implements OnInit {
   scrHeight:any;
   scrWidth:any;
   side = false;
+  currentUser;
+  photo;
   @HostListener('window:resize', ['$event'])
   getScreenSize(event?) {
         this.scrHeight = window.innerHeight;
@@ -79,7 +81,8 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.prenom = localStorage.getItem('prenom');
-
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    this.photo = this.currentUser.data.photo;
     this.role = localStorage.getItem('role');
     
     this.redirection();
@@ -99,16 +102,16 @@ export class HeaderComponent implements OnInit {
 
   onSubmit() {
     const info = {
-      prenom: this.demandeForm.value.prenom,
-      nom: this.demandeForm.value.nom,
-      email: this.demandeForm.value.email,
+    //  prenom: this.demandeForm.value.prenom,
+    //  nom: this.demandeForm.value.nom,
+    //  email: this.demandeForm.value.email,
       matricule: this.demandeForm.value.matricule,
-      direction: this.demandeForm.value.direction,
-      departement: this.demandeForm.value.departement,
-      service: this.demandeForm.value.service,
-      agence: this.demandeForm.value.agence,
-      annee: this.demandeForm.value.annee,
-      poste: this.demandeForm.value.poste,
+    //  direction: this.demandeForm.value.direction,
+    //  departement: this.demandeForm.value.departement,
+    //  service: this.demandeForm.value.service,
+    //  agence: this.demandeForm.value.agence,
+    //  annee: this.demandeForm.value.annee,
+    //  poste: this.demandeForm.value.poste,
     }
     console.log(info);
     this.otherService.rechercheAvance(info).subscribe(
@@ -145,13 +148,13 @@ export class HeaderComponent implements OnInit {
 
 redirection() {
   if(this.role == 'MNG') {
-    this.direction = '/accueil/manager';
+    this.direction = 'manager';
     this.click = null;
   } else if (this.role == 'AGN') {
-    this.direction = '/accueil/agence';
+    this.direction = 'agence';
     this.click = null;
   }else if (this.role == 'INT') {
-    this.direction = '/accueil/compte';
+    this.direction = 'compte';
     this.click = null;
   }
 }

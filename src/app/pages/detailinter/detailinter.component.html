@@ -5,8 +5,9 @@
                 <p class="detail">Détails</p>
             </div>
             <div class="content-buttons-modifier">
-                <button *ngIf="etat == 'actif'" (click)="modifierInter()" class="button-modifier">Modifier</button>
+                <button *ngIf="etat == 'actif' && role == 'DRH'"  (click)="modifierInter()" class="button-modifier">Modifier</button>
                 <div *ngIf="etat == 'En attente'">
+                    <button *ngIf="role == 'AGN'" (click)="openModal('custom-modal-8')" class="button-modifier">Modifier</button>
                     <button *ngIf="role == 'DRH'" (click)="openModal('custom-modal-8')" class="button-modifier">Valider</button>
                 </div>
             </div>
@@ -392,7 +393,7 @@
         <div class="error-modal-all" >
             <mat-icon style="cursor: pointer;" (click)="closeErrorModal('error-modal-1');" class="clear-error">clear</mat-icon>
             <div class="error-content-image">
-                <img class="error-image" src="../../../assets/images/error-message.png" alt="">
+                <div class="error-image"></div>
             </div>
             <p class="error-text">{{errorMsg}}</p>
             <p class="error-message-admin">Veuillez contacter l'administrateur du site à partir de la page paramètre</p> 

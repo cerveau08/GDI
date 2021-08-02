@@ -79,42 +79,6 @@ export class IntersouscontratComponent implements OnInit {
       libelle: "decembre",
     },
   ];
-
-
-  ListeAnnee = [
-    {
-      libelle: 2020,
-    },
-    {
-      libelle: 2021,
-    },
-    {
-      libelle: 2023,
-    },
-    {
-      libelle: 2024,
-    },{
-      libelle:  2025,
-    },
-    {
-      libelle:  2026,
-    },
-    {
-      libelle:  2026,
-    },
-    {
-      libelle:  2027,
-    },
-    {
-      libelle:  2028,
-    },
-    {
-      libelle: 2029,
-    },
-    {
-      libelle: 2030
-    }
-  ];
   annee: Date;
   yearOnly;
   errorMsg: any;

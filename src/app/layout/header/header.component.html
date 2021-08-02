@@ -1,7 +1,8 @@
 <div class="content-web" *ngIf="scrWidth>991">
   <nav class="nav-global">
     <div style="cursor: pointer;" class="logo">
-      <img class="img-logo" src="../../../assets/icones/images-logo-orange.png" alt="">
+      <!-- <img class="img-logo" src="../../../assets/icones/images-logo-orange.png" alt=""> -->
+      <div class="img-logo"></div>
       <div class="title-logo" *ngIf="scrWidth>991">
         <span>Gestion des <br> Interimaires</span>
       </div>
@@ -25,7 +26,7 @@
         </div>
         <div style="cursor: pointer;" class="profil d-flex">
           <div (click)="updown()">
-            <img class="img-profil" src="../../../assets/icones/Oval.png" alt="">
+            <img class="img-profil" src="{{photo}}" alt="">
           </div>
           <div (click)="updown()" *ngIf="scrWidth>991" class="nom d-flex" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="10,20">
             {{prenom}}
@@ -37,7 +38,7 @@
         </div>
         <div  *ngIf="click" class="profilinfo" style="cursor: pointer;">
           <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset" style="will-change: transform;">
-            <p class="profi" *ngIf="role != 'DRH'" routerLink={{direction}}>profil</p>
+            <p class="profi" *ngIf="role != 'DRH'" routerLink="{{direction}}">profil</p>
             <br>
             <p class="deconnecte" (click)="updown()" routerLink="/login">déconnexion</p>
           </div>

@@ -99,7 +99,8 @@
                 <div >
                 <div class="grid">
                     <div class="photo">
-                        <img alt="" class="photo-agence" *ngIf="!url1==true" src="../assets/images/{{item?.agentimg}}">
+                        <!-- <img alt="" class="photo-agence" *ngIf="!url1==true" src="../assets/images/{{item?.agentimg}}"> -->
+                        <div *ngIf="!url1" class="content-image-upload"></div>
                         <img alt="" class="photo-agence" *ngIf="url1" [src]="url1" height="60">
                         <input formControlName="photo" class="button" type="file" (change)="readUrl($event)" >
                     </div>
@@ -198,7 +199,7 @@
         <div class="error-modal-all" >
             <mat-icon style="cursor: pointer;" (click)="closeErrorModal('error-modal-1');" class="clear-error">clear</mat-icon>
             <div class="error-content-image">
-                <img class="error-image" src="../../../assets/images/error-message.png" alt="">
+                <div class="error-image"></div>
             </div>
             <p class="error-text">{{errorMsg}}</p>
             <p class="error-message-admin">Veuillez contacter l'administrateur du site à partir de la page paramètre</p> 
