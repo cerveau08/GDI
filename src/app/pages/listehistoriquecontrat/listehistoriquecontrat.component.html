@@ -1,7 +1,7 @@
 <div class="objectif-container">
     <h1 class="titre-objectif">Historiques des contrats de {{item.prenom}} {{item.nom}}</h1>
     <div class="content-list-objectif">
-        <div class="item-objectif" *ngFor="let p of objectif | paginate: {  itemsPerPage: itemsPerPage,
+        <div class="item-objectif" *ngFor="let p of histoContrat | paginate: {  itemsPerPage: itemsPerPage,
             currentPage: page,
             totalItems: totalItems
             }; let i = index">
