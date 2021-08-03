@@ -343,9 +343,24 @@ table {
     cursor: pointer;
     outline: none;
 }
+.pied-tableau-attestation{
+    display: grid;
+    grid-template-columns: 1fr 80px;
+}
+.button-enregistrer-attestation{
+    height: 30px;
+    width: 80px;
+    border: none;
+    outline: none;
+    background-color: #ff7900;
+    color: white;
+    font-size: 13px;
+    margin-top: 10px;
+}
 .pagination {
-    width: 400px;
-    margin: 0 auto;
+   // width: 400px;
+  //  margin: 0 auto;
+    display: flex;
 }
 .content-error-msg{
   width: 300px;

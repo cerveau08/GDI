@@ -1,10 +1,76 @@
 <div class="all-container">
   <div class="all">
-    <div class="all1">
+    <div *ngIf="!isAdmissible" class="content-search-inter">
+      <div [formGroup]="searchForm" class="content-form-search">
+        <p class="ajouter">Rechercher Interimaire</p>
+        <div class="content-form">
+          <div class="content-row-form">
+            <div class="content-input">
+              <p class="label-input1">Type de Pièce</p>
+              <select class="select-search" [(ngModel)]="typePiece"  formControlName="typePiece" >
+                <option class="option" value="" disabled selected hidden>Choisir le type de Pièce</option>
+                <option *ngFor="let data of ListePiece" [value]="data.libelle">{{data.libelle}}</option>
+              </select>
+            </div>
+            <div class="content-input">
+              <p class="label-input2">Numéro Pièce</p>
+              <input class="input-search" type="text" [(ngModel)]="numeroPiece" formControlName="numeroPiece" placeholder="Numero Pièce">
+            </div>
+          </div>
+          <div class="content-row-form">
+            <div class="content-input">
+              <p class="label-input1">Entité</p>
+              <select class="select-search" [(ngModel)]="societeId"  formControlName="societeId" (change)="directionsListe(societe.value)">
+                <option class="option" value="" disabled selected hidden>Choisir une entité</option>
+                <option *ngFor="let data of dataSociete" [value]="data.libelle">{{data.libelle}}</option>
+              </select>
+            </div>
+            <div class="content-input">
+              <p class="label-input2">Numéro Téléphone</p>
+              <input class="input-search" type="text" [(ngModel)]="telephone" formControlName="telephone" placeholder="Numero Téléphone">
+            </div>
+          </div>
+          <div class="content-button-form">
+            <button (click)="rechercherInterimaire()" class="button-rechercher">Rechercher</button>
+          </div>
+          <div class="text-result-search">
+            <p class="text-blacklist">
+              Vous ne pouvez pas ajouter <span class="inter-blackliste">{{prenom}} {{nom}}
+              </span> comme intérimaire dans une société liée à la SONATEL.
+              Il se trouve sur la liste noire de la société.
+            </p>
+            <p class="text-blacklist">
+              Vous pouvez ajouter <span class="inter-ok">{{prenom}} {{nom}}
+              </span> en tant qu' intérimaire dans cette société pour une durée maximum de 
+              <span class="inter-ok">{{duree}}</span> mois.
+            </p>
+            <p class="text-blacklist">
+              Vous ne pouvez pas ajouter <span class="inter-end">{{prenom}} {{nom}}
+              </span> en tant qu'intérimaire dans cette société car il a déja fait 
+              <span class="inter-end">24 mois</span> dans cette société.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="content-text-explication">
+        <p class="text-explication-head">Explication</p>
+        <p class="text-explication-libelle">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+          Quam, magni! Iste at ad obcaecati iure totam tempore repellat, 
+          atque optio error dicta porro, molestiae asperiores? Laboriosam 
+          <br><br>
+          porro esse ab assumenda. ipsum dolor sit amet consectetur adipisicing
+          elit. Blanditiis amet beatae, facilis dicta non, enim eos veritatis
+          autem vel at quae quam quibusdam? Distinctio ipsum magnam pariatur
+          impedit reprehenderit quod.
+        </p>
+      </div>
+    </div>
+    <div *ngIf="isAdmissible" class="all1">
       <p class="ajouter">Ajouter</p>
         <div class="form" [formGroup]="interForm">
           <mat-horizontal-stepper [linear]="isLinear" #stepper labelPosition="bottom">
-            <mat-step [stepControl]="interForm" >
+            <mat-step [stepControl]="interForm">
               <ng-template matStepLabel>
                   <div class="head">
                     <div class="header" [style.background]="colora">
@@ -35,6 +101,9 @@
                           <div class="infoinput1">
                             <input type="text" [(ngModel)]="numeroPiece" formControlName="numeroPiece" placeholder="Numero Pièce">
                           </div>
+                          <div class="infoinput1">
+                            <input type="text"  [(ngModel)]="telephone" formControlName="telephone" placeholder="Téléphone"> 
+                          </div>
                           <div class="infoinput2">
                             <input type="text" [(ngModel)]="prenom"  formControlName="prenom" placeholder="Prenom">
                             <input class="input3" [(ngModel)]="nom" type="text" formControlName="nom" placeholder="Nom">
@@ -60,7 +129,7 @@
                             </select>
                           </div>
                           <div class="infoinput2">
-                            <input type="text" [(ngModel)]="telephone" formControlName="telephone" placeholder="Telephone"> 
+                            <!-- <input type="text" [(ngModel)]="telephone" formControlName="telephone" placeholder="Telephone">  -->
                             <input class="input3" [(ngModel)]="universite" type="text" formControlName="universite" placeholder="Université ou Ecole">
                           </div>
                           <div class="infoinput1">
@@ -218,7 +287,10 @@
                     </div>
                     <div class="text">
                       <p class="p1">
-                        L’agent <span>{{data.data.interimaire.prenom}} {{data.data.interimaire.nom}}</span>  a été ajouté avec succès à la liste des interimaires. <br> Une notification sera envoyée à <span>son manageur</span> et à l’<span>agence d’interim</span>.
+                        L’agent <span>{{data.data.interimaire.prenom}} {{data.data.interimaire.nom}}
+                        </span>  a été ajouté avec succès à la liste des interimaires. <br> 
+                        Une notification sera envoyée à <span>son manageur</span> et à l’<span>
+                          agence d’interim</span>.
                       </p>
                     </div>
                   </div>

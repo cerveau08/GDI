@@ -1,3 +1,4 @@
+import { FormGroup, FormControl } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { DataService } from 'src/app/service/data.service';
@@ -16,6 +17,7 @@ export class AttestationpresenceComponent implements OnInit {
   mois;
   checkedList:any;
   selectedAll: any;
+  filterForm: FormGroup;
   result;
   data: any;
   successMsg;
@@ -84,6 +86,11 @@ export class AttestationpresenceComponent implements OnInit {
   ngOnInit() {
     this.user = localStorage.getItem('user');
     this.gty(this.page);
+    this.filterForm = new FormGroup({
+      mois: new FormControl(''),
+      annee: new FormControl(''),
+      filterterm: new FormControl('')
+    })
   }
   gty(page: any){
     this.http.post(this.reqUrl + `/listeAttestation?page=${page}&limit=${this.itemsPerPage}`, null).subscribe((data: any) => 
