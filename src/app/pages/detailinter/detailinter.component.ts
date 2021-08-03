@@ -338,6 +338,13 @@ export class DetailinterComponent implements OnInit {
       }
     })
   } 
+  historiqueContrat() {
+    this.router.navigate(['accueil/historiquecontrat'], {
+      queryParams: {
+        interimaire: JSON.stringify(this.item)
+      }
+    })
+  } 
 
   validerInterimaire() {
     this.otherService.validerInterimaire(this.validerForm.value, this.item).subscribe(
