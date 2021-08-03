@@ -229,6 +229,7 @@ export class AddinterComponent implements OnInit {
       numeroPiece: piece,
       telephone: telephone 
     }
+
     this.otherService.pieceFilter(donneeSearch).subscribe(
       (response) => {
         console.log(response);
