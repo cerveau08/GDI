@@ -1,1 +1,57 @@
-<p>listehistoriquecontrat works!</p>
+<div class="objectif-container">
+    <h1 class="titre-objectif">Historiques des contrats de {{item.prenom}} {{item.nom}}</h1>
+    <div class="content-list-objectif">
+        <div class="item-objectif" *ngFor="let p of objectif | paginate: {  itemsPerPage: itemsPerPage,
+            currentPage: page,
+            totalItems: totalItems
+            }; let i = index">
+            <div class="content-item-object">
+                <p class="objectif-title">
+                    <span class="libelle-title">Poste</span>:<span class="la-note"> {{p.titre}} </span>
+                </p>
+                <div class="content-date">
+                    <div class="content-date-debut">
+                        <p class="objectif-title">
+                            <span class="libelle-title">Date de Début</span>:<span class="la-note"> 23 Juin 2018 </span>
+                        </p>
+                    </div>
+                    <div class="content-date-debut">
+                        <p class="objectif-title">
+                            <span class="libelle-title">Date de Fin</span>:<span class="la-note"> 24 Mars 2019 </span>
+                        </p>
+                    </div>
+                </div>
+                <div class="content-date">
+                    <div class="content-date-debut">
+                        <p class="objectif-title">
+                            <span class="libelle-title">Société</span>:<span class="la-note"> SONATEL </span>
+                        </p>
+                    </div>
+                    <div class="content-date-debut">
+                        <p class="objectif-title">
+                            <span class="libelle-title">Direction</span>:<span class="la-note"> DST </span>
+                        </p>
+                    </div>
+                </div>
+                <div class="content-date">
+                    <div class="content-date-debut">
+                        <p class="objectif-title">
+                            <span class="libelle-title">Département</span>:<span class="la-note"> DPD </span>
+                        </p>
+                    </div>
+                    <div class="content-date-debut">
+                        <p class="objectif-title">
+                            <span class="libelle-title">Service</span>:<span class="la-note"> PMA </span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="objectif-buttons">
+                <button (click)="openDetail(p.id)" class="button-evaluer">Détail</button>
+            </div>
+        </div>
+        <div class="pagination">
+            <pagination-controls (pageChange)="gty(page = $event)" previousLabel="Prcédent" nextLabel="Suivant"></pagination-controls>
+        </div>
+    </div>
+</div>

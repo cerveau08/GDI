@@ -50,10 +50,14 @@
                 <div class="lot">
                     <p class="lot2">Catégorie: <span class="value">{{dataInter?.categorie.libelle}}</span> </p>
                     <p class="key">Agence Interim: <span class="value">{{dataInter?.agence.nom}}</span> </p>
-                    <p class="key">Société: <span class="value">{{dataInter?.structure.libelle}}</span> </p>
-                    <p class="key">Direction: <span class="value">{{dataInter?.structure.direction?.libelle}}</span> </p>
-                    <p class="key">Département: <span class="value">{{dataInter?.structure.departement}}</span> </p>
-                    <p class="key">Service: <span class="value">{{dataInter?.structure.service}}</span> </p>
+                    <div class="content-structure">
+                        <p class="key">Société: <span class="value">{{dataInter?.structure.libelle}}</span> </p>
+                        <p class="key">Direction: <span class="value">{{dataInter?.structure.direction?.libelle}}</span> </p>
+                    </div>
+                    <div class="content-structure">
+                        <p class="key">Département: <span class="value">{{dataInter?.structure.departement}}</span> </p>
+                        <p class="key">Service: <span class="value">{{dataInter?.structure.service}}</span> </p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -64,6 +68,7 @@
             <button class="button4" (click)="objectif()">Objectifs</button>
         </div>
         <div class="lesbouton">
+            <button class="button-historique" (click)="historiqueContrat()">Historique Contrat</button>
             <button *ngIf="role == 'AGN'" class="button5" (click)="openModal('custom-modal-4')">Renouveler contrat</button>
             <button *ngIf="role == 'AGN'" class="button6" (click)="openModal('custom-modal-5')">Reconduire contrat</button>
             <button *ngIf="role == 'DRH'" class="button7" (click)="openModal('custom-modal-6')">Arrêter contrat</button>
