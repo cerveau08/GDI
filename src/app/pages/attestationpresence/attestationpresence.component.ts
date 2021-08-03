@@ -88,9 +88,8 @@ export class AttestationpresenceComponent implements OnInit {
     this.gty(this.page);
     this.filterForm = new FormGroup({
       mois: new FormControl(''),
-      annee: new FormControl(''),
-      filterterm: new FormControl(''),
-    })
+      annee: new FormControl('')
+    });
   }
   gty(page: any){
     this.http.post(this.reqUrl + `/listeAttestation?page=${page}&limit=${this.itemsPerPage}`, null).subscribe((data: any) => 
@@ -136,5 +135,24 @@ export class AttestationpresenceComponent implements OnInit {
 
   closeErrorModal(id: string) {
     this.errormodalService.close(id);
+  }
+
+  extraireAttestation() {
+    if (this.filterForm.value.annee) {
+      this.filterForm.patchValue({annee: this.filterForm.value.annee.getFullYear()});
+    } else {
+      this.filterForm.patchValue({annee: ''});
+    }
+    console.log(this.filterForm.value);
+    this.otherService.extraireAttestation(this.filterForm.value).subscribe(
+      data => {
+        console.log(data);
+        this.data = data;
+        this.successMsg = this.data.status
+        if(this.successMsg == true) {
+          window.open(data.data);
+        }
+      }
+    )
   }
 }

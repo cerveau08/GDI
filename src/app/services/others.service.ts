@@ -254,4 +254,10 @@ addAgence(data) {
   addAttestationEnMasse(data:any): Observable<any> {
     return this.http.post<any>(`${this.reqUrl}/ajoutAttestationEnMasse`, data);
   }
+  extraireAttestation(data:any): Observable<any> {
+    return this.http.post<any>(`${this.reqUrl}/extractionAttestation`, data);
+  }
+  extraireInterimaire(data:any): Observable<any> {
+    return this.http.post<any>(`${this.reqUrl}/extractionInterimaire`, data);
+  }
 }
