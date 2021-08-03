@@ -1,4 +1,4 @@
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, FormArray } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { DataService } from 'src/app/service/data.service';
@@ -89,7 +89,7 @@ export class AttestationpresenceComponent implements OnInit {
     this.filterForm = new FormGroup({
       mois: new FormControl(''),
       annee: new FormControl(''),
-      filterterm: new FormControl('')
+      filterterm: new FormControl(''),
     })
   }
   gty(page: any){

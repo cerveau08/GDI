@@ -251,4 +251,7 @@ addAgence(data) {
   deleteInterblacklister(id: string){
     return this.http.delete<any>(`${this.reqUrl} + '/interimBlacklist/${id}`);
   }
+  addAttestationEnMasse(data:any): Observable<any> {
+    return this.http.post<any>(`${this.reqUrl}/ajoutAttestationEnMasse`, data);
+  }
 }

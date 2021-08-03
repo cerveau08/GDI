@@ -93,7 +93,13 @@ export class AddattestationComponent implements OnInit {
     private formBuilder: FormBuilder
     ) {
       this.attestationForm = this.formBuilder.group({
-        interDetail: this.formBuilder.array([]),
+        interDetail: this.formBuilder.array([
+          {
+            interim_id: new FormControl(''),
+            commentaire: new FormControl(''),
+            nbr_jr_absence: new FormControl('')
+          }
+        ]),
         annee: ['', Validators.required],
         mois: ['', Validators.required]
       });
@@ -127,21 +133,21 @@ export class AddattestationComponent implements OnInit {
   submit() {
     this.attestationForm.patchValue({annee: this.attestationForm.value.annee.getFullYear()});
     console.log(this.attestationForm.value);
-    // this.otherService.addAttestation(donneeForm).subscribe(
-    //   data => {
-    //     console.log(data);
-    //     this.result = data
-    //     this.successMsg = this.result.status
+     this.otherService.addAttestationEnMasse(this.attestationForm.value).subscribe(
+      data => {
+       console.log(data);
+       this.result = data
+       this.successMsg = this.result.status
 
     //     if(this.successMsg == true) {
     //       this.closeModal('custom-modal-'+interimaire_id);
     //     }
-    //   }, error=> {
+     }, error=> {
     //     this.errorMsg = error;
     //     this.errormodalService.open('error-modal-1');
-    //     console.log(error)
-    //   }
-    // )
+    console.log(error)
+     }
+     )
   }
   changeActionFalse() {
     this.action = false;

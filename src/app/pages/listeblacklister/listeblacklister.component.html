@@ -26,11 +26,11 @@
                         currentPage: page,
                         totalItems: totalItems
                         }; let i = index">
-                        <td>{{p.prenom}}</td>
-                        <td>{{p.nom}}</td>
-                        <td> {{p.typeDemande}}</td>
-                        <td *ngIf="role != 'AGN'">{{p.dateDebut | date: 'dd/MM/yyyy'}}</td>
-                        <td>{{p.dateFin | date: 'dd/MM/yyyy'}}</td>
+                        <td>{{p.interimaire.prnom}}</td>
+                        <td>{{p.interimaire.nom}}</td>
+                        <td> {{p.interimaire.fonction}}</td>
+                        <td *ngIf="role != 'AGN'">{{p.interimaire.agence}}</td>
+                        <td>{{p.interimaire.societe}}</td>
                         <td><button  class="buttons1" (click)="openModal('custom-modal-'+p.id)">Afficher</button></td>
                         <!--modal1-->
                         <div class="modal">
