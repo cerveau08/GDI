@@ -12,6 +12,8 @@ import { ErrormodalService } from 'src/app/_errormodals';
 })
 export class AttestationpresenceComponent implements OnInit {
 
+  annee;
+  mois;
   checkedList:any;
   selectedAll: any;
   result;

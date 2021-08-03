@@ -168,8 +168,6 @@ addAgence(data) {
   getTotalAgenceActifInactif(id: number) {
     return this.http.get(`${this.reqUrl}/statInterimaireAgence/${id}`);
   }
-  
-
   statInterByYear(){
     return this.http.get(`${this.reqUrl}/statInterimaireByYear`);
   } 
@@ -246,5 +244,11 @@ addAgence(data) {
   }
   bloquerUser(id: number, data:any): Observable<any> {
     return this.http.post<any>(`${this.reqUrl}/users/activeDesactive/${id}`, data);
+  }
+  blacklist(){
+    return this.http.get<any>(this.reqUrl + '/blacklist');
+  }
+  deleteInterblacklister(id: string){
+    return this.http.delete<any>(`${this.reqUrl} + '/interimBlacklist/${id}`);
   }
 }

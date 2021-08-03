@@ -78,7 +78,7 @@ export class ListeblacklisterComponent implements OnInit {
     this.gty(this.page);
   }
   gty(page: any){
-    this.http.get(this.reqUrl + `/listeDemandes?page=${page}&limit=${this.itemsPerPage}`).subscribe((data: any) => {
+    this.http.get(this.reqUrl + `/blacklist?page=${page}&limit=${this.itemsPerPage}`).subscribe((data: any) => {
       this.dd =  data.data;
       this.totalItems = data.total;
       console.log(data);
