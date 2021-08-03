@@ -19,6 +19,8 @@ export class ListehistoriquecontratComponent implements OnInit {
   commentaire;
   objectif;
   item;
+  id;
+  histoContrat;
   data;
   interimaire;
   prenon;
@@ -60,9 +62,9 @@ export class ListehistoriquecontratComponent implements OnInit {
   }
 
   gty(page: any){
-    this.http.get(this.reqUrl + `/listeObjectifs/${this.item}?page=${page}&limit=${this.itemsPerPage}`).subscribe((data: any) => {
-      this.data = data
-      this.objectif = this.data["data"];
+    this.http.get(this.reqUrl + `/histoContratInterimaire/id/societe/id/`).subscribe((data: any) => {
+      this.data = data ;
+      this.histoContrat = this.data["data"];
       console.log(data);
     }, error=> {
       this.errorMsg = error;
