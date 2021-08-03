@@ -216,8 +216,8 @@ export class AddinterComponent implements OnInit {
         this.interForm.get('numeroPiece').valueChanges.subscribe(nump => {
           this.numeroPieceSearch = nump
           this.interForm.get('telephone').valueChanges.subscribe(nump => {
-            this.telephone = nump
-          this.rechercherInterimaire(this.numeroPieceSearch, this.typePieceSearch, this.societeSearch , this.telephoneSearch );
+            this.telephone = tel;
+          this.rechercherInterimaire(this.numeroPieceSearch, this.typePieceSearch, this.societeSearch , this.telephone );
         });
       });
     });
@@ -229,6 +229,7 @@ export class AddinterComponent implements OnInit {
       numeroPiece: piece,
       telephone: telephone 
     }
+  }
 
     this.otherService.pieceFilter(donneeSearch).subscribe(
       (response) => {
