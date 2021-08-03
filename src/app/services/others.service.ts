@@ -247,4 +247,10 @@ addAgence(data) {
   bloquerUser(id: number, data:any): Observable<any> {
     return this.http.post<any>(`${this.reqUrl}/users/activeDesactive/${id}`, data);
   }
+  extraireAttestation(data:any): Observable<any> {
+    return this.http.post<any>(`${this.reqUrl}/extractionAttestation`, data);
+  }
+  extraireInterimaire(data:any): Observable<any> {
+    return this.http.post<any>(`${this.reqUrl}/extractionInterimaire`, data);
+  }
 }
