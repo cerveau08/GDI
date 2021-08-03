@@ -85,7 +85,7 @@ export class HeaderComponent implements OnInit {
     this.photo = this.currentUser.data.photo;
     this.role = localStorage.getItem('role');
     
-    this.redirection()
+    this.redirection();
     this.demandeForm = new FormGroup({
       prenom: new FormControl (''),
       nom: new FormControl(''),

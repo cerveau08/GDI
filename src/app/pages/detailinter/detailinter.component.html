@@ -5,8 +5,9 @@
                 <p class="detail">Détails</p>
             </div>
             <div class="content-buttons-modifier">
-                <button *ngIf="etat == 'actif'" (click)="modifierInter()" class="button-modifier">Modifier</button>
+                <button *ngIf="etat == 'actif' && role == 'DRH'"  (click)="modifierInter()" class="button-modifier">Modifier</button>
                 <div *ngIf="etat == 'En attente'">
+                    <button *ngIf="role == 'AGN'" (click)="openModal('custom-modal-8')" class="button-modifier">Modifier</button>
                     <button *ngIf="role == 'DRH'" (click)="openModal('custom-modal-8')" class="button-modifier">Valider</button>
                 </div>
             </div>

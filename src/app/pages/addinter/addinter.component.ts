@@ -215,16 +215,19 @@ export class AddinterComponent implements OnInit {
         this.typePieceSearch = typep
         this.interForm.get('numeroPiece').valueChanges.subscribe(nump => {
           this.numeroPieceSearch = nump
-          this.rechercherInterimaire(this.numeroPieceSearch, this.typePieceSearch, this.societeSearch);
+          this.interForm.get('telephone').valueChanges.subscribe(nump => {
+            this.telephone = nump
+          this.rechercherInterimaire(this.numeroPieceSearch, this.typePieceSearch, this.societeSearch , this.telephoneSearch );
         });
       });
     });
   }
-  rechercherInterimaire(piece, type, societe) {  
+  rechercherInterimaire(piece, type, societe, telephone) {  
     const donneeSearch = {
       societe: societe,
       typePiece: type,
-      numeroPiece: piece
+      numeroPiece: piece,
+      telephone: telephone 
     }
     this.otherService.pieceFilter(donneeSearch).subscribe(
       (response) => {
