@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { environment } from 'src/environments/environment';
 import { DataService } from 'src/app/service/data.service';
 import { DatePipe } from '@angular/common';
@@ -89,71 +89,59 @@ export class AddattestationComponent implements OnInit {
     private modalService: ModalService,
     private otherService: OthersService,
     private errormodalService: ErrormodalService,
-    private http: HttpClient
-    ) { }
+    private http: HttpClient,
+    private formBuilder: FormBuilder
+    ) {
+      this.attestationForm = this.formBuilder.group({
+        interDetail: this.formBuilder.array([]),
+        annee: ['', Validators.required],
+        mois: ['', Validators.required]
+      });
+    }
 
   ngOnInit() {
     this.role = localStorage.getItem('user');
-   // this.getcolor(this.p);
-    this.attestationForm = new FormGroup({
-      interim_id: new FormControl(''),
-      mois: new FormControl('', Validators.required),
-      annee: new FormControl('', [
-        Validators.required,
-        Validators.pattern("[^ @]*@[^ @]*")
-      ]),
-      contrat_id: new FormControl(''),
-      nbr_jr_absence: new FormControl('', Validators.required),
-      prenom: new FormControl(''),
-      nom: new FormControl(''),
-      poste: new FormControl(''),
-      matricule: new FormControl(''),
-      agence: new FormControl(''),
-    });
     this.gty(this.page);
   }
 
-  
+  initForm() {
+    
+  }
   gty(page: any){
     this.http.get(this.reqUrl + `/interimSousContrat?page=${page}&limit=${this.itemsPerPage}`).subscribe((data: any) => {
-      this.dataInter =  data.data;
-      this.totalItems = data.total;
-      console.log(data);
-      console.log(this.totalItems);
-    }, error=> {
-      this.errorMsg = error;
-      this.errormodalService.open('error-modal-1');
-      console.log(error)
+      this.dataInter =  data.data
+      this.attestationForm = this.formBuilder.group({
+        annee: ['', Validators.required],
+        mois: ['', Validators.required],
+        interDetail: this.formBuilder.array(
+          this.dataInter.map(x => this.formBuilder.group({
+            interim_id: [x.id, [Validators.required, Validators.minLength(1)]],
+            nbr_jr_absence: [x.first_name, [Validators.required, Validators.minLength(1)]],
+            Commentaire: [x.last_name, [Validators.required, Validators.minLength(2)]]
+          }))
+        )
+      })
     })
   }
 
-  submit(interimaire_id) {
-    console.log(interimaire_id);
-    this.yearOnly = this.attestationForm.value.annee.getFullYear();
-    console.log(this.yearOnly);
-    let donneeForm = {
-      interim_id: interimaire_id,
-    //  contrat_id: contrat_interimaire_id,
-      mois: this.attestationForm.value.mois,
-      annee: this.yearOnly,
-      nbr_jr_absence: this.attestationForm.value.nbr_jr_absence,
-    }
-    console.log(donneeForm);
-    this.otherService.addAttestation(donneeForm).subscribe(
-      data => {
-        console.log(data);
-        this.result = data
-        this.successMsg = this.result.status
+  submit() {
+    this.attestationForm.patchValue({annee: this.attestationForm.value.annee.getFullYear()});
+    console.log(this.attestationForm.value);
+    // this.otherService.addAttestation(donneeForm).subscribe(
+    //   data => {
+    //     console.log(data);
+    //     this.result = data
+    //     this.successMsg = this.result.status
 
-        if(this.successMsg == true) {
-          this.closeModal('custom-modal-'+interimaire_id);
-        }
-      }, error=> {
-        this.errorMsg = error;
-        this.errormodalService.open('error-modal-1');
-        console.log(error)
-      }
-    )
+    //     if(this.successMsg == true) {
+    //       this.closeModal('custom-modal-'+interimaire_id);
+    //     }
+    //   }, error=> {
+    //     this.errorMsg = error;
+    //     this.errormodalService.open('error-modal-1');
+    //     console.log(error)
+    //   }
+    // )
   }
   changeActionFalse() {
     this.action = false;
