@@ -19,6 +19,7 @@ export class AddinterComponent implements OnInit {
   societeSearch;
   typePieceSearch;
   numeroPieceSearch;
+  isAdmissible = false;
   submited = false;
   url1="../../assets/images/default.png";
   url2="../assets/images/default.png";
@@ -63,6 +64,7 @@ export class AddinterComponent implements OnInit {
   diplomeName1;
   diplomeName2;
   diplomeName3;
+  duree;
   keyword = 'name';
   fileDiplome: FormArray;
   ListePiece = [
@@ -111,6 +113,7 @@ export class AddinterComponent implements OnInit {
   dataMatriculeInter;
   prenom;
   nom;
+  telephoneSearch;
   telephone;
   sitmat;
   sexe;
@@ -121,6 +124,7 @@ export class AddinterComponent implements OnInit {
   adresse;
   profession;
   poste;
+  searchForm: FormGroup;
   constructor(private fb: FormBuilder,
               private modalService: ModalService,
               private otherService: OthersService,
@@ -168,6 +172,12 @@ export class AddinterComponent implements OnInit {
         diplome3: new FormControl(''),
         fonction: new FormControl('')
     });
+    this.searchForm = new FormGroup({
+      numeroPiece: new FormControl(''),
+      societeId: new FormControl(''),
+      telephone: new FormControl(''),
+      typePiece: new FormControl(''),
+    })
       //recupere les societes
     this.otherService.getAllSociete().subscribe(
       data => {
@@ -191,9 +201,9 @@ export class AddinterComponent implements OnInit {
       }
     );
     this.otherService.getDomaine().subscribe(data => this.dataDomaine = data["data"]);
-  //  this.saveCode(this.item)
-  this.otherService.getFonctions().subscribe(data => this.listeFonction = data.data);
-    this.onChanges();
+    //  this.saveCode(this.item)
+    this.otherService.getFonctions().subscribe(data => this.listeFonction = data.data);
+   // this.onChanges();
   }
   public saveProfession(e): void {
     let libelle = e.target.value;
@@ -207,34 +217,28 @@ export class AddinterComponent implements OnInit {
     console.log(list.libelle);
     this.interForm.patchValue({poste: list.libelle});
   }
-  onChanges(): void {
-    this.interForm.get('societeId').valueChanges.subscribe(val => {
-      this.societeSearch = val;
-      console.log(val);
-      this.interForm.get('typePiece').valueChanges.subscribe(typep => {
-        this.typePieceSearch = typep
-        this.interForm.get('numeroPiece').valueChanges.subscribe(nump => {
-          this.numeroPieceSearch = nump
-          this.interForm.get('telephone').valueChanges.subscribe(nump => {
-            this.telephone = tel;
-          this.rechercherInterimaire(this.numeroPieceSearch, this.typePieceSearch, this.societeSearch , this.telephone );
-        });
-      });
-    });
-  }
-  rechercherInterimaire(piece, type, societe, telephone) {  
-    const donneeSearch = {
-      societe: societe,
-      typePiece: type,
-      numeroPiece: piece,
-      telephone: telephone 
-    }
-  }
-
-    this.otherService.pieceFilter(donneeSearch).subscribe(
+  // onChanges(): void {
+  //   this.interForm.get('societeId').valueChanges.subscribe(val => {
+  //     this.societeSearch = val;
+  //     console.log(val);
+  //     this.interForm.get('typePiece').valueChanges.subscribe(typep => {
+  //       this.typePieceSearch = typep
+  //       this.interForm.get('numeroPiece').valueChanges.subscribe(nump => {
+  //         this.numeroPieceSearch = nump
+  //         this.interForm.get('telephone').valueChanges.subscribe(phone => {
+  //           this.telephoneSearch = phone
+  //           this.rechercherInterimaire(this.numeroPieceSearch, this.typePieceSearch, this.societeSearch , this.telephoneSearch );
+  //         });
+  //       });
+  //     });
+  //   })
+  // }
+  rechercherInterimaire() {  
+    this.otherService.pieceFilter(this.searchForm.value).subscribe(
       (response) => {
         console.log(response);
         this.dataMatriculeInter = response;
+        this.duree = this.dataMatriculeInter.data.personne.duree;
         this.prenom = this.dataMatriculeInter.data.personne.prenom;
         this.nom = this.dataMatriculeInter.data.personne.nom;
         this.telephone = this.dataMatriculeInter.data.personne.telephone;
