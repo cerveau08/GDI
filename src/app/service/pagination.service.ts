@@ -131,7 +131,7 @@ export class PaginationService {
       ]
     }, {
       id: 4,  title: 'Liste Attestations',
-      path: 'attestation',  icon: "done_all",
+      path: 'listeattestation',  icon: "done_all",
     },{
       id: 5,  title: 'Demandes',
       path: 'lesdemande',  icon: "local_mall",
@@ -226,7 +226,7 @@ export class PaginationService {
       liste: [{
           id: 1,  title: 'Ajouter Attestation',  path: 'addattestation',
         }, {
-          id: 2, title: 'Liste Attestations',  path: 'attestation',
+          id: 2, title: 'Liste Attestations',  path: 'listeattestation',
         },
       ]
     }
