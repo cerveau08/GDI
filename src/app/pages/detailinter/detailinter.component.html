@@ -69,7 +69,7 @@
         </div>
         <div class="lesbouton">
             <button class="button-historique" (click)="historiqueContrat()">Historique Contrat</button>
-            <button *ngIf="role == 'AGN'" class="button5" (click)="openModal('custom-modal-4')">Renouveler contrat</button>
+            <button *ngIf="role == 'AGN'" class="button5" (click)="openModal('custom-modal-4')">Ajouter contrat</button>
             <button *ngIf="role == 'AGN'" class="button6" (click)="openModal('custom-modal-5')">Reconduire contrat</button>
             <button *ngIf="role == 'DRH'" class="button7" (click)="openModal('custom-modal-6')">Arrêter contrat</button>
             <button *ngIf="role == 'DRH'" class="button8" (click)="openModal('custom-modal-7')">Bannir Interimaire</button>
@@ -82,11 +82,6 @@
         <div class="tableau">
             <mat-icon style="cursor: pointer;" (click)="closeModal('custom-modal-1');" class="clear">clear</mat-icon>
             <p class="dtl1">contrat de {{prenom}} {{nom}}</p>
-            <!-- <ngx-doc-viewer 
-               [url]="contratDoc" 
-               [viewer]="viewer" 
-               style="width:100%;height:70vh;">
-            </ngx-doc-viewer> -->
             <pdf-viewer [src]="contratDoc"
               [render-text]="true"
               [autoresize]="true"

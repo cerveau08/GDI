@@ -100,7 +100,6 @@ export class IntersouscontratComponent implements OnInit {
 
   ngOnInit() {
     this.role = localStorage.getItem('user');
-   // this.getcolor(this.p);
     this.attestationForm = new FormGroup({
       interim_id: new FormControl(''),
       mois: new FormControl('', Validators.required),
@@ -211,7 +210,7 @@ export class IntersouscontratComponent implements OnInit {
       queryParams: {
         user: JSON.stringify(data)
       }
-    })
+    });
   }
 
   downloadFile(data: any) {

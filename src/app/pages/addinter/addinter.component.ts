@@ -7,7 +7,6 @@ import { DataService } from 'src/app/service/data.service';
 import { OthersService } from 'src/app/services/others.service';
 import { ModalService } from 'src/app/_modal/modal.service';
 import { ErrormodalService } from 'src/app/_errormodals';
-//import { MatAutocompleteSelectedEvent } from '@angular/material';
 
 @Component({
   selector: 'app-addinter',
@@ -130,7 +129,7 @@ export class AddinterComponent implements OnInit {
               private modalService: ModalService,
               private otherService: OthersService,
               private errormodalService: ErrormodalService,
-              private route: Router) {
+              private router: Router) {
    // this.datajson = this.dataService.getData();
    }
     
@@ -218,43 +217,33 @@ export class AddinterComponent implements OnInit {
     console.log(list.libelle);
     this.interForm.patchValue({poste: list.libelle});
   }
-  // onChanges(): void {
-  //   this.interForm.get('societeId').valueChanges.subscribe(val => {
-  //     this.societeSearch = val;
-  //     console.log(val);
-  //     this.interForm.get('typePiece').valueChanges.subscribe(typep => {
-  //       this.typePieceSearch = typep
-  //       this.interForm.get('numeroPiece').valueChanges.subscribe(nump => {
-  //         this.numeroPieceSearch = nump
-  //         this.interForm.get('telephone').valueChanges.subscribe(phone => {
-  //           this.telephoneSearch = phone
-  //           this.rechercherInterimaire(this.numeroPieceSearch, this.typePieceSearch, this.societeSearch , this.telephoneSearch );
-  //         });
-  //       });
-  //     });
-  //   })
-  // }
+
+  public saveDomaine(e): void {
+    let libelle = e.target.value;
+    let list = this.dataDomaine.filter(x => x.libelle === libelle)[0];
+    console.log(list.libelle);
+    this.interForm.patchValue({domaineId: list.id});
+  }
+  
   rechercherInterimaire() { 
     console.log(this.searchForm.value); 
     this.otherService.pieceFilter(this.searchForm.value).subscribe(
       (response) => {
         console.log(response);
         this.dataMatriculeInter = response;
-        this.isBlackliste = this.dataMatriculeInter.data.isBlacklisted;
+        this.isBlackliste = this.dataMatriculeInter.isBlacklisted
         if(this.isBlackliste == false) {
-          this.duree = this.dataMatriculeInter.data.personne.duree;
-          this.prenom = this.dataMatriculeInter.data.personne.prenom;
-          this.nom = this.dataMatriculeInter.data.personne.nom;
-          this.telephone = this.dataMatriculeInter.data.personne.telephone;
-          this.sitmat = this.dataMatriculeInter.data.personne.sitmat;
-          this.sexe = this.dataMatriculeInter.data.personne.sexe;
-          this.email = this.dataMatriculeInter.data.personne.email;
-          this.lieuNaissance = this.dataMatriculeInter.data.personne.lieuNaissance;
-          this.dateNaissance = this.dataMatriculeInter.data.personne.dateNaissance;
-          this.photo = this.dataMatriculeInter.data.personne.photo;
-          this.adresse = this.dataMatriculeInter.data.interimaire.adresse;
-          this.profession = this.dataMatriculeInter.data.interimaire.profession;
-          this.universite = this.dataMatriculeInter.data.interimaire.universite;
+          if(this.dataMatriculeInter.data) {
+            console.log(this.dataMatriculeInter.data);
+            this.router.navigate(['/accueil/detailinter'], {
+              queryParams: {
+                user: JSON.stringify(this.dataMatriculeInter.data.interimaire.id)
+              }
+            });
+          } 
+          if(this.dataMatriculeInter.message == 'Interimaire inexistant!') {
+            this.isAdmissible = true;
+          }
         } else if(this.isBlackliste == true) {
           if(this.dataMatriculeInter.data.personne) {
             this.prenom = this.dataMatriculeInter.data.personne.prenom;
@@ -498,6 +487,7 @@ export class AddinterComponent implements OnInit {
     this.url1="../assets/images/default.png";
     this.url2="../assets/images/default.png";
     this.url3="../assets/images/default.png";
+    this.ngOnInit();
   }
   openErrorModal(id: string) {
     this.errormodalService.open(id);
