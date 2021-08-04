@@ -7,44 +7,44 @@
           <div class="content-row-form">
             <div class="content-input">
               <p class="label-input1">Type de Pièce</p>
-              <select class="select-search" [(ngModel)]="typePiece"  formControlName="typePiece" >
+              <select class="select-search"  formControlName="typePiece" >
                 <option class="option" value="" disabled selected hidden>Choisir le type de Pièce</option>
                 <option *ngFor="let data of ListePiece" [value]="data.libelle">{{data.libelle}}</option>
               </select>
             </div>
             <div class="content-input">
               <p class="label-input2">Numéro Pièce</p>
-              <input class="input-search" type="text" [(ngModel)]="numeroPiece" formControlName="numeroPiece" placeholder="Numero Pièce">
+              <input class="input-search" type="text" formControlName="numeroPiece" placeholder="Numero Pièce">
             </div>
           </div>
           <div class="content-row-form">
             <div class="content-input">
-              <p class="label-input1">Entité</p>
-              <select class="select-search" [(ngModel)]="societeId"  formControlName="societeId" (change)="directionsListe(societe.value)">
-                <option class="option" value="" disabled selected hidden>Choisir une entité</option>
-                <option *ngFor="let data of dataSociete" [value]="data.libelle">{{data.libelle}}</option>
+              <p class="label-input1">Société</p>
+              <select class="select-search" #entite formControlName="societe" (change)="directionsListe(entite.value)">
+                <option class="option" value="" disabled selected hidden>Choisir une société</option>
+                <option *ngFor="let data of dataSociete" [value]="data.id">{{data.libelle}}</option>
               </select>
             </div>
             <div class="content-input">
               <p class="label-input2">Numéro Téléphone</p>
-              <input class="input-search" type="text" [(ngModel)]="telephone" formControlName="telephone" placeholder="Numero Téléphone">
+              <input class="input-search" type="text" formControlName="telephone" placeholder="Numero Téléphone">
             </div>
           </div>
           <div class="content-button-form">
             <button (click)="rechercherInterimaire()" class="button-rechercher">Rechercher</button>
           </div>
           <div class="text-result-search">
-            <p class="text-blacklist">
+            <p *ngIf="!isBlackliste" class="text-blacklist">
               Vous ne pouvez pas ajouter <span class="inter-blackliste">{{prenom}} {{nom}}
               </span> comme intérimaire dans une société liée à la SONATEL.
               Il se trouve sur la liste noire de la société.
             </p>
-            <p class="text-blacklist">
+            <p *ngIf="isAdmissible" class="text-blacklist">
               Vous pouvez ajouter <span class="inter-ok">{{prenom}} {{nom}}
               </span> en tant qu' intérimaire dans cette société pour une durée maximum de 
               <span class="inter-ok">{{duree}}</span> mois.
             </p>
-            <p class="text-blacklist">
+            <p *ngIf="isAdmissible" class="text-blacklist">
               Vous ne pouvez pas ajouter <span class="inter-end">{{prenom}} {{nom}}
               </span> en tant qu'intérimaire dans cette société car il a déja fait 
               <span class="inter-end">24 mois</span> dans cette société.
@@ -89,7 +89,7 @@
                         </div>
                         <div class="others">
                           <div class="infoinput2">
-                            <select class="select5" [(ngModel)]="societeId" #societe formControlName="societeId" (change)="directionsListe(societe.value)">
+                            <select class="select5" [(ngModel)]="societe" #entite formControlName="societe" (change)="directionsListe(entite.value)">
                               <option class="option" value="" disabled selected hidden>Societe</option>
                               <option *ngFor="let data of dataSociete" [value]="data.id">{{data.libelle}}</option>
                             </select>
@@ -321,6 +321,26 @@
           <p class="error-message-admin">Veuillez contacter l'administrateur du site à partir de la page paramètre</p> 
           <div class="error-content-button">
               <button (click)="closeErrorModal('error-modal-1');" class="error-button">Ok</button>
+          </div>
+      </div>
+  </sonatel-pma-errormodal>
+</div>
+
+<!--modal1-->
+<div class="modal">
+  <sonatel-pma-errormodal id="blacklist-modal-1">
+      <div class="error-modal-all" >
+          <mat-icon style="cursor: pointer;" (click)="closeErrorModal('blacklist-modal-1');" class="clear-error">clear</mat-icon>
+          <div class="blackliste-content-image">
+            <div class="blackliste-image"></div>
+        </div>
+          <p class="blackliste-message-admin">
+            Vous ne pouvez pas ajouter <span class="inter-blackliste">{{prenom}} {{nom}}
+            </span> comme intérimaire dans une société liée à la SONATEL.
+            Il se trouve sur la liste noire de la société.
+          </p> 
+          <div class="error-content-button">
+              <button (click)="closeErrorModal('blacklist-modal-1');" class="error-button">Ok</button>
           </div>
       </div>
   </sonatel-pma-errormodal>

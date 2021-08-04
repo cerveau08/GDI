@@ -20,6 +20,7 @@ export class AddinterComponent implements OnInit {
   typePieceSearch;
   numeroPieceSearch;
   isAdmissible = false;
+  isBlackliste = true;
   submited = false;
   url1="../../assets/images/default.png";
   url2="../assets/images/default.png";
@@ -174,7 +175,7 @@ export class AddinterComponent implements OnInit {
     });
     this.searchForm = new FormGroup({
       numeroPiece: new FormControl(''),
-      societeId: new FormControl(''),
+      societe: new FormControl(''),
       telephone: new FormControl(''),
       typePiece: new FormControl(''),
     })
@@ -233,24 +234,37 @@ export class AddinterComponent implements OnInit {
   //     });
   //   })
   // }
-  rechercherInterimaire() {  
+  rechercherInterimaire() { 
+    console.log(this.searchForm.value); 
     this.otherService.pieceFilter(this.searchForm.value).subscribe(
       (response) => {
         console.log(response);
         this.dataMatriculeInter = response;
-        this.duree = this.dataMatriculeInter.data.personne.duree;
-        this.prenom = this.dataMatriculeInter.data.personne.prenom;
-        this.nom = this.dataMatriculeInter.data.personne.nom;
-        this.telephone = this.dataMatriculeInter.data.personne.telephone;
-        this.sitmat = this.dataMatriculeInter.data.personne.sitmat;
-        this.sexe = this.dataMatriculeInter.data.personne.sexe;
-        this.email = this.dataMatriculeInter.data.personne.email;
-        this.lieuNaissance = this.dataMatriculeInter.data.personne.lieuNaissance;
-        this.dateNaissance = this.dataMatriculeInter.data.personne.dateNaissance;
-        this.photo = this.dataMatriculeInter.data.personne.photo;
-        this.adresse = this.dataMatriculeInter.data.interimaire.adresse;
-        this.profession = this.dataMatriculeInter.data.interimaire.profession;
-        this.universite = this.dataMatriculeInter.data.interimaire.universite;
+        this.isBlackliste = this.dataMatriculeInter.data.isBlacklisted;
+        if(this.isBlackliste == false) {
+          this.duree = this.dataMatriculeInter.data.personne.duree;
+          this.prenom = this.dataMatriculeInter.data.personne.prenom;
+          this.nom = this.dataMatriculeInter.data.personne.nom;
+          this.telephone = this.dataMatriculeInter.data.personne.telephone;
+          this.sitmat = this.dataMatriculeInter.data.personne.sitmat;
+          this.sexe = this.dataMatriculeInter.data.personne.sexe;
+          this.email = this.dataMatriculeInter.data.personne.email;
+          this.lieuNaissance = this.dataMatriculeInter.data.personne.lieuNaissance;
+          this.dateNaissance = this.dataMatriculeInter.data.personne.dateNaissance;
+          this.photo = this.dataMatriculeInter.data.personne.photo;
+          this.adresse = this.dataMatriculeInter.data.interimaire.adresse;
+          this.profession = this.dataMatriculeInter.data.interimaire.profession;
+          this.universite = this.dataMatriculeInter.data.interimaire.universite;
+        } else if(this.isBlackliste == true) {
+          if(this.dataMatriculeInter.data.personne) {
+            this.prenom = this.dataMatriculeInter.data.personne.prenom;
+            this.nom = this.dataMatriculeInter.data.personne.nom;
+          } else {
+            this.prenom = "cette";
+            this.nom = "personne";
+          }
+          this.openErrorModal('blacklist-modal-1');
+        }
       }
     )
   }
