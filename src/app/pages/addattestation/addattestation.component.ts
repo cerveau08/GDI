@@ -123,28 +123,28 @@ export class AddattestationComponent implements OnInit {
           this.dataInter.map(x => this.formBuilder.group({
             interim_id: [x.id, [Validators.required, Validators.minLength(1)]],
             nbr_jr_absence: [x.first_name, [Validators.required, Validators.minLength(1)]],
-            Commentaire: [x.last_name, [Validators.required, Validators.minLength(2)]]
+            commentaire: [x.last_name, [Validators.required, Validators.minLength(2)]]
           }))
         )
       })
     })
   }
 
-  submit() {
+  addAttestation() {
+    console.log(this.attestationForm.value.annee);
     this.attestationForm.patchValue({annee: this.attestationForm.value.annee.getFullYear()});
     console.log(this.attestationForm.value);
      this.otherService.addAttestationEnMasse(this.attestationForm.value).subscribe(
       data => {
-       console.log(data);
-       this.result = data
-       this.successMsg = this.result.status
-
-    //     if(this.successMsg == true) {
-    //       this.closeModal('custom-modal-'+interimaire_id);
-    //     }
+        console.log(data);
+        this.result = data
+        this.successMsg = this.result.status
+        if(this.successMsg == true) {
+          this.ngOnInit();
+        }
      }, error=> {
-    //     this.errorMsg = error;
-    //     this.errormodalService.open('error-modal-1');
+      this.errorMsg = error;
+      this.errormodalService.open('error-modal-1');
     console.log(error)
      }
      )

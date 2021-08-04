@@ -260,4 +260,7 @@ addAgence(data) {
   extraireInterimaire(data:any): Observable<any> {
     return this.http.post<any>(`${this.reqUrl}/extractionInterimaire`, data);
   }
+  historiqueInter(id: number){
+    return this.http.get<any>(`${this.reqUrl}/histoContratInterimaire/${id}`);
+  }
 }
