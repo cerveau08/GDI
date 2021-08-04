@@ -1,61 +1,71 @@
-<div class="tableau">
-    <p class="detail1" id="mydesc">Liste des attestations</p>
-    <div class="exporter">
-        <p class="export">Exporter</p>
-        <div class="csv" style="cursor: pointer;">
-            <p class="csv1">CSV</p>
-            <mat-icon fontSet="material-icons-outlined">unfold_more</mat-icon>
-        </div>
-        <div class="filtrer" style="cursor: pointer;">
-            <input class="filtre" type="text" [(ngModel)]="filterterm" placeholder="Filtre">
-            <mat-icon fontSet="material-icons-outlined">tune</mat-icon>
-        </div>
-    </div>
-    <table style="overflow-x:auto;" aria-describedby = "mydesc">
-        <thead>
-            <tr class="head">
-                <!-- <th class="id1" id="manager">#</th> -->
-                <th class="typ" id mois>
-                    <div class="type">
-                        <p>Mois</p> 
-                        <mat-icon class="updown" fontSet="material-icons-outlined">unfold_more</mat-icon>
-                    </div>
-                </th>
-                <th class="typ" id="date">Date de sortie</th>
-                <th id="presence">Présence</th>
-                <th id="attestation">Attestation</th>
-        </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let p of datas | filter:filterterm | paginate: { itemsPerPage: 10, currentPage: p }; let i = index">
-                <!-- <td class="id1">{{p.id}}</td> -->
-                <td>{{p.dateFin | date: 'MMMM yyyy'}}</td>
-                <td> {{p.dateFin | date: 'dd/MM/yyyy'}}</td>
-                <td>{{p.dateFin | date: 'dd'}}</td>
-                <td><button  class="buttons1" (click)="openModal('custom-modal-'+p.id)">Afficher</button></td>
-                <!--modal1-->
-                <div class="modal">
-                    <jw-modal id="custom-modal-{{p.id}}">
-                        <div class="tab">
-                            <mat-icon style="cursor: pointer;" (click)="closeModal('custom-modal-'+p.id);" class="clear">clear</mat-icon>
-                            <p class="dtl1">Attestation du mois de {{p.dateDebut | date: "MMMM"}}</p>
-                            <ngx-doc-viewer 
-                            [url]="DemoDoc1" 
-                            [viewer]="viewer" 
-                            style="width:100%;height:70vh;">
-                            </ngx-doc-viewer>
-                            <div class="btns2">
-                                <button (click)="getfilemodal()"  class="btn2">Télécharger</button>
-                            </div>
+<div class="all-container">
+    <div class="demande">
+        <div class="tableau">
+            <p class="detail1" id="mydesc">Liste des Attestations de Presence</p>
+            <form [formGroup]="filterForm">
+                <div class="exporter">
+                    <div class="content-input-extraction">
+                        <div class="filtrer-mois">
+                            <p class="label-input" for="titre">Mois: </p>
+                            <select  formControlName="mois" class="select-mois" >
+                                <option class="option" value="" disabled selected hidden>Mois: </option>
+                                <option *ngFor="let data of ListeMois"  [value]="data.libelle">{{data.libelle}}</option>
+                            </select>
                         </div>
-                    </jw-modal>
+                        <div class="input-annee">
+                            <jp-multi-datepicker formControlName="annee" tabindex="-1"  mode="YEAR" label="Année" [(ngModel)]="annee" [min]="2000"></jp-multi-datepicker>
+                        </div>
+                        <div class="content-extraction">
+                            <button (click)="extraireAttestation()" class="button-extraire">Extraire en CSV</button>
+                        </div>
+                    </div>
+                    <div class="content-error-msg" *ngIf="successMsg == false">
+                        <p class="error-alert">{{ data?.message}}: mois et année</p>
+                    </div>
                 </div>
-            </tr>
-        </tbody>
-        
-    </table>
-    <div class="pagination">
-        <pagination-controls (pageChange)="p = $event" previousLabel="Prcédent" nextLabel="Suivant"></pagination-controls>
+            </form>
+            <table style="overflow-x:auto;" aria-describedby = "mydesc">
+                <thead>
+                    <tr class="head">
+                        <th id="manager">Matricule</th>
+                        <th class="typ" id="prenom">
+                            <div class="type">
+                                <p>Prénom</p> 
+                                <mat-icon class="updown" fontSet="material-icons-outlined">unfold_more</mat-icon>
+                            </div>
+                        </th>
+                        <th class="typ" id="nom">
+                            <div class="type">
+                                <p>Nom</p> 
+                                <mat-icon class="updown" fontSet="material-icons-outlined">unfold_more</mat-icon>
+                            </div>
+                        </th>
+                        <th *ngIf="user != 'AGN' && user != 'INT'" id="action">Agence</th>
+                        <th id="contrat">Période</th>
+                        <th id="contrat">Absence</th>
+                        <th id="action">Etat</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let p of dataAttest | filter:filterterm | paginate: { 
+                        itemsPerPage: itemsPerPage,
+                        currentPage: page,
+                        totalItems: totalItems}; let i = index">
+                        <td >{{p.dateFin | date:'ddMMyyyy'}}</td>
+                        <td>{{p.prenom}}</td>
+                        <td>{{p.nom}}</td>
+                        <td *ngIf="user != 'AGN' && user != 'INT'" >{{p.agence}}</td>
+                        <td >{{p.dateFin  | date:'MMMM yyyy'}}</td>
+                        <td  >{{p.nombreJourAbscence}} jours</td>
+                        <td>{{p.statut}}</td>
+                    </tr>
+                </tbody>
+                
+            </table>
+            <div class="pagination">
+                <pagination-controls (pageChange)="gty(page = $event)" previousLabel="Prcédent" nextLabel="Suivant"></pagination-controls>
+            </div>
+        </div>
     </div>
 </div>
 

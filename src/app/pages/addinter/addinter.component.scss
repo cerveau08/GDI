@@ -903,6 +903,18 @@ button {
   background-image: url("../../../assets/images/error-message.png");
   background-size: cover;
 }
+.blackliste-content-image{
+  width: 200px;
+  height: 120px;
+  margin: 0 auto;
+}
+.blackliste-image {
+  width: 200px;
+  height: 120px;
+  background-image: url("../../../assets/images/tampon-en-caoutchouc-de-liste-noire-110063540.jpeg");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
 .error-text{
   text-align: center;
   color: #ff0000;
@@ -911,6 +923,11 @@ button {
 .error-message-admin{
   text-align: center;
   font-size: 18px;
+}
+.blackliste-message-admin{
+  text-align: center;
+  font-size: 18px;
+  margin-top: 0;
 }
 .clear-error {
   width: 10px;
