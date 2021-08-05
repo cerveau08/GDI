@@ -47,11 +47,11 @@
                 </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let p of dataAttest | filter:filterterm | paginate: { 
+                    <tr *ngFor="let p of dataAttest | paginate: { 
                         itemsPerPage: itemsPerPage,
                         currentPage: page,
                         totalItems: totalItems}; let i = index">
-                        <td >{{p.dateFin | date:'ddMMyyyy'}}</td>
+                        <td >{{p.matricule}}</td>
                         <td>{{p.prenom}}</td>
                         <td>{{p.nom}}</td>
                         <td *ngIf="user != 'AGN' && user != 'INT'" >{{p.agence}}</td>

@@ -27,7 +27,7 @@ export class ListeattestationComponent implements OnInit {
   filterterm: string;
   dataAttest: any;
   page = 1;
-  itemsPerPage = 10;
+  itemsPerPage = 7;
   totalItems : any;
   user;
   public reqUrl = environment.base_url;
