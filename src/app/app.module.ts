@@ -1,7 +1,8 @@
 import { SidenavModule } from './sidenav';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-
+import { NgModule, LOCALE_ID } from '@angular/core';
+import localeFr from '@angular/common/locales/fr';
+registerLocaleData(localeFr);
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -41,7 +42,7 @@ import { AttestationpresenceComponent } from './pages/attestationpresence/attest
 import { DetailmanagerComponent } from './pages/detailmanager/detailmanager.component';
 import { DetailinterComponent } from './pages/detailinter/detailinter.component';
 import { DetailagenceComponent } from './pages/detailagence/detailagence.component';
-import { DatePipe } from '@angular/common';
+import { DatePipe, registerLocaleData } from '@angular/common';
 import { NgxFileSaverModule } from '@clemox/ngx-file-saver';
 import { NgxDocViewerModule } from 'ngx-doc-viewer';
 import { MatAutocompleteModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatSidenavModule, MatStepperModule, MatToolbarModule, MatDatepickerModule, MatDialogModule, MatNativeDateModule, MatButtonToggleModule, MatCardModule, MatCheckboxModule, MatChipsModule, MatDividerModule, MatExpansionModule, MatGridListModule, MatIconModule, MatListModule, MatMenuModule, MatPaginatorModule, MatProgressBarModule, MatProgressSpinnerModule, MatRadioModule, MatRippleModule, MatSelectModule, MatSliderModule, MatSlideToggleModule, MatSnackBarModule, MatSortModule, MatTableModule, MatTabsModule, MatTooltipModule } from '@angular/material';
@@ -207,6 +208,7 @@ import { AddattestationComponent } from './pages/addattestation/addattestation.c
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorService, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     {provide: LocationStrategy, useClass: HashLocationStrategy},
+    { provide: LOCALE_ID, useValue: 'fr-FR'}
   ],
   bootstrap: [AppComponent]
 })

@@ -23,9 +23,11 @@ export class DetailinterComponent implements OnInit {
   public nombre = 59;
   public left: any;
   donnees: any;
+  page = 1
+  itemsPerPage = 7;
   dataInter:any;
   dataContrat: any;
-  
+  dataManageur;
   viewer = 'google';  
   selectedType = 'docx';   
   contratDoc;
@@ -67,8 +69,10 @@ export class DetailinterComponent implements OnInit {
   validerForm: FormGroup;
   filenamecontrat;
   filenamefichedeposte;
+  filenameProceVerbal;
   urlcontrat;
   urlfichedeposte;
+  urlProcesVerbal;
   dataSociete: any;
   dataDirection: any;
   dataAgence: any;
@@ -77,6 +81,7 @@ export class DetailinterComponent implements OnInit {
   dataCategorie;
   fileContrat;
   fileFicheposte;
+  fileProcesVerbal;
   etat;
   role;
   url3;
@@ -102,7 +107,7 @@ export class DetailinterComponent implements OnInit {
       this.item = JSON.parse(params["user"]);
       console.log(this.item);
       this.otherService.getOneInterById(this.item).subscribe(
-           data =>{
+          data =>{
             this.data = data;
             this.dataInter = this.data.data;
             console.log(this.dataInter);
@@ -167,10 +172,12 @@ export class DetailinterComponent implements OnInit {
       contrat: new FormControl(''),
       fichePoste: new FormControl(''),
       interimaireId: new FormControl(''),
+      provesVerbal: new FormControl(''),
     });
     this.validerForm = new FormGroup({
       matricule: new FormControl(''),
-      telephone: new FormControl('')
+      telephone: new FormControl(''),
+      matriculeManageur: new FormControl('')
     })
     this.otherService.getAllSociete().subscribe(
       data => {
@@ -199,6 +206,26 @@ export class DetailinterComponent implements OnInit {
       libelle: new FormControl(''),
       commentaire: new FormControl(''),
     });
+    this.gty(this.page);
+  }
+
+  gty(page: any){
+    this.http.get(this.reqUrl + `/managers/list?page=${page}&limit=${this.itemsPerPage}`).subscribe((data: any) => {
+      this.dataManageur =  data.data;
+      console.log(this.dataManageur);
+      console.log(data);
+    }, error=> {
+      this.errorMsg = error;
+      this.errormodalService.open('error-modal-1');
+      console.log(error)
+    })
+  }
+
+  public saveMatriculeM(e): void {
+    let matricule = e.target.value;
+    let list = this.dataManageur.filter(x => x.matricule === matricule)[0];
+    console.log(list.matricule);
+    this.validerForm.patchValue({profession: list.matricule});
   }
 
   directionsListe(value) {
@@ -381,8 +408,6 @@ export class DetailinterComponent implements OnInit {
     let reader = new FileReader();
     reader.readAsDataURL( this.urlcontrat)
     reader.onload= ()=>{
-     // this.fil= reader.result
-     // console.log(this.image)
     }
   }
   fichedeposte(e:any) {
@@ -392,8 +417,15 @@ export class DetailinterComponent implements OnInit {
     let reader = new FileReader();
     reader.readAsDataURL( this.urlfichedeposte)
     reader.onload= ()=>{
-     // this.fil= reader.result
-     // console.log(this.image)
+    }
+  }
+  procesVerbal(e:any) {
+    this.urlProcesVerbal= e.files.item(0);
+    console.log(this.urlProcesVerbal);
+    this.filenameProceVerbal = this.urlProcesVerbal.name;
+    let reader = new FileReader();
+    reader.readAsDataURL( this.urlProcesVerbal)
+    reader.onload= ()=>{
     }
   }
   arretContrat() {
