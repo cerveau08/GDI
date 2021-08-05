@@ -18,6 +18,7 @@ import { ErrormodalService } from 'src/app/_errormodals';
 export class IntersouscontratComponent implements OnInit {
   public data; any;
   public datas: any;
+  isData = false;
   date: any;
   role;
   dataInter: any;

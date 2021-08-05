@@ -27,6 +27,7 @@ export class ListehistoriquecontratComponent implements OnInit {
   prenom;
   note;
   nom;
+  isData = true;
   successMsg;
   objectifForm: FormGroup;
   noteForm: FormGroup;
@@ -62,10 +63,13 @@ export class ListehistoriquecontratComponent implements OnInit {
   }
 
   gty(page: any){
-    this.http.get(this.reqUrl + `/histoContratInterimaire/id`).subscribe((data: any) => {
+    this.http.get(this.reqUrl + `/histoContratInterimaire/${this.item}?page=${page}&limit=${this.itemsPerPage}`).subscribe((data: any) => {
       this.data = data ;
-      this.histoContrat = this.data["data"];
-      console.log(data);
+      this.histoContrat = this.data.data["contrats"];
+      console.log(this.data);
+      if(this.data.code == 500) {
+        this.isData = false;
+      }
     }, error=> {
       this.errorMsg = error;
       this.errormodalService.open('error-modal-1');

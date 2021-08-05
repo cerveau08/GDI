@@ -137,7 +137,7 @@
  <!--modal-4-->
  <div class="modal">
     <jw-modal id="custom-modal-4">
-        <h1 class="modal-renouveler">Renouveler Contrat</h1>
+        <h1 class="modal-renouveler">Ajouter un Contrat</h1>
         <mat-icon style="cursor: pointer;" (click)="closeModal('custom-modal-4');" class="clear-renouveler">clear</mat-icon>
         <div class="form-contrat">
             <form [formGroup]="contratForm">
@@ -190,14 +190,20 @@
                             <p class="filename" *ngIf="urlfichedeposte">{{filenamefichedeposte}}</p>
                         </div>
                     </div>
-                    <div class="filenames">
+                    <div class="buttons-fichier">
+                        <div>
+                            <input formControlName="procesVerbal"  class="buttonprocesVerbal" type="file" (change)="procesVerbal($event.target)">
+                            <p class="filename" *ngIf="urlProcesVerbal">{{filenameProceVerbal}}</p>
+                        </div>
+                    </div>
+                    <!-- <div class="filenames">
                         <div class="nom-file2">
                             <p class="filename2" *ngIf="url2">{{filename2}}</p>
                         </div>
                         <div class="nom-file3">
                             <p class="filename3" *ngIf="url3">{{filename3}}</p>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="content-error-msg" *ngIf="successMsgRenouveler == false">
                     <p class="error-alert">{{ dataRenouveler?.message}}</p>
@@ -354,7 +360,6 @@
                     in ipsa explicabo est nulla at tempora doloremque eaque 
                     veritatis consequuntur necessitatibus, eligendi recusandae quia!
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                    Laudantium molestiae alias dolores suscipit at voluptatibus
                     reiciendis doloremque voluptate nemo quae unde deserunt temporibus 
                     exercitationem aperiam, corporis recusandae incidunt ratione maxime?
                 </p>
@@ -362,9 +367,6 @@
                     Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
                     Doloribus harum sapiente a voluptatum inventore consectetur 
                     in ipsa explicabo est nulla at tempora doloremque eaque 
-                    veritatis consequuntur necessitatibus, eligendi recusandae quia!
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                    Laudantium molestiae alias dolores suscipit at voluptatibus
                     reiciendis doloremque voluptate nemo quae unde deserunt temporibus 
                     exercitationem aperiam, corporis recusandae incidunt ratione maxime?
                 </p>
@@ -375,6 +377,13 @@
                 <div class="input-v">
                     <p class="libelle-motif">Téléphone OM</p>
                     <input class="input-valider" type="text" formControlName="telephone" placeholder="Telephone OM">
+                </div>
+                <div class="input-v">
+                    <p class="libelle-motif">Matricule Manager</p>
+                    <input list="matriculesm" class="input-valider" (change)="saveMatriculeM($event)" type="text" formControlName="matriculeManageur" placeholder="Matricule de son manageur">
+                    <datalist id="matriculesm">
+                        <option *ngFor="let c of dataManageur" [value]="c.matricule" >{{c.matricule}}</option>
+                      </datalist>
                 </div>
                 <div class="content-error-msg" *ngIf="successMsgValider == false">
                     <p class="error-alert">{{ dataValidation?.message}}</p>

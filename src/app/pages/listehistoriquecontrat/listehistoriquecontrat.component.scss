@@ -126,7 +126,14 @@
     font-weight: bold;
     margin-top: 5px;
 }
-
+.content-non-data{
+    height: 400px;
+    width: 400px;
+    margin: 0 auto;
+    background-image: url("../../../assets/images/1439126-200.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
 .error-content-image{
     width: 150px;
     height: 150px;
