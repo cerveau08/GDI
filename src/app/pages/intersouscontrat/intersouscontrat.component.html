@@ -46,6 +46,7 @@
         <table style="overflow-x:auto;" aria-describedby = "mydesc">
             <thead>
                 <tr class="head">
+                    <th id="manager">Matricule</th>
                     <th class="typ" id="prenom">
                         <div class="type">
                             <p>Prenom</p> 
@@ -59,10 +60,11 @@
                         </div>
                     </th>
                     <th *ngIf="role != 'MNG'" id="manager">Manager</th>
+                    <th id="manager">Poste</th>
                     <th *ngIf="role != 'MNG'" id="direction">Direction</th>
                     <th *ngIf="role != 'AGN'" id="agence">Agence</th>
                     <th id="contrat">Fin de Contrat</th>
-                    <th *ngIf="role == 'MNG'" id="contrat">Attestation</th>
+                    <!-- <th *ngIf="role == 'MNG'" id="contrat">Attestation</th> -->
             </tr>
             </thead>
             <tbody>
@@ -71,15 +73,21 @@
                     currentPage: page,
                     totalItems: totalItems
                     }; let i = index">
+                    <td (click)="openDetail(p.id)">{{p.matricule}}</td>
                     <td (click)="openDetail(p.id)">{{p.prenom}}</td>
                     <td (click)="openDetail(p.id)">{{p.nom}}</td>
-                    <td (click)="openDetail(p.id)" *ngIf="role != 'MNG'"> <img class="photo" alt="" src="{{p.manager?.avatar}}"></td>
+                    <td (click)="openDetail(p.id)" *ngIf="role != 'MNG'"> 
+                        <img class="photo" alt="" src="{{p.manager?.avatar}}">
+                    </td>
+                    <td (click)="openDetail(p.id)">{{p.poste}}</td>
                     <td *ngIf="role != 'MNG'" (click)="openDetail(p.id)">{{p.direction}}/{{p.departement}}/{{p.service}}</td>
                     <td *ngIf="role != 'AGN'" (click)="openDetail(p.id)">{{p.agence}}</td>
                     <td (click)="openDetail(p.id)"> <p>{{p.fin_contrat  | date:'dd/MM/yyyy'}}</p> </td>
-                    <td *ngIf="role == 'MNG'" (click)="openModal('custom-modal-'+p.id)" id="contrat"><button  class="buttons-attestation" >Ajouter</button></td>
+                    <!-- <td *ngIf="role == 'MNG'" (click)="openModal('custom-modal-'+p.id)" id="contrat">
+                        <button  class="buttons-attestation" >Ajouter</button>
+                    </td> -->
                     <!--modal-->
-                    <div class="modal">
+                    <!-- <div class="modal">
                         <jw-modal id="custom-modal-{{p.id}}">
                             <mat-icon style="cursor: pointer;" (click)="closeModal('custom-modal-'+p.id);" class="clear">clear</mat-icon>
                             <div class="all">
@@ -133,7 +141,7 @@
                                 </div>
                             </div>
                         </jw-modal>
-                    </div>
+                    </div> -->
                     <!-- modal -->
                 </tr>
             </tbody>
