@@ -1,5 +1,5 @@
 <div class="objectif-container">
-    <h1 class="titre-objectif">Historiques des contrats de {{item.prenom}} {{item.nom}}</h1>
+    <h1 class="titre-objectif">Historiques des contrats de {{prenom}} {{nom}}</h1>
     <div *ngIf="isData" class="content-list-objectif">
         <div class="item-objectif" *ngFor="let p of histoContrat | paginate: {  itemsPerPage: itemsPerPage,
             currentPage: page,
@@ -24,7 +24,7 @@
                 <div class="content-date">
                     <div class="content-date-debut">
                         <p class="objectif-title">
-                            <span class="libelle-title">Société</span>:<span class="la-note"> SONATEL</span>
+                            <span class="libelle-title">Société</span>:<span class="la-note"> {{p.societe.libelle}}</span>
                         </p>
                     </div>
                     <div class="content-date-debut">
