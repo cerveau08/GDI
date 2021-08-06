@@ -1,6 +1,6 @@
 <div class="objectif-container">
     <h1 class="titre-objectif">Liste des Evaluations de {{interimaire?.data.prenom}} {{interimaire?.data.nom}}</h1>
-    <button *ngIf="role == 'MNG'" class="button-ajouter" >Faire une Evaluation</button>
+    <button *ngIf="role == 'MNG'" class="button-ajouter" (click)="openEvaluer()"  >Faire une Evaluation</button>
     <div class="grid-container" *ngIf="item">
         <div class="info-evaluation" *ngFor="let p of evaluations | paginate: {  itemsPerPage: itemsPerPage,
             currentPage: page,

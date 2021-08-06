@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { environment } from 'src/environments/environment';
 import { OthersService } from 'src/app/services/others.service';
 import { ModalService } from 'src/app/_modal';
@@ -22,6 +22,7 @@ export class EvaluerComponent implements OnInit {
   interimaire;
   prenon;
   prenom;
+  evaluerForm: FormGroup;
   note;
   nom;
   successMsg;
@@ -40,10 +41,21 @@ export class EvaluerComponent implements OnInit {
     private modalService: ModalService,
     private activeroute: ActivatedRoute,
     private errormodalService: ErrormodalService,
-    private http: HttpClient,) {
+    private http: HttpClient,
+    private formBuilder: FormBuilder) {
     this.activeroute.queryParams.subscribe(params => {
       this.item = JSON.parse(params["interimaire"]);
       console.log(this.item);
+    });
+    this.evaluerForm = this.formBuilder.group({
+      notation: this.formBuilder.array([
+        {
+          objectifId: new FormControl(''),
+          commentaire: new FormControl(''),
+          note: new FormControl('')
+        }
+      ]),
+      comentaire: ['', Validators.required],
     });
   }
 
@@ -52,17 +64,17 @@ export class EvaluerComponent implements OnInit {
     // this.interimConnect = JSON.parse(localStorage.getItem('currentUser'));
     // this.item = this.interimConnect.interimaire.id
     // console.log(this.interimConnect);
-    this.otherService.getListeObjectif(this.item).subscribe(
-      data => {
-        this.data = data
-        this.objectif = this.data["data"];
-        console.log(data);
-      }, error=> {
-        this.errorMsg = error;
-        this.errormodalService.open('error-modal-1');
-        console.log(error)
-      }
-    );
+    // this.otherService.getListeObjectif(this.item).subscribe(
+    //   data => {
+    //     this.data = data
+    //     this.objectif = this.data["data"];
+    //     console.log(data);
+    //   }, error=> {
+    //     this.errorMsg = error;
+    //     this.errormodalService.open('error-modal-1');
+    //     console.log(error)
+    //   }
+    // );
     this.objectifForm = new FormGroup({
       titre: new FormControl(''),
       description: new FormControl(''),
@@ -101,6 +113,16 @@ export class EvaluerComponent implements OnInit {
       this.data = data
       this.objectif = this.data["data"];
       console.log(data);
+      this.evaluerForm = this.formBuilder.group({
+        comentaire: ['', Validators.required],
+        notation: this.formBuilder.array(
+          this.objectif.map(x => this.formBuilder.group({
+            objectifId: [x.id, [Validators.required, Validators.minLength(1)]],
+            note: [x.first_name, [Validators.required, Validators.minLength(1)]],
+            commentaire: [x.last_name, [Validators.required, Validators.minLength(2)]]
+          }))
+        )
+      })
     }, error=> {
       this.errorMsg = error;
       this.errormodalService.open('error-modal-1');

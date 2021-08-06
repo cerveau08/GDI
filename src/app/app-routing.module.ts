@@ -1,3 +1,4 @@
+import { EvaluerComponent } from './pages/evaluer/evaluer.component';
 import { DetailevaluationComponent } from './pages/detailevaluation/detailevaluation.component';
 import { ListeevaluationComponent } from './pages/listeevaluation/listeevaluation.component';
 import { AddattestationComponent } from './pages/addattestation/addattestation.component';
@@ -247,6 +248,10 @@ const routes: Routes = [
       },
       { path: 'detailevaluation',
         component: DetailevaluationComponent,
+          canActivate: [AuthGuard]
+      },
+      { path: 'evaluer',
+        component: EvaluerComponent,
           canActivate: [AuthGuard]
       },
       {

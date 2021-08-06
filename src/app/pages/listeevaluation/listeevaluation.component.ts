@@ -171,6 +171,16 @@ export class ListeevaluationComponent implements OnInit {
     })
   }
 
+  openEvaluer() {
+    console.log(this.item);
+    
+    this.router.navigate(['/accueil/evaluer'], {
+      queryParams: {
+        interimaire: JSON.stringify(this.item),
+      }
+    })
+  }
+
   openModal(id: string) {
     this.modalService.open(id);
   }
