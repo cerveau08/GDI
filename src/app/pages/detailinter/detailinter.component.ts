@@ -365,6 +365,13 @@ export class DetailinterComponent implements OnInit {
       }
     })
   } 
+  evaluation() {
+    this.router.navigate(['accueil/listeevaluation'], {
+      queryParams: {
+        interimaire: JSON.stringify(this.item)
+      }
+    })
+  } 
   historiqueContrat() {
     this.router.navigate(['accueil/historiquecontrat'], {
       queryParams: {

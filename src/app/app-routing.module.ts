@@ -1,3 +1,5 @@
+import { DetailevaluationComponent } from './pages/detailevaluation/detailevaluation.component';
+import { ListeevaluationComponent } from './pages/listeevaluation/listeevaluation.component';
 import { AddattestationComponent } from './pages/addattestation/addattestation.component';
 import { ListehistoriquecontratComponent } from './pages/listehistoriquecontrat/listehistoriquecontrat.component';
 import { ListeblacklisterComponent } from './pages/listeblacklister/listeblacklister.component';
@@ -215,7 +217,7 @@ const routes: Routes = [
       { path: 'modifieruser',
         component: ModifieruserComponent,
           canActivate: [AuthGuard]
-    },
+      },
       { path: 'mesobjectif',
         component: MesObjectifsComponent,
           canActivate: [AuthGuard]
@@ -236,9 +238,17 @@ const routes: Routes = [
         component: DetailcontratComponent,
         canActivate: [AuthGuard]
       },{ path: 'addattestation',
-      component: AddattestationComponent,
-      canActivate: [AuthGuard]
-    },
+       component: AddattestationComponent,
+       canActivate: [AuthGuard]
+      },
+      { path: 'listeevaluation',
+        component: ListeevaluationComponent,
+          canActivate: [AuthGuard]
+      },
+      { path: 'detailevaluation',
+        component: DetailevaluationComponent,
+          canActivate: [AuthGuard]
+      },
       {
         path: '',
         redirectTo: 'accueil/home',

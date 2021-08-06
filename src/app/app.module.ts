@@ -1,3 +1,4 @@
+import { DetailevaluationComponent } from './pages/detailevaluation/detailevaluation.component';
 import { SidenavModule } from './sidenav';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, LOCALE_ID } from '@angular/core';
@@ -79,6 +80,7 @@ import { ListehistoriquecontratComponent } from './pages/listehistoriquecontrat/
 import { DetailcontratComponent } from './pages/detailcontrat/detailcontrat.component';
 import { ListeblacklisterComponent } from './pages/listeblacklister/listeblacklister.component';
 import { AddattestationComponent } from './pages/addattestation/addattestation.component';
+import { ListeevaluationComponent } from './pages/listeevaluation/listeevaluation.component';
 ;
 
 @NgModule({
@@ -138,6 +140,8 @@ import { AddattestationComponent } from './pages/addattestation/addattestation.c
     DetailcontratComponent,
     ListeblacklisterComponent,
     AddattestationComponent,
+    ListeevaluationComponent,
+    DetailevaluationComponent,
   ],
   imports: [
     BrowserModule,
