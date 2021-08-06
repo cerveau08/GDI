@@ -27,7 +27,7 @@ export class ListeattestationComponent implements OnInit {
   filterterm: string;
   dataAttest: any;
   page = 1;
-  itemsPerPage = 7;
+  itemsPerPage = 8;
   totalItems : any;
   user;
   public reqUrl = environment.base_url;
@@ -97,8 +97,8 @@ export class ListeattestationComponent implements OnInit {
   gty(page: any){
     this.http.get(this.reqUrl + `/listeAttestation?page=${page}&limit=${this.itemsPerPage}`).subscribe(
       (data: any) => {
-         this.dataAttest =  data.data[0]
-         console.log(data);
+        this.dataAttest =  data.data[0]
+        console.log(this.dataAttest);
       }
     )
   }
