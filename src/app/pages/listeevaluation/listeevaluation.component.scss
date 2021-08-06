@@ -1,3 +1,48 @@
+.info-evaluation{
+    border: 1px solid #f5f6f9;
+    background-color: #f5f6f9;
+}
+.content-evaluation{
+    margin: 5px;
+    padding: 5px;
+    border: 1px solid #f5f6f9;
+    background-color: white;
+    cursor: pointer;
+    outline: none;
+}
+.key-evaluation-head{
+    margin-top: 5px;
+    font-size: 13px;
+    margin-bottom: 5px;
+}
+.key-evaluation{
+    margin-top: 5px;
+    font-size: 13px;
+    margin-bottom: 5px;
+}
+.key-evaluation-commentaire{
+    margin-top: 5px;
+    font-size: 13px;
+    margin-bottom: 5px;
+    text-align: justify;
+}
+.value-evaluation-head{
+    color: #ff7900;
+    font-size: 13px;
+    font-weight: bold;
+}
+.value-evaluation-note{
+    padding: 3px;
+    color: white;
+    font-size: 13px;
+    font-weight: bold;
+    background-color: #009393;
+}
+.value-commentaire{
+    color: #000000;
+    font-size: 10px;
+    font-style: italic;
+}
 .objectif-container {
     background-color: white;
     padding: 10px;
