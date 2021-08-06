@@ -97,7 +97,7 @@ export class ListeevaluationComponent implements OnInit {
   }
 
   gty(page: any){
-    this.http.get(this.reqUrl + `/listeObjectifs/${this.item}?page=${page}&limit=${this.itemsPerPage}`).subscribe((data: any) => {
+    this.http.get(this.reqUrl + `/listEvaluations/${this.item}?page=${page}&limit=${this.itemsPerPage}`).subscribe((data: any) => {
       this.data = data
       this.objectif = this.data["data"];
       console.log(data);

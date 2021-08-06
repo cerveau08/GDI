@@ -1,4 +1,3 @@
-import { PresenceComponent } from './../pages/presence/presence.component';
 import { Component, HostListener, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';

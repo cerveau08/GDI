@@ -11,7 +11,6 @@ import { ListeattestationComponent } from './pages/listeattestation/listeattesta
 import { NewinterComponent } from './pages/newinter/newinter.component';
 import { OffreComponent } from './pages/offre/offre.component';
 import { AgenceComponent } from './pages/agence/agence.component';
-import { PresenceComponent } from './pages/presence/presence.component';
 import { InterimaireComponent } from './pages/interimaire/interimaire.component';
 import { DetailmanagerComponent } from './pages/detailmanager/detailmanager.component';
 import { DetailagenceComponent } from './pages/detailagence/detailagence.component';
@@ -50,6 +49,7 @@ import { MesObjectifsComponent } from './pages/mes-objectifs/mes-objectifs.compo
 import { MonAgenceComponent } from './pages/mon-agence/mon-agence.component';
 import { MonManagerComponent } from './pages/mon-manager/mon-manager.component';
 import { DetailcontratComponent } from './pages/detailcontrat/detailcontrat.component';
+import { AttestationmesInterimaireComponent } from './pages/attestationmesInterimaire/attestationmesInterimaire.component';
 
 
 const routes: Routes = [
@@ -102,8 +102,8 @@ const routes: Routes = [
         component: RestaurationComponent,
           canActivate: [AuthGuard]
       },
-      { path: 'presence',
-        component: PresenceComponent,
+      { path: 'attestationmesinterimaires',
+        component: AttestationmesInterimaireComponent,
           canActivate: [AuthGuard]
       },
       { path: 'listinter',

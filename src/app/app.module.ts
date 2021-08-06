@@ -47,7 +47,6 @@ import { DatePipe, registerLocaleData } from '@angular/common';
 import { NgxFileSaverModule } from '@clemox/ngx-file-saver';
 import { NgxDocViewerModule } from 'ngx-doc-viewer';
 import { MatAutocompleteModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatSidenavModule, MatStepperModule, MatToolbarModule, MatDatepickerModule, MatDialogModule, MatNativeDateModule, MatButtonToggleModule, MatCardModule, MatCheckboxModule, MatChipsModule, MatDividerModule, MatExpansionModule, MatGridListModule, MatIconModule, MatListModule, MatMenuModule, MatPaginatorModule, MatProgressBarModule, MatProgressSpinnerModule, MatRadioModule, MatRippleModule, MatSelectModule, MatSliderModule, MatSlideToggleModule, MatSnackBarModule, MatSortModule, MatTableModule, MatTabsModule, MatTooltipModule } from '@angular/material';
-import { PresenceComponent } from './pages/presence/presence.component';
 import { AgenceComponent } from './pages/agence/agence.component';
 import { OffreComponent } from './pages/offre/offre.component';
 import { NewinterComponent } from './pages/newinter/newinter.component';
@@ -81,6 +80,7 @@ import { DetailcontratComponent } from './pages/detailcontrat/detailcontrat.comp
 import { ListeblacklisterComponent } from './pages/listeblacklister/listeblacklister.component';
 import { AddattestationComponent } from './pages/addattestation/addattestation.component';
 import { ListeevaluationComponent } from './pages/listeevaluation/listeevaluation.component';
+import { AttestationmesInterimaireComponent } from './pages/attestationmesInterimaire/attestationmesInterimaire.component';
 ;
 
 @NgModule({
@@ -113,7 +113,7 @@ import { ListeevaluationComponent } from './pages/listeevaluation/listeevaluatio
     DetailmanagerComponent,
     DetailinterComponent,
     DetailagenceComponent,
-    PresenceComponent,
+    AttestationmesInterimaireComponent,
     AgenceComponent,
     OffreComponent,
     NewinterComponent,
