@@ -2,7 +2,10 @@
     <h1 class="titre-objectif">Liste des objectifs du contrat de {{item.prenom}} {{item.nom}}</h1>
     <button *ngIf="role == 'MNG'" class="button-ajouter" (click)="openModal('objectif-modal-1');">Ajouter Objectif</button>
     <div class="grid-container" *ngIf="item">
-        <div class="info-evaluation">
+        <div class="info-evaluation" *ngFor="let p of objectif | paginate: {  itemsPerPage: itemsPerPage,
+            currentPage: page,
+            totalItems: totalItems
+            }; let i = index">
             <div class="content-evaluation">
                 <p class="key-evaluation-head">
                     Évaluation du: 
@@ -12,54 +15,11 @@
                 </p>
                 <p class="key-evaluation">
                     Note Globale: 
-                    <span class="value-evaluation-note">{{dateDebut | date:'dd'}} </span>
+                    <span class="value-evaluation-note">{{p.dateDebut | date:'dd'}} </span>
                 </p>
                 <p class="key-evaluation-commentaire">
                     Commentaire: 
-                    <span class="value-commentaire">
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                        Minima quod saepe iure deleniti odio animi, sunt quis 
-                        ipsam sed, quos sit culpa voluptates molestias quam
-                    </span>
-                </p>
-            </div>
-            <div class="content-evaluation">
-                <p class="key-evaluation-head">
-                    Évaluation du: 
-                    <span class="value-evaluation-head">{{dateDebut | date:'dd MMMM yyyy'}} </span>
-                     au 
-                    <span class="value-evaluation-head"> {{dateFin | date:'dd MMMM yyyy'}} </span>
-                </p>
-                <p class="key-evaluation">
-                    Note Globale: 
-                    <span class="value-evaluation-note">{{dateDebut | date:'dd'}} </span>
-                </p>
-                <p class="key-evaluation-commentaire">
-                    Commentaire: 
-                    <span class="value-commentaire">
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                        Minima quod saepe iure deleniti odio animi, sunt quis 
-                        ipsam sed, quos sit culpa voluptates molestias quam
-                    </span>
-                </p>
-            </div>
-            <div class="content-evaluation">
-                <p class="key-evaluation-head">
-                    Évaluation du: 
-                    <span class="value-evaluation-head">{{dateDebut | date:'dd MMMM yyyy'}} </span>
-                     au 
-                    <span class="value-evaluation-head"> {{dateFin | date:'dd MMMM yyyy'}} </span>
-                </p>
-                <p class="key-evaluation">
-                    Note Globale: 
-                    <span class="value-evaluation-note">{{dateDebut | date:'dd'}} </span>
-                </p>
-                <p class="key-evaluation-commentaire">
-                    Commentaire: 
-                    <span class="value-commentaire">
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                        Minima quod saepe iure deleniti odio animi, sunt quis 
-                        ipsam sed, quos sit culpa voluptates molestias quam
+                    <span class="value-commentaire">{{p.commentaire}}
                     </span>
                 </p>
             </div>
