@@ -3,7 +3,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { environment } from 'src/environments/environment';
 import { OthersService } from 'src/app/services/others.service';
 import { ModalService } from 'src/app/_modal';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ErrormodalService } from 'src/app/_errormodals';
 import { HttpClient } from '@angular/common/http';
 
@@ -40,6 +40,7 @@ export class ListeevaluationComponent implements OnInit {
     private modalService: ModalService,
     private activeroute: ActivatedRoute,
     private errormodalService: ErrormodalService,
+    private router: Router,
     private http: HttpClient,) {
     this.activeroute.queryParams.subscribe(params => {
       this.item = JSON.parse(params["interimaire"]);
@@ -168,6 +169,15 @@ export class ListeevaluationComponent implements OnInit {
       }
     )
   }
+
+  openDetail(data) {
+    this.router.navigate(['/accueil/detailevaluation'], {
+      queryParams: {
+        user: JSON.stringify(data)
+      }
+    })
+  }
+
   openModal(id: string) {
     this.modalService.open(id);
   }
