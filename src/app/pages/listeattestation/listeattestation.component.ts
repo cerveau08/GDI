@@ -95,7 +95,7 @@ export class ListeattestationComponent implements OnInit {
     });
   }
   gty(page: any){
-    this.http.post(this.reqUrl + `/listeAttestation?page=${page}&limit=${this.itemsPerPage}`, null).subscribe(
+    this.http.get(this.reqUrl + `/listeAttestation?page=${page}&limit=${this.itemsPerPage}`).subscribe(
       (data: any) => {
          this.dataAttest =  data.data[0]
          console.log(data);

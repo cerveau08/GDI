@@ -177,7 +177,7 @@ export class DetailinterComponent implements OnInit {
     this.validerForm = new FormGroup({
       matricule: new FormControl(''),
       telephone: new FormControl(''),
-      matriculeManageur: new FormControl('')
+      responsable: new FormControl('')
     })
     this.otherService.getAllSociete().subscribe(
       data => {

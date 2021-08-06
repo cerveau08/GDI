@@ -263,4 +263,7 @@ addAgence(data) {
   historiqueInter(id: number){
     return this.http.get<any>(`${this.reqUrl}/histoContratInterimaire/${id}`);
   }
+  getListAttestation() {
+    return this.http.get<any>(`${this.reqUrl}/listeAttestation`);
+  }
 }

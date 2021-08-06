@@ -372,7 +372,7 @@
                 </div>
                 <div class="input-v">
                     <p class="libelle-motif">Matricule Manager</p>
-                    <input list="matriculesm" class="input-valider" (change)="saveMatriculeM($event)" type="text" formControlName="matriculeManageur" placeholder="Matricule de son manageur">
+                    <input list="matriculesm" class="input-valider" (change)="saveMatriculeM($event)" type="text" formControlName="responsable" placeholder="Matricule de son manageur">
                     <datalist id="matriculesm">
                         <option *ngFor="let c of dataManageur" [value]="c.matricule" >{{c.matricule}}</option>
                       </datalist>
