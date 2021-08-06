@@ -31,16 +31,18 @@
                 </div>
             </div>
             <div class="info-evaluation">
+                <p class="title-liste-objectif">Les Objectifs de cette Evaluation</p>
                 <div class="content-evaluation" *ngFor="let p of objectif | paginate: {  itemsPerPage: itemsPerPage,
                     currentPage: page,
                     totalItems: totalItems
                     }; let i = index">
                     <p class="key-evaluation-head">
-                        Titre 
+                        Titre: 
                         <span class="value-evaluation-head">{{p.titre}} </span>
                     </p>
                     <p class="key-evaluation-head">
-                        Description: {{p.description}}
+                        Description: 
+                        <span class="value-objectif-description">{{p.description}}</span>
                     </p>
                     <p class="key-evaluation">
                         Note: 

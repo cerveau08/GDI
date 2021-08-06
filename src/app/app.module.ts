@@ -81,6 +81,7 @@ import { ListeblacklisterComponent } from './pages/listeblacklister/listeblackli
 import { AddattestationComponent } from './pages/addattestation/addattestation.component';
 import { ListeevaluationComponent } from './pages/listeevaluation/listeevaluation.component';
 import { AttestationmesInterimaireComponent } from './pages/attestationmesInterimaire/attestationmesInterimaire.component';
+import { EvaluerComponent } from './pages/evaluer/evaluer.component';
 ;
 
 @NgModule({
@@ -142,6 +143,7 @@ import { AttestationmesInterimaireComponent } from './pages/attestationmesInteri
     AddattestationComponent,
     ListeevaluationComponent,
     DetailevaluationComponent,
+    EvaluerComponent,
   ],
   imports: [
     BrowserModule,

@@ -91,6 +91,7 @@ export class DetailevaluationComponent implements OnInit {
   successMsgRenouveler;
   successMsgBannir;
   successMsgArret;
+  objectif;
   public reqUrl = environment.base_url;
   errorMsg: any;
   constructor(private activeroute: ActivatedRoute,
@@ -106,20 +107,20 @@ export class DetailevaluationComponent implements OnInit {
       this.interim_id = JSON.parse(params["interimaire"]);
       console.log(this.item);
       console.log(this.interim_id);
-      // this.otherService.getOneInterById(this.item).subscribe(
-      //     data =>{
-      //       this.data = data;
-      //       this.dataInter = this.data.data;
-      //       console.log(this.dataInter);
-      //       this.nom = this.dataInter.nom;
-      //       this.prenom = this.dataInter.prenom;
-      //   },
-      //   error=> {
-      //     this.errorMsg = error;
-      //     this.errormodalService.open('error-modal-1');
-      //     console.log(error)
-      //   }
-      // );
+      this.otherService.getOneInterById(this.interim_id).subscribe(
+          data =>{
+            this.data = data;
+            this.dataInter = this.data.data;
+            console.log(this.dataInter);
+            this.nom = this.dataInter.nom;
+            this.prenom = this.dataInter.prenom;
+        },
+        error=> {
+          this.errorMsg = error;
+          this.errormodalService.open('error-modal-1');
+          console.log(error)
+        }
+      );
     })
 
     //detail d'un contrat
@@ -174,7 +175,7 @@ export class DetailevaluationComponent implements OnInit {
     this.modalService.close(id);
   }
   
-  objectif() {
+  openObjectif() {
     this.router.navigate(['accueil/objectif'], {
       queryParams: {
         interimaire: JSON.stringify(this.item)
