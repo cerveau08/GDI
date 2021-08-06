@@ -16,7 +16,7 @@ export class ListeevaluationComponent implements OnInit {
 
   role;
   commentaire;
-  objectif;
+  evaluations;
   item;
   data;
   interimaire;
@@ -31,7 +31,7 @@ export class ListeevaluationComponent implements OnInit {
   titremodif;
   descriptionmodif;
   page = 1;
-  itemsPerPage = 4;
+  itemsPerPage = 3;
   totalItems : any;
   interimConnect;
   public reqUrl = environment.base_url;
@@ -53,17 +53,6 @@ export class ListeevaluationComponent implements OnInit {
     // this.interimConnect = JSON.parse(localStorage.getItem('currentUser'));
     // this.item = this.interimConnect.interimaire.id
     // console.log(this.interimConnect);
-    this.otherService.getListeObjectif(this.item).subscribe(
-      data => {
-        this.data = data
-        this.objectif = this.data["data"];
-        console.log(data);
-      }, error=> {
-        this.errorMsg = error;
-        this.errormodalService.open('error-modal-1');
-        console.log(error)
-      }
-    );
     this.objectifForm = new FormGroup({
       titre: new FormControl(''),
       description: new FormControl(''),
@@ -83,6 +72,8 @@ export class ListeevaluationComponent implements OnInit {
     this.otherService.getOneInterById(this.item).subscribe(
       data =>{
         this.interimaire = data;
+        console.log(data);
+        
         this.objectifForm.patchValue({
           structure_id: this.interimaire.data.structure.id,
           interimaire: this.item
@@ -101,7 +92,7 @@ export class ListeevaluationComponent implements OnInit {
     this.http.get(this.reqUrl + `/listEvaluations/${this.item}?page=${page}&limit=${this.itemsPerPage}`).subscribe((data: any) => {
       this.data = data
       console.log(data);
-      this.objectif = this.data["data"];
+      this.evaluations = this.data["data"];
       
     }, error=> {
       this.errorMsg = error;
@@ -171,10 +162,11 @@ export class ListeevaluationComponent implements OnInit {
     )
   }
 
-  openDetail(data) {
+  openDetail(interim_id, evaluation_id) {
     this.router.navigate(['/accueil/detailevaluation'], {
       queryParams: {
-        user: JSON.stringify(data)
+        interimaire: JSON.stringify(interim_id),
+        evaluation: JSON.stringify(evaluation_id),
       }
     })
   }

@@ -1,12 +1,12 @@
 <div class="objectif-container">
-    <h1 class="titre-objectif">Liste des objectifs du contrat de {{item.prenom}} {{item.nom}}</h1>
-    <button *ngIf="role == 'MNG'" class="button-ajouter" (click)="openDetail(p.id)">Faire Evaluation</button>
+    <h1 class="titre-objectif">Liste des Evaluations de {{interimaire?.data.prenom}} {{interimaire?.data.nom}}</h1>
+    <button *ngIf="role == 'MNG'" class="button-ajouter" >Faire une Evaluation</button>
     <div class="grid-container" *ngIf="item">
-        <div class="info-evaluation" *ngFor="let p of objectif | paginate: {  itemsPerPage: itemsPerPage,
+        <div class="info-evaluation" *ngFor="let p of evaluations | paginate: {  itemsPerPage: itemsPerPage,
             currentPage: page,
             totalItems: totalItems
             }; let i = index">
-            <div class="content-evaluation">
+            <div (click)="openDetail(item, p.id)" class="content-evaluation">
                 <p class="key-evaluation-head">
                     Évaluation du: 
                     <span class="value-evaluation-head">{{p.dateDebut | date:'dd MMMM yyyy'}} </span>
@@ -23,6 +23,9 @@
                     </span>
                 </p>
             </div>
+        </div>
+        <div class="pagination">
+            <pagination-controls (pageChange)="gty(page = $event)" previousLabel="Prcédent" nextLabel="Suivant"></pagination-controls>
         </div>
     </div>
     <div class="modal">

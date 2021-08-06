@@ -23,9 +23,9 @@ export class DetailevaluationComponent implements OnInit {
   public left: any;
   donnees: any;
   page = 1
-  itemsPerPage = 7;
+  itemsPerPage = 3;
   dataInter:any;
-  dataContrat: any;
+  dataEvaluation: any;
   dataManageur;
   viewer = 'google';  
   selectedType = 'docx';   
@@ -40,7 +40,7 @@ export class DetailevaluationComponent implements OnInit {
   data;
   nom;
   prenom;
-  categorie;
+  note;
   dateDebut;
   dateFin;
   societe;
@@ -50,7 +50,7 @@ export class DetailevaluationComponent implements OnInit {
   image;
   diplome;
   numeroPiece;
-  domaine;
+  commentaire;
   email;
   poste;
   matricule;
@@ -74,15 +74,17 @@ export class DetailevaluationComponent implements OnInit {
   dataAgence: any;
   dataDepartement: any;
   donneeService: any;
-  dataCategorie;
+  datanote;
   fileContrat;
   fileFicheposte;
   fileProcesVerbal;
   etat;
   role;
   url3;
+  interim_id;
   url2;
   filename3;
+  interimaire_id;
   filename2;
   successMsgValider;
   successMsgReconduire;
@@ -100,45 +102,57 @@ export class DetailevaluationComponent implements OnInit {
               private http: HttpClient,
               public router: Router, ) { 
     this.activeroute.queryParams.subscribe(params => {
-      this.item = JSON.parse(params["contrat"]);
+      this.item = JSON.parse(params["evaluation"]);
+      this.interim_id = JSON.parse(params["interimaire"]);
       console.log(this.item);
-      this.otherService.getOneInterById(this.item).subscribe(
-          data =>{
-            this.data = data;
-            this.dataInter = this.data.data;
-            console.log(this.dataInter);
-            this.nom = this.dataInter.nom;
-            this.prenom = this.dataInter.prenom;
-        },
-        error=> {
-          this.errorMsg = error;
-          this.errormodalService.open('error-modal-1');
-          console.log(error)
-        }
-      );
+      console.log(this.interim_id);
+      // this.otherService.getOneInterById(this.item).subscribe(
+      //     data =>{
+      //       this.data = data;
+      //       this.dataInter = this.data.data;
+      //       console.log(this.dataInter);
+      //       this.nom = this.dataInter.nom;
+      //       this.prenom = this.dataInter.prenom;
+      //   },
+      //   error=> {
+      //     this.errorMsg = error;
+      //     this.errormodalService.open('error-modal-1');
+      //     console.log(error)
+      //   }
+      // );
     })
 
     //detail d'un contrat
-    this.otherService.getContratById(this.item).subscribe(
+    this.otherService.getOneEvaluation(this.item).subscribe(
       data =>{
         this.data = data;
-        this.dataContrat = this.data.data;
-        this.poste = this.dataContrat.poste.libelle;
-        this.dateDebut = this.dataContrat.dateDebut;
-        this.dateFin = this.dataContrat.dateFin;
-        this.societe = this.dataContrat.societe.libelle;
-        this.direction = this.dataContrat.structure.direction.libelle;
-        this.departement = this.dataContrat.structure.departement;
-        this.service = this.dataContrat.structure.service;
-        this.categorie = this.dataContrat.categorie;
-        this.domaine = this.dataContrat.domaine;
-        console.log(this.dataContrat);
+        console.log(data);
+        
+        this.dataEvaluation = this.data.data;
+        this.dateDebut = this.dataEvaluation.dateDebut;
+        this.dateFin = this.dataEvaluation.dateFin;
+        this.note = this.dataEvaluation.note;
+        this.commentaire = this.dataEvaluation.commentaire;
+        console.log(this.dataEvaluation);
       })
     
   }
   ngOnInit() {
     this.role = localStorage.getItem('user')
-    
+    this.gty(this.page);
+  }
+
+  gty(page: any){
+    this.http.get(this.reqUrl + `/objectif/${this.interim_id}/${this.item}?page=${page}&limit=${this.itemsPerPage}`).subscribe((data: any) => {
+      this.data = data
+      console.log(data);
+      this.objectif = this.data["data"];
+      
+    }, error=> {
+      this.errorMsg = error;
+      this.errormodalService.open('error-modal-1');
+      console.log(error)
+    })
   }
 
   public get(p) {

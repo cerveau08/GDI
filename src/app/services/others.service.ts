@@ -269,4 +269,13 @@ addAgence(data) {
   attestionMesInter(){
     return this.http.get<any>(this.reqUrl + '/attestationMesInterimaires');
   }
+  getOneEvaluation(id: number){
+    return this.http.get<any>(`${this.reqUrl}/evaluation/${id}`);
+  }
+  evaluer(data:any): Observable<any> {
+    return this.http.post<any>(`${this.reqUrl}/notation`, data);
+  }
+  objectifEvaluation(id_inter: number, id_evaluation){
+    return this.http.get<any>(`${this.reqUrl}/objectif/${id_inter}/${id_evaluation}`);
+  }
 }
