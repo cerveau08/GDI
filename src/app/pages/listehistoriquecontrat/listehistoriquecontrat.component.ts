@@ -62,7 +62,7 @@ export class ListehistoriquecontratComponent implements OnInit {
   }
 
   gty(page: any){
-    this.http.get(this.reqUrl + `/histoContratInterimaire/id/societe/id/`).subscribe((data: any) => {
+    this.http.get(this.reqUrl + `/histoContratInterimaire/id/societe/id/${this.item}?page=${page}&limit=${this.itemsPerPage}`).subscribe((data: any) => {
       this.data = data ;
       this.histoContrat = this.data["data"];
       console.log(data);
