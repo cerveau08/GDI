@@ -51,15 +51,11 @@
                     </p>
                     <p class="key-evaluation-commentaire">
                         Commentaire: 
-                        <span class="value-commentaire">
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                            Minima quod saepe iure deleniti odio animi, sunt quis 
-                            ipsam sed, quos sit culpa voluptates molestias quam
-                        </span>
+                        <span class="value-commentaire">{{p.commentaire}} </span>
                     </p>
                 </div>
                 <div class="pagination">
-                    <pagination-controls (pageChange)="gty(page = $event)" previousLabel="Prcédent" nextLabel="Suivant"></pagination-controls>
+                    <pagination-controls (pageChange)="gty(page = $event)" previousLabel="Précédent" nextLabel="Suivant"></pagination-controls>
                 </div>
             </div>
         </div>

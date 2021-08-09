@@ -15,7 +15,6 @@ import { OthersService } from 'src/app/services/others.service';
 })
 export class ListeattestationComponent implements OnInit {
 
-  
   annee;
   mois;
   checkedList:any;
