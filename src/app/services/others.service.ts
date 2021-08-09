@@ -278,4 +278,7 @@ addAgence(data) {
   objectifEvaluation(id_inter: number, id_evaluation){
     return this.http.get<any>(`${this.reqUrl}/objectif/${id_inter}/${id_evaluation}`);
   }
+  getStatPresence(): Observable<any> {
+    return this.http.get<any>(this.reqUrl + '/statDemande');
+  }
 }

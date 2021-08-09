@@ -17,6 +17,7 @@ export class AsideComponent implements OnInit {
   photo;
   dataInterFin;
   nouveauxRrecrus;
+  pmc;
   managerinfo;
   color: any;
   user: any;
@@ -34,6 +35,14 @@ export class AsideComponent implements OnInit {
       data => {
        this.nouveauxRrecrus = data.data;
        console.log(data);
+      }
+    );
+
+    this.otherService.getStatPresence().subscribe(
+      data => {
+        console.log(data);
+       this.pmc = data.data;
+       
       }
     );
   }
