@@ -100,6 +100,7 @@ export class ObjectifsComponent implements OnInit {
   gty(page: any){
     this.http.get(this.reqUrl + `/listeObjectifs/${this.item}?page=${page}&limit=${this.itemsPerPage}`).subscribe((data: any) => {
       this.data = data
+      this.totalItems = data.total;
       this.objectif = this.data["data"];
       console.log(data);
     }, error=> {

@@ -24,6 +24,7 @@ export class DetailevaluationComponent implements OnInit {
   donnees: any;
   page = 1
   itemsPerPage = 3;
+  totalItems;
   dataInter:any;
   dataEvaluation: any;
   dataManageur;
@@ -146,6 +147,7 @@ export class DetailevaluationComponent implements OnInit {
   gty(page: any){
     this.http.get(this.reqUrl + `/objectif/${this.interim_id}/${this.item}?page=${page}&limit=${this.itemsPerPage}`).subscribe((data: any) => {
       this.data = data
+      this.totalItems = data.total;
       console.log(data);
       this.objectif = this.data["data"];
       
@@ -182,6 +184,15 @@ export class DetailevaluationComponent implements OnInit {
       }
     })
   } 
+
+  openEvaluer() {
+    console.log(this.interim_id);
+    this.router.navigate(['/accueil/evaluer'], {
+      queryParams: {
+        interimaire: JSON.stringify(this.interim_id),
+      }
+    })
+  }
 
   openErrorModal(id: string) {
     this.errormodalService.open(id);
