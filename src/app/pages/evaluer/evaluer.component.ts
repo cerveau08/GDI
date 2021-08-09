@@ -32,8 +32,9 @@ export class EvaluerComponent implements OnInit {
   titremodif;
   descriptionmodif;
   page = 1;
-  itemsPerPage = 4;
+  itemsPerPage = 2;
   totalItems : any;
+  dataInter;
   interimConnect;
   public reqUrl = environment.base_url;
   errorMsg: any;
@@ -57,6 +58,20 @@ export class EvaluerComponent implements OnInit {
       ]),
       comentaire: ['', Validators.required],
     });
+    this.otherService.getOneInterById(this.item).subscribe(
+      data =>{
+        this.data = data;
+        this.dataInter = this.data.data;
+        console.log(this.dataInter);
+        this.nom = this.dataInter.nom;
+        this.prenom = this.dataInter.prenom;
+      },
+      error=> {
+        this.errorMsg = error;
+        this.errormodalService.open('error-modal-1');
+        console.log(error)
+      }
+    );
   }
 
   ngOnInit() {
@@ -111,10 +126,15 @@ export class EvaluerComponent implements OnInit {
   gty(page: any){
     this.http.get(this.reqUrl + `/listeObjectifs/${this.item}?page=${page}&limit=${this.itemsPerPage}`).subscribe((data: any) => {
       this.data = data
+      this.totalItems = data.total;
       this.objectif = this.data["data"];
       console.log(data);
       this.evaluerForm = this.formBuilder.group({
+        interimaireId: this.item,
         comentaire: ['', Validators.required],
+        dateDebut: ['', Validators.required],
+        dateFin: ['', Validators.required],
+        libelle: ['', Validators.required],
         notation: this.formBuilder.array(
           this.objectif.map(x => this.formBuilder.group({
             objectifId: [x.id, [Validators.required, Validators.minLength(1)]],
@@ -149,6 +169,25 @@ export class EvaluerComponent implements OnInit {
         console.log(error)
       }
     );
+  }
+
+  evaluer() {
+    console.log(this.evaluerForm.value);
+    this.otherService.evaluer(this.evaluerForm.value).subscribe(
+      data =>{
+        console.log(data);
+        this.data = data;
+        this.successMsg = this.data.status
+        if(this.successMsg == true) {
+          this.ngOnInit();
+        }
+      },
+      error=> {
+        this.errorMsg = error;
+        this.errormodalService.open('error-modal-1');
+        console.log(error)
+      }
+    )
   }
 
   notezObjectif(id) {
