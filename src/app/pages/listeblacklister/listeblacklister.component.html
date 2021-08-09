@@ -5,16 +5,8 @@
             <table style="overflow-x:auto;" aria-describedby = "mydesc">
                 <thead>
                     <tr class="head">
-                        <th class="typ" id="prenom">
-                            <div class="type">
-                                <p>Prenom</p> 
-                            </div>
-                        </th>
-                        <th class="typ" id="nom">
-                            <div class="type">
-                                <p>Nom</p> 
-                            </div>
-                        </th>
+                        <th id="presence">Prénom</th>
+                        <th id="presence">Nom</th>
                         <th id="presence">Fonction</th>
                         <th id="paiement" *ngIf="role != 'AGN'">Agence</th>
                         <th id="date">Entité</th>
@@ -28,9 +20,9 @@
                         }; let i = index">
                         <td>{{p.prenom}}</td>
                         <td>{{p.nom}}</td>
-                        <td> {{p.typeDemande}}</td>
-                        <td *ngIf="role != 'AGN'">{{p.dateDebut | date: 'dd/MM/yyyy'}}</td>
-                        <td>{{p.dateFin | date: 'dd/MM/yyyy'}}</td>
+                        <td> {{p.fonction}}</td>
+                        <td *ngIf="role != 'AGN'">{{p.agence}}</td>
+                        <td>{{p.societe}}</td>
                         <td><button  class="buttons1" (click)="openModal('custom-modal-'+p.id)">Afficher</button></td>
                         <!--modal1-->
                         <div class="modal">

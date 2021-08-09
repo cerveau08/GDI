@@ -88,7 +88,6 @@ export class ListeragenceComponent implements OnInit {
         user: JSON.stringify(data)
       }
     })
-
   }
   submitted1() {
     console.log(this.agenceForm.value);

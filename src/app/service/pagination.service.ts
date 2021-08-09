@@ -47,8 +47,8 @@ export class PaginationService {
       id: 7,  title: 'Alertes',
       path: '/',  icon: "query_builder",
     },{
-      id: 8,  title: 'Mon Compte',
-      path: 'compte',  icon: "folder_shared",
+      id: 8,  title: 'Attestat',
+      path: 'attestationmesinterimaires',  icon: "folder_shared",
     },{
       id: 9,  title: 'Statistiques',
       path: '/',  icon: "leaderboard",
@@ -129,9 +129,16 @@ export class PaginationService {
           title: 'Ajouter',  path: 'ajoutermanager',
         },
       ]
-    }, {
-      id: 4,  title: 'Liste Attestations',
-      path: 'attestation',  icon: "done_all",
+    },{
+      id: 5,  title: 'Liste Attestations',  icon: "grade",
+      icon2: "expand_more",  icon3: "expand_less",
+    //  click: false,  activeChoice: -1,
+      liste: [  {
+          title: 'Pour tous',  path: 'listeattestation',
+        }, {
+          title: 'Pour mes Interimaires',  path: 'attestationmesinterimaires',
+        },
+      ]
     },{
       id: 5,  title: 'Demandes',
       path: 'lesdemande',  icon: "local_mall",
@@ -226,7 +233,7 @@ export class PaginationService {
       liste: [{
           id: 1,  title: 'Ajouter Attestation',  path: 'addattestation',
         }, {
-          id: 2, title: 'Liste Attestations',  path: 'attestation',
+          id: 2, title: 'Liste Attestations',  path: 'listeattestation',
         },
       ]
     }

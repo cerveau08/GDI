@@ -51,7 +51,7 @@
                             jours
                         </td>
                         <td > 
-                            <input type="text" formControlName="Commentaire" class="commentaire-attestation">
+                            <input type="text" formControlName="commentaire" class="commentaire-attestation">
                         </td>
                         <td  (click)="openModal('custom-modal-'+p.id)" id="contrat">
                             <mat-icon *ngIf="action == true" class="updown" fontSet="material-icons-outlined">delete</mat-icon>
@@ -65,7 +65,7 @@
                     <pagination-controls (pageChange)="gty(page = $event)" previousLabel="Prcédent" nextLabel="Suivant"></pagination-controls>
                 </div>
                 <div>
-                    <button (click)="submit()" class="button-enregistrer-attestation">Enregistrer</button>
+                    <button (click)="addAttestation()" class="button-enregistrer-attestation">Enregistrer</button>
                 </div>
             </div>
         </div>

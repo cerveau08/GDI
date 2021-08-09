@@ -1,3 +1,48 @@
+.info-evaluation{
+    border: 1px solid #f5f6f9;
+    background-color: #f5f6f9;
+}
+.content-evaluation{
+    margin: 5px;
+    padding: 5px;
+    border: 1px solid #f5f6f9;
+    background-color: white;
+    cursor: pointer;
+    outline: none;
+}
+.key-evaluation-head{
+    margin-top: 5px;
+    font-size: 13px;
+    margin-bottom: 5px;
+}
+.key-evaluation{
+    margin-top: 5px;
+    font-size: 13px;
+    margin-bottom: 5px;
+}
+.key-evaluation-commentaire{
+    margin-top: 5px;
+    font-size: 13px;
+    margin-bottom: 5px;
+    text-align: justify;
+}
+.value-evaluation-head{
+    color: #ff7900;
+    font-size: 13px;
+    font-weight: bold;
+}
+.value-evaluation-note{
+    padding: 3px;
+    color: white;
+    font-size: 13px;
+    font-weight: bold;
+    background-color: #009393;
+}
+.value-commentaire{
+    color: #000000;
+    font-size: 10px;
+    font-style: italic;
+}
 .objectif-container {
     background-color: white;
     padding: 10px;
@@ -13,7 +58,7 @@
     top: 10px;
     right: 10px;
     height: 30px;
-    width: 120px;
+    width: 160px;
     background-color: #009393;
     border: none;
     cursor: pointer;
@@ -35,14 +80,9 @@
 }
 .objectif-title {
     font-size: 14px;
-    font-weight: normal;
+    font-weight: bold;
     margin-top: 0px;
     margin-bottom: 5px;
-}
-.content-date{
-    display: grid;
-    grid-template-columns: 50% 50%;
-    width: 500px;
 }
 .objectif-content {
     font-size: 13px;
@@ -126,13 +166,83 @@
     font-weight: bold;
     margin-top: 5px;
 }
-.content-non-data{
-    height: 400px;
-    width: 400px;
+
+//modal
+.modal{
+    position: relative;
+}
+.clear {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+.forms-objectif {
+    width: 500px;
     margin: 0 auto;
-    background-image: url("../../../assets/images/1439126-200.png");
-    background-size: contain;
-    background-repeat: no-repeat;
+}
+.label-input {
+    font-size: 12px;
+    margin-top: 10px;
+    margin-bottom: 2px;
+}
+input {
+    outline: none;
+    padding: 0 10px;
+}
+.input-titre input{
+    width: 500px;
+    height: 30px;
+    background-color: #f5f6f9;
+    border-radius: 1px;
+    border: solid 1px #d8d8d8;
+    margin-bottom: 0px;
+}
+.input-description textarea{
+    width: 510px;
+    height: 70px;
+    background-color: #f5f6f9;
+    border-radius: 1px;
+    border: solid 1px #d8d8d8;
+    margin-bottom: 0px;
+    padding: 5px 5px;
+    outline: none;
+}
+.input-objectif-bareme-date {
+    display: flex;
+}
+.input-bareme input{
+    width: 235px;
+    height: 30px;
+    background-color: #f5f6f9;
+    border-radius: 1px;
+    border: solid 1px #d8d8d8;
+    margin-bottom: 0px;
+}
+.input-date {
+    margin-left: 10px;
+}
+.input-date input{
+    width: 235px;
+    height: 30px;
+    background-color: #f5f6f9;
+    border-radius: 1px;
+    border: solid 1px #d8d8d8;
+    margin-bottom: 0px;
+}
+.content-button-submit-objectif {
+    width: 90px;
+    margin: 10px auto;
+}
+.button-submit-objectif {
+    height: 30px;
+    width: 90px;
+    color: white;
+    background-color: #ff7900;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
 }
 .error-content-image{
     width: 150px;

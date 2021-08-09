@@ -18,12 +18,16 @@ import { ErrormodalService } from 'src/app/_errormodals';
 export class IntersouscontratComponent implements OnInit {
   public data; any;
   public datas: any;
+  isData = false;
   date: any;
   role;
   dataInter: any;
   attestationForm: FormGroup;
+  filterForm: FormGroup;
   page = 1;
   itemsPerPage = 7;
+  pageAgence = 1;
+  itemsPerPageAgence = 100;
   totalItems : any;
   filterterm
   public reqUrl = environment.base_url;
@@ -82,6 +86,10 @@ export class IntersouscontratComponent implements OnInit {
   annee: Date;
   yearOnly;
   errorMsg: any;
+  dataSociete;
+  listeFonction;
+  dataDirection;
+  dataAgence;
   constructor(private dataService: DataService,
     public datepipe: DatePipe,
     public router: Router,
@@ -93,7 +101,6 @@ export class IntersouscontratComponent implements OnInit {
 
   ngOnInit() {
     this.role = localStorage.getItem('user');
-   // this.getcolor(this.p);
     this.attestationForm = new FormGroup({
       interim_id: new FormControl(''),
       mois: new FormControl('', Validators.required),
@@ -109,10 +116,54 @@ export class IntersouscontratComponent implements OnInit {
       matricule: new FormControl(''),
       agence: new FormControl(''),
     });
+    this.filterForm = new FormGroup({
+      societe: new FormControl(''),
+      direction: new FormControl(''),
+      agence: new FormControl(''),
+      poste: new FormControl(''),
+    });
     this.gty(this.page);
+
+    this.otherService.getAllSociete().subscribe(
+      data => {
+        this.dataSociete = data["data"];
+        console.log(data);
+      },error=> {
+        this.errorMsg = error;
+        this.errormodalService.open('error-modal-1');
+        console.log(error)
+      }
+    );
+
+    this.otherService.getFonctions().subscribe(data => this.listeFonction = data.data);
+
+    this.http.get(this.reqUrl + `/listeAgence?page=${this.pageAgence}&limit=${this.itemsPerPageAgence}`).subscribe((data: any) => {
+      this.dataAgence =  data.data;
+      console.log(this.dataAgence);
+    }, error=> {
+      this.errorMsg = error;
+      this.errormodalService.open('error-modal-1');
+      console.log(error)
+    })
   }
 
-  
+  public saveProfession(e): void {
+    let libelle = e.target.value;
+    let list = this.listeFonction.filter(x => x.libelle === libelle)[0];
+    console.log(list.libelle);
+    this.filterForm.patchValue({poste: list.libelle});
+  }
+
+  directionsListe(value) {
+    console.log(value);
+    this.otherService.getAllDirection(value).subscribe(
+      data => {
+        this.dataDirection = data['data'];
+       console.log(data);
+       }
+    ); 
+  }
+
   gty(page: any){
     this.http.get(this.reqUrl + `/interimSousContrat?page=${page}&limit=${this.itemsPerPage}`).subscribe((data: any) => {
       this.dataInter =  data.data;
@@ -160,7 +211,7 @@ export class IntersouscontratComponent implements OnInit {
       queryParams: {
         user: JSON.stringify(data)
       }
-    })
+    });
   }
 
   downloadFile(data: any) {
@@ -183,6 +234,23 @@ export class IntersouscontratComponent implements OnInit {
     a.click();
     window.URL.revokeObjectURL(url);
     a.remove();
+  }
+
+  extraireInter() {
+    if (this.filterForm.value.poste == undefined) {
+      this.filterForm.patchValue({poste: ''});
+    }
+    console.log(this.filterForm.value);
+    this.otherService.extraireInterimaire(this.filterForm.value).subscribe(
+      data => {
+        console.log(data);
+        this.data = data;
+        this.successMsg = this.data.status
+        if(this.successMsg == true) {
+          window.open(data.data);
+        }
+      }
+    )
   }
 
   openModal(id: string) {

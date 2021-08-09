@@ -4,24 +4,23 @@
             <p class="detail1" id="mydesc">Liste des Attestations de Presence</p>
             <form [formGroup]="filterForm">
                 <div class="exporter">
-                    <p class="export">Exporter</p>
-                    <div class="csv" style="cursor: pointer;">
-                        <p class="csv1">CSV</p>
-                        <mat-icon fontSet="material-icons-outlined">unfold_more</mat-icon>
+                    <div class="content-input-extraction">
+                        <div class="filtrer-mois">
+                            <p class="label-input" for="titre">Mois: </p>
+                            <select  formControlName="mois" class="select-mois" >
+                                <option class="option" value="" disabled selected hidden>Mois: </option>
+                                <option *ngFor="let data of ListeMois"  [value]="data.libelle">{{data.libelle}}</option>
+                            </select>
+                        </div>
+                        <div class="input-annee">
+                            <jp-multi-datepicker formControlName="annee" tabindex="-1"  mode="YEAR" label="Année" [(ngModel)]="annee" [min]="2000"></jp-multi-datepicker>
+                        </div>
+                        <div class="content-extraction">
+                            <button (click)="extraireAttestation()" class="button-extraire">Extraire en CSV</button>
+                        </div>
                     </div>
-                    <div class="filtrer" style="cursor: pointer;">
-                        <input class="filtre" formControlName="filterterm" type="text" [(ngModel)]="filterterm" placeholder="Filtre">
-                        <mat-icon fontSet="material-icons-outlined">tune</mat-icon>
-                    </div>
-                    <div class="filtrer-mois">
-                        <p class="label-input" for="titre">Mois: </p>
-                        <select  formControlName="mois" class="select-mois" >
-                            <option class="option" value="" disabled selected hidden>Mois: </option>
-                            <option *ngFor="let data of ListeMois"  [value]="data.libelle">{{data.libelle}}</option>
-                        </select>
-                    </div>
-                    <div class="input-annee">
-                        <jp-multi-datepicker formControlName="annee" tabindex="-1"  mode="YEAR" label="Année" [(ngModel)]="annee" [min]="2000"></jp-multi-datepicker>
+                    <div class="content-error-msg" *ngIf="successMsg == false">
+                        <p class="error-alert">{{ data?.message}}: mois et année</p>
                     </div>
                 </div>
             </form>
@@ -62,7 +61,7 @@
                         <td>{{p.nom}}</td>
                         <td *ngIf="user != 'AGN' && user != 'INT'" >{{p.agence}}</td>
                         <td >{{p.dateFin  | date:'MMMM yyyy'}}</td>
-                        <td  >{{p.dateFin  | date:'dd'}} jours</td>
+                        <td  >{{p.nombreJourAbscence}} jours</td>
                         <td>{{p.statut}}</td>
                         <td *ngIf="user == 'AGN'" ><input *ngIf="p.etat == 0" type="checkbox"
                             [checked]="p.etat"
@@ -75,7 +74,9 @@
                 </tbody>
                 
             </table>
-            <pagination-controls (pageChange)="gty(page = $event)" previousLabel="Prcédent" nextLabel="Suivant"></pagination-controls>
+            <div class="pagination">
+                <pagination-controls (pageChange)="gty(page = $event)" previousLabel="Prcédent" nextLabel="Suivant"></pagination-controls>
+            </div>
         </div>
     </div>
 </div>

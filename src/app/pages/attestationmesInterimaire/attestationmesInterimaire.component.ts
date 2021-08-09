@@ -1,18 +1,22 @@
-import { FormGroup, FormControl, FormArray } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { DatePipe } from '@angular/common';
+import { Component, HostListener, OnInit } from '@angular/core';
+import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { NgxFileSaverService } from '@clemox/ngx-file-saver';
 import { DataService } from 'src/app/service/data.service';
-import { OthersService } from 'src/app/services/others.service';
+import { ModalService } from 'src/app/_modal/modal.service';
 import { environment } from 'src/environments/environment';
 import { ErrormodalService } from 'src/app/_errormodals';
+import { OthersService } from 'src/app/services/others.service';
 
 @Component({
-  selector: 'app-attestationpresence',
-  templateUrl: './attestationpresence.component.html',
-  styleUrls: ['./attestationpresence.component.scss']
+  selector: 'app-attestationmesInterimaire',
+  templateUrl: './attestationmesInterimaire.component.html',
+  styleUrls: ['./attestationmesInterimaire.component.scss']
 })
-export class AttestationpresenceComponent implements OnInit {
+export class AttestationmesInterimaireComponent implements OnInit {
 
+  
   annee;
   mois;
   checkedList:any;
@@ -24,7 +28,7 @@ export class AttestationpresenceComponent implements OnInit {
   filterterm: string;
   dataAttest: any;
   page = 1;
-  itemsPerPage = 5;
+  itemsPerPage = 8;
   totalItems : any;
   user;
   public reqUrl = environment.base_url;
@@ -92,43 +96,14 @@ export class AttestationpresenceComponent implements OnInit {
     });
   }
   gty(page: any){
-    this.http.post(this.reqUrl + `/listeAttestation?page=${page}&limit=${this.itemsPerPage}`, null).subscribe((data: any) => 
-      this.dataAttest =  data.data[0]
+    this.http.get(this.reqUrl + `/attestationMesInterimaires?page=${page}&limit=${this.itemsPerPage}`).subscribe(
+      (data: any) => {
+        this.dataAttest =  data.data[0]
+        console.log(this.dataAttest);
+      }
     )
   }
-  selectAll() {
-    for (var i = 0; i < this.dataAttest.length; i++) {
-      this.dataAttest[i].etat = this.selectedAll;
-    }
-    this.getCheckedItemList();
-  }
-  checkIfAllSelected(event) {
-    this.selectedAll = this.dataAttest.every(function(item:any) {
-      return item.etat == 0;
-    })
-    this.getCheckedItemList();
-  }
-  getCheckedItemList() {
-    console.log(this.dataAttest);
-    this.checkedList = [];
-    for (var i = 0; i < this.dataAttest.length; i++) {
-      if(this.dataAttest[i].etat) {
-        this.checkedList.push(this.dataAttest[i]);
-        this.http.get(`${this.reqUrl}/validerAttestation/${this.dataAttest[i].id}`).subscribe(
-          data => {
-            this.result = data;
-            console.log(data);
-          }, error=> {
-            this.errorMsg = error;
-            this.errormodalService.open('error-modal-1');
-            console.log(error)
-          }
-        )
-      }
-    }
-    this.checkedList = this.checkedList;
-    console.log(this.checkedList);
-  }
+  
   openErrorModal(id: string) {
     this.errormodalService.open(id);
   }

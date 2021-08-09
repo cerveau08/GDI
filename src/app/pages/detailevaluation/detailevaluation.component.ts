@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { environment } from 'src/environments/environment';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ModalService } from 'src/app/_modal';
@@ -10,11 +10,11 @@ import { ErrormodalService } from 'src/app/_errormodals';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
-  selector: 'app-detailcontrat',
-  templateUrl: './detailcontrat.component.html',
-  styleUrls: ['./detailcontrat.component.scss']
+  selector: 'app-detailevaluation.',
+  templateUrl: './detailevaluation.component.html',
+  styleUrls: ['./detailevaluation.component.scss']
 })
-export class DetailcontratComponent implements OnInit {
+export class DetailevaluationComponent implements OnInit {
 
   item: any;
   id: any;
@@ -23,9 +23,9 @@ export class DetailcontratComponent implements OnInit {
   public left: any;
   donnees: any;
   page = 1
-  itemsPerPage = 7;
+  itemsPerPage = 3;
   dataInter:any;
-  dataContrat: any;
+  dataEvaluation: any;
   dataManageur;
   viewer = 'google';  
   selectedType = 'docx';   
@@ -40,7 +40,7 @@ export class DetailcontratComponent implements OnInit {
   data;
   nom;
   prenom;
-  categorie;
+  note;
   dateDebut;
   dateFin;
   societe;
@@ -50,7 +50,7 @@ export class DetailcontratComponent implements OnInit {
   image;
   diplome;
   numeroPiece;
-  domaine;
+  commentaire;
   email;
   poste;
   matricule;
@@ -74,21 +74,24 @@ export class DetailcontratComponent implements OnInit {
   dataAgence: any;
   dataDepartement: any;
   donneeService: any;
-  dataCategorie;
+  datanote;
   fileContrat;
   fileFicheposte;
   fileProcesVerbal;
   etat;
   role;
   url3;
+  interim_id;
   url2;
   filename3;
+  interimaire_id;
   filename2;
   successMsgValider;
   successMsgReconduire;
   successMsgRenouveler;
   successMsgBannir;
   successMsgArret;
+  objectif;
   public reqUrl = environment.base_url;
   errorMsg: any;
   constructor(private activeroute: ActivatedRoute,
@@ -100,9 +103,11 @@ export class DetailcontratComponent implements OnInit {
               private http: HttpClient,
               public router: Router, ) { 
     this.activeroute.queryParams.subscribe(params => {
-      this.item = JSON.parse(params["contrat"]);
+      this.item = JSON.parse(params["evaluation"]);
+      this.interim_id = JSON.parse(params["interimaire"]);
       console.log(this.item);
-      this.otherService.getOneInterById(this.item).subscribe(
+      console.log(this.interim_id);
+      this.otherService.getOneInterById(this.interim_id).subscribe(
           data =>{
             this.data = data;
             this.dataInter = this.data.data;
@@ -119,26 +124,36 @@ export class DetailcontratComponent implements OnInit {
     })
 
     //detail d'un contrat
-    this.otherService.getContratById(this.item).subscribe(
+    this.otherService.getOneEvaluation(this.item).subscribe(
       data =>{
         this.data = data;
-        this.dataContrat = this.data.data;
-        this.poste = this.dataContrat.poste.libelle;
-        this.dateDebut = this.dataContrat.dateDebut;
-        this.dateFin = this.dataContrat.dateFin;
-        this.societe = this.dataContrat.societe.libelle;
-        this.direction = this.dataContrat.structure.direction.libelle;
-        this.departement = this.dataContrat.structure.departement;
-        this.service = this.dataContrat.structure.service;
-        this.categorie = this.dataContrat.categorie;
-        this.domaine = this.dataContrat.domaine;
-        console.log(this.dataContrat);
+        console.log(data);
+        
+        this.dataEvaluation = this.data.data;
+        this.dateDebut = this.dataEvaluation.dateDebut;
+        this.dateFin = this.dataEvaluation.dateFin;
+        this.note = this.dataEvaluation.note;
+        this.commentaire = this.dataEvaluation.commentaire;
+        console.log(this.dataEvaluation);
       })
     
   }
   ngOnInit() {
     this.role = localStorage.getItem('user')
-    
+    this.gty(this.page);
+  }
+
+  gty(page: any){
+    this.http.get(this.reqUrl + `/objectif/${this.interim_id}/${this.item}?page=${page}&limit=${this.itemsPerPage}`).subscribe((data: any) => {
+      this.data = data
+      console.log(data);
+      this.objectif = this.data["data"];
+      
+    }, error=> {
+      this.errorMsg = error;
+      this.errormodalService.open('error-modal-1');
+      console.log(error)
+    })
   }
 
   public get(p) {
@@ -160,7 +175,7 @@ export class DetailcontratComponent implements OnInit {
     this.modalService.close(id);
   }
   
-  objectif() {
+  openObjectif() {
     this.router.navigate(['accueil/objectif'], {
       queryParams: {
         interimaire: JSON.stringify(this.item)

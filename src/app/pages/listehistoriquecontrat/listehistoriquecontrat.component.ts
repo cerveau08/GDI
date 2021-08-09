@@ -23,10 +23,10 @@ export class ListehistoriquecontratComponent implements OnInit {
   histoContrat;
   data;
   interimaire;
-  prenon;
   prenom;
   note;
   nom;
+  isData = true;
   successMsg;
   objectifForm: FormGroup;
   noteForm: FormGroup;
@@ -39,6 +39,7 @@ export class ListehistoriquecontratComponent implements OnInit {
   interimConnect;
   public reqUrl = environment.base_url;
   errorMsg: any;
+  dataInter;
   constructor(private otherService: OthersService,
     private modalService: ModalService,
     private activeroute: ActivatedRoute,
@@ -56,16 +57,31 @@ export class ListehistoriquecontratComponent implements OnInit {
     // this.interimConnect = JSON.parse(localStorage.getItem('currentUser'));
     // this.item = this.interimConnect.interimaire.id
     // console.log(this.interimConnect);
-    
-    
+    this.otherService.getOneInterById(this.item).subscribe(
+      data =>{
+        this.data = data;
+        this.dataInter = this.data.data;
+        console.log(this.dataInter);
+        this.nom = this.dataInter.nom;
+        this.prenom = this.dataInter.prenom;
+    },
+    error=> {
+      this.errorMsg = error;
+      this.errormodalService.open('error-modal-1');
+      console.log(error)
+    }
+  );
     this.gty(this.page);
   }
 
   gty(page: any){
-    this.http.get(this.reqUrl + `/histoContratInterimaire/id/societe/id/${this.item}?page=${page}&limit=${this.itemsPerPage}`).subscribe((data: any) => {
+    this.http.get(this.reqUrl + `/histoContratInterimaire/${this.item}?page=${page}&limit=${this.itemsPerPage}`).subscribe((data: any) => {
       this.data = data ;
-      this.histoContrat = this.data["data"];
-      console.log(data);
+      this.histoContrat = this.data.data["contrats"];
+      console.log(this.data);
+      if(this.data.code == 500) {
+        this.isData = false;
+      }
     }, error=> {
       this.errorMsg = error;
       this.errormodalService.open('error-modal-1');
@@ -76,7 +92,7 @@ export class ListehistoriquecontratComponent implements OnInit {
   openDetail(data) {
     this.router.navigate(['/accueil/detailcontrat'], {
       queryParams: {
-        user: JSON.stringify(data)
+        contrat: JSON.stringify(data)
       }
     })
   }

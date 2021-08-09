@@ -35,14 +35,9 @@
 }
 .objectif-title {
     font-size: 14px;
-    font-weight: normal;
+    font-weight: bold;
     margin-top: 0px;
     margin-bottom: 5px;
-}
-.content-date{
-    display: grid;
-    grid-template-columns: 50% 50%;
-    width: 500px;
 }
 .objectif-content {
     font-size: 13px;
@@ -126,13 +121,83 @@
     font-weight: bold;
     margin-top: 5px;
 }
-.content-non-data{
-    height: 400px;
-    width: 400px;
+
+//modal
+.modal{
+    position: relative;
+}
+.clear {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+.forms-objectif {
+    width: 500px;
     margin: 0 auto;
-    background-image: url("../../../assets/images/1439126-200.png");
-    background-size: contain;
-    background-repeat: no-repeat;
+}
+.label-input {
+    font-size: 12px;
+    margin-top: 10px;
+    margin-bottom: 2px;
+}
+input {
+    outline: none;
+    padding: 0 10px;
+}
+.input-titre input{
+    width: 500px;
+    height: 30px;
+    background-color: #f5f6f9;
+    border-radius: 1px;
+    border: solid 1px #d8d8d8;
+    margin-bottom: 0px;
+}
+.input-description textarea{
+    width: 510px;
+    height: 70px;
+    background-color: #f5f6f9;
+    border-radius: 1px;
+    border: solid 1px #d8d8d8;
+    margin-bottom: 0px;
+    padding: 5px 5px;
+    outline: none;
+}
+.input-objectif-bareme-date {
+    display: flex;
+}
+.input-bareme input{
+    width: 235px;
+    height: 30px;
+    background-color: #f5f6f9;
+    border-radius: 1px;
+    border: solid 1px #d8d8d8;
+    margin-bottom: 0px;
+}
+.input-date {
+    margin-left: 10px;
+}
+.input-date input{
+    width: 235px;
+    height: 30px;
+    background-color: #f5f6f9;
+    border-radius: 1px;
+    border: solid 1px #d8d8d8;
+    margin-bottom: 0px;
+}
+.content-button-submit-objectif {
+    width: 90px;
+    margin: 10px auto;
+}
+.button-submit-objectif {
+    height: 30px;
+    width: 90px;
+    color: white;
+    background-color: #ff7900;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
 }
 .error-content-image{
     width: 150px;

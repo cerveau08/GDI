@@ -2,47 +2,52 @@
     <div class="compte">
         <div class="content-header">
             <div class="content-details">
-                <p class="detail">Détails Contrat de {{prenom}} {{nom}}</p>
+                <p class="detail">Détails Évaluation de {{prenom}} {{nom}}</p>
             </div>
         </div>
         <div class="grid-container" *ngIf="item">
             <div class="information">
                 <div class="info">
                     <div class="lot1">
-                        <p class="key">Poste: <span class="value">{{poste}}</span> </p>
-                        <p class="key">Catégorie: <span class="value">{{categorie}}</span> </p>
-                        <p class="key">Domaine: <span class="value">{{domaine}}</span> </p>
                         <p class="key">Date de Début: <span class="value">{{dateDebut | date:'dd MMMM yyyy'}}</span> </p>
                         <p class="key">Date de Fin: <span class="value">{{dateFin | date:'dd MMMM yyyy'}}</span> </p>
                     </div>
                     <div class="lot">
-                        <div class="content-structure">
-                            <p class="lot2">Société: <span class="value">{{societe}}</span> </p>
-                            <p class="lot2">Direction: <span class="value">{{direction}}</span> </p>
-                        </div>
-                        <div class="content-structure">
-                            <p class="key">Département: <span class="value">{{departement}}</span> </p>
-                            <p class="key">Service: <span class="value">{{service}}</span> </p>
-                        </div>
+                            <p class="key-evaluation">
+                                Note Globale: 
+                                <span class="value-evaluation-note">{{note}} </span>
+                            </p>
+                            <p class="key-evaluation-commentaire">
+                                Commentaire: 
+                                <span class="value-commentaire">
+                                    {{commentaire}}
+                                </span>
+                            </p>
                     </div>
                 </div>
                 <div class="lesbouton">
-                    <button class="button1" (click)="openModal('custom-modal-1')">Contrat</button>
-                    <button class="button2" (click)="openModal('custom-modal-2')">Procés Verbal</button>
-                    <button class="button3" (click)="openModal('custom-modal-3')">Fiche de poste</button>
+                    <button class="button1" (click)="openModal('custom-modal-1')">Modifier</button>
+                    <button class="button2" (click)="openModal('custom-modal-2')">Faire une évaluation</button>
                 </div>
             </div>
             <div class="info-evaluation">
-                <div class="content-evaluation">
+                <p class="title-liste-objectif">Les Objectifs de cette Evaluation</p>
+                <div class="content-evaluation" *ngFor="let p of objectif | paginate: {  itemsPerPage: itemsPerPage,
+                    currentPage: page,
+                    totalItems: totalItems
+                    }; let i = index">
                     <p class="key-evaluation-head">
-                        Évaluation du: 
-                        <span class="value-evaluation-head">{{dateDebut | date:'dd MMMM yyyy'}} </span>
-                         au 
-                        <span class="value-evaluation-head"> {{dateFin | date:'dd MMMM yyyy'}} </span>
+                        Titre: 
+                        <span class="value-evaluation-head">{{p.titre}} </span>
+                    </p>
+                    <p class="key-evaluation-head">
+                        Description: 
+                        <span class="value-objectif-description">{{p.description}}</span>
                     </p>
                     <p class="key-evaluation">
-                        Note Globale: 
-                        <span class="value-evaluation-note">{{dateDebut | date:'dd'}} </span>
+                        Note: 
+                        <span class="value-objectif-note">{{p.note}}</span>
+                        /{{p.bareme}}
                     </p>
                     <p class="key-evaluation-commentaire">
                         Commentaire: 
@@ -53,45 +58,8 @@
                         </span>
                     </p>
                 </div>
-                <div class="content-evaluation">
-                    <p class="key-evaluation-head">
-                        Évaluation du: 
-                        <span class="value-evaluation-head">{{dateDebut | date:'dd MMMM yyyy'}} </span>
-                         au 
-                        <span class="value-evaluation-head"> {{dateFin | date:'dd MMMM yyyy'}} </span>
-                    </p>
-                    <p class="key-evaluation">
-                        Note Globale: 
-                        <span class="value-evaluation-note">{{dateDebut | date:'dd'}} </span>
-                    </p>
-                    <p class="key-evaluation-commentaire">
-                        Commentaire: 
-                        <span class="value-commentaire">
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                            Minima quod saepe iure deleniti odio animi, sunt quis 
-                            ipsam sed, quos sit culpa voluptates molestias quam
-                        </span>
-                    </p>
-                </div>
-                <div class="content-evaluation">
-                    <p class="key-evaluation-head">
-                        Évaluation du: 
-                        <span class="value-evaluation-head">{{dateDebut | date:'dd MMMM yyyy'}} </span>
-                         au 
-                        <span class="value-evaluation-head"> {{dateFin | date:'dd MMMM yyyy'}} </span>
-                    </p>
-                    <p class="key-evaluation">
-                        Note Globale: 
-                        <span class="value-evaluation-note">{{dateDebut | date:'dd'}} </span>
-                    </p>
-                    <p class="key-evaluation-commentaire">
-                        Commentaire: 
-                        <span class="value-commentaire">
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                            Minima quod saepe iure deleniti odio animi, sunt quis 
-                            ipsam sed, quos sit culpa voluptates molestias quam
-                        </span>
-                    </p>
+                <div class="pagination">
+                    <pagination-controls (pageChange)="gty(page = $event)" previousLabel="Prcédent" nextLabel="Suivant"></pagination-controls>
                 </div>
             </div>
         </div>

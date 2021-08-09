@@ -168,8 +168,6 @@ addAgence(data) {
   getTotalAgenceActifInactif(id: number) {
     return this.http.get(`${this.reqUrl}/statInterimaireAgence/${id}`);
   }
-  
-
   statInterByYear(){
     return this.http.get(`${this.reqUrl}/statInterimaireByYear`);
   } 
@@ -246,5 +244,38 @@ addAgence(data) {
   }
   bloquerUser(id: number, data:any): Observable<any> {
     return this.http.post<any>(`${this.reqUrl}/users/activeDesactive/${id}`, data);
+  }
+  blacklist(){
+    return this.http.get<any>(this.reqUrl + '/blacklist');
+  }
+  deleteInterblacklister(id: string){
+    return this.http.delete<any>(`${this.reqUrl} + '/interimBlacklist/${id}`);
+  }
+  addAttestationEnMasse(data:any): Observable<any> {
+    return this.http.post<any>(`${this.reqUrl}/ajoutAttestationEnMasse`, data);
+  }
+  extraireAttestation(data:any): Observable<any> {
+    return this.http.post<any>(`${this.reqUrl}/extractionAttestation`, data);
+  }
+  extraireInterimaire(data:any): Observable<any> {
+    return this.http.post<any>(`${this.reqUrl}/extractionInterimaire`, data);
+  }
+  historiqueInter(id: number){
+    return this.http.get<any>(`${this.reqUrl}/histoContratInterimaire/${id}`);
+  }
+  getListAttestation() {
+    return this.http.get<any>(`${this.reqUrl}/listeAttestation`);
+  }
+  attestionMesInter(){
+    return this.http.get<any>(this.reqUrl + '/attestationMesInterimaires');
+  }
+  getOneEvaluation(id: number){
+    return this.http.get<any>(`${this.reqUrl}/evaluation/${id}`);
+  }
+  evaluer(data:any): Observable<any> {
+    return this.http.post<any>(`${this.reqUrl}/notation`, data);
+  }
+  objectifEvaluation(id_inter: number, id_evaluation){
+    return this.http.get<any>(`${this.reqUrl}/objectif/${id_inter}/${id_evaluation}`);
   }
 }

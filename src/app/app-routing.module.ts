@@ -1,3 +1,6 @@
+import { EvaluerComponent } from './pages/evaluer/evaluer.component';
+import { DetailevaluationComponent } from './pages/detailevaluation/detailevaluation.component';
+import { ListeevaluationComponent } from './pages/listeevaluation/listeevaluation.component';
 import { AddattestationComponent } from './pages/addattestation/addattestation.component';
 import { ListehistoriquecontratComponent } from './pages/listehistoriquecontrat/listehistoriquecontrat.component';
 import { ListeblacklisterComponent } from './pages/listeblacklister/listeblacklister.component';
@@ -9,7 +12,6 @@ import { ListeattestationComponent } from './pages/listeattestation/listeattesta
 import { NewinterComponent } from './pages/newinter/newinter.component';
 import { OffreComponent } from './pages/offre/offre.component';
 import { AgenceComponent } from './pages/agence/agence.component';
-import { PresenceComponent } from './pages/presence/presence.component';
 import { InterimaireComponent } from './pages/interimaire/interimaire.component';
 import { DetailmanagerComponent } from './pages/detailmanager/detailmanager.component';
 import { DetailagenceComponent } from './pages/detailagence/detailagence.component';
@@ -48,6 +50,7 @@ import { MesObjectifsComponent } from './pages/mes-objectifs/mes-objectifs.compo
 import { MonAgenceComponent } from './pages/mon-agence/mon-agence.component';
 import { MonManagerComponent } from './pages/mon-manager/mon-manager.component';
 import { DetailcontratComponent } from './pages/detailcontrat/detailcontrat.component';
+import { AttestationmesInterimaireComponent } from './pages/attestationmesInterimaire/attestationmesInterimaire.component';
 
 
 const routes: Routes = [
@@ -100,8 +103,8 @@ const routes: Routes = [
         component: RestaurationComponent,
           canActivate: [AuthGuard]
       },
-      { path: 'presence',
-        component: PresenceComponent,
+      { path: 'attestationmesinterimaires',
+        component: AttestationmesInterimaireComponent,
           canActivate: [AuthGuard]
       },
       { path: 'listinter',
@@ -215,7 +218,7 @@ const routes: Routes = [
       { path: 'modifieruser',
         component: ModifieruserComponent,
           canActivate: [AuthGuard]
-    },
+      },
       { path: 'mesobjectif',
         component: MesObjectifsComponent,
           canActivate: [AuthGuard]
@@ -236,9 +239,21 @@ const routes: Routes = [
         component: DetailcontratComponent,
         canActivate: [AuthGuard]
       },{ path: 'addattestation',
-      component: AddattestationComponent,
-      canActivate: [AuthGuard]
-    },
+       component: AddattestationComponent,
+       canActivate: [AuthGuard]
+      },
+      { path: 'listeevaluation',
+        component: ListeevaluationComponent,
+          canActivate: [AuthGuard]
+      },
+      { path: 'detailevaluation',
+        component: DetailevaluationComponent,
+          canActivate: [AuthGuard]
+      },
+      { path: 'evaluer',
+        component: EvaluerComponent,
+          canActivate: [AuthGuard]
+      },
       {
         path: '',
         redirectTo: 'accueil/home',
