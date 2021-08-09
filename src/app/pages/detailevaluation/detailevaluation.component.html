@@ -27,7 +27,7 @@
                 </div>
                 <div class="lesbouton">
                     <button class="button1" (click)="openModal('custom-modal-1')">Modifier</button>
-                    <button class="button2" (click)="openModal('custom-modal-2')">Faire une évaluation</button>
+                    <button class="button2" (click)="openEvaluer()">Faire une évaluation</button>
                 </div>
             </div>
             <div class="info-evaluation">
@@ -52,9 +52,7 @@
                     <p class="key-evaluation-commentaire">
                         Commentaire: 
                         <span class="value-commentaire">
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                            Minima quod saepe iure deleniti odio animi, sunt quis 
-                            ipsam sed, quos sit culpa voluptates molestias quam
+                            {{p.commentaire}}
                         </span>
                     </p>
                 </div>

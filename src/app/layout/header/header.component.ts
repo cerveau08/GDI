@@ -83,7 +83,7 @@ export class HeaderComponent implements OnInit {
     this.prenom = localStorage.getItem('prenom');
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this.photo = this.currentUser.data.photo;
-    this.role = localStorage.getItem('role');
+    this.role = localStorage.getItem('user');
     
     this.redirection();
     this.demandeForm = new FormGroup({
@@ -147,16 +147,17 @@ export class HeaderComponent implements OnInit {
 
 
 redirection() {
-  if(this.role == 'MNG') {
+   if(this.role == 'MNG') {
     this.direction = 'manager';
     this.click = null;
   } else if (this.role == 'AGN') {
-    this.direction = 'agence';
+    this.direction = '/accueil/agence';
     this.click = null;
   }else if (this.role == 'INT') {
-    this.direction = 'compte';
+    this.direction = '/accueil/compte';
     this.click = null;
-  }
+  } 
+  this.route.navigate([  this.direction])
 }
 
   

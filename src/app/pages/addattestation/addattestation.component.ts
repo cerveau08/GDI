@@ -115,7 +115,8 @@ export class AddattestationComponent implements OnInit {
   }
   gty(page: any){
     this.http.get(this.reqUrl + `/interimSousContrat?page=${page}&limit=${this.itemsPerPage}`).subscribe((data: any) => {
-      this.dataInter =  data.data
+      this.dataInter =  data.data;
+      this.totalItems = data.total;
       this.attestationForm = this.formBuilder.group({
         annee: ['', Validators.required],
         mois: ['', Validators.required],

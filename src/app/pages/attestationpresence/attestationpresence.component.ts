@@ -93,7 +93,8 @@ export class AttestationpresenceComponent implements OnInit {
   }
   gty(page: any){
     this.http.post(this.reqUrl + `/listeAttestation?page=${page}&limit=${this.itemsPerPage}`, null).subscribe((data: any) => 
-      this.dataAttest =  data.data[0]
+      this.dataAttest =  data.data[0],
+      this.totalItems = this.dataAttest.total
     )
   }
   selectAll() {
