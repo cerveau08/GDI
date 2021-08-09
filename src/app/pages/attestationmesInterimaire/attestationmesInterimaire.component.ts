@@ -28,7 +28,7 @@ export class AttestationmesInterimaireComponent implements OnInit {
   filterterm: string;
   dataAttest: any;
   page = 1;
-  itemsPerPage = 8;
+  itemsPerPage = 6;
   totalItems : any;
   user;
   public reqUrl = environment.base_url;
