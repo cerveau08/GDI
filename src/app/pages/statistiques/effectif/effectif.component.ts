@@ -73,6 +73,7 @@ export class EffectifComponent implements OnInit {
   dataStatEffectifAnnee: any;
   dataStatEffectifSociete;
   dataStatistique;
+  dataSociete;
   dataInterimByAgence: any;
   chart: ChartComponent;
   public chartOptions: Partial<ChartOptions>;
@@ -90,8 +91,12 @@ export class EffectifComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.annee);
-    
+    this.otherService.getAllSociete().subscribe(
+      data => {
+        this.dataSociete = data["data"];
+        console.log(data);
+      }
+    );
     this.dateSelectionner(this.annee);
     this.effectifSocieteSelectionner(String(this.societe));
   }
@@ -99,16 +104,12 @@ export class EffectifComponent implements OnInit {
   dateSelectionner(value){
     this.otherService.statInterByYear().subscribe(
       data => {
-        console.log(data);
         this.dataYear = data;
         this.dataStatEffectifAnnee = this.dataYear.data[0];
-        console.log(this.dataStatEffectifAnnee);
         this.axex = this.dataStatEffectifAnnee.map(valueOfDirection => valueOfDirection.annee);
         this.nouveau = this.dataStatEffectifAnnee.map(valueOfNouveau => valueOfNouveau.nouveaux);
-        this.fini = this.dataStatEffectifAnnee.map(valueOfFini => valueOfFini.fini);
+        this.fini = this.dataStatEffectifAnnee.map(valueOfFini => valueOfFini.fin);
         this.total = this.dataStatEffectifAnnee.map(valueOfTotal => valueOfTotal.total);
-        console.log(this.total);
-        
         this.chartOptions = {
           colors: [
             "#ff0000",
@@ -117,12 +118,12 @@ export class EffectifComponent implements OnInit {
           ],
           series: [
             {
-              name: "Femmes",
-              data: this.femmes
+              name: "Finis",
+              data: this.fini
             },
             {
-              name: "Hommes",
-              data: this.hommes
+              name: "Nouveaux",
+              data: this.nouveau
             },
             {
               name: "Total",
@@ -158,7 +159,6 @@ export class EffectifComponent implements OnInit {
             bar: {
               horizontal: false,
               columnWidth: "20px",
-            //  endingShape: "rounded",
             },
           },
           dataLabels: {

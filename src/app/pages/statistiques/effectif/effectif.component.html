@@ -58,12 +58,6 @@
                             <option *ngFor="let p of societes" class="option" [value]="p.societe">{{p.societe}}</option>
                         </select>
                     </div>
-                    <div class="filtrer-direction" style="cursor: pointer;">
-                        <select class="select-societe" #myDirection (change)='effectifSocieteSelectionner(myDirection.value)'>
-                            <option class="option" value="" disabled selected hidden>Direction</option>
-                            <option *ngFor="let p of directions" class="option" [value]="p.direction">{{p.direction}}</option>
-                        </select>
-                    </div>
                 </div>
             </div>
             <div class="diagra1">
