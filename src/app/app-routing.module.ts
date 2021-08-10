@@ -1,3 +1,7 @@
+import { StatagenceComponent } from './pages/statistiques/statagence/statagence.component';
+import { EffectifComponent } from './pages/statistiques/effectif/effectif.component';
+import { PresenceComponent } from './pages/statistiques/presence/presence.component';
+import { GenreComponent } from './pages/statistiques/genre/genre.component';
 import { EvaluerComponent } from './pages/evaluer/evaluer.component';
 import { DetailevaluationComponent } from './pages/detailevaluation/detailevaluation.component';
 import { ListeevaluationComponent } from './pages/listeevaluation/listeevaluation.component';
@@ -252,6 +256,22 @@ const routes: Routes = [
       },
       { path: 'evaluer',
         component: EvaluerComponent,
+          canActivate: [AuthGuard]
+      },
+      { path: 'stateffectif',
+       component: EffectifComponent,
+       canActivate: [AuthGuard]
+      },
+      { path: 'statagence',
+        component: StatagenceComponent,
+          canActivate: [AuthGuard]
+      },
+      { path: 'statgenre',
+        component: GenreComponent,
+          canActivate: [AuthGuard]
+      },
+      { path: 'statpresence',
+        component: PresenceComponent,
           canActivate: [AuthGuard]
       },
       {

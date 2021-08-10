@@ -1,3 +1,4 @@
+import { StatagenceComponent } from './pages/statistiques/statagence/statagence.component';
 import { DetailevaluationComponent } from './pages/detailevaluation/detailevaluation.component';
 import { SidenavModule } from './sidenav';
 import { BrowserModule } from '@angular/platform-browser';
@@ -82,6 +83,9 @@ import { AddattestationComponent } from './pages/addattestation/addattestation.c
 import { ListeevaluationComponent } from './pages/listeevaluation/listeevaluation.component';
 import { AttestationmesInterimaireComponent } from './pages/attestationmesInterimaire/attestationmesInterimaire.component';
 import { EvaluerComponent } from './pages/evaluer/evaluer.component';
+import { EffectifComponent } from './pages/statistiques/effectif/effectif.component';
+import { GenreComponent } from './pages/statistiques/genre/genre.component';
+import { PresenceComponent } from './pages/statistiques/presence/presence.component';
 ;
 
 @NgModule({
@@ -144,6 +148,10 @@ import { EvaluerComponent } from './pages/evaluer/evaluer.component';
     ListeevaluationComponent,
     DetailevaluationComponent,
     EvaluerComponent,
+    EffectifComponent,
+    GenreComponent,
+    PresenceComponent,
+    StatagenceComponent
   ],
   imports: [
     BrowserModule,
