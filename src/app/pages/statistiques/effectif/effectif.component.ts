@@ -1,7 +1,5 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { ApexAxisChartSeries, ApexChart, ApexDataLabels, ApexPlotOptions, ApexResponsive, ApexXAxis, ApexYAxis, ApexLegend, ApexFill, ChartComponent } from 'ng-apexcharts';
-import { DataService } from 'src/app/service/data.service';
-import { ErrormodalService } from 'src/app/_errormodals';
 import { OthersService } from 'src/app/services/others.service';
 
 export type ChartOptions = {
@@ -16,19 +14,6 @@ export type ChartOptions = {
   legend: ApexLegend;
   fill: ApexFill;
   colors: string[],
-};
-export type ChartOptions3 = {
-  series: ApexAxisChartSeries;
-  chart: ApexChart;
-  dataLabels: ApexDataLabels;
-  plotOptions: ApexPlotOptions;
-  responsive: ApexResponsive[];
-  xaxis: ApexXAxis;
-  yaxis: ApexYAxis;
-  datalabels: ApexDataLabels,
-  legend: ApexLegend;
-  fill: ApexFill;
-  colors: ["#009393", "#ff7900"],
 };
 @Component({
   selector: 'app-effectif',
@@ -78,8 +63,7 @@ export class EffectifComponent implements OnInit {
   chart: ChartComponent;
   public chartOptions: Partial<ChartOptions>;
   public chartOptions2: Partial<ChartOptions>;
-  constructor(private dataService: DataService,
-    private errormodalService: ErrormodalService,
+  constructor(
               private otherService: OthersService) {
     this.getScreenSize();
   }
@@ -87,7 +71,6 @@ export class EffectifComponent implements OnInit {
   getScreenSize(event?) {
         this.scrHeight = window.innerHeight;
         this.scrWidth = window.innerWidth;
-        console.log(this.scrHeight, this.scrWidth);
   }
 
   ngOnInit() {
@@ -190,6 +173,7 @@ export class EffectifComponent implements OnInit {
   }
 
   effectifSocieteSelectionner(value:string){
+    console.log(value);
     this.otherService.statTotalInter(value).subscribe(
       data => {
       console.log(data);

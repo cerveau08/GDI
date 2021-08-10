@@ -55,7 +55,7 @@
                 <div class="filtre-societe-direction">
                     <div class="filtrer-societe" style="cursor: pointer;">
                         <select class="select-societe" #lEffectif (change)='effectifSocieteSelectionner(lEffectif.value)'>
-                            <option *ngFor="let p of societes" class="option" [value]="p.societe">{{p.societe}}</option>
+                            <option *ngFor="let p of dataSociete" class="option" [value]="p.id">{{p.libelle}}</option>
                         </select>
                     </div>
                 </div>
