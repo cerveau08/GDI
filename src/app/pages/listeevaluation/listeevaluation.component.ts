@@ -30,8 +30,8 @@ export class ListeevaluationComponent implements OnInit {
   modifierForm: FormGroup;
   titremodif;
   descriptionmodif;
-  page = 1;
-  itemsPerPage = 3;
+  page = 2;
+  itemsPerPage = 5;
   totalItems : any;
   interimConnect;
   public reqUrl = environment.base_url;

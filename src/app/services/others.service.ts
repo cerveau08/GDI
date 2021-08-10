@@ -172,7 +172,7 @@ addAgence(data) {
     return this.http.get(`${this.reqUrl}/statInterimaireByYear`);
   } 
   statTotalInter(data){
-    return this.http.post(`${this.reqUrl}/statInterimaire`, data);
+    return this.http.get(`${this.reqUrl}/statInterimaire`, data);
   }
   statInterByMonth(data){
     return this.http.post(`${this.reqUrl}/statInterimaireByMonth`, data);
@@ -277,5 +277,8 @@ addAgence(data) {
   }
   objectifEvaluation(id_inter: number, id_evaluation){
     return this.http.get<any>(`${this.reqUrl}/objectif/${id_inter}/${id_evaluation}`);
+  }
+  getStatPresence(): Observable<any> {
+    return this.http.get<any>(this.reqUrl + '/statDemande');
   }
 }

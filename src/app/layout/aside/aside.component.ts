@@ -17,15 +17,20 @@ export class AsideComponent implements OnInit {
   photo;
   dataInterFin;
   nouveauxRrecrus;
+  pmc;
   managerinfo;
   color: any;
   user: any;
   showHome = true;
+  present;
+  malade;
+  conge;
   constructor(private dataService: DataService,private otherService: OthersService) {
     this.otherService.getInter().subscribe(
       data => {
+        console.log(data);
        this.dataInterFin = data.data;
-       console.log(data);
+       
       }
     );
 
@@ -34,6 +39,14 @@ export class AsideComponent implements OnInit {
       data => {
        this.nouveauxRrecrus = data.data;
        console.log(data);
+      }
+    );
+
+    this.otherService.getStatPresence().subscribe(
+      data => {
+        console.log(data);
+       this.pmc = data.data;
+       
       }
     );
   }

@@ -842,7 +842,8 @@ export class StatistiquesComponent implements OnInit {
   }
 
   effectifSocieteSelectionner(value:string){
-    
+    this.otherService.statInterByYear().subscribe(
+      data => {
     console.log(value);
     this.directs = this.directions1;
     this.directions = this.directions1.map(valueOfDirection => valueOfDirection.direction);
@@ -917,6 +918,11 @@ export class StatistiquesComponent implements OnInit {
       },
     };
     return this.chartOptions2;
+    }, error=> {
+      this.errorMsg = error;
+      this.errormodalService.open('error-modal-1');
+      console.log(error)
+    })
   }
   societeSelectionner(value:string){
     this.directs = this.directions1;
