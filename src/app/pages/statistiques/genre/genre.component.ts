@@ -94,22 +94,12 @@ export class GenreComponent implements OnInit {
     this.intervalId = setInterval(getDownloadProgress, 1000);
   }
 
-  societeSelectionner(value:string){
+  societeSelectionner(societe:string){
     this.directs = this.dataStatEffectifGenre;
     this.directions = this.dataStatEffectifGenre.map(valueOfDirection => valueOfDirection.direction);
     this.hommes = this.dataStatEffectifGenre.map(valueOfHomme => valueOfHomme.interHommes);
     this.femmes = this.dataStatEffectifGenre.map(valueOfFemmes => valueOfFemmes.interFemmes);
-    if(value == "SONATEL") {
-      this.directs = this.dataStatEffectifGenre;
-      this.directions = this.dataStatEffectifGenre.map(valueOfDirection => valueOfDirection.direction);
-      this.hommes = this.dataStatEffectifGenre.map(valueOfHomme => valueOfHomme.interHommes);
-      this.femmes = this.dataStatEffectifGenre.map(valueOfFemmes => valueOfFemmes.interFemmes);
-    } else if (value == "OFMS") {
-      this.directs = this.dataStatEffectifGenre;
-      this.directions = this.dataStatEffectifGenre.map(valueOfDirection => valueOfDirection.direction);
-      this.hommes = this.dataStatEffectifGenre.map(valueOfHomme => valueOfHomme.interHommes);
-      this.femmes = this.dataStatEffectifGenre.map(valueOfFemmes => valueOfFemmes.interFemmes);
-    }
+    
     this.chartOptions3 = {
       colors: [
         "#009393",
