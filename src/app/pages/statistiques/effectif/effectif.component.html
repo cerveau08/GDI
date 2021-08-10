@@ -8,7 +8,7 @@
                         <mat-icon [style.color]="colorfilter1" id="icon-calendar-annee"  class="icone-calendar1" fontSet="material-icons-outlined">date_range</mat-icon>
                         <select class="select-mois" #lAnnee (change)='dateSelectionner(lAnnee.value)'>
                             <option class="option" value="" disabled selected hidden>Annee</option>
-                            <option *ngFor="let p of diagram1" class="option" [value]="p.mois">{{p.annee}}</option>
+                            <option *ngFor="let p of dataStatEffectifAnnee" class="option" [value]="p.annee">{{p.annee}}</option>
                         </select>
                     </div>
                 </div>
@@ -55,7 +55,7 @@
                 <div class="filtre-societe-direction">
                     <div class="filtrer-societe" style="cursor: pointer;">
                         <select class="select-societe" #lEffectif (change)='effectifSocieteSelectionner(lEffectif.value)'>
-                            <option *ngFor="let p of societes" class="option" [value]="p.societe">{{p.societe}}</option>
+                            <option *ngFor="let p of dataSociete" class="option" [value]="p.id">{{p.libelle}}</option>
                         </select>
                     </div>
                 </div>
