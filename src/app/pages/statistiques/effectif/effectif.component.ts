@@ -66,6 +66,7 @@ export class EffectifComponent implements OnInit {
   dates;
   currentDate = new Date().getFullYear();
   item;
+  dataYear;
   societe = 1;
   date = new Date();
   annee = this.date.getFullYear();
@@ -98,10 +99,12 @@ export class EffectifComponent implements OnInit {
   dateSelectionner(value){
     this.otherService.statInterByYear().subscribe(
       data => {
-        this.dataStatEffectifAnnee = data['data'][0];
+        console.log(data);
+        this.dataYear = data;
+        this.dataStatEffectifAnnee = this.dataYear.data[0];
         console.log(this.dataStatEffectifAnnee);
         this.axex = this.dataStatEffectifAnnee.map(valueOfDirection => valueOfDirection.annee);
-        this.nouveau = this.dataStatEffectifAnnee.map(valueOfNouveau => valueOfNouveau.new);
+        this.nouveau = this.dataStatEffectifAnnee.map(valueOfNouveau => valueOfNouveau.nouveaux);
         this.fini = this.dataStatEffectifAnnee.map(valueOfFini => valueOfFini.fini);
         this.total = this.dataStatEffectifAnnee.map(valueOfTotal => valueOfTotal.total);
         console.log(this.total);
@@ -114,12 +117,12 @@ export class EffectifComponent implements OnInit {
           ],
           series: [
             {
-              name: "Finis",
-              data: this.fini
+              name: "Femmes",
+              data: this.femmes
             },
             {
-              name: "Nouveaux",
-              data: this.nouveau
+              name: "Hommes",
+              data: this.hommes
             },
             {
               name: "Total",
@@ -128,7 +131,7 @@ export class EffectifComponent implements OnInit {
           ],
           chart: {
             type: "bar",
-            height: 300,
+            height: 280,
             width: 550,
             stacked: true,
             toolbar: {
@@ -154,7 +157,7 @@ export class EffectifComponent implements OnInit {
           plotOptions: {
             bar: {
               horizontal: false,
-              columnWidth: "10px",
+              columnWidth: "20px",
             //  endingShape: "rounded",
             },
           },
