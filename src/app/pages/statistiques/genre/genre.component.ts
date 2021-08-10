@@ -44,11 +44,16 @@ export class GenreComponent implements OnInit {
   directs: any;
   directions: any;
   effectif;
+  dataSociete;
+  data: any;
   hommes: any;
   femmes: any;
+  dataGenre;
   nouveau; 
   fini;
   total;
+  date = new Date();
+  societe =1;
   show = 1;
   color: any;
   public datas: any;
@@ -92,13 +97,30 @@ export class GenreComponent implements OnInit {
       }
     };
     this.intervalId = setInterval(getDownloadProgress, 1000);
+
+    this.otherService.getAllSociete().subscribe(
+      data => {
+        this.dataSociete = data["data"];
+        console.log(data);
+      }
+    );
+
+    this.societeSelectionner(String(this.societe));
   }
 
-  societeSelectionner(societe:string){
+
+
+  //deuxieme
+  societeSelectionner(value:string){
+    this.otherService.statTotalInter(value).subscribe(
+      data => {
+        console.log(data);
+        this.data = data;
+        this.dataStatEffectifGenre = this.data.data[0];
     this.directs = this.dataStatEffectifGenre;
     this.directions = this.dataStatEffectifGenre.map(valueOfDirection => valueOfDirection.direction);
-    this.hommes = this.dataStatEffectifGenre.map(valueOfHomme => valueOfHomme.interHommes);
-    this.femmes = this.dataStatEffectifGenre.map(valueOfFemmes => valueOfFemmes.interFemmes);
+    this.hommes = this.dataStatEffectifGenre.map(valueOfHomme => valueOfHomme.homme);
+    this.femmes = this.dataStatEffectifGenre.map(valueOfFemmes => valueOfFemmes.femme);
     
     this.chartOptions3 = {
       colors: [
@@ -166,6 +188,7 @@ export class GenreComponent implements OnInit {
       },
     };
     return this.chartOptions3;
-  }
-
+  },
+  )
+}
 }

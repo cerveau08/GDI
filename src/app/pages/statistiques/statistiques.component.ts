@@ -716,7 +716,6 @@ export class StatistiquesComponent implements OnInit {
   getScreenSize(event?) {
         this.scrHeight = window.innerHeight;
         this.scrWidth = window.innerWidth;
-        console.log(this.scrHeight, this.scrWidth);
   }
   ngOnInit() {
     this.datas = this.dataService.getData();
