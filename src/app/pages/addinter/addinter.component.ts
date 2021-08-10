@@ -183,10 +183,6 @@ export class AddinterComponent implements OnInit {
       data => {
         this.dataSociete = data["data"];
         console.log(data);
-      },error=> {
-        this.errorMsg = error;
-        this.errormodalService.open('error-modal-1');
-        console.log(error)
       }
     );
      //recupere les categories
@@ -194,10 +190,6 @@ export class AddinterComponent implements OnInit {
       data => {
         this.dataCategorie = data["data"];
         console.log(data);
-      },error=> {
-        this.errorMsg = error;
-        this.errormodalService.open('error-modal-1');
-        console.log(error)
       }
     );
     this.otherService.getDomaine().subscribe(data => this.dataDomaine = data["data"]);
