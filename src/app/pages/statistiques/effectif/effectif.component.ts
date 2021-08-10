@@ -85,6 +85,7 @@ export class EffectifComponent implements OnInit {
   }
 
   ngOnInit() {
+    
   }
   //stats interimaire par annee
   dateSelectionner(value){
