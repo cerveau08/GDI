@@ -84,8 +84,6 @@ export class HeaderComponent implements OnInit {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this.photo = this.currentUser.data.photo;
     this.role = localStorage.getItem('user');
-    
-    this.redirection();
     this.demandeForm = new FormGroup({
       prenom: new FormControl (''),
       nom: new FormControl(''),
@@ -98,6 +96,7 @@ export class HeaderComponent implements OnInit {
       annee: new FormControl (''),
       poste: new FormControl(''),
     });
+    this.redirection();
   }
 
   onSubmit() {

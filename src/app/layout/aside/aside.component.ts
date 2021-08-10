@@ -44,9 +44,10 @@ export class AsideComponent implements OnInit {
 
     this.otherService.getStatPresence().subscribe(
       data => {
-        console.log(data);
-       this.pmc = data.data;
-       
+        this.pmc = data.data;
+        this.present = this.pmc[0].present;
+        this.malade = this.pmc[0].malade;
+        this.conge = this.pmc[0].conge;
       }
     );
   }

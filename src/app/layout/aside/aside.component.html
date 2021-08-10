@@ -1,24 +1,24 @@
 <div class="aside">
     <div *ngIf="user != 'INT'" class="chiffre-aside" style="margin-left: auto;margin-right: 0;">
-        <div class="elmt-aside" *ngFor="let p of pmc | slice:0:3; let i = index">
+        <div class="elmt-aside">
             <div href="">
                 <p class="titre-aside">Présents</p>
                 <br>
-                <p class="nombre-aside">{{p.present}}</p>
+                <p class="nombre-aside">{{present}}</p>
             </div>
         </div>
         <div class="elmt1-aside" title="messages">
             <div href="">
                 <p class="titre-aside">Malades</p>
                 <br>
-                <p class="nombre-aside">{{p.malade}}</p>
+                <p class="nombre-aside">{{malade}}</p>
             </div>
         </div>
         <div class="elmt2-aside" >
             <div href="">
                 <p class="titre-aside">Congés</p>
                 <br>
-                <p class="nombre-aside">{{p.conge}}</p>
+                <p class="nombre-aside">{{conge}}</p>
             </div>
         </div>
     </div>
