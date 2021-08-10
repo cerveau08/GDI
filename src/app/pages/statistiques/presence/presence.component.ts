@@ -49,6 +49,9 @@ export class PresenceComponent implements OnInit {
   nouveau; 
   fini;
   total;
+  prensent;
+  malade;
+  conge;
   show = 1;
   color: any;
   public datas: any;
@@ -82,6 +85,7 @@ export class PresenceComponent implements OnInit {
         this.scrHeight = window.innerHeight;
         this.scrWidth = window.innerWidth;
         console.log(this.scrHeight, this.scrWidth);
+        
   }
 
   ngOnInit() {
