@@ -15,9 +15,10 @@
                 <p id="presence" class="statt-sous-header">Agence</p>
             </div>
         </div>
-        <div>
-            <router-outlet></router-outlet>
-        </div>
+        <app-effectif *ngIf="show==1"></app-effectif>
+        <app-genre *ngIf="show==2"></app-genre>
+        <app-presence *ngIf="show==3"></app-presence>
+        <app-statagence *ngIf="show==4"></app-statagence>
     </div>
 </div>
 
