@@ -8,13 +8,13 @@
 }
 .list1 {
     display: grid;
-    grid-template-columns: 40% 60%;
+    grid-template-columns: 30% 70%;
     background: #f5f6f9;
     padding-left: 10px;
 }
 .list2 {
     display: grid;
-    grid-template-columns: 40% 60%;
+    grid-template-columns: 30% 70%;
     border-bottom: 3px solid #f5f6f9;
     padding-left: 10px;
 }
@@ -24,9 +24,16 @@
 }
 .alert2 {
     display: grid;
-    grid-template-columns: 60% 40%;
+    grid-template-columns: 30% 70%;
 }
 .title {
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-size: 16px;
+    font-weight: 700;
+}
+.title-contenue {
+    margin-left: 10px;
     margin-top: 10px;
     margin-bottom: 5px;
     font-size: 16px;
@@ -47,6 +54,7 @@
     margin-bottom: 5px;
 }
 .libele {
+    margin-left: 10px;
     font-size: 12px;
     font-weight: 500;
     margin-bottom: 5px;
