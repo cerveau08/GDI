@@ -171,11 +171,14 @@ addAgence(data) {
   statInterByYear(){
     return this.http.get(`${this.reqUrl}/statInterimaireByYear`);
   } 
-  statTotalInter(data){
-    return this.http.get(`${this.reqUrl}/statInterimaire`, data);
+  statTotalInter(societe){
+    const data = {societe: societe};
+    return this.http.get(`${this.reqUrl}/statInterimaire`, {params: data});
   }
-  statInterByMonth(data){
-    return this.http.post(`${this.reqUrl}/statInterimaireByMonth`, data);
+
+  statInterByMonth(annee) {
+    const data = {annee: annee};
+    return this.http.get(`${this.reqUrl}/statInterimaireByMonth`, {params: data});
   }
   
   statInterByAgence(){
