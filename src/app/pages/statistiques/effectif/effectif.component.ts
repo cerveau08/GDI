@@ -51,6 +51,7 @@ export class EffectifComponent implements OnInit {
   dates;
   currentDate = new Date().getFullYear();
   item;
+  an;
   dataYear;
   societe = 1;
   date = new Date();
@@ -85,6 +86,8 @@ export class EffectifComponent implements OnInit {
   }
   //stats interimaire par annee
   dateSelectionner(value){
+    console.log(this.an);
+    console.log(value);
     this.otherService.statInterByYear().subscribe(
       data => {
         this.dataYear = data;
@@ -163,12 +166,7 @@ export class EffectifComponent implements OnInit {
           },
         };
         return this.chartOptions;
-    }, 
-    // error=> {
-    //   this.errorMsg = error;
-    //   this.errormodalService.open('error-modal-1');
-    //   console.log(error)
-    // }
+    }
     )
   }
 
@@ -184,16 +182,6 @@ export class EffectifComponent implements OnInit {
       this.hommes = this.dataStatEffectifSociete.map(valueOfHomme => valueOfHomme.homme);
       this.femmes = this.dataStatEffectifSociete.map(valueOfFemme => valueOfFemme.femme);
       this.totalSociete = this.dataStatEffectifSociete.map(valueOfTotal => valueOfTotal.homme);
-      console.log(this.totalSociete);
-      // if(value == "SONATEL") {
-      //   this.data = this.dataStatEffectifSociete;
-      //   this.directions = this.dataStatEffectifSociete.map(valueOfDirection => valueOfDirection.direction);
-      //   this.effectif = this.dataStatEffectifSociete.map(valueOfHomme => valueOfHomme.interHommes);
-      // } else if (value == "OFMS") {
-      //   this.data = this.dataStatEffectifSociete;
-      //   this.directions = this.dataStatEffectifSociete.map(valueOfDirection => valueOfDirection.direction);
-      //   this.effectif = this.dataStatEffectifSociete.map(valueOfHomme => valueOfHomme.interHommes);
-      // }
       this.chartOptions2 = {
         colors: [
           "#ff7900",
