@@ -22,11 +22,15 @@ export class AsideComponent implements OnInit {
   color: any;
   user: any;
   showHome = true;
+  present;
+  malade;
+  conge;
   constructor(private dataService: DataService,private otherService: OthersService) {
     this.otherService.getInter().subscribe(
       data => {
+        console.log(data);
        this.dataInterFin = data.data;
-       console.log(data);
+       
       }
     );
 
