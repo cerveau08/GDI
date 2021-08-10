@@ -30,8 +30,8 @@ export class ListeevaluationComponent implements OnInit {
   modifierForm: FormGroup;
   titremodif;
   descriptionmodif;
-  page = 1;
-  itemsPerPage = 3;
+  page = 2;
+  itemsPerPage = 4;
   totalItems : any;
   interimConnect;
   public reqUrl = environment.base_url;
@@ -44,7 +44,6 @@ export class ListeevaluationComponent implements OnInit {
     private http: HttpClient,) {
     this.activeroute.queryParams.subscribe(params => {
       this.item = JSON.parse(params["interimaire"]);
-      console.log(this.item);
     });
   }
 
@@ -72,8 +71,6 @@ export class ListeevaluationComponent implements OnInit {
     this.otherService.getOneInterById(this.item).subscribe(
       data =>{
         this.interimaire = data;
-        console.log(data);
-        
         this.objectifForm.patchValue({
           structure_id: this.interimaire.data.structure.id,
           interimaire: this.item
@@ -82,7 +79,6 @@ export class ListeevaluationComponent implements OnInit {
       error=> {
         this.errorMsg = error;
         this.errormodalService.open('error-modal-1');
-        console.log(error)
       }
     );
     this.gty(this.page);
@@ -93,11 +89,10 @@ export class ListeevaluationComponent implements OnInit {
       this.data = data
       console.log(data);
       this.evaluations = this.data["data"];
-      
+      this.totalItems = data.total;
     }, error=> {
       this.errorMsg = error;
       this.errormodalService.open('error-modal-1');
-      console.log(error)
     })
   }
 

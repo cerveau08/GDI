@@ -29,8 +29,7 @@ export class AsideComponent implements OnInit {
     this.otherService.getInter().subscribe(
       data => {
         console.log(data);
-       this.dataInterFin = data.data;
-       
+        this.dataInterFin = data.data;
       }
     );
 
@@ -85,5 +84,4 @@ export class AsideComponent implements OnInit {
     }
     return this.color;
   }
-  
 }

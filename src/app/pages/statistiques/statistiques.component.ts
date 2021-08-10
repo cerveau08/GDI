@@ -746,11 +746,12 @@ export class StatistiquesComponent implements OnInit {
       data => {
         this.dataStatistique = data['data'];
        console.log(data);
-       }, error=> {
-        this.errorMsg = error;
-        this.errormodalService.open('error-modal-1');
-        console.log(error)
-      }
+       }, 
+      //  error=> {
+      //   this.errorMsg = error;
+      //   this.errormodalService.open('error-modal-1');
+      //   console.log(error)
+      // }
     ); 
   }
   //stats interimaire par annee
@@ -834,11 +835,13 @@ export class StatistiquesComponent implements OnInit {
           },
         };
         return this.chartOptions;
-    }, error=> {
-      this.errorMsg = error;
-      this.errormodalService.open('error-modal-1');
-      console.log(error)
-    })
+    }, 
+    // error=> {
+    //   this.errorMsg = error;
+    //   this.errormodalService.open('error-modal-1');
+    //   console.log(error)
+    // }
+    )
   }
 
   effectifSocieteSelectionner(value:string){
@@ -918,11 +921,12 @@ export class StatistiquesComponent implements OnInit {
       },
     };
     return this.chartOptions2;
-    }, error=> {
-      this.errorMsg = error;
-      this.errormodalService.open('error-modal-1');
-      console.log(error)
     })
+    // error=> {
+    //   this.errorMsg = error;
+    //   this.errormodalService.open('error-modal-1');
+    //   console.log(error)
+    // })
   }
   societeSelectionner(value:string){
     this.directs = this.directions1;
@@ -1165,9 +1169,9 @@ export class StatistiquesComponent implements OnInit {
   }
 
   dateSelectionnerAgence(value){
-    // this.otherService.statInterByAgence().subscribe(
-    //   data => {
-    //     this.dataInterimByAgence = data['data'][0];
+    this.otherService.statInterByAgence().subscribe(
+      data => {
+        this.dataInterimByAgence = data['data'][0];
     this.axex = this.dataInterimByAgence.map(valueOfDirection => valueOfDirection.annee);
     this.nouveau = this.dataInterimByAgence.map(valueOfNouveau => valueOfNouveau.nouveau);
     this.fini = this.dataInterimByAgence.map(valueOfFini => valueOfFini.fini);
@@ -1243,6 +1247,7 @@ export class StatistiquesComponent implements OnInit {
       },
     };
     return this.chartOptions6;
+    })
   }
 
   serviceSelectionnerAgence(value){
