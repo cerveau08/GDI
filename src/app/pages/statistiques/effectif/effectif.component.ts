@@ -41,7 +41,7 @@ export class EffectifComponent implements OnInit {
   colorfilter1;
   axex;
   mois;
-  directs: any;
+  data: any;
   directions: any;
   effectif;
   hommes: any;
@@ -62,9 +62,13 @@ export class EffectifComponent implements OnInit {
   intervalId;
   scrHeight:any;
   scrWidth:any;
+  totalSociete;
   dates;
   currentDate = new Date().getFullYear();
   item;
+  societe = 1;
+  date = new Date();
+  annee = this.date.getFullYear();
   dataStatEffectifAnnee: any;
   dataStatEffectifSociete;
   dataStatistique;
@@ -85,6 +89,10 @@ export class EffectifComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log(this.annee);
+    
+    this.dateSelectionner(this.annee);
+    this.effectifSocieteSelectionner(String(this.societe));
   }
   //stats interimaire par annee
   dateSelectionner(value){
@@ -96,6 +104,8 @@ export class EffectifComponent implements OnInit {
         this.nouveau = this.dataStatEffectifAnnee.map(valueOfNouveau => valueOfNouveau.new);
         this.fini = this.dataStatEffectifAnnee.map(valueOfFini => valueOfFini.fini);
         this.total = this.dataStatEffectifAnnee.map(valueOfTotal => valueOfTotal.total);
+        console.log(this.total);
+        
         this.chartOptions = {
           colors: [
             "#ff0000",
@@ -177,82 +187,92 @@ export class EffectifComponent implements OnInit {
   }
 
   effectifSocieteSelectionner(value:string){
-    this.otherService.statInterByYear().subscribe(
+    this.otherService.statTotalInter(value).subscribe(
       data => {
-    console.log(value);
-    this.directs = this.dataStatEffectifSociete;
-    this.directions = this.dataStatEffectifSociete.map(valueOfDirection => valueOfDirection.direction);
-    this.effectif = this.dataStatEffectifSociete.map(valueOfHomme => valueOfHomme.interHommes);
-    if(value == "SONATEL") {
-      this.directs = this.dataStatEffectifSociete;
+      console.log(data);
+      this.data = data;
+      this.dataStatEffectifSociete = this.data.data[0];
+      console.log(this.dataStatEffectifSociete);
       this.directions = this.dataStatEffectifSociete.map(valueOfDirection => valueOfDirection.direction);
-      this.effectif = this.dataStatEffectifSociete.map(valueOfHomme => valueOfHomme.interHommes);
-    } else if (value == "OFMS") {
-      this.directs = this.dataStatEffectifSociete;
-      this.directions = this.dataStatEffectifSociete.map(valueOfDirection => valueOfDirection.direction);
-      this.effectif = this.dataStatEffectifSociete.map(valueOfHomme => valueOfHomme.interHommes);
-    }
-    this.chartOptions2 = {
-      colors: [
-        "#000"
-      ],
-      series: [
-        {
-          name: "Effectif",
-          data: this.effectif
-        }
-      ],
-      chart: {
-        type: "bar",
-        height: 280,
-        width: 550,
-        stacked: false,
-        toolbar: {
-          show: false
+      this.hommes = this.dataStatEffectifSociete.map(valueOfHomme => valueOfHomme.homme);
+      this.femmes = this.dataStatEffectifSociete.map(valueOfFemme => valueOfFemme.femme);
+      this.totalSociete = this.dataStatEffectifSociete.map(valueOfTotal => valueOfTotal.homme);
+      console.log(this.totalSociete);
+      // if(value == "SONATEL") {
+      //   this.data = this.dataStatEffectifSociete;
+      //   this.directions = this.dataStatEffectifSociete.map(valueOfDirection => valueOfDirection.direction);
+      //   this.effectif = this.dataStatEffectifSociete.map(valueOfHomme => valueOfHomme.interHommes);
+      // } else if (value == "OFMS") {
+      //   this.data = this.dataStatEffectifSociete;
+      //   this.directions = this.dataStatEffectifSociete.map(valueOfDirection => valueOfDirection.direction);
+      //   this.effectif = this.dataStatEffectifSociete.map(valueOfHomme => valueOfHomme.interHommes);
+      // }
+      this.chartOptions2 = {
+        colors: [
+          "#ff7900",
+          "#009393",
+        ],
+        series: [
+          {
+            name: "Femmes",
+            data: this.femmes
+          },
+          {
+            name: "Hommes",
+            data: this.hommes
+          },
+        ],
+        chart: {
+          type: "bar",
+          height: 280,
+          width: 550,
+          stacked: false,
+          toolbar: {
+            show: false
+          },
+          zoom: {
+            enabled: false
+          }
         },
-        zoom: {
-          enabled: false
-        }
-      },
-      responsive: [
-        {
-          breakpoint: 480,
-          options: {
-            legend: {
-              show: false,
-              position: "bottom",
-              offsetX: -10,
-              offsetY: 0
+        responsive: [
+          {
+            breakpoint: 480,
+            options: {
+              legend: {
+                show: false,
+                position: "bottom",
+                offsetX: -10,
+                offsetY: 0
+              }
             }
           }
-        }
-      ],
-      plotOptions: {
-        bar: {
-          horizontal: false,
-          columnWidth: "20px",
-        //  endingShape: "rounded",
+        ],
+        plotOptions: {
+          bar: {
+            horizontal: false,
+            columnWidth: "20px",
+          //  endingShape: "rounded",
+          },
         },
-      },
-      dataLabels: {
-        enabled: false,
-        style: {
-          colors: ['#f3f4f5', '#fff']
-        }
-      },
-      xaxis: {
-        type: "category",
-        categories: 
-          this.directions
-      },
-      legend: {
-        show: false,
-      },
-      fill: {
-        opacity: 4,
-      },
-    };
-    return this.chartOptions2;
+        dataLabels: {
+          enabled: false,
+          style: {
+            colors: ['#f3f4f5', '#fff']
+          }
+        },
+        xaxis: {
+          type: "category",
+          categories: 
+            this.directions
+        },
+        legend: {
+          show: false,
+        },
+        fill: {
+          opacity: 4,
+        },
+      };
+      return this.chartOptions2;
     })
     // error=> {
     //   this.errorMsg = error;
