@@ -41,6 +41,7 @@ export class StatagenceComponent implements OnInit {
   colorfilter1;
   axex;
   mois;
+  nom;
   directs: any;
   directions: any;
   effectif;
@@ -63,6 +64,7 @@ export class StatagenceComponent implements OnInit {
   scrHeight:any;
   scrWidth:any;
   dates;
+  dataAgence;
   currentDate = new Date().getFullYear();
   item;
   dataStatEffectifAnnee: any;
@@ -93,12 +95,12 @@ export class StatagenceComponent implements OnInit {
   dateSelectionnerAgence(){
     this.otherService.statInterByAgence().subscribe(
       data => {
-        this.data = data;
-        console.log(this.data);
+        this.dataAgence = data;
+        this.dataInterimByAgence =this.dataAgence[0];
 
         // this.dataInterimByAgence =data[0];
         console.log(this.dataInterimByAgence);
-    this.axex = this.dataInterimByAgence.map(valueOfDirection => valueOfDirection.annee);
+    this.nom = this.dataInterimByAgence.map(valueOfNom => valueOfNom.nom);
     this.actifs = this.dataInterimByAgence.map(valueOfActifs => valueOfActifs.actifs);
     this.inactifs = this.dataInterimByAgence.map(valueOfInactifs => valueOfInactifs.inactifs);
     this.total = this.dataInterimByAgence.map(valueOfTotal => valueOfTotal.total);
