@@ -46,8 +46,13 @@ export class GenreComponent implements OnInit {
   effectif;
   dataSociete;
   data: any;
+  pourcentFemme;
+  pourcentFemmecercle;
   hommes: any;
   femmes: any;
+  homme: any;
+  femme: any;
+  totalCercle: any;
   dataGenre;
   nouveau; 
   fini;
@@ -110,11 +115,18 @@ genrePourcentage(id_societe){
           console.log(data);
           this.data = data;
           this.dataStatEffectifGenre = this.data.data[0];
-      this.progress = this.progress - 2;
+          this.femme= this.dataStatEffectifGenre.femme;
+          this.homme= this.dataStatEffectifGenre.homme;
+          this.totalCercle= this.dataStatEffectifGenre.total;
+          this.pourcentFemme = this.dataStatEffectifGenre.femmePourcent;
+          this.pourcentFemmecercle = this.pourcentFemme - 2;
+          console.log(this.dataStatEffectifGenre)
+          
         })
     } else {
       clearInterval(this.intervalId);
     }
+    
   };
   this.intervalId = setInterval(getDownloadProgress, 1000);
 }
