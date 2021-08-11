@@ -94,7 +94,7 @@ export class EffectifComponent implements OnInit {
         this.dataStatEffectifAnnee = this.dataYear.data[0];
         this.axex = this.dataStatEffectifAnnee.map(valueOfDirection => valueOfDirection.annee);
         this.nouveau = this.dataStatEffectifAnnee.map(valueOfNouveau => valueOfNouveau.nouveaux);
-        this.fini = this.dataStatEffectifAnnee.map(valueOfFini => valueOfFini.fin);
+        this.fini = this.dataStatEffectifAnnee.map(valueOfFini => valueOfFini.fini);
         this.total = this.dataStatEffectifAnnee.map(valueOfTotal => valueOfTotal.total);
         this.chartOptions = {
           colors: [
