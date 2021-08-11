@@ -10,8 +10,8 @@
                         <circle-progress
                         [percent]="pourcentFemmecercle"
                         [radius]="60"
-                        [outerStrokeWidth]="40"
-                        [innerStrokeWidth]="20"
+                        [outerStrokeWidth]="32"
+                        [innerStrokeWidth]="22"
                         [space] = "-32"
                         [outerStrokeColor]="'#ff7900'"
                         [innerStrokeColor]="'#009393'"
@@ -20,8 +20,8 @@
                         [showUnits]="false"
                         [showSubtitle] = "false"
                         [animation]="true"
-                        [animationDuration]="300"
-                        [startFromZero]="false"
+                        [animationDuration]="200"
+                        [startFromZero]="true"
                         [responsive]="false"
                         ></circle-progress>
                     </div> 
@@ -50,7 +50,14 @@
                 </div>
             </div>
             <div class="">
-                <p class="interimaires-total">{{totalCercle}}</p>
+                <div class="filtre-societe-direction">
+                    <div class="filtrer-societe" style="cursor: pointer;">
+                        <select class="select-societe" #mySelect (change)='genrePourcentage(mySelect.value)'>
+                            <option *ngFor="let p of dataSociete" class="option" [value]="p.id">{{p.libelle}}</option>
+                        </select>
+                    </div>
+                </div>
+                <p class="interimaires-total">Total: {{totalCercle}}</p>
                 <div class="lesbouton1">
                     <div  class="button1"> 
                         <div class="color"></div> 
@@ -76,12 +83,6 @@
                             <option *ngFor="let p of dataSociete" class="option" [value]="p.id">{{p.libelle}}</option>
                         </select>
                     </div>
-                  <!--- <div class="filtrer-direction" style="cursor: pointer;">
-                        <select class="select-societe" #myDirection (change)='societeSelectionner(myDirection.value)'>
-                            <option class="option" value="" disabled selected hidden>Direction</option>
-                            <option *ngFor="let p of directions" class="option" [value]="p.directions">{{p.direction}}</option>
-                        </select>
-                    </div>-->
                 </div>
                 <div class="">
                     <div class="lesbouton1">

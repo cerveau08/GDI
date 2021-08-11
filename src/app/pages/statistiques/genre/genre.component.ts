@@ -107,9 +107,8 @@ export class GenreComponent implements OnInit {
 
 //premier
 
-genrePourcentage(id_societe){
-  const getDownloadProgress = () => {
-    if (this.progress <= 99) {
+  genrePourcentage(id_societe){
+    const getDownloadProgress = () => {
       this.otherService.statInterPourcent(id_societe).subscribe(
         data => {
           console.log(data);
@@ -119,17 +118,19 @@ genrePourcentage(id_societe){
           this.homme= this.dataStatEffectifGenre.homme;
           this.totalCercle= this.dataStatEffectifGenre.total;
           this.pourcentFemme = this.dataStatEffectifGenre.femmePourcent;
-          this.pourcentFemmecercle = this.pourcentFemme - 2;
+          this.pourcentFemmecercle = this.pourcentFemme + 40;
           console.log(this.dataStatEffectifGenre)
-          
-        })
-    } else {
-      clearInterval(this.intervalId);
-    }
+          clearInterval(this.intervalId);
+        }
+      )
+    };
+    this.intervalId = setInterval(getDownloadProgress, 1000);
+  }
+  ngOnDestroy() {
+    console.log(this.intervalId);
     
-  };
-  this.intervalId = setInterval(getDownloadProgress, 1000);
-}
+    clearInterval(this.intervalId);
+  }
 
   //deuxieme
   societeSelectionner(value:string){

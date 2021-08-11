@@ -55,7 +55,7 @@ export class EffectifComponent implements OnInit {
   dataYear;
   societe = 1;
   date = new Date();
-  annee = this.date.getFullYear();
+  annee = null;
   dataStatEffectifAnnee: any;
   dataStatEffectifSociete;
   dataStatistique;
@@ -89,13 +89,16 @@ export class EffectifComponent implements OnInit {
     console.log(value);
     this.otherService.statInterByYear(value).subscribe(
       data => {
-        console.log(data);
-        
         this.dataYear = data;
         this.dataStatEffectifAnnee = this.dataYear.data[0];
-        this.axex = this.dataStatEffectifAnnee.map(valueOfDirection => valueOfDirection.annee);
+        console.log(this.dataStatEffectifAnnee);
+        if(value == null) {
+          this.axex = this.dataStatEffectifAnnee.map(valueOfDirection => valueOfDirection.annee);
+        } else {
+          this.axex = this.dataStatEffectifAnnee.map(valueOfDirection => valueOfDirection.mois);
+        }
         this.nouveau = this.dataStatEffectifAnnee.map(valueOfNouveau => valueOfNouveau.nouveaux);
-        this.fini = this.dataStatEffectifAnnee.map(valueOfFini => valueOfFini.fini);
+        this.fini = this.dataStatEffectifAnnee.map(valueOfFini => valueOfFini.fin);
         this.total = this.dataStatEffectifAnnee.map(valueOfTotal => valueOfTotal.total);
         this.chartOptions = {
           colors: [
