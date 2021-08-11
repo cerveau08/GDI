@@ -102,8 +102,14 @@ export class StatagenceComponent implements OnInit {
     this.otherService.statInterByAgence().subscribe(
       data => {
         console.log(data);
+        this.data = data;
+        console.log(this.data);
         this.dataInterimByAgence = this.data.data[0];
-        this.dataInterimByAgence = data;
+        this.dataInterimByAgence= data ;
+        console.log(this.dataInterimByAgence);
+
+
+        // this.dataInterimByAgence = data;
         
     this.axex = this.dataInterimByAgence.map(valueOfDirection => valueOfDirection.annee);
     this.actifs = this.dataInterimByAgence.map(valueOfActifs => valueOfActifs.actifs);
@@ -125,7 +131,7 @@ export class StatagenceComponent implements OnInit {
           data: this.inactifs
         },
         {
-          name: "Congés",
+          name: "Total",
           data: this.total
         },
       ],
