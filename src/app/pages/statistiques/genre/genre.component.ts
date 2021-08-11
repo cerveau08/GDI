@@ -52,6 +52,7 @@ export class GenreComponent implements OnInit {
   nouveau; 
   fini;
   total;
+  id_societe= 1;
   date = new Date();
   societe = 1;
   show = 1;
@@ -88,27 +89,35 @@ export class GenreComponent implements OnInit {
   }
 
   ngOnInit() {
-    const getDownloadProgress = () => {
-      if (this.progress <= 99) {
-        this.progress = 30;
-        this.progress = this.progress - 2;
-      } else {
-        clearInterval(this.intervalId);
-      }
-    };
-    this.intervalId = setInterval(getDownloadProgress, 1000);
-
     this.otherService.getAllSociete().subscribe(
       data => {
         this.dataSociete = data["data"];
         console.log(data);
       }
     );
-
+    
+    this.genrePourcentage(String(this.id_societe));
     this.societeSelectionner(String(this.societe));
   }
 
+//premier
 
+genrePourcentage(id_societe){
+  const getDownloadProgress = () => {
+    if (this.progress <= 99) {
+      this.otherService.statInterPourcent(id_societe).subscribe(
+        data => {
+          console.log(data);
+          this.data = data;
+          this.dataStatEffectifGenre = this.data.data[0];
+      this.progress = this.progress - 2;
+        })
+    } else {
+      clearInterval(this.intervalId);
+    }
+  };
+  this.intervalId = setInterval(getDownloadProgress, 1000);
+}
 
   //deuxieme
   societeSelectionner(value:string){

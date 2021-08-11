@@ -55,20 +55,14 @@
             <div class="selects-and-echelle">
                 <div class="filtre-societe-direction">
                     <div class="filtrer-societe" style="cursor: pointer;">
-                        <select class="select-societe" #lEffectif (change)='effectifSocieteSelectionner(lEffectif.value)'>
-                            <option *ngFor="let p of societes" class="option" [value]="p.societe">{{p.societe}}</option>
-                        </select>
-                    </div>
-                    <div class="filtrer-direction" style="cursor: pointer;">
-                        <select class="select-societe" #myDirection (change)='effectifSocieteSelectionner(myDirection.value)'>
-                            <option class="option" value="" disabled selected hidden>Direction</option>
-                            <option *ngFor="let p of directions" class="option" [value]="p.direction">{{p.direction}}</option>
+                        <select class="select-societe" #lEffectif (change)='societeSelectionner(mySelect.value)'>
+                            <option *ngFor="let p of dataSociete" class="option" [value]="p.id">{{p.libelle}}</option>
                         </select>
                     </div>
                 </div>
             </div>
             <div class="diagra1">
-                <!-- <div id="chart1"> 
+                 <div id="chart1"> 
                     <apx-chart
                       [series]="chartOptions5.series"
                       [chart]="chartOptions5.chart"
@@ -81,7 +75,7 @@
                       [colors]="chartOptions5.colors"
                       [dataLabels]="chartOptions5.dataLabels"
                     ></apx-chart>
-                </div> -->
+                </div>
             </div>
             <div class="lesbouton2">
                 <div  class="button3"> 

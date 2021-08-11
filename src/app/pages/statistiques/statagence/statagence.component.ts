@@ -41,19 +41,13 @@ export class StatagenceComponent implements OnInit {
   colorfilter1;
   axex;
   mois;
-  an;
-  data;
   directs: any;
   directions: any;
   effectif;
   hommes: any;
   femmes: any;
-  nouveau; 
-  malade;
-  conges;
-  actifs;
+  actifs; 
   inactifs;
-  present;
   total;
   show = 1;
   color: any;
@@ -69,7 +63,6 @@ export class StatagenceComponent implements OnInit {
   scrHeight:any;
   scrWidth:any;
   dates;
-  sd;
   currentDate = new Date().getFullYear();
   item;
   dataStatEffectifAnnee: any;
@@ -92,25 +85,13 @@ export class StatagenceComponent implements OnInit {
   }
 
   ngOnInit() {
-
-    this.dateSelectionnerAgence();
   }
 
-  
-  dateSelectionnerAgence(){
-    console.log(this.an);
+  dateSelectionnerAgence(value){
     this.otherService.statInterByAgence().subscribe(
       data => {
         console.log(data);
-        this.data = data;
-        console.log(this.data);
-        this.dataInterimByAgence = this.data.data[0];
-        this.dataInterimByAgence= data ;
-        console.log(this.dataInterimByAgence);
-
-
-        // this.dataInterimByAgence = data;
-        
+        this.dataInterimByAgence = data['data'][0];
     this.axex = this.dataInterimByAgence.map(valueOfDirection => valueOfDirection.annee);
     this.actifs = this.dataInterimByAgence.map(valueOfActifs => valueOfActifs.actifs);
     this.inactifs = this.dataInterimByAgence.map(valueOfInactifs => valueOfInactifs.inactifs);
@@ -189,82 +170,82 @@ export class StatagenceComponent implements OnInit {
     })
   }
 
-  // serviceSelectionnerAgence(value){
-  //   this.axex = this.dataStatEffectifService.map(valueOfDirection => valueOfDirection.annee);
-  //   this.nouveau = this.dataStatEffectifService.map(valueOfNouveau => valueOfNouveau.nouveau);
-  //   this.malade = this.dataStatEffectifService.map(valueOfFini => valueOfFini.fini);
-  //   this.total = this.dataStatEffectifService.map(valueOfTotal => valueOfTotal.total);
-  //   this.chartOptions7 = {
-  //     colors: [
-  //       "#ff0000",
-  //       "#009393",
-  //       "#000000",
-  //     ],
-  //     series: [
-  //       {
-  //         name: "Malades",
-  //         data: this.malade
-  //       },
-  //       {
-  //         name: "Présents",
-  //         data: this.nouveau
-  //       },
-  //       {
-  //         name: "Congés",
-  //         data: this.total
-  //       },
-  //     ],
-  //     chart: {
-  //       type: "bar",
-  //       height: 300,
-  //       width: 550,
-  //       stacked: true,
-  //       toolbar: {
-  //         show: false
-  //       },
-  //       zoom: {
-  //         enabled: false
-  //       }
-  //     },
-  //     responsive: [
-  //       {
-  //         breakpoint: 480,
-  //         options: {
-  //           legend: {
-  //             show: false,
-  //             position: "bottom",
-  //             offsetX: -10,
-  //             offsetY: 0
-  //           }
-  //         }
-  //       }
-  //     ],
-  //     plotOptions: {
-  //       bar: {
-  //         horizontal: false,
-  //         columnWidth: "10px",
-  //       //  endingShape: "rounded",
-  //       },
-  //     },
-  //     dataLabels: {
-  //       enabled: false,
-  //       style: {
-  //         colors: ['#f3f4f5', '#fff']
-  //       }
-  //     },
-  //     xaxis: {
-  //       type: "category",
-  //       categories: 
-  //         this.axex
-  //     },
-  //     legend: {
-  //       show: false,
-  //     },
-  //     fill: {
-  //       opacity: 4,
-  //     },
-  //   };
-  //   return this.chartOptions7;
-  // }
+  serviceSelectionnerAgence(value){
+    this.axex = this.dataStatEffectifService.map(valueOfDirection => valueOfDirection.annee);
+    this.actifs = this.dataStatEffectifService.map(valueOfNouveau => valueOfNouveau.actifs);
+    this.inactifs = this.dataStatEffectifService.map(valueOfFini => valueOfFini.inactifs);
+    this.total = this.dataStatEffectifService.map(valueOfTotal => valueOfTotal.total);
+    this.chartOptions7 = {
+      colors: [
+        "#ff0000",
+        "#009393",
+        "#000000",
+      ],
+      series: [
+        {
+          name: "Actifs",
+          data: this.actifs
+        },
+        {
+          name: "Inactifs",
+          data: this.inactifs
+        },
+        {
+          name: "Total",
+          data: this.total
+        },
+      ],
+      chart: {
+        type: "bar",
+        height: 300,
+        width: 550,
+        stacked: true,
+        toolbar: {
+          show: false
+        },
+        zoom: {
+          enabled: false
+        }
+      },
+      responsive: [
+        {
+          breakpoint: 480,
+          options: {
+            legend: {
+              show: false,
+              position: "bottom",
+              offsetX: -10,
+              offsetY: 0
+            }
+          }
+        }
+      ],
+      plotOptions: {
+        bar: {
+          horizontal: false,
+          columnWidth: "10px",
+        //  endingShape: "rounded",
+        },
+      },
+      dataLabels: {
+        enabled: false,
+        style: {
+          colors: ['#f3f4f5', '#fff']
+        }
+      },
+      xaxis: {
+        type: "category",
+        categories: 
+          this.axex
+      },
+      legend: {
+        show: false,
+      },
+      fill: {
+        opacity: 4,
+      },
+    };
+    return this.chartOptions7;
+  }
 
 }
