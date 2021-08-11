@@ -51,6 +51,8 @@ export class StatagenceComponent implements OnInit {
   nouveau; 
   malade;
   conges;
+  actifs;
+  inactifs;
   present;
   total;
   show = 1;
@@ -67,6 +69,7 @@ export class StatagenceComponent implements OnInit {
   scrHeight:any;
   scrWidth:any;
   dates;
+  sd;
   currentDate = new Date().getFullYear();
   item;
   dataStatEffectifAnnee: any;
@@ -90,23 +93,22 @@ export class StatagenceComponent implements OnInit {
 
   ngOnInit() {
 
-    
+    this.dateSelectionnerAgence();
   }
 
   
-  dateSelectionnerAgence(value){
+  dateSelectionnerAgence(){
     console.log(this.an);
-    console.log(value);
     this.otherService.statInterByAgence().subscribe(
       data => {
         console.log(data);
         this.dataInterimByAgence = this.data.data[0];
-        console.log(data);
         this.dataInterimByAgence = data;
+        
     this.axex = this.dataInterimByAgence.map(valueOfDirection => valueOfDirection.annee);
-    this.malade = this.dataInterimByAgence.map(valueOfMalade => valueOfMalade.malade);
-    this.present = this.dataInterimByAgence.map(valueOfPresent => valueOfPresent.present);
-    this.conges = this.dataInterimByAgence.map(valueOfConges => valueOfConges.conge);
+    this.actifs = this.dataInterimByAgence.map(valueOfActifs => valueOfActifs.actifs);
+    this.inactifs = this.dataInterimByAgence.map(valueOfInactifs => valueOfInactifs.inactifs);
+    this.total = this.dataInterimByAgence.map(valueOfTotal => valueOfTotal.total);
     this.chartOptions6 = {
       colors: [
         "#ff0000",
@@ -115,16 +117,16 @@ export class StatagenceComponent implements OnInit {
       ],
       series: [
         {
-          name: "Malades",
-          data: this.malade
+          name: "Actifs",
+          data: this.actifs
         },
         {
-          name: "Présents",
-          data: this.present
+          name: "Inactifs",
+          data: this.inactifs
         },
         {
           name: "Congés",
-          data: this.conges
+          data: this.total
         },
       ],
       chart: {
