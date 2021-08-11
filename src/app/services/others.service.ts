@@ -284,4 +284,9 @@ addAgence(data) {
   getStatPresence(): Observable<any> {
     return this.http.get<any>(this.reqUrl + '/statDemande');
   }
+
+  getLastNotification(): Observable<any> {
+    return this.http.get<any>(this.reqUrl + '/latestNotification');
+  }
+
 }
