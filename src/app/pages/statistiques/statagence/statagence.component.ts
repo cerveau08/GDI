@@ -48,7 +48,9 @@ export class StatagenceComponent implements OnInit {
   femmes: any;
   actifs; 
   inactifs;
+  nom;
   total;
+  dataAgence;
   show = 1;
   color: any;
   public datas: any;
@@ -93,12 +95,11 @@ export class StatagenceComponent implements OnInit {
   dateSelectionnerAgence(){
     this.otherService.statInterByAgence().subscribe(
       data => {
-        this.data = data;
-        console.log(this.data);
-
-        // this.dataInterimByAgence =data[0];
+        this.dataAgence = data;
+        this.dataInterimByAgence = this.dataAgence.data[0];
         console.log(this.dataInterimByAgence);
-    this.axex = this.dataInterimByAgence.map(valueOfDirection => valueOfDirection.annee);
+        //console.log(this.dataInterimByAgence);
+    this.axex = this.dataInterimByAgence.map(valueOfDirection => valueOfDirection.nom);
     this.actifs = this.dataInterimByAgence.map(valueOfActifs => valueOfActifs.actifs);
     this.inactifs = this.dataInterimByAgence.map(valueOfInactifs => valueOfInactifs.inactifs);
     this.total = this.dataInterimByAgence.map(valueOfTotal => valueOfTotal.total);
@@ -176,7 +177,7 @@ export class StatagenceComponent implements OnInit {
     })
   }
 
-  serviceSelectionnerAgence(value){
+ /* serviceSelectionnerAgence(value){
     this.axex = this.dataStatEffectifService.map(valueOfDirection => valueOfDirection.annee);
     this.actifs = this.dataStatEffectifService.map(valueOfNouveau => valueOfNouveau.actifs);
     this.inactifs = this.dataStatEffectifService.map(valueOfFini => valueOfFini.inactifs);
@@ -252,6 +253,7 @@ export class StatagenceComponent implements OnInit {
       },
     };
     return this.chartOptions7;
-  }
+    
+  }*/
 
 }
