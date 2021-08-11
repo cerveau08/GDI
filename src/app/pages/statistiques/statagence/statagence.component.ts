@@ -41,13 +41,17 @@ export class StatagenceComponent implements OnInit {
   colorfilter1;
   axex;
   mois;
+  an;
+  data;
   directs: any;
   directions: any;
   effectif;
   hommes: any;
   femmes: any;
   nouveau; 
-  fini;
+  malade;
+  conges;
+  present;
   total;
   show = 1;
   color: any;
@@ -85,16 +89,24 @@ export class StatagenceComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    
   }
 
+  
   dateSelectionnerAgence(value){
+    console.log(this.an);
+    console.log(value);
     this.otherService.statInterByAgence().subscribe(
       data => {
-        this.dataInterimByAgence = data['data'][0];
+        console.log(data);
+        this.dataInterimByAgence = this.data.data[0];
+        console.log(data);
+        this.dataInterimByAgence = data;
     this.axex = this.dataInterimByAgence.map(valueOfDirection => valueOfDirection.annee);
-    this.nouveau = this.dataInterimByAgence.map(valueOfNouveau => valueOfNouveau.nouveau);
-    this.fini = this.dataInterimByAgence.map(valueOfFini => valueOfFini.fini);
-    this.total = this.dataInterimByAgence.map(valueOfTotal => valueOfTotal.total);
+    this.malade = this.dataInterimByAgence.map(valueOfMalade => valueOfMalade.malade);
+    this.present = this.dataInterimByAgence.map(valueOfPresent => valueOfPresent.present);
+    this.conges = this.dataInterimByAgence.map(valueOfConges => valueOfConges.conge);
     this.chartOptions6 = {
       colors: [
         "#ff0000",
@@ -104,15 +116,15 @@ export class StatagenceComponent implements OnInit {
       series: [
         {
           name: "Malades",
-          data: this.fini
+          data: this.malade
         },
         {
           name: "Présents",
-          data: this.nouveau
+          data: this.present
         },
         {
           name: "Congés",
-          data: this.total
+          data: this.conges
         },
       ],
       chart: {
@@ -169,82 +181,82 @@ export class StatagenceComponent implements OnInit {
     })
   }
 
-  serviceSelectionnerAgence(value){
-    this.axex = this.dataStatEffectifService.map(valueOfDirection => valueOfDirection.annee);
-    this.nouveau = this.dataStatEffectifService.map(valueOfNouveau => valueOfNouveau.nouveau);
-    this.fini = this.dataStatEffectifService.map(valueOfFini => valueOfFini.fini);
-    this.total = this.dataStatEffectifService.map(valueOfTotal => valueOfTotal.total);
-    this.chartOptions7 = {
-      colors: [
-        "#ff0000",
-        "#009393",
-        "#000000",
-      ],
-      series: [
-        {
-          name: "Malades",
-          data: this.fini
-        },
-        {
-          name: "Présents",
-          data: this.nouveau
-        },
-        {
-          name: "Congés",
-          data: this.total
-        },
-      ],
-      chart: {
-        type: "bar",
-        height: 300,
-        width: 550,
-        stacked: true,
-        toolbar: {
-          show: false
-        },
-        zoom: {
-          enabled: false
-        }
-      },
-      responsive: [
-        {
-          breakpoint: 480,
-          options: {
-            legend: {
-              show: false,
-              position: "bottom",
-              offsetX: -10,
-              offsetY: 0
-            }
-          }
-        }
-      ],
-      plotOptions: {
-        bar: {
-          horizontal: false,
-          columnWidth: "10px",
-        //  endingShape: "rounded",
-        },
-      },
-      dataLabels: {
-        enabled: false,
-        style: {
-          colors: ['#f3f4f5', '#fff']
-        }
-      },
-      xaxis: {
-        type: "category",
-        categories: 
-          this.axex
-      },
-      legend: {
-        show: false,
-      },
-      fill: {
-        opacity: 4,
-      },
-    };
-    return this.chartOptions7;
-  }
+  // serviceSelectionnerAgence(value){
+  //   this.axex = this.dataStatEffectifService.map(valueOfDirection => valueOfDirection.annee);
+  //   this.nouveau = this.dataStatEffectifService.map(valueOfNouveau => valueOfNouveau.nouveau);
+  //   this.malade = this.dataStatEffectifService.map(valueOfFini => valueOfFini.fini);
+  //   this.total = this.dataStatEffectifService.map(valueOfTotal => valueOfTotal.total);
+  //   this.chartOptions7 = {
+  //     colors: [
+  //       "#ff0000",
+  //       "#009393",
+  //       "#000000",
+  //     ],
+  //     series: [
+  //       {
+  //         name: "Malades",
+  //         data: this.malade
+  //       },
+  //       {
+  //         name: "Présents",
+  //         data: this.nouveau
+  //       },
+  //       {
+  //         name: "Congés",
+  //         data: this.total
+  //       },
+  //     ],
+  //     chart: {
+  //       type: "bar",
+  //       height: 300,
+  //       width: 550,
+  //       stacked: true,
+  //       toolbar: {
+  //         show: false
+  //       },
+  //       zoom: {
+  //         enabled: false
+  //       }
+  //     },
+  //     responsive: [
+  //       {
+  //         breakpoint: 480,
+  //         options: {
+  //           legend: {
+  //             show: false,
+  //             position: "bottom",
+  //             offsetX: -10,
+  //             offsetY: 0
+  //           }
+  //         }
+  //       }
+  //     ],
+  //     plotOptions: {
+  //       bar: {
+  //         horizontal: false,
+  //         columnWidth: "10px",
+  //       //  endingShape: "rounded",
+  //       },
+  //     },
+  //     dataLabels: {
+  //       enabled: false,
+  //       style: {
+  //         colors: ['#f3f4f5', '#fff']
+  //       }
+  //     },
+  //     xaxis: {
+  //       type: "category",
+  //       categories: 
+  //         this.axex
+  //     },
+  //     legend: {
+  //       show: false,
+  //     },
+  //     fill: {
+  //       opacity: 4,
+  //     },
+  //   };
+  //   return this.chartOptions7;
+  // }
 
 }
