@@ -72,6 +72,7 @@ export class StatagenceComponent implements OnInit {
   chart: ChartComponent;
   public chartOptions6: Partial<ChartOptions>;
   public chartOptions7: Partial<ChartOptions>;
+  data: Object;
   constructor(private dataService: DataService,
     private errormodalService: ErrormodalService,
               private otherService: OthersService) {
@@ -85,13 +86,18 @@ export class StatagenceComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.dateSelectionnerAgence() ;
   }
 
-  dateSelectionnerAgence(value){
+
+  dateSelectionnerAgence(){
     this.otherService.statInterByAgence().subscribe(
       data => {
-        console.log(data);
-        this.dataInterimByAgence = data['data'][0];
+        this.data = data;
+        console.log(this.data);
+
+        // this.dataInterimByAgence =data[0];
+        console.log(this.dataInterimByAgence);
     this.axex = this.dataInterimByAgence.map(valueOfDirection => valueOfDirection.annee);
     this.actifs = this.dataInterimByAgence.map(valueOfActifs => valueOfActifs.actifs);
     this.inactifs = this.dataInterimByAgence.map(valueOfInactifs => valueOfInactifs.inactifs);
