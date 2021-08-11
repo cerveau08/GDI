@@ -90,7 +90,6 @@ export class EffectifComponent implements OnInit {
     this.otherService.statInterByYear(value).subscribe(
       data => {
         console.log(data);
-        
         this.dataYear = data;
         this.dataStatEffectifAnnee = this.dataYear.data[0];
         this.axex = this.dataStatEffectifAnnee.map(valueOfDirection => valueOfDirection.annee);

@@ -97,10 +97,10 @@ export class PresenceComponent implements OnInit {
     this.dateSelectionnerPresence(this.annee);
   }
 
-  dateSelectionnerPresence(value: string){
+  dateSelectionnerPresence(value){
    // console.log(this.an);
     //console.log(value);
-    this.otherService.statTotalInter(value).subscribe(
+    this.otherService.StatPresenceTab(value).subscribe(
       data => {
         console.log(data);
         this.dataPresence = data;

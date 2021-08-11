@@ -90,7 +90,7 @@ export class GenreComponent implements OnInit {
   getScreenSize(event?) {
         this.scrHeight = window.innerHeight;
         this.scrWidth = window.innerWidth;
-        console.log(this.scrHeight, this.scrWidth);
+        //console.log(this.scrHeight, this.scrWidth);
   }
 
   ngOnInit() {
@@ -120,7 +120,7 @@ genrePourcentage(id_societe){
           this.totalCercle= this.dataStatEffectifGenre.total;
           this.pourcentFemme = this.dataStatEffectifGenre.femmePourcent;
           this.pourcentFemmecercle = this.pourcentFemme - 2;
-          console.log(this.dataStatEffectifGenre)
+          //console.log(this.dataStatEffectifGenre)
           
         })
     } else {
