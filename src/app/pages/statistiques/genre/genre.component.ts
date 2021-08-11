@@ -53,7 +53,7 @@ export class GenreComponent implements OnInit {
   fini;
   total;
   date = new Date();
-  societe =1;
+  societe = 1;
   show = 1;
   color: any;
   public datas: any;
