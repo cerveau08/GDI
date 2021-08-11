@@ -45,6 +45,7 @@ export class HomeComponent implements OnInit {
   statInterAgence;
   prenom;
   manager;
+  lastnotif;
   color: any;
   public datas: any;
   public diagrammes: any;
@@ -74,7 +75,9 @@ export class HomeComponent implements OnInit {
     private errormodalService: ErrormodalService,
     private otherService: OthersService) {
     this.getScreenSize();
-    this.chartOptions = {
+
+  
+  this.chartOptions = {
       series: [
         {
           name: "Finis",
@@ -281,12 +284,22 @@ export class HomeComponent implements OnInit {
           console.log(error)
         }
       );
-      // this.otherService.statInterByAgence().subscribe(
-      //   data => {
-      //   this.statInterimByAgnece = data;
-      //   console.log(data);
-      //   }
-      // );
+
+         
+      this.otherService.getLastNotification().subscribe(
+        data => {
+          if(data.data[0]){
+            this.lastnotif =data.data[0].description;
+          }else{
+            this.lastnotif ="Aucune notification "
+
+          }
+        console.log("RRRRRRRRRRRRRRRRRRRRRR",data);
+        }
+      );
+      
+
+      
 
       // this.otherService.statInterAgence(this.manager.id).subscribe(
       //   data => {
