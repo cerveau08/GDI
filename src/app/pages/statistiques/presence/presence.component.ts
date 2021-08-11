@@ -41,15 +41,14 @@ export class PresenceComponent implements OnInit {
   colorfilter1;
   axex;
   mois;
+  annee;
+  dataSociete;
+  dataPresence;
   directs: any;
   directions: any;
   effectif;
-  hommes: any;
-  femmes: any;
-  nouveau; 
-  fini;
   total;
-  prensent;
+  present;
   malade;
   conge;
   show = 1;
@@ -89,13 +88,27 @@ export class PresenceComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.otherService.getAllSociete().subscribe(
+      data => {
+        this.dataSociete = data["data"];
+        console.log(data);
+      }
+    );
+    this.dateSelectionnerPresence(this.annee);
   }
 
-  dateSelectionnerPresence(value){
+  dateSelectionnerPresence(value: string){
+   // console.log(this.an);
+    //console.log(value);
+    this.otherService.statTotalInter(value).subscribe(
+      data => {
+        console.log(data);
+        this.dataPresence = data;
+        this.dataStatEffectifPresence = this.dataPresence.data[0];
     this.axex = this.dataStatEffectifPresence.map(valueOfDirection => valueOfDirection.annee);
-    this.nouveau = this.dataStatEffectifPresence.map(valueOfNouveau => valueOfNouveau.nouveau);
-    this.fini = this.dataStatEffectifPresence.map(valueOfFini => valueOfFini.fini);
-    this.total = this.dataStatEffectifPresence.map(valueOfTotal => valueOfTotal.total);
+    this.present = this.dataStatEffectifPresence.map(valueOfPresent => valueOfPresent.present);
+    this.malade = this.dataStatEffectifPresence.map(valueOfMalade => valueOfMalade.malade);
+    this.conge = this.dataStatEffectifPresence.map(valueOfConge => valueOfConge.conge);
     this.chartOptions4 = {
       colors: [
         "#ff0000",
@@ -104,16 +117,16 @@ export class PresenceComponent implements OnInit {
       ],
       series: [
         {
-          name: "Fini",
-          data: this.fini
+          name: "Présents",
+          data: this.present
         },
         {
-          name: "Nouveau",
-          data: this.nouveau
+          name: "Malades",
+          data: this.malade
         },
         {
-          name: "Total",
-          data: this.total
+          name: "Congés",
+          data: this.conge
         },
       ],
       chart: {
@@ -167,13 +180,14 @@ export class PresenceComponent implements OnInit {
       },
     };
     return this.chartOptions4;
+  })
   }
 
   serviceSelectionnerPresence(value){
     this.axex = this.dataStatSocietePresence.map(valueOfDirection => valueOfDirection.annee);
-    this.nouveau = this.dataStatSocietePresence.map(valueOfNouveau => valueOfNouveau.nouveau);
-    this.fini = this.dataStatSocietePresence.map(valueOfFini => valueOfFini.fini);
-    this.total = this.dataStatSocietePresence.map(valueOfTotal => valueOfTotal.total);
+    this.present = this.dataStatSocietePresence.map(valueOfPresent=> valueOfPresent.present);
+    this.malade = this.dataStatSocietePresence.map(valueOfMalade => valueOfMalade.malade);
+    this.conge = this.dataStatSocietePresence.map(valueOfConge => valueOfConge.conge);
     this.chartOptions5 = {
       colors: [
         "#ff0000",
@@ -182,16 +196,16 @@ export class PresenceComponent implements OnInit {
       ],
       series: [
         {
-          name: "Malades",
-          data: this.fini
+          name: "Présents",
+          data: this.present
         },
         {
-          name: "Présents",
-          data: this.nouveau
+          name: "Malades",
+          data: this.malade
         },
         {
           name: "Congés",
-          data: this.total
+          data: this.conge
         },
       ],
       chart: {
