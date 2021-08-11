@@ -46,8 +46,8 @@ export class StatagenceComponent implements OnInit {
   effectif;
   hommes: any;
   femmes: any;
-  nouveau; 
-  fini;
+  actifs; 
+  inactifs;
   total;
   show = 1;
   color: any;
@@ -90,10 +90,11 @@ export class StatagenceComponent implements OnInit {
   dateSelectionnerAgence(value){
     this.otherService.statInterByAgence().subscribe(
       data => {
+        console.log(data);
         this.dataInterimByAgence = data['data'][0];
     this.axex = this.dataInterimByAgence.map(valueOfDirection => valueOfDirection.annee);
-    this.nouveau = this.dataInterimByAgence.map(valueOfNouveau => valueOfNouveau.nouveau);
-    this.fini = this.dataInterimByAgence.map(valueOfFini => valueOfFini.fini);
+    this.actifs = this.dataInterimByAgence.map(valueOfActifs => valueOfActifs.actifs);
+    this.inactifs = this.dataInterimByAgence.map(valueOfInactifs => valueOfInactifs.inactifs);
     this.total = this.dataInterimByAgence.map(valueOfTotal => valueOfTotal.total);
     this.chartOptions6 = {
       colors: [
@@ -103,15 +104,15 @@ export class StatagenceComponent implements OnInit {
       ],
       series: [
         {
-          name: "Malades",
-          data: this.fini
+          name: "Actifs",
+          data: this.actifs
         },
         {
-          name: "Présents",
-          data: this.nouveau
+          name: "Inactifs",
+          data: this.inactifs
         },
         {
-          name: "Congés",
+          name: "Total",
           data: this.total
         },
       ],
@@ -171,8 +172,8 @@ export class StatagenceComponent implements OnInit {
 
   serviceSelectionnerAgence(value){
     this.axex = this.dataStatEffectifService.map(valueOfDirection => valueOfDirection.annee);
-    this.nouveau = this.dataStatEffectifService.map(valueOfNouveau => valueOfNouveau.nouveau);
-    this.fini = this.dataStatEffectifService.map(valueOfFini => valueOfFini.fini);
+    this.actifs = this.dataStatEffectifService.map(valueOfNouveau => valueOfNouveau.actifs);
+    this.inactifs = this.dataStatEffectifService.map(valueOfFini => valueOfFini.inactifs);
     this.total = this.dataStatEffectifService.map(valueOfTotal => valueOfTotal.total);
     this.chartOptions7 = {
       colors: [
@@ -182,15 +183,15 @@ export class StatagenceComponent implements OnInit {
       ],
       series: [
         {
-          name: "Malades",
-          data: this.fini
+          name: "Actifs",
+          data: this.actifs
         },
         {
-          name: "Présents",
-          data: this.nouveau
+          name: "Inactifs",
+          data: this.inactifs
         },
         {
-          name: "Congés",
+          name: "Total",
           data: this.total
         },
       ],
