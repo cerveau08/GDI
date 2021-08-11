@@ -77,15 +77,8 @@ export class PresenceComponent implements OnInit {
   constructor(private dataService: DataService,
     private errormodalService: ErrormodalService,
               private otherService: OthersService) {
-    this.getScreenSize();
   }
-  @HostListener('window:resize', ['$event'])
-  getScreenSize(event?) {
-        this.scrHeight = window.innerHeight;
-        this.scrWidth = window.innerWidth;
-        console.log(this.scrHeight, this.scrWidth);
-        
-  }
+  
 
   ngOnInit() {
     this.otherService.getAllSociete().subscribe(
@@ -98,13 +91,12 @@ export class PresenceComponent implements OnInit {
   }
 
   dateSelectionnerPresence(value: string){
-   // console.log(this.an);
-    //console.log(value);
-    this.otherService.statTotalInter(value).subscribe(
+    this.otherService.getStatPresenceTab(value).subscribe(
       data => {
         console.log(data);
         this.dataPresence = data;
         this.dataStatEffectifPresence = this.dataPresence.data[0];
+        console.log(this.dataStatEffectifPresence);
     this.axex = this.dataStatEffectifPresence.map(valueOfDirection => valueOfDirection.annee);
     this.present = this.dataStatEffectifPresence.map(valueOfPresent => valueOfPresent.present);
     this.malade = this.dataStatEffectifPresence.map(valueOfMalade => valueOfMalade.malade);
@@ -183,82 +175,82 @@ export class PresenceComponent implements OnInit {
   })
   }
 
-  serviceSelectionnerPresence(value){
-    this.axex = this.dataStatSocietePresence.map(valueOfDirection => valueOfDirection.annee);
-    this.present = this.dataStatSocietePresence.map(valueOfPresent=> valueOfPresent.present);
-    this.malade = this.dataStatSocietePresence.map(valueOfMalade => valueOfMalade.malade);
-    this.conge = this.dataStatSocietePresence.map(valueOfConge => valueOfConge.conge);
-    this.chartOptions5 = {
-      colors: [
-        "#ff0000",
-        "#009393",
-        "#000000",
-      ],
-      series: [
-        {
-          name: "Présents",
-          data: this.present
-        },
-        {
-          name: "Malades",
-          data: this.malade
-        },
-        {
-          name: "Congés",
-          data: this.conge
-        },
-      ],
-      chart: {
-        type: "bar",
-        height: 300,
-        width: 550,
-        stacked: true,
-        toolbar: {
-          show: false
-        },
-        zoom: {
-          enabled: false
-        }
-      },
-      responsive: [
-        {
-          breakpoint: 480,
-          options: {
-            legend: {
-              show: false,
-              position: "bottom",
-              offsetX: -10,
-              offsetY: 0
-            }
-          }
-        }
-      ],
-      plotOptions: {
-        bar: {
-          horizontal: false,
-          columnWidth: "10px",
-        //  endingShape: "rounded",
-        },
-      },
-      dataLabels: {
-        enabled: false,
-        style: {
-          colors: ['#f3f4f5', '#fff']
-        }
-      },
-      xaxis: {
-        type: "category",
-        categories: 
-          this.axex
-      },
-      legend: {
-        show: false,
-      },
-      fill: {
-        opacity: 4,
-      },
-    };
-    return this.chartOptions5;
-  }
+  // serviceSelectionnerPresence(value){
+  //   this.axex = this.dataStatSocietePresence.map(valueOfDirection => valueOfDirection.annee);
+  //   this.present = this.dataStatSocietePresence.map(valueOfPresent=> valueOfPresent.present);
+  //   this.malade = this.dataStatSocietePresence.map(valueOfMalade => valueOfMalade.malade);
+  //   this.conge = this.dataStatSocietePresence.map(valueOfConge => valueOfConge.conge);
+  //   this.chartOptions5 = {
+  //     colors: [
+  //       "#ff0000",
+  //       "#009393",
+  //       "#000000",
+  //     ],
+  //     series: [
+  //       {
+  //         name: "Présents",
+  //         data: this.present
+  //       },
+  //       {
+  //         name: "Malades",
+  //         data: this.malade
+  //       },
+  //       {
+  //         name: "Congés",
+  //         data: this.conge
+  //       },
+  //     ],
+  //     chart: {
+  //       type: "bar",
+  //       height: 300,
+  //       width: 550,
+  //       stacked: true,
+  //       toolbar: {
+  //         show: false
+  //       },
+  //       zoom: {
+  //         enabled: false
+  //       }
+  //     },
+  //     responsive: [
+  //       {
+  //         breakpoint: 480,
+  //         options: {
+  //           legend: {
+  //             show: false,
+  //             position: "bottom",
+  //             offsetX: -10,
+  //             offsetY: 0
+  //           }
+  //         }
+  //       }
+  //     ],
+  //     plotOptions: {
+  //       bar: {
+  //         horizontal: false,
+  //         columnWidth: "10px",
+  //       //  endingShape: "rounded",
+  //       },
+  //     },
+  //     dataLabels: {
+  //       enabled: false,
+  //       style: {
+  //         colors: ['#f3f4f5', '#fff']
+  //       }
+  //     },
+  //     xaxis: {
+  //       type: "category",
+  //       categories: 
+  //         this.axex
+  //     },
+  //     legend: {
+  //       show: false,
+  //     },
+  //     fill: {
+  //       opacity: 4,
+  //     },
+  //   };
+  //   return this.chartOptions5;
+  // }
 
 }
