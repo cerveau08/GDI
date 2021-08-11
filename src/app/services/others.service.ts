@@ -286,7 +286,7 @@ addAgence(data) {
   getStatPresence(): Observable<any> {
     return this.http.get<any>(this.reqUrl + '/statDemande');
   }
-  StatPresenceTab(annee): Observable<any> {
+  getStatPresenceTab(annee): Observable<any> {
     const data = {annee: annee};
     return this.http.get<any>(`${this.reqUrl}/statDemande`, {params: data});
   }

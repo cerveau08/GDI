@@ -41,7 +41,8 @@ export class PresenceComponent implements OnInit {
   colorfilter1;
   axex;
   mois;
-  annee;
+  annee= null;
+  societe;
   dataSociete;
   dataPresence;
   directs: any;
@@ -95,12 +96,12 @@ export class PresenceComponent implements OnInit {
       }
     );
     this.dateSelectionnerPresence(this.annee);
+    this.societeSelectionnerPresence(this.societe);
   }
 
   dateSelectionnerPresence(value){
-   // console.log(this.an);
-    //console.log(value);
-    this.otherService.StatPresenceTab(value).subscribe(
+
+    this.otherService.getStatPresenceTab(value).subscribe(
       data => {
         console.log(data);
         this.dataPresence = data;
@@ -183,8 +184,13 @@ export class PresenceComponent implements OnInit {
   })
   }
 
-  serviceSelectionnerPresence(value){
-    this.axex = this.dataStatSocietePresence.map(valueOfDirection => valueOfDirection.annee);
+  societeSelectionnerPresence(value){
+    this.otherService.getStatPresenceTab(value).subscribe(
+      data => {
+        console.log(data);
+        this.dataPresence = data;
+        this.dataStatSocietePresence = this.dataPresence.data[0];
+    this.directions = this.dataStatSocietePresence.map(valueOfDirection => valueOfDirection.directions);
     this.present = this.dataStatSocietePresence.map(valueOfPresent=> valueOfPresent.present);
     this.malade = this.dataStatSocietePresence.map(valueOfMalade => valueOfMalade.malade);
     this.conge = this.dataStatSocietePresence.map(valueOfConge => valueOfConge.conge);
@@ -259,6 +265,6 @@ export class PresenceComponent implements OnInit {
       },
     };
     return this.chartOptions5;
+  })
   }
-
 }
