@@ -78,15 +78,8 @@ export class PresenceComponent implements OnInit {
   constructor(private dataService: DataService,
     private errormodalService: ErrormodalService,
               private otherService: OthersService) {
-    this.getScreenSize();
   }
-  @HostListener('window:resize', ['$event'])
-  getScreenSize(event?) {
-        this.scrHeight = window.innerHeight;
-        this.scrWidth = window.innerWidth;
-        console.log(this.scrHeight, this.scrWidth);
-        
-  }
+  
 
   ngOnInit() {
     this.otherService.getAllSociete().subscribe(
@@ -99,13 +92,13 @@ export class PresenceComponent implements OnInit {
     this.societeSelectionnerPresence(this.societe);
   }
 
-  dateSelectionnerPresence(value){
-
+  dateSelectionnerPresence(value: string){
     this.otherService.getStatPresenceTab(value).subscribe(
       data => {
         console.log(data);
         this.dataPresence = data;
         this.dataStatEffectifPresence = this.dataPresence.data[0];
+        console.log(this.dataStatEffectifPresence);
     this.axex = this.dataStatEffectifPresence.map(valueOfDirection => valueOfDirection.annee);
     this.present = this.dataStatEffectifPresence.map(valueOfPresent => valueOfPresent.present);
     this.malade = this.dataStatEffectifPresence.map(valueOfMalade => valueOfMalade.malade);

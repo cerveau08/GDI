@@ -118,7 +118,7 @@ export class GenreComponent implements OnInit {
           this.homme= this.dataStatEffectifGenre.homme;
           this.totalCercle= this.dataStatEffectifGenre.total;
           this.pourcentFemme = this.dataStatEffectifGenre.femmePourcent;
-          this.pourcentFemmecercle = this.pourcentFemme + 40;
+          this.pourcentFemmecercle = this.pourcentFemme - 2;
           console.log(this.dataStatEffectifGenre)
           clearInterval(this.intervalId);
         }
