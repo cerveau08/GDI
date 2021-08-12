@@ -96,7 +96,6 @@ export class HeaderComponent implements OnInit {
       annee: new FormControl (''),
       poste: new FormControl(''),
     });
-    this.redirection();
   }
 
   onSubmit() {
@@ -147,7 +146,7 @@ export class HeaderComponent implements OnInit {
 
 redirection() {
    if(this.role == 'MNG') {
-    this.direction = 'manager';
+    this.direction = '/accueil/manager';
     this.click = null;
   } else if (this.role == 'AGN') {
     this.direction = '/accueil/agence';
@@ -156,7 +155,7 @@ redirection() {
     this.direction = '/accueil/compte';
     this.click = null;
   } 
-  this.route.navigate([  this.direction])
+  this.route.navigate([ this.direction])
 }
 
   
