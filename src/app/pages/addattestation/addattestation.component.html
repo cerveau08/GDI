@@ -1,8 +1,8 @@
 <div class="all-container">
-    <form action="" [formGroup]="attestationForm">
+    <form action="" >
         <div class="tableau">
             <p class="detail1" id="mydesc">Ajouter des Attestations</p>
-            <div class="exporter">
+            <div [formGroup]="periodForm" class="exporter">
                 <div class="filtrer-mois">
                     <p class="label-input" for="titre">Mois: </p>
                     <select  formControlName="mois" class="select-mois" >
@@ -10,11 +10,18 @@
                         <option *ngFor="let data of ListeMois"  [value]="data.libelle">{{data.libelle}}</option>
                     </select>
                 </div>
-                <div class="input-annee">
-                    <jp-multi-datepicker formControlName="annee" tabindex="-1"  mode="YEAR" label="Année" [(ngModel)]="annee" [min]="2000"></jp-multi-datepicker>
+                <div class="filtrer-mois">
+                    <p class="label-input" for="titre">Année: </p>
+                    <select  formControlName="annee" class="select-mois" >
+                        <option class="option" value="" disabled selected hidden>Année: </option>
+                        <option *ngFor="let data of lastTenYear"  [value]="data.annee">{{data.annee}}</option>
+                    </select>
                 </div>
+                <!-- <div class="input-annee">
+                    <jp-multi-datepicker formControlName="annee" tabindex="-1"  mode="YEAR" label="Année" [(ngModel)]="annee" [min]="2000"></jp-multi-datepicker>
+                </div> -->
             </div>
-            <table style="overflow-x:auto;" aria-describedby = "mydesc">
+            <table [formGroup]="attestationForm" style="overflow-x:auto;" aria-describedby = "mydesc">
                 <thead>
                     <tr class="head">
                         <th id="manager">Matricule</th>
@@ -37,11 +44,7 @@
                 </tr>
                 </thead>
                 <tbody formArrayName="interDetail">
-                    <tr style="cursor: pointer;" *ngFor="let p of dataInter | filter:filterterm | paginate: { 
-                        itemsPerPage: itemsPerPage,
-                        currentPage: page,
-                        totalItems: totalItems
-                        }; let i = index" [formGroupName]="i">
+                    <tr style="cursor: pointer;" *ngFor="let p of dataInter | filter:filterterm | paginate: { itemsPerPage: 8, currentPage: p }; let i = index" [formGroupName]="i">
                         <td >{{p.fin_contrat  | date:'ddMMyyyy'}}</td>
                         <td >{{p.prenom}}</td>
                         <td >{{p.nom}}</td>
@@ -62,7 +65,7 @@
             </table> 
             <div class="pied-tableau-attestation">
                 <div class="pagination">
-                    <pagination-controls (pageChange)="gty(page = $event)" previousLabel="Prcédent" nextLabel="Suivant"></pagination-controls>
+                    <pagination-controls  (pageChange)="p = $event" previousLabel="Prcédent" nextLabel="Suivant"></pagination-controls>
                 </div>
                 <div>
                     <button (click)="addAttestation()" class="button-enregistrer-attestation">Enregistrer</button>

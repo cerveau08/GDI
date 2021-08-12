@@ -16,16 +16,21 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AddattestationComponent implements OnInit {
 
+  dataForm: String[][];
+  nombrePage;
   public data; any;
   public datas: any;
   date: any;
   role;
   dataInter: any;
   attestationForm: FormGroup;
+  periodForm: FormGroup;
   page = 1;
-  itemsPerPage = 7;
+  itemsPerPage = 2;
   totalItems : any;
-  filterterm
+  filterterm;
+  currentDate = new Date().getFullYear();
+  lastTenYear;
   public reqUrl = environment.base_url;
   result;
   success;
@@ -106,16 +111,32 @@ export class AddattestationComponent implements OnInit {
     }
 
   ngOnInit() {
+    this.periodForm = new FormGroup({
+      annee: new FormControl(''),
+      mois: new FormControl('')
+    })
     this.role = localStorage.getItem('user');
     this.gty(this.page);
+    this.getTenLastYear();
   }
 
-  initForm() {
-    
+  getTenLastYear() {
+    this.lastTenYear = [
+      {
+        annee: this.currentDate
+      },{
+        annee: this.currentDate - 1
+      },{
+        annee: this.currentDate - 2
+      }
+    ];
+    console.log(this.lastTenYear);
+    return this.lastTenYear
   }
   gty(page: any){
     this.http.get(this.reqUrl + `/interimSousContrat?page=${page}&limit=${this.itemsPerPage}`).subscribe((data: any) => {
       this.dataInter =  data.data;
+      console.log(this.dataInter);
       this.totalItems = data.total;
       this.attestationForm = this.formBuilder.group({
         annee: ['', Validators.required],
@@ -123,17 +144,37 @@ export class AddattestationComponent implements OnInit {
         interDetail: this.formBuilder.array(
           this.dataInter.map(x => this.formBuilder.group({
             interim_id: [x.id, [Validators.required, Validators.minLength(1)]],
-            nbr_jr_absence: [x.first_name, [Validators.required, Validators.minLength(1)]],
-            commentaire: [x.last_name, [Validators.required, Validators.minLength(2)]]
+            nbr_jr_absence: [x.nbr_jr_absence, [Validators.required, Validators.minLength(1)]],
+            commentaire: [x.commentaire, [Validators.required, Validators.minLength(2)]]
           }))
         )
       })
     })
   }
 
+  attestaionFormGet(page) {
+    console.log(this.totalItems);
+    console.log(this.itemsPerPage);
+    if(this.totalItems % this.itemsPerPage == 0) {
+      this.nombrePage = this.totalItems / this.itemsPerPage;
+    } else {
+      this.nombrePage = Math.floor(this.totalItems / this.itemsPerPage) + 1;
+    }
+    console.log(this.nombrePage);
+    for(var i = 0; i < this.nombrePage; i++) {
+
+    }
+    console.log(page);
+    console.log(this.attestationForm.value);
+    console.log([page]);
+  }
+
   addAttestation() {
-    console.log(this.attestationForm.value.annee);
-    this.attestationForm.patchValue({annee: this.attestationForm.value.annee.getFullYear()});
+    console.log(this.periodForm.value);
+    this.attestationForm.patchValue({
+      annee: this.periodForm.value.annee,
+      mois: this.periodForm.value.mois,
+    });
     console.log(this.attestationForm.value);
      this.otherService.addAttestationEnMasse(this.attestationForm.value).subscribe(
       data => {
