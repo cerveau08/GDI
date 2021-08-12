@@ -41,7 +41,8 @@ export class PresenceComponent implements OnInit {
   colorfilter1;
   axex;
   mois;
-  annee;
+  annee= null;
+  societe;
   dataSociete;
   dataPresence;
   directs: any;
@@ -88,6 +89,7 @@ export class PresenceComponent implements OnInit {
       }
     );
     this.dateSelectionnerPresence(this.annee);
+    this.societeSelectionnerPresence(this.societe);
   }
 
   dateSelectionnerPresence(value: string){
@@ -175,82 +177,87 @@ export class PresenceComponent implements OnInit {
   })
   }
 
-  // serviceSelectionnerPresence(value){
-  //   this.axex = this.dataStatSocietePresence.map(valueOfDirection => valueOfDirection.annee);
-  //   this.present = this.dataStatSocietePresence.map(valueOfPresent=> valueOfPresent.present);
-  //   this.malade = this.dataStatSocietePresence.map(valueOfMalade => valueOfMalade.malade);
-  //   this.conge = this.dataStatSocietePresence.map(valueOfConge => valueOfConge.conge);
-  //   this.chartOptions5 = {
-  //     colors: [
-  //       "#ff0000",
-  //       "#009393",
-  //       "#000000",
-  //     ],
-  //     series: [
-  //       {
-  //         name: "Présents",
-  //         data: this.present
-  //       },
-  //       {
-  //         name: "Malades",
-  //         data: this.malade
-  //       },
-  //       {
-  //         name: "Congés",
-  //         data: this.conge
-  //       },
-  //     ],
-  //     chart: {
-  //       type: "bar",
-  //       height: 300,
-  //       width: 550,
-  //       stacked: true,
-  //       toolbar: {
-  //         show: false
-  //       },
-  //       zoom: {
-  //         enabled: false
-  //       }
-  //     },
-  //     responsive: [
-  //       {
-  //         breakpoint: 480,
-  //         options: {
-  //           legend: {
-  //             show: false,
-  //             position: "bottom",
-  //             offsetX: -10,
-  //             offsetY: 0
-  //           }
-  //         }
-  //       }
-  //     ],
-  //     plotOptions: {
-  //       bar: {
-  //         horizontal: false,
-  //         columnWidth: "10px",
-  //       //  endingShape: "rounded",
-  //       },
-  //     },
-  //     dataLabels: {
-  //       enabled: false,
-  //       style: {
-  //         colors: ['#f3f4f5', '#fff']
-  //       }
-  //     },
-  //     xaxis: {
-  //       type: "category",
-  //       categories: 
-  //         this.axex
-  //     },
-  //     legend: {
-  //       show: false,
-  //     },
-  //     fill: {
-  //       opacity: 4,
-  //     },
-  //   };
-  //   return this.chartOptions5;
-  // }
-
+  societeSelectionnerPresence(value){
+    this.otherService.getStatPresenceTab(value).subscribe(
+      data => {
+        console.log(data);
+        this.dataPresence = data;
+        this.dataStatSocietePresence = this.dataPresence.data[0];
+    this.directions = this.dataStatSocietePresence.map(valueOfDirection => valueOfDirection.directions);
+    this.present = this.dataStatSocietePresence.map(valueOfPresent=> valueOfPresent.present);
+    this.malade = this.dataStatSocietePresence.map(valueOfMalade => valueOfMalade.malade);
+    this.conge = this.dataStatSocietePresence.map(valueOfConge => valueOfConge.conge);
+    this.chartOptions5 = {
+      colors: [
+        "#ff0000",
+        "#009393",
+        "#000000",
+      ],
+      series: [
+        {
+          name: "Présents",
+          data: this.present
+        },
+        {
+          name: "Malades",
+          data: this.malade
+        },
+        {
+          name: "Congés",
+          data: this.conge
+        },
+      ],
+      chart: {
+        type: "bar",
+        height: 300,
+        width: 550,
+        stacked: true,
+        toolbar: {
+          show: false
+        },
+        zoom: {
+          enabled: false
+        }
+      },
+      responsive: [
+        {
+          breakpoint: 480,
+          options: {
+            legend: {
+              show: false,
+              position: "bottom",
+              offsetX: -10,
+              offsetY: 0
+            }
+          }
+        }
+      ],
+      plotOptions: {
+        bar: {
+          horizontal: false,
+          columnWidth: "10px",
+        //  endingShape: "rounded",
+        },
+      },
+      dataLabels: {
+        enabled: false,
+        style: {
+          colors: ['#f3f4f5', '#fff']
+        }
+      },
+      xaxis: {
+        type: "category",
+        categories: 
+          this.axex
+      },
+      legend: {
+        show: false,
+      },
+      fill: {
+        opacity: 4,
+      },
+    };
+    return this.chartOptions5;
+  })
+  }
 }

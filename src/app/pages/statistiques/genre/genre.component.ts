@@ -90,7 +90,7 @@ export class GenreComponent implements OnInit {
   getScreenSize(event?) {
         this.scrHeight = window.innerHeight;
         this.scrWidth = window.innerWidth;
-        console.log(this.scrHeight, this.scrWidth);
+        //console.log(this.scrHeight, this.scrWidth);
   }
 
   ngOnInit() {
