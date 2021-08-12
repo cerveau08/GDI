@@ -193,7 +193,7 @@ export class HomeComponent implements OnInit {
       this.showHome = true;
     }
 
-    const getDownloadProgress = () => {
+    /*const getDownloadProgress = () => {
       console.log("getDownload", this);
       if (this.progress <= 99) {
         this.progress = 20;
@@ -203,7 +203,7 @@ export class HomeComponent implements OnInit {
         clearInterval(this.intervalId);
       }
     };
-    this.intervalId = setInterval(getDownloadProgress, 1000);
+    this.intervalId = setInterval(getDownloadProgress, 1000);*/
   }
 
   onChanges(): void {
