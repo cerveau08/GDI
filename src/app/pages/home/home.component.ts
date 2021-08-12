@@ -4,6 +4,7 @@ import { OthersService } from 'src/app/services/others.service';
 import { Component, HostListener, OnInit } from '@angular/core';
 import { ApexAxisChartSeries, ApexChart, ApexDataLabels, ApexPlotOptions, ApexResponsive, ApexXAxis, ApexYAxis, ApexLegend, ApexFill, ChartComponent } from 'ng-apexcharts';
 import { ErrormodalService } from 'src/app/_errormodals';
+import { FormGroup, FormControl } from '@angular/forms';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -26,6 +27,14 @@ export type ChartOptions = {
 })
 export class HomeComponent implements OnInit {
 
+
+  anneeForm: FormGroup;
+  lastTenYear;
+  societe = 1;
+  date = new Date();
+  dates;
+  currentDate = new Date().getFullYear();
+  dataSociete;
   mois = [
     {libelle: "Jan",},
     {libelle: "Fev",},
@@ -106,7 +115,20 @@ export class HomeComponent implements OnInit {
         }
       );
 
+
+      this.getTenLastYear();
+      this.otherService.getAllSociete().subscribe(
+        data => {
+          console.log(data);
+          this.dataSociete = data["data"];
+        }
+      );
+      this.anneeForm = new FormGroup({
+        annee: new FormControl('')
+      })
+      
       this.dateSelectionner(this.annee);
+      this.onChanges();
 
          
       this.otherService.getLastNotification().subscribe(
@@ -137,6 +159,45 @@ export class HomeComponent implements OnInit {
       }
     };
     this.intervalId = setInterval(getDownloadProgress, 1000);
+  }
+
+  onChanges(): void {
+    this.anneeForm.get('annee').valueChanges.subscribe(val => {
+      if (val) {
+        console.log(val);
+        
+        this.dateSelectionner(val);
+      }
+    });
+  }
+
+  getTenLastYear() {
+    this.lastTenYear = [
+      {
+        annee: this.currentDate
+      },{
+        annee: this.currentDate - 1
+      },{
+        annee: this.currentDate - 2
+      },{
+        annee: this.currentDate - 3
+      },{
+        annee: this.currentDate - 4
+      },{
+        annee: this.currentDate - 5
+      },{
+        annee: this.currentDate - 6
+      },{
+        annee: this.currentDate - 7
+      },{
+        annee: this.currentDate - 8
+      },{
+        annee: this.currentDate - 9
+      },
+    ];
+    console.log(this.lastTenYear);
+    
+    return this.lastTenYear
   }
 
   dateSelectionner(value){

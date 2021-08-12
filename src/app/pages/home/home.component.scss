@@ -167,6 +167,42 @@
        color: #000000;
     }
 }
+
+
+
+.filter-date {
+    display: flex;
+    margin-left: 220px;
+}
+
+.icone-calendar1 {
+    margin-top: 5px;
+    margin-left: 15px;
+}
+
+
+#filter-mois {
+    margin-left: 10px;
+}
+.select-mois {
+    border: none;
+    outline: none;
+    background-color: #fff;
+    width: 75px;
+}
+
+.filtrer-annees {
+    display: flex;
+    border: 1px solid #f5f6f9;
+    border-radius: 5px;
+    height: 40px;
+    width: 120px;
+    margin-top: 15px;
+    cursor: pointer;
+}
+
+
+
 .nombre {
     margin: 0 auto;
     width: 60px;
