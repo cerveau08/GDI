@@ -128,7 +128,6 @@ export class EffectifComponent implements OnInit {
       },
     ];
     console.log(this.lastTenYear);
-    
     return this.lastTenYear
   }
   //stats interimaire par annee
