@@ -1,6 +1,7 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { ApexAxisChartSeries, ApexChart, ApexDataLabels, ApexPlotOptions, ApexResponsive, ApexXAxis, ApexYAxis, ApexLegend, ApexFill, ChartComponent } from 'ng-apexcharts';
 import { OthersService } from 'src/app/services/others.service';
+import { FormGroup, FormControl } from '@angular/forms';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -22,10 +23,12 @@ export type ChartOptions = {
 })
 export class EffectifComponent implements OnInit {
 
+  anneeForm: FormGroup;
   borderfilter1;
   colorfilter1;
   axex;
   mois;
+  donneeAbscisse;
   data: any;
   directions: any;
   effectif;
@@ -52,6 +55,7 @@ export class EffectifComponent implements OnInit {
   currentDate = new Date().getFullYear();
   item;
   an;
+  lastTenYear;
   dataYear;
   societe = 1;
   date = new Date();
@@ -62,7 +66,7 @@ export class EffectifComponent implements OnInit {
   dataSociete;
   dataInterimByAgence: any;
   chart: ChartComponent;
-  public chartOptions: Partial<ChartOptions>;
+  public chartOptions1: Partial<ChartOptions>;
   public chartOptions2: Partial<ChartOptions>;
   constructor(
               private otherService: OthersService) {
@@ -75,14 +79,57 @@ export class EffectifComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.getTenLastYear();
     this.otherService.getAllSociete().subscribe(
       data => {
-        this.dataSociete = data["data"];
         console.log(data);
+        this.dataSociete = data["data"];
       }
     );
+    this.anneeForm = new FormGroup({
+      annee: new FormControl('')
+    })
     this.dateSelectionner(this.annee);
     this.effectifSocieteSelectionner(String(this.societe));
+    this.onChanges();
+  }
+
+  onChanges(): void {
+    this.anneeForm.get('annee').valueChanges.subscribe(val => {
+      if (val) {
+        console.log(val);
+        
+        this.dateSelectionner(val);
+      }
+    });
+  }
+  getTenLastYear() {
+    this.lastTenYear = [
+      {
+        annee: this.currentDate
+      },{
+        annee: this.currentDate - 1
+      },{
+        annee: this.currentDate - 2
+      },{
+        annee: this.currentDate - 3
+      },{
+        annee: this.currentDate - 4
+      },{
+        annee: this.currentDate - 5
+      },{
+        annee: this.currentDate - 6
+      },{
+        annee: this.currentDate - 7
+      },{
+        annee: this.currentDate - 8
+      },{
+        annee: this.currentDate - 9
+      },
+    ];
+    console.log(this.lastTenYear);
+    
+    return this.lastTenYear
   }
   //stats interimaire par annee
   dateSelectionner(value){
@@ -93,14 +140,19 @@ export class EffectifComponent implements OnInit {
         this.dataStatEffectifAnnee = this.dataYear.data[0];
         console.log(this.dataStatEffectifAnnee);
         if(value == null) {
-          this.axex = this.dataStatEffectifAnnee.map(valueOfDirection => valueOfDirection.annee);
+          this.donneeAbscisse = this.dataStatEffectifAnnee.map(valueOfDirection => valueOfDirection.annee);
+          this.nouveau = this.dataStatEffectifAnnee.map(valueOfNouveau => valueOfNouveau.nouveaux);
+          this.fini = this.dataStatEffectifAnnee.map(valueOfFini => valueOfFini.fin);
+          this.total = this.dataStatEffectifAnnee.map(valueOfTotal => valueOfTotal.total);
         } else {
-          this.axex = this.dataStatEffectifAnnee.map(valueOfDirection => valueOfDirection.mois);
+          this.donneeAbscisse = this.dataStatEffectifAnnee.map(valueOfDirection => valueOfDirection.mois);
+          this.nouveau = this.dataStatEffectifAnnee.map(valueOfNouveau => valueOfNouveau.nouveaux);
+          this.fini = this.dataStatEffectifAnnee.map(valueOfFini => valueOfFini.fin);
+          this.total = this.dataStatEffectifAnnee.map(valueOfTotal => valueOfTotal.total);
         }
-        this.nouveau = this.dataStatEffectifAnnee.map(valueOfNouveau => valueOfNouveau.nouveaux);
-        this.fini = this.dataStatEffectifAnnee.map(valueOfFini => valueOfFini.fin);
-        this.total = this.dataStatEffectifAnnee.map(valueOfTotal => valueOfTotal.total);
-        this.chartOptions = {
+        this.axex = this.donneeAbscisse;
+        console.log(this.axex);
+        this.chartOptions1 = {
           colors: [
             "#ff0000",
             "#009393",
@@ -169,7 +221,9 @@ export class EffectifComponent implements OnInit {
             opacity: 4,
           },
         };
-        return this.chartOptions;
+        console.log(this.chartOptions1);
+        
+        return this.chartOptions1;
     }
     )
   }
