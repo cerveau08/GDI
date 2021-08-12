@@ -1,3 +1,4 @@
+import { FormControl, FormGroup } from '@angular/forms';
 import { Component, OnInit, HostListener } from '@angular/core';
 import { ApexAxisChartSeries, ApexChart, ApexDataLabels, ApexPlotOptions, ApexResponsive, ApexXAxis, ApexYAxis, ApexLegend, ApexFill, ChartComponent } from 'ng-apexcharts';
 import { DataService } from 'src/app/service/data.service';
@@ -42,6 +43,8 @@ export class PresenceComponent implements OnInit {
   axex;
   mois;
   annee= null;
+  anneeForm: FormGroup;
+  lastTenYear;
   societe;
   dataSociete;
   dataPresence;
@@ -88,14 +91,58 @@ export class PresenceComponent implements OnInit {
         console.log(this.scrHeight, this.scrWidth);
   }
   ngOnInit() {
+    
+    this.getTenLastYear();
     this.otherService.getAllSociete().subscribe(
       data => {
-        this.dataSociete = data["data"];
         console.log(data);
+        this.dataSociete = data["data"];
       }
     );
+    this.anneeForm = new FormGroup({
+      annee: new FormControl('')
+    })
     this.dateSelectionnerPresence(this.annee);
     this.societeSelectionnerPresence(this.societe);
+    this.onChanges();
+  }
+
+  onChanges(): void {
+    this.anneeForm.get('annee').valueChanges.subscribe(val => {
+      if (val) {
+        console.log(val);
+        
+        this.dateSelectionnerPresence(val);
+      }
+    });
+  }
+  getTenLastYear() {
+    this.lastTenYear = [
+      {
+        annee: this.currentDate
+      },{
+        annee: this.currentDate - 1
+      },{
+        annee: this.currentDate - 2
+      },{
+        annee: this.currentDate - 3
+      },{
+        annee: this.currentDate - 4
+      },{
+        annee: this.currentDate - 5
+      },{
+        annee: this.currentDate - 6
+      },{
+        annee: this.currentDate - 7
+      },{
+        annee: this.currentDate - 8
+      },{
+        annee: this.currentDate - 9
+      },
+    ];
+    console.log(this.lastTenYear);
+    
+    return this.lastTenYear
   }
 
   dateSelectionnerPresence(value: string){
