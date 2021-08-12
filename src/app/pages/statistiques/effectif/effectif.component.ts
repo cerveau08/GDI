@@ -152,6 +152,7 @@ export class EffectifComponent implements OnInit {
         }
         this.axex = this.donneeAbscisse;
         console.log(this.axex);
+        
         this.chartOptions1 = {
           colors: [
             "#ff0000",
