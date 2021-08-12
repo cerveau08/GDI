@@ -143,12 +143,12 @@ export class AddattestationComponent implements OnInit {
         if(this.successMsg == true) {
           this.ngOnInit();
         }
-     }, error=> {
-      this.errorMsg = error;
-      this.errormodalService.open('error-modal-1');
-    console.log(error)
-     }
-     )
+      }, error=> {
+       this.errorMsg = error;
+       this.errormodalService.open('error-modal-1');
+       console.log(error)
+      }
+    )
   }
   changeActionFalse() {
     this.action = false;
