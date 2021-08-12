@@ -444,14 +444,14 @@
     }
 }
 .lesbouton2 {
-    width: 330px;
+   // width: 400px;
     margin: 10px auto;
     display: flex;
 }
 .button3 {
    // margin-top: 20px;
     display: flex;
-    width: 114px;
+    width: 90px;
     height: 35px;
     background-color: white;
     border: none;
@@ -463,12 +463,12 @@
         height: 12px;
         width: 12px;
         border-radius: 50%;
-        background: #ff0000;
+        background: #ff7900;
         margin-left: 20px;
         margin-top: 10px;
     }
     p {
-        font-size: 12px;
+        font-size: 10px;
         font-weight: 500;
         font-stretch: normal;
         font-style: normal;
@@ -481,7 +481,7 @@
 }
 .button4 {
     display: flex;
-    width: 124px;
+    width: 145px;
     height: 35px;
     background-color: white;
     border: none;
@@ -499,7 +499,7 @@
         margin-top: 10px;
     }
     p {
-        font-size: 12px;
+        font-size: 10px;
         font-weight: 500;
         font-stretch: normal;
         font-style: normal;
@@ -512,7 +512,7 @@
 }
 .button5 {
     display: flex;
-    width: 114px;
+    width: 130px;
     height: 35px;
     background-color: white;
     border: none;
@@ -530,7 +530,38 @@
         margin-top: 10px;
     }
     p {
-        font-size: 12px;
+        font-size: 10px;
+        font-weight: 500;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        color: #222222; 
+        margin-left: 10px;
+        margin-top: 9px;
+    }
+}
+.button-conge-an {
+    display: flex;
+    width: 140px;
+    height: 35px;
+    background-color: white;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    border: 3px solid #f5f6f9;
+    border-radius: 5px;
+    margin-left: 15px;
+    .color {
+        height: 12px;
+        width: 12px;
+        border-radius: 50%;
+        background: #124d68;
+        margin-left: 15px;
+        margin-top: 10px;
+    }
+    p {
+        font-size: 10px;
         font-weight: 500;
         font-stretch: normal;
         font-style: normal;

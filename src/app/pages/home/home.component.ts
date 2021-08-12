@@ -65,6 +65,20 @@ export class HomeComponent implements OnInit {
   showHome = true;
   id=1;
   errorMsg: any;
+  id_societe= 1;
+  date = new Date();
+  societe = 1;
+  dataSociete;
+  data: any;
+  pourcentFemme;
+  pourcentFemmecercle;
+  hommes: any;
+  femmes: any;
+  homme: any;
+  femme: any;
+  totalCercle: any;
+  dataGenre;
+  dataStatEffectifGenre: any;
   @HostListener('window:resize', ['$event'])
   getScreenSize(event?) {
         this.scrHeight = window.innerHeight;
@@ -284,8 +298,6 @@ export class HomeComponent implements OnInit {
           console.log(error)
         }
       );
-
-         
       this.otherService.getLastNotification().subscribe(
         data => {
           if(data.data[0]){
@@ -297,18 +309,42 @@ export class HomeComponent implements OnInit {
         console.log("RRRRRRRRRRRRRRRRRRRRRR",data);
         }
       );
+      this.otherService.getAllSociete().subscribe(
+        data => {
+          this.dataSociete = data["data"];
+          console.log(data);
+        }
+      );
       
-
+      this.genrePourcentage(String(this.id_societe));
+    }
+  
+  //premier
+  
+    genrePourcentage(id_societe){
+      const getDownloadProgress = () => {
+        this.otherService.statInterPourcent(id_societe).subscribe(
+          data => {
+            console.log(data);
+            this.data = data;
+            this.dataStatEffectifGenre = this.data.data[0];
+            this.femme= this.dataStatEffectifGenre.femme;
+            this.homme= this.dataStatEffectifGenre.homme;
+            this.totalCercle= this.dataStatEffectifGenre.total;
+            this.pourcentFemme = this.dataStatEffectifGenre.femmePourcent;
+            this.pourcentFemmecercle = this.pourcentFemme - 2;
+            console.log(this.dataStatEffectifGenre)
+            clearInterval(this.intervalId);
+          }
+        )
+      };
+      this.intervalId = setInterval(getDownloadProgress, 1000);
+    }
+    ngOnDestroy() {
+      console.log(this.intervalId);
       
-
-      // this.otherService.statInterAgence(this.manager.id).subscribe(
-      //   data => {
-      //   this.statInterAgence = data;
-      //   console.log(data);
-      //   }
-      // );
-
-  // this.data = this.dataService.getData();
+      clearInterval(this.intervalId);
+    
     
     this.user = localStorage.getItem('user');
     if(this.user == 'INT') {
@@ -330,10 +366,6 @@ export class HomeComponent implements OnInit {
     this.intervalId = setInterval(getDownloadProgress, 1000);
   }
   
-  ngOnDestroy() {
-    clearInterval(this.intervalId);
-  }
-
   getColor(p) {
     if(p.isAdmissible == true) {
       this.color = "#6dd400";

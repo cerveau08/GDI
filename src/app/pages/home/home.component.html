@@ -74,12 +74,12 @@
                 <div class="elmt" >
                     <div class="tit">
                         <p class="total">Total Interimaires</p>
-                        <p class="totaln">835</p>
+                        <p class="totaln">{{totalCercle}}</p>
                     </div>
                     <div class="per">
                         <div class="cercle">
                             <circle-progress
-                            [percent]="progress"
+                            [percent]="pourcentFemmecercle"
                             [radius]="60"
                             [outerStrokeWidth]="40"
                             [innerStrokeWidth]="20"
@@ -108,13 +108,13 @@
                         <div class="point2"></div>
                         <div class="femmes">
                             <div class="fem">
-                                <p class="fn">315</p>
+                                <p class="fn">{{femme}}</p>
                                 <p class="fe">Femmes</p>
                             </div>
                         </div>
                         <div class="hommes">
                             <div class="hom">
-                                <p class="hn">520</p>
+                                <p class="hn">{{homme}}</p>
                                 <p class="ho">Hommes</p>
                             </div>
                         </div>

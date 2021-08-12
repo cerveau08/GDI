@@ -45,7 +45,7 @@ export class PresenceComponent implements OnInit {
   annee= null;
   anneeForm: FormGroup;
   lastTenYear;
-  societe;
+  societe = 1;
   dataSociete;
   dataPresence;
   directs: any;
@@ -55,6 +55,10 @@ export class PresenceComponent implements OnInit {
   present;
   malade;
   conge;
+  mission;
+  convenancePerso;
+  congeAnnuelle;
+  congeMaladie;
   show = 1;
   color: any;
   public datas: any;
@@ -150,23 +154,24 @@ export class PresenceComponent implements OnInit {
       data => {
         console.log(data);
         this.dataPresence = data;
-        this.dataStatEffectifPresence = this.dataPresence.data[0];
-        console.log(this.dataStatEffectifPresence);
-    this.axex = this.dataStatEffectifPresence.map(valueOfDirection => valueOfDirection.annee);
-    this.present = this.dataStatEffectifPresence.map(valueOfPresent => valueOfPresent.present);
-    this.malade = this.dataStatEffectifPresence.map(valueOfMalade => valueOfMalade.malade);
-    this.conge = this.dataStatEffectifPresence.map(valueOfConge => valueOfConge.conge);
+        this.dataStatEffectifPresence = this.dataPresence.data;
+        //console.log(this.dataStatEffectifPresence);
+        if(value == null) {
+          this.axex = this.dataStatEffectifPresence.map(valueOfDirection => valueOfDirection.annee);
+          this.malade = this.dataStatEffectifPresence.map(valueOfMalade => valueOfMalade.malade);
+          this.conge = this.dataStatEffectifPresence.map(valueOfConge => valueOfConge.conge);
+        }else {
+          this.axex = this.dataStatEffectifPresence.map(valueOfDirection => valueOfDirection.mois);
+          this.malade = this.dataStatEffectifPresence.map(valueOfMalade => valueOfMalade.malade);
+          this.conge = this.dataStatEffectifPresence.map(valueOfConge => valueOfConge.conge);      
+        }
     this.chartOptions4 = {
       colors: [
-        "#ff0000",
-        "#009393",
+        "#ff7900",
         "#000000",
       ],
       series: [
-        {
-          name: "Présents",
-          data: this.present
-        },
+      
         {
           name: "Malades",
           data: this.malade
@@ -231,33 +236,46 @@ export class PresenceComponent implements OnInit {
   }
 
   societeSelectionnerPresence(value){
-    this.otherService.getStatPresenceTab(value).subscribe(
+    this.otherService.statDemandeDirection(value).subscribe(
       data => {
         console.log(data);
         this.dataPresence = data;
-        this.dataStatSocietePresence = this.dataPresence.data[0];
-    this.directions = this.dataStatSocietePresence.map(valueOfDirection => valueOfDirection.directions);
-    this.present = this.dataStatSocietePresence.map(valueOfPresent=> valueOfPresent.present);
-    this.malade = this.dataStatSocietePresence.map(valueOfMalade => valueOfMalade.malade);
-    this.conge = this.dataStatSocietePresence.map(valueOfConge => valueOfConge.conge);
+        this.dataStatSocietePresence = this.dataPresence.data;
+        console.log(this.dataStatSocietePresence);
+        
+    this.directions = this.dataStatSocietePresence.map(valueOfDirection => valueOfDirection.direction);
+    this.mission = this.dataStatSocietePresence.map(valueOfMission=> parseInt(valueOfMission.mission));
+    this.congeMaladie = this.dataStatSocietePresence.map(valueOfCongeMaladie => parseInt(valueOfCongeMaladie.congeMaladie));
+    this.congeAnnuelle = this.dataStatSocietePresence.map(valueOfCongeAnnuelle => parseInt(valueOfCongeAnnuelle.congeAnnuelle));
+    this.convenancePerso = this.dataStatSocietePresence.map(valueOfConvenancePerso => parseInt(valueOfConvenancePerso.convenancePerso));
+    console.log(this.convenancePerso);
+    console.log(this.congeAnnuelle);
+    console.log(this.mission);
+    console.log(this.directions);
+    console.log(this.congeMaladie);
     this.chartOptions5 = {
       colors: [
-        "#ff0000",
+        "#ff7900",
         "#009393",
         "#000000",
+        "#124d68",
       ],
       series: [
         {
-          name: "Présents",
-          data: this.present
+          name: "Mission",
+          data: this.mission
         },
         {
-          name: "Malades",
-          data: this.malade
+          name: "Convenance Personnelle",
+          data: this.convenancePerso
         },
         {
-          name: "Congés",
-          data: this.conge
+          name: "Congés Maladie",
+          data: this.congeMaladie
+        },
+        {
+          name: "Congés Annuelle",
+          data: this.congeAnnuelle
         },
       ],
       chart: {
@@ -301,7 +319,7 @@ export class PresenceComponent implements OnInit {
       xaxis: {
         type: "category",
         categories: 
-          this.axex
+          this.directions
       },
       legend: {
         show: false,

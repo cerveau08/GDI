@@ -288,7 +288,7 @@ addAgence(data) {
   }
   getStatPresenceTab(annee): Observable<any> {
     const data = {annee: annee};
-    return this.http.get<any>(`${this.reqUrl}/statDemande`, {params: data});
+    return this.http.get<any>(`${this.reqUrl}/statDemandeAnnee`, {params: data});
   }
 
   getLastNotification(): Observable<any> {
@@ -296,6 +296,9 @@ addAgence(data) {
   }
   statInterPourcent(id_societe: number){
     return this.http.get<any>(`${this.reqUrl}/statInterimairePourcent/${id_societe}`);
+  }
+  statDemandeDirection(id: number){
+    return this.http.get<any>(`${this.reqUrl}/statDemandeDirection/${id}`);
   }
 
 }
