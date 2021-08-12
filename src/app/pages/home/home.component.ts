@@ -82,11 +82,8 @@ export class HomeComponent implements OnInit {
   date = new Date();
   societe = 1;
   dataSociete;
-  data: any;
   pourcentFemme;
   pourcentFemmecercle;
-  hommes: any;
-  femmes: any;
   homme: any;
   femme: any;
   totalCercle: any;
