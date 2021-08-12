@@ -294,7 +294,6 @@ export class HomeComponent implements OnInit {
             this.lastnotif ="Aucune notification "
 
           }
-        console.log("RRRRRRRRRRRRRRRRRRRRRR",data);
         }
       );
       
