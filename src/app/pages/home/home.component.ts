@@ -46,6 +46,19 @@ export class HomeComponent implements OnInit {
   prenom;
   manager;
   lastnotif;
+  dataYear;
+  axex;
+  donneeAbscisse;
+  data: any;
+  annee=null;
+  directions: any;
+  effectif;
+  hommes: any;
+  femmes: any;
+  nouveau; 
+  fini;
+  total;
+  dataStatEffectifAnnee;
   color: any;
   public datas: any;
   public diagrammes: any;
@@ -76,199 +89,7 @@ export class HomeComponent implements OnInit {
     private otherService: OthersService) {
     this.getScreenSize();
 
-  
-  this.chartOptions = {
-      series: [
-        {
-          name: "Finis",
-          data: [
-            {
-              x: "Jan", y: 64,
-              fillColor: "#ff0000", strokeColor: "#009393"
-            },{
-              x: "Fev", y: 84,
-              fillColor: "#ff0000", strokeColor: "#009393"
-            }, {
-              x: "Mar",  y: 94,
-              fillColor: "#ff0000", strokeColor: "#009393"
-            },{
-              x: "Avr",  y: 64,
-              fillColor: "#ff0000", strokeColor: "#009393"
-            }, {
-              x: "Mai", y: 84,
-              fillColor: "#ff0000", strokeColor: "#009393"
-            },{
-              x: "Jui", y: 94,
-              fillColor: "#ff0000", strokeColor: "#009393"
-            },{
-              x: "Jul", y: 64,
-              fillColor: "#ff0000", strokeColor: "#009393"
-            },{
-              x: "Aou", y: 84,
-              fillColor: "#ff0000", strokeColor: "#009393"
-            }, {
-              x: "Sep",  y: 94,
-              fillColor: "#ff0000", strokeColor: "#009393"
-            },{
-              x: "Oct",  y: 64,
-              fillColor: "#ff0000", strokeColor: "#009393"
-            }, {
-              x: "Nov", y: 84,
-              fillColor: "#ff0000", strokeColor: "#009393"
-            },{
-              x: "Dec", y: 94,
-              fillColor: "#ff0000", strokeColor: "#009393"
-            },
-          ] 
-        },
-        {
-          name: "Nouveaux",
-          data: [
-            {
-              x: "Jan", y: 134,
-              fillColor: "#009393", strokeColor: "#009393"
-            },{
-              x: "Fev", y: 284,
-              fillColor: "#009393", strokeColor: "#009393"
-            }, {
-              x: "Mar",  y: 124,
-              fillColor: "#009393", strokeColor: "#009393"
-            },{
-              x: "Avr",  y: 274,
-              fillColor: "#009393", strokeColor: "#009393"
-            }, {
-              x: "Mai", y: 184,
-              fillColor: "#009393", strokeColor: "#009393"
-            },{
-              x: "Jui", y: 194,
-              fillColor: "#009393", strokeColor: "#009393"
-            },{
-              x: "Jul", y: 264,
-              fillColor: "#009393", strokeColor: "#009393"
-            },{
-              x: "Aou", y: 104,
-              fillColor: "#009393", strokeColor: "#009393"
-            }, {
-              x: "Sep",  y: 124,
-              fillColor: "#009393", strokeColor: "#009393"
-            },{
-              x: "Oct",  y: 264,
-              fillColor: "#009393", strokeColor: "#009393"
-            }, {
-              x: "Nov", y: 165,
-              fillColor: "#009393", strokeColor: "#009393"
-            },{
-              x: "Dec", y: 294,
-              fillColor: "#009393", strokeColor: "#009393"
-            },
-          ]
-        },
-        {
-          name: "Total",
-          data: [
-            {
-              x: "Jan", y: 464,
-              fillColor: "#000000", strokeColor: "#009393"
-            },{
-              x: "Fev", y: 684,
-              fillColor: "#000000", strokeColor: "#009393"
-            }, {
-              x: "Mar",  y: 694,
-              fillColor: "#000000", strokeColor: "#009393"
-            },{
-              x: "Avr",  y: 764,
-              fillColor: "#000000", strokeColor: "#009393"
-            }, {
-              x: "Mai", y: 484,
-              fillColor: "#000000", strokeColor: "#009393"
-            },{
-              x: "Jui", y: 794,
-              fillColor: "#000000", strokeColor: "#009393"
-            },{
-              x: "Jul", y: 764,
-              fillColor: "#000000", strokeColor: "#009393"
-            },{
-              x: "Aou", y: 684,
-              fillColor: "#000000", strokeColor: "#009393"
-            }, {
-              x: "Sep",  y: 594,
-              fillColor: "#000000", strokeColor: "#009393"
-            },{
-              x: "Oct",  y: 664,
-              fillColor: "#000000", strokeColor: "#009393"
-            }, {
-              x: "Nov", y: 484,
-              fillColor: "#000000", strokeColor: "#009393"
-            },{
-              x: "Dec", y: 594,
-              fillColor: "#000000", strokeColor: "#009393"
-            },
-          ]
-        }, 
-      ],
-      chart: {
-        type: "bar",
-        height: 200,
-        width: 350,
-        stacked: true,
-        toolbar: {
-          show: false
-        },
-        zoom: {
-          enabled: false
-        }
-      },
-      responsive: [
-        {
-          breakpoint: 480,
-          options: {
-            legend: {
-              show: false,
-              position: "bottom",
-              offsetX: -10,
-              offsetY: 0
-            }
-          }
-        }
-      ],
-      plotOptions: {
-        bar: {
-          horizontal: false,
-          columnWidth: "20px",
-          //endingShape: "rounded",
-        },
-      },
-      dataLabels: {
-        enabled: false,
-        style: {
-          colors: ['#f3f4f5', '#fff']
-        }
-      },
-      xaxis: {
-        type: "category",
-        categories: [
-          "Jan",
-          "Fev",
-          "Mar",
-          "Avr",
-          "Mai",
-          "Jui",
-          "Jul",
-          "Aou",
-          "Sep",
-          "Oct",
-          "Nov",
-          "Dec"
-        ]
-      },
-      legend: {
-        show: false,
-      },
-      fill: {
-        opacity: 2,
-      //  shown: 
-      },
-    };
+
   }
 
 
@@ -285,6 +106,8 @@ export class HomeComponent implements OnInit {
         }
       );
 
+      this.dateSelectionner(this.annee);
+
          
       this.otherService.getLastNotification().subscribe(
         data => {
@@ -294,22 +117,8 @@ export class HomeComponent implements OnInit {
             this.lastnotif ="Aucune notification "
 
           }
-        console.log("RRRRRRRRRRRRRRRRRRRRRR",data);
         }
       );
-      
-
-      
-
-      // this.otherService.statInterAgence(this.manager.id).subscribe(
-      //   data => {
-      //   this.statInterAgence = data;
-      //   console.log(data);
-      //   }
-      // );
-
-  // this.data = this.dataService.getData();
-    
     this.user = localStorage.getItem('user');
     if(this.user == 'INT') {
       this.showHome = false;
@@ -319,15 +128,112 @@ export class HomeComponent implements OnInit {
 
     const getDownloadProgress = () => {
       console.log("getDownload", this);
-      
+      if (this.progress <= 99) {
         this.progress = 20;
         console.log("inside if", this.progress);
         this.progress = this.progress - 2;
-      
+      } else {
         clearInterval(this.intervalId);
-     
+      }
     };
     this.intervalId = setInterval(getDownloadProgress, 1000);
+  }
+
+  dateSelectionner(value){
+    console.log(value);
+    this.otherService.statInterByYear(value).subscribe(
+      data => {
+        this.dataYear = data;
+        this.dataStatEffectifAnnee = this.dataYear.data[0];
+        console.log(this.dataStatEffectifAnnee);
+        if(value == null) {
+          this.donneeAbscisse = this.dataStatEffectifAnnee.map(valueOfDirection => valueOfDirection.annee);
+          this.nouveau = this.dataStatEffectifAnnee.map(valueOfNouveau => valueOfNouveau.nouveaux);
+          this.fini = this.dataStatEffectifAnnee.map(valueOfFini => valueOfFini.fin);
+          this.total = this.dataStatEffectifAnnee.map(valueOfTotal => valueOfTotal.total);
+        } else {
+          this.donneeAbscisse = this.dataStatEffectifAnnee.map(valueOfDirection => valueOfDirection.mois);
+          this.nouveau = this.dataStatEffectifAnnee.map(valueOfNouveau => valueOfNouveau.nouveaux);
+          this.fini = this.dataStatEffectifAnnee.map(valueOfFini => valueOfFini.fin);
+          this.total = this.dataStatEffectifAnnee.map(valueOfTotal => valueOfTotal.total);
+        }
+        this.axex = this.donneeAbscisse;
+        console.log(this.axex);
+        
+        this.chartOptions = {
+          colors: [
+            "#ff0000",
+            "#009393",
+            "#000000",
+          ],
+          series: [
+            {
+              name: "Finis",
+              data: this.fini
+            },
+            {
+              name: "Nouveaux",
+              data: this.nouveau
+            },
+            {
+              name: "Total",
+              data: this.total
+            },
+          ],
+          chart: {
+            type: "bar",
+            height: 210,
+            width: 338,
+            stacked: true,
+            toolbar: {
+              show: false
+            },
+            zoom: {
+              enabled: false
+            }
+          },
+          responsive: [
+            {
+              breakpoint: 480,
+              options: {
+                legend: {
+                  show: false,
+                  position: "bottom",
+                  offsetX: -10,
+                  offsetY: 0
+                }
+              }
+            }
+          ],
+          plotOptions: {
+            bar: {
+              horizontal: false,
+              columnWidth: "20px",
+            },
+          },
+          dataLabels: {
+            enabled: false,
+            style: {
+              colors: ['#f3f4f5', '#fff']
+            }
+          },
+          xaxis: {
+            type: "category",
+            categories: 
+              this.axex
+          },
+          legend: {
+            show: false,
+          },
+          fill: {
+            opacity: 4,
+          },
+        };
+        console.log(this.chartOptions);
+        
+        return this.chartOptions;
+    }
+    )
   }
   
   ngOnDestroy() {
