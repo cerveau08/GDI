@@ -78,9 +78,15 @@ export class PresenceComponent implements OnInit {
   constructor(private dataService: DataService,
     private errormodalService: ErrormodalService,
               private otherService: OthersService) {
+                this.getScreenSize();
   }
   
-
+  @HostListener('window:resize', ['$event'])
+  getScreenSize(event?) {
+        this.scrHeight = window.innerHeight;
+        this.scrWidth = window.innerWidth;
+        console.log(this.scrHeight, this.scrWidth);
+  }
   ngOnInit() {
     this.otherService.getAllSociete().subscribe(
       data => {
