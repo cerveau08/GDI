@@ -16,7 +16,7 @@
            
             <div class="diagra1">
                  <div id="chart1">
-                    <apx-chart
+                   <apx-chart
                         [series]="chartOptions4.series"
                         [chart]="chartOptions4.chart"
                         [dataLabels]="chartOptions4.dataLabels"
@@ -35,10 +35,10 @@
                     <div class="color"></div> 
                     <p>Malades</p>
                 </div>
-                <div  class="button4"> 
+                <!--<div  class="button4"> 
                     <div class="color"></div> 
                     <p>Présents</p>
-                </div>
+                </div>-->
                 <div  class="button5"> 
                     <div class="color"></div> 
                     <p>Congés</p>
@@ -55,7 +55,7 @@
             <div class="selects-and-echelle">
                 <div class="filtre-societe-direction">
                     <div class="filtrer-societe" style="cursor: pointer;">
-                        <select class="select-societe" #lEffectif (change)='societeSelectionner(mySelect.value)'>
+                        <select class="select-societe" #lEffectif (change)='societeSelectionnerPresence(mySelect.value)'>
                             <option *ngFor="let p of dataSociete" class="option" [value]="p.id">{{p.libelle}}</option>
                         </select>
                     </div>
@@ -80,15 +80,19 @@
             <div class="lesbouton2">
                 <div  class="button3"> 
                     <div class="color"></div> 
-                    <p>Malades</p>
+                    <p>Mission</p>
                 </div>
                 <div  class="button4"> 
                     <div class="color"></div> 
-                    <p>Présents</p>
+                    <p>Convenance Personnelle</p>
                 </div>
                 <div  class="button5"> 
                     <div class="color"></div> 
-                    <p>Congés</p>
+                    <p>Congés Maladie</p>
+                </div>
+                <div  class="button-conge-an"> 
+                    <div class="color"></div> 
+                    <p>Congés Annuelle</p>
                 </div>
             </div>
         </div>

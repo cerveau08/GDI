@@ -110,12 +110,12 @@ export class StatagenceComponent implements OnInit {
       ],
       series: [
         {
-          name: "Actifs",
-          data: this.actifs
-        },
-        {
           name: "Inactifs",
           data: this.inactifs
+        },
+        {
+          name: "Actifs",
+          data: this.actifs
         },
         {
           name: "Total",

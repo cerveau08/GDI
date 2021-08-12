@@ -47,10 +47,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let p of dataAttest | paginate: { 
-                        itemsPerPage: itemsPerPage,
-                        currentPage: page,
-                        totalItems: totalItems}; let i = index">
+                    <tr *ngFor="let p of dataAttest | paginate: { itemsPerPage: 8, currentPage: p }; let i = index">
                         <td >{{p.matricule}}</td>
                         <td>{{p.prenom}}</td>
                         <td>{{p.nom}}</td>
@@ -62,7 +59,7 @@
                 </tbody>
             </table>
             <div class="pagination">
-                <pagination-controls (pageChange)="gty(page = $event)" previousLabel="Prcédent" nextLabel="Suivant"></pagination-controls>
+                <pagination-controls (pageChange)="p = $event" previousLabel="Prcédent" nextLabel="Suivant"></pagination-controls>
             </div>
         </div>
     </div>
