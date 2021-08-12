@@ -119,6 +119,10 @@ export class HomeComponent implements OnInit {
           console.log(error)
         }
       );
+
+      this.dateSelectionner(this.annee);
+
+         
       this.otherService.getLastNotification().subscribe(
         data => {
           if(data.data[0]){
