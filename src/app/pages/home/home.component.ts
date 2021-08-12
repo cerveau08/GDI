@@ -88,9 +88,6 @@ export class HomeComponent implements OnInit {
   id=1;
   errorMsg: any;
   id_societe= 1;
-  date = new Date();
-  societe = 1;
-  dataSociete;
   pourcentFemme;
   pourcentFemmecercle;
   homme: any;
