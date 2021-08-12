@@ -150,6 +150,9 @@ export class PresenceComponent implements OnInit {
   }
 
   dateSelectionnerPresence(value: string){
+    if(value == "null"){
+      value = null;
+    }
     this.otherService.getStatPresenceTab(value).subscribe(
       data => {
         console.log(data);

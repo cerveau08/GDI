@@ -7,7 +7,7 @@
                     <div [style.border]="borderfilter1" id="filter-annee" class="filtrer-annees">
                         <mat-icon [style.color]="colorfilter1" id="icon-calendar-annee"  class="icone-calendar1" fontSet="material-icons-outlined">date_range</mat-icon>
                         <select class="select-mois" formControlName="annee" [(ngModel)]="annee">
-                            <option class="option" value="" disabled selected hidden>Annee</option>
+                            <option class="option" value="null" >Annee</option>
                             <option *ngFor="let p of lastTenYear" class="option" [value]="p.annee">{{p.annee}}</option>
                         </select>
                     </div>

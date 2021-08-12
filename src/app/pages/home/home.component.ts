@@ -88,9 +88,6 @@ export class HomeComponent implements OnInit {
   id=1;
   errorMsg: any;
   id_societe= 1;
-  date = new Date();
-  societe = 1;
-  dataSociete;
   pourcentFemme;
   pourcentFemmecercle;
   homme: any;
@@ -115,6 +112,12 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.prenom = localStorage.getItem('prenom');
+    this.user = localStorage.getItem('user');
+      if(this.user == 'INT') {
+        this.showHome = false;
+      } else {
+        this.showHome = true;
+      }
       this.otherService.getInter().subscribe(
         data => {
         this.dataInterFin = data.data;
@@ -183,31 +186,7 @@ export class HomeComponent implements OnInit {
       };
       this.intervalId = setInterval(getDownloadProgress, 1000);
     }
-    ngOnDestroy() {
-      console.log(this.intervalId);
-      
-      clearInterval(this.intervalId);
     
-    
-    this.user = localStorage.getItem('user');
-    if(this.user == 'INT') {
-      this.showHome = false;
-    } else {
-      this.showHome = true;
-    }
-
-    const getDownloadProgress = () => {
-      console.log("getDownload", this);
-      if (this.progress <= 99) {
-        this.progress = 20;
-        console.log("inside if", this.progress);
-        this.progress = this.progress - 2;
-      } else {
-        clearInterval(this.intervalId);
-      }
-    };
-    this.intervalId = setInterval(getDownloadProgress, 1000);
-  }
 
   onChanges(): void {
     this.anneeForm.get('annee').valueChanges.subscribe(val => {
@@ -250,6 +229,9 @@ export class HomeComponent implements OnInit {
 
   dateSelectionner(value){
     console.log(value);
+    if(value == "null"){
+      value = null;
+    }
     this.otherService.statInterByYear(value).subscribe(
       data => {
         this.dataYear = data;
