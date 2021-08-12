@@ -6,6 +6,10 @@
 .all {
     margin-right: 0px;
 }
+.content-diagramm-echelle{
+    display: grid;
+    grid-template-columns: 1fr 80px;
+}
 .statt-header {
     font-size: 18px;
     font-weight: bold;
@@ -444,14 +448,12 @@
     }
 }
 .lesbouton2 {
-    width: 330px;
     margin: 10px auto;
-    display: flex;
 }
 .button3 {
    // margin-top: 20px;
     display: flex;
-    width: 114px;
+    width: 80px;
     height: 35px;
     background-color: white;
     border: none;
@@ -464,7 +466,7 @@
         width: 12px;
         border-radius: 50%;
         background: #ff0000;
-        margin-left: 20px;
+        margin-left: 10px;
         margin-top: 10px;
     }
     p {
@@ -481,7 +483,7 @@
 }
 .button4 {
     display: flex;
-    width: 124px;
+    width: 80px;
     height: 35px;
     background-color: white;
     border: none;
@@ -489,7 +491,7 @@
     outline: none;
     border: 3px solid #f5f6f9;
     border-radius: 5px;
-    margin-left: 15px;
+    margin-top: 5px;
     .color {
         height: 12px;
         width: 12px;
@@ -512,7 +514,7 @@
 }
 .button5 {
     display: flex;
-    width: 114px;
+    width: 80px;
     height: 35px;
     background-color: white;
     border: none;
@@ -520,13 +522,13 @@
     outline: none;
     border: 3px solid #f5f6f9;
     border-radius: 5px;
-    margin-left: 15px;
+    margin-top: 5px;
     .color {
         height: 12px;
         width: 12px;
         border-radius: 50%;
         background: #000000;
-        margin-left: 15px;
+        margin-left: 10px;
         margin-top: 10px;
     }
     p {
@@ -700,7 +702,6 @@ table {
     position: relative;
 }
 #chart1 {
-    width: 600px;
     margin: 0 auto;
     apx-chart{
         width: 10px !important;

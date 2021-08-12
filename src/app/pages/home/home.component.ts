@@ -318,13 +318,13 @@ export class HomeComponent implements OnInit {
 
     const getDownloadProgress = () => {
       console.log("getDownload", this);
-      if (this.progress <= 99) {
+      
         this.progress = 20;
         console.log("inside if", this.progress);
         this.progress = this.progress - 2;
-      } else {
+      
         clearInterval(this.intervalId);
-      }
+     
     };
     this.intervalId = setInterval(getDownloadProgress, 1000);
   }
