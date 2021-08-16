@@ -173,6 +173,7 @@
 .filter-date {
     display: flex;
     margin-left: 220px;
+    position: absolute;
 }
 
 .icone-calendar1 {
@@ -186,7 +187,7 @@
 }
 .select-mois {
     border: none;
-    outline: none;
+    outline: none; 
     background-color: #fff;
     width: 75px;
 }
