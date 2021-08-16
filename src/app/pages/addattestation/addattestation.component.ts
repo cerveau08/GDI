@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { environment } from 'src/environments/environment';
 import { DataService } from 'src/app/service/data.service';
@@ -88,6 +88,8 @@ export class AddattestationComponent implements OnInit {
   yearOnly;
   errorMsg: any;
   action = true;
+  scrHeight:any;
+  scrWidth:any;
   constructor(private dataService: DataService,
     public datepipe: DatePipe,
     public router: Router,
@@ -108,6 +110,12 @@ export class AddattestationComponent implements OnInit {
         annee: ['', Validators.required],
         mois: ['', Validators.required]
       });
+      this.getScreenSize()
+    }
+    @HostListener('window:resize', ['$event'])
+    getScreenSize(event?) {
+      this.scrHeight = window.innerHeight;
+      this.scrWidth = window.innerWidth;
     }
 
   ngOnInit() {
@@ -134,7 +142,7 @@ export class AddattestationComponent implements OnInit {
     return this.lastTenYear
   }
   gty(page: any){
-    this.http.get(this.reqUrl + `/interimSousContrat?page=${page}&limit=${this.itemsPerPage}`).subscribe((data: any) => {
+    this.http.get(this.reqUrl + `/interimSousContrat`).subscribe((data: any) => {
       this.dataInter =  data.data;
       console.log(this.dataInter);
       this.totalItems = data.total;

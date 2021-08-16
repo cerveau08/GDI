@@ -172,7 +172,7 @@ export class DetailinterComponent implements OnInit {
       contrat: new FormControl(''),
       fichePoste: new FormControl(''),
       interimaireId: new FormControl(''),
-      provesVerbal: new FormControl(''),
+      procesVerbal: new FormControl(''),
     });
     this.validerForm = new FormGroup({
       matricule: new FormControl(''),
@@ -311,6 +311,7 @@ export class DetailinterComponent implements OnInit {
     formdata.append("poste",this.contratForm.value.poste);
     formdata.append("contrat",this.urlcontrat);
     formdata.append("fichePoste",this.urlfichedeposte);
+    formdata.append("procesVerbal",this.urlProcesVerbal);
     this.otherService.renouvelerContrat(formdata).subscribe(
       data => {
         console.log(data);

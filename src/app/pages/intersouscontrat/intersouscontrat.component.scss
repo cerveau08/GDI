@@ -463,11 +463,23 @@ table {
     }
     .exporter{
         display: flex;
-        margin-right: 30px;
+        margin-right: 0px;
         position: absolute;
         right: 0;
-        top: 30px;
+        left: 0;
+        top: 10px;
     }
+    .content-input-extraction{
+      display: grid;
+      grid-template-columns: 50% 50%;
+      width: 300px;
+      margin: 0 auto;
+    }
+    table {
+      border-collapse: collapse;;
+      width: 100%;
+      margin-top: 110px;
+  }
     .export{
         font-size: 12px;
         margin-top: 12px;

@@ -25,19 +25,9 @@
                 <thead>
                     <tr class="head">
                         <th id="manager">Matricule</th>
-                        <th class="typ" id="prenom">
-                            <div class="type">
-                                <p>Prenom</p> 
-                                <mat-icon class="updown" fontSet="material-icons-outlined">unfold_more</mat-icon>
-                            </div>
-                        </th>
-                        <th class="typ" id="nom">
-                            <div class="type2">
-                                <p>Nom</p> 
-                                <mat-icon class="updown" fontSet="material-icons-outlined">unfold_more</mat-icon>
-                            </div>
-                        </th>
-                        <th  id="agence">Agence</th>
+                        <th class="typ" id="prenom">Prenom </th>
+                        <th class="typ" id="nom">Nom</th>
+                        <th *ngIf="scrWidth>991" id="agence">Agence</th>
                         <th id="contrat">Absence</th>
                         <th id="contrat">Commentaire</th>
                         <th id="contrat">Action</th>
@@ -48,7 +38,7 @@
                         <td >{{p.fin_contrat  | date:'ddMMyyyy'}}</td>
                         <td >{{p.prenom}}</td>
                         <td >{{p.nom}}</td>
-                        <td  >{{p.agence}}</td>
+                        <td *ngIf="scrWidth>991" >{{p.agence}}</td>
                         <td  >
                             <input type="number" formControlName="nbr_jr_absence" class="nombre-jour-absent">
                             jours

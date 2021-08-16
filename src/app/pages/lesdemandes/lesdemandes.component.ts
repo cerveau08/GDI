@@ -41,11 +41,12 @@ export class LesdemandesComponent implements OnInit {
   DemoDoc="http://www.africau.edu/images/default/sample.pdf" 
   DemoDoc1="https://file-examples.com/wp-content/uploads/2017/02/file-sample_100kB.doc"
   DemoDoc2="https://www.le.ac.uk/oerresources/bdra/html/resources/example.txt" 
-  scrHeight:any;
-  scrWidth:any;
+  
   validerForm : FormGroup;
   result;
   errorMsg: any;
+  scrHeight:any;
+  scrWidth:any;
   @HostListener('window:resize', ['$event'])
   getScreenSize(event?) {
         this.scrHeight = window.innerHeight;
