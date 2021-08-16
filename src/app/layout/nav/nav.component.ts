@@ -15,9 +15,10 @@ export class NavComponent implements OnInit {
   public click1: any;
   public click2: any;
   public menus: any;
+  user;
   scrHeight:any;
   scrWidth:any;
-
+  
   @HostListener('window:resize', ['$event'])
   getScreenSize(event?) {
         this.scrHeight = window.innerHeight;
@@ -31,6 +32,7 @@ export class NavComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.user = localStorage.getItem('user');
   }
 
   getMargin(event) {

@@ -55,7 +55,7 @@ export class AsideComponent implements OnInit {
   ngOnInit() {
     this.user = localStorage.getItem('user');
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    if(this.user == 'interimaire') {
+    if(this.user == 'INT') {
       this.showHome = false;
     } else {
       this.showHome = true;

@@ -11,7 +11,7 @@
                                 <img class="image-manager" *ngIf="image" [src]="image" alt="">
                                 <input formControlName="avatar" class="buttonphoto1" type="file" (change)="getPhoto($event)">
                             </div>
-                            <div>
+                            <div class="content-input-user">
                                 <div *ngIf="profil.value != '3'" class="infoinput1">
                                     <input  type="text" *ngIf="user != 'AGN'" [(ngModel)]="matricule" formControlName="matricule" placeholder="Matricule">
                                 </div>

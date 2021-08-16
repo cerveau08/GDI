@@ -6,19 +6,19 @@
                 <p class="text-other">
                     <span class="comment-title">Date de Début</span>:
                 </p>
-                <input class="input-commentaire" type="date" formControlName="dateDebut">
+                <input class="input-commentaire" [(ngModel)]="dateDebut" type="date" formControlName="dateDebut">
             </div>
             <div class="content-form-dateFin">
                 <p class="text-other">
                     <span class="comment-title">Date de Fin</span>:
                 </p>
-                <input class="input-commentaire" type="date" formControlName="dateFin">
+                <input class="input-commentaire" [(ngModel)]="dateFin" type="date" formControlName="dateFin">
             </div>
             <div class="content-form-libelle">
                 <p class="text-other">
                     <span class="comment-title">Libelle</span>:
                 </p>
-                <input class="input-commentaire" type="text" formControlName="libelle">
+                <input class="input-commentaire" [(ngModel)]="libelle" type="text" formControlName="libelle">
             </div>
         </div>
         <div class="content-list-objectif" formArrayName="notation">
@@ -32,13 +32,13 @@
                             <p class="text-note-comments">
                                 <span class="note-title">NOTE</span>:
                             </p>
-                            <input class="input-note" type="text" formControlName="note">
+                            <input class="input-note" type="text" [(ngModel)]="p.note" formControlName="note">
                         </div>
                         <div class="content-form-comment">
                             <p class="text-note-comments">
                                 <span class="comment-title">Commentaires</span>:
                             </p>
-                            <input class="input-commentaire" type="text" formControlName="commentaire">
+                            <input class="input-commentaire" [(ngModel)]="p.commentaire" type="text" formControlName="commentaire">
                         </div>
                     </div>
                 </div>
@@ -56,34 +56,7 @@
         </div>
     </form>
 </div>
-<!--modal-2-->
-<!-- <div class="modal">
-    <jw-modal id="modif-modal-8">
-        <mat-icon style="cursor: pointer;" (click)="closeModal('modif-modal-8');" class="clear">clear</mat-icon>
-        <div class="all">
-            <h1 class="titre-objectif">Modifier l'Objectif</h1>
-            <form [formGroup]="modifierForm">
-                <div class="forms-objectif">
-                    <div class="content-form"> 
-                        <div class="input-titre">
-                            <p class="label-input" for="titre">Titre</p>
-                            <input type="text" [(ngModel)]="itemobjectif.titre" id="titre" name="titre" formControlName="titre" placeholder="Titre" >
-                        </div>
-                        <div class="input-description">
-                            <p class="label-input" for="description">Description</p>
-                            <textarea type="textarea" [(ngModel)]="itemobjectif.description" name="description" formControlName="description" placeholder="Description"></textarea>
-                        </div>
-                        <div class="content-button-submit-objectif">
-                            <button (click)="modifierObjectif(itemobjectif.id)" class="button-submit-objectif">Enregistrer</button>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </jw-modal>
-</div> -->
-<!-- modal-2 -->
-<!--modal1-->
+
 <div class="modal">
     <sonatel-pma-errormodal id="error-modal-1">
         <div class="error-modal-all" >

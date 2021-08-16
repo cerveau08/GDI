@@ -616,7 +616,7 @@ input[type=checkbox] {
     }
     .detail1 {
         font-size: 14px;
-        margin-bottom: 30px;
+        margin-bottom: 0px;
     }
     .tableau {
         margin-top: 5px;
@@ -710,7 +710,7 @@ input[type=checkbox] {
     table {
         border-collapse: collapse;;
         width: 100%;
-        margin-top: 50px;
+        margin-top: 10px;
     }
       
       th {
@@ -792,14 +792,14 @@ input[type=checkbox] {
             margin-left: 30px;
           }
           .clear {
-            width: 16px;
-            height: 16px;
-            margin-top: 10px;
-            margin-right: 30px;
+            width: 12px;
+            height: 12px;
+            margin-top: 5px;
+            margin-right: 10px;
             font-weight: bold;
             position: absolute;
-            right: 35px;
-            top: 40px;
+            right: 10px;
+            top: 5px;
           }
       }
     .forms {

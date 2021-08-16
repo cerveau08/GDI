@@ -1,23 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-import { environment } from 'src/environments/environment';
 import { OthersService } from 'src/app/services/others.service';
 import { ModalService } from 'src/app/_modal';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ErrormodalService } from 'src/app/_errormodals';
+import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
-  selector: 'app-evaluer',
-  templateUrl: './evaluer.component.html',
-  styleUrls: ['./evaluer.component.scss']
+  selector: 'app-modif-evaluer',
+  templateUrl: './modif-evaluer.component.html',
+  styleUrls: ['./modif-evaluer.component.scss']
 })
-export class EvaluerComponent implements OnInit {
+export class ModifEvaluerComponent implements OnInit {
 
   role;
   commentaire;
   objectif;
   item;
+  interim_id;
+  evaluation_id;
   data;
   interimaire;
   prenon;
@@ -25,12 +27,16 @@ export class EvaluerComponent implements OnInit {
   evaluerForm: FormGroup;
   note;
   nom;
+  libelle;
   successMsg;
   objectifForm: FormGroup;
   noteForm: FormGroup;
   modifierForm: FormGroup;
   titremodif;
   descriptionmodif;
+  dataEvaluation;
+  dateDebut;
+  dateFin;
   page = 1;
   itemsPerPage = 2;
   totalItems : any;
@@ -45,8 +51,8 @@ export class EvaluerComponent implements OnInit {
     private http: HttpClient,
     private formBuilder: FormBuilder) {
     this.activeroute.queryParams.subscribe(params => {
-      this.item = JSON.parse(params["interimaire"]);
-      console.log(this.item);
+      this.interim_id = JSON.parse(params["interimaire"]);
+      this.evaluation_id = JSON.parse(params["evaluation"]);
     });
     this.evaluerForm = this.formBuilder.group({
       interimaireId: ['', Validators.required],
@@ -62,7 +68,7 @@ export class EvaluerComponent implements OnInit {
         }
       ]),
     });
-    this.otherService.getOneInterById(this.item).subscribe(
+    this.otherService.getOneInterById(this.interim_id).subscribe(
       data =>{
         this.data = data;
         this.dataInter = this.data.data;
@@ -88,24 +94,28 @@ export class EvaluerComponent implements OnInit {
       bareme: new FormControl(''),
       date_objectif: new FormControl('')
     });
-    this.noteForm = new FormGroup({
-      note: new FormControl(''),
-      commentaire: new FormControl('')
-    });
-    this.modifierForm = new FormGroup({
-      titre: new FormControl(''),
-      description: new FormControl('')
-    });
-    
+    this.otherService.getOneEvaluation(this.evaluation_id).subscribe(
+      data =>{
+        this.data = data;
+        console.log(data);
+        this.dataEvaluation = this.data.data;
+        this.dateDebut = this.dataEvaluation.dateDebut;
+        this.dateFin = this.dataEvaluation.dateFin;
+        this.note = this.dataEvaluation.note;
+        this.libelle = this.dataEvaluation.libelle;
+        this.commentaire = this.dataEvaluation.commentaire;
+        console.log(this.dataEvaluation);
+      }
+    )
     this.gty(this.page);
   }
 
   gty(page: any){
-    this.http.get(this.reqUrl + `/listeObjectifs/${this.item}`).subscribe((data: any) => {
+    this.http.get(this.reqUrl + `/objectif/${this.interim_id}/${this.evaluation_id}?page=${page}&limit=${this.itemsPerPage}`).subscribe((data: any) => {
       this.data = data
       this.totalItems = data.total;
-      this.objectif = this.data["data"];
       console.log(data);
+      this.objectif = this.data["data"];
       this.evaluerForm = this.formBuilder.group({
         interimaireId: this.item,
         comentaire: ['', Validators.required],
@@ -127,27 +137,6 @@ export class EvaluerComponent implements OnInit {
     })
   }
 
-  addObject() {
-    console.log(this.objectifForm.value);
-    this.otherService.addObjectifs(this.objectifForm.value).subscribe(
-      data =>{
-        console.log(data);
-        this.data = data;
-        this.successMsg = this.data.status
-        if(this.successMsg == true) {
-          this.ngOnInit();
-          this.closeModal('objectif-modal-1');
-        }
-      },
-      error=> {
-        this.errorMsg = error;
-        this.closeModal('objectif-modal-1');
-        this.errormodalService.open('error-modal-1');
-        console.log(error)
-      }
-    );
-  }
-
   evaluer() {
     console.log(this.evaluerForm.value);
     this.otherService.evaluer(this.evaluerForm.value).subscribe(
@@ -167,45 +156,6 @@ export class EvaluerComponent implements OnInit {
     )
   }
 
-  notezObjectif(id) {
-    console.log(this.noteForm.value);
-    this.otherService.notezObjectif(this.noteForm.value, id).subscribe(
-      data =>{
-        console.log(data);
-        this.data = data;
-        this.successMsg = this.data.status
-        if(this.successMsg == true) {
-          this.ngOnInit();
-          this.closeModal('custom-modal-'+id);
-        }
-      },
-      error=> {
-        this.errorMsg = error;
-        this.closeModal('custom-modal-'+id);
-        this.errormodalService.open('error-modal-1');
-        console.log(error)
-      }
-    )
-  }
-  modifierObjectif(id) {
-    console.log(this.modifierForm.value);
-    this.otherService.modifierObjectif(this.modifierForm.value, id).subscribe(
-      data =>{
-        this.data = data;
-        this.successMsg = this.data.status
-        if(this.successMsg == true) {
-          this.ngOnInit();
-          this.closeModal('custom-modal-'+id);
-        }
-      },
-      error=> {
-        this.errorMsg = error;
-        this.closeModal('custom-modal-'+id);
-        this.errormodalService.open('error-modal-1');
-        console.log(error)
-      }
-    )
-  }
   openModal(id: string) {
     this.modalService.open(id);
   }

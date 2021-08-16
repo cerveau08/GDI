@@ -285,21 +285,6 @@ select {
     border: solid 1px #ff0000;
 }
 @media (max-width: 991px) {
-    .chiffre-aside {
-        display: grid;
-        grid-template-columns: 33% 33% 33%;
-        grid-gap: 1px;
-        background-color: white;
-        padding: 0px;
-        margin-top: 10px;
-        border-bottom: 1px solid #f5f6f9;
-    }
-    .grid-container-aside {
-        grid-template-columns: 55px 1fr 55px;
-    }
-    .grid-container1-aside {
-        grid-template-columns: 1fr 125px;
-    }
     .all-container {
         grid-template-columns: 1fr;
         grid-template-areas:
@@ -313,14 +298,18 @@ select {
         padding: 10px;
     }
     .detail {
-        font-size: 26px;
-        font-weight: normal;
+        font-size: 16px;
+        font-weight: bold;
         font-stretch: normal;
         font-style: normal;
         line-height: normal;
         letter-spacing: -0.2px;
         color: #222222;
         margin-top: 0;
+    }
+    .content-form-add-user {
+        display: grid;
+        grid-template-columns: 1fr;
     }
     .bouton {
         width: 280px;
@@ -355,8 +344,11 @@ select {
           "information";
         margin-left: 10px;
     }
+    .content-input-user{
+        margin-top: 10px;
+    }
     .image {
-        width: 180px;
+        width: 140px;
         margin: 0 auto;
     }
     .image-manager {
@@ -377,6 +369,10 @@ select {
     }
     .matricule{
         font-size: 20px;
+    }
+    .content-button {
+        width: 90px;
+        margin: 5px auto;
     }
     .input-form {
         width: 220px;
@@ -406,26 +402,50 @@ select {
 
     .form-add-user-agent {
         width: 300px;
-        margin: 20px auto;
+        margin: 10px auto;
     }
     .infoinput1 input {
         width: 280px;
-        height: 31px;
+        height: 21px;
         background-color: #f5f6f9;
         border-radius: 1px;
         border: solid 1px #d8d8d8;
-        margin-bottom: 20px;
+        margin-bottom: 10px;
         padding: 5px;
         outline: none;
-      }
-      .infoinput2 input {
+    }
+    .infoinput2 input {
         width: 130px;
-        height: 31px;
+        height: 21px;
         background-color: #f5f6f9;
         border-radius: 1px;
         border: solid 1px #d8d8d8;
-        margin-bottom: 20px;
+        margin-bottom: 10px;
         padding: 5px;
         outline: none;
-      }
+    }
+    select {
+        width: 145px;
+        height: 34px;
+        margin-bottom: 5px;
+        background-color: #f5f6f9;
+        outline: none;
+        color: black;
+        border: 1px solid #d8d8d8;
+        padding: 5px;
+        option {
+            font-size: 14px;
+            font-weight: normal;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 10px;
+            letter-spacing: 0.07px;
+            color: #000;
+            margin-top: 10px;
+            text-align: center;
+        }
+    }
+    .select6 {
+        margin-left: 10px;
+    }
 }

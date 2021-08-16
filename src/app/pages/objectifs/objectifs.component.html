@@ -9,18 +9,18 @@
             <div class="content-item-object">
                 <p class="objectif-title">{{p.titre}}</p>
                 <p class="objectif-content">{{p.description}}</p>
-                <div class="note-et-comments">
+                <!-- <div class="note-et-comments">
                     <p class="text-note-comments">
                         <span class="note-title">NOTE</span>:<span class="la-note"> {{p.note}} / {{p.bareme}} </span>
                         <span class="comment-title">Commentaires</span>:<span class="le-commentaire">
                             {{p.commentaire}}
                         </span>
                     </p>
-                </div>
+                </div> -->
             </div>
             <div *ngIf="role == 'MNG'" class="objectif-buttons">
-                <button (click)="openModal('custom-modal-'+p.id);" class="button-evaluer">Evaluer</button>
-                <button (click)="openModal('modif-modal-'+p.id);" class="button-modifier">Modifier</button>
+                <!-- <button (click)="openModal('custom-modal-'+p.id);" class="button-evaluer">Evaluer</button> -->
+                <button (click)="openModal('modif-modal-'+p.id);" class="button-evaluer">Modifier</button>
             </div>
             <!--modal-1-->
             <div class="modal">

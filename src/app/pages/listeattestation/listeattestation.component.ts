@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { NgxFileSaverService } from '@clemox/ngx-file-saver';
 import { DataService } from 'src/app/service/data.service';
 import { ModalService } from 'src/app/_modal/modal.service';
@@ -22,11 +22,13 @@ export class ListeattestationComponent implements OnInit {
   filterForm: FormGroup;
   result;
   data: any;
+  currentDate = new Date().getFullYear();
   successMsg;
   filterterm: string;
   dataAttest: any;
   page = 1;
   itemsPerPage = 8;
+  lastTenYear;
   totalItems : any;
   user;
   public reqUrl = environment.base_url;
@@ -80,12 +82,31 @@ export class ListeattestationComponent implements OnInit {
       libelle: "decembre",
     },
   ];
+  scrHeight:any;
+  scrWidth:any;
+  @HostListener('window:resize', ['$event'])
+  getScreenSize(event?) {
+        this.scrHeight = window.innerHeight;
+        this.scrWidth = window.innerWidth;
+        console.log(this.scrHeight, this.scrWidth);
+  }
   constructor(private dataService: DataService,
               private http: HttpClient,
               private errormodalService: ErrormodalService,
-              private otherService: OthersService) { }
+              private otherService: OthersService) {
+                this.getScreenSize()
+              }
 
   ngOnInit() {
+    this.lastTenYear = [
+      {
+        annee: this.currentDate
+      },{
+        annee: this.currentDate - 1
+      },{
+        annee: this.currentDate - 2
+      }
+    ];
     this.user = localStorage.getItem('user');
     this.gty(this.page);
     this.filterForm = new FormGroup({
