@@ -1,6 +1,7 @@
 import { DataService } from 'src/app/service/data.service';
 import { QueryBindingType } from '@angular/compiler/src/core';
 import { OthersService } from 'src/app/services/others.service';
+import { NavigationExtras, Router } from '@angular/router';
 import { Component, HostListener, OnInit } from '@angular/core';
 import { ApexAxisChartSeries, ApexChart, ApexDataLabels, ApexPlotOptions, ApexResponsive, ApexXAxis, ApexYAxis, ApexLegend, ApexFill, ChartComponent } from 'ng-apexcharts';
 import { ErrormodalService } from 'src/app/_errormodals';
@@ -103,6 +104,7 @@ export class HomeComponent implements OnInit {
 
   constructor(private dataService: DataService ,
     private errormodalService: ErrormodalService,
+    public router: Router,
     private otherService: OthersService) {
     this.getScreenSize();
 
@@ -129,7 +131,7 @@ export class HomeComponent implements OnInit {
         }
       );
 
-
+     
       this.getTenLastYear();
       this.otherService.getAllSociete().subscribe(
         data => {
@@ -164,6 +166,16 @@ export class HomeComponent implements OnInit {
       
       this.genrePourcentage(String(this.id_societe));
     }
+
+
+
+    openDetails(data) {
+      this.router.navigate(['/accueil/detailinter'], {
+        queryParams: {
+          user: JSON.stringify(data)
+        }
+      })
+    }  
   
   //premier
   
