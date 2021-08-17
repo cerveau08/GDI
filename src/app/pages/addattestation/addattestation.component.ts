@@ -26,7 +26,7 @@ export class AddattestationComponent implements OnInit {
   attestationForm: FormGroup;
   periodForm: FormGroup;
   page = 1;
-  itemsPerPage = 2;
+  itemsPerPage = 100;
   totalItems : any;
   filterterm;
   currentDate = new Date().getFullYear();
@@ -90,6 +90,7 @@ export class AddattestationComponent implements OnInit {
   action = true;
   scrHeight:any;
   scrWidth:any;
+  detailinter;
   constructor(private dataService: DataService,
     public datepipe: DatePipe,
     public router: Router,
@@ -178,7 +179,12 @@ export class AddattestationComponent implements OnInit {
   }
 
   addAttestation() {
-    console.log(this.periodForm.value);
+    this.detailinter = this.attestationForm.value.interDetail;
+    this.detailinter.forEach((currentValue, index) => {
+      if(!currentValue.nbr_jr_absence) {
+          this.detailinter.splice(index, 1);
+      }
+    });
     this.attestationForm.patchValue({
       annee: this.periodForm.value.annee,
       mois: this.periodForm.value.mois,

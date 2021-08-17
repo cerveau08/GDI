@@ -9,7 +9,7 @@ body {
 .container {
     width: 100%;
     display: grid;
-    grid-template-columns: 190px 1fr 290px;
+    grid-template-columns: 190px 1fr;
     grid-template-rows: auto 1fr auto;
     grid-gap: 7px;
     grid-template-areas:

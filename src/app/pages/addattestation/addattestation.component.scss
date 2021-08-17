@@ -110,34 +110,25 @@
     outline: none;
 }
 .commentaire-attestation{
-    width: 90px;
+    width: 100px;
     height: 20px;
     outline: none;
 }
-table {
-    border-collapse: collapse;;
-    width: 100%;
-    margin-top: 50px;
-}
-  
-  th {
-    text-align: center;
-    //padding: 8px;
-    font-size: 13px;
-    font-weight:  bold;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: normal;
-    letter-spacing: normal;
-    color: #222222;
-    p{
-      margin-top: 5px;
-      margin-bottom: 5px;
-    }
+
+  .updown {
+    margin-top: 2px;
+    margin-left: 0px;
   }
+  
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  th,
   td {
     text-align: center;
-  //  padding: 8px;
     font-size: 12px;
     font-weight: normal;
     font-stretch: normal;
@@ -145,21 +136,21 @@ table {
     line-height: normal;
     letter-spacing: normal;
     color: #000000;
-    p{
-      margin-top: 5px;
-      margin-bottom: 5px;
-    }
   }
-  .updown {
-    margin-top: 2px;
-    margin-left: 0px;
+  tr{
+    border: 1px solid #ddd;
   }
-  tr {
-    height: 30px !important;
-    border: 1px solid #f5f6f9;
-    border-radius: 100%;
-  //  margin-top: 20px;
+  th {
+    background: #eee;
+    font-weight: bold;
   }
+  .table-wrapper {
+    margin-top: 50px;
+    width: 100%;
+    max-height: 400px;
+    overflow-y: auto;
+  }
+  
   .type {
     display: flex;
     width: 60px;
