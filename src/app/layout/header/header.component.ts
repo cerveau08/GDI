@@ -101,16 +101,16 @@ export class HeaderComponent implements OnInit {
 
   onSubmit() {
     const info = {
-    //  prenom: this.demandeForm.value.prenom,
-    //  nom: this.demandeForm.value.nom,
-    //  email: this.demandeForm.value.email,
+     prenom: this.demandeForm.value.prenom,
+     nom: this.demandeForm.value.nom,
+     email: this.demandeForm.value.email,
       matricule: this.demandeForm.value.matricule,
-    //  direction: this.demandeForm.value.direction,
-    //  departement: this.demandeForm.value.departement,
-    //  service: this.demandeForm.value.service,
-    //  agence: this.demandeForm.value.agence,
-    //  annee: this.demandeForm.value.annee,
-    //  poste: this.demandeForm.value.poste,
+     direction: this.demandeForm.value.direction,
+     departement: this.demandeForm.value.departement,
+     service: this.demandeForm.value.service,
+     agence: this.demandeForm.value.agence,
+     annee: this.demandeForm.value.annee,
+     poste: this.demandeForm.value.poste,
     }
     console.log(info);
     this.otherService.rechercheAvance(info).subscribe(
