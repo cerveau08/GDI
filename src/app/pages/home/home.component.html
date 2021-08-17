@@ -209,9 +209,9 @@
                     </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let p of dataInterFin | filter:filterterm | slice:0:3; let i = index">
+                        <tr *ngFor="let p of dataInterFin | filter:filterterm | slice:0:3; let i = index"  (click)="openDetails(p.id)">
                             <td class="id1">{{p.id}}</td>
-                            <td>{{p.prenom}} {{p.nom}}</td>
+                            <td> {{p.prenom}} {{p.nom}}</td>
                             <td *ngIf="scrWidth>991"><img alt="" class="photo" src="{{p.photo}}"></td>
                             <td>{{p.direction}}</td>
                             <td>{{p.agence}}</td>
