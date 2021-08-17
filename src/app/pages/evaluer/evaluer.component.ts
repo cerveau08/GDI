@@ -38,6 +38,7 @@ export class EvaluerComponent implements OnInit {
   interimConnect;
   public reqUrl = environment.base_url;
   errorMsg: any;
+  detailNotation;
   constructor(private otherService: OthersService,
     private modalService: ModalService,
     private activeroute: ActivatedRoute,
@@ -50,7 +51,7 @@ export class EvaluerComponent implements OnInit {
     });
     this.evaluerForm = this.formBuilder.group({
       interimaireId: ['', Validators.required],
-      comentaire: ['', Validators.required],
+      commentaire: ['', Validators.required],
       dateDebut: ['', Validators.required],
       dateFin: ['', Validators.required],
       libelle: ['', Validators.required],
@@ -108,7 +109,7 @@ export class EvaluerComponent implements OnInit {
       console.log(data);
       this.evaluerForm = this.formBuilder.group({
         interimaireId: this.item,
-        comentaire: ['', Validators.required],
+        commentaire: ['', Validators.required],
         dateDebut: ['', Validators.required],
         dateFin: ['', Validators.required],
         libelle: ['', Validators.required],
@@ -149,6 +150,15 @@ export class EvaluerComponent implements OnInit {
   }
 
   evaluer() {
+    console.log(this.evaluerForm.value);
+    this.detailNotation = this.evaluerForm.value.notation;
+    console.log(this.detailNotation);
+    this.detailNotation.forEach((currentValue, index) => {
+      if(!currentValue.note) {
+          this.detailNotation.splice(index, 1);
+      }
+    });
+    console.log(this.detailNotation);
     console.log(this.evaluerForm.value);
     this.otherService.evaluer(this.evaluerForm.value).subscribe(
       data =>{

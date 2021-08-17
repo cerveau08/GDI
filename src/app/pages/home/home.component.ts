@@ -96,6 +96,11 @@ export class HomeComponent implements OnInit {
   totalCercle: any;
   dataGenre;
   dataStatEffectifGenre: any;
+  nouveauxRrecrus;
+  pmc;
+  present;
+  malade;
+  conge;
   @HostListener('window:resize', ['$event'])
   getScreenSize(event?) {
         this.scrHeight = window.innerHeight;
@@ -107,8 +112,30 @@ export class HomeComponent implements OnInit {
     public router: Router,
     private otherService: OthersService) {
     this.getScreenSize();
+    this.otherService.getInter().subscribe(
+      data => {
+        console.log(data);
+        this.dataInterFin = data.data;
+      }
+    );
 
+    
+    this.otherService.getNouveauRecrus().subscribe(
+      data => {
+       this.nouveauxRrecrus = data.data;
+       console.log(data);
+      }
+    );
 
+    this.otherService.getStatPresence().subscribe(
+      data => {
+        this.pmc = data.data;
+        console.log(data);
+        this.present = this.pmc.present;
+        this.malade = this.pmc.malade;
+        this.conge = this.pmc.conge;
+      }
+    );
   }
 
 
