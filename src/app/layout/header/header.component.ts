@@ -25,6 +25,7 @@ export class HeaderComponent implements OnInit {
   scrHeight:any;
   scrWidth:any;
   side = false;
+  lastnotif;
   currentUser;
   photo;
   @HostListener('window:resize', ['$event'])
@@ -129,10 +130,27 @@ export class HeaderComponent implements OnInit {
         }
       }
     )
+
+
+    this.otherService.getLastNotification().subscribe(
+      data => {
+        console.log(this.lastnotif);
+        if(data.data[0]){
+          this.lastnotif =data.data[0].description;
+        }else{
+          this.lastnotif ="Aucune notification "
+  
+        }
+      }
+    );      
+    
+
   }
 
 
 
+
+ 
 
 
   logout() {
@@ -190,4 +208,18 @@ redirection() {
     } 
     return color;
   }
+
+
+
+  getcolornotif(p) {
+    let color = "#ff7900"
+  
+    if(p.lastnotif==false) {
+      color = "#ff0000"
+    } else {
+      color = "#ff7900"
+    }  
+    return color; 
+  } 
+
 }
