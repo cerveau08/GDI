@@ -7,7 +7,7 @@
         <span>Gestion des <br> Interimaires</span>
       </div>
     </div>
-    <div class="search">
+    <div class="search"  *ngIf="user!='INT'"> 
         <button  class="buttona" (click)="openModal('custom-modal-50');">Recherche avancée</button>
     </div>
     <div  class="notif-chat-profil" style="margin-left: auto;margin-right: 0;" >

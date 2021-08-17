@@ -16,6 +16,8 @@ export class HeaderComponent implements OnInit {
 
   selected = 0;
   messageError;
+  user: any;
+  showButton = true;
   successRequest;
   selected1 = 0;
   public click: any;
@@ -81,7 +83,13 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.prenom = localStorage.getItem('prenom');
+    this.prenom = localStorage.getItem('prenom')
+    this.user = localStorage.getItem('user');
+      if(this.user == 'INT') {
+        this.showButton = false;
+      } else {
+        this.showButton = true;
+      }
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this.photo = this.currentUser.data.photo;
     this.role = localStorage.getItem('user');
