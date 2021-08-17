@@ -100,18 +100,38 @@ export class HeaderComponent implements OnInit {
   }
 
   onSubmit() {
-    const info = {
+    const info = new FormData();
+    this.demandeForm.value.prenom != ""?info.append("prenom", this.demandeForm.value.prenom):'';
+    this.demandeForm.value.nom != ""?info.append("nom", this.demandeForm.value.nom):'';
+    this.demandeForm.value.email != ""?info.append("email", this.demandeForm.value.email):'';
+    this.demandeForm.value.matricule != ""?info.append("matricule", this.demandeForm.value.matricule):'';
+    this.demandeForm.value.direction != ""?info.append("direction", this.demandeForm.value.direction):'';
+    this.demandeForm.value.service != ""?info.append("service", this.demandeForm.value.service):'';
+    this.demandeForm.value.agence != ""?info.append("agence", this.demandeForm.value.agence):'';
+    this.demandeForm.value.departement != ""?info.append("departement", this.demandeForm.value.departement):'';
+    this.demandeForm.value.annee != ""?info.append("annee", this.demandeForm.value.annee):'';
+    this.demandeForm.value.poste != ""?info.append("poste", this.demandeForm.value.poste):'';
+
+
+
+
+
+
+
+
+
+    /* const info = {
      prenom: this.demandeForm.value.prenom,
-     nom: this.demandeForm.value.nom,
-     email: this.demandeForm.value.email,
-      matricule: this.demandeForm.value.matricule,
-     direction: this.demandeForm.value.direction,
-     departement: this.demandeForm.value.departement,
-     service: this.demandeForm.value.service,
-     agence: this.demandeForm.value.agence,
-     annee: this.demandeForm.value.annee,
-     poste: this.demandeForm.value.poste,
-    }
+    //  nom: this.demandeForm.value.nom,
+    //  email: this.demandeForm.value.email, 
+    //   matricule: this.demandeForm.value.matricule,
+    //  direction: this.demandeForm.value.direction,
+    //  departement: this.demandeForm.value.departement,
+    //  service: this.demandeForm.value.service,
+    //  agence: this.demandeForm.value.agence,
+    //  annee: this.demandeForm.value.annee,
+    //  poste: this.demandeForm.value.poste,
+    }*/
     console.log(info);
     this.otherService.rechercheAvance(info).subscribe(
       data => {
