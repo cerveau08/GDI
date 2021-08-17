@@ -101,8 +101,8 @@ export class HeaderComponent implements OnInit {
 
   onSubmit() {
     const info = new FormData();
-    this.demandeForm.value.prenom != ""?info.append("prenom", this.demandeForm.value.prenom):'';
-    this.demandeForm.value.nom != ""?info.append("nom", this.demandeForm.value.nom):'';
+    this.demandeForm.value.prenom = ""?info.append("prenom", this.demandeForm.value.prenom):'';
+    this.demandeForm.value.nom = ""?info.append("nom", this.demandeForm.value.nom):'';
     this.demandeForm.value.email != ""?info.append("email", this.demandeForm.value.email):'';
     this.demandeForm.value.matricule != ""?info.append("matricule", this.demandeForm.value.matricule):'';
     this.demandeForm.value.direction != ""?info.append("direction", this.demandeForm.value.direction):'';
@@ -116,10 +116,12 @@ export class HeaderComponent implements OnInit {
 
 
 
+    // prenom: this.demandeForm.value.prenom,
+    //  nom: this.demandeForm.value.nom,
 
 
-
-
+    //  this.demandeForm.value.prenom != ""?info.append("prenom", this.demandeForm.value.prenom):'';
+    //  this.demandeForm.value.nom != ""?info.append("nom", this.demandeForm.value.nom):'';
     /* const info = {
      prenom: this.demandeForm.value.prenom,
     //  nom: this.demandeForm.value.nom,
@@ -132,12 +134,13 @@ export class HeaderComponent implements OnInit {
     //  annee: this.demandeForm.value.annee,
     //  poste: this.demandeForm.value.poste,
     }*/
+    
     console.log(info);
     this.otherService.rechercheAvance(info).subscribe(
       data => {
         console.log(data);
-        this.donneesSearch = data
-        this.successRequest = this.donneesSearch.success
+        this.donneesSearch = data;
+        this.successRequest = this.donneesSearch.status
         if(this.successRequest == true) {
           this.closeModal('custom-modal-50')
           this.route.navigate(['/accueil/detailinter'], {
