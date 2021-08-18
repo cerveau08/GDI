@@ -68,7 +68,7 @@
             <button class="buttonEvaluation" (click)="evaluation()">Evaluations</button>
             <button class="button4" (click)="objectif()">Objectifs</button>
         </div>
-        <div class="lesbouton">
+        <div class="lesbouton" >
             <button class="button-historique" (click)="historiqueContrat()">Historique Contrat</button>
             <button *ngIf="role == 'AGN'" class="button5" (click)="openModal('custom-modal-4')">Ajouter contrat</button>
             <button *ngIf="role == 'AGN'" class="button6" (click)="openModal('custom-modal-5')">Reconduire contrat</button>
