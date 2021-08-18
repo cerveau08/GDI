@@ -313,6 +313,7 @@ export class AddinterComponent implements OnInit {
     formdata.append("salaireBrut",this.interForm.value.salaireBrut);
     formdata.append("dateNaissance",this.interForm.value.dateNaissance);
     formdata.append("lieuNaissance",this.interForm.value.lieuNaissance);
+    
     if(this.interForm.value.categorieId != "") {
       formdata.append("categorieId", this.interForm.value.categorieId);
     }
