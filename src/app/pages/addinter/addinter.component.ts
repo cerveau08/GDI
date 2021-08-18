@@ -333,7 +333,7 @@ export class AddinterComponent implements OnInit {
       formdata.append("dateSignature", this.interForm.value.dateSignature);
     }
     if(this.interForm.value.poste != "") {
-      formdata.append("poste", this.interForm.value.poste);
+      formdata.append("fonctionId", this.interForm.value.poste);
     }
     if(this.fichierContrat != undefined) {
       formdata.append("contratDoc",this.fichierContrat);
