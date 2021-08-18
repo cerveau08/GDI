@@ -6,6 +6,13 @@
                 <div class="exporter">
                     <div class="content-input-extraction">
                         <div class="filtrer-mois">
+                            <p *ngIf="scrWidth>991" class="label-input" for="titre">Référence </p>
+                            <select  formControlName="mois" class="select-mois" >
+                                <option class="option" value="" >Référence</option>
+                                <option *ngFor="let data of ListeMois"  [value]="data.libelle">{{data.libelle}}</option>
+                            </select>
+                        </div>
+                        <div class="filtrer-mois">
                             <p *ngIf="scrWidth>991" class="label-input" for="titre">Mois: </p>
                             <select  formControlName="mois" class="select-mois" >
                                 <option class="option" value="" >Mois</option>
@@ -37,6 +44,7 @@
                         <th id="manager">Matricule</th>
                         <th class="typ" id="prenom">Prénom</th>
                         <th class="typ" id="nom">Nom</th>
+                        <th class="typ" id="nom">Référence</th>
                         <th *ngIf="user != 'AGN' && user != 'INT'" id="action">Agence</th>
                         <th id="contrat">Période</th>
                         <th *ngIf="scrWidth>991" id="contrat">Absence</th>
@@ -51,6 +59,7 @@
                         <td >{{p.matricule}}</td>
                         <td>{{p.prenom}}</td>
                         <td>{{p.nom}}</td>
+                        <td>{{p.reference}}</td>
                         <td *ngIf="user != 'AGN' && user != 'INT'" >{{p.agence}}</td>
                         <td >{{p.dateFin  | date:'MMMM yyyy'}}</td>
                         <td *ngIf="scrWidth>991" >{{p.nombreJourAbscence}} jours</td>
