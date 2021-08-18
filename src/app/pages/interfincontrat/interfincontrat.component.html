@@ -2,15 +2,46 @@
     <div class="tableau">
         <p class="detail1" id="mydesc">Liste des interimaires fin de contrat</p>
         <div class="exporter">
-            <p class="export">Exporter</p>
-            <div class="csv" style="cursor: pointer;">
-                <p class="csv1">CSV</p>
-                <mat-icon fontSet="material-icons-outlined">unfold_more</mat-icon>
-            </div>
-            <div class="filtrer" style="cursor: pointer;">
-                <input class="filtre" type="text" [(ngModel)]="filterterm" placeholder="Filtre">
-                <mat-icon fontSet="material-icons-outlined">tune</mat-icon>
-            </div>
+            <form [formGroup]="filterForm">
+                <div class="exporter">
+                    <div class="content-input-extraction">
+                        <div class="filtrer-mois">
+                            <p class="label-input" for="titre">Société: </p>
+                            <select type="number" formControlName="societe" #societe class="select-mois" (change)="directionsListe(societe.value)">
+                                <option *ngFor="let data of dataSociete"  [value]="data.id">{{data.libelle}}</option>
+                            </select>
+                        </div>
+                        <div class="filtrer-mois">
+                            <p class="label-input" for="titre">Direction: </p>
+                            <select  formControlName="direction" class="select-mois" >
+                                <option *ngFor="let data of dataDirection"  [value]="data.id">{{data.libelle}}</option>
+                            </select>
+                        </div>
+                        <div class="filtrer-mois">
+                            <p class="label-input" for="titre">Agence: </p>
+                            <select  formControlName="agence" class="select-mois" >
+                                <option *ngFor="let data of dataAgence"  [value]="data.id">{{data.nom}}</option>
+                            </select>
+                        </div>
+                        <div class="filtrer-mois">
+                            <p class="label-input" for="titre">Poste: </p>
+                            <input type="text" class="input-extraction" list="professions" formControlName="poste" [(ngModel)]="profession" (change)="saveProfession($event)">
+                            <datalist id="professions">
+                              <option *ngFor="let c of listeFonction" [value]="c.libelle" >{{c.libelle}}</option>
+                            </datalist>
+                        </div>
+                        <div class="content-extraction">
+                            <mat-icon class="icon-search" fontSet="material-icons-outlined" >search</mat-icon>
+                        </div>
+                        <div class="content-extraction">
+                            <button (click)="extraireInter()" class="button-extraire">Extraire en CSV</button>
+                        </div>
+                    </div>
+                    <div class="content-error-msg" *ngIf="successMsg == false">
+                        <p class="error-alert">{{ data?.message}}: mois et année</p>
+                    </div>
+                </div>
+            </form>
         </div>
         <table style="overflow-x:auto;"aria-describedby = "mydesc" >
             <thead>

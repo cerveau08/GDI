@@ -2,14 +2,58 @@
     <div class="all">
         <div class="tableau">
             <p class="detail1" id="mydesc">Liste Noire des Interimaires</p>
+            <div class="exporter">
+                <form [formGroup]="filterForm">
+                    <div class="exporter">
+                        <div class="content-input-extraction">
+                            <div class="filtrer-mois">
+                                <p class="label-input" for="titre">Téléphone: </p>
+                                <input type="text" class="input-extraction" list="professions" formControlName="poste" [(ngModel)]="profession" (change)="saveProfession($event)">
+                                <datalist id="professions">
+                                  <option *ngFor="let c of listeFonction" [value]="c.libelle" >{{c.libelle}}</option>
+                                </datalist>
+                            </div>
+                            <div class="filtrer-mois">
+                                <p class="label-input" for="titre">Type de Pièce: </p>
+                                <select  formControlName="direction" class="select-mois" >
+                                    <option *ngFor="let data of dataDirection"  [value]="data.id">{{data.libelle}}</option>
+                                </select>
+                            </div>
+                            <div class="filtrer-mois">
+                                <p class="label-input" for="titre">Numéro de Pièce: </p>
+                                <input type="text" class="input-extraction" list="professions" formControlName="poste" [(ngModel)]="profession" (change)="saveProfession($event)">
+                                <datalist id="professions">
+                                  <option *ngFor="let c of listeFonction" [value]="c.libelle" >{{c.libelle}}</option>
+                                </datalist>
+                            </div>
+                            <div class="filtrer-mois">
+                                <p class="label-input" for="titre">Nom Complet: </p>
+                                <input type="text" class="input-extraction" list="professions" formControlName="poste" [(ngModel)]="profession" (change)="saveProfession($event)">
+                                <datalist id="professions">
+                                  <option *ngFor="let c of listeFonction" [value]="c.libelle" >{{c.libelle}}</option>
+                                </datalist>
+                            </div>
+                            <div class="content-extraction">
+                                <mat-icon class="icon-search" fontSet="material-icons-outlined" >search</mat-icon>
+                            </div>
+                            <div class="content-extraction">
+                                <button (click)="extraireInter()" class="button-extraire">Extraire en CSV</button>
+                            </div>
+                        </div>
+                        <div class="content-error-msg" *ngIf="successMsg == false">
+                            <p class="error-alert">{{ data?.message}}: mois et année</p>
+                        </div>
+                    </div>
+                </form>
+            </div>
             <table style="overflow-x:auto;" aria-describedby = "mydesc">
                 <thead>
                     <tr class="head">
                         <th id="presence">Prénom</th>
                         <th id="presence">Nom</th>
-                        <th id="presence">Fonction</th>
-                        <th id="paiement" *ngIf="role != 'AGN'">Agence</th>
-                        <th id="date">Entité</th>
+                        <th id="presence">Téléphone</th>
+                        <th id="paiement" >Type de Pièce</th>
+                        <th id="date">Numéro de Pièce</th>
                         <th id="attestation">Motif</th>
                 </tr>
                 </thead>
@@ -20,9 +64,9 @@
                         }; let i = index">
                         <td>{{p.prenom}}</td>
                         <td>{{p.nom}}</td>
-                        <td> {{p.fonction}}</td>
-                        <td *ngIf="role != 'AGN'">{{p.agence}}</td>
-                        <td>{{p.societe}}</td>
+                        <td> {{p.telephone}}</td>
+                        <td >{{p.typePiece}}</td>
+                        <td>{{p.numeroPiece}}</td>
                         <td><button  class="buttons1" (click)="openModal('custom-modal-'+p.id)">Afficher</button></td>
                         <!--modal1-->
                         <div class="modal">

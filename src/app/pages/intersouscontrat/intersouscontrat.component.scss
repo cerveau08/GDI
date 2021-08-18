@@ -36,7 +36,7 @@
   height: 30px;
   border-radius: 5px;
   p {
-      margin-top: 6px;
+      margin-top: 0px;
       margin-bottom: 0;
       margin-left: 5px;
   }
@@ -49,15 +49,16 @@
 .input-extraction{
   width: 140px;
   outline: none;
-  border: 1px solid #f5f6f9;
-  border-radius: 5px;
+  border: 1px solid #d8d8d8;
 }
 .select-mois{
   max-width: 140px;
   min-width: 50px;
-  border: 1px solid #f5f6f9;
-  border-radius: 5px;
+  border: 1px solid #d8d8d8;
   outline: none;
+}
+.icon-search{
+  margin-top: 20px;
 }
 .input-annee{
   width: 90px;

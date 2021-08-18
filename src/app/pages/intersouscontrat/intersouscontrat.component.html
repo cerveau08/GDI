@@ -25,13 +25,13 @@
                         </div>
                         <div class="filtrer-mois">
                             <p class="label-input" for="titre">Poste: </p>
-                            <!-- <select  formControlName="poste" class="select-mois" >
-                                <option *ngFor="let data of listeFonction"  [value]="data.libelle">{{data.libelle}}</option>
-                            </select> -->
                             <input type="text" class="input-extraction" list="professions" formControlName="poste" [(ngModel)]="profession" (change)="saveProfession($event)">
                             <datalist id="professions">
                               <option *ngFor="let c of listeFonction" [value]="c.libelle" >{{c.libelle}}</option>
                             </datalist>
+                        </div>
+                        <div class="content-extraction">
+                            <mat-icon class="icon-search" fontSet="material-icons-outlined" >search</mat-icon>
                         </div>
                         <div class="content-extraction">
                             <button (click)="extraireInter()" class="button-extraire">Extraire en CSV</button>
@@ -47,22 +47,13 @@
             <thead>
                 <tr class="head">
                     <th id="manager">Matricule</th>
-                    <th class="typ" id="prenom">
-                        <div class="type">
-                            <p>Prenom</p> 
-                            <mat-icon class="updown" fontSet="material-icons-outlined">unfold_more</mat-icon>
-                        </div>
-                    </th>
-                    <th class="typ" id="nom">
-                        <div class="type2">
-                            <p>Nom</p> 
-                            <mat-icon class="updown" fontSet="material-icons-outlined">unfold_more</mat-icon>
-                        </div>
-                    </th>
+                    <th class="typ" id="prenom">Prenom</th>
+                    <th class="typ" id="nom">Nom</th>
                     <th *ngIf="role != 'MNG'" id="manager">Manager</th>
                     <th id="manager">Poste</th>
                     <th *ngIf="role != 'MNG'" id="direction">Direction</th>
                     <th *ngIf="role != 'AGN'" id="agence">Agence</th>
+                    <th id="contrat">Début de Contrat</th>
                     <th id="contrat">Fin de Contrat</th>
                     <!-- <th *ngIf="role == 'MNG'" id="contrat">Attestation</th> -->
             </tr>
@@ -82,6 +73,7 @@
                     <td (click)="openDetail(p.id)">{{p.poste}}</td>
                     <td *ngIf="role != 'MNG'" (click)="openDetail(p.id)">{{p.direction}}/{{p.departement}}/{{p.service}}</td>
                     <td *ngIf="role != 'AGN'" (click)="openDetail(p.id)">{{p.agence}}</td>
+                    <td (click)="openDetail(p.id)"> <p>{{p.debut_contrat  | date:'dd/MM/yyyy'}}</p> </td>
                     <td (click)="openDetail(p.id)"> <p>{{p.fin_contrat  | date:'dd/MM/yyyy'}}</p> </td>
                     <!-- <td *ngIf="role == 'MNG'" (click)="openModal('custom-modal-'+p.id)" id="contrat">
                         <button  class="buttons-attestation" >Ajouter</button>

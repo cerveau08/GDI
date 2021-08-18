@@ -60,6 +60,7 @@ export class InterfincontratComponent implements OnInit {
         this.scrWidth = window.innerWidth;
         console.log(this.scrHeight, this.scrWidth);
   }
+  filterForm: FormGroup;
   moisSelect
   demandeForm: FormGroup;
   page = 1;
@@ -89,6 +90,13 @@ export class InterfincontratComponent implements OnInit {
     this.demandeForm = new FormGroup({
       moi: new FormControl (''),
       somme: new FormControl('')
+    });
+    
+    this.filterForm = new FormGroup({
+      societe: new FormControl(''),
+      direction: new FormControl(''),
+      agence: new FormControl(''),
+      poste: new FormControl(''),
     });
 
     this.gty(this.page);

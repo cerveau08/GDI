@@ -32,6 +32,7 @@ export class InterenattenteComponent implements OnInit {
   filterterm;
   public reqUrl = environment.base_url;
   errorMsg: any;
+  filterForm: FormGroup;
   constructor(private dataService: DataService,
     public datepipe: DatePipe,
     public router: Router,
@@ -62,6 +63,13 @@ export class InterenattenteComponent implements OnInit {
       poste: new FormControl(''),
       matricule: new FormControl(''),
       agence: new FormControl(''),
+    });
+
+    this.filterForm = new FormGroup({
+      societe: new FormControl(''),
+      direction: new FormControl(''),
+      agence: new FormControl(''),
+      poste: new FormControl(''),
     });
     this.gty(this.page);
   }
