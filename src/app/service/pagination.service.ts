@@ -154,7 +154,7 @@ export class PaginationService {
     //   path: 'statistique',  icon: "leaderboard",
     // }
     ,{
-      id: 5,  title: 'Statistiques',  icon: "grade",
+      id: 8,  title: 'Statistiques',  icon: "grade",
       icon2: "expand_more",  icon3: "expand_less",
     //  click: false,  activeChoice: -1,
       liste: [  

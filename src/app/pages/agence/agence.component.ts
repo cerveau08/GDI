@@ -89,12 +89,12 @@ export class AgenceComponent implements OnInit {
     this.item = JSON.parse(localStorage.getItem('currentUser'));
     console.log(this.item.data.agence)
     this.user = localStorage.getItem('user');
-    if(this.user == 'agence') {
+    if(this.user == 'AGN') {
       this.showupdate = true;
     } else {
       this.showupdate = false;
     }
-    if(this.user == 'inter') {
+    if(this.user == 'INT') {
       this.showHome = false;
     } else {
       this.showHome = true;
