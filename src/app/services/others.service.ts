@@ -300,5 +300,9 @@ addAgence(data) {
   statDemandeDirection(id: number){
     return this.http.get<any>(`${this.reqUrl}/statDemandeDirection/${id}`);
   }
+  statInterAge(annee, societe){
+    const data = {annee: annee, societe: societe};
+    return this.http.get<any>(`${this.reqUrl}/statsInterAge`, {params: data});
+  }
 
 }

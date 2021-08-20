@@ -85,7 +85,7 @@ export class ListeragenceComponent implements OnInit {
   openDetail(data) {
     this.router.navigate(['/accueil/detailagence'], {
       queryParams: {
-        user: JSON.stringify(data)
+        agence: JSON.stringify(data)
       }
     })
   }

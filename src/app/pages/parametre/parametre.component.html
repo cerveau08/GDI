@@ -7,14 +7,14 @@
             <button routerLink="/accueil/adduser" class="button-add-user">Ajouter Utilisateur</button>
         </div>
         <div class="parametre-header">
-            <div [style.border]="border1" (click)="changeShowb()" class="header-1">
+            <div [style.border]="border1" *ngIf="user == 'AGN'" (click)="changeShowb()" class="header-1">
                 <p [style.color]="color1" class="parametre-header-title">Sécurité</p>
             </div>
             <div [style.border]="border2"  (click)="changeShowa()" class="header-2">
                 <p [style.color]="color2" class="parametre-header-title">Aide et assistance</p>
             </div>
         </div>
-        <div *ngIf="!show1" class="content-securite">
+        <div *ngIf="!show1 && user == 'AGN'" class="content-securite">
             <!-- <form [formGroup]="passwordForm">
                 <div class="actuel-password">
                     <p class="label-input">Mot de passe actuel</p>

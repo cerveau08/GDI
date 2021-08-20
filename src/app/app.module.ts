@@ -86,6 +86,8 @@ import { EvaluerComponent } from './pages/evaluer/evaluer.component';
 import { EffectifComponent } from './pages/statistiques/effectif/effectif.component';
 import { GenreComponent } from './pages/statistiques/genre/genre.component';
 import { PresenceComponent } from './pages/statistiques/presence/presence.component';
+import { StatageComponent } from './statistique/statage/statage.component';
+import { StatcategorieComponent } from './pages/statistiques/statcategorie/statcategorie.component';
 ;
 
 @NgModule({
@@ -151,7 +153,9 @@ import { PresenceComponent } from './pages/statistiques/presence/presence.compon
     EffectifComponent,
     GenreComponent,
     PresenceComponent,
-    StatagenceComponent
+    StatagenceComponent,
+    StatageComponent,
+    StatcategorieComponent
   ],
   imports: [
     BrowserModule,
