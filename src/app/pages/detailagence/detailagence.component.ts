@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgxFileSaverService } from '@clemox/ngx-file-saver';
 import { DataService } from 'src/app/service/data.service';
 import { OthersService } from 'src/app/services/others.service';
 import { ModalService } from 'src/app/_modal/modal.service';
 import { ErrormodalService } from 'src/app/_errormodals';
+import { environment } from 'src/environments/environment';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-detailagence',
@@ -37,6 +39,7 @@ export class DetailagenceComponent implements OnInit {
   cnidgName;
   fichierCnidg?: File;
   fichierContrat?: File;
+  userAgentForm: FormGroup;
   data;
   nom;
   responsable;
@@ -55,16 +58,29 @@ export class DetailagenceComponent implements OnInit {
   total;
   actifs;
   inactifs;
+  dataSociete;
+  dataStructure;
+  dataprofils;
+  listeFonction
+  fichierPhoto?: File;
+  prenom;
+  page = 1;
+  itemsPerPage = 8;
+  totalItems : any;
+  imageName;
+  public reqUrl = environment.base_url;
   errorMsg: any;
+  dataMatriculeInter: any;
   constructor(private activeroute: ActivatedRoute,
     private modalService: ModalService,
     private dataService: DataService,
+    private http: HttpClient,
     private fileSaver: NgxFileSaverService,
     private otherService: OthersService,
     private errormodalService: ErrormodalService,
     private route: Router) { 
       this.activeroute.queryParams.subscribe(params => {
-        this.item = JSON.parse(params["user"]);
+        this.item = JSON.parse(params["agence"]);
         console.log(this.item);
         this.otherService.getOneAgenceById(this.item).subscribe(
           data =>{
@@ -135,8 +151,106 @@ export class DetailagenceComponent implements OnInit {
       contrat: new FormControl(''),
       cnidg: new FormControl(''),
     });
+    
+    this.userAgentForm = new FormGroup({
+      prenomUser: new FormControl('', Validators.required,),
+      nomUser: new FormControl('', Validators.required,),
+      emailUser: new FormControl('', [
+        Validators.required,
+        Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
+      ]),
+      telephoneUser: new FormControl('', Validators.required,),
+      fonction: new FormControl('', Validators.required,),
+      login: new FormControl(''),
+      profil: new FormControl(''),
+      avatarUser: new FormControl(''),
+      agenceId: new FormControl(''),
+    })
+  
+    //recupere les societes
+    this.otherService.getAllSociete().subscribe(
+      data => {
+        this.dataSociete = data["data"];
+        console.log(data);
+      }, error=> {
+        this.errorMsg = error;
+        this.errormodalService.open('error-modal-1');
+        console.log(error)
+      }
+    );
+
+    this.otherService.getAllStructure().subscribe(data => {
+      console.log(data);
+      this.dataStructure = data['data'];
+    }, error=> {
+      this.errorMsg = error;
+      this.errormodalService.open('error-modal-1');
+      console.log(error)
+    })
+
+      //recupere les profils
+    this.otherService.getprofil().subscribe(
+      data => {
+        this.dataprofils = data["data"];
+        console.log(data);
+      }, error=> {
+        this.errorMsg = error;
+        this.errormodalService.open('error-modal-1');
+        console.log(error)
+      }
+    );
+    this.gty(this.page);
+
+    this.otherService.getFonctions().subscribe(data => this.listeFonction = data.data);
   }
 
+  gty(page: any){
+    this.http.get(this.reqUrl + `/listeAgence?page=${page}&limit=${this.itemsPerPage}`).subscribe((data: any) => {
+      this.dataAgence =  data.data;
+      this.totalItems = data.total;
+      console.log(this.dataAgence);
+      console.log(this.totalItems);
+    }, error=> {
+      this.errorMsg = error;
+      this.errormodalService.open('error-modal-1');
+      console.log(error)
+    })
+  }
+
+  
+  //ajout user
+
+  ajouterUser() {
+    const formdata = new FormData(); 
+    formdata.append("prenom",this.userAgentForm.value.prenomUser);
+    formdata.append("nom",this.userAgentForm.value.nomUser);
+    formdata.append("profil",this.userAgentForm.value.profil);
+    formdata.append("fonction",this.userAgentForm.value.fonction);
+    formdata.append("agenceId",this.item);
+    formdata.append("email",this.userAgentForm.value.emailUser);
+    formdata.append("telephone",this.userAgentForm.value.telephoneUser);
+    formdata.append("avatar",this.fichierPhoto);
+    console.log(formdata);
+    console.log(this.userAgentForm.value);
+    this.otherService.addUser(formdata).subscribe(
+      (response) =>{
+        console.log(response)
+        this.data = response;
+        this.successMsg = this.data.status
+        console.log(this.successMsg);
+          this.route.navigate(['/accueil/listeuser']);
+      },
+      error=> {
+        this.errorMsg = error;
+        this.errormodalService.open('error-modal-1');
+        console.log(error)
+      }
+    )
+  }
+  successMsg(successMsg: any) {
+    throw new Error('Method not implemented.');
+  }
+//modifier agence
   submitted1() {
     console.log(this.dataAgence);
     console.log(this.agenceForm.value);
@@ -179,6 +293,18 @@ export class DetailagenceComponent implements OnInit {
     reader.onload= ()=>{
       this.image= reader.result
     } 
+  }
+
+  //recuperer image pour add user
+  getphoto(event: any) {
+    this.fichierPhoto = event.target.files[0];
+    this.imageName = this.fichierPhoto.name;
+    let reader = new FileReader();
+    reader.readAsDataURL( this.fichierPhoto);
+    reader.onload= ()=>{
+      this.image= reader.result;
+      console.log(this.image);
+    }
   }
  
    //recuperation du  contrat

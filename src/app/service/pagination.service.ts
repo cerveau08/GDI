@@ -143,9 +143,6 @@ export class PaginationService {
       id: 5,  title: 'Demandes',
       path: 'lesdemande',  icon: "local_mall",
     },{
-      id: 8,  title: 'Ajouter Utilisateur',
-      path: 'adduser',  icon: "person_add",
-    },{
       id: 11,  title: 'Liste Utilisateur',
       path: 'listeuser',  icon: "person",
     },{
@@ -214,9 +211,6 @@ export class PaginationService {
       id: 5,  title: 'Demandes',
       path: 'lesdemande',  icon: "local_mall",
     },{
-      id: 11,  title: 'Ajouter Utilisateur',
-      path: 'adduser',  icon: "person_add",
-    },{
       id: 11,  title: 'Liste Utilisateur',
       path: 'listeuser',  icon: "person",
     },{
@@ -264,9 +258,6 @@ export class PaginationService {
       id: 5,  title: 'Demandes',
       path: 'lesdemande',  icon: "local_mall",
     },{
-      id: 11,  title: 'Ajouter Utilisateur',
-      path: 'adduser',  icon: "person_add",
-    },{
       id: 6,  title: 'Alertes',
       path: 'alertes',  icon: "query_builder",
     }
@@ -274,8 +265,8 @@ export class PaginationService {
       id: 8,  title: 'Mon Compte',
       path: 'manager',  icon: "folder_shared",
     },{
-      id: 11,  title: 'Liste Noire',
-      path: 'blacklist',  icon: "person_off",
+      id: 9,  title: 'Statistiques',
+      path: 'statistique',  icon: "leaderboard",
     },{
       id: 10,  title: 'Paramètres',
       path: 'parametre',  icon: "settings",

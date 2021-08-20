@@ -65,7 +65,7 @@
             <button class="buttonaffi" (click)="openModal('custom-modal-1')" type="button">Afficher contrat</button>
             <button class="buttonmodif" *ngIf="showupdate" (click)="openModal('custom-modal-2')" type="button">Modifier</button>
             <button class="buttonsupp" *ngIf="showupdate" (click)="delete()" type="button">Supprimer</button>
-            <!-- <button class="buttonadduser" *ngIf="showupdate" (click)="openModal('custom-modal-3')" type="button">Ajouter Utilisateur</button> -->
+            <button class="buttonadduser" *ngIf="showupdate" (click)="openModal('custom-modal-3')" type="button">Ajouter Utilisateur</button>
         </div>
     </div>
 </div>
@@ -155,6 +155,59 @@
     </jw-modal>
 </div>
 
+<!--modal-3-->
+<div class="modal">
+    <jw-modal id="custom-modal-3">
+        <h1>Ajouter Utilisateur</h1>
+        <div>
+            <div class="form-add-user-agent">
+                <form [formGroup]="userAgentForm">
+                    <div class="content-form-add-user">
+                        <div class="image">
+                            <div *ngIf="!image" class="content-image-upload"></div>
+                            <img class="image-manager" *ngIf="image" [src]="image" alt="">
+                            <input formControlName="avatarUser" class="buttonphoto1" type="file" (change)="getphoto($event)">
+                        </div>
+                        <div>
+                            <div class="infoinput2">
+                                <input type="text" formControlName="prenomUser"   [(ngModel)]="prenomUser" placeholder="Prénom">
+                                <input class="input3" type="text" formControlName="nomUser"  [(ngModel)]="nomUser" placeholder="Nom">
+                            </div>
+                            <div class="infoinput1">
+                                <input type="text" formControlName="emailUser"  [(ngModel)]="emailUser" placeholder="Email">
+                                <div class="form-control-feedback"
+                                    *ngIf="userAgentForm.controls['emailUser'].errors && (userAgentForm.controls['emailUser'].dirty || userAgentForm.controls['emailUser'].touched)">
+                                    <p class="error-alert" *ngIf="userAgentForm.controls['emailUser'].errors.required">l'email est obligatoire</p>
+                                    <p class="error-alert" *ngIf="userAgentForm.controls['emailUser'].errors.pattern">l'email doit ètre de ce format example@domaine.nom</p>
+                                </div>
+                            </div>
+                            <div class="infoinput2">
+                                <input type="number" formControlName="telephoneUser"  [(ngModel)]="telephoneUser"  placeholder="Téléphone">
+                                <select class="select6" #profil formControlName="profil">
+                                    <option class="option" value="" disabled selected hidden>Profil</option>
+                                    <option *ngFor="let data of dataprofils" value="{{data.id}}">{{data.libelle}}</option>
+                                </select>
+                            </div>
+                            <div *ngIf="user == 'DRH'" class="infoinput2">
+                                <input type="text" formControlName="fonction"  [(ngModel)]="fonction"  placeholder="Fonction">
+                            </div>
+                            <div *ngIf="user != 'DRH'" class="infoinput1">
+                                <input type="text" list="fonctions" formControlName="fonction" (change)="saveFonction($event)"  [(ngModel)]="fonction"  placeholder="Fonction">
+                                <datalist id="fonctions">
+                                    <option *ngFor="let c of listeFonction" [value]="c.libelle" >{{c.libelle}}</option>
+                                </datalist>
+                            </div>
+                            <div class="content-error-msg" *ngIf="successMsg == false">
+                                <p class="error-alert">{{ data?.message}}</p>
+                            </div>
+                            <div class="content-button">
+                                <button (click)="ajouterUser()" class="buttob-envoyer">Valider</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
 <!--modal1-->
 <div class="modal">
     <sonatel-pma-errormodal id="error-modal-1">
