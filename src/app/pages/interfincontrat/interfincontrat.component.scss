@@ -20,10 +20,11 @@
     position: relative;
 }
 .exporter{
-  margin-right: 0px;
-  position: absolute;
-  right: 0;
-  top: 15px;
+  // margin-right: 0px;
+  // position: absolute;
+  // right: 0;
+  // top: 15px;
+  float: right;
 }
 .content-input-extraction{
   display: flex;
@@ -37,7 +38,8 @@
   p {
       margin-top: 0px;
       margin-bottom: 0;
-      margin-left: 5px;
+      margin-left: 0px;
+      font-size: 12px;
   }
   mat-icon{
       margin-top: 5px;

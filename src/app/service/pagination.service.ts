@@ -148,9 +148,32 @@ export class PaginationService {
     },{
       id: 6,  title: 'Alertes',
       path: 'alertes',  icon: "query_builder",
-    },{
-      id: 9,  title: 'Statistiques',
-      path: 'statistique',  icon: "leaderboard",
+    }
+    // ,{
+    //   id: 9,  title: 'Statistiques',
+    //   path: 'statistique',  icon: "leaderboard",
+    // }
+    ,{
+      id: 8,  title: 'Statistiques',  icon: "grade",
+      icon2: "expand_more",  icon3: "expand_less",
+    //  click: false,  activeChoice: -1,
+      liste: [  
+        {
+          title: 'Par Effectif',  path: 'stateffectif',
+        }, {
+          title: 'Par Genre',  path: 'statgenre',
+        },{
+          title: 'Par Agence',  path: 'statagence',
+        }, {
+          title: 'Par Présence',  path: 'statpresence',
+        },{
+          title: 'Par Domaine',  path: 'statpresence',
+        },{
+          title: 'Par Catégorie',  path: 'statpresence',
+        },{
+          title: 'Par Tranche d\'age',  path: 'statpresence',
+        },
+      ]
     },{
       id: 11,  title: 'Liste Noire',
       path: 'blacklist',  icon: "person_off",

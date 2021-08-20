@@ -4,7 +4,7 @@
             <p class="detail1" id="mydesc">Liste des Demandes</p>
             <div class="exporter">
                 <form [formGroup]="filterForm">
-                    <div class="exporter">
+                    <div class="exporter-form">
                         <div class="content-input-extraction">
                             <div class="filtrer-mois">
                                 <p class="label-input" for="titre">Société: </p>
@@ -44,9 +44,7 @@
                     </div>
                 </form>
             </div>
-            <div class="button-valider-content">
-                <button class="button-validation-demende" (click)="getCheckedItemList()">Valider</button>
-            </div>
+            
             <table style="overflow-x:auto;" aria-describedby = "mydesc">
                 <thead>
                     <tr class="head">
@@ -105,7 +103,12 @@
                 
             </table>
             <div class="pagination">
-                <pagination-controls (pageChange)="gty(page = $event)" previousLabel="Précédent" nextLabel="Suivant"></pagination-controls>
+                <div>
+                    <pagination-controls (pageChange)="gty(page = $event)" previousLabel="Précédent" nextLabel="Suivant"></pagination-controls>
+                </div>
+                <div class="button-valider-content">
+                    <button class="button-validation-demende" (click)="getCheckedItemList()">Valider</button>
+                </div>
             </div>
         </div>
     </div>

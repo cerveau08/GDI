@@ -6,6 +6,13 @@
                 <div class="exporter">
                     <div class="content-input-extraction">
                         <div class="filtrer-mois">
+                            <p class="label-input" for="titre">Matricule: </p>
+                            <input type="text" class="input-extraction" list="professions" formControlName="poste" [(ngModel)]="profession" (change)="saveProfession($event)">
+                            <datalist id="professions">
+                              <option *ngFor="let c of listeFonction" [value]="c.libelle" >{{c.libelle}}</option>
+                            </datalist>
+                        </div>
+                        <div class="filtrer-mois">
                             <p class="label-input" for="titre">Société: </p>
                             <select type="number" formControlName="societe" #societe class="select-mois" (change)="directionsListe(societe.value)">
                                 <option *ngFor="let data of dataSociete"  [value]="data.id">{{data.libelle}}</option>

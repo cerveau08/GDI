@@ -177,8 +177,8 @@ export class EffectifComponent implements OnInit {
           ],
           chart: {
             type: "bar",
-            height: 280,
-            width: 550,
+            height: 380,
+            width: 750,
             stacked: true,
             toolbar: {
               show: false
@@ -260,8 +260,8 @@ export class EffectifComponent implements OnInit {
         ],
         chart: {
           type: "bar",
-          height: 280,
-          width: 550,
+          height: 380,
+          width: 750,
           stacked: false,
           toolbar: {
             show: false
