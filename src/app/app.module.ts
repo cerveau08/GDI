@@ -86,7 +86,7 @@ import { EvaluerComponent } from './pages/evaluer/evaluer.component';
 import { EffectifComponent } from './pages/statistiques/effectif/effectif.component';
 import { GenreComponent } from './pages/statistiques/genre/genre.component';
 import { PresenceComponent } from './pages/statistiques/presence/presence.component';
-import { StatageComponent } from './statistique/statage/statage.component';
+import { StatageComponent } from './pages/Statistiques/statage/statage.component';
 import { StatcategorieComponent } from './pages/statistiques/statcategorie/statcategorie.component';
 import { ModifEvaluerComponent } from './pages/evaluer/modif-evaluer/modif-evaluer.component';
 ;

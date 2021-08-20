@@ -171,7 +171,7 @@ export class PaginationService {
         },{
           title: 'Par Catégorie',  path: 'statpresence',
         },{
-          title: 'Par Tranche d\'age',  path: 'statpresence',
+          title: 'Par Tranche d\'age',  path: 'statage',
         },
       ]
     },{
