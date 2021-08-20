@@ -19,7 +19,7 @@ export class AlertComponent implements OnInit {
   user;
   alert;
   page = 1;
-  itemsPerPage = 6;
+  itemsPerPage = 10;
   totalItems : any;
   public reqUrl = environment.base_url;
   errorMsg: any;

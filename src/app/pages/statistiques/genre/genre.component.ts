@@ -161,8 +161,8 @@ export class GenreComponent implements OnInit {
       ],
       chart: {
         type: "bar",
-        height: 280,
-        width: 550,
+        height: 380,
+        width: 750,
         stacked: false,
         toolbar: {
           show: false
