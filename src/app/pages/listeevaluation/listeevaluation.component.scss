@@ -286,3 +286,27 @@ input {
     outline: none;
     border: solid 1px #ff0000;
 }
+@media (max-width: 991px) {
+    .titre-objectif {
+        font-size: 14px;
+        font-weight: bold;
+    }
+    .button-ajouter {
+        position: absolute;
+        top: 45px;
+        right: 10px;
+        height: 25px;
+        width: 140px;
+        background-color: #009393;
+        border: none;
+        cursor: pointer;
+        outline: none;
+        color: white;
+        font-size: 12px;
+        font-weight: bold;
+        margin-top: 5px;
+    }
+    .grid-container{
+        margin-top: 35px;
+    }
+}

@@ -244,26 +244,51 @@ table {
     border: solid 1px #ff0000;
 }
 @media (max-width: 991px) {
-    .chiffre-aside {
-        display: grid;
-        grid-template-columns: 33% 33% 33%;
-        grid-gap: 1px;
-        background-color: white;
-        padding: 0px;
-        margin-top: 10px;
-        border-bottom: 1px solid #f5f6f9;
-    }
-    .grid-container-aside {
-        grid-template-columns: 55px 1fr 55px;
-    }
-    .grid-container1-aside {
-        grid-template-columns: 1fr 125px;
-    }
     .all-container {
         grid-template-columns: 1fr;
         grid-template-areas:
           "tableau"
           "aside";
         grid-template-rows:auto minmax(60px, auto) 1fr minmax(70px, auto) auto;
-      }
+    }
+    th {
+        text-align: center;
+        font-size: 10px;
+        font-weight: 500;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        color: #222222;
+    }
+    td {
+        text-align: center;
+        font-size: 10px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        color: #000000;
+    }
+    .filtrer-mois {
+        display: flex;
+        margin-left: 5px;
+        margin-right: 5px;
+        margin-top: 5px;
+        border: 1px solid #f5f6f9;
+        padding: 0px;
+        height: 30px;
+        border-radius: 5px;
+        p {
+            margin-top: 6px;
+            margin-bottom: 0;
+            margin-left: 5px;
+        }
+        mat-icon{
+            margin-top: 5px;
+            margin-right: 10px;
+            margin-bottom: 0;
+        }
+    }
 }

@@ -6,15 +6,29 @@
                 <div class="exporter">
                     <div class="content-input-extraction">
                         <div class="filtrer-mois">
-                            <p class="label-input" for="titre">Mois: </p>
+                            <p *ngIf="scrWidth>991" class="label-input" for="titre">Référence </p>
                             <select  formControlName="mois" class="select-mois" >
-                                <option class="option" value="" disabled selected hidden>Mois: </option>
+                                <option class="option" value="" >Référence</option>
                                 <option *ngFor="let data of ListeMois"  [value]="data.libelle">{{data.libelle}}</option>
                             </select>
                         </div>
-                        <div class="input-annee">
-                            <jp-multi-datepicker formControlName="annee" tabindex="-1"  mode="YEAR" label="Année" [(ngModel)]="annee" [min]="2000"></jp-multi-datepicker>
+                        <div class="filtrer-mois">
+                            <p *ngIf="scrWidth>991" class="label-input" for="titre">Mois: </p>
+                            <select  formControlName="mois" class="select-mois" >
+                                <option class="option" value="" >Mois</option>
+                                <option *ngFor="let data of ListeMois"  [value]="data.libelle">{{data.libelle}}</option>
+                            </select>
                         </div>
+                        <div class="filtrer-mois">
+                            <p *ngIf="scrWidth>991" class="label-input" for="titre">Annee: </p>
+                            <select  formControlName="annee" class="select-mois" >
+                                <option class="option" value="" >Année</option>
+                                <option *ngFor="let data of lastTenYear"  [value]="data.annee">{{data.annee}}</option>
+                            </select>
+                        </div>
+                        <!-- <div class="input-annee">
+                            <jp-multi-datepicker formControlName="annee" tabindex="-1"  mode="YEAR" label="Année" [(ngModel)]="annee" [min]="2000"></jp-multi-datepicker>
+                        </div> -->
                         <div class="content-extraction">
                             <button (click)="extraireAttestation()" class="button-extraire">Extraire en CSV</button>
                         </div>
@@ -28,21 +42,12 @@
                 <thead>
                     <tr class="head">
                         <th id="manager">Matricule</th>
-                        <th class="typ" id="prenom">
-                            <div class="type">
-                                <p>Prénom</p> 
-                                <mat-icon class="updown" fontSet="material-icons-outlined">unfold_more</mat-icon>
-                            </div>
-                        </th>
-                        <th class="typ" id="nom">
-                            <div class="type">
-                                <p>Nom</p> 
-                                <mat-icon class="updown" fontSet="material-icons-outlined">unfold_more</mat-icon>
-                            </div>
-                        </th>
+                        <th class="typ" id="prenom">Prénom</th>
+                        <th class="typ" id="nom">Nom</th>
+                        <th class="typ" id="nom">Référence</th>
                         <th *ngIf="user != 'AGN' && user != 'INT'" id="action">Agence</th>
                         <th id="contrat">Période</th>
-                        <th id="contrat">Absence</th>
+                        <th *ngIf="scrWidth>991" id="contrat">Absence</th>
                         <th id="action">Etat</th>
                 </tr>
                 </thead>
@@ -54,9 +59,10 @@
                         <td >{{p.matricule}}</td>
                         <td>{{p.prenom}}</td>
                         <td>{{p.nom}}</td>
+                        <td>{{p.reference}}</td>
                         <td *ngIf="user != 'AGN' && user != 'INT'" >{{p.agence}}</td>
                         <td >{{p.dateFin  | date:'MMMM yyyy'}}</td>
-                        <td  >{{p.nombreJourAbscence}} jours</td>
+                        <td *ngIf="scrWidth>991" >{{p.nombreJourAbscence}} jours</td>
                         <td>{{p.statut}}</td>
                     </tr>
                 </tbody>

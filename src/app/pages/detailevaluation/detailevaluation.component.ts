@@ -124,19 +124,18 @@ export class DetailevaluationComponent implements OnInit {
       );
     })
 
-    //detail d'un contrat
     this.otherService.getOneEvaluation(this.item).subscribe(
       data =>{
         this.data = data;
         console.log(data);
-        
         this.dataEvaluation = this.data.data;
         this.dateDebut = this.dataEvaluation.dateDebut;
         this.dateFin = this.dataEvaluation.dateFin;
         this.note = this.dataEvaluation.note;
         this.commentaire = this.dataEvaluation.commentaire;
         console.log(this.dataEvaluation);
-      })
+      }
+    )
     
   }
   ngOnInit() {
@@ -158,17 +157,6 @@ export class DetailevaluationComponent implements OnInit {
     })
   }
 
-  public get(p) {
-    this.fileSaver.saveUrl(p.pathfile, p.file);
-  }
-  public getContrat() {
-    this.fileSaver.saveUrl(this.contratDoc, 'contrat');
-  }
-
-  public getFicheDePoste() {
-    this.fileSaver.saveUrl(this.fichePosteDoc, 'fiche de Poste');
-  }
-
   openModal(id: string) {
     this.modalService.open(id);
   }
@@ -184,6 +172,15 @@ export class DetailevaluationComponent implements OnInit {
       }
     })
   } 
+
+  ModifierEvaluation() {
+    this.router.navigate(['/accueil/modifevaluer'], {
+      queryParams: {
+        interimaire: JSON.stringify(this.interim_id),
+        evaluation: JSON.stringify(this.item),
+      }
+    })
+  }
 
   openEvaluer() {
     console.log(this.interim_id);

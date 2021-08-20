@@ -197,9 +197,6 @@ export class PaginationService {
       id: 8,  title: 'Mon Compte',
       path: 'agence',  icon: "folder_shared",
     },{
-      id: 9,  title: 'Statistiques',
-      path: 'statistique',  icon: "leaderboard",
-    },{
       id: 11,  title: 'Liste Noire',
       path: 'blacklist',  icon: "person_off",
     },{

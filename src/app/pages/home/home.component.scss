@@ -2,6 +2,8 @@
     // display: grid;
     // grid-template-columns: 1fr 290px;
     background-color: #f5f6f9;
+    display: grid;
+    grid-template-columns: 1fr 290px;
 }
 .all{
     margin-right: 0px;
@@ -173,6 +175,7 @@
 .filter-date {
     display: flex;
     margin-left: 220px;
+    position: absolute;
 }
 
 .icone-calendar1 {
@@ -186,7 +189,7 @@
 }
 .select-mois {
     border: none;
-    outline: none;
+    outline: none; 
     background-color: #fff;
     width: 75px;
 }
@@ -1457,7 +1460,7 @@ th {
         margin-right: 0;
     }
     .main {
-        padding: 5px;
+        padding: 0px;
     }
     .tableau {
         padding: 20px 5px;

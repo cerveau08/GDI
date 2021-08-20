@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { environment } from 'src/environments/environment';
 import { DataService } from 'src/app/service/data.service';
@@ -26,7 +26,7 @@ export class AddattestationComponent implements OnInit {
   attestationForm: FormGroup;
   periodForm: FormGroup;
   page = 1;
-  itemsPerPage = 2;
+  itemsPerPage = 100;
   totalItems : any;
   filterterm;
   currentDate = new Date().getFullYear();
@@ -88,6 +88,9 @@ export class AddattestationComponent implements OnInit {
   yearOnly;
   errorMsg: any;
   action = true;
+  scrHeight:any;
+  scrWidth:any;
+  detailinter;
   constructor(private dataService: DataService,
     public datepipe: DatePipe,
     public router: Router,
@@ -108,6 +111,12 @@ export class AddattestationComponent implements OnInit {
         annee: ['', Validators.required],
         mois: ['', Validators.required]
       });
+      this.getScreenSize()
+    }
+    @HostListener('window:resize', ['$event'])
+    getScreenSize(event?) {
+      this.scrHeight = window.innerHeight;
+      this.scrWidth = window.innerWidth;
     }
 
   ngOnInit() {
@@ -134,7 +143,7 @@ export class AddattestationComponent implements OnInit {
     return this.lastTenYear
   }
   gty(page: any){
-    this.http.get(this.reqUrl + `/interimSousContrat?page=${page}&limit=${this.itemsPerPage}`).subscribe((data: any) => {
+    this.http.get(this.reqUrl + `/interimSousContrat`).subscribe((data: any) => {
       this.dataInter =  data.data;
       console.log(this.dataInter);
       this.totalItems = data.total;
@@ -170,7 +179,12 @@ export class AddattestationComponent implements OnInit {
   }
 
   addAttestation() {
-    console.log(this.periodForm.value);
+    this.detailinter = this.attestationForm.value.interDetail;
+    this.detailinter.forEach((currentValue, index) => {
+      if(!currentValue.nbr_jr_absence) {
+          this.detailinter.splice(index, 1);
+      }
+    });
     this.attestationForm.patchValue({
       annee: this.periodForm.value.annee,
       mois: this.periodForm.value.mois,

@@ -7,16 +7,14 @@
         <span>Gestion des <br> Interimaires</span>
       </div>
     </div>
-    <div class="search">
-        <mat-icon fontSet="material-icons-outlined" >search</mat-icon>
-        <input [(ngModel)]="filterterm" class="input-search" type="text"  name="search" id="" placeholder="Rechercher interimaires, Agences et Manager">
+    <div class="search"  *ngIf="user!='INT'"> 
         <button  class="buttona" (click)="openModal('custom-modal-50');">Recherche avancée</button>
     </div>
-    <div class="notif-chat-profil" style="margin-left: auto;margin-right: 0;">
+    <div  class="notif-chat-profil" style="margin-left: auto;margin-right: 0;" >
         <div style="cursor: pointer;" class="elmt notif" title="notifications">
-            <div routerLink="/accueil/alertes" style="outline: none;">
+            <div  routerLink="/accueil/alertes" style="outline: none;">
                <mat-icon class="icon" fontSet="material-icons-outlined" >notifications</mat-icon>
-               <span class="info-notif">notif</span>
+               <span *ngFor="let p of lastnotif"  class="info-notif" [style.background]="getcolornotif(p)">notif</span>
             </div>
         </div>
         <div style="cursor: pointer;" class="elmt1 chat" title="messages">
@@ -144,7 +142,7 @@
     <div class="all-sidenav" *ngIf="scrWidth<991">
       <div class="menu-sidenav" [style.height.px]="scrHeight">
         <div  *ngFor="let p of menus ;let i = index"  (click)="selected=i" >
-          <li [style.marginTop.px]="getMargin(p)">
+          <li *ngIf="p.path != 'statistique'" [style.marginTop.px]="getMargin(p)">
               <a class="nav-link" [routerLink]="p.path"  [routerLinkActive]="['active']" style="text-decoration: none;">
                   <div class="grid-container" (click)="navigate(p,'custom-modal-8')">
                       <div *ngIf="!p.liste" class="item1" [style.background]="selected==i?'#ff7900':'white'" (click)="selected=i">

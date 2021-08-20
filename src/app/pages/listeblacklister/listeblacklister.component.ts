@@ -25,6 +25,7 @@ export class ListeblacklisterComponent implements OnInit {
   public left: any;
   public datas: any;
   dd :any;
+  filterForm: FormGroup;
   pager: any = {};
   filterterm: string;
   public p: any;
@@ -76,6 +77,12 @@ export class ListeblacklisterComponent implements OnInit {
       status: new FormControl('')
     })
     this.gty(this.page);
+    this.filterForm = new FormGroup({
+      societe: new FormControl(''),
+      direction: new FormControl(''),
+      agence: new FormControl(''),
+      poste: new FormControl(''),
+    });
   }
   gty(page: any){
     this.http.get(this.reqUrl + `/blacklist?page=${page}&limit=${this.itemsPerPage}`).subscribe((data: any) => {

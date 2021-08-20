@@ -218,8 +218,7 @@
   color: #ff0000;
   font-size: 12px;
 }
-@media (min-width: 680px) and (max-width: 991px) {
- /*
+@media(max-width: 991px) {
   .forms-mobile {
     background-color: rgba(232, 233, 234, 0.75);
     height: 610px;
@@ -227,7 +226,7 @@
     margin: 0 auto;
     position: absolute;
     top: 15%; 
-  }*/
+  }
   form {
     width: 300px;
     margin: 10% auto;

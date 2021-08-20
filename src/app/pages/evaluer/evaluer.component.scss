@@ -314,3 +314,13 @@ input {
     outline: none;
     border: solid 1px #ff0000;
 }
+@media (max-width: 991px) {
+    .content-other-input-form{
+        display: grid;
+        grid-template-columns: 50% 50%;
+        margin-bottom: 5px;
+    }
+    .content-form-libelle{
+        margin-left: 0px;
+    }
+}

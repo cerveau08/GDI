@@ -9,7 +9,7 @@ body {
 .container {
     width: 100%;
     display: grid;
-    grid-template-columns: 190px 1fr 290px;
+    grid-template-columns: 190px 1fr;
     grid-template-rows: auto 1fr auto;
     grid-gap: 7px;
     grid-template-areas:
@@ -364,7 +364,7 @@ margin-bottom: 5px;
   margin-top: 5px;
 }
 
-  @media (max-width: 991px) {
+@media (max-width: 991px) {
     app-nav{
       height: 0px;
     } 
@@ -377,6 +377,7 @@ margin-bottom: 5px;
     }
 
     .container {
+      width: 100%;
       display: block;
       background-color: #f5f6f9;
     }
@@ -404,6 +405,9 @@ margin-bottom: 5px;
       padding: 0px;
       margin-top: 10px;
       border-bottom: 1px solid #f5f6f9;
+    }
+    .chiffre-aside{
+      margin-top: 5px;
     }
 }
 html, body { height: 100%; width: 100%;}

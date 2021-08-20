@@ -55,6 +55,7 @@ import { MonAgenceComponent } from './pages/mon-agence/mon-agence.component';
 import { MonManagerComponent } from './pages/mon-manager/mon-manager.component';
 import { DetailcontratComponent } from './pages/detailcontrat/detailcontrat.component';
 import { AttestationmesInterimaireComponent } from './pages/attestationmesInterimaire/attestationmesInterimaire.component';
+import { ModifEvaluerComponent } from './pages/evaluer/modif-evaluer/modif-evaluer.component';
 
 
 const routes: Routes = [
@@ -273,6 +274,10 @@ const routes: Routes = [
       { path: 'statpresence',
         component: PresenceComponent,
           canActivate: [AuthGuard]
+      },{ 
+        path: 'modifevaluer',
+        component: ModifEvaluerComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: '',

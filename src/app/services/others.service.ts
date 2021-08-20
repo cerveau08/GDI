@@ -52,9 +52,9 @@ export class OthersService {
   }
    // recupere les details d'une agence
    getOneManagerById(id: number) {
-    return this.http.get(this.reqUrl + `/detailAgence/${id}`);
+    return this.http.get(this.reqUrl + `/lasnotifAgence/${id}`);
   }
-  // recupere les details d'un interimaire
+  // recupere les lasnotifs d'un interimaire
   getOneInterById(id: number) {
     return this.http.get(this.reqUrl + `/interimaire/${id}`);
   }
@@ -81,7 +81,7 @@ addAgence(data) {
     return this.http.post<any>(`${this.reqUrl}/updateInterimaire/${id}`, data);
   }
   getAgenceById(id: number): Observable<any> {
-    return this.http.get<any>(`${this.reqUrl}/detailAgence/${id}`);
+    return this.http.get<any>(`${this.reqUrl}/lasnotifAgence/${id}`);
   }
   getUserById(id: number): Observable<any> {
     return this.http.get<any>(`${this.reqUrl}/users/${id}`);

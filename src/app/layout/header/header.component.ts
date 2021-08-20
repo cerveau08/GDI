@@ -16,6 +16,8 @@ export class HeaderComponent implements OnInit {
 
   selected = 0;
   messageError;
+  user: any;
+  showButton = true;
   successRequest;
   selected1 = 0;
   public click: any;
@@ -25,6 +27,7 @@ export class HeaderComponent implements OnInit {
   scrHeight:any;
   scrWidth:any;
   side = false;
+  lastnotif;
   currentUser;
   photo;
   @HostListener('window:resize', ['$event'])
@@ -80,7 +83,13 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.prenom = localStorage.getItem('prenom');
+    this.prenom = localStorage.getItem('prenom')
+    this.user = localStorage.getItem('user');
+      if(this.user == 'INT') {
+        this.showButton = false;
+      } else {
+        this.showButton = true;
+      }
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this.photo = this.currentUser.data.photo;
     this.role = localStorage.getItem('user');
@@ -99,24 +108,47 @@ export class HeaderComponent implements OnInit {
   }
 
   onSubmit() {
-    const info = {
-    //  prenom: this.demandeForm.value.prenom,
+    const info = new FormData();
+    this.demandeForm.value.prenom = ""?info.append("prenom", this.demandeForm.value.prenom):'';
+    this.demandeForm.value.nom = ""?info.append("nom", this.demandeForm.value.nom):'';
+    this.demandeForm.value.email != ""?info.append("email", this.demandeForm.value.email):'';
+    this.demandeForm.value.matricule != ""?info.append("matricule", this.demandeForm.value.matricule):'';
+    this.demandeForm.value.direction != ""?info.append("direction", this.demandeForm.value.direction):'';
+    this.demandeForm.value.service != ""?info.append("service", this.demandeForm.value.service):'';
+    this.demandeForm.value.agence != ""?info.append("agence", this.demandeForm.value.agence):'';
+    this.demandeForm.value.departement != ""?info.append("departement", this.demandeForm.value.departement):'';
+    this.demandeForm.value.annee != ""?info.append("annee", this.demandeForm.value.annee):'';
+    this.demandeForm.value.poste != ""?info.append("poste", this.demandeForm.value.poste):'';
+
+
+
+
+
+    // prenom: this.demandeForm.value.prenom,
     //  nom: this.demandeForm.value.nom,
-    //  email: this.demandeForm.value.email,
-      matricule: this.demandeForm.value.matricule,
+
+
+    //  this.demandeForm.value.prenom != ""?info.append("prenom", this.demandeForm.value.prenom):'';
+    //  this.demandeForm.value.nom != ""?info.append("nom", this.demandeForm.value.nom):'';
+    /* const info = {
+     prenom: this.demandeForm.value.prenom,
+    //  nom: this.demandeForm.value.nom,
+    //  email: this.demandeForm.value.email, 
+    //   matricule: this.demandeForm.value.matricule,
     //  direction: this.demandeForm.value.direction,
     //  departement: this.demandeForm.value.departement,
     //  service: this.demandeForm.value.service,
     //  agence: this.demandeForm.value.agence,
     //  annee: this.demandeForm.value.annee,
     //  poste: this.demandeForm.value.poste,
-    }
+    }*/
+    
     console.log(info);
     this.otherService.rechercheAvance(info).subscribe(
       data => {
         console.log(data);
-        this.donneesSearch = data
-        this.successRequest = this.donneesSearch.success
+        this.donneesSearch = data;
+        this.successRequest = this.donneesSearch.status
         if(this.successRequest == true) {
           this.closeModal('custom-modal-50')
           this.route.navigate(['/accueil/detailinter'], {
@@ -129,10 +161,27 @@ export class HeaderComponent implements OnInit {
         }
       }
     )
+
+
+    this.otherService.getLastNotification().subscribe(
+      data => {
+        console.log(this.lastnotif);
+        if(data.data[0]){
+          this.lastnotif =data.data[0].description;
+        }else{
+          this.lastnotif ="Aucune notification "
+  
+        }
+      }
+    );      
+    
+
   }
 
 
 
+
+ 
 
 
   logout() {
@@ -190,4 +239,18 @@ redirection() {
     } 
     return color;
   }
+
+
+
+  getcolornotif(p) {
+    let color = "#ff7900"
+  
+    if(p.lastnotif==false) {
+      color = "#ff0000"
+    } else {
+      color = "#ff7900"
+    }  
+    return color; 
+  } 
+
 }

@@ -40,6 +40,12 @@
                                 <mat-icon class="updown" fontSet="material-icons-outlined">unfold_more</mat-icon>
                             </div>
                         </th>
+                        <th class="typ" id="reference   ">
+                            <div class="type">
+                                <p>Référence</p> 
+                                <mat-icon class="updown" fontSet="material-icons-outlined">unfold_more</mat-icon>
+                            </div>
+                        </th>
                         <th *ngIf="user != 'AGN' && user != 'INT'" id="action">Agence</th>
                         <th id="contrat">Période</th>
                         <th id="contrat">Absence</th>
@@ -56,6 +62,7 @@
                         <td >{{p.dateFin | date:'ddMMyyyy'}}</td>
                         <td>{{p.prenom}}</td>
                         <td>{{p.nom}}</td>
+                        <td>{{p.reference}}</td>
                         <td *ngIf="user != 'AGN' && user != 'INT'" >{{p.agence}}</td>
                         <td >{{p.dateFin  | date:'MMMM yyyy'}}</td>
                         <td  >{{p.nombreJourAbscence}} jours</td>
