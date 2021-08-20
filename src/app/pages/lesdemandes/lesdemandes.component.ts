@@ -37,16 +37,18 @@ export class LesdemandesComponent implements OnInit {
   parentCk=false;
   ck=false;
   viewer = 'google';  
-  selectedType = 'docx';   
-  DemoDoc="http://www.africau.edu/images/default/sample.pdf" 
-  DemoDoc1="https://file-examples.com/wp-content/uploads/2017/02/file-sample_100kB.doc"
-  DemoDoc2="https://www.le.ac.uk/oerresources/bdra/html/resources/example.txt" 
+  selectedType = 'docx';
   filterForm: FormGroup;
   validerForm : FormGroup;
   result;
   errorMsg: any;
   scrHeight:any;
   scrWidth:any;
+  type = null;
+  listeFonction: any;
+  listeDemande: any;
+  dataSociete: any;
+  dataDirection: any;
   @HostListener('window:resize', ['$event'])
   getScreenSize(event?) {
         this.scrHeight = window.innerHeight;
@@ -72,16 +74,52 @@ export class LesdemandesComponent implements OnInit {
     this.validerForm = new FormGroup({
       status: new FormControl('')
     })
-    this.gty(this.page);
+    
     this.filterForm = new FormGroup({
-      societe: new FormControl(''),
+      type: new FormControl(''),
       direction: new FormControl(''),
       agence: new FormControl(''),
-      poste: new FormControl(''),
+      societe: new FormControl(''),
     });
+    this.otherService.getAllSociete().subscribe(
+      data => {
+        this.dataSociete = data["data"];
+        console.log(data);
+      }
+    );
+    this.otherService.getTypeDemande().subscribe((data: any) => {
+      this.listeDemande =  data.data;
+      console.log(data);
+    })
+    this.gty(this.page);
   }
+
+  directionsListe(value) {
+    console.log(value);
+    this.otherService.getAllDirection(value).subscribe(
+      data => {
+        this.dataDirection = data['data'];
+       console.log(data);
+       }
+    ); 
+  }
+
+  public saveProfession(e): void {
+    let libelle = e.target.value;
+    let list = this.listeDemande.filter(x => x.libelle === libelle)[0];
+    console.log(list.libelle);
+    this.filterForm.patchValue({type: list.libelle});
+  }
+  
   gty(page: any){
-    this.http.get(this.reqUrl + `/listeDemandes?page=${page}&limit=${this.itemsPerPage}`).subscribe((data: any) => {
+    if (this.filterForm.value.type == undefined) {
+      this.filterForm.patchValue({type: ''});
+    }
+    if(this.filterForm.value.type) {
+      this.type = this.filterForm.value.type;
+    }
+    console.log(this.filterForm.value);
+    this.otherService.getListedesDemande(page, this.itemsPerPage, this.type).subscribe((data: any) => {
       this.dd =  data.data;
       this.totalItems = data.total;
       console.log(data);
@@ -154,10 +192,6 @@ export class LesdemandesComponent implements OnInit {
 
   closeModal(id: string) {
     this.modalService.close(id);
-  }
-
-  public getfilemodal() {
-    this.fileSaver.saveUrl(this.DemoDoc, 'contrat');
   }
 
   openErrorModal(id: string) {

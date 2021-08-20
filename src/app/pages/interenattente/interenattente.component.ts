@@ -33,6 +33,15 @@ export class InterenattenteComponent implements OnInit {
   public reqUrl = environment.base_url;
   errorMsg: any;
   filterForm: FormGroup;
+  public cni = null;
+  public poste = null;
+  public agence = null;
+  public societe = null;
+  public direction = null;
+  dataSociete: any;
+  dataAgence: any;
+  listeFonction: any;
+  successMsg: any;
   constructor(private dataService: DataService,
     public datepipe: DatePipe,
     public router: Router,
@@ -70,14 +79,54 @@ export class InterenattenteComponent implements OnInit {
       direction: new FormControl(''),
       agence: new FormControl(''),
       poste: new FormControl(''),
-      matricule: new FormControl(''),
+      cni: new FormControl(''),
     });
     this.gty(this.page);
+
+    this.otherService.getAllSociete().subscribe(
+      data => {
+        this.dataSociete = data["data"];
+        console.log(data);
+      },error=> {
+        this.errorMsg = error;
+        this.errormodalService.open('error-modal-1');
+        console.log(error)
+      }
+    );
+
+    this.otherService.getFonctions().subscribe(data => this.listeFonction = data.data);
+
+    this.http.get(this.reqUrl + `/listeAgence?page=1&limit=100`).subscribe((data: any) => {
+      this.dataAgence =  data.data;
+      console.log(this.dataAgence);
+    }, error=> {
+      this.errorMsg = error;
+      this.errormodalService.open('error-modal-1');
+      console.log(error)
+    })
   }
 
   
   gty(page: any){
-    this.http.get(this.reqUrl + `/interimEnAttente?page=${page}&limit=${this.itemsPerPage}`).subscribe((data: any) => {
+    if (this.filterForm.value.poste == undefined) {
+      this.filterForm.patchValue({poste: ''});
+    }
+    if(this.filterForm.value.poste) {
+      this.poste = this.filterForm.value.poste;
+    }
+    if(this.filterForm.value.matricule) {
+      this.cni = this.filterForm.value.cni;
+    }
+    if(this.filterForm.value.agence) {
+      this.agence = this.filterForm.value.agence;
+    }
+    if(this.filterForm.value.societe) {
+      this.societe = this.filterForm.value.societe;
+    }
+    if(this.filterForm.value.direction) {
+      this.direction = this.filterForm.value.direction;
+    }
+    this.otherService.getInterimaireSousContrat(page, this.itemsPerPage, this.cni, this.poste, this.agence, this.societe, this.direction).subscribe((data: any) => {
       this.dataInter =  data.data;
       this.totalItems = data.total;
       console.log(data);
@@ -89,10 +138,22 @@ export class InterenattenteComponent implements OnInit {
     })
   }
 
-  submit(interim, nbr, statut, contrat, period, dateDebut, dateFin) {
-    console.log(interim, dateDebut);
-    
-    console.log(this.attestationForm.value);
+  extraireInter() {
+    console.log(this.filterForm.value);
+    if (this.filterForm.value.poste == undefined) {
+      this.filterForm.patchValue({poste: ''});
+    }
+    console.log(this.filterForm.value);
+    this.otherService.extraireInterimaire(this.filterForm.value).subscribe(
+      data => {
+        console.log(data);
+        this.data = data;
+        this.successMsg = this.data.status
+        if(this.successMsg == true) {
+          window.open(data.data);
+        }
+      }
+    )
   }
 
   openDetail(data) {

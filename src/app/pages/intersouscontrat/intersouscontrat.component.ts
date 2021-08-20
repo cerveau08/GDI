@@ -25,7 +25,7 @@ export class IntersouscontratComponent implements OnInit {
   attestationForm: FormGroup;
   filterForm: FormGroup;
   page = 1;
-  itemsPerPage = 7;
+  itemsPerPage = 10;
   pageAgence = 1;
   itemsPerPageAgence = 100;
   totalItems : any;
@@ -134,10 +134,6 @@ export class IntersouscontratComponent implements OnInit {
       data => {
         this.dataSociete = data["data"];
         console.log(data);
-      },error=> {
-        this.errorMsg = error;
-        this.errormodalService.open('error-modal-1');
-        console.log(error)
       }
     );
 
@@ -146,10 +142,6 @@ export class IntersouscontratComponent implements OnInit {
     this.http.get(this.reqUrl + `/listeAgence?page=${this.pageAgence}&limit=${this.itemsPerPageAgence}`).subscribe((data: any) => {
       this.dataAgence =  data.data;
       console.log(this.dataAgence);
-    }, error=> {
-      this.errorMsg = error;
-      this.errormodalService.open('error-modal-1');
-      console.log(error)
     })
   }
 
@@ -171,6 +163,25 @@ export class IntersouscontratComponent implements OnInit {
   }
 
   gty(page: any){
+    if (this.filterForm.value.poste == undefined) {
+      this.filterForm.patchValue({poste: ''});
+    }
+    if(this.filterForm.value.poste) {
+      this.poste = this.filterForm.value.poste;
+    }
+    if(this.filterForm.value.matricule) {
+      this.matricule = this.filterForm.value.matricule;
+    }
+    if(this.filterForm.value.agence) {
+      this.agence = this.filterForm.value.agence;
+    }
+    if(this.filterForm.value.societe) {
+      this.societe = this.filterForm.value.societe;
+    }
+    if(this.filterForm.value.direction) {
+      this.direction = this.filterForm.value.direction;
+    }
+    console.log(this.filterForm.value);
     this.otherService.getInterimaireSousContrat(page, this.itemsPerPage, this.matricule, this.poste, this.agence, this.societe, this.direction).subscribe((data: any) => {
       this.dataInter =  data.data;
       this.totalItems = data.total;
@@ -243,6 +254,7 @@ export class IntersouscontratComponent implements OnInit {
   }
 
   extraireInter() {
+    console.log(this.filterForm.value);
     if (this.filterForm.value.poste == undefined) {
       this.filterForm.patchValue({poste: ''});
     }
