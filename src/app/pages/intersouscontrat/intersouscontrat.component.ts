@@ -90,6 +90,11 @@ export class IntersouscontratComponent implements OnInit {
   listeFonction;
   dataDirection;
   dataAgence;
+  public matricule = null;
+  public poste = null;
+  public agence = null;
+  public societe = null;
+  public direction = null;
   constructor(private dataService: DataService,
     public datepipe: DatePipe,
     public router: Router,
@@ -121,6 +126,7 @@ export class IntersouscontratComponent implements OnInit {
       direction: new FormControl(''),
       agence: new FormControl(''),
       poste: new FormControl(''),
+      matricule: new FormControl(''),
     });
     this.gty(this.page);
 
@@ -165,7 +171,7 @@ export class IntersouscontratComponent implements OnInit {
   }
 
   gty(page: any){
-    this.http.get(this.reqUrl + `/interimSousContrat?page=${page}&limit=${this.itemsPerPage}`).subscribe((data: any) => {
+    this.otherService.getInterimaireSousContrat(page, this.itemsPerPage, this.matricule, this.poste, this.agence, this.societe, this.direction).subscribe((data: any) => {
       this.dataInter =  data.data;
       this.totalItems = data.total;
       console.log(data);

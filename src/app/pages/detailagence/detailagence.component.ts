@@ -114,14 +114,13 @@ export class DetailagenceComponent implements OnInit {
       this.otherService.getTotalAgenceActifInactif(this.item).subscribe(
         data =>{
           this.data = data;
-          this.dataTotalAgence = this.data['data'];
-          console.log(this.dataTotalAgence);
-          this.nom = this.dataTotalAgence[0].nom;
-          console.log(this.nom);
+          console.log(data);
+          this.dataTotalAgence = this.data;
+          //this.nom = this.dataTotalAgence[0].nom;
           
-          this.total = this.dataTotalAgence[0].total;
-          this.actifs = this.dataTotalAgence[0].actifs;
-          this.inactifs = this.dataTotalAgence[0].inactifs;
+          this.total = this.dataTotalAgence.total;
+          this.actifs = this.dataTotalAgence.actifs;
+          this.inactifs = this.dataTotalAgence.inactifs;
         }, error=> {
           this.errorMsg = error;
           this.errormodalService.open('error-modal-1');

@@ -97,6 +97,7 @@ export class InterfincontratComponent implements OnInit {
       direction: new FormControl(''),
       agence: new FormControl(''),
       poste: new FormControl(''),
+      matricule: new FormControl(''),
     });
 
     this.gty(this.page);
