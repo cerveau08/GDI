@@ -2,7 +2,47 @@
     <div class="tableau">
         <p class="detail1" id="mydesc">Liste des interimaires archivés</p>
         <div class="exporter">
-            <p class="export">Exporter</p>
+            <form >
+                <div class="exporter">
+                    <div class="content-input-extraction">
+                        <div class="filtrer-mois">
+                            <p class="label-input" for="titre">Société: </p>
+                            <select type="number" >
+                                <option ></option>
+                            </select>
+                        </div>
+                        <div class="filtrer-mois">
+                            <p class="label-input" for="titre">Direction: </p>
+                            <select  class="select-mois" >
+                                <option ></option>
+                            </select>
+                        </div>
+                        <div class="filtrer-mois">
+                            <p class="label-input" for="titre">Agence: </p>
+                            <select   class="select-mois" >
+                                <option></option>
+                            </select>
+                        </div>
+                        <div class="filtrer-mois">
+                            <p class="label-input" for="titre">Poste: </p>
+                            <input type="text" class="input-extraction" list="professions">
+                            <datalist id="professions">
+                              <option></option>
+                            </datalist>
+                        </div>
+                        <div class="content-extraction">
+                            <mat-icon class="icon-search" fontSet="material-icons-outlined" >search</mat-icon>
+                        </div>
+                        <div class="content-extraction">
+                            <button  class="button-extraire">Extraire en CSV</button>
+                        </div>
+                    </div>
+                    <div class="content-error-msg" >
+                        <p class="error-alert"></p>
+                    </div>
+                </div>
+            </form>
+            <!-- <p class="export">Exporter</p>
             <div class="csv" style="cursor: pointer;">
                 <p class="csv1">CSV</p>
                 <mat-icon fontSet="material-icons-outlined">unfold_more</mat-icon>
@@ -10,7 +50,7 @@
             <div class="filtrer" style="cursor: pointer;">
                 <input class="filtre" type="text" [(ngModel)]="filterterm" placeholder="Filtre">
                 <mat-icon fontSet="material-icons-outlined">tune</mat-icon>
-            </div>
+            </div> -->
         </div>
         <table style="overflow-x:auto;"aria-describedby = "mydesc" >
             <thead>
