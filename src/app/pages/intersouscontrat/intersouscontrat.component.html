@@ -7,10 +7,7 @@
                     <div class="content-input-extraction">
                         <div class="filtrer-mois">
                             <p class="label-input" for="titre">Matricule: </p>
-                            <input type="text" class="input-extraction" list="professions" formControlName="poste" [(ngModel)]="profession" (change)="saveProfession($event)">
-                            <datalist id="professions">
-                              <option *ngFor="let c of listeFonction" [value]="c.libelle" >{{c.libelle}}</option>
-                            </datalist>
+                            <input type="text" class="input-extraction" list="professions" formControlName="matricule">
                         </div>
                         <div class="filtrer-mois">
                             <p class="label-input" for="titre">Société: </p>

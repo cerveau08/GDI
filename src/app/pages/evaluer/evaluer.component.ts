@@ -154,7 +154,7 @@ export class EvaluerComponent implements OnInit {
     this.detailNotation = this.evaluerForm.value.notation;
     console.log(this.detailNotation);
     this.detailNotation.forEach((currentValue, index) => {
-      if(!currentValue.note) {
+      if(!currentValue.note || currentValue.note === null) {
           this.detailNotation.splice(index, 1);
       }
     });

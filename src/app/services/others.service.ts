@@ -305,4 +305,9 @@ addAgence(data) {
     return this.http.get<any>(`${this.reqUrl}/statsInterAge`, {params: data});
   }
 
+  getInterimaireSousContrat(page, limit, matricule, poste, agence, societe, direction) {
+    const data = {page: page, limit: limit, matricule: matricule, poste: poste, agence: agence, societe: societe, direction: direction};
+    return this.http.get<any>(this.reqUrl + '/interimSousContrat', {params: data});
+  }
+
 }
