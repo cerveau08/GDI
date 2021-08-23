@@ -246,7 +246,7 @@ export class GenreComponent implements OnInit {
       plotOptions: {
         bar: {
           horizontal: false,
-          columnWidth: "50px",
+          columnWidth: "20px",
         //  endingShape: "rounded",
         },
       },

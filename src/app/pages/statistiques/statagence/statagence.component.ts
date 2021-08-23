@@ -168,7 +168,7 @@ export class StatagenceComponent implements OnInit {
         type: "bar",
         height: 380,
         width: 700,
-        stacked: true,
+        stacked: false,
         toolbar: {
           show: false
         },
@@ -192,7 +192,7 @@ export class StatagenceComponent implements OnInit {
       plotOptions: {
         bar: {
           horizontal: false,
-          columnWidth: "10px",
+          columnWidth: "50px",
         //  endingShape: "rounded",
         },
       },
