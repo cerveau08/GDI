@@ -21,10 +21,11 @@
     height: 100%;
 }
 .exporter{
-    margin-right: 0px;
-    position: absolute;
-    right: 0;
-    top: 15px;
+    // margin-right: 0px;
+    // position: absolute;
+    // right: 0;
+    // top: 15px;
+    float: right;
 }
 .content-input-extraction{
   display: flex;

@@ -22,6 +22,7 @@ export class HeaderComponent implements OnInit {
   selected1 = 0;
   public click: any;
   direction;
+  societeId;
   filterterm: string;
   dataInterFin;
   scrHeight:any;
@@ -85,6 +86,9 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
     this.prenom = localStorage.getItem('prenom')
     this.user = localStorage.getItem('user');
+    this.societeId = localStorage.getItem('societeId');
+    console.log(this.user);
+
       if(this.user == 'INT') {
         this.showButton = false;
       } else {
@@ -120,29 +124,6 @@ export class HeaderComponent implements OnInit {
     this.demandeForm.value.annee != ""?info.append("annee", this.demandeForm.value.annee):'';
     this.demandeForm.value.poste != ""?info.append("poste", this.demandeForm.value.poste):'';
 
-
-
-
-
-    // prenom: this.demandeForm.value.prenom,
-    //  nom: this.demandeForm.value.nom,
-
-
-    //  this.demandeForm.value.prenom != ""?info.append("prenom", this.demandeForm.value.prenom):'';
-    //  this.demandeForm.value.nom != ""?info.append("nom", this.demandeForm.value.nom):'';
-    /* const info = {
-     prenom: this.demandeForm.value.prenom,
-    //  nom: this.demandeForm.value.nom,
-    //  email: this.demandeForm.value.email, 
-    //   matricule: this.demandeForm.value.matricule,
-    //  direction: this.demandeForm.value.direction,
-    //  departement: this.demandeForm.value.departement,
-    //  service: this.demandeForm.value.service,
-    //  agence: this.demandeForm.value.agence,
-    //  annee: this.demandeForm.value.annee,
-    //  poste: this.demandeForm.value.poste,
-    }*/
-    
     console.log(info);
     this.otherService.rechercheAvance(info).subscribe(
       data => {

@@ -2,36 +2,36 @@
     <div class="tableau">
         <p class="detail1" id="mydesc">Liste des interimaires archivés</p>
         <div class="exporter">
-            <form >
+            <form [formGroup]="filterForm" class="formtab">
                 <div class="exporter">
                     <div class="content-input-extraction">
                         <div class="filtrer-mois">
-                            <p class="label-input" for="titre">Société: </p>
-                            <select type="number" >
-                                <option ></option>
-                            </select>
-                        </div>
-                        <div class="filtrer-mois">
-                            <p class="label-input" for="titre">Direction: </p>
-                            <select  class="select-mois" >
-                                <option ></option>
-                            </select>
-                        </div>
-                        <div class="filtrer-mois">
-                            <p class="label-input" for="titre">Agence: </p>
-                            <select   class="select-mois" >
-                                <option></option>
-                            </select>
-                        </div>
-                        <div class="filtrer-mois">
-                            <p class="label-input" for="titre">Poste: </p>
-                            <input type="text" class="input-extraction" list="professions">
+                            <p class="label-input"  for="titre">Prénom: </p>
+                            <input type="text" formControlName="prenom" class="input-extraction" >
                             <datalist id="professions">
                               <option></option>
                             </datalist>
                         </div>
+                        <div class="filtrer-mois">
+                            <p class="label-input" for="titre">Nom: </p>
+                            <input type="text" formControlName="nom" class="input-extraction">
+                            <datalist id="professions">
+                              <option></option>
+                            </datalist>
+                        </div>
+                        <div class="filtrer-mois">
+                            <p class="label-input" for="titre">Adresse email: </p>
+                            <input type="text" formControlName="email" class="input-extraction" >
+                        </div>
+                        <div class="filtrer-mois">
+                            <p class="label-input" for="titre">Agence: </p>
+                            <select  formControlName="agence"  class="select-mois" >
+                                <option></option>
+                            </select>
+                        </div>
+                       
                         <div class="content-extraction">
-                            <mat-icon class="icon-search" fontSet="material-icons-outlined" >search</mat-icon>
+                            <mat-icon class="icon-search" fontSet="material-icons-outlined" (click)="onSubmit()" >search</mat-icon>
                         </div>
                         <div class="content-extraction">
                             <button  class="button-extraire">Extraire en CSV</button>

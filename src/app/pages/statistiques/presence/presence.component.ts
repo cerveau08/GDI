@@ -186,8 +186,8 @@ export class PresenceComponent implements OnInit {
       ],
       chart: {
         type: "bar",
-        height: 300,
-        width: 550,
+        height: 380,
+        width: 750,
         stacked: true,
         toolbar: {
           show: false
@@ -283,8 +283,8 @@ export class PresenceComponent implements OnInit {
       ],
       chart: {
         type: "bar",
-        height: 300,
-        width: 550,
+        height: 380,
+        width: 750,
         stacked: true,
         toolbar: {
           show: false

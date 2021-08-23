@@ -68,10 +68,11 @@
     position: relative;
 }
 .exporter{
-    margin-right: 0px;
-    position: absolute;
-    right: 0;
-    top: 15px;
+    // margin-right: 0px;
+    // position: absolute;
+    // right: 0;
+    // top: 15px;
+    float: right;
   }
   .content-input-extraction{
     display: flex;
@@ -85,7 +86,8 @@
     p {
         margin-top: 0px;
         margin-bottom: 0;
-        margin-left: 5px;
+        margin-left: 0px;
+        font-size: 12px;
     }
     mat-icon{
         margin-top: 5px;
@@ -395,8 +397,8 @@ input[type=checkbox] {
     outline: none;
 }
 .pagination {
-    width: 400px;
-    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 90px;
 }
 .status {
     width: 13px;
@@ -445,12 +447,9 @@ input[type=checkbox] {
     background-color: #32c832;
     margin-top: 7px;
 }
-.button-valider-content {
-    position: absolute;
-    top: 5px;
-    right: 5px;
-}
+
 .button-validation-demende {
+    margin-top: 20px;
     width: 90px;
     height: 25px;
     outline: none;

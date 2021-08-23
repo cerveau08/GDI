@@ -124,8 +124,8 @@ export class StatagenceComponent implements OnInit {
       ],
       chart: {
         type: "bar",
-        height: 400,
-        width: 550,
+        height: 380,
+        width: 700,
         stacked: true,
         toolbar: {
           show: false

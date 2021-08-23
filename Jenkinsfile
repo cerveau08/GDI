@@ -51,3 +51,14 @@ pipeline {
         }
     }
 }
+
+
+
+//     sudo docker build --no-cache -t registry.tools.orange-sonatel.com/dd/api-annuaire1212:1.0 .
+//     sudo docker push registry.tools.orange-sonatel.com/dd/api-annuaire1212:1.0
+// ​[12:33] BINETOU DIALLO [SNT DST/DD/DPD/PMA]
+//     les commandes à lancer en local
+// ​[12:33] BINETOU DIALLO [SNT DST/DD/DPD/PMA]
+//     docker stop gdi-api
+// ​[12:33] BINETOU DIALLO [SNT DST/DD/DPD/PMA]
+//     docker rm gdi-api
