@@ -19,11 +19,13 @@ export class DetailinterComponent implements OnInit {
 
   item: any;
   id: any;
+  user: any;
   public restant: any;
   public nombre = 59;
   public left: any;
   donnees: any;
   page = 1
+  showButton;
   itemsPerPage = 7;
   dataInter:any;
   dataContrat: any;
@@ -40,6 +42,8 @@ export class DetailinterComponent implements OnInit {
   dataArret;
   data;
   nom;
+  dataInterim;
+  role;
   prenom;
   datedenaissance;
   lieudenaissance;
@@ -60,8 +64,9 @@ export class DetailinterComponent implements OnInit {
   universite;
   sexe;
   direction;
+  sameIdSociete;
   departement;
-  service
+  service;
   contratForm: FormGroup;
   arretForm: FormGroup;
   bannirForm: FormGroup;
@@ -83,7 +88,9 @@ export class DetailinterComponent implements OnInit {
   fileFicheposte;
   fileProcesVerbal;
   etat;
-  role;
+  societeIdDrh;
+  societeIdInterim;
+  societeData;
   url3;
   url2;
   filename3;
@@ -146,6 +153,10 @@ export class DetailinterComponent implements OnInit {
       );
     })
 
+
+
+    
+
     //detail d'un contrat
   /*  this.otherService.getContratById(this.id).subscribe(
       data =>{
@@ -156,7 +167,37 @@ export class DetailinterComponent implements OnInit {
     
   }
   ngOnInit() {
-    this.role = localStorage.getItem('user')
+    this.role = localStorage.getItem('user');
+    // this.societeId = localStorage.getItem('user');
+    // // this.societeId = JSON.parse(params["currentUser"]);
+    
+    this.societeData = JSON.parse(localStorage.getItem('currentUser'));
+    this.societeIdDrh=this.societeData.data.societeId;
+    console.log(this.societeIdDrh);
+    console.log(this.societeIdInterim);
+    this.otherService.getOneInterById(this.item).subscribe(
+      data =>{
+        this.data = data;
+        this.societeIdInterim = this.data.data.societe.id;
+        if(this.societeIdDrh == this.societeIdInterim) {
+          console.log(this.societeIdDrh);
+          console.log(this.societeIdInterim);
+    
+          this.sameIdSociete = true;
+        } else {
+          this.sameIdSociete = false;
+        }
+      });
+    
+
+
+    if(this.user == 'DRH') {
+      this.showButton = false;
+    } else {
+      this.showButton = true;
+    }
+   
+    
     this.contratForm = new FormGroup({
       categorieId: new FormControl(''),
       salaireBrut: new FormControl(''),
@@ -208,6 +249,9 @@ export class DetailinterComponent implements OnInit {
     });
     this.gty(this.page);
   }
+
+
+  
 
   gty(page: any){
     this.http.get(this.reqUrl + `/managers/list?page=${page}&limit=${this.itemsPerPage}`).subscribe((data: any) => {

@@ -60,4 +60,47 @@
             </div>
         </div>
     </div>
+<br>
+<br>
+<br>  
+    <div *ngIf="scrWidth>991" class="stat">
+        <div class="elmt2" title="messages2">
+            <div class="tit">
+                <p class="total">Variation d'une Agence </p>
+            </div>
+           
+            <div class="content-diagramm-echelle">
+                <div class="diagra1">
+                    <div id="chart1">
+                        <apx-chart
+                            [series]="chartOptions6.series"
+                            [chart]="chartOptions6.chart"
+                            [dataLabels]="chartOptions6.dataLabels"
+                            [plotOptions]="chartOptions6.plotOptions"
+                            [responsive]="chartOptions6.responsive"
+                            [xaxis]="chartOptions6.xaxis"
+                            [legend]="chartOptions6.legend"
+                            [fill]="chartOptions6.fill"
+                            [colors]="chartOptions6.colors"
+                            [dataLabels]="chartOptions6.dataLabels"
+                        ></apx-chart>
+                    </div>
+                </div>
+                <div class="lesbouton2">
+                    <div  class="button3"> 
+                        <div class="color"></div> 
+                        <p>Inactif</p>
+                    </div>
+                    <div  class="button4"> 
+                        <div class="color"></div> 
+                        <p>Actifs</p>
+                    </div>
+                    <div  class="button5"> 
+                        <div class="color"></div> 
+                        <p>Total</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
