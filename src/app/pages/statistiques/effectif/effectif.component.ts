@@ -224,7 +224,7 @@ export class EffectifComponent implements OnInit {
             type: "bar",
             height: 380,
             width: 750,
-            stacked: true,
+            stacked: false,
             toolbar: {
               show: false
             },
@@ -248,7 +248,7 @@ export class EffectifComponent implements OnInit {
           plotOptions: {
             bar: {
               horizontal: false,
-              columnWidth: "20px",
+              columnWidth: "60px",
             },
           },
           dataLabels: {
