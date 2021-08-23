@@ -124,7 +124,37 @@ export class ListeattestationComponent implements OnInit {
     });
   }
 
+
+  onSubmit() {
+    const info = new FormData();
+    this.demandeForm.value.prenom = ""?info.append("prenom", this.demandeForm.value.prenom):'';
+    this.demandeForm.value.nom = ""?info.append("nom", this.demandeForm.value.nom):'';
+    this.demandeForm.value.email != ""?info.append("email", this.demandeForm.value.email):'';
+    this.demandeForm.value.matricule != ""?info.append("matricule", this.demandeForm.value.matricule):'';
+    this.demandeForm.value.direction != ""?info.append("direction", this.demandeForm.value.direction):'';
+    this.demandeForm.value.service != ""?info.append("service", this.demandeForm.value.service):'';
+    this.demandeForm.value.agence != ""?info.append("agence", this.demandeForm.value.agence):'';
+    this.demandeForm.value.departement != ""?info.append("departement", this.demandeForm.value.departement):'';
+    this.demandeForm.value.annee != ""?info.append("annee", this.demandeForm.value.annee):'';
+    this.demandeForm.value.poste != ""?info.append("poste", this.demandeForm.value.poste):'';
+  }
+    
+
   gty(page: any){
+
+    // if (this.filterForm.value.reference == undefined) {
+    //   this.filterForm.patchValue({reference: ''});
+    // }
+    // if(this.filterForm.value.mois) {
+    //   this.mois = this.filterForm.value.mois;
+    // }
+    // if(this.filterForm.value.annee) {
+    //   this.annee = this.filterForm.value.annee;
+    // }
+    // if(this.filterForm.value.reference) {
+    //   this.reference = this.filterForm.value.reference;
+    // }
+
     this.http.get(this.reqUrl + `/listeAttestation?page=${page}&limit=${this.itemsPerPage}`).subscribe(
       (data: any) => {
         this.dataAttest =  data.data[0];
