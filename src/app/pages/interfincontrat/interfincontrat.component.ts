@@ -131,10 +131,6 @@ export class InterfincontratComponent implements OnInit {
     this.http.get(this.reqUrl + `/listeAgence?page=1&limit=100`).subscribe((data: any) => {
       this.dataAgence =  data.data;
       console.log(this.dataAgence);
-    }, error=> {
-      this.errorMsg = error;
-      this.errormodalService.open('error-modal-1');
-      console.log(error)
     })
   }
 

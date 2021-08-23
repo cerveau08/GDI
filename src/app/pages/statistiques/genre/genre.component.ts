@@ -3,6 +3,7 @@ import { ApexAxisChartSeries, ApexChart, ApexDataLabels, ApexPlotOptions, ApexRe
 import { DataService } from 'src/app/service/data.service';
 import { ErrormodalService } from 'src/app/_errormodals';
 import { OthersService } from 'src/app/services/others.service';
+import { FormGroup, FormControl } from '@angular/forms';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -37,6 +38,8 @@ export type ChartOptions3 = {
 })
 export class GenreComponent implements OnInit {
 
+  societeForm: FormGroup;
+  percentForm: FormGroup;
   borderfilter1;
   colorfilter1;
   axex;
@@ -81,6 +84,7 @@ export class GenreComponent implements OnInit {
   dataInterimByAgence: any;
   chart: ChartComponent;
   public chartOptions3: Partial<ChartOptions>;
+  successMsg: any;
   constructor(private dataService: DataService,
     private errormodalService: ErrormodalService,
               private otherService: OthersService) {
@@ -100,12 +104,67 @@ export class GenreComponent implements OnInit {
         console.log(data);
       }
     );
+
+    this.societeForm = new FormGroup({
+      societe: new FormControl('')
+    })
+
+    this.percentForm = new FormGroup({
+      id_societe: new FormControl('')
+    })
     
     this.genrePourcentage(String(this.id_societe));
     this.societeSelectionner(String(this.societe));
+    this.onChangesSociete();
   }
 
-//premier
+  // onChanges(): void {
+  //   this.percentForm.get('id_societe').valueChanges.subscribe(val => {
+  //     if (val) {
+  //       console.log(val);
+  //       this.genrePourcentage(val);
+  //     }
+  //   });
+  // }
+
+  onChangesSociete(): void {
+    this.societeForm.get('societe').valueChanges.subscribe(val => {
+      if (val) {
+        console.log(val);
+        this.societeSelectionner(val);
+      }
+    });
+  }
+
+  exportgenrePourcentage() {
+    
+    this.id_societe = this.percentForm.value.id_societe;
+    console.log(this.id_societe);
+    this.otherService.extractionStatistiqueGenreInterim(this.id_societe).subscribe(
+      data => {
+        console.log(data);
+        this.data = data;
+        this.successMsg = this.data.status
+        if(this.successMsg == true) {
+          window.open(data.data);
+        }
+      }
+    )
+  }
+
+  exportStatInterimaireBySociete() {
+    console.log(this.societe);
+    this.otherService.extractionStatistiqueInterim(this.societe).subscribe(
+      data => {
+        console.log(data);
+        this.data = data;
+        this.successMsg = this.data.status
+        if(this.successMsg == true) {
+          window.open(data.data);
+        }
+      }
+    )
+  }
 
   genrePourcentage(id_societe){
     const getDownloadProgress = () => {
@@ -120,11 +179,11 @@ export class GenreComponent implements OnInit {
           this.pourcentFemme = this.dataStatEffectifGenre.femmePourcent;
           this.pourcentFemmecercle = this.pourcentFemme - 2;
           console.log(this.dataStatEffectifGenre)
-          clearInterval(this.intervalId);
         }
       )
+      clearInterval(this.intervalId);
     };
-    this.intervalId = setInterval(getDownloadProgress, 1000);
+    this.intervalId = setInterval(getDownloadProgress, 1);
   }
   ngOnDestroy() {
     console.log(this.intervalId);

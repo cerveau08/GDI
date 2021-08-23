@@ -325,4 +325,23 @@ addAgence(data) {
     return this.http.get<any>(this.reqUrl + '/listeDemandes', {params: data});
   }
 
+  getListeNoire(page, limit, telephone, typePiece, numeroPiece) {
+    const data = {page: page, limit: limit, telephone: telephone, typePiece: typePiece, numeroPiece: numeroPiece};
+    return this.http.get<any>(this.reqUrl + '/blacklist', {params: data});
+  }
+
+  exportStatInterimByYear(annee) {
+    const data = {annee: annee};
+    return this.http.get<any>(this.reqUrl + '/ExportStatInterimByYear', {params: data});
+  }
+
+  extractionStatistiqueInterim(societe) {
+    const data = {societe: societe};
+    return this.http.get<any>(this.reqUrl + '/extractionStatistiqueInterim', {params: data});
+  }
+
+  extractionStatistiqueGenreInterim(id) {
+    return this.http.get<any>(`${this.reqUrl}/ExtractionStatInterimairePourcent/${id}`);
+  }
+
 }

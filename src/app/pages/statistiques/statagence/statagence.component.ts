@@ -1,3 +1,4 @@
+import { FormGroup, FormControl } from '@angular/forms';
 import { Component, OnInit, HostListener } from '@angular/core';
 import { ApexAxisChartSeries, ApexChart, ApexDataLabels, ApexPlotOptions, ApexResponsive, ApexXAxis, ApexYAxis, ApexLegend, ApexFill, ChartComponent } from 'ng-apexcharts';
 import { DataService } from 'src/app/service/data.service';
@@ -37,6 +38,7 @@ export type ChartOptions3 = {
 })
 export class StatagenceComponent implements OnInit {
 
+  firstsocieteForm: FormGroup;
   borderfilter1;
   colorfilter1;
   axex;
@@ -75,6 +77,8 @@ export class StatagenceComponent implements OnInit {
   public chartOptions6: Partial<ChartOptions>;
   public chartOptions7: Partial<ChartOptions>;
   data: Object;
+  lastTenYear: { annee: number; }[];
+  dataSociete: any;
   constructor(private dataService: DataService,
     private errormodalService: ErrormodalService,
               private otherService: OthersService) {
@@ -88,10 +92,48 @@ export class StatagenceComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.dateSelectionnerAgence() ;
+    this.getTenLastYear();
+    this.otherService.getAllSociete().subscribe(
+      data => {
+        this.dataSociete = data["data"];
+      }
+    );
+    this.firstsocieteForm = new FormGroup({
+      firstannee: new FormControl(''),
+      firstsociete: new FormControl('')
+    })
+    
+    this.dateSelectionnerAgence();
   }
 
-
+  getTenLastYear() {
+    this.lastTenYear = [
+      {
+        annee: this.currentDate
+      },{
+        annee: this.currentDate - 1
+      },{
+        annee: this.currentDate - 2
+      },{
+        annee: this.currentDate - 3
+      },{
+        annee: this.currentDate - 4
+      },{
+        annee: this.currentDate - 5
+      },{
+        annee: this.currentDate - 6
+      },{
+        annee: this.currentDate - 7
+      },{
+        annee: this.currentDate - 8
+      },{
+        annee: this.currentDate - 9
+      },
+    ];
+    console.log(this.lastTenYear);
+    return this.lastTenYear
+  }
+  
   dateSelectionnerAgence(){
     this.otherService.statInterByAgence().subscribe(
       data => {
