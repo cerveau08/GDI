@@ -305,4 +305,24 @@ addAgence(data) {
     return this.http.get<any>(`${this.reqUrl}/statsInterAge`, {params: data});
   }
 
+  getInterimaireSousContrat(page, limit, matricule, poste, agence, societe, direction) {
+    const data = {page: page, limit: limit, matricule: matricule, poste: poste, agence: agence, societe: societe, direction: direction};
+    return this.http.get<any>(this.reqUrl + '/interimSousContrat', {params: data});
+  }
+
+  getInterimaireFinContrat(page, limit, matricule, poste, agence, societe, direction) {
+    const data = {page: page, limit: limit, matricule: matricule, poste: poste, agence: agence, societe: societe, direction: direction};
+    return this.http.get<any>(this.reqUrl + '/interimFinContrat', {params: data});
+  }
+
+  getInterimaireEnattente(page, limit, cni, poste, agence, societe, direction) {
+    const data = {page: page, limit: limit, cni: cni, poste: poste, agence: agence, societe: societe, direction: direction};
+    return this.http.get<any>(this.reqUrl + '/interimEnAttente', {params: data});
+  }
+
+  getListedesDemande(page, limit, type) {
+    const data = {page: page, limit: limit, type: type};
+    return this.http.get<any>(this.reqUrl + '/listeDemandes', {params: data});
+  }
+
 }

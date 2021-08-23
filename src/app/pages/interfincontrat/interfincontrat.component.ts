@@ -54,6 +54,14 @@ export class InterfincontratComponent implements OnInit {
   scrHeight:any;
   scrWidth:any;
   errorMsg: any;
+  dataSociete: any;
+  dataAgence: any;
+  listeFonction: any;
+  itemsPerPageAgence: 100;
+  pageAgence: 1;
+  dataDirection: any;
+  data: any;
+  successMsg: any;
   @HostListener('window:resize', ['$event'])
   getScreenSize(event?) {
         this.scrHeight = window.innerHeight;
@@ -64,7 +72,12 @@ export class InterfincontratComponent implements OnInit {
   moisSelect
   demandeForm: FormGroup;
   page = 1;
-  itemsPerPage = 7;
+  itemsPerPage = 10;
+  public matricule = null;
+  public poste = null;
+  public agence = null;
+  public societe = null;
+  public direction = null;
   totalItems : any;
   public reqUrl = environment.base_url;
   constructor(private dataService: DataService,
@@ -93,21 +106,78 @@ export class InterfincontratComponent implements OnInit {
     });
     
     this.filterForm = new FormGroup({
-      societe: new FormControl(''),
+      type: new FormControl(''),
       direction: new FormControl(''),
       agence: new FormControl(''),
       poste: new FormControl(''),
+      matricule: new FormControl(''),
     });
 
     this.gty(this.page);
+
+    this.otherService.getAllSociete().subscribe(
+      data => {
+        this.dataSociete = data["data"];
+        console.log(data);
+      },error=> {
+        this.errorMsg = error;
+        this.errormodalService.open('error-modal-1');
+        console.log(error)
+      }
+    );
+
+    this.otherService.getFonctions().subscribe(data => this.listeFonction = data.data);
+
+    this.http.get(this.reqUrl + `/listeAgence?page=1&limit=100`).subscribe((data: any) => {
+      this.dataAgence =  data.data;
+      console.log(this.dataAgence);
+    }, error=> {
+      this.errorMsg = error;
+      this.errormodalService.open('error-modal-1');
+      console.log(error)
+    })
+  }
+
+  public saveProfession(e): void {
+    let libelle = e.target.value;
+    let list = this.listeFonction.filter(x => x.libelle === libelle)[0];
+    console.log(list.libelle);
+    this.filterForm.patchValue({poste: list.libelle});
+  }
+
+  directionsListe(value) {
+    console.log(value);
+    this.otherService.getAllDirection(value).subscribe(
+      data => {
+        this.dataDirection = data['data'];
+       console.log(data);
+       }
+    ); 
   }
 
   gty(page: any){
-    this.http.get(this.reqUrl + `/interimFinContrat?page=${page}&limit=${this.itemsPerPage}`).subscribe((data: any) => {
+    if (this.filterForm.value.poste == undefined) {
+      this.filterForm.patchValue({poste: ''});
+    }
+    if(this.filterForm.value.poste) {
+      this.poste = this.filterForm.value.poste;
+    }
+    if(this.filterForm.value.matricule) {
+      this.matricule = this.filterForm.value.matricule;
+    }
+    if(this.filterForm.value.agence) {
+      this.agence = this.filterForm.value.agence;
+    }
+    if(this.filterForm.value.societe) {
+      this.societe = this.filterForm.value.societe;
+    }
+    if(this.filterForm.value.direction) {
+      this.direction = this.filterForm.value.direction;
+    }
+    this.otherService.getInterimaireFinContrat(page, this.itemsPerPage, this.matricule, this.poste, this.agence, this.societe, this.direction).subscribe((data: any) => {
       this.dataFinContrat =  data.data;
       this.totalItems = data.total;
       console.log(data);
-      
     }, error=> {
       this.errorMsg = error;
       this.errormodalService.open('error-modal-1');
@@ -120,6 +190,24 @@ export class InterfincontratComponent implements OnInit {
         user: JSON.stringify(data)
       }
     })
+  }
+
+  extraireInter() {
+    console.log(this.filterForm.value);
+    if (this.filterForm.value.poste == undefined) {
+      this.filterForm.patchValue({poste: ''});
+    }
+    console.log(this.filterForm.value);
+    this.otherService.extraireInterimaire(this.filterForm.value).subscribe(
+      data => {
+        console.log(data);
+        this.data = data;
+        this.successMsg = this.data.status
+        if(this.successMsg == true) {
+          window.open(data.data);
+        }
+      }
+    )
   }
 
   onSubmit(id: string) {
