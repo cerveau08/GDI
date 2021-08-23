@@ -300,9 +300,20 @@ addAgence(data) {
   statDemandeDirection(id: number){
     return this.http.get<any>(`${this.reqUrl}/statDemandeDirection/${id}`);
   }
+
   statInterAge(annee, societe){
     const data = {annee: annee, societe: societe};
     return this.http.get<any>(`${this.reqUrl}/statsInterAge`, {params: data});
+  }
+
+  statInterCategorie(annee, societe){
+    const data = {annee: annee, societe: societe};
+    return this.http.get<any>(`${this.reqUrl}/statsInterCategorie`, {params: data});
+  }
+
+  statInterCategorieParDirection(annee, societe){
+    const data = {annee: annee, societe: societe};
+    return this.http.get<any>(`${this.reqUrl}/statsInterCategorieByDirection`, {params: data});
   }
 
   getInterimaireSousContrat(page, limit, matricule, poste, agence, societe, direction) {
@@ -342,6 +353,21 @@ addAgence(data) {
 
   extractionStatistiqueGenreInterim(id) {
     return this.http.get<any>(`${this.reqUrl}/ExtractionStatInterimairePourcent/${id}`);
+  }
+
+  extractionInterAge(annee, societe){
+    const data = {annee: annee, societe: societe};
+    return this.http.get<any>(`${this.reqUrl}/extractionsInterAge`, {params: data});
+  }
+
+  extractionInterCategorie(annee, societe){
+    const data = {annee: annee, societe: societe};
+    return this.http.get<any>(`${this.reqUrl}/extractionsInterCategorie`, {params: data});
+  }
+
+  extractionInterCategorieParDirection(annee, societe){
+    const data = {annee: annee, societe: societe};
+    return this.http.get<any>(`${this.reqUrl}/extractionStatInterimaireByCategorie`, {params: data});
   }
 
 }
