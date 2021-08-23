@@ -50,6 +50,19 @@ export class ListeblacklisterComponent implements OnInit {
   result;
   errorMsg: any;
   role;
+  ListePiece = [
+    {
+      id: 1, 
+      libelle: "cni",
+    },
+    {
+      id: 2, 
+      libelle: "passeport"
+    }
+  ];
+  public telephone = null;
+  public typePiece = null;
+  public numeroPiece = null;
   @HostListener('window:resize', ['$event'])
   getScreenSize(event?) {
         this.scrHeight = window.innerHeight;
@@ -76,16 +89,26 @@ export class ListeblacklisterComponent implements OnInit {
     this.validerForm = new FormGroup({
       status: new FormControl('')
     })
-    this.gty(this.page);
+    
     this.filterForm = new FormGroup({
-      societe: new FormControl(''),
-      direction: new FormControl(''),
-      agence: new FormControl(''),
-      poste: new FormControl(''),
+      telephone: new FormControl(''),
+      typePiece: new FormControl(''),
+      numeroPiece: new FormControl(''),
     });
+
+    this.gty(this.page);
   }
   gty(page: any){
-    this.http.get(this.reqUrl + `/blacklist?page=${page}&limit=${this.itemsPerPage}`).subscribe((data: any) => {
+    if(this.filterForm.value.telephone) {
+      this.telephone = this.filterForm.value.telephone;
+    }
+    if(this.filterForm.value.typePiece) {
+      this.typePiece = this.filterForm.value.typePiece;
+    }
+    if(this.filterForm.value.numeroPiece) {
+      this.numeroPiece = this.filterForm.value.numeroPiece;
+    }
+    this.otherService.getListeNoire(page, this.itemsPerPage, this.telephone, this.typePiece, this.numeroPiece).subscribe((data: any) => {
       this.dd =  data.data;
       this.totalItems = data.total;
       console.log(data);

@@ -49,11 +49,11 @@ export class LesdemandesComponent implements OnInit {
   listeDemande: any;
   dataSociete: any;
   dataDirection: any;
+  dataAgence: any;
   @HostListener('window:resize', ['$event'])
   getScreenSize(event?) {
         this.scrHeight = window.innerHeight;
         this.scrWidth = window.innerWidth;
-        console.log(this.scrHeight, this.scrWidth);
   }
   public reqUrl = environment.base_url;
   constructor(private dataService: DataService,
@@ -84,22 +84,21 @@ export class LesdemandesComponent implements OnInit {
     this.otherService.getAllSociete().subscribe(
       data => {
         this.dataSociete = data["data"];
-        console.log(data);
       }
     );
     this.otherService.getTypeDemande().subscribe((data: any) => {
       this.listeDemande =  data.data;
-      console.log(data);
+    })
+    this.http.get(this.reqUrl + `/listeAgence?page=1&limit=100`).subscribe((data: any) => {
+      this.dataAgence =  data.data;
     })
     this.gty(this.page);
   }
 
   directionsListe(value) {
-    console.log(value);
     this.otherService.getAllDirection(value).subscribe(
       data => {
         this.dataDirection = data['data'];
-       console.log(data);
        }
     ); 
   }
@@ -107,7 +106,6 @@ export class LesdemandesComponent implements OnInit {
   public saveProfession(e): void {
     let libelle = e.target.value;
     let list = this.listeDemande.filter(x => x.libelle === libelle)[0];
-    console.log(list.libelle);
     this.filterForm.patchValue({type: list.libelle});
   }
   
@@ -118,16 +116,12 @@ export class LesdemandesComponent implements OnInit {
     if(this.filterForm.value.type) {
       this.type = this.filterForm.value.type;
     }
-    console.log(this.filterForm.value);
     this.otherService.getListedesDemande(page, this.itemsPerPage, this.type).subscribe((data: any) => {
       this.dd =  data.data;
       this.totalItems = data.total;
-      console.log(data);
-      console.log(this.totalItems);
     }, error=> {
       this.errorMsg = error;
       this.errormodalService.open('error-modal-1');
-      console.log(error)
     })
   }
   
@@ -152,13 +146,11 @@ export class LesdemandesComponent implements OnInit {
         this.http.post(`${this.reqUrl}/validerDemande/${this.dd[i].id}`, null).subscribe(
           data => {
             this.result = data;
-            console.log(data);
           }
         )
       }
     }
     this.checkedList = this.checkedList;
-    console.log(this.checkedList);
   }
 
   getwidth() {

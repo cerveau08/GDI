@@ -8,36 +8,23 @@
                         <div class="content-input-extraction">
                             <div class="filtrer-mois">
                                 <p class="label-input" for="titre">Téléphone: </p>
-                                <input type="text" class="input-extraction" list="professions" formControlName="poste" [(ngModel)]="profession" (change)="saveProfession($event)">
-                                <datalist id="professions">
-                                  <option *ngFor="let c of listeFonction" [value]="c.libelle" >{{c.libelle}}</option>
-                                </datalist>
+                                <input type="text" class="input-extraction" formControlName="telephone">
                             </div>
                             <div class="filtrer-mois">
                                 <p class="label-input" for="titre">Type de Pièce: </p>
-                                <select  formControlName="direction" class="select-mois" >
-                                    <option *ngFor="let data of dataDirection"  [value]="data.id">{{data.libelle}}</option>
+                                <select  formControlName="typePiece" class="select-mois" >
+                                    <option *ngFor="let data of ListePiece"  [value]="data.libelle">{{data.libelle}}</option>
                                 </select>
                             </div>
                             <div class="filtrer-mois">
                                 <p class="label-input" for="titre">Numéro de Pièce: </p>
-                                <input type="text" class="input-extraction" list="professions" formControlName="poste" [(ngModel)]="profession" (change)="saveProfession($event)">
-                                <datalist id="professions">
-                                  <option *ngFor="let c of listeFonction" [value]="c.libelle" >{{c.libelle}}</option>
-                                </datalist>
-                            </div>
-                            <div class="filtrer-mois">
-                                <p class="label-input" for="titre">Nom Complet: </p>
-                                <input type="text" class="input-extraction" list="professions" formControlName="poste" [(ngModel)]="profession" (change)="saveProfession($event)">
+                                <input type="text" class="input-extraction" formControlName="numeroPiece">
                                 <datalist id="professions">
                                   <option *ngFor="let c of listeFonction" [value]="c.libelle" >{{c.libelle}}</option>
                                 </datalist>
                             </div>
                             <div class="content-extraction">
-                                <mat-icon class="icon-search" fontSet="material-icons-outlined" >search</mat-icon>
-                            </div>
-                            <div class="content-extraction">
-                                <button (click)="extraireInter()" class="button-extraire">Extraire en CSV</button>
+                                <mat-icon class="icon-search" (click)="gty(page)" fontSet="material-icons-outlined" >search</mat-icon>
                             </div>
                         </div>
                         <div class="content-error-msg" *ngIf="successMsg == false">
