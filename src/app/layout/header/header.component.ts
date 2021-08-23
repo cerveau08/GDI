@@ -127,7 +127,7 @@ export class HeaderComponent implements OnInit {
     console.log(info);
     this.otherService.rechercheAvance(info).subscribe(
       data => {
-        console.log(data);
+        console.log(data);  
         this.donneesSearch = data;
         this.successRequest = this.donneesSearch.status
         if(this.successRequest == true) {

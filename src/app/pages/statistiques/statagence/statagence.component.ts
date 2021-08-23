@@ -176,83 +176,84 @@ export class StatagenceComponent implements OnInit {
     })
   }
 
- /* serviceSelectionnerAgence(value){
-    this.axex = this.dataStatEffectifService.map(valueOfDirection => valueOfDirection.annee);
-    this.actifs = this.dataStatEffectifService.map(valueOfNouveau => valueOfNouveau.actifs);
-    this.inactifs = this.dataStatEffectifService.map(valueOfFini => valueOfFini.inactifs);
-    this.total = this.dataStatEffectifService.map(valueOfTotal => valueOfTotal.total);
-    this.chartOptions7 = {
-      colors: [
-        "#ff0000",
-        "#009393",
-        "#000000",
-      ],
-      series: [
-        {
-          name: "Actifs",
-          data: this.actifs
-        },
-        {
-          name: "Inactifs",
-          data: this.inactifs
-        },
-        {
-          name: "Total",
-          data: this.total
-        },
-      ],
-      chart: {
-        type: "bar",
-        height: 300,
-        width: 550,
-        stacked: true,
-        toolbar: {
-          show: false
-        },
-        zoom: {
-          enabled: false
-        }
-      },
-      responsive: [
-        {
-          breakpoint: 480,
-          options: {
-            legend: {
-              show: false,
-              position: "bottom",
-              offsetX: -10,
-              offsetY: 0
-            }
-          }
-        }
-      ],
-      plotOptions: {
-        bar: {
-          horizontal: false,
-          columnWidth: "10px",
-        //  endingShape: "rounded",
-        },
-      },
-      dataLabels: {
-        enabled: false,
-        style: {
-          colors: ['#f3f4f5', '#fff']
-        }
-      },
-      xaxis: {
-        type: "category",
-        categories: 
-          this.axex
-      },
-      legend: {
-        show: false,
-      },
-      fill: {
-        opacity: 4,
-      },
-    };
-    return this.chartOptions7;
+  
+  // serviceSelectionnerAgence(value){
+  //   this.axex = this.dataStatEffectifService.map(valueOfDirection => valueOfDirection.annee);
+  //   this.actifs = this.dataStatEffectifService.map(valueOfNouveau => valueOfNouveau.actifs);
+  //   this.inactifs = this.dataStatEffectifService.map(valueOfFini => valueOfFini.inactifs);
+  //   this.total = this.dataStatEffectifService.map(valueOfTotal => valueOfTotal.total);
+  //   this.chartOptions7 = {
+  //     colors: [
+  //       "#ff0000",
+  //       "#009393",
+  //       "#000000",
+  //     ],
+  //     series: [
+  //       {
+  //         name: "Actifs",
+  //         data: this.actifs
+  //       },
+  //       {
+  //         name: "Inactifs",
+  //         data: this.inactifs
+  //       },
+  //       {
+  //         name: "Total",
+  //         data: this.total
+  //       },
+  //     ],
+  //     chart: {
+  //       type: "bar",
+  //       height: 300,
+  //       width: 550,
+  //       stacked: true,
+  //       toolbar: {
+  //         show: false
+  //       },
+  //       zoom: {
+  //         enabled: false
+  //       }
+  //     },
+  //     responsive: [
+  //       {
+  //         breakpoint: 480,
+  //         options: {
+  //           legend: {
+  //             show: false,
+  //             position: "bottom",
+  //             offsetX: -10,
+  //             offsetY: 0
+  //           }
+  //         }
+  //       }
+  //     ],
+  //     plotOptions: {
+  //       bar: {
+  //         horizontal: false,
+  //         columnWidth: "10px",
+  //       //  endingShape: "rounded",
+  //       },
+  //     },
+  //     dataLabels: {
+  //       enabled: false,
+  //       style: {
+  //         colors: ['#f3f4f5', '#fff']
+  //       }
+  //     },
+  //     xaxis: {
+  //       type: "category",
+  //       categories: 
+  //         this.axex
+  //     },
+  //     legend: {
+  //       show: false,
+  //     },
+  //     fill: {
+  //       opacity: 4,
+  //     },
+  //   };
+  //   return this.chartOptions7;
     
-  }*/
+  // }
 
 }

@@ -7,10 +7,7 @@
                     <div class="content-input-extraction">
                         <div class="filtrer-mois">
                             <p *ngIf="scrWidth>991" class="label-input" for="titre">Référence </p>
-                            <select  formControlName="mois" class="select-mois" >
-                                <option class="option" value="" >Référence</option>
-                                <option *ngFor="let data of ListeMois"  [value]="data.libelle">{{data.libelle}}</option>
-                            </select>
+                            <input type="text" class="input-extraction" formControlName="reference">
                         </div>
                         <div class="filtrer-mois">
                             <p *ngIf="scrWidth>991" class="label-input" for="titre">Mois: </p>
@@ -20,15 +17,15 @@
                             </select>
                         </div>
                         <div class="filtrer-mois">
-                            <p *ngIf="scrWidth>991" class="label-input" for="titre">Annee: </p>
+                            <p class="label-input">Annee: </p>
                             <select  formControlName="annee" class="select-mois" >
                                 <option class="option" value="" >Année</option>
                                 <option *ngFor="let data of lastTenYear"  [value]="data.annee">{{data.annee}}</option>
                             </select>
                         </div>
-                        <!-- <div class="input-annee">
-                            <jp-multi-datepicker formControlName="annee" tabindex="-1"  mode="YEAR" label="Année" [(ngModel)]="annee" [min]="2000"></jp-multi-datepicker>
-                        </div> -->
+                        <div class="content-extraction">
+                            <mat-icon class="icon-search" (click)="gty(page)" fontSet="material-icons-outlined" >search</mat-icon>
+                        </div>
                         <div class="content-extraction">
                             <button (click)="extraireAttestation()" class="button-extraire">Extraire en CSV</button>
                         </div>
@@ -44,7 +41,7 @@
                         <th id="manager">Matricule</th>
                         <th class="typ" id="prenom">Prénom</th>
                         <th class="typ" id="nom">Nom</th>
-                        <th class="typ" id="nom">Référence</th>
+                        <th class="typ" id="reference">Référence</th>
                         <th *ngIf="user != 'AGN' && user != 'INT'" id="action">Agence</th>
                         <th id="contrat">Période</th>
                         <th *ngIf="scrWidth>991" id="contrat">Absence</th>

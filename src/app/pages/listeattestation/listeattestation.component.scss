@@ -8,7 +8,35 @@
     position: relative;
 }
 
+.input-extraction{
+    width: 140px;
+    outline: none;
+    border: 1px solid #d8d8d8;
+  }
 
+
+  .icon-search{
+    margin-top: 20px;
+    cursor: pointer;
+  }
+  .filtrer-mois {
+    margin-right: 10px;
+    margin-top: 5px;
+    padding: 0px;
+    height: 30px;
+    border-radius: 5px;
+    p {
+        margin-top: 0px;
+        margin-bottom: 0;
+        margin-left: 0px;
+        font-size: 12px;
+    }
+    mat-icon{
+        margin-top: 5px;
+        margin-right: 10px;
+        margin-bottom: 0;
+    }
+  }
 
 .tableau {
     margin-top: 0px;
