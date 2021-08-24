@@ -1,3 +1,4 @@
+import { DetailattestationComponent } from './pages/attestation/detailattestation/detailattestation.component';
 import { StatcategorieComponent } from './pages/statistiques/statcategorie/statcategorie.component';
 import { StatagenceComponent } from './pages/statistiques/statagence/statagence.component';
 import { EffectifComponent } from './pages/statistiques/effectif/effectif.component';
@@ -282,6 +283,10 @@ const routes: Routes = [
         canActivate: [AuthGuard]
       },{ path: 'statcategorie',
       component: StatcategorieComponent,
+        canActivate: [AuthGuard]
+      },
+      { path: 'deatilattestation',
+        component: DetailattestationComponent,
         canActivate: [AuthGuard]
       },
       {

@@ -106,8 +106,8 @@ export class InterfincontratComponent implements OnInit {
     });
     
     this.filterForm = new FormGroup({
-      type: new FormControl(''),
       direction: new FormControl(''),
+      societe: new FormControl(''),
       agence: new FormControl(''),
       poste: new FormControl(''),
       matricule: new FormControl(''),

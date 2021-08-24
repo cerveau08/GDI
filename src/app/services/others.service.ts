@@ -292,7 +292,7 @@ addAgence(data) {
   }
 
   getLastNotification(): Observable<any> {
-    return this.http.get<any>(this.reqUrl + '/latestNotifications');
+    return this.http.get<any>(this.reqUrl + '/latestNotification');
   }
   statInterPourcent(id_societe: number){
     return this.http.get<any>(`${this.reqUrl}/statInterimairePourcent/${id_societe}`);
@@ -319,6 +319,17 @@ addAgence(data) {
   getInterimaireSousContrat(page, limit, matricule, poste, agence, societe, direction) {
     const data = {page: page, limit: limit, matricule: matricule, poste: poste, agence: agence, societe: societe, direction: direction};
     return this.http.get<any>(this.reqUrl + '/interimSousContrat', {params: data});
+  }
+
+  listAttestationFilter(page,limit, mois, annee, reference) {
+    const data = {page: page, limit: limit, mois: mois,  annee: annee ,reference: reference};
+    return this.http.get<any>(this.reqUrl + '/listeAttestation', {params: data});
+  }
+
+
+  listArchivedFilter(page, limit) {
+    const data = {page: page, limit: limit};
+    return this.http.get<any>(this.reqUrl + '/listArchived', {params: data});
   }
 
   getInterimaireFinContrat(page, limit, matricule, poste, agence, societe, direction) {
@@ -368,6 +379,10 @@ addAgence(data) {
   extractionInterCategorieParDirection(annee, societe){
     const data = {annee: annee, societe: societe};
     return this.http.get<any>(`${this.reqUrl}/extractionStatInterimaireByCategorie`, {params: data});
+  }
+
+  getOneAttestation(id) {
+    return this.http.get<any>(`${this.reqUrl}/detailAttestation/${id}`);
   }
 
 }

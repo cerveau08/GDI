@@ -274,7 +274,7 @@ export class HomeComponent implements OnInit {
     this.otherService.statInterByYear(value).subscribe(
       data => {
         this.dataYear = data;
-        this.dataStatEffectifAnnee = this.dataYear.data[0];
+        this.dataStatEffectifAnnee = this.dataYear.data;
         console.log(this.dataStatEffectifAnnee);
         if(value == null) {
           this.donneeAbscisse = this.dataStatEffectifAnnee.map(valueOfDirection => valueOfDirection.annee);

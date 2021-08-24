@@ -29,7 +29,7 @@ export class IntersouscontratComponent implements OnInit {
   pageAgence = 1;
   itemsPerPageAgence = 100;
   totalItems : any;
-  filterterm
+  filterterm;
   public reqUrl = environment.base_url;
   result;
   success;
