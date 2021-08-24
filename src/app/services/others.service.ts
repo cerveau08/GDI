@@ -292,7 +292,7 @@ addAgence(data) {
   }
 
   getLastNotification(): Observable<any> {
-    return this.http.get<any>(this.reqUrl + '/latestNotifications');
+    return this.http.get<any>(this.reqUrl + '/latestNotification');
   }
   statInterPourcent(id_societe: number){
     return this.http.get<any>(`${this.reqUrl}/statInterimairePourcent/${id_societe}`);
@@ -327,8 +327,8 @@ addAgence(data) {
   }
 
 
-  listArchivedFilter(page, limit) {
-    const data = {page: page, limit: limit};
+  listArchivedFilter(page, limit, admissible) {
+    const data = {page: page, limit: limit ,admissible:admissible};
     return this.http.get<any>(this.reqUrl + '/listArchived', {params: data});
   }
 
