@@ -46,15 +46,15 @@
                         <th id="contrat">Période</th>
                         <th *ngIf="scrWidth>991" id="contrat">Absence</th>
                         <th id="action">Etat</th>
-                        <th id="action">Générer</th>
+                        <!-- <th id="action">Générer</th> -->
                 </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let p of dataAttest | paginate: { 
                         itemsPerPage: itemsPerPage,
                         currentPage: page,
-                        totalItems: totalItems}; let i = index">
-                        <td >{{p.matricule}}</td>
+                        totalItems: totalItems}; let i = index" (click)="openDetail(p.id)" style="cursor: pointer;">
+                        <td>{{p.matricule}}</td>
                         <td>{{p.prenom}}</td>
                         <td>{{p.nom}}</td>
                         <td>{{p.reference}}</td>
@@ -62,9 +62,9 @@
                         <td >{{p.dateFin  | date:'MMMM yyyy'}}</td>
                         <td *ngIf="scrWidth>991" >{{p.nombreJourAbscence}} jours</td>
                         <td>{{p.statut}}</td>
-                        <td><button (click)="openModal('custom-modal-'+p.id);">Voir</button></td>
+                        <!-- <td><button (click)="openModal('custom-modal-'+p.id);">Voir</button></td> -->
                         <!-- modal -->
-                        <div class="modal">
+                        <!-- <div class="modal">
                             <jw-modal id="custom-modal-{{p.id}}">
                                 <mat-icon style="cursor: pointer;" (click)="closeModal('custom-modal-'+p.id);" class="clear">clear</mat-icon>
                                 <div class="all" id="htmlData" #htmlData>
@@ -93,7 +93,7 @@
                                     <button (click)="openPDF()" class="button-submit">Valider</button>
                                 </div>
                             </jw-modal>
-                        </div> 
+                        </div>  -->
                     <!-- modal -->
                     </tr>
                 </tbody>
