@@ -126,7 +126,7 @@ export class InterenattenteComponent implements OnInit {
     if(this.filterForm.value.direction) {
       this.direction = this.filterForm.value.direction;
     }
-    this.otherService.getInterimaireSousContrat(page, this.itemsPerPage, this.cni, this.poste, this.agence, this.societe, this.direction).subscribe((data: any) => {
+    this.otherService.getInterimaireEnattente(page, this.itemsPerPage, this.cni, this.poste, this.agence, this.societe, this.direction).subscribe((data: any) => {
       this.dataInter =  data.data;
       this.totalItems = data.total;
       console.log(data);
