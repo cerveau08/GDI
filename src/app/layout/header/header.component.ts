@@ -3,8 +3,8 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { PaginationService } from 'src/app/service/pagination.service';
 import { AuthService } from 'src/app/services/auth.service';
-import { SidenavService } from 'src/app/sidenav/sidenav.service';
-import { ModalService } from 'src/app/_modal/modal.service';
+import { SidenavService } from 'src/app/modal/sidenav/sidenav.service';
+import { ModalService } from 'src/app/modal/_modal/modal.service';
 import {OthersService} from '../../services/others.service';
 
 @Component({

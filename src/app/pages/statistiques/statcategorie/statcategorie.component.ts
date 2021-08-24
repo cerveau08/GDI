@@ -100,8 +100,13 @@ export class StatcategorieComponent implements OnInit {
   }
 
   
-  exportStatInterimaireByYear() {
-    console.log(this.annee);
+  exportStatInterimaireByYear(annee, societe) {
+    if(annee == undefined){
+      annee = new Date().getFullYear();
+    }
+    if(societe == undefined){
+      societe = 1;
+    }
     this.otherService.exportStatInterimByYear(this.annee).subscribe(
       data => {
         console.log(data);
@@ -162,11 +167,11 @@ export class StatcategorieComponent implements OnInit {
   //stats interimaire par annee
   dateSelectionner(annee, societe){
     console.log(annee);
-    if(annee == "null"){
-      annee = null;
+    if(annee == undefined || annee == "null"){
+      annee = new Date().getFullYear();
     }
-    if(societe == "null"){
-      societe = null;
+    if(societe == undefined){
+      societe = 1;
     }
     this.otherService.statInterCategorie(annee, societe).subscribe(
       data => {
@@ -253,11 +258,11 @@ export class StatcategorieComponent implements OnInit {
   effectifSocieteSelectionner(annee, societe){
     console.log(annee);
     console.log(annee);
-    if(annee == "null"){
+    if(annee == undefined){
       annee = new Date().getFullYear();
     }
-    if(societe == "null"){
-      societe = null;
+    if(societe == undefined || annee == "null"){
+      societe = 1;
     }
     this.otherService.statInterCategorieParDirection(annee, societe).subscribe(
       data => {

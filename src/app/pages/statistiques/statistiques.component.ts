@@ -2,7 +2,7 @@ import { OthersService } from 'src/app/services/others.service';
 import { Component, HostListener, OnInit } from '@angular/core';
 import { ApexAxisChartSeries, ApexChart, ApexDataLabels, ApexFill, ApexLegend, ApexPlotOptions, ApexResponsive, ApexXAxis, ApexYAxis, ChartComponent } from 'ng-apexcharts';
 import { DataService } from 'src/app/service/data.service';
-import { ErrormodalService } from 'src/app/_errormodals';
+import { ErrormodalService } from 'src/app/modal/_errormodals';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;

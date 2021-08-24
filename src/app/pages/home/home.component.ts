@@ -4,7 +4,7 @@ import { OthersService } from 'src/app/services/others.service';
 import { NavigationExtras, Router } from '@angular/router';
 import { Component, HostListener, OnInit } from '@angular/core';
 import { ApexAxisChartSeries, ApexChart, ApexDataLabels, ApexPlotOptions, ApexResponsive, ApexXAxis, ApexYAxis, ApexLegend, ApexFill, ChartComponent } from 'ng-apexcharts';
-import { ErrormodalService } from 'src/app/_errormodals';
+import { ErrormodalService } from 'src/app/modal/_errormodals';
 import { FormGroup, FormControl } from '@angular/forms';
 
 export type ChartOptions = {

@@ -3,60 +3,58 @@ import { StatagenceComponent } from './pages/statistiques/statagence/statagence.
 import { EffectifComponent } from './pages/statistiques/effectif/effectif.component';
 import { PresenceComponent } from './pages/statistiques/presence/presence.component';
 import { GenreComponent } from './pages/statistiques/genre/genre.component';
-import { EvaluerComponent } from './pages/evaluer/evaluer.component';
-import { DetailevaluationComponent } from './pages/detailevaluation/detailevaluation.component';
-import { ListeevaluationComponent } from './pages/listeevaluation/listeevaluation.component';
-import { AddattestationComponent } from './pages/addattestation/addattestation.component';
-import { ListehistoriquecontratComponent } from './pages/listehistoriquecontrat/listehistoriquecontrat.component';
-import { ListeblacklisterComponent } from './pages/listeblacklister/listeblacklister.component';
-import { ObjectifsComponent } from './pages/objectifs/objectifs.component';
-import { LesdemandesComponent } from './pages/lesdemandes/lesdemandes.component';
-import { AdduserComponent } from './pages/adduser/adduser.component';
-import { ModifierinterComponent } from './pages/modifierinter/modifierinter.component';
-import { ListeattestationComponent } from './pages/listeattestation/listeattestation.component';
-import { NewinterComponent } from './pages/newinter/newinter.component';
-import { OffreComponent } from './pages/offre/offre.component';
-import { AgenceComponent } from './pages/agence/agence.component';
-import { InterimaireComponent } from './pages/interimaire/interimaire.component';
-import { DetailmanagerComponent } from './pages/detailmanager/detailmanager.component';
-import { DetailagenceComponent } from './pages/detailagence/detailagence.component';
-import { DetailinterComponent } from './pages/detailinter/detailinter.component';
-import { ParametreComponent } from './pages/parametre/parametre.component';
+import { EvaluerComponent } from './pages/evaluation/evaluer/evaluer.component';
+import { DetailevaluationComponent } from './pages/evaluation/detailevaluation/detailevaluation.component';
+import { ListeevaluationComponent } from './pages/evaluation/listeevaluation/listeevaluation.component';
+import { AddattestationComponent } from './pages/attestation/addattestation/addattestation.component';
+import { ListehistoriquecontratComponent } from './pages/interimaire/listehistoriquecontrat/listehistoriquecontrat.component';
+import { ListeblacklisterComponent } from './pages/users/listeblacklister/listeblacklister.component';
+import { ObjectifsComponent } from './pages/evaluation/objectifs/objectifs.component';
+import { LesdemandesComponent } from './pages/autres/lesdemandes/lesdemandes.component';
+import { AdduserComponent } from './pages/users/adduser/adduser.component';
+import { ModifierinterComponent } from './pages/interimaire/modifierinter/modifierinter.component';
+import { ListeattestationComponent } from './pages/attestation/listeattestation/listeattestation.component';
+import { NewinterComponent } from './pages/interimaire/newinter/newinter.component';
+import { OffreComponent } from './pages/autres/offre/offre.component';
+import { AgenceComponent } from './pages/agences/agence/agence.component';
+import { DetailmanagerComponent } from './pages/managers/detailmanager/detailmanager.component';
+import { DetailagenceComponent } from './pages/agences/detailagence/detailagence.component';
+import { DetailinterComponent } from './pages/interimaire/detailinter/detailinter.component';
+import { ParametreComponent } from './pages/autres/parametre/parametre.component';
 import { StatistiquesComponent } from './pages/statistiques/statistiques.component';
-import { AttestationpresenceComponent } from './pages/attestationpresence/attestationpresence.component';
-import { AlertComponent } from './pages/alert/alert.component';
-import { ListermanagerComponent } from './pages/listermanager/listermanager.component';
-import { AddmanagerComponent } from './pages/addmanager/addmanager.component';
-import { AddagenceComponent } from './pages/addagence/addagence.component';
-import { ListeragenceComponent } from './pages/listeragence/listeragence.component';
-import { InterfincontratComponent } from './pages/interfincontrat/interfincontrat.component';
-import { IntersouscontratComponent } from './pages/intersouscontrat/intersouscontrat.component';
+import { AttestationpresenceComponent } from './pages/attestation/attestationpresence/attestationpresence.component';
+import { AlertComponent } from './pages/autres/alert/alert.component';
+import { ListermanagerComponent } from './pages/managers/listermanager/listermanager.component';
+import { AddmanagerComponent } from './pages/managers/addmanager/addmanager.component';
+import { AddagenceComponent } from './pages/agences/addagence/addagence.component';
+import { ListeragenceComponent } from './pages/agences/listeragence/listeragence.component';
+import { InterfincontratComponent } from './pages/interimaire/interfincontrat/interfincontrat.component';
+import { IntersouscontratComponent } from './pages/interimaire/intersouscontrat/intersouscontrat.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { DefaultComponent } from './layout/default/default.component';
-import { LoginComponent } from './login/login.component';
-import { CompteComponent } from './pages/compte/compte.component';
-import { DemandeComponent } from './pages/demande/demande.component';
+import { LoginComponent } from './connexion/login/login.component';
+import { CompteComponent } from './pages/interimaire/compte/compte.component';
+import { DemandeComponent } from './pages/autres/demande/demande.component';
 import { HomeComponent } from './pages/home/home.component';
-import { HomedrhComponent } from './pages/homedrh/homedrh.component';
-import { ManagerComponent } from './pages/manager/manager.component';
-import { RestaurationComponent } from './pages/restauration/restauration.component';
-import { PasswordforgetMailComponent } from './passwordforget-mail/passwordforget-mail.component';
-import { PasswordforgetComponent } from './passwordforget/passwordforget.component';
-import { AddinterComponent } from './pages/addinter/addinter.component';
+import { ManagerComponent } from './pages/managers/manager/manager.component';
+import { RestaurationComponent } from './pages/autres/restauration/restauration.component';
+import { PasswordforgetMailComponent } from './connexion/passwordforget-mail/passwordforget-mail.component';
+import { PasswordforgetComponent } from './connexion/passwordforget/passwordforget.component';
+import { AddinterComponent } from './pages/interimaire/addinter/addinter.component';
 import { AuthGuard } from './helpers/auth.guard';
-import { InterarchiveComponent } from './pages/interarchive/interarchive.component';
-import { InterenattenteComponent } from './pages/interenattente/interenattente.component';
-import { PasswordResetComponent } from './password-reset/password-reset.component';
-import { ListuserComponent } from './pages/listuser/listuser.component';
-import { DetailuserComponent } from './pages/detailuser/detailuser.component';
-import { ModifieruserComponent } from './pages/modifieruser/modifieruser.component';
-import { MesObjectifsComponent } from './pages/mes-objectifs/mes-objectifs.component';
-import { MonAgenceComponent } from './pages/mon-agence/mon-agence.component';
-import { MonManagerComponent } from './pages/mon-manager/mon-manager.component';
-import { DetailcontratComponent } from './pages/detailcontrat/detailcontrat.component';
-import { AttestationmesInterimaireComponent } from './pages/attestationmesInterimaire/attestationmesInterimaire.component';
-import { ModifEvaluerComponent } from './pages/evaluer/modif-evaluer/modif-evaluer.component';
+import { InterarchiveComponent } from './pages/interimaire/interarchive/interarchive.component';
+import { InterenattenteComponent } from './pages/interimaire/interenattente/interenattente.component';
+import { PasswordResetComponent } from './connexion/password-reset/password-reset.component';
+import { ListuserComponent } from './pages/users/listuser/listuser.component';
+import { DetailuserComponent } from './pages/users/detailuser/detailuser.component';
+import { ModifieruserComponent } from './pages/users/modifieruser/modifieruser.component';
+import { MesObjectifsComponent } from './pages/evaluation/mes-objectifs/mes-objectifs.component';
+import { MonAgenceComponent } from './pages/agences/mon-agence/mon-agence.component';
+import { MonManagerComponent } from './pages/managers/mon-manager/mon-manager.component';
+import { DetailcontratComponent } from './pages/interimaire/detailcontrat/detailcontrat.component';
+import { AttestationmesInterimaireComponent } from './pages/attestation/attestationmesInterimaire/attestationmesInterimaire.component';
+import { ModifEvaluerComponent } from './pages/evaluation/evaluer/modif-evaluer/modif-evaluer.component';
 import { StatageComponent } from './pages/statistiques/statage/statage.component';
 
 
@@ -70,7 +68,7 @@ const routes: Routes = [
     component: PasswordforgetComponent
   },
   { path: 'passwordreset', 
-  loadChildren: () => import('src/app/password-reset/password-reset.module').then(m => m.PasswordResetModule) },
+  loadChildren: () => import('src/app/connexion/password-reset/password-reset.module').then(m => m.PasswordResetModule) },
   // { path: 'passwordreset', 
   // loadChildren: 'app/password-reset/password-reset.module#PasswordResetModule' },
   // { 
@@ -90,10 +88,6 @@ const routes: Routes = [
         path: 'home', 
         component: HomeComponent
       },
-      {
-        path: 'homedrh', 
-        component: HomedrhComponent
-      },
       { path: 'manager',
         component: ManagerComponent,
           canActivate: [AuthGuard]
@@ -112,10 +106,6 @@ const routes: Routes = [
       },
       { path: 'attestationmesinterimaires',
         component: AttestationmesInterimaireComponent,
-          canActivate: [AuthGuard]
-      },
-      { path: 'listinter',
-        component: InterimaireComponent,
           canActivate: [AuthGuard]
       },
       { path: 'souscontrat',
