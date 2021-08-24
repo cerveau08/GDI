@@ -370,4 +370,8 @@ addAgence(data) {
     return this.http.get<any>(`${this.reqUrl}/extractionStatInterimaireByCategorie`, {params: data});
   }
 
+  getOneAttestation(id) {
+    return this.http.get<any>(`${this.reqUrl}/detailAttestation/${id}`);
+  }
+
 }

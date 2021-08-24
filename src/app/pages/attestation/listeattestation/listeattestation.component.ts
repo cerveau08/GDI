@@ -8,6 +8,7 @@ import { HttpClient } from '@angular/common/http';
 import { OthersService } from 'src/app/services/others.service';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-listeattestation',
@@ -98,6 +99,7 @@ export class ListeattestationComponent implements OnInit {
               private http: HttpClient,
               private errormodalService: ErrormodalService,
               private modalService: ModalService,
+              private router: Router,
               private otherService: OthersService) {
                 this.getScreenSize()
               }
@@ -133,12 +135,20 @@ export class ListeattestationComponent implements OnInit {
     )
   }
 
+  openDetail(data) {
+    this.router.navigate(['/accueil/deatilattestation'], {
+      queryParams: {
+        attestation: JSON.stringify(data)
+      }
+    });
+  }
+
   public openPDF():void {
     let data = document.getElementById('htmlData');
     html2canvas(data).then(canvas => {
       let fileWidth = 208;
       let fileHeight = canvas.height * fileWidth / canvas.width;
-      const fileuri = canvas.toDataURL('image/png')
+      const fileuri = canvas.toDataURL('image/png');
       let pdf = new jsPDF('p', 'mm', 'a4');
       let position = 0;
       pdf.addImage(fileuri, 'PNG', 0, position, fileWidth, fileHeight)
