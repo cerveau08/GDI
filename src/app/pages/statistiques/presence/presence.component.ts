@@ -235,7 +235,7 @@ export class PresenceComponent implements OnInit {
       },
     };
     return this.chartOptions4;
-  })
+    })
   }
 
   societeSelectionnerPresence(value){

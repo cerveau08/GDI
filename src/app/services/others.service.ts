@@ -300,11 +300,14 @@ addAgence(data) {
   statDemandeDirection(id: number){
     return this.http.get<any>(`${this.reqUrl}/statDemandeDirection/${id}`);
   }
-  statInterAge(annee, societe){
-    const data = {annee: annee, societe: societe};
+  statInterAge(societe, annee){
+    const data = {societe: societe, annee: annee};
     return this.http.get<any>(`${this.reqUrl}/statsInterAge`, {params: data});
   }
-
+  statInterCategorie(societe, annee){
+    const data = {societe: societe, annee: annee};
+    return this.http.get<any>(`${this.reqUrl}/statsInterCategorie`, {params: data});
+  }
   getInterimaireSousContrat(page, limit, matricule, poste, agence, societe, direction) {
     const data = {page: page, limit: limit, matricule: matricule, poste: poste, agence: agence, societe: societe, direction: direction};
     return this.http.get<any>(this.reqUrl + '/interimSousContrat', {params: data});

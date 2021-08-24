@@ -1,96 +1,118 @@
-<div class="content-diagram-effectif">
-    <div *ngIf="scrWidth>991" class="stat">
-        <div class="elmt2" title="messages2">
-            <div class="tit">
-                <p class="total">Variation de l’effectif</p>
-                <div [formGroup]="anneeForm" class="filter-date">
-                    <div [style.border]="borderfilter1" id="filter-annee" class="filtrer-annees">
-                        <mat-icon [style.color]="colorfilter1" id="icon-calendar-annee"  class="icone-calendar1" fontSet="material-icons-outlined">date_range</mat-icon>
-                        <select class="select-mois" formControlName="annee" [(ngModel)]="annee">
-                            <option class="option" value="null">Annee</option>
-                            <option *ngFor="let p of lastTenYear" class="option" [value]="p.annee">{{p.annee}}</option>
+<div class="content-diagram-genre">
+    <!--<div class="content-circle-diagram">
+        <div class="detail1">
+            <div class="elmt" >
+                <div class="tit">
+                    <p class="total">Total Interimaires</p>
+                </div>
+                <div class="per">
+                     <div class="cercle">
+                        <circle-progress
+                        [percent]="pourcentFemmecercle"
+                        [radius]="60"
+                        [outerStrokeWidth]="32"
+                        [innerStrokeWidth]="24"
+                        [space] = "-32"
+                        [outerStrokeColor]="'#ff7900'"
+                        [innerStrokeColor]="'#009393'"
+                        [outerStrokeLinecap]= "'square'"
+                        [showTitle]="false"
+                        [showUnits]="false"
+                        [showSubtitle] = "false"
+                        [animation]="true"
+                        [animationDuration]="200"
+                        [startFromZero]="true"
+                        [responsive]="false"
+                        ></circle-progress>
+                    </div> 
+                    <div id="square"></div>
+                    <div class="fl1">
+                        <mat-icon >arrow_right</mat-icon>
+                    </div>
+                    <div id="square1"></div>
+                    <div class="fl2">
+                        <mat-icon >arrow_left</mat-icon>
+                    </div>
+                    <div class="point1"></div>
+                    <div class="point2"></div>
+                    <div class="femmes">
+                        <div class="fem">
+                            <p class="fn">{{femme}}</p>
+                            <p class="fe">Femmes</p>
+                        </div>
+                    </div>
+                    <div class="hommes">
+                        <div class="hom">
+                            <p class="hn">{{homme}}</p>
+                            <p class="ho">Hommes</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="">
+                <div class="filtre-societe-direction">
+                    <div class="filtrer-societe" style="cursor: pointer;">
+                        <select class="select-societe" #mySelect (change)='genrePourcentage(mySelect.value)'>
+                            <option *ngFor="let p of dataSociete" class="option" [value]="p.id">{{p.libelle}}</option>
                         </select>
                     </div>
-                    <div *ngIf="scrWidth>991" class="stat-effectif-direction">
-                        <div class="elmt2" title="messages2">
-                            <div class="tit">
-                                <div class="selects-and-echelle">
-                                    <div class="filtre-societe-direction">
-                                        <div class="filtrer-societe" style="cursor: pointer;">
-                                            <select class="select-societe" #lEffectif (change)='effectifSocieteSelectionner(lEffectif.value)'>
-                                                <option *ngFor="let p of dataSociete" class="option" [value]="p.id">{{p.libelle}}</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                </div>
+                <p class="interimaires-total">Total: {{totalCercle}}</p>
+                <div class="lesbouton1">
+                    <div  class="button1"> 
+                        <div class="color"></div> 
+                        <p>Homme</p>
+                    </div>
+                    <div  class="button2"> 
+                        <div class="color"></div> 
+                        <p>Femme</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>-->
+    <div *ngIf="scrWidth>991" class="stat-effectif-direction">
+        <div class="elmt2" title="messages2">
+            <div class="tit">
+                <p class="total">Répartition des interimaires</p>
+            </div>
+            <div class="selects-and-echelle">
+                <div class="filtre-societe-direction">
+                    <div class="filtrer-societe" style="cursor: pointer;">
+                        <select class="select-societe" #mySelect (change)='societeSelectionner(mySelect.value)'>
+                            <option *ngFor="let p of dataSociete" class="option" [value]="p.id">{{p.libelle}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="">
+                    <div class="lesbouton1">
+                        <div  class="button1"> 
+                            <div class="color"></div> 
+                            <p>Homme</p>
+                        </div>
+                        <div  class="button2"> 
+                            <div class="color"></div> 
+                            <p>Femme</p>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="diagra1">
-                <div id="chart1">
+                 <div id="chart1">
                     <apx-chart
-                        [series]="chartOptions1.series"
-                        [chart]="chartOptions1.chart"
-                        [dataLabels]="chartOptions1.dataLabels"
-                        [plotOptions]="chartOptions1.plotOptions"
-                        [responsive]="chartOptions1.responsive"
-                        [xaxis]="chartOptions1.xaxis"
-                        [legend]="chartOptions1.legend"
-                        [fill]="chartOptions1.fill"
-                        [colors]="chartOptions1.colors"
-                        [dataLabels]="chartOptions1.dataLabels"
+                      [series]="chartOptions3.series"
+                      [chart]="chartOptions3.chart"
+                      [dataLabels]="chartOptions3.dataLabels"
+                      [plotOptions]="chartOptions3.plotOptions"
+                      [responsive]="chartOptions3.responsive"
+                      [xaxis]="chartOptions3.xaxis"
+                      [legend]="chartOptions3.legend"
+                      [fill]="chartOptions3.fill"
+                      [colors]="chartOptions3.colors"
+                      [dataLabels]="chartOptions3.dataLabels"
                     ></apx-chart>
                 </div>
             </div>
-            <div class="lesbouton2">
-                <div  class="button3"> 
-                    <div class="color"></div> 
-                    <p>Finis</p>
-                </div>
-                <div  class="button4"> 
-                    <div class="color"></div> 
-                    <p>Nouveaux</p>
-                </div>
-                <div  class="button5"> 
-                    <div class="color"></div> 
-                    <p>Total</p>
-                </div>
-            </div>
-       
         </div>
     </div>
-   <!-- <div *ngIf="scrWidth>991" class="stat-effectif-direction">
-        <div class="elmt2" title="messages2">
-            <div class="tit">
-                <p class="total">Répartition des interimaires par Tranche d' Age</p>
-            </div>
-            <div class="selects-and-echelle">
-                <div class="filtre-societe-direction">
-                    <div class="filtrer-societe" style="cursor: pointer;">
-                        <select class="select-societe" #lEffectif (change)='effectifSocieteSelectionner(lEffectif.value)'>
-                            <option *ngFor="let p of dataSociete" class="option" [value]="p.id">{{p.libelle}}</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <div class="diagra1">
-                <div id="chart1">
-                   <apx-chart
-                      [series]="chartOptions2.series"
-                      [chart]="chartOptions2.chart"
-                      [dataLabels]="chartOptions2.dataLabels"
-                      [plotOptions]="chartOptions2.plotOptions"
-                      [responsive]="chartOptions2.responsive"
-                      [xaxis]="chartOptions2.xaxis"
-                      [legend]="chartOptions2.legend"
-                      [fill]="chartOptions2.fill"
-                      [colors]="chartOptions2.colors"
-                      [dataLabels]="chartOptions2.dataLabels"
-                    ></apx-chart>
-                </div>
-            </div>
-        </div>
-    </div>-->
 </div>
