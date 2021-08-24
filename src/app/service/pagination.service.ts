@@ -198,8 +198,6 @@ export class PaginationService {
         id: 2, title: 'Liste en fin de contrat',  path: 'fincontrat',
       }, {
         id: 2, title: 'Liste en attente',  path: 'interenattente',
-      }, {
-        id: 2, title: 'Liste archivé',  path: 'interarchive',
       },{
         id: 4,  title: 'Ajouter',  path: 'addinter',
       },

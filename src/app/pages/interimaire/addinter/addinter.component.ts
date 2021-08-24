@@ -207,7 +207,7 @@ export class AddinterComponent implements OnInit {
     let libelle = e.target.value;
     let list = this.listeFonction.filter(x => x.libelle === libelle)[0];
     console.log(list.libelle);
-    this.interForm.patchValue({poste: list.id});
+    this.interForm.patchValue({poste: list.libelle});
   }
 
   public saveDomaine(e): void {
@@ -227,12 +227,16 @@ export class AddinterComponent implements OnInit {
         if(this.isBlackliste == false) {
           if(this.dataMatriculeInter.data) {
             console.log(this.dataMatriculeInter.data);
-            this.router.navigate(['/accueil/detailinter'], {
-              queryParams: {
-                user: JSON.stringify(this.dataMatriculeInter.data.interimaire.id)
-              }
-            });
-          } 
+            if(this.dataMatriculeInter.data.interimaire) {
+              this.router.navigate(['/accueil/detailinter'], {
+                queryParams: {
+                  user: JSON.stringify(this.dataMatriculeInter.data.interimaire.id)
+                }
+              });
+            } else {
+              this.isAdmissible = true;
+            }
+          }
           if(this.dataMatriculeInter.message == 'Interimaire inexistant!') {
             this.isAdmissible = true;
           }
@@ -333,7 +337,7 @@ export class AddinterComponent implements OnInit {
       formdata.append("dateSignature", this.interForm.value.dateSignature);
     }
     if(this.interForm.value.poste != "") {
-      formdata.append("fonctionId", this.interForm.value.poste);
+      formdata.append("fonction", this.interForm.value.poste);
     }
     if(this.fichierContrat != undefined) {
       formdata.append("contratDoc",this.fichierContrat);

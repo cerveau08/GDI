@@ -106,10 +106,12 @@ export class LesdemandesComponent implements OnInit {
   public saveProfession(e): void {
     let libelle = e.target.value;
     let list = this.listeDemande.filter(x => x.libelle === libelle)[0];
-    this.filterForm.patchValue({type: list.libelle});
+  //  this.filterForm.patchValue({type: list});
   }
   
   gty(page: any){
+    console.log(this.filterForm.value.type);
+    
     if (this.filterForm.value.type == undefined) {
       this.filterForm.patchValue({type: ''});
     }
