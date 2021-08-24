@@ -6,20 +6,27 @@
                 <div class="exporter">
                     <div class="content-input-extraction">
                         <div class="filtrer-mois">
+                            <p class="label-input" for="titre">Matricule: </p>
+                            <input type="text" class="input-extraction" formControlName="cni">
+                        </div>
+                        <div class="filtrer-mois">
                             <p class="label-input" for="titre">Société: </p>
                             <select type="number" formControlName="societe" #societe class="select-mois" (change)="directionsListe(societe.value)">
+                                <option value="null">Aucun Choix</option>
                                 <option *ngFor="let data of dataSociete"  [value]="data.id">{{data.libelle}}</option>
                             </select>
                         </div>
                         <div class="filtrer-mois">
                             <p class="label-input" for="titre">Direction: </p>
                             <select  formControlName="direction" class="select-mois" >
+                                <option value="null">Aucun Choix</option>
                                 <option *ngFor="let data of dataDirection"  [value]="data.id">{{data.libelle}}</option>
                             </select>
                         </div>
                         <div class="filtrer-mois">
                             <p class="label-input" for="titre">Agence: </p>
                             <select  formControlName="agence" class="select-mois" >
+                                <option value="null">Aucun Choix</option>
                                 <option *ngFor="let data of dataAgence"  [value]="data.id">{{data.nom}}</option>
                             </select>
                         </div>
@@ -31,7 +38,7 @@
                             </datalist>
                         </div>
                         <div class="content-extraction">
-                            <mat-icon class="icon-search" fontSet="material-icons-outlined" >search</mat-icon>
+                            <mat-icon class="icon-search" (click)="gty(page)" fontSet="material-icons-outlined" >search</mat-icon>
                         </div>
                         <div class="content-extraction">
                             <button (click)="extraireInter()" class="button-extraire">Extraire en CSV</button>

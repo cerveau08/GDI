@@ -300,17 +300,74 @@ addAgence(data) {
   statDemandeDirection(id: number){
     return this.http.get<any>(`${this.reqUrl}/statDemandeDirection/${id}`);
   }
-  statInterAge(societe, annee){
-    const data = {societe: societe, annee: annee};
+
+  statInterAge(annee, societe){
+    const data = {annee: annee, societe: societe};
     return this.http.get<any>(`${this.reqUrl}/statsInterAge`, {params: data});
   }
-  statInterCategorie(societe, annee){
-    const data = {societe: societe, annee: annee};
+
+  statInterCategorie(annee, societe){
+    const data = {annee: annee, societe: societe};
     return this.http.get<any>(`${this.reqUrl}/statsInterCategorie`, {params: data});
   }
+
+  statInterCategorieParDirection(annee, societe){
+    const data = {annee: annee, societe: societe};
+    return this.http.get<any>(`${this.reqUrl}/statsInterCategorieByDirection`, {params: data});
+  }
+
   getInterimaireSousContrat(page, limit, matricule, poste, agence, societe, direction) {
     const data = {page: page, limit: limit, matricule: matricule, poste: poste, agence: agence, societe: societe, direction: direction};
     return this.http.get<any>(this.reqUrl + '/interimSousContrat', {params: data});
+  }
+
+  getInterimaireFinContrat(page, limit, matricule, poste, agence, societe, direction) {
+    const data = {page: page, limit: limit, matricule: matricule, poste: poste, agence: agence, societe: societe, direction: direction};
+    return this.http.get<any>(this.reqUrl + '/interimFinContrat', {params: data});
+  }
+
+  getInterimaireEnattente(page, limit, cni, poste, agence, societe, direction) {
+    const data = {page: page, limit: limit, cni: cni, poste: poste, agence: agence, societe: societe, direction: direction};
+    return this.http.get<any>(this.reqUrl + '/interimEnAttente', {params: data});
+  }
+
+  getListedesDemande(page, limit, type) {
+    const data = {page: page, limit: limit, type: type};
+    return this.http.get<any>(this.reqUrl + '/listeDemandes', {params: data});
+  }
+
+  getListeNoire(page, limit, telephone, typePiece, numeroPiece) {
+    const data = {page: page, limit: limit, telephone: telephone, typePiece: typePiece, numeroPiece: numeroPiece};
+    return this.http.get<any>(this.reqUrl + '/blacklist', {params: data});
+  }
+
+  exportStatInterimByYear(annee) {
+    const data = {annee: annee};
+    return this.http.get<any>(this.reqUrl + '/ExportStatInterimByYear', {params: data});
+  }
+
+  extractionStatistiqueInterim(societe) {
+    const data = {societe: societe};
+    return this.http.get<any>(this.reqUrl + '/extractionStatistiqueInterim', {params: data});
+  }
+
+  extractionStatistiqueGenreInterim(id) {
+    return this.http.get<any>(`${this.reqUrl}/ExtractionStatInterimairePourcent/${id}`);
+  }
+
+  extractionInterAge(annee, societe){
+    const data = {annee: annee, societe: societe};
+    return this.http.get<any>(`${this.reqUrl}/extractionsInterAge`, {params: data});
+  }
+
+  extractionInterCategorie(annee, societe){
+    const data = {annee: annee, societe: societe};
+    return this.http.get<any>(`${this.reqUrl}/extractionsInterCategorie`, {params: data});
+  }
+
+  extractionInterCategorieParDirection(annee, societe){
+    const data = {annee: annee, societe: societe};
+    return this.http.get<any>(`${this.reqUrl}/extractionStatInterimaireByCategorie`, {params: data});
   }
 
 }

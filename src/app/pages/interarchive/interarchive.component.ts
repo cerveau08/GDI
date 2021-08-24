@@ -21,6 +21,7 @@ export class InterarchiveComponent implements OnInit {
   pager: any = {};
   id;
   filterterm: string;
+  filterForm: FormGroup;
   public p: any;
   pagedItems: any[];
   date: any;
@@ -63,7 +64,9 @@ export class InterarchiveComponent implements OnInit {
   moisSelect
   demandeForm: FormGroup;
   page = 1;
+  donneesSearch;
   itemsPerPage = 7;
+  successRequest
   totalItems : any;
   public reqUrl = environment.base_url;
   constructor(private dataService: DataService,
@@ -86,6 +89,13 @@ export class InterarchiveComponent implements OnInit {
       this.showupdate = false;
     }
 
+    this.filterForm = new FormGroup({
+      prenom: new FormControl(''),
+      nom: new FormControl(''),
+      email: new FormControl(''),
+      agence: new FormControl(''),
+    });
+
     this.demandeForm = new FormGroup({
       moi: new FormControl (''),
       somme: new FormControl('')
@@ -94,6 +104,7 @@ export class InterarchiveComponent implements OnInit {
 
     this.gty(this.page);
   }
+
 
   gty(page: any){
     this.http.get(this.reqUrl + `/listArchived?page=${page}&limit=${this.itemsPerPage}`).subscribe((data: any) => {
@@ -115,14 +126,33 @@ export class InterarchiveComponent implements OnInit {
     })
   }
 
-  onSubmit(id: string) {
-    const demande =
-    {
-      moi: this.demandeForm.value.moi,
-      somme: this.demandeForm.value.somme
-    } 
-    console.log(demande);
+
+  onSubmit() {
+    const info = new FormData();
+    this.filterForm.value.prenom = ""?info.append("prenom", this.filterForm.value.prenom):'';
+    this.filterForm.value.nom = ""?info.append("nom", this.filterForm.value.nom):'';
+    this.filterForm.value.email != ""?info.append("email", this.filterForm.value.email):'';
+    this.filterForm.value.agence != ""?info.append("agence", this.filterForm.value.agence):'';   
+
+    console.log(info);
   }
+
+  // this.otherService.listArchive(info).subscribe(
+  //   data => {
+  //     console.log(data);
+  //     this.donneesSearch = data;
+  //     // this.successRequest = this.donneesSearch.status
+  //     if(this.successRequest == true) {
+  //       this.route.navigate(['/accueil/detailinter'], {
+  //         queryParams: {
+  //           user: JSON.stringify(this.donneesSearch['data'][0].id)
+  //         }
+  //       });
+  //     } else {
+  //       this.messageError = this.donneesSearch.message;
+  //     }
+  //   }
+  // )
 
   openModal(id: string) {
     this.modalService.open(id);

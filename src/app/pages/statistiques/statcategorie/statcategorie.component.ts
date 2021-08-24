@@ -1,9 +1,21 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { ApexAxisChartSeries, ApexChart, ApexDataLabels, ApexPlotOptions, ApexResponsive, ApexXAxis, ApexYAxis, ApexLegend, ApexFill, ChartComponent } from 'ng-apexcharts';
-import { OthersService } from 'src/app/services/others.service';
 import { FormGroup, FormControl } from '@angular/forms';
-import { ChartOptions } from '../statistiques.component';
+import { OthersService } from 'src/app/services/others.service';
 
+export type ChartOptions = {
+  series: ApexAxisChartSeries;
+  chart: ApexChart;
+  dataLabels: ApexDataLabels;
+  plotOptions: ApexPlotOptions;
+  responsive: ApexResponsive[];
+  xaxis: ApexXAxis;
+  yaxis: ApexYAxis;
+  datalabels: ApexDataLabels,
+  legend: ApexLegend;
+  fill: ApexFill;
+  colors: string[],
+};
 @Component({
   selector: 'app-statcategorie',
   templateUrl: './statcategorie.component.html',
@@ -11,30 +23,21 @@ import { ChartOptions } from '../statistiques.component';
 })
 export class StatcategorieComponent implements OnInit {
 
+  anneeForm: FormGroup;
+  societeForm: FormGroup;
   borderfilter1;
   colorfilter1;
   axex;
   mois;
-  directs: any;
-  categorie: any;
-  effectif;
-  dataSociete;
+  donneeAbscisse;
   data: any;
-  pourcentFemme;
-  pourcentFemmecercle;
+  directions: any;
+  effectif;
   hommes: any;
   femmes: any;
-  homme: any;
-  femme: any;
-  annee= new Date().getFullYear();
-  totalCercle: any;
-  dataGenre;
   nouveau; 
   fini;
   total;
-  id_societe= 1;
-  date = new Date();
-  societe = 1;
   show = 1;
   color: any;
   public datas: any;
@@ -48,40 +51,299 @@ export class StatcategorieComponent implements OnInit {
   intervalId;
   scrHeight:any;
   scrWidth:any;
+  totalSociete;
   dates;
   currentDate = new Date().getFullYear();
   item;
+  an;
+  lastTenYear;
+  dataYear;
+  societe = 1;
+  date = new Date();
+  annee = new Date().getFullYear();
+  dataStatEffectifAnnee: any;
   dataStatEffectifGenre: any;
+  categorie;
+  dataStatEffectifSociete;
   dataStatistique;
+  dataSociete;
   dataInterimByAgence: any;
   chart: ChartComponent;
-  public chartOptions3: Partial<ChartOptions>;
-  constructor(private otherService: OthersService) {
+  public chartOptions1: Partial<ChartOptions>;
+  public chartOptions2: Partial<ChartOptions>;
+  successMsg: any;
+  directs: any;
+  constructor(
+              private otherService: OthersService) {
     this.getScreenSize();
   }
   @HostListener('window:resize', ['$event'])
   getScreenSize(event?) {
         this.scrHeight = window.innerHeight;
         this.scrWidth = window.innerWidth;
-        //console.log(this.scrHeight, this.scrWidth);
   }
 
   ngOnInit() {
+    this.getTenLastYear();
     this.otherService.getAllSociete().subscribe(
       data => {
         this.dataSociete = data["data"];
-        console.log(data);
       }
     );
-    
-   // this.genrePourcentage(String(this.id_societe));
-    this.societeSelectionner(String(this.societe), this.annee);
+    this.anneeForm = new FormGroup({
+      anneeA: new FormControl(''),
+      societeA: new FormControl(''),
+    })
+    this.societeForm = new FormGroup({
+      anneeS: new FormControl(''),
+      societeS: new FormControl(''),
+    })
+    this.dateSelectionner(this.annee, this.societe);
+    this.effectifSocieteSelectionner(this.annee, this.societe);
   }
 
-  ngOnDestroy() {
-    console.log(this.intervalId);
-    
-    clearInterval(this.intervalId);
+  
+  exportStatInterimaireByYear() {
+    console.log(this.annee);
+    this.otherService.exportStatInterimByYear(this.annee).subscribe(
+      data => {
+        console.log(data);
+        this.data = data;
+        this.successMsg = this.data.status
+        if(this.successMsg == true) {
+          window.open(data.data);
+        }
+      }
+    )
+  }
+
+  extractionInterCategorieParDirection(annee, societe) {
+    if(annee == undefined){
+      annee = new Date().getFullYear();
+    }
+    if(societe == undefined){
+      societe = 1;
+    }
+    this.otherService.extractionInterCategorieParDirection(annee, societe).subscribe(
+      data => {
+        console.log(data);
+        this.data = data;
+        this.successMsg = this.data.status
+        if(this.successMsg == true) {
+          window.open(data.data);
+        }
+      }
+    )
+  }
+  getTenLastYear() {
+    this.lastTenYear = [
+      {
+        annee: this.currentDate
+      },{
+        annee: this.currentDate - 1
+      },{
+        annee: this.currentDate - 2
+      },{
+        annee: this.currentDate - 3
+      },{
+        annee: this.currentDate - 4
+      },{
+        annee: this.currentDate - 5
+      },{
+        annee: this.currentDate - 6
+      },{
+        annee: this.currentDate - 7
+      },{
+        annee: this.currentDate - 8
+      },{
+        annee: this.currentDate - 9
+      },
+    ];
+    console.log(this.lastTenYear);
+    return this.lastTenYear
+  }
+  //stats interimaire par annee
+  dateSelectionner(annee, societe){
+    console.log(annee);
+    if(annee == "null"){
+      annee = null;
+    }
+    if(societe == "null"){
+      societe = null;
+    }
+    this.otherService.statInterCategorie(annee, societe).subscribe(
+      data => {
+        this.dataYear = data;
+        this.dataStatEffectifAnnee = this.dataYear.data;
+        console.log(this.dataStatEffectifAnnee);
+          this.donneeAbscisse = this.dataStatEffectifAnnee.map(valueOfDirection => valueOfDirection.categorie.libelle);
+          this.nouveau = this.dataStatEffectifAnnee.map(valueOfNouveau => valueOfNouveau.hommes);
+          this.fini = this.dataStatEffectifAnnee.map(valueOfFini => valueOfFini.femmes);
+        this.axex = this.donneeAbscisse;
+        console.log(this.axex);
+        
+        this.chartOptions1 = {
+          colors: [
+            "#ff0000",
+            "#009393",
+          ],
+          series: [
+            {
+              name: "Finis",
+              data: this.fini
+            },
+            {
+              name: "Nouveaux",
+              data: this.nouveau
+            }
+          ],
+          chart: {
+            type: "bar",
+            height: 380,
+            width: 750,
+            stacked: false,
+            toolbar: {
+              show: false
+            },
+            zoom: {
+              enabled: false
+            }
+          },
+          responsive: [
+            {
+              breakpoint: 480,
+              options: {
+                legend: {
+                  show: false,
+                  position: "bottom",
+                  offsetX: -10,
+                  offsetY: 0
+                }
+              }
+            }
+          ],
+          plotOptions: {
+            bar: {
+              horizontal: false,
+              columnWidth: "60px",
+            },
+          },
+          dataLabels: {
+            enabled: false,
+            style: {
+              colors: ['#f3f4f5', '#fff']
+            }
+          },
+          xaxis: {
+            type: "category",
+            categories: 
+              this.axex
+          },
+          legend: {
+            show: false,
+          },
+          fill: {
+            opacity: 4,
+          },
+        };
+        console.log(this.chartOptions1);
+        
+        return this.chartOptions1;
+    }
+    )
+  }
+
+  effectifSocieteSelectionner(annee, societe){
+    console.log(annee);
+    console.log(annee);
+    if(annee == "null"){
+      annee = new Date().getFullYear();
+    }
+    if(societe == "null"){
+      societe = null;
+    }
+    this.otherService.statInterCategorieParDirection(annee, societe).subscribe(
+      data => {
+      console.log(data);
+      this.data = data;
+      this.dataStatEffectifSociete = this.data.data
+      console.log(this.dataStatEffectifSociete);
+      this.directions = this.dataStatEffectifSociete.map(valueOfDirection => valueOfDirection.direction.libelle);
+      this.hommes = this.dataStatEffectifSociete.map(valueOfHomme => valueOfHomme.AM1);
+      this.femmes = this.dataStatEffectifSociete.map(valueOfFemme => valueOfFemme.AM2);
+      // this.totalSociete = this.dataStatEffectifSociete.map(valueOfTotal => valueOfTotal.homme);
+      this.chartOptions2 = {
+        colors: [
+          "#ff7900",
+          "#009393",
+        ],
+        series: [
+          {
+            name: "Femmes",
+            data: this.femmes
+          },
+          {
+            name: "Hommes",
+            data: this.hommes
+          },
+        ],
+        chart: {
+          type: "bar",
+          height: 380,
+          width: 750,
+          stacked: false,
+          toolbar: {
+            show: false
+          },
+          zoom: {
+            enabled: false
+          }
+        },
+        responsive: [
+          {
+            breakpoint: 480,
+            options: {
+              legend: {
+                show: false,
+                position: "bottom",
+                offsetX: -10,
+                offsetY: 0
+              }
+            }
+          }
+        ],
+        plotOptions: {
+          bar: {
+            horizontal: false,
+            columnWidth: "20px",
+          //  endingShape: "rounded",
+          },
+        },
+        dataLabels: {
+          enabled: false,
+          style: {
+            colors: ['#f3f4f5', '#fff']
+          }
+        },
+        xaxis: {
+          type: "category",
+          categories: 
+            this.directions
+        },
+        legend: {
+          show: false,
+        },
+        fill: {
+          opacity: 4,
+        },
+      };
+      return this.chartOptions2;
+    })
+    // error=> {
+    //   this.errorMsg = error;
+    //   this.errormodalService.open('error-modal-1');
+    //   console.log(error)
+    // })
   }
 
   //deuxieme
@@ -96,7 +358,7 @@ export class StatcategorieComponent implements OnInit {
     this.hommes = this.dataStatEffectifGenre.map(valueOfHomme => valueOfHomme.hommes);
     this.femmes = this.dataStatEffectifGenre.map(valueOfFemmes => valueOfFemmes.femmes);
     
-    this.chartOptions3 = {
+    this.chartOptions1 = {
       colors: [
         "#009393",
         "#ff7900"
@@ -161,7 +423,7 @@ export class StatcategorieComponent implements OnInit {
         opacity: 4,
       },
     };
-    return this.chartOptions3;
+    return this.chartOptions1;
   },
   )
 }

@@ -2,8 +2,8 @@ import { Component, OnInit, HostListener } from '@angular/core';
 import { NgxFileSaverService } from '@clemox/ngx-file-saver';
 import { DataService } from 'src/app/service/data.service';
 import { ModalService } from 'src/app/_modal/modal.service';
-import { ErrormodalService } from 'src/app/_errormodals';
 import { FormGroup, FormControl } from '@angular/forms';
+import { ErrormodalService } from 'src/app/_errormodals';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { OthersService } from 'src/app/services/others.service';
@@ -22,11 +22,13 @@ export class ListeattestationComponent implements OnInit {
   filterForm: FormGroup;
   result;
   data: any;
+  reference;
   currentDate = new Date().getFullYear();
   successMsg;
   filterterm: string;
   dataAttest: any;
   page = 1;
+  demandeForm: FormGroup;
   itemsPerPage = 8;
   lastTenYear;
   totalItems : any;
@@ -98,6 +100,11 @@ export class ListeattestationComponent implements OnInit {
               }
 
   ngOnInit() {
+
+    // this.demandeForm = new FormGroup({
+    //   reference: new FormControl ('')
+    // });
+
     this.lastTenYear = [
       {
         annee: this.currentDate
@@ -107,13 +114,16 @@ export class ListeattestationComponent implements OnInit {
         annee: this.currentDate - 2
       }
     ];
+
     this.user = localStorage.getItem('user');
     this.gty(this.page);
     this.filterForm = new FormGroup({
       mois: new FormControl(''),
-      annee: new FormControl('')
+      annee: new FormControl(''),
+      reference: new FormControl ('')
     });
   }
+
   gty(page: any){
     this.http.get(this.reqUrl + `/listeAttestation?page=${page}&limit=${this.itemsPerPage}`).subscribe(
       (data: any) => {

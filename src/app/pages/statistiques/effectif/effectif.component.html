@@ -6,10 +6,22 @@
                 <div [formGroup]="anneeForm" class="filter-date">
                     <div [style.border]="borderfilter1" id="filter-annee" class="filtrer-annees">
                         <mat-icon [style.color]="colorfilter1" id="icon-calendar-annee"  class="icone-calendar1" fontSet="material-icons-outlined">date_range</mat-icon>
-                        <select class="select-mois" formControlName="annee" [(ngModel)]="annee">
+                        <select class="select-mois" formControlName="anneeA" [(ngModel)]="anneeA">
                             <option class="option" value="null">Annee</option>
                             <option *ngFor="let p of lastTenYear" class="option" [value]="p.annee">{{p.annee}}</option>
                         </select>
+                    </div>
+                    <div [style.border]="borderfilter1" id="filter-annee" class="filtrer-annees">
+                        <mat-icon [style.color]="colorfilter1" id="icon-calendar-annee"  class="icone-calendar1" fontSet="material-icons-outlined">home</mat-icon>
+                        <select class="select-mois" formControlName="societeA" [(ngModel)]="societeS">
+                            <option *ngFor="let p of dataSociete" class="option" [value]="p.id">{{p.libelle}}</option>
+                        </select>
+                    </div>
+                    <div class="content-extraction">
+                        <button (click)="dateSelectionner()" class="button-rafraichir">Rafraichir</button>
+                    </div>
+                    <div class="content-extraction">
+                        <button (click)="exportStatInterimaireByYear()" class="button-extraire">Extraire en CSV</button>
                     </div>
                 </div>
             </div>
@@ -52,11 +64,25 @@
                 <p class="total">Répartition des interimaires</p>
             </div>
             <div class="selects-and-echelle">
-                <div class="filtre-societe-direction">
-                    <div class="filtrer-societe" style="cursor: pointer;">
-                        <select class="select-societe" #lEffectif (change)='effectifSocieteSelectionner(lEffectif.value)'>
+                <div class="filtre-societe-direction" [formGroup]="societeForm">
+                    <div [style.border]="borderfilter1" id="filter-annee" class="filtrer-annees">
+                        <mat-icon [style.color]="colorfilter1" id="icon-calendar-annee"  class="icone-calendar1" fontSet="material-icons-outlined">home</mat-icon>
+                        <select class="select-mois" formControlName="societeS" [(ngModel)]="societeS">
                             <option *ngFor="let p of dataSociete" class="option" [value]="p.id">{{p.libelle}}</option>
                         </select>
+                    </div>
+                    <div [style.border]="borderfilter1" id="filter-annee" class="filtrer-annees">
+                        <mat-icon [style.color]="colorfilter1" id="icon-calendar-annee"  class="icone-calendar1" fontSet="material-icons-outlined">date_range</mat-icon>
+                        <select class="select-mois" formControlName="anneeS" [(ngModel)]="anneeA">
+                            <option class="option" value="null">Annee</option>
+                            <option *ngFor="let p of lastTenYear" class="option" [value]="p.annee">{{p.annee}}</option>
+                        </select>
+                    </div>
+                    <div class="content-extraction">
+                        <button (click)="effectifSocieteSelectionner()" class="button-rafraichir">Rafraichir</button>
+                    </div>
+                    <div class="content-extraction">
+                        <button (click)="exportStatInterimaireBySociete()" class="button-extraire">Extraire en CSV</button>
                     </div>
                 </div>
             </div>

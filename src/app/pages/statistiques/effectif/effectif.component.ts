@@ -24,6 +24,7 @@ export type ChartOptions = {
 export class EffectifComponent implements OnInit {
 
   anneeForm: FormGroup;
+  societeForm: FormGroup;
   borderfilter1;
   colorfilter1;
   axex;
@@ -68,6 +69,7 @@ export class EffectifComponent implements OnInit {
   chart: ChartComponent;
   public chartOptions1: Partial<ChartOptions>;
   public chartOptions2: Partial<ChartOptions>;
+  successMsg: any;
   constructor(
               private otherService: OthersService) {
     this.getScreenSize();
@@ -82,26 +84,69 @@ export class EffectifComponent implements OnInit {
     this.getTenLastYear();
     this.otherService.getAllSociete().subscribe(
       data => {
-        console.log(data);
         this.dataSociete = data["data"];
       }
     );
     this.anneeForm = new FormGroup({
-      annee: new FormControl('')
+      anneeA: new FormControl(''),
+      societeA: new FormControl(''),
+    })
+    this.societeForm = new FormGroup({
+      anneeS: new FormControl(''),
+      societeS: new FormControl(''),
     })
     this.dateSelectionner(this.annee);
+    console.log(this.societe);
+    
     this.effectifSocieteSelectionner(String(this.societe));
     this.onChanges();
+    this.onChangesSociete();
   }
 
   onChanges(): void {
-    this.anneeForm.get('annee').valueChanges.subscribe(val => {
+    this.anneeForm.get('anneeA').valueChanges.subscribe(val => {
       if (val) {
         console.log(val);
-        
         this.dateSelectionner(val);
       }
     });
+  }
+
+  onChangesSociete(): void {
+    this.societeForm.get('societeS').valueChanges.subscribe(val => {
+      if (val) {
+        console.log(val);
+        
+        this.effectifSocieteSelectionner(val);
+      }
+    });
+  }
+  exportStatInterimaireByYear() {
+    console.log(this.annee);
+    this.otherService.exportStatInterimByYear(this.annee).subscribe(
+      data => {
+        console.log(data);
+        this.data = data;
+        this.successMsg = this.data.status
+        if(this.successMsg == true) {
+          window.open(data.data);
+        }
+      }
+    )
+  }
+
+  exportStatInterimaireBySociete() {
+    console.log(this.societe);
+    this.otherService.extractionStatistiqueInterim(this.societe).subscribe(
+      data => {
+        console.log(data);
+        this.data = data;
+        this.successMsg = this.data.status
+        if(this.successMsg == true) {
+          window.open(data.data);
+        }
+      }
+    )
   }
   getTenLastYear() {
     this.lastTenYear = [
@@ -179,7 +224,7 @@ export class EffectifComponent implements OnInit {
             type: "bar",
             height: 380,
             width: 750,
-            stacked: true,
+            stacked: false,
             toolbar: {
               show: false
             },
@@ -203,7 +248,7 @@ export class EffectifComponent implements OnInit {
           plotOptions: {
             bar: {
               horizontal: false,
-              columnWidth: "20px",
+              columnWidth: "60px",
             },
           },
           dataLabels: {

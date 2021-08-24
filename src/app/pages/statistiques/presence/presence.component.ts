@@ -44,6 +44,7 @@ export class PresenceComponent implements OnInit {
   mois;
   annee= null;
   anneeForm: FormGroup;
+  societeForm: FormGroup;
   lastTenYear;
   societe = 1;
   dataSociete;
@@ -104,7 +105,12 @@ export class PresenceComponent implements OnInit {
       }
     );
     this.anneeForm = new FormGroup({
-      annee: new FormControl('')
+      anneeA: new FormControl(''),
+      societeA: new FormControl(''),
+    })
+    this.societeForm = new FormGroup({
+      anneeS: new FormControl(''),
+      societeS: new FormControl(''),
     })
     this.dateSelectionnerPresence(this.annee);
     this.societeSelectionnerPresence(this.societe);
@@ -188,7 +194,7 @@ export class PresenceComponent implements OnInit {
         type: "bar",
         height: 380,
         width: 750,
-        stacked: true,
+        stacked: false,
         toolbar: {
           show: false
         },
@@ -212,7 +218,7 @@ export class PresenceComponent implements OnInit {
       plotOptions: {
         bar: {
           horizontal: false,
-          columnWidth: "10px",
+          columnWidth: "50px",
         //  endingShape: "rounded",
         },
       },
@@ -285,7 +291,7 @@ export class PresenceComponent implements OnInit {
         type: "bar",
         height: 380,
         width: 750,
-        stacked: true,
+        stacked: false,
         toolbar: {
           show: false
         },
@@ -309,7 +315,7 @@ export class PresenceComponent implements OnInit {
       plotOptions: {
         bar: {
           horizontal: false,
-          columnWidth: "10px",
+          columnWidth: "30px",
         //  endingShape: "rounded",
         },
       },

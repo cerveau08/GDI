@@ -80,7 +80,7 @@
 
 .tit {
     display: grid;
-    grid-template-columns: 1fr 150px;
+    grid-template-columns: 290px 1fr;
 }
     .total {
         font-size: 16px;
@@ -130,16 +130,52 @@
     margin-left: 10px;
 }
 .icone-calendar1 {
-    margin-top: 5px;
-    margin-left: 15px;
+    margin-top: 0px;
+    margin-left: 5px;
+    margin-right: 5px;
+    height: 18px;
+    width: 18px;
 }
 .filtrer-annees {
     display: flex;
     border: 1px solid #f5f6f9;
     border-radius: 5px;
-    height: 40px;
+    height: 25px;
     width: 120px;
-    margin-top: 15px;
+    margin-top: 10px;
+    margin-right: 5px;
+    cursor: pointer;
+}
+.button-rafraichir{
+    margin-top: 10px;
+    margin-left: 10px;
+    width: 110px;
+    height: 25px;
+    color: white;
+    background-color: #009393;
+    border: none;
+    outline: none;
+}
+.content-extraction{
+    margin-left: 0px;
+}
+.button-extraire{
+    margin-top: 10px;
+    margin-left: 10px;
+    width: 110px;
+    height: 25px;
+    color: white;
+    background-color: #ff7900;
+    border: none;
+    outline: none;
+}
+.filtrer-annees {
+    display: flex;
+    border: 1px solid #f5f6f9;
+    border-radius: 5px;
+    height: 25px;
+    width: 120px;
+    margin-top: 10px;
     cursor: pointer;
 }
 #filter-mois {
@@ -149,7 +185,7 @@
     border: none;
     outline: none;
     background-color: #fff;
-    width: 75px;
+    width: 85px;
 }
 .stat-effectif-direction {
     margin-top: 10px;
@@ -725,7 +761,6 @@ table {
     padding-bottom: 5px;
 }
 .diagra1 {
-    height: 320px;
     margin: 0 auto;
     margin-top: 0px;
     position: relative;
@@ -740,7 +775,7 @@ table {
 
 .selects-and-echelle {
     display: grid;
-    grid-template-columns: 1fr 200px;
+    grid-template-columns: 200px 1fr;
 }
 .filtre-societe-direction {
     display: flex;

@@ -1,3 +1,4 @@
+import { StatcategorieComponent } from './pages/statistiques/statcategorie/statcategorie.component';
 import { StatagenceComponent } from './pages/statistiques/statagence/statagence.component';
 import { EffectifComponent } from './pages/statistiques/effectif/effectif.component';
 import { PresenceComponent } from './pages/statistiques/presence/presence.component';
@@ -56,8 +57,7 @@ import { MonManagerComponent } from './pages/mon-manager/mon-manager.component';
 import { DetailcontratComponent } from './pages/detailcontrat/detailcontrat.component';
 import { AttestationmesInterimaireComponent } from './pages/attestationmesInterimaire/attestationmesInterimaire.component';
 import { ModifEvaluerComponent } from './pages/evaluer/modif-evaluer/modif-evaluer.component';
-import { StatageComponent } from './pages/Statistiques/statage/statage.component';
-import { StatcategorieComponent } from './pages/statistiques/statcategorie/statcategorie.component';
+import { StatageComponent } from './pages/statistiques/statage/statage.component';
 
 
 const routes: Routes = [
@@ -275,6 +275,13 @@ const routes: Routes = [
       },
       { path: 'statpresence',
         component: PresenceComponent,
+          canActivate: [AuthGuard]
+      },
+      { path: 'statcategorie',
+        component: StatcategorieComponent,
+          canActivate: [AuthGuard]
+      },{ path: 'statage',
+          component: StatageComponent,
           canActivate: [AuthGuard]
       },{ 
         path: 'modifevaluer',

@@ -1,3 +1,4 @@
+import { FormGroup, FormControl } from '@angular/forms';
 import { Component, OnInit, HostListener } from '@angular/core';
 import { ApexAxisChartSeries, ApexChart, ApexDataLabels, ApexPlotOptions, ApexResponsive, ApexXAxis, ApexYAxis, ApexLegend, ApexFill, ChartComponent } from 'ng-apexcharts';
 import { DataService } from 'src/app/service/data.service';
@@ -37,6 +38,7 @@ export type ChartOptions3 = {
 })
 export class StatagenceComponent implements OnInit {
 
+  firstsocieteForm: FormGroup;
   borderfilter1;
   colorfilter1;
   axex;
@@ -75,6 +77,8 @@ export class StatagenceComponent implements OnInit {
   public chartOptions6: Partial<ChartOptions>;
   public chartOptions7: Partial<ChartOptions>;
   data: Object;
+  lastTenYear: { annee: number; }[];
+  dataSociete: any;
   constructor(private dataService: DataService,
     private errormodalService: ErrormodalService,
               private otherService: OthersService) {
@@ -88,10 +92,48 @@ export class StatagenceComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.dateSelectionnerAgence() ;
+    this.getTenLastYear();
+    this.otherService.getAllSociete().subscribe(
+      data => {
+        this.dataSociete = data["data"];
+      }
+    );
+    this.firstsocieteForm = new FormGroup({
+      firstannee: new FormControl(''),
+      firstsociete: new FormControl('')
+    })
+    
+    this.dateSelectionnerAgence();
   }
 
-
+  getTenLastYear() {
+    this.lastTenYear = [
+      {
+        annee: this.currentDate
+      },{
+        annee: this.currentDate - 1
+      },{
+        annee: this.currentDate - 2
+      },{
+        annee: this.currentDate - 3
+      },{
+        annee: this.currentDate - 4
+      },{
+        annee: this.currentDate - 5
+      },{
+        annee: this.currentDate - 6
+      },{
+        annee: this.currentDate - 7
+      },{
+        annee: this.currentDate - 8
+      },{
+        annee: this.currentDate - 9
+      },
+    ];
+    console.log(this.lastTenYear);
+    return this.lastTenYear
+  }
+  
   dateSelectionnerAgence(){
     this.otherService.statInterByAgence().subscribe(
       data => {
@@ -126,7 +168,7 @@ export class StatagenceComponent implements OnInit {
         type: "bar",
         height: 380,
         width: 700,
-        stacked: true,
+        stacked: false,
         toolbar: {
           show: false
         },
@@ -150,7 +192,7 @@ export class StatagenceComponent implements OnInit {
       plotOptions: {
         bar: {
           horizontal: false,
-          columnWidth: "10px",
+          columnWidth: "50px",
         //  endingShape: "rounded",
         },
       },
@@ -176,83 +218,84 @@ export class StatagenceComponent implements OnInit {
     })
   }
 
- /* serviceSelectionnerAgence(value){
-    this.axex = this.dataStatEffectifService.map(valueOfDirection => valueOfDirection.annee);
-    this.actifs = this.dataStatEffectifService.map(valueOfNouveau => valueOfNouveau.actifs);
-    this.inactifs = this.dataStatEffectifService.map(valueOfFini => valueOfFini.inactifs);
-    this.total = this.dataStatEffectifService.map(valueOfTotal => valueOfTotal.total);
-    this.chartOptions7 = {
-      colors: [
-        "#ff0000",
-        "#009393",
-        "#000000",
-      ],
-      series: [
-        {
-          name: "Actifs",
-          data: this.actifs
-        },
-        {
-          name: "Inactifs",
-          data: this.inactifs
-        },
-        {
-          name: "Total",
-          data: this.total
-        },
-      ],
-      chart: {
-        type: "bar",
-        height: 300,
-        width: 550,
-        stacked: true,
-        toolbar: {
-          show: false
-        },
-        zoom: {
-          enabled: false
-        }
-      },
-      responsive: [
-        {
-          breakpoint: 480,
-          options: {
-            legend: {
-              show: false,
-              position: "bottom",
-              offsetX: -10,
-              offsetY: 0
-            }
-          }
-        }
-      ],
-      plotOptions: {
-        bar: {
-          horizontal: false,
-          columnWidth: "10px",
-        //  endingShape: "rounded",
-        },
-      },
-      dataLabels: {
-        enabled: false,
-        style: {
-          colors: ['#f3f4f5', '#fff']
-        }
-      },
-      xaxis: {
-        type: "category",
-        categories: 
-          this.axex
-      },
-      legend: {
-        show: false,
-      },
-      fill: {
-        opacity: 4,
-      },
-    };
-    return this.chartOptions7;
+  
+  // serviceSelectionnerAgence(value){
+  //   this.axex = this.dataStatEffectifService.map(valueOfDirection => valueOfDirection.annee);
+  //   this.actifs = this.dataStatEffectifService.map(valueOfNouveau => valueOfNouveau.actifs);
+  //   this.inactifs = this.dataStatEffectifService.map(valueOfFini => valueOfFini.inactifs);
+  //   this.total = this.dataStatEffectifService.map(valueOfTotal => valueOfTotal.total);
+  //   this.chartOptions7 = {
+  //     colors: [
+  //       "#ff0000",
+  //       "#009393",
+  //       "#000000",
+  //     ],
+  //     series: [
+  //       {
+  //         name: "Actifs",
+  //         data: this.actifs
+  //       },
+  //       {
+  //         name: "Inactifs",
+  //         data: this.inactifs
+  //       },
+  //       {
+  //         name: "Total",
+  //         data: this.total
+  //       },
+  //     ],
+  //     chart: {
+  //       type: "bar",
+  //       height: 300,
+  //       width: 550,
+  //       stacked: true,
+  //       toolbar: {
+  //         show: false
+  //       },
+  //       zoom: {
+  //         enabled: false
+  //       }
+  //     },
+  //     responsive: [
+  //       {
+  //         breakpoint: 480,
+  //         options: {
+  //           legend: {
+  //             show: false,
+  //             position: "bottom",
+  //             offsetX: -10,
+  //             offsetY: 0
+  //           }
+  //         }
+  //       }
+  //     ],
+  //     plotOptions: {
+  //       bar: {
+  //         horizontal: false,
+  //         columnWidth: "10px",
+  //       //  endingShape: "rounded",
+  //       },
+  //     },
+  //     dataLabels: {
+  //       enabled: false,
+  //       style: {
+  //         colors: ['#f3f4f5', '#fff']
+  //       }
+  //     },
+  //     xaxis: {
+  //       type: "category",
+  //       categories: 
+  //         this.axex
+  //     },
+  //     legend: {
+  //       show: false,
+  //     },
+  //     fill: {
+  //       opacity: 4,
+  //     },
+  //   };
+  //   return this.chartOptions7;
     
-  }*/
+  // }
 
 }

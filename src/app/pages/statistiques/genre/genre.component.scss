@@ -131,17 +131,18 @@
 }
 .icone-calendar1 {
     margin-top: 5px;
-    margin-left: 15px;
+    margin-left: 5px;
 }
 .filtrer-annees {
     display: flex;
     border: 1px solid #f5f6f9;
     border-radius: 5px;
-    height: 40px;
+    height: 30px;
     width: 120px;
-    margin-top: 15px;
+    margin-top: 10px;
     cursor: pointer;
 }
+
 #filter-mois {
     margin-left: 10px;
 }
@@ -149,7 +150,10 @@
     border: none;
     outline: none;
     background-color: #fff;
-    width: 75px;
+    width: 85px;
+}
+option {
+    font-size: 12px;
 }
 .stat-effectif-direction {
     margin-top: 10px;
@@ -292,6 +296,11 @@
     margin: 0 auto;
     margin-top: 0px;
 }
+.lesboutongenre1 {
+    width: 130px;
+    margin: 0 auto;
+    margin-top: 0px;
+}
 .interimaires-total {
     font-size: 25px;
     font-weight: bold;
@@ -354,6 +363,70 @@
         border-radius: 50%;
         background: #ff7900;
         margin-left: 40px;
+        margin-top: 10px;
+    }
+    p {
+        font-size: 12px;
+        font-weight: 500;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        color: #222222; 
+        margin-left: 10px;
+        margin-top: 9px;
+    }
+}
+.buttongenre1 {
+    display: flex;
+    width: 120px;
+    height: 30px;
+    background-color: white;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    border: 3px solid #f5f6f9;
+    border-radius: 5px;
+    margin-left: 5px;
+    margin-top: 0px;
+    .color {
+        height: 12px;
+        width: 12px;
+        border-radius: 50%;
+        background: #009393;
+        margin-left: 20px;
+        margin-top: 10px;
+    }
+    p {
+        font-size: 12px;
+        font-weight: 500;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        color: #222222; 
+        margin-left: 10px;
+        margin-top: 9px;
+    }
+}
+.buttongenre2 {
+    display: flex;
+    width: 120px;
+    height: 30px;
+    background-color: white;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    border: 3px solid #f5f6f9;
+    border-radius: 5px;
+    margin-left: 5px;
+    margin-top: 10px;
+    .color {
+        height: 12px;
+        width: 12px;
+        border-radius: 50%;
+        background: #ff7900;
+        margin-left: 20px;
         margin-top: 10px;
     }
     p {
@@ -694,7 +767,6 @@ table {
     padding-bottom: 5px;
 }
 .diagra1 {
-    height: 320px;
     margin: 0 auto;
     margin-top: 0px;
     position: relative;
@@ -709,23 +781,38 @@ table {
 
 .selects-and-echelle {
     display: grid;
-    grid-template-columns: 1fr 200px;
+    grid-template-columns: 1fr 130px;
 }
 .filtre-societe-direction {
     display: flex;
-    margin-top: 30px;
+    margin-top: 10px;
+}
+.label-input-percent {
+    font-size: 12px;
+    margin-top: 0;
+    margin-bottom: 0;
 }
 .filtrer-societe {
-    height: 40px;
-    width: 90px;
-    margin-left: 20px;
+    height: 30px;
+    width: 110px;
+    margin-left: 0px;
 }
 .select-societe {
-    height: 40px;
-    width: 120px;
+    height: 30px;
+    width: 110px;
     border: 1px solid #f5f6f9;
     background-color: white;
     border-radius: 4px;
+    outline: none;
+}
+.button-extraire{
+    margin-top: 12px;
+    margin-left: 10px;
+    width: 110px;
+    height: 30px;
+    color: white;
+    background-color: #ff7900;
+    border: none;
     outline: none;
 }
 .filtrer-direction {
