@@ -300,9 +300,20 @@ addAgence(data) {
   statDemandeDirection(id: number){
     return this.http.get<any>(`${this.reqUrl}/statDemandeDirection/${id}`);
   }
+
   statInterAge(annee, societe){
     const data = {annee: annee, societe: societe};
     return this.http.get<any>(`${this.reqUrl}/statsInterAge`, {params: data});
+  }
+
+  statInterCategorie(annee, societe){
+    const data = {annee: annee, societe: societe};
+    return this.http.get<any>(`${this.reqUrl}/statsInterCategorie`, {params: data});
+  }
+
+  statInterCategorieParDirection(annee, societe){
+    const data = {annee: annee, societe: societe};
+    return this.http.get<any>(`${this.reqUrl}/statsInterCategorieByDirection`, {params: data});
   }
 
   getInterimaireSousContrat(page, limit, matricule, poste, agence, societe, direction) {
@@ -310,14 +321,14 @@ addAgence(data) {
     return this.http.get<any>(this.reqUrl + '/interimSousContrat', {params: data});
   }
 
-  listAttestationFilter(page,limit, mois, reference, annee) {
-    const data = {page: page, limit: limit, mois: mois, reference: reference, annee: annee};
+  listAttestationFilter(page,limit, mois, annee, reference) {
+    const data = {page: page, limit: limit, mois: mois,  annee: annee ,reference: reference};
     return this.http.get<any>(this.reqUrl + '/listeAttestation', {params: data});
   }
 
 
-  listArchivedFilter(page,limit, prenom, nom , email, agence) {
-    const data = {page: page, limit: limit, prenom: prenom, nom: nom , email: email, agence: agence};
+  listArchivedFilter(page, limit) {
+    const data = {page: page, limit: limit};
     return this.http.get<any>(this.reqUrl + '/listArchived', {params: data});
   }
 
@@ -353,6 +364,21 @@ addAgence(data) {
 
   extractionStatistiqueGenreInterim(id) {
     return this.http.get<any>(`${this.reqUrl}/ExtractionStatInterimairePourcent/${id}`);
+  }
+
+  extractionInterAge(annee, societe){
+    const data = {annee: annee, societe: societe};
+    return this.http.get<any>(`${this.reqUrl}/extractionsInterAge`, {params: data});
+  }
+
+  extractionInterCategorie(annee, societe){
+    const data = {annee: annee, societe: societe};
+    return this.http.get<any>(`${this.reqUrl}/extractionsInterCategorie`, {params: data});
+  }
+
+  extractionInterCategorieParDirection(annee, societe){
+    const data = {annee: annee, societe: societe};
+    return this.http.get<any>(`${this.reqUrl}/extractionStatInterimaireByCategorie`, {params: data});
   }
 
 }

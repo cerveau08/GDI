@@ -5,7 +5,7 @@ import { catchError } from 'rxjs/operators';
 
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
-import { ModalService } from '../_modal/modal.service';
+import { ModalService } from '../modal/_modal/modal.service';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {

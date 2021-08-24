@@ -2,7 +2,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { Component, OnInit, HostListener } from '@angular/core';
 import { ApexAxisChartSeries, ApexChart, ApexDataLabels, ApexPlotOptions, ApexResponsive, ApexXAxis, ApexYAxis, ApexLegend, ApexFill, ChartComponent } from 'ng-apexcharts';
 import { DataService } from 'src/app/service/data.service';
-import { ErrormodalService } from 'src/app/_errormodals';
+import { ErrormodalService } from 'src/app/modal/_errormodals';
 import { OthersService } from 'src/app/services/others.service';
 
 export type ChartOptions = {
@@ -44,6 +44,7 @@ export class PresenceComponent implements OnInit {
   mois;
   annee= null;
   anneeForm: FormGroup;
+  societeForm: FormGroup;
   lastTenYear;
   societe = 1;
   dataSociete;
@@ -104,7 +105,12 @@ export class PresenceComponent implements OnInit {
       }
     );
     this.anneeForm = new FormGroup({
-      annee: new FormControl('')
+      anneeA: new FormControl(''),
+      societeA: new FormControl(''),
+    })
+    this.societeForm = new FormGroup({
+      anneeS: new FormControl(''),
+      societeS: new FormControl(''),
     })
     this.dateSelectionnerPresence(this.annee);
     this.societeSelectionnerPresence(this.societe);
@@ -188,7 +194,7 @@ export class PresenceComponent implements OnInit {
         type: "bar",
         height: 380,
         width: 750,
-        stacked: true,
+        stacked: false,
         toolbar: {
           show: false
         },
@@ -212,7 +218,7 @@ export class PresenceComponent implements OnInit {
       plotOptions: {
         bar: {
           horizontal: false,
-          columnWidth: "10px",
+          columnWidth: "50px",
         //  endingShape: "rounded",
         },
       },
@@ -235,7 +241,7 @@ export class PresenceComponent implements OnInit {
       },
     };
     return this.chartOptions4;
-  })
+    })
   }
 
   societeSelectionnerPresence(value){
@@ -285,7 +291,7 @@ export class PresenceComponent implements OnInit {
         type: "bar",
         height: 380,
         width: 750,
-        stacked: true,
+        stacked: false,
         toolbar: {
           show: false
         },
@@ -309,7 +315,7 @@ export class PresenceComponent implements OnInit {
       plotOptions: {
         bar: {
           horizontal: false,
-          columnWidth: "10px",
+          columnWidth: "30px",
         //  endingShape: "rounded",
         },
       },
