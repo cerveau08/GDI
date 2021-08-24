@@ -13,8 +13,6 @@ import { ErrormodalService } from 'src/app/modal/_errormodals';
 })
 export class AttestationpresenceComponent implements OnInit {
 
-  annee;
-  mois;
   checkedList:any;
   selectedAll: any;
   filterForm: FormGroup;
@@ -29,6 +27,9 @@ export class AttestationpresenceComponent implements OnInit {
   user;
   public reqUrl = environment.base_url;
   errorMsg: any;
+  public annee = null;
+  public mois = null;
+  public reference = null;
   ListeMois = [
     {
       id: 1,
@@ -85,16 +86,47 @@ export class AttestationpresenceComponent implements OnInit {
 
   ngOnInit() {
     this.user = localStorage.getItem('user');
-    this.gty(this.page);
+    
     this.filterForm = new FormGroup({
       mois: new FormControl(''),
-      annee: new FormControl('')
+      annee: new FormControl('') ,
+      reference: new FormControl('')
+
+
     });
+    this.gty(this.page);
   }
+
   gty(page: any){
-    this.http.get(this.reqUrl + `/listeAttestation`).subscribe((data: any) => 
-      this.dataAttest =  data.data[0],
-    )
+
+    if(this.filterForm.value.mois) {
+      this.mois = this.filterForm.value.mois;
+    }
+    if(this.filterForm.value.reference) {
+      this.reference = this.filterForm.value.reference;
+    }
+    if(this.filterForm.value.annee) {
+      this.annee = this.filterForm.value.annee; 
+    }
+
+    console.log(this.filterForm.value);
+
+
+    // this.http.get(this.reqUrl + `/listeAttestation`).subscribe((data: any) => 
+    //   this.dataAttest =  data.data[0],
+    // )
+
+
+    this.otherService.listAttestationFilter(page,this.itemsPerPage, this.mois, this.annee, this.reference).subscribe((data: any) => {
+      this.dataAttest =  data.data[0];
+        this.totalItems = data.total;
+       console.log(this.dataAttest);
+      }, error=> {
+      this.errorMsg = error;
+      this.errormodalService.open('error-modal-1');
+      console.log(error)
+    })
+
   }
   selectAll() {
     for (var i = 0; i < this.dataAttest.length; i++) {

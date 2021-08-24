@@ -17,14 +17,11 @@ import { Router } from '@angular/router';
 })
 export class ListeattestationComponent implements OnInit {
 
-  annee;
-  mois;
   checkedList:any;
   selectedAll: any;
   filterForm: FormGroup;
   result;
   data: any;
-  reference;
   currentDate = new Date().getFullYear();
   successMsg;
   filterterm: string;
@@ -88,6 +85,9 @@ export class ListeattestationComponent implements OnInit {
   ];
   scrHeight:any;
   scrWidth:any;
+  public annee = null;
+  public mois = null;
+  public reference = null;
   @ViewChild('htmlData', { static: true }) htmlData:ElementRef;
   @HostListener('window:resize', ['$event'])
   getScreenSize(event?) {
@@ -117,22 +117,47 @@ export class ListeattestationComponent implements OnInit {
     ];
 
     this.user = localStorage.getItem('user');
-    this.gty(this.page);
+    
     this.filterForm = new FormGroup({
       mois: new FormControl(''),
       annee: new FormControl(''),
       reference: new FormControl ('')
     });
+    this.gty(this.page);
   }
 
   gty(page: any){
-    this.http.get(this.reqUrl + `/listeAttestation?page=${page}&limit=${this.itemsPerPage}`).subscribe(
-      (data: any) => {
-        this.dataAttest =  data.data[0];
+
+    if(this.filterForm.value.mois) {
+      this.mois = this.filterForm.value.mois;
+    }
+    if(this.filterForm.value.reference) {
+      this.reference = this.filterForm.value.reference;
+    }
+    if(this.filterForm.value.annee) {
+      this.annee = this.filterForm.value.annee; 
+    }
+
+    console.log(this.filterForm.value);
+
+    // this.http.get(this.reqUrl + `/listeAttestation?page=${page}&limit=${this.itemsPerPage}`).subscribe(
+    //   (data: any) => {
+    //     this.dataAttest =  data.data[0];
+    //     this.totalItems = data.total;
+    //     console.log(this.dataAttest);
+    //   }
+    // )
+
+    this.otherService.listAttestationFilter(page,this.itemsPerPage, this.mois, this.annee, this.reference).subscribe((data: any) => {
+      this.dataAttest =  data.data[0];
         this.totalItems = data.total;
-        console.log(this.dataAttest);
-      }
-    )
+       console.log(this.dataAttest);
+      }, error=> {
+      this.errorMsg = error;
+      this.errormodalService.open('error-modal-1');
+      console.log(error)
+    })
+
   }
 
   openDetail(data) {

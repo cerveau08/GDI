@@ -321,6 +321,17 @@ addAgence(data) {
     return this.http.get<any>(this.reqUrl + '/interimSousContrat', {params: data});
   }
 
+  listAttestationFilter(page,limit, mois, annee, reference) {
+    const data = {page: page, limit: limit, mois: mois,  annee: annee ,reference: reference};
+    return this.http.get<any>(this.reqUrl + '/listeAttestation', {params: data});
+  }
+
+
+  listArchivedFilter(page, limit) {
+    const data = {page: page, limit: limit};
+    return this.http.get<any>(this.reqUrl + '/listArchived', {params: data});
+  }
+
   getInterimaireFinContrat(page, limit, matricule, poste, agence, societe, direction) {
     const data = {page: page, limit: limit, matricule: matricule, poste: poste, agence: agence, societe: societe, direction: direction};
     return this.http.get<any>(this.reqUrl + '/interimFinContrat', {params: data});

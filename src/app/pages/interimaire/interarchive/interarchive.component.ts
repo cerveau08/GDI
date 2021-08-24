@@ -28,7 +28,7 @@ export class InterarchiveComponent implements OnInit {
   dateFin;
   user;
   showupdate;
-  dataFinContrat;
+  dataInterArchiv;
   mois: any = [
     'Janvier', 
     'Février', 
@@ -55,6 +55,10 @@ export class InterarchiveComponent implements OnInit {
   scrHeight:any;
   scrWidth:any;
   errorMsg: any;
+  public prenom = null;
+  public nom = null;
+  public email = null;
+  public agence = null;
   @HostListener('window:resize', ['$event'])
   getScreenSize(event?) {
         this.scrHeight = window.innerHeight;
@@ -90,10 +94,8 @@ export class InterarchiveComponent implements OnInit {
     }
 
     this.filterForm = new FormGroup({
-      prenom: new FormControl(''),
-      nom: new FormControl(''),
-      email: new FormControl(''),
-      agence: new FormControl(''),
+      admissible: new FormControl('')
+      
     });
 
     this.demandeForm = new FormGroup({
@@ -107,16 +109,27 @@ export class InterarchiveComponent implements OnInit {
 
 
   gty(page: any){
-    this.http.get(this.reqUrl + `/listArchived?page=${page}&limit=${this.itemsPerPage}`).subscribe((data: any) => {
-      this.dataFinContrat =  data.data;
+
+    if(this.filterForm.value.mois) {
+      this.prenom = this.filterForm.value.prenom;
+    }
+    
+
+    console.log(this.filterForm.value);
+
+    this.otherService.listArchivedFilter(page, this.itemsPerPage).subscribe((data: any) => {
+      this.dataInterArchiv =  data.data;
       this.totalItems = data.total;
       console.log(data);
-      
-    }, error=> {
-      this.errorMsg = error;
-      this.errormodalService.open('error-modal-1');
-      console.log(error)
+      }, error=> {
+        this.errorMsg = error;
+        this.errormodalService.open('error-modal-1');
+        console.log(error)
     })
+
+
+
+
   }
   openDetail(data) {
     this.router.navigate(['/accueil/detailinter'], {
@@ -127,55 +140,7 @@ export class InterarchiveComponent implements OnInit {
   }
 
 
-  onSubmit() {
-    const info = new FormData();
-    this.filterForm.value.prenom = ""?info.append("prenom", this.filterForm.value.prenom):'';
-    this.filterForm.value.nom = ""?info.append("nom", this.filterForm.value.nom):'';
-    this.filterForm.value.email != ""?info.append("email", this.filterForm.value.email):'';
-    this.filterForm.value.agence != ""?info.append("agence", this.filterForm.value.agence):'';   
-
-    console.log(info);
-  }
-
-  // this.otherService.listArchive(info).subscribe(
-  //   data => {
-  //     console.log(data);
-  //     this.donneesSearch = data;
-  //     // this.successRequest = this.donneesSearch.status
-  //     if(this.successRequest == true) {
-  //       this.route.navigate(['/accueil/detailinter'], {
-  //         queryParams: {
-  //           user: JSON.stringify(this.donneesSearch['data'][0].id)
-  //         }
-  //       });
-  //     } else {
-  //       this.messageError = this.donneesSearch.message;
-  //     }
-  //   }
-  // )
-
-  openModal(id: string) {
-    this.modalService.open(id);
-  }
-
-  closeModal(id: string) {
-    this.modalService.close(id);
-  }
-
-  /*getcolor(p) {
-    let color = "#ff0000"
-    let d = new Date();
-    var g1 = new Date(d.getFullYear(), d.getMonth()+1, d.getDate());
-    let now = this.datepipe.transform(g1, 'yyyyMMdd');
-    let dates = this.datepipe.transform(p.fin_contrat, 'yyyyMMdd');
-    if(now > dates) {
-      color = "#ff0000"
-    } else {
-      color = "#000000"
-    }  
-    return color; 
-  } 
-  */
+ 
   getcolor1(p) {
     let color = "#10a900"
   
