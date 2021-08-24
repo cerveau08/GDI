@@ -15,14 +15,11 @@ import { OthersService } from 'src/app/services/others.service';
 })
 export class ListeattestationComponent implements OnInit {
 
-  annee;
-  mois;
   checkedList:any;
   selectedAll: any;
   filterForm: FormGroup;
   result;
   data: any;
-  reference;
   currentDate = new Date().getFullYear();
   successMsg;
   filterterm: string;
@@ -86,6 +83,9 @@ export class ListeattestationComponent implements OnInit {
   ];
   scrHeight:any;
   scrWidth:any;
+  public annee = null;
+  public mois = null;
+  public reference = null;
   @HostListener('window:resize', ['$event'])
   getScreenSize(event?) {
         this.scrHeight = window.innerHeight;
@@ -116,52 +116,47 @@ export class ListeattestationComponent implements OnInit {
     ];
 
     this.user = localStorage.getItem('user');
-    this.gty(this.page);
+    
     this.filterForm = new FormGroup({
       mois: new FormControl(''),
       annee: new FormControl(''),
       reference: new FormControl ('')
     });
+    this.gty(this.page);
   }
-
-
-  onSubmit() {
-    const info = new FormData();
-    this.demandeForm.value.prenom = ""?info.append("prenom", this.demandeForm.value.prenom):'';
-    this.demandeForm.value.nom = ""?info.append("nom", this.demandeForm.value.nom):'';
-    this.demandeForm.value.email != ""?info.append("email", this.demandeForm.value.email):'';
-    this.demandeForm.value.matricule != ""?info.append("matricule", this.demandeForm.value.matricule):'';
-    this.demandeForm.value.direction != ""?info.append("direction", this.demandeForm.value.direction):'';
-    this.demandeForm.value.service != ""?info.append("service", this.demandeForm.value.service):'';
-    this.demandeForm.value.agence != ""?info.append("agence", this.demandeForm.value.agence):'';
-    this.demandeForm.value.departement != ""?info.append("departement", this.demandeForm.value.departement):'';
-    this.demandeForm.value.annee != ""?info.append("annee", this.demandeForm.value.annee):'';
-    this.demandeForm.value.poste != ""?info.append("poste", this.demandeForm.value.poste):'';
-  }
-    
 
   gty(page: any){
 
-    // if (this.filterForm.value.reference == undefined) {
-    //   this.filterForm.patchValue({reference: ''});
-    // }
-    // if(this.filterForm.value.mois) {
-    //   this.mois = this.filterForm.value.mois;
-    // }
-    // if(this.filterForm.value.annee) {
-    //   this.annee = this.filterForm.value.annee;
-    // }
-    // if(this.filterForm.value.reference) {
-    //   this.reference = this.filterForm.value.reference;
-    // }
+    if(this.filterForm.value.mois) {
+      this.mois = this.filterForm.value.mois;
+    }
+    if(this.filterForm.value.reference) {
+      this.reference = this.filterForm.value.reference;
+    }
+    if(this.filterForm.value.annee) {
+      this.annee = this.filterForm.value.annee; 
+    }
 
-    this.http.get(this.reqUrl + `/listeAttestation?page=${page}&limit=${this.itemsPerPage}`).subscribe(
-      (data: any) => {
-        this.dataAttest =  data.data[0];
+    console.log(this.filterForm.value);
+
+    // this.http.get(this.reqUrl + `/listeAttestation?page=${page}&limit=${this.itemsPerPage}`).subscribe(
+    //   (data: any) => {
+    //     this.dataAttest =  data.data[0];
+    //     this.totalItems = data.total;
+    //     console.log(this.dataAttest);
+    //   }
+    // )
+
+    this.otherService.listAttestationFilter(page,this.itemsPerPage, this.mois, this.annee, this.reference).subscribe((data: any) => {
+      this.dataAttest =  data.data[0];
         this.totalItems = data.total;
-        console.log(this.dataAttest);
-      }
-    )
+       console.log(this.dataAttest);
+      }, error=> {
+      this.errorMsg = error;
+      this.errormodalService.open('error-modal-1');
+      console.log(error)
+    })
+
   }
   
   openErrorModal(id: string) {

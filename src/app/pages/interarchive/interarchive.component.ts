@@ -20,6 +20,7 @@ export class InterarchiveComponent implements OnInit {
   public datas: any;
   pager: any = {};
   id;
+  page = 1;
   filterterm: string;
   filterForm: FormGroup;
   public p: any;
@@ -28,7 +29,7 @@ export class InterarchiveComponent implements OnInit {
   dateFin;
   user;
   showupdate;
-  dataFinContrat;
+  dataInterArchiv;
   mois: any = [
     'Janvier', 
     'Février', 
@@ -55,6 +56,10 @@ export class InterarchiveComponent implements OnInit {
   scrHeight:any;
   scrWidth:any;
   errorMsg: any;
+  public prenom = null;
+  public nom = null;
+  public email = null;
+  public agence = null;
   @HostListener('window:resize', ['$event'])
   getScreenSize(event?) {
         this.scrHeight = window.innerHeight;
@@ -107,16 +112,51 @@ export class InterarchiveComponent implements OnInit {
 
 
   gty(page: any){
-    this.http.get(this.reqUrl + `/listArchived?page=${page}&limit=${this.itemsPerPage}`).subscribe((data: any) => {
-      this.dataFinContrat =  data.data;
+
+    if(this.filterForm.value.mois) {
+      this.prenom = this.filterForm.value.prenom;
+    }
+    if(this.filterForm.value.nom) {
+      this.nom = this.filterForm.value.nom;
+    }
+    if(this.filterForm.value.prenom) {
+      this.prenom = this.filterForm.value.prenom;
+    }
+    if(this.filterForm.value.email) {
+      this.email = this.filterForm.value.email; 
+    }
+    if(this.filterForm.value.agence) {
+      this.agence = this.filterForm.value.agence; 
+    }
+
+    console.log(this.filterForm.value);
+
+
+    // this.http.get(this.reqUrl + `/listArchived?page=${page}&limit=${this.itemsPerPage}`).subscribe((data: any) => {
+    //   this.dataFinContrat =  data.data;
+    //   this.totalItems = data.total;
+    //   console.log(data);
+      
+    // }, error=> {
+    //   this.errorMsg = error;
+    //   this.errormodalService.open('error-modal-1');
+    //   console.log(error)
+    // })
+
+
+    this.otherService.listArchivedFilter(page, this.itemsPerPage, this.prenom, this.nom, this.email, this.agence).subscribe((data: any) => {
+      this.dataInterArchiv =  data.data;
       this.totalItems = data.total;
       console.log(data);
-      
-    }, error=> {
-      this.errorMsg = error;
-      this.errormodalService.open('error-modal-1');
-      console.log(error)
+      }, error=> {
+        this.errorMsg = error;
+        this.errormodalService.open('error-modal-1');
+        console.log(error)
     })
+
+
+
+
   }
   openDetail(data) {
     this.router.navigate(['/accueil/detailinter'], {
@@ -127,15 +167,15 @@ export class InterarchiveComponent implements OnInit {
   }
 
 
-  onSubmit() {
-    const info = new FormData();
-    this.filterForm.value.prenom = ""?info.append("prenom", this.filterForm.value.prenom):'';
-    this.filterForm.value.nom = ""?info.append("nom", this.filterForm.value.nom):'';
-    this.filterForm.value.email != ""?info.append("email", this.filterForm.value.email):'';
-    this.filterForm.value.agence != ""?info.append("agence", this.filterForm.value.agence):'';   
+  // onSubmit() {
+  //   const info = new FormData();
+  //   this.filterForm.value.prenom = ""?info.append("prenom", this.filterForm.value.prenom):'';
+  //   this.filterForm.value.nom = ""?info.append("nom", this.filterForm.value.nom):'';
+  //   this.filterForm.value.email != ""?info.append("email", this.filterForm.value.email):'';
+  //   this.filterForm.value.agence != ""?info.append("agence", this.filterForm.value.agence):'';   
 
-    console.log(info);
-  }
+  //   console.log(info);
+  // }
 
   // this.otherService.listArchive(info).subscribe(
   //   data => {
