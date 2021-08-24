@@ -184,7 +184,7 @@ export class EffectifComponent implements OnInit {
     this.otherService.statInterByYear(value).subscribe(
       data => {
         this.dataYear = data;
-        this.dataStatEffectifAnnee = this.dataYear.data[0];
+        this.dataStatEffectifAnnee = this.dataYear.data;
         console.log(this.dataStatEffectifAnnee);
         if(value == null) {
           this.donneeAbscisse = this.dataStatEffectifAnnee.map(valueOfDirection => valueOfDirection.annee);
@@ -282,7 +282,7 @@ export class EffectifComponent implements OnInit {
       data => {
       console.log(data);
       this.data = data;
-      this.dataStatEffectifSociete = this.data.data[0];
+      this.dataStatEffectifSociete = this.data.data;
       console.log(this.dataStatEffectifSociete);
       this.directions = this.dataStatEffectifSociete.map(valueOfDirection => valueOfDirection.direction);
       this.hommes = this.dataStatEffectifSociete.map(valueOfHomme => valueOfHomme.homme);
