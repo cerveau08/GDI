@@ -227,12 +227,16 @@ export class AddinterComponent implements OnInit {
         if(this.isBlackliste == false) {
           if(this.dataMatriculeInter.data) {
             console.log(this.dataMatriculeInter.data);
-            this.router.navigate(['/accueil/detailinter'], {
-              queryParams: {
-                user: JSON.stringify(this.dataMatriculeInter.data.interimaire.id)
-              }
-            });
-          } 
+            if(this.dataMatriculeInter.data.interimaire) {
+              this.router.navigate(['/accueil/detailinter'], {
+                queryParams: {
+                  user: JSON.stringify(this.dataMatriculeInter.data.interimaire.id)
+                }
+              });
+            } else {
+              this.isAdmissible = true;
+            }
+          }
           if(this.dataMatriculeInter.message == 'Interimaire inexistant!') {
             this.isAdmissible = true;
           }

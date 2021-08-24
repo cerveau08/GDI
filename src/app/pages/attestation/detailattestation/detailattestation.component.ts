@@ -26,7 +26,7 @@ export class DetailattestationComponent implements OnInit {
   public agence;
   public departement;
   public service;
-  public societe;
+  public societeLibelle;
   public direction;
   public reference;
   public dateDebut;
@@ -38,6 +38,7 @@ export class DetailattestationComponent implements OnInit {
   public mois_periode;
   public nombreJourAbsence;
   public posteManager;
+  public dataAttestation;
   errorMsg: any;
   constructor(private activeroute: ActivatedRoute,
               private modalService: ModalService,
@@ -51,10 +52,27 @@ export class DetailattestationComponent implements OnInit {
       this.item = JSON.parse(params["attestation"]);
       console.log(this.item);
       this.otherService.getOneAttestation(this.item).subscribe(
-          data =>{
-            console.log(data.data[0]);
-            
-            
+        data =>{
+          console.log(data.data[0]);
+          this.dataAttestation = data.data[0];
+          this.nom = this.dataAttestation.nom;
+          this.prenom = this.dataAttestation.prenom;
+          this.departement = this.dataAttestation.departement;
+          this.service = this.dataAttestation.service;
+          this.reference = this.dataAttestation.reference;
+          this.matricule = this.dataAttestation.matricule;
+          this.etat = this.dataAttestation.etat;
+          this.posteManager = this.dataAttestation.posteManager;
+          this.prenom_manager = this.dataAttestation.prenom_manager;
+          this.nom_manager = this.dataAttestation.nom_manager;
+          this.nombreJourAbsence = this.dataAttestation.nombreJourAbsence;
+          this.matricule_manager = this.dataAttestation.matricule_manager;
+          this.societeLibelle = this.dataAttestation.societeLibelle;
+          this.annee_periode = this.dataAttestation.annee_periode;
+          this.mois_periode = this.dataAttestation.mois_periode;
+          this.dateDebut = this.dataAttestation.dateDebut;
+          this.dateFin = this.dataAttestation.dateFin;
+          this.agence = this.dataAttestation.agence;
         },
         error=> {
           this.errorMsg = error;
@@ -66,11 +84,12 @@ export class DetailattestationComponent implements OnInit {
     
   }
   ngOnInit() {
+    console.log(this.prenom);
     
     
   }
 
-  public openPDF():void {
+  public openPDF(prenom, nom):void {
     let data = document.getElementById('htmlData');
     html2canvas(data).then(canvas => {
       let fileWidth = 208;
@@ -79,7 +98,7 @@ export class DetailattestationComponent implements OnInit {
       let pdf = new jsPDF('p', 'mm', 'a4');
       let position = 0;
       pdf.addImage(fileuri, 'PNG', 0, position, fileWidth, fileHeight)
-      pdf.save('angular-demo.pdf');
+      pdf.save('Attestation-présence-' + prenom+ '-' + nom + '.pdf');
     });     
   }
   

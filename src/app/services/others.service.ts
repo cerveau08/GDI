@@ -292,7 +292,7 @@ addAgence(data) {
   }
 
   getLastNotification(): Observable<any> {
-    return this.http.get<any>(this.reqUrl + '/latestNotifications');
+    return this.http.get<any>(this.reqUrl + '/latestNotification');
   }
   statInterPourcent(id_societe: number){
     return this.http.get<any>(`${this.reqUrl}/statInterimairePourcent/${id_societe}`);
