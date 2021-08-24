@@ -116,8 +116,6 @@ export class DetailagenceComponent implements OnInit {
           this.data = data;
           console.log(data);
           this.dataTotalAgence = this.data;
-          //this.nom = this.dataTotalAgence[0].nom;
-          
           this.total = this.dataTotalAgence.total;
           this.actifs = this.dataTotalAgence.actifs;
           this.inactifs = this.dataTotalAgence.inactifs;

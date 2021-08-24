@@ -177,8 +177,8 @@ export class StatcategorieComponent implements OnInit {
         this.dataStatEffectifAnnee = this.dataYear.data;
         console.log(this.dataStatEffectifAnnee);
           this.donneeAbscisse = this.dataStatEffectifAnnee.map(valueOfDirection => valueOfDirection.categorie.libelle);
-          this.nouveau = this.dataStatEffectifAnnee.map(valueOfNouveau => valueOfNouveau.hommes);
-          this.fini = this.dataStatEffectifAnnee.map(valueOfFini => valueOfFini.femmes);
+          this.hommes = this.dataStatEffectifAnnee.map(valueOfNouveau => valueOfNouveau.hommes);
+          this.femmes = this.dataStatEffectifAnnee.map(valueOfFini => valueOfFini.femmes);
         this.axex = this.donneeAbscisse;
         console.log(this.axex);
         
@@ -189,12 +189,12 @@ export class StatcategorieComponent implements OnInit {
           ],
           series: [
             {
-              name: "Finis",
-              data: this.fini
+              name: "Femmes",
+              data: this.femmes
             },
             {
-              name: "Nouveaux",
-              data: this.nouveau
+              name: "Hommes",
+              data: this.hommes
             }
           ],
           chart: {
