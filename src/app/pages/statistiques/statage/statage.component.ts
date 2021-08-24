@@ -37,13 +37,15 @@ export class StatageComponent implements OnInit {
   effectif;
   hommes: any;
   femmes: any;
-  nouveau; 
-  fini;
+  homme; 
+  femme;
   total;
   show = 1;
   color: any;
   public datas: any;
   public diagrammes: any;
+  dataStatEffectifGenre: any;
+  age;
   jan: any;
   pager: any = {};
   filterterm: string;
@@ -72,6 +74,7 @@ export class StatageComponent implements OnInit {
   public chartOptions1: Partial<ChartOptions>;
   public chartOptions2: Partial<ChartOptions>;
   successMsg: any;
+  directs: any;
   constructor(
               private otherService: OthersService) {
     this.getScreenSize();
@@ -96,6 +99,93 @@ export class StatageComponent implements OnInit {
     this.dateSelectionner(this.annee, this.societe);
     
   }
+  ngOnDestroy() {
+    console.log(this.intervalId);
+    
+    clearInterval(this.intervalId);
+  }
+
+  //deuxieme
+  societeSelectionner(valueSociete, valueAnnee){
+    this.otherService.statInterAge(valueSociete, valueAnnee).subscribe(
+      data => {
+        console.log(data);
+        this.data = data;
+        this.dataStatEffectifGenre = this.data.data[0];
+    this.directs = this.dataStatEffectifGenre;
+    this.age = this.dataStatEffectifGenre.map(valueOfDirection => valueOfDirection.age);
+    this.hommes = this.dataStatEffectifGenre.map(valueOfHomme => valueOfHomme.homme);
+    this.femmes = this.dataStatEffectifGenre.map(valueOfFemmes => valueOfFemmes.femme);
+    
+    this.chartOptions1 = {
+      colors: [
+        "#009393",
+        "#ff7900"
+      ],
+      series: [
+        {
+          name: "Hommes",
+          data: this.hommes
+        },
+        {
+          name: "Femmes",
+          data: this.femmes
+        }
+      ],
+      chart: {
+        type: "bar",
+        height: 380,
+        width: 750,
+        stacked: false,
+        toolbar: {
+          show: false
+        },
+        zoom: {
+          enabled: false
+        }
+      },
+      responsive: [
+        {
+          breakpoint: 480,
+          options: {
+            legend: {
+              show: false,
+              position: "bottom",
+              offsetX: -10,
+              offsetY: 0
+            }
+          }
+        }
+      ],
+      plotOptions: {
+        bar: {
+          horizontal: false,
+          columnWidth: "50px",
+        //  endingShape: "rounded",
+        },
+      },
+      dataLabels: {
+        enabled: false,
+        style: {
+          colors: ['#f3f4f5', '#fff']
+        }
+      },
+      xaxis: {
+        type: "category",
+        categories: 
+          this.age
+      },
+      legend: {
+        show: false,
+      },
+      fill: {
+        opacity: 4,
+      },
+    };
+    return this.chartOptions1;
+  },
+  )
+}
 
   exportStatInterimaireByYear() {
     console.log(this.annee);
@@ -154,8 +244,8 @@ export class StatageComponent implements OnInit {
         this.dataStatEffectifAnnee = this.dataYear.data;
         console.log(this.dataStatEffectifAnnee);
           this.donneeAbscisse = this.dataStatEffectifAnnee.map(valueOfDirection => valueOfDirection.tranche);
-          this.nouveau = this.dataStatEffectifAnnee.map(valueOfNouveau => valueOfNouveau.homme);
-          this.fini = this.dataStatEffectifAnnee.map(valueOfFini => valueOfFini.femme);
+          this.homme = this.dataStatEffectifAnnee.map(valueOfHomme => valueOfHomme.homme);
+          this.femme = this.dataStatEffectifAnnee.map(valueOfFemme => valueOfFemme.femme);
  
         this.axex = this.donneeAbscisse;
         console.log(this.axex);
@@ -167,12 +257,12 @@ export class StatageComponent implements OnInit {
           ],
           series: [
             {
-              name: "Finis",
-              data: this.fini
+              name: "Hommes",
+              data: this.homme
             },
             {
-              name: "Nouveaux",
-              data: this.nouveau
+              name: "Femmes",
+              data: this.femme
             }
           ],
           chart: {

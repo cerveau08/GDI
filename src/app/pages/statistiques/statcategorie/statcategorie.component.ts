@@ -62,6 +62,8 @@ export class StatcategorieComponent implements OnInit {
   date = new Date();
   annee = new Date().getFullYear();
   dataStatEffectifAnnee: any;
+  dataStatEffectifGenre: any;
+  categorie;
   dataStatEffectifSociete;
   dataStatistique;
   dataSociete;
@@ -70,6 +72,7 @@ export class StatcategorieComponent implements OnInit {
   public chartOptions1: Partial<ChartOptions>;
   public chartOptions2: Partial<ChartOptions>;
   successMsg: any;
+  directs: any;
   constructor(
               private otherService: OthersService) {
     this.getScreenSize();
@@ -179,8 +182,8 @@ export class StatcategorieComponent implements OnInit {
         this.dataStatEffectifAnnee = this.dataYear.data;
         console.log(this.dataStatEffectifAnnee);
           this.donneeAbscisse = this.dataStatEffectifAnnee.map(valueOfDirection => valueOfDirection.categorie.libelle);
-          this.nouveau = this.dataStatEffectifAnnee.map(valueOfNouveau => valueOfNouveau.hommes);
-          this.fini = this.dataStatEffectifAnnee.map(valueOfFini => valueOfFini.femmes);
+          this.hommes = this.dataStatEffectifAnnee.map(valueOfNouveau => valueOfNouveau.hommes);
+          this.femmes = this.dataStatEffectifAnnee.map(valueOfFini => valueOfFini.femmes);
         this.axex = this.donneeAbscisse;
         console.log(this.axex);
         
@@ -191,12 +194,12 @@ export class StatcategorieComponent implements OnInit {
           ],
           series: [
             {
-              name: "Finis",
-              data: this.fini
+              name: "Femmes",
+              data: this.femmes
             },
             {
-              name: "Nouveaux",
-              data: this.nouveau
+              name: "Hommes",
+              data: this.hommes
             }
           ],
           chart: {
@@ -347,5 +350,87 @@ export class StatcategorieComponent implements OnInit {
     //   console.log(error)
     // })
   }
+
+  //deuxieme
+  societeSelectionner(valueSociete, valueAnnee){ 
+    this.otherService.statInterCategorie(valueSociete, valueAnnee).subscribe(
+      data => {
+        console.log(data);
+        this.data = data;
+        this.dataStatEffectifGenre = this.data.data;
+    this.directs = this.dataStatEffectifGenre;
+    this.categorie = this.dataStatEffectifGenre.map(valueOfDirection => valueOfDirection.categorie.libelle);
+    this.hommes = this.dataStatEffectifGenre.map(valueOfHomme => valueOfHomme.hommes);
+    this.femmes = this.dataStatEffectifGenre.map(valueOfFemmes => valueOfFemmes.femmes);
+    
+    this.chartOptions1 = {
+      colors: [
+        "#009393",
+        "#ff7900"
+      ],
+      series: [
+        {
+          name: "Hommes",
+          data: this.hommes
+        },
+        {
+          name: "Femmes",
+          data: this.femmes
+        }
+      ],
+      chart: {
+        type: "bar",
+        height: 380,
+        width: 750,
+        stacked: false,
+        toolbar: {
+          show: false
+        },
+        zoom: {
+          enabled: false
+        }
+      },
+      responsive: [
+        {
+          breakpoint: 480,
+          options: {
+            legend: {
+              show: false,
+              position: "bottom",
+              offsetX: -10,
+              offsetY: 0
+            }
+          }
+        }
+      ],
+      plotOptions: {
+        bar: {
+          horizontal: false,
+          columnWidth: "50px",
+        //  endingShape: "rounded",
+        },
+      },
+      dataLabels: {
+        enabled: false,
+        style: {
+          colors: ['#f3f4f5', '#fff']
+        }
+      },
+      xaxis: {
+        type: "category",
+        categories: 
+          this.categorie
+      },
+      legend: {
+        show: false,
+      },
+      fill: {
+        opacity: 4,
+      },
+    };
+    return this.chartOptions1;
+  },
+  )
+}
 
 }

@@ -116,8 +116,6 @@ export class DetailagenceComponent implements OnInit {
           this.data = data;
           console.log(data);
           this.dataTotalAgence = this.data;
-          //this.nom = this.dataTotalAgence[0].nom;
-          
           this.total = this.dataTotalAgence.total;
           this.actifs = this.dataTotalAgence.actifs;
           this.inactifs = this.dataTotalAgence.inactifs;
@@ -216,6 +214,12 @@ export class DetailagenceComponent implements OnInit {
     })
   }
 
+  public saveFonction(e): void {
+    let libelle = e.target.value;
+    let list = this.listeFonction.filter(x => x.libelle === libelle)[0];
+    console.log(list.libelle);
+    this.userAgentForm.patchValue({fonction: list.libelle});
+  }
   
   //ajout user
 

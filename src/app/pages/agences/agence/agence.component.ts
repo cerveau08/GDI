@@ -1,10 +1,10 @@
 import { OthersService } from '../../../services/others.service';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgxFileSaverService } from '@clemox/ngx-file-saver';
 import { DataService } from 'src/app/service/data.service';
-import { ModalService } from 'src/app/modal/_modal/modal.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ModalService } from 'src/app/modal/_modal';
 import { ErrormodalService } from 'src/app/modal/_errormodals';
 
 @Component({
@@ -47,23 +47,31 @@ export class AgenceComponent implements OnInit {
   dataContrat;
   data;
   userAgence;
+  userAgentForm: FormGroup;
   dataTotalAgence;
   total;
   actifs;
   cnidg;
   inactifs;
+  fichierPhoto;
+  successMsg;
   viewer = 'google';
   DemoDoc1="https://file-examples.com/wp-content/uploads/2017/02/file-sample_100kB.doc"
   DemoDoc2="https://www.le.ac.uk/oerresources/bdra/html/resources/example.txt" 
   errorMsg: any;
+  imageName: any;
+  image: string | ArrayBuffer;
+  dataprofils: any;
+  listeFonction: any;
 
   constructor(private fileSaver: NgxFileSaverService,
     private modalService: ModalService,
     private errormodalService: ErrormodalService,
-    private dataService: DataService,
+    private route: Router,
     private otherService: OthersService) { }
 
   ngOnInit() {
+    //detail agence
     this.agenceForm = new FormGroup({
       nom: new FormControl (''),
       responsable: new FormControl(''),
@@ -77,15 +85,22 @@ export class AgenceComponent implements OnInit {
       contrat: new FormControl(''),
       cnidg: new FormControl (''),
     });
-    this.userAgenceForm = new FormGroup({
-      prenom: new FormControl (''),
-      nom: new FormControl(''),
-      poste: new FormControl (''),
-      email: new FormControl(''),
-      mobile: new FormControl (''),
-      adresse: new FormControl(''),
-      photo: new FormControl (''),
-    });
+
+    //ajout user
+    this.userAgentForm = new FormGroup({
+      prenomUser: new FormControl('', Validators.required,),
+      nomUser: new FormControl('', Validators.required,),
+      emailUser: new FormControl('', [
+        Validators.required,
+        Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
+      ]),
+      telephoneUser: new FormControl('', Validators.required,),
+      fonction: new FormControl('', Validators.required,),
+      login: new FormControl(''),
+      profil: new FormControl(''),
+      avatarUser: new FormControl(''),
+      agenceId: new FormControl(''),
+    })
     this.item = JSON.parse(localStorage.getItem('currentUser'));
     console.log(this.item.data.agence)
     this.user = localStorage.getItem('user');
@@ -126,16 +141,12 @@ export class AgenceComponent implements OnInit {
     );
     this.otherService.getTotalAgenceActifInactif(this.item.data.agence).subscribe(
       data =>{
-        this.dataAgence = data;
-        console.log(data);
-        this.dataTotalAgence = this.dataAgence['data'];
-        console.log(this.dataTotalAgence);
-        this.nom = this.dataTotalAgence[0].nom;
-        console.log(this.nom);
-        
-        this.total = this.dataTotalAgence[0].total;
-        this.actifs = this.dataTotalAgence[0].actifs;
-        this.inactifs = this.dataTotalAgence[0].inactifs;
+        this.data = data;
+          console.log(data);
+          this.dataTotalAgence = this.data;
+          this.total = this.dataTotalAgence.total;
+          this.actifs = this.dataTotalAgence.actifs;
+          this.inactifs = this.dataTotalAgence.inactifs;
       }, error=> {
         this.errorMsg = error;
         this.errormodalService.open('error-modal-1');
@@ -154,6 +165,27 @@ export class AgenceComponent implements OnInit {
         console.log(error)
       })
     
+        //recupere les profils
+    this.otherService.getprofil().subscribe(
+      data => {
+        this.dataprofils = data["data"];
+        console.log(data);
+      }, error=> {
+        this.errorMsg = error;
+        this.errormodalService.open('error-modal-1');
+        console.log(error)
+      }
+    );
+   
+    this.otherService.getFonctions().subscribe(data => this.listeFonction = data.data);
+  
+  }
+
+  public saveFonction(e): void {
+    let libelle = e.target.value;
+    let list = this.listeFonction.filter(x => x.libelle === libelle)[0];
+    console.log(list.libelle);
+    this.userAgentForm.patchValue({fonction: list.libelle});
   }
 
   submitted1() {
@@ -174,8 +206,34 @@ export class AgenceComponent implements OnInit {
     return info;
   }
 
+  //ajout user
+
   ajouterUser() {
-    console.log(this.userAgenceForm.value);
+    const formdata = new FormData(); 
+    formdata.append("prenom",this.userAgentForm.value.prenomUser);
+    formdata.append("nom",this.userAgentForm.value.nomUser);
+    formdata.append("profil",this.userAgentForm.value.profil);
+    formdata.append("fonction",this.userAgentForm.value.fonction);
+    formdata.append("agenceId",this.item);
+    formdata.append("email",this.userAgentForm.value.emailUser);
+    formdata.append("telephone",this.userAgentForm.value.telephoneUser);
+    formdata.append("avatar",this.fichierPhoto);
+    console.log(formdata);
+    console.log(this.userAgentForm.value);
+    this.otherService.addUser(formdata).subscribe(
+      (response) =>{
+        console.log(response)
+        this.data = response;
+        this.successMsg = this.data.status
+        console.log(this.successMsg);
+          this.route.navigate(['/accueil/listeuser']);
+      },
+      error=> {
+        this.errorMsg = error;
+        this.errormodalService.open('error-modal-1');
+        console.log(error)
+      }
+    )
   }
 
   public getContrat() {
@@ -189,17 +247,17 @@ export class AgenceComponent implements OnInit {
   closeModal(id: string) {
     this.modalService.close(id);
   }
-//photo
-  readUrl(event: any) {
-    console.log('readUrl');
-      if (event.target.files && event.target.files[0]) {
-        var reader = new FileReader();
-        reader.onload = (event: any) => {
-          this.url1 = event.target.result;
-        }
-      
-        reader.readAsDataURL(event.target.files[0]);
-      }
+
+  //recuperer image pour add user
+  getphoto(event: any) {
+    this.fichierPhoto = event.target.files[0];
+    this.imageName = this.fichierPhoto.name;
+    let reader = new FileReader();
+    reader.readAsDataURL( this.fichierPhoto);
+    reader.onload= ()=>{
+      this.image= reader.result;
+      console.log(this.image);
+    }
   }
 //contrat
   readUrl1(event: any) {
@@ -211,32 +269,6 @@ export class AgenceComponent implements OnInit {
           this.url2 = event.target.result;
         }
         this.filename2 = event.target.files[0].name;
-        reader.readAsDataURL(event.target.files[0]);
-      }
-  }
-  //cnidg
-  readUrl2(event: any) {
-    console.log('readUrl');
-      if (event.target.files && event.target.files[0]) {
-        var reader = new FileReader();
-      
-        reader.onload = (event: any) => {
-          this.url3 = event.target.result;
-        }
-        this.filename3 = event.target.files[0].name;
-        reader.readAsDataURL(event.target.files[0]);
-      }
-  }
-
-  readUrlUser(event: any) {
-    console.log('readUrl');
-      if (event.target.files && event.target.files[0]) {
-        var reader = new FileReader();
-      
-        reader.onload = (event: any) => {
-          this.urlUser = event.target.result;
-        }
-        this.filenameUser = event.target.files[0].name;
         reader.readAsDataURL(event.target.files[0]);
       }
   }

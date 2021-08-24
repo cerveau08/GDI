@@ -277,6 +277,12 @@ const routes: Routes = [
         path: 'modifevaluer',
         component: ModifEvaluerComponent,
         canActivate: [AuthGuard]
+      },{ path: 'statage',
+      component: StatageComponent,
+        canActivate: [AuthGuard]
+      },{ path: 'statcategorie',
+      component: StatcategorieComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: '',
