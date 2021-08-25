@@ -12,8 +12,11 @@
 .content-text-explication{
   padding-right: 15px;
 }
-.content-row-form{
-  //display: flex;
+.error-require-input-search{
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 11px;
+  color: #ff0000;
 }
 .content-form{
   margin-top: 40px;
@@ -1260,6 +1263,7 @@ button {
         
     }
   }
+  
   .input-search{
     width: 275px;
     height: 20px;

@@ -129,6 +129,10 @@ export class AddinterComponent implements OnInit {
   numeroPiece;
   typePiece;
   societe;
+  videtypePiece = false;
+  videnumeroPiece = false;
+  videtelephone = false;
+  videsociete = false;
   constructor(private fb: FormBuilder,
               private modalService: ModalService,
               private otherService: OthersService,
@@ -228,49 +232,70 @@ export class AddinterComponent implements OnInit {
     this.numeroPiece = this.searchForm.value.numeroPiece;
     this.telephone = this.searchForm.value.telephone;
     this.societe = this.searchForm.value.societe;
-    console.log(this.searchForm.value); 
-    this.otherService.pieceFilter(this.searchForm.value).subscribe(
-      (response) => {
-        console.log(response);
-        this.dataMatriculeInter = response;
-        this.isBlackliste = this.dataMatriculeInter.isBlacklisted
-        if(this.isBlackliste == false) {
-          if(this.dataMatriculeInter.data) {
-            console.log(this.dataMatriculeInter.data);
-            if(this.dataMatriculeInter.data.interimaire) {
-              this.toastr.info('Cette personne existe deja comme interimaire veuillez l\'ajouter un contrat à partir de la page détail intérimaire', 'Information', {
-                timeOut: 10000,
-              });
-              this.router.navigate(['/accueil/detailinter'], {
-                queryParams: {
-                  user: JSON.stringify(this.dataMatriculeInter.data.interimaire.id)
-                }
-              });
-            } else {
+    if(!this.typePiece) {
+      this.videtypePiece = true;
+    } else {
+      this.videtypePiece = false;
+    }
+    if(!this.numeroPiece) {
+      this.videnumeroPiece = true;
+    } else {
+      this.videnumeroPiece = false;
+    }
+    if(!this.telephone) {
+      this.videtelephone = true;
+    } else {
+      this.videtelephone = false;
+    }
+    if(!this.societe) {
+      this.videsociete = true;
+    } else {
+      this.videsociete = false;
+    }
+    if(this.typePiece && this.numeroPiece && this.telephone && this.societe) {
+      this.otherService.pieceFilter(this.searchForm.value).subscribe(
+        (response) => {
+          console.log(response);
+          this.dataMatriculeInter = response;
+          this.isBlackliste = this.dataMatriculeInter.isBlacklisted
+          if(this.isBlackliste == false) {
+            if(this.dataMatriculeInter.data) {
+              console.log(this.dataMatriculeInter.data);
+              if(this.dataMatriculeInter.data.interimaire) {
+                this.toastr.info('Cette personne existe deja comme interimaire veuillez l\'ajouter un contrat à partir de la page détail intérimaire', 'Information', {
+                  timeOut: 10000,
+                });
+                this.router.navigate(['/accueil/detailinter'], {
+                  queryParams: {
+                    user: JSON.stringify(this.dataMatriculeInter.data.interimaire.id)
+                  }
+                });
+              } else {
+                this.toastr.success('Vous pouvez ajouter cette personne comme interimaire', 'Success', {
+                  timeOut: 3000,
+                });
+                this.isAdmissible = true;
+              }
+            }
+            if(this.dataMatriculeInter.message == 'Interimaire inexistant!') {
               this.toastr.success('Vous pouvez ajouter cette personne comme interimaire', 'Success', {
                 timeOut: 3000,
               });
               this.isAdmissible = true;
             }
+          } else if(this.isBlackliste == true) {
+            if(this.dataMatriculeInter.data.personne) {
+              this.prenom = this.dataMatriculeInter.data.personne.prenom;
+              this.nom = this.dataMatriculeInter.data.personne.nom;
+            } else {
+              this.prenom = "cette";
+              this.nom = "personne";
+            }
+            this.openErrorModal('blacklist-modal-1');
           }
-          if(this.dataMatriculeInter.message == 'Interimaire inexistant!') {
-            this.toastr.success('Vous pouvez ajouter cette personne comme interimaire', 'Success', {
-              timeOut: 3000,
-            });
-            this.isAdmissible = true;
-          }
-        } else if(this.isBlackliste == true) {
-          if(this.dataMatriculeInter.data.personne) {
-            this.prenom = this.dataMatriculeInter.data.personne.prenom;
-            this.nom = this.dataMatriculeInter.data.personne.nom;
-          } else {
-            this.prenom = "cette";
-            this.nom = "personne";
-          }
-          this.openErrorModal('blacklist-modal-1');
         }
-      }
-    )
+      );
+    }
   }
   
   get diplome(): FormArray {
