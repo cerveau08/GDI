@@ -1,8 +1,41 @@
 <div class="all-container">
   <div class="all">
     <div *ngIf="!isAdmissible" class="content-search-inter">
+      <div class="content-text-explication">
+        <p class="ajouter">Bien lire avant de faire la recherche</p>
+        <p class="text-explication-libelle">
+          Avant d’ajouter un intérimaire, il faut d’abord faire une recherche sur la 
+          personne que vous devez ajouter comme intérimaire. Vous devez bien remplir 
+          les informations de ces champs. Et voici les différents résultats qu’on peut 
+          avoir après la recherche:
+          <br><br>
+          Si la personne est sur la liste noire de la société: Vous aurez une notification 
+          vous disant que vous ne pouvez pas ajouter cette personne comme intérimaire car 
+          il se trouve sur la liste noire de la société.
+          <br><br>
+          Si la personne ne se trouve pas sur la liste noire et était dans la société que 
+          vous avez sélectionné et a déjà fait 24 mois: Vous serez redirigé sur la page détail 
+          de l’intérimaire et vous pourrez voir ses différents contrats avec la société. 
+          Et vous ne pouvez pas ajouter un autre contrat dans cette société.
+          <br><br>
+          Si la personne ne se trouve pas sur la liste noire et était dans la société que vous 
+          avez sélectionné et n’a pas encore fait 24 mois: Vous serez redirigé sur la page détail 
+          de l’intérimaire et vous pourrez voir ses différents contrats avec la société. Et vous 
+          pouvez ajouter un autre contrat dans cette société en cliquant sur le bouton ajouter 
+          un contrat.
+          <br><br>
+          Si la personne ne se trouve pas sur la liste noire et n'est pas dans la société que 
+          vous avez sélectionné mais dans une autre société, Vous serez redirigé sur la page 
+          détail de l’intérimaire et vous pourrez voir ses différents contrats dans la société 
+          qu’elle était. Et vous pouvez ajouter un autre contrat dans la société sélectionnée 
+          sur la recherche en cliquant sur le bouton ajouter un contrat.
+          <br><br>
+          Si la personne ne se trouve pas sur la liste noire et n’a jamais eu de contrat avec 
+          aucune société, alors vous serez redirigé sur le formulaire pour l’ajouter comme intérimaire.
+        </p>
+      </div>
       <div [formGroup]="searchForm" class="content-form-search">
-        <p class="ajouter">Rechercher Interimaire</p>
+        <p class="ajouter">Rechercher un interimaire</p>
         <div class="content-form">
           <div class="content-row-form">
             <div class="content-input">
@@ -51,19 +84,6 @@
             </p>
           </div>
         </div>
-      </div>
-      <div class="content-text-explication">
-        <p class="text-explication-head">Explication</p>
-        <p class="text-explication-libelle">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-          Quam, magni! Iste at ad obcaecati iure totam tempore repellat, 
-          atque optio error dicta porro, molestiae asperiores? Laboriosam 
-          <br><br>
-          porro esse ab assumenda. ipsum dolor sit amet consectetur adipisicing
-          elit. Blanditiis amet beatae, facilis dicta non, enim eos veritatis
-          autem vel at quae quam quibusdam? Distinctio ipsum magnam pariatur
-          impedit reprehenderit quod.
-        </p>
       </div>
     </div>
     <div *ngIf="isAdmissible" class="all1">
