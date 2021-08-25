@@ -169,9 +169,9 @@ export class IntersouscontratComponent implements OnInit {
     if(this.filterForm.value.poste) {
       this.poste = this.filterForm.value.poste;
     }
-    if(this.filterForm.value.matricule) {
+   // if(this.filterForm.value.matricule) {
       this.matricule = this.filterForm.value.matricule;
-    }
+  //  }
     if(this.filterForm.value.agence) {
       this.agence = this.filterForm.value.agence;
     }
@@ -185,8 +185,6 @@ export class IntersouscontratComponent implements OnInit {
     this.otherService.getInterimaireSousContrat(page, this.itemsPerPage, this.matricule, this.poste, this.agence, this.societe, this.direction).subscribe((data: any) => {
       this.dataInter =  data.data;
       this.totalItems = data.total;
-      console.log(data);
-      console.log(this.totalItems);
     }, error=> {
       this.errorMsg = error;
       this.errormodalService.open('error-modal-1');

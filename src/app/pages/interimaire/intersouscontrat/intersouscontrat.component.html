@@ -32,10 +32,10 @@
                         </div>
                         <div class="filtrer-mois">
                             <p class="label-input" for="titre">Poste: </p>
-                            <input type="text" class="input-extraction" list="professions" formControlName="poste" [(ngModel)]="profession" (change)="saveProfession($event)">
-                            <datalist id="professions">
-                              <option *ngFor="let c of listeFonction" [value]="c.libelle" >{{c.libelle}}</option>
-                            </datalist>
+                            <select  formControlName="poste" class="select-mois" >
+                                <option value="null">Aucun Choix</option>
+                                <option *ngFor="let data of listeFonction"  [value]="data.libelle">{{data.libelle}}</option>
+                            </select>
                         </div>
                         <div class="content-extraction">
                             <mat-icon class="icon-search" (click)="gty(page)" fontSet="material-icons-outlined" >search</mat-icon>

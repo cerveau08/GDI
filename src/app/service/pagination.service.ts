@@ -263,9 +263,6 @@ export class PaginationService {
       id: 8,  title: 'Mon Compte',
       path: 'manager',  icon: "folder_shared",
     },{
-      id: 9,  title: 'Statistiques',
-      path: 'statistique',  icon: "leaderboard",
-    },{
       id: 10,  title: 'Paramètres',
       path: 'parametre',  icon: "settings",
     },
