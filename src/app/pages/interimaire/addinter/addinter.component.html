@@ -25,10 +25,8 @@
           un contrat.
           <br><br>
           Si la personne ne se trouve pas sur la liste noire et n'est pas dans la société que 
-          vous avez sélectionné mais dans une autre société, Vous serez redirigé sur la page 
-          détail de l’intérimaire et vous pourrez voir ses différents contrats dans la société 
-          qu’elle était. Et vous pouvez ajouter un autre contrat dans la société sélectionnée 
-          sur la recherche en cliquant sur le bouton ajouter un contrat.
+          vous avez sélectionné mais dans une autre société, vous serez redirigé sur le 
+          formulaire pour l’ajouter comme un autre intérimaire.
           <br><br>
           Si la personne ne se trouve pas sur la liste noire et n’a jamais eu de contrat avec 
           aucune société, alors vous serez redirigé sur le formulaire pour l’ajouter comme intérimaire.
@@ -40,27 +38,27 @@
           <div class="content-row-form">
             <div class="content-input">
               <p class="label-input1">Type de Pièce</p>
-              <select class="select-search"  formControlName="typePiece" >
+              <select class="select-search"  formControlName="typePiece" required>
                 <option class="option" value="" disabled selected hidden>Choisir le type de Pièce</option>
                 <option *ngFor="let data of ListePiece" [value]="data.libelle">{{data.libelle}}</option>
               </select>
             </div>
             <div class="content-input">
               <p class="label-input2">Numéro Pièce</p>
-              <input class="input-search" type="text" formControlName="numeroPiece" placeholder="Numero Pièce">
+              <input class="input-search" type="text" formControlName="numeroPiece" placeholder="Numero Pièce" required>
             </div>
           </div>
           <div class="content-row-form">
             <div class="content-input">
               <p class="label-input1">Société</p>
-              <select class="select-search" #entite formControlName="societe" (change)="directionsListe(entite.value)">
+              <select class="select-search" #entite formControlName="societe" (change)="directionsListe(entite.value)" required>
                 <option class="option" value="" disabled selected hidden>Choisir une société</option>
                 <option *ngFor="let data of dataSociete" [value]="data.id">{{data.libelle}}</option>
               </select>
             </div>
             <div class="content-input">
               <p class="label-input2">Numéro Téléphone</p>
-              <input class="input-search" type="text" formControlName="telephone" placeholder="Numero Téléphone">
+              <input class="input-search" type="number" formControlName="telephone" placeholder="Numero Téléphone" required>
             </div>
           </div>
           <div class="content-button-form">
@@ -232,6 +230,10 @@
                           <datalist id="postes">
                             <option *ngFor="let c of listeFonction" [value]="c.libelle" >{{c.libelle}}</option>
                           </datalist>
+                          <select class="select6"  formControlName="site">
+                            <option class="option" value="" disabled selected hidden>Service</option>
+                            <option *ngFor="let data of donneeService" value="{{data.id}}">{{data.libelle}}</option>
+                          </select> 
                         </div>
                     </div>
                     </div>

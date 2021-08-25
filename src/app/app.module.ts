@@ -73,7 +73,8 @@ import { DetailuserComponent } from './pages/users/detailuser/detailuser.compone
 import { ModifieruserComponent } from './pages/users/modifieruser/modifieruser.component';
 import { MesObjectifsComponent } from './pages/evaluation/mes-objectifs/mes-objectifs.component';
 import { MonAgenceComponent } from './pages/agences/mon-agence/mon-agence.component';
-import { MonManagerComponent } from './pages/managers/mon-manager/mon-manager.component';import { ErrormodalModule } from './modal/_errormodals';
+import { MonManagerComponent } from './pages/managers/mon-manager/mon-manager.component';
+import { ErrormodalModule } from './modal/_errormodals';
 import { ListehistoriquecontratComponent } from './pages/interimaire/listehistoriquecontrat/listehistoriquecontrat.component';
 import { DetailcontratComponent } from './pages/interimaire/detailcontrat/detailcontrat.component';
 import { ListeblacklisterComponent } from './pages/users/listeblacklister/listeblacklister.component';
@@ -88,6 +89,7 @@ import { StatcategorieComponent } from './pages/statistiques/statcategorie/statc
 import { ModifEvaluerComponent } from './pages/evaluation/evaluer/modif-evaluer/modif-evaluer.component';
 import { StatageComponent } from './pages/statistiques/statage/statage.component';
 import { DetailattestationComponent } from './pages/attestation/detailattestation/detailattestation.component';
+import { ToastrModule } from 'ngx-toastr';
 ;
 
 @NgModule({
@@ -217,11 +219,15 @@ import { DetailattestationComponent } from './pages/attestation/detailattestatio
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule,
-    //AlertModule,
     PdfViewerModule,
+    PasswordResetModule,
     NgCircleProgressModule.forRoot({}),
     NgxLoadingModule.forRoot({}),
-    PasswordResetModule,
+    ToastrModule.forRoot({
+      timeOut: 9000,
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: true,
+    }),
   ],
   providers: [DatePipe,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorService, multi: true },
