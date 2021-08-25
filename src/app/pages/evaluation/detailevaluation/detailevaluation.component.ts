@@ -149,7 +149,6 @@ export class DetailevaluationComponent implements OnInit {
       this.totalItems = data.total;
       console.log(data);
       this.objectif = this.data["data"];
-      
     }, error=> {
       this.errorMsg = error;
       this.errormodalService.open('error-modal-1');
