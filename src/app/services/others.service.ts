@@ -327,8 +327,8 @@ addAgence(data) {
   }
 
 
-  listArchivedFilter(page, limit) {
-    const data = {page: page, limit: limit};
+  listArchivedFilter(page, limit, admissible) {
+    const data = {page: page, limit: limit ,admissible:admissible};
     return this.http.get<any>(this.reqUrl + '/listArchived', {params: data});
   }
 

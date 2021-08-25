@@ -159,6 +159,7 @@ import { DetailattestationComponent } from './pages/attestation/detailattestatio
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     AngularMaterialModule,
