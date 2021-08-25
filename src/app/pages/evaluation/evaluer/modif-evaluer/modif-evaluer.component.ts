@@ -44,11 +44,13 @@ export class ModifEvaluerComponent implements OnInit {
   interimConnect;
   public reqUrl = environment.base_url;
   errorMsg: any;
+  notations: any;
+  detailNotation: any;
   constructor(private otherService: OthersService,
     private modalService: ModalService,
     private activeroute: ActivatedRoute,
     private errormodalService: ErrormodalService,
-    private http: HttpClient,
+    private router: Router,
     private formBuilder: FormBuilder) {
     this.activeroute.queryParams.subscribe(params => {
       this.interim_id = JSON.parse(params["interimaire"]);
@@ -56,13 +58,14 @@ export class ModifEvaluerComponent implements OnInit {
     });
     this.evaluerForm = this.formBuilder.group({
       interimaireId: ['', Validators.required],
-      comentaire: ['', Validators.required],
+      commentaire: ['', Validators.required],
       dateDebut: ['', Validators.required],
       dateFin: ['', Validators.required],
       libelle: ['', Validators.required],
       notation: this.formBuilder.array([
         {
           objectifId: new FormControl(''),
+          id: new FormControl(''),
           commentaire: new FormControl(''),
           note: new FormControl('')
         }
@@ -104,54 +107,51 @@ export class ModifEvaluerComponent implements OnInit {
         this.note = this.dataEvaluation.note;
         this.libelle = this.dataEvaluation.libelle;
         this.commentaire = this.dataEvaluation.commentaire;
-        console.log(this.dataEvaluation);
+        this.notations = this.dataEvaluation.notation;
+        this.evaluerForm = this.formBuilder.group({
+          interimaireId: this.interim_id,
+          commentaire: ['', Validators.required],
+          dateDebut: ['', Validators.required],
+          dateFin: ['', Validators.required],
+          libelle: ['', Validators.required],
+          notation: this.formBuilder.array(
+            this.notations.map(x => this.formBuilder.group({
+              id: [x.id, [Validators.required, Validators.minLength(1)]],
+              objectifId: [x.objectif.id, [Validators.required, Validators.minLength(1)]],
+              note: [x.note, [Validators.required, Validators.minLength(1)]],
+              commentaire: [x.commentaire, [Validators.required, Validators.minLength(2)]]
+            }))
+          )
+        })
+        console.log(this.notations);
       }
     )
-    this.gty(this.page);
   }
 
-  gty(page: any){
-    this.http.get(this.reqUrl + `/objectif/${this.interim_id}/${this.evaluation_id}?page=${page}&limit=${this.itemsPerPage}`).subscribe((data: any) => {
-      this.data = data
-      this.totalItems = data.total;
-      console.log(data);
-      this.objectif = this.data["data"];
-      this.evaluerForm = this.formBuilder.group({
-        interimaireId: this.item,
-        comentaire: ['', Validators.required],
-        dateDebut: ['', Validators.required],
-        dateFin: ['', Validators.required],
-        libelle: ['', Validators.required],
-        notation: this.formBuilder.array(
-          this.objectif.map(x => this.formBuilder.group({
-            objectifId: [x.id, [Validators.required, Validators.minLength(1)]],
-            note: [x.first_name, [Validators.required, Validators.minLength(1)]],
-            commentaire: [x.last_name, [Validators.required, Validators.minLength(2)]]
-          }))
-        )
-      })
-    }, error=> {
-      this.errorMsg = error;
-      this.errormodalService.open('error-modal-1');
-      console.log(error)
-    })
-  }
 
   evaluer() {
-    console.log(this.evaluerForm.value);
-    this.otherService.evaluer(this.evaluerForm.value).subscribe(
+    this.detailNotation = this.evaluerForm.value.notation;
+    this.detailNotation.forEach((currentValue, index) => {
+      if(!currentValue.note || currentValue.note === null) {
+          this.detailNotation.splice(index, 1);
+      }
+    });
+    this.otherService.updateEvaluation(this.evaluerForm.value, this.evaluation_id).subscribe(
       data =>{
-        console.log(data);
         this.data = data;
         this.successMsg = this.data.status
         if(this.successMsg == true) {
-          this.ngOnInit();
+          this.router.navigate(['/accueil/detailevaluation'], {
+            queryParams: {
+              interimaire: JSON.stringify(this.interim_id),
+              evaluation: JSON.stringify(this.evaluation_id),
+            }
+          })
         }
       },
       error=> {
         this.errorMsg = error;
         this.errormodalService.open('error-modal-1');
-        console.log(error)
       }
     )
   }

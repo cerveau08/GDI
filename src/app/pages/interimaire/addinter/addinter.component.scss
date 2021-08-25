@@ -5,10 +5,18 @@
 }
 .content-search-inter{
   display: grid;
-  grid-template-columns: 400px 1fr;
+  grid-template-columns: 1fr 400px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.content-text-explication{
+  padding-right: 15px;
 }
 .content-row-form{
   display: flex;
+}
+.content-form{
+  margin-top: 40px;
 }
 .select-search{
   width: 190px;
