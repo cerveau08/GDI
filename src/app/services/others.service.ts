@@ -394,6 +394,12 @@ addAgence(data) {
   getOneAttestation(id) {
     return this.http.get<any>(`${this.reqUrl}/detailAttestation/${id}`);
   }
+
+  listeSite(page, limit, region) {
+    const data = {page: page, limit: limit ,region: region};
+    return this.http.get<any>(this.reqUrl + '/listeSite', {params: data});
+  }
+
   addProfil(data){
     return this.http.get<any>(`${this.reqUrl}/profils`, data);
   }

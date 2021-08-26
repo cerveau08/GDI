@@ -132,7 +132,7 @@ export class GenreComponent implements OnInit {
         this.data = data;
         this.successMsg = this.data.status
         if(this.successMsg == true) {
-          window.open(data.data);
+          window.open(this.data.data);
         }
       }, error=> {
         this.errorMsg = error;
