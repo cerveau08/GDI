@@ -3,23 +3,23 @@
         <div class="tableau">
             <p class="detail1" id="mydesc">Liste des Attestations de Présence</p>
             <form [formGroup]="filterForm">
-                <div class="exporter"> 
+                <div class="exporter">
                     <div class="content-input-extraction">
                         <div class="filtrer-mois">
-                            <p *ngIf="scrWidth>991" class="label-input" for="titre">Référence </p>
+                            <p class="label-input" for="titre">Référence: </p>
                             <input type="text" class="input-extraction" formControlName="reference">
                         </div>
                         <div class="filtrer-mois">
-                            <p *ngIf="scrWidth>991" class="label-input" for="titre">Mois: </p>
-                            <select  formControlName="mois" class="select-mois" >
-                                <option class="option" value="" >Mois</option>
+                            <p class="label-input" for="titre">Mois: </p>
+                            <select type="number" formControlName="mois"  class="select-mois" >
+                                <option value="null">Aucun Choix</option>
                                 <option *ngFor="let data of ListeMois"  [value]="data.libelle">{{data.libelle}}</option>
                             </select>
                         </div>
                         <div class="filtrer-mois">
-                            <p class="label-input">Annee: </p>
+                            <p class="label-input" for="titre">Année: </p>
                             <select  formControlName="annee" class="select-mois" >
-                                <option class="option" value="" >Année</option>
+                                <option value="null">Aucun Choix</option>
                                 <option *ngFor="let data of lastTenYear"  [value]="data.annee">{{data.annee}}</option>
                             </select>
                         </div>

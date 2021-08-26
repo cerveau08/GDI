@@ -329,6 +329,11 @@ addAgence(data) {
     return this.http.get<any>(this.reqUrl + '/listeAttestation', {params: data});
   }
 
+  listMesAttestationFilter(page,limit, mois, annee, reference) {
+    const data = {page: page, limit: limit, mois: mois,  annee: annee ,reference: reference};
+    return this.http.get<any>(this.reqUrl + '/attestationMesInterimaires', {params: data});
+  }
+
 
   listArchivedFilter(page, limit, admissible) {
     const data = {page: page, limit: limit ,admissible:admissible};
