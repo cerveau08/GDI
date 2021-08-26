@@ -340,6 +340,8 @@ export class AddinterComponent implements OnInit {
     this.color3 = "20px solid #ff7900";
   }
   submit() {
+    console.log(this.interForm.value.poste);
+    
     this.colorc = "#f16e00";
     this.color3 = "20px solid #f16e00";
     const formdata = new FormData();
