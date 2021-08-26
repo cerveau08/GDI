@@ -181,6 +181,38 @@ export class PaginationService {
       id: 10,  title: 'Paramètres',
       path: 'parametre',  icon: "settings",
     },
+
+    {
+      id: 11,  title: 'Settings',  icon: "settings",
+      icon2: "expand_more",  icon3: "expand_less",
+    //  click: false,  activeChoice: -1,
+      liste: [  
+        {
+          title: 'Domaine',  path: 'stateffectif',
+        }, {
+          title: 'Fonction',  path: 'statgenre',
+        },{
+          title: 'Site',  path: 'statagence',
+        }, {
+          title: 'Catégorie',  path: 'statpresence',
+        },{
+          title: 'Comission',  path: 'statpresence',
+        },{
+          title: 'Direction',  path: 'statcategorie',
+        },{
+          title: 'Profil',  path: 'statage',
+        }
+        ,{
+          title: 'Periode',  path: 'statage',
+        }
+        ,{
+          title: 'Societe',  path: 'statage',
+        }
+        ,{
+          title: 'Structure',  path: 'statage',
+        },
+      ]
+    }
   ];
 
   public agencenav = [
