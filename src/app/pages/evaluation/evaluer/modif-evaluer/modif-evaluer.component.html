@@ -23,33 +23,32 @@
         </div>
         <div class="content-list-objectif" formArrayName="notation">
             <p class="liste-des-objectifs">Liste des objectifs</p>
-            <div class="item-objectif" *ngFor="let p of objectif | paginate: { itemsPerPage: 2, currentPage: p }; let i = index">
-                <div class="content-item-object">
-                    <p class="objectif-title">{{p.titre}}</p>
-                    <p class="objectif-content">{{p.description}}</p>
-                    <div class="note-et-comments" [formGroupName]="i">
-                        <div class="content-form-note">
-                            <p class="text-note-comments">
-                                <span class="note-title">NOTE</span>:
-                            </p>
-                            <input class="input-note" type="text" [(ngModel)]="p.note" formControlName="note">
-                        </div>
-                        <div class="content-form-comment">
-                            <p class="text-note-comments">
-                                <span class="comment-title">Commentaires</span>:
-                            </p>
-                            <input class="input-commentaire" [(ngModel)]="p.commentaire" type="text" formControlName="commentaire">
+            <div class="content-all-objectif">
+                <div class="item-objectif" *ngFor="let p of notations; let i = index">
+                    <div class="content-item-object">
+                        <p class="objectif-title">{{p.objectif.titre}}</p>
+                        <p class="objectif-content">{{p.objectif.description}}</p>
+                        <div class="note-et-comments" [formGroupName]="i">
+                            <div class="content-form-note">
+                                <p class="text-note-comments">
+                                    <span class="note-title">NOTE</span>:
+                                </p>
+                                <input class="input-note" type="number" [(ngModel)]="p.note" formControlName="note">
+                            </div>
+                            <div class="content-form-comment">
+                                <p class="text-note-comments">
+                                    <span class="comment-title">Commentaires</span>:
+                                </p>
+                                <input class="input-commentaire" [(ngModel)]="p.commentaire" type="text" formControlName="commentaire">
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="pagination">
-                <pagination-controls (pageChange)="p = $event" previousLabel="Prcédent" nextLabel="Suivant"></pagination-controls>
-            </div>
         </div>
         <div class="content-commentaire-globale">
             <p class="label-commentaire-global">Commentaire Globale</p>
-            <textarea type="text" class="input-global-comment" placeholder="Commentaire"></textarea>
+            <textarea type="text" formControlName="commentaire" [(ngModel)]="commentaire" class="input-global-comment" placeholder="Commentaire"></textarea>
         </div>
         <div class="content-button-evaluer">
             <button (click)="evaluer()" class="button-enregistrer-evaluation">Enregistrer</button>

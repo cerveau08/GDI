@@ -73,7 +73,8 @@ import { DetailuserComponent } from './pages/users/detailuser/detailuser.compone
 import { ModifieruserComponent } from './pages/users/modifieruser/modifieruser.component';
 import { MesObjectifsComponent } from './pages/evaluation/mes-objectifs/mes-objectifs.component';
 import { MonAgenceComponent } from './pages/agences/mon-agence/mon-agence.component';
-import { MonManagerComponent } from './pages/managers/mon-manager/mon-manager.component';import { ErrormodalModule } from './modal/_errormodals';
+import { MonManagerComponent } from './pages/managers/mon-manager/mon-manager.component';
+import { ErrormodalModule } from './modal/_errormodals';
 import { ListehistoriquecontratComponent } from './pages/interimaire/listehistoriquecontrat/listehistoriquecontrat.component';
 import { DetailcontratComponent } from './pages/interimaire/detailcontrat/detailcontrat.component';
 import { ListeblacklisterComponent } from './pages/users/listeblacklister/listeblacklister.component';
@@ -92,7 +93,7 @@ import { ListdomaineComponent } from './pages/settings/domaine/listdomaine/listd
 import { AjoutdomaineComponent } from './pages/settings/domaine/ajoutdomaine/ajoutdomaine.component';
 import { ModifdomaineComponent } from './pages/settings/domaine/modifdomaine/modifdomaine.component';
 import { DetaildomaineComponent } from './pages/settings/domaine/detaildomaine/detaildomaine.component';
-import { DetaildirectionComponent } from './pages/settings/domaine/detaildirection/detaildirection.component';
+import { DetaildirectionComponent } from './pages/settings/direction/detaildirection/detaildirection.component';
 import { AjoutdirectionComponent } from './pages/settings/direction/ajoutdirection/ajoutdirection.component';
 import { ModifdirectionComponent } from './pages/settings/direction/modifdirection/modifdirection.component';
 import { ListdirectionComponent } from './pages/settings/direction/listdirection/listdirection.component';
@@ -128,6 +129,7 @@ import { ModiffonctionComponent } from './pages/settings/fonction/modiffonction/
 import { AjoutfonctionComponent } from './pages/settings/fonction/ajoutfonction/ajoutfonction.component';
 import { ListfonctionComponent } from './pages/settings/fonction/listfonction/listfonction.component';
 import { DetailfonctionComponent } from './pages/settings/fonction/detailfonction/detailfonction.component';
+import { ToastrModule } from 'ngx-toastr';
 ;
 
 @NgModule({
@@ -239,6 +241,7 @@ import { DetailfonctionComponent } from './pages/settings/fonction/detailfonctio
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     AngularMaterialModule,
@@ -296,11 +299,15 @@ import { DetailfonctionComponent } from './pages/settings/fonction/detailfonctio
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule,
-    //AlertModule,
     PdfViewerModule,
+    PasswordResetModule,
     NgCircleProgressModule.forRoot({}),
     NgxLoadingModule.forRoot({}),
-    PasswordResetModule,
+    ToastrModule.forRoot({
+      timeOut: 9000,
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: true,
+    }),
   ],
   providers: [DatePipe,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorService, multi: true },

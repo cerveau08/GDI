@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 import { DataService } from 'src/app/service/data.service';
 import { PaginationService } from 'src/app/service/pagination.service';
 import { ModalService } from 'src/app/modal/_modal';
+import { FormsModule } from '@angular/forms';
 import { OthersService } from 'src/app/services/others.service';
 import { DatePipe } from '@angular/common';
 import { Router } from '@angular/router';
@@ -20,11 +21,13 @@ export class InterarchiveComponent implements OnInit {
   public datas: any;
   pager: any = {};
   id;
+  isChecked = false; 
   filterterm: string;
   filterForm: FormGroup;
   public p: any;
   pagedItems: any[];
   date: any;
+  admissible=false;
   dateFin;
   user;
   showupdate;
@@ -93,6 +96,7 @@ export class InterarchiveComponent implements OnInit {
       this.showupdate = false;
     }
 
+
     this.filterForm = new FormGroup({
       admissible: new FormControl('')
       
@@ -105,6 +109,7 @@ export class InterarchiveComponent implements OnInit {
     //this.datas = this.dataService.getData();;
 
     this.gty(this.page);
+    this.isAdmissible(this.admissible);
   }
 
 
@@ -117,15 +122,7 @@ export class InterarchiveComponent implements OnInit {
 
     console.log(this.filterForm.value);
 
-    this.otherService.listArchivedFilter(page, this.itemsPerPage).subscribe((data: any) => {
-      this.dataInterArchiv =  data.data;
-      this.totalItems = data.total;
-      console.log(data);
-      }, error=> {
-        this.errorMsg = error;
-        this.errormodalService.open('error-modal-1');
-        console.log(error)
-    })
+    
 
 
 
@@ -140,7 +137,19 @@ export class InterarchiveComponent implements OnInit {
   }
 
 
+  isAdmissible(admissible){
+    this.otherService.listArchivedFilter(this.page, this.itemsPerPage,admissible).subscribe((data: any) => {
+      this.dataInterArchiv =  data.data;
+      this.totalItems = data.total;
+      console.log(data);
+      }, error=> {
+        this.errorMsg = error;
+        this.errormodalService.open('error-modal-1');
+        console.log(error)
+    })
+  }
  
+
   getcolor1(p) {
     let color = "#10a900"
   
@@ -151,6 +160,13 @@ export class InterarchiveComponent implements OnInit {
     }  
     return color; 
   } 
+
+
+  checkValue(event){
+    console.log(event.checked);
+    this.admissible=event.checked;
+    this.isAdmissible(this.admissible);
+ }
 
   openErrorModal(id: string) {
     this.errormodalService.open(id);

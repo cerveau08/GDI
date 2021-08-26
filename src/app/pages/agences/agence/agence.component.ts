@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { OthersService } from '../../../services/others.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -55,9 +56,7 @@ export class AgenceComponent implements OnInit {
   inactifs;
   fichierPhoto;
   successMsg;
-  viewer = 'google';
-  DemoDoc1="https://file-examples.com/wp-content/uploads/2017/02/file-sample_100kB.doc"
-  DemoDoc2="https://www.le.ac.uk/oerresources/bdra/html/resources/example.txt" 
+  viewer = 'google'; 
   errorMsg: any;
   imageName: any;
   image: string | ArrayBuffer;
@@ -68,10 +67,10 @@ export class AgenceComponent implements OnInit {
     private modalService: ModalService,
     private errormodalService: ErrormodalService,
     private route: Router,
+    private toastr: ToastrService,
     private otherService: OthersService) { }
 
   ngOnInit() {
-    //detail agence
     this.agenceForm = new FormGroup({
       nom: new FormControl (''),
       responsable: new FormControl(''),
@@ -86,7 +85,6 @@ export class AgenceComponent implements OnInit {
       cnidg: new FormControl (''),
     });
 
-    //ajout user
     this.userAgentForm = new FormGroup({
       prenomUser: new FormControl('', Validators.required,),
       nomUser: new FormControl('', Validators.required,),
@@ -102,7 +100,6 @@ export class AgenceComponent implements OnInit {
       agenceId: new FormControl(''),
     })
     this.item = JSON.parse(localStorage.getItem('currentUser'));
-    console.log(this.item.data.agence)
     this.user = localStorage.getItem('user');
     if(this.user == 'AGN') {
       this.showupdate = true;
@@ -117,7 +114,6 @@ export class AgenceComponent implements OnInit {
     this.otherService.getOneAgenceById(this.item.data.agence).subscribe(
       data =>{
         this.dataAgence = data;
-        console.log(this.dataAgence);
         this.nom = this.dataAgence.data.nom;
         this.responsable  = this.dataAgence.data.responsable;
         this.email = this.dataAgence.data.email;
@@ -127,53 +123,31 @@ export class AgenceComponent implements OnInit {
         this.adresse = this.dataAgence.data.adresse;
         this.logo = this.dataAgence.data.logo;
         this.contrat = this.dataAgence.data.contrat;
-      //  this.cnidg = this.dataAgence.data.data.cnidg;
         this.numerodg = this.dataAgence.data.numdg;
         this.userAgence = this.dataAgence.data['user'];
-        console.log(this.userAgence);
         
-      },
-      error=> {
-        this.errorMsg = error;
-        this.errormodalService.open('error-modal-1');
-        console.log(error)
       }
     );
     this.otherService.getTotalAgenceActifInactif(this.item.data.agence).subscribe(
       data =>{
         this.data = data;
-          console.log(data);
-          this.dataTotalAgence = this.data;
-          this.total = this.dataTotalAgence.total;
-          this.actifs = this.dataTotalAgence.actifs;
-          this.inactifs = this.dataTotalAgence.inactifs;
-      }, error=> {
-        this.errorMsg = error;
-        this.errormodalService.open('error-modal-1');
-        console.log(error)
-      });
+        this.dataTotalAgence = this.data;
+        this.total = this.dataTotalAgence.total;
+        this.actifs = this.dataTotalAgence.actifs;
+        this.inactifs = this.dataTotalAgence.inactifs;
+      }
+    );
 
-      //detail d'un contrat
     this.otherService.getContratById(this.id).subscribe(
       data =>{
         this.data = data;
         this.dataContrat = this.data.data;
-        console.log(this.dataContrat);
-      }, error=> {
-        this.errorMsg = error;
-        this.errormodalService.open('error-modal-1');
-        console.log(error)
-      })
+      }
+    )
     
-        //recupere les profils
     this.otherService.getprofil().subscribe(
       data => {
         this.dataprofils = data["data"];
-        console.log(data);
-      }, error=> {
-        this.errorMsg = error;
-        this.errormodalService.open('error-modal-1');
-        console.log(error)
       }
     );
    
@@ -184,7 +158,6 @@ export class AgenceComponent implements OnInit {
   public saveFonction(e): void {
     let libelle = e.target.value;
     let list = this.listeFonction.filter(x => x.libelle === libelle)[0];
-    console.log(list.libelle);
     this.userAgentForm.patchValue({fonction: list.libelle});
   }
 
@@ -202,7 +175,6 @@ export class AgenceComponent implements OnInit {
         contrat: this.agenceForm.value.contrat,
         cnidg: this.agenceForm.value.cnidg, 
     } 
-    console.log(info);
     return info;
   }
 
@@ -218,20 +190,22 @@ export class AgenceComponent implements OnInit {
     formdata.append("email",this.userAgentForm.value.emailUser);
     formdata.append("telephone",this.userAgentForm.value.telephoneUser);
     formdata.append("avatar",this.fichierPhoto);
-    console.log(formdata);
-    console.log(this.userAgentForm.value);
     this.otherService.addUser(formdata).subscribe(
       (response) =>{
-        console.log(response)
         this.data = response;
         this.successMsg = this.data.status
-        console.log(this.successMsg);
+        if(this.successMsg == true) {
+          this.toastr.success('L\'utilisateur a été ajouté', 'Success', {
+            timeOut: 3000,
+          });
           this.route.navigate(['/accueil/listeuser']);
+        }
       },
       error=> {
         this.errorMsg = error;
-        this.errormodalService.open('error-modal-1');
-        console.log(error)
+        this.toastr.error(this.errorMsg, 'Echec', {
+          timeOut: 5000,
+        });
       }
     )
   }
@@ -256,12 +230,10 @@ export class AgenceComponent implements OnInit {
     reader.readAsDataURL( this.fichierPhoto);
     reader.onload= ()=>{
       this.image= reader.result;
-      console.log(this.image);
     }
   }
 //contrat
   readUrl1(event: any) {
-    console.log('readUrl');
       if (event.target.files && event.target.files[0]) {
         var reader = new FileReader();
       

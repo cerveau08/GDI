@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -71,9 +72,10 @@ export class DetailagenceComponent implements OnInit {
   public reqUrl = environment.base_url;
   errorMsg: any;
   dataMatriculeInter: any;
+  successMsg: any;
   constructor(private activeroute: ActivatedRoute,
     private modalService: ModalService,
-    private dataService: DataService,
+    private toastr: ToastrService,
     private http: HttpClient,
     private fileSaver: NgxFileSaverService,
     private otherService: OthersService,
@@ -81,7 +83,6 @@ export class DetailagenceComponent implements OnInit {
     private route: Router) { 
       this.activeroute.queryParams.subscribe(params => {
         this.item = JSON.parse(params["agence"]);
-        console.log(this.item);
         this.otherService.getOneAgenceById(this.item).subscribe(
           data =>{
             this.data = data;
@@ -100,13 +101,7 @@ export class DetailagenceComponent implements OnInit {
             this.contrat = this.dataAgence.contrat;
           //  this.cnidg = this.dataAgence.data.cnidg;
             this.userAgence = this.dataAgence['user'];
-            console.log(this.userAgence);
             
-          },
-          error=> {
-            this.errorMsg = error;
-            this.errormodalService.open('error-modal-1');
-            console.log(error)
           }
         );
       })
@@ -114,15 +109,10 @@ export class DetailagenceComponent implements OnInit {
       this.otherService.getTotalAgenceActifInactif(this.item).subscribe(
         data =>{
           this.data = data;
-          console.log(data);
           this.dataTotalAgence = this.data;
           this.total = this.dataTotalAgence.total;
           this.actifs = this.dataTotalAgence.actifs;
           this.inactifs = this.dataTotalAgence.inactifs;
-        }, error=> {
-          this.errorMsg = error;
-          this.errormodalService.open('error-modal-1');
-          console.log(error)
         });
     }
 
@@ -133,7 +123,6 @@ export class DetailagenceComponent implements OnInit {
     } else {
       this.showupdate = false;
     }
-    //this.datas = this.dataService.getData();
     this.agenceForm = new FormGroup({
       nom: new FormControl(''),
       responsable: new FormControl(''),
@@ -168,32 +157,20 @@ export class DetailagenceComponent implements OnInit {
     this.otherService.getAllSociete().subscribe(
       data => {
         this.dataSociete = data["data"];
-        console.log(data);
-      }, error=> {
-        this.errorMsg = error;
-        this.errormodalService.open('error-modal-1');
-        console.log(error)
       }
     );
 
     this.otherService.getAllStructure().subscribe(data => {
-      console.log(data);
       this.dataStructure = data['data'];
-    }, error=> {
-      this.errorMsg = error;
-      this.errormodalService.open('error-modal-1');
-      console.log(error)
     })
 
       //recupere les profils
     this.otherService.getprofil().subscribe(
       data => {
         this.dataprofils = data["data"];
-        console.log(data);
       }, error=> {
         this.errorMsg = error;
         this.errormodalService.open('error-modal-1');
-        console.log(error)
       }
     );
     this.gty(this.page);
@@ -205,19 +182,12 @@ export class DetailagenceComponent implements OnInit {
     this.http.get(this.reqUrl + `/listeAgence?page=${page}&limit=${this.itemsPerPage}`).subscribe((data: any) => {
       this.dataAgence =  data.data;
       this.totalItems = data.total;
-      console.log(this.dataAgence);
-      console.log(this.totalItems);
-    }, error=> {
-      this.errorMsg = error;
-      this.errormodalService.open('error-modal-1');
-      console.log(error)
     })
   }
 
   public saveFonction(e): void {
     let libelle = e.target.value;
     let list = this.listeFonction.filter(x => x.libelle === libelle)[0];
-    console.log(list.libelle);
     this.userAgentForm.patchValue({fonction: list.libelle});
   }
   
@@ -237,30 +207,28 @@ export class DetailagenceComponent implements OnInit {
     console.log(this.userAgentForm.value);
     this.otherService.addUser(formdata).subscribe(
       (response) =>{
-        console.log(response)
         this.data = response;
         this.successMsg = this.data.status
-        console.log(this.successMsg);
+        if(this.successMsg == true) {
+          this.toastr.success('L\'utilisateur a été ajouté', 'Sucess', {
+            timeOut: 3000,
+          });
           this.route.navigate(['/accueil/listeuser']);
+        }
       },
       error=> {
         this.errorMsg = error;
-        this.errormodalService.open('error-modal-1');
-        console.log(error)
+        this.toastr.error(this.errorMsg, 'Echec', {
+          timeOut: 5000,
+        });
       }
     )
   }
-  successMsg(successMsg: any) {
-    throw new Error('Method not implemented.');
-  }
-//modifier agence
+
   submitted1() {
-    console.log(this.dataAgence);
-    console.log(this.agenceForm.value);
     const value = this.agenceForm.value;
     const info = new FormData();
     info.append("nom",value.nom);
-  //  info.append("responsable",value.responsable);
     info.append("nomdg",value.responsable);
     info.append("numdg",value.numDg);
     info.append("email",value.email);

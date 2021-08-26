@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { DataService } from '../../../service/data.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -36,8 +37,9 @@ export class AddagenceComponent implements OnInit {
   filenameUser = "";
   data;
   successMsg;
-  constructor(private modalService: ModalService,
+  constructor(
               private route: Router,
+              private toastr: ToastrService,
               private errormodalService: ErrormodalService,
               private otherService: OthersService ) { }
 
@@ -67,7 +69,6 @@ export class AddagenceComponent implements OnInit {
   }
 
   readUrl(event: any) {
-    console.log('readUrl');
       if (event.target.files && event.target.files[0]) {
         var reader = new FileReader();
       
@@ -79,7 +80,6 @@ export class AddagenceComponent implements OnInit {
       }
   }
   readUrl1(event: any) {
-    console.log('readUrl');
       if (event.target.files && event.target.files[0]) {
         var reader = new FileReader();
       
@@ -91,33 +91,23 @@ export class AddagenceComponent implements OnInit {
       }
   }
   getCnidg(e: any) {
-    console.log('getCnidg');
     this.cnidg= e.files.item(0);
     this.filename5 = this.cnidg.name;
-    console.log(this.cnidg)
   }
   getContrat(e: any) {
-    console.log('getContrat');
     this.contrat= e.files.item(0);
     this.filename4 = this.contrat.name;
-    console.log(this.contrat)
   }
   getNinea(e: any) {
-    console.log('getNinea');
     this.ninea= e.files.item(0);
     this.filename2 = this.ninea.name;
-    console.log(this.ninea)
   }
   getRccm(e: any) {
-    console.log('getRccm');
     this.rccm= e.files.item(0);
     this.filename3 = this.rccm.name;
-    console.log(this.rccm)
   }
 
   submitted1() {
-    console.log(this.infoForm.value);
-    console.log(this.logo);
     const value = this.infoForm.value;
     const info = new FormData();
     info.append("nom",value.nom);
@@ -135,31 +125,31 @@ export class AddagenceComponent implements OnInit {
     info.append("contrat",this.contrat);
    this.otherService.addAgence(info).subscribe(
       data => {
-        console.log(data);
         this.data = data;
         this.successMsg = this.data.status;
         if (this.successMsg == true) {
+          this.toastr.success('L\'agence a été ajouté', 'Success', {
+            timeOut: 3000,
+          });
           this.route.navigate(['/accueil/listagence']);
         }
       },
       error=> {
         this.errorMsg = error;
-        this.errormodalService.open('error-modal-1');
-        console.log(error)
+        this.toastr.error(this.errorMsg, 'Echec', {
+          timeOut: 5000,
+        });
       }
       ) 
   }
 
-  //recuperation de l'image
   getLogo(e:any) {
     this.logo= e.files.item(0);
-    console.log(this.logo)
 
     let reader = new FileReader();
     reader.readAsDataURL( this.logo)
     reader.onload= ()=>{
       this.image= reader.result
-      console.log(this.image)
     }
   }
   openErrorModal(id: string) {

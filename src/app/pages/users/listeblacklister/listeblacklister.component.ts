@@ -57,7 +57,7 @@ export class ListeblacklisterComponent implements OnInit {
     },
     {
       id: 2, 
-      libelle: "passeport"
+      libelle: "passport"
     }
   ];
   public telephone = null;
@@ -99,15 +99,15 @@ export class ListeblacklisterComponent implements OnInit {
     this.gty(this.page);
   }
   gty(page: any){
-    if(this.filterForm.value.telephone) {
+  
       this.telephone = this.filterForm.value.telephone;
-    }
-    if(this.filterForm.value.typePiece) {
+  
+    
       this.typePiece = this.filterForm.value.typePiece;
-    }
-    if(this.filterForm.value.numeroPiece) {
+
+ 
       this.numeroPiece = this.filterForm.value.numeroPiece;
-    }
+    
     this.otherService.getListeNoire(page, this.itemsPerPage, this.telephone, this.typePiece, this.numeroPiece).subscribe((data: any) => {
       this.dd =  data.data;
       this.totalItems = data.total;

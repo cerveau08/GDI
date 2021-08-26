@@ -3,7 +3,7 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
 import { environment } from 'src/environments/environment';
 import { OthersService } from 'src/app/services/others.service';
 import { ModalService } from 'src/app/modal/_modal';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ErrormodalService } from 'src/app/modal/_errormodals';
 import { HttpClient } from '@angular/common/http';
 
@@ -44,6 +44,7 @@ export class EvaluerComponent implements OnInit {
     private activeroute: ActivatedRoute,
     private errormodalService: ErrormodalService,
     private http: HttpClient,
+    private router: Router,
     private formBuilder: FormBuilder) {
     this.activeroute.queryParams.subscribe(params => {
       this.item = JSON.parse(params["interimaire"]);
@@ -116,8 +117,8 @@ export class EvaluerComponent implements OnInit {
         notation: this.formBuilder.array(
           this.objectif.map(x => this.formBuilder.group({
             objectifId: [x.id, [Validators.required, Validators.minLength(1)]],
-            note: [x.first_name, [Validators.required, Validators.minLength(1)]],
-            commentaire: [x.last_name, [Validators.required, Validators.minLength(2)]]
+            note: [x.note, [Validators.required, Validators.minLength(1)]],
+            commentaire: [x.commentaire, [Validators.required, Validators.minLength(2)]]
           }))
         )
       })
@@ -154,7 +155,7 @@ export class EvaluerComponent implements OnInit {
     this.detailNotation = this.evaluerForm.value.notation;
     console.log(this.detailNotation);
     this.detailNotation.forEach((currentValue, index) => {
-      if(!currentValue.note || currentValue.note === null) {
+      if(!currentValue.note || currentValue.note == null || currentValue.note == "") {
           this.detailNotation.splice(index, 1);
       }
     });
@@ -166,7 +167,11 @@ export class EvaluerComponent implements OnInit {
         this.data = data;
         this.successMsg = this.data.status
         if(this.successMsg == true) {
-          this.ngOnInit();
+          this.router.navigate(['/accueil/listeevaluation'], {
+            queryParams: {
+              interimaire: JSON.stringify(this.item),
+            }
+          })
         }
       },
       error=> {

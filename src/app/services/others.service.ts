@@ -280,6 +280,9 @@ addAgence(data) {
   evaluer(data:any): Observable<any> {
     return this.http.post<any>(`${this.reqUrl}/notation`, data);
   }
+  updateEvaluation(data, id: number){
+    return this.http.post<any>(`${this.reqUrl}/updateEvaluation/${id}`, data);
+  }
   objectifEvaluation(id_inter: number, id_evaluation){
     return this.http.get<any>(`${this.reqUrl}/objectif/${id_inter}/${id_evaluation}`);
   }
@@ -327,8 +330,8 @@ addAgence(data) {
   }
 
 
-  listArchivedFilter(page, limit) {
-    const data = {page: page, limit: limit};
+  listArchivedFilter(page, limit, admissible) {
+    const data = {page: page, limit: limit ,admissible:admissible};
     return this.http.get<any>(this.reqUrl + '/listArchived', {params: data});
   }
 
@@ -348,7 +351,7 @@ addAgence(data) {
   }
 
   getListeNoire(page, limit, telephone, typePiece, numeroPiece) {
-    const data = {page: page, limit: limit, telephone: telephone, typePiece: typePiece, numeroPiece: numeroPiece};
+    const data = {page: page, limit: limit, telephone: telephone, typepiece: typePiece, numpiece: numeroPiece};
     return this.http.get<any>(this.reqUrl + '/blacklist', {params: data});
   }
 

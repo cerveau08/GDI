@@ -19,9 +19,6 @@
                             <div class="filtrer-mois">
                                 <p class="label-input" for="titre">Numéro de Pièce: </p>
                                 <input type="text" class="input-extraction" formControlName="numeroPiece">
-                                <datalist id="professions">
-                                  <option *ngFor="let c of listeFonction" [value]="c.libelle" >{{c.libelle}}</option>
-                                </datalist>
                             </div>
                             <div class="content-extraction">
                                 <mat-icon class="icon-search" (click)="gty(page)" fontSet="material-icons-outlined" >search</mat-icon>

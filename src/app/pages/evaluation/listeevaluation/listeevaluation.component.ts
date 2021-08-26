@@ -49,9 +49,6 @@ export class ListeevaluationComponent implements OnInit {
 
   ngOnInit() {
     this.role = localStorage.getItem('user');
-    // this.interimConnect = JSON.parse(localStorage.getItem('currentUser'));
-    // this.item = this.interimConnect.interimaire.id
-    // console.log(this.interimConnect);
     this.objectifForm = new FormGroup({
       titre: new FormControl(''),
       description: new FormControl(''),

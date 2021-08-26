@@ -1,33 +1,68 @@
 <div class="all-container">
   <div class="all">
     <div *ngIf="!isAdmissible" class="content-search-inter">
+      <div class="content-text-explication">
+        <p class="ajouter">Bien lire avant de faire la recherche</p>
+        <p class="text-explication-libelle">
+          Avant d’ajouter un intérimaire, il faut d’abord faire une recherche sur la 
+          personne que vous devez ajouter comme intérimaire. Vous devez bien remplir 
+          les informations de ces champs. Et voici les différents résultats qu’on peut 
+          avoir après la recherche:
+          <br><br>
+          Si la personne est sur la liste noire de la société: Vous aurez une notification 
+          vous disant que vous ne pouvez pas ajouter cette personne comme intérimaire car 
+          il se trouve sur la liste noire de la société.
+          <br><br>
+          Si la personne ne se trouve pas sur la liste noire et était dans la société que 
+          vous avez sélectionné et a déjà fait 24 mois: Vous serez redirigé sur la page détail 
+          de l’intérimaire et vous pourrez voir ses différents contrats avec la société. 
+          Et vous ne pouvez pas ajouter un autre contrat dans cette société.
+          <br><br>
+          Si la personne ne se trouve pas sur la liste noire et était dans la société que vous 
+          avez sélectionné et n’a pas encore fait 24 mois: Vous serez redirigé sur la page détail 
+          de l’intérimaire et vous pourrez voir ses différents contrats avec la société. Et vous 
+          pouvez ajouter un autre contrat dans cette société en cliquant sur le bouton ajouter 
+          un contrat.
+          <br><br>
+          Si la personne ne se trouve pas sur la liste noire et n'est pas dans la société que 
+          vous avez sélectionné mais dans une autre société, vous serez redirigé sur le 
+          formulaire pour l’ajouter comme un autre intérimaire.
+          <br><br>
+          Si la personne ne se trouve pas sur la liste noire et n’a jamais eu de contrat avec 
+          aucune société, alors vous serez redirigé sur le formulaire pour l’ajouter comme intérimaire.
+        </p>
+      </div>
       <div [formGroup]="searchForm" class="content-form-search">
-        <p class="ajouter">Rechercher Interimaire</p>
+        <p class="ajouter">Rechercher un interimaire</p>
         <div class="content-form">
           <div class="content-row-form">
             <div class="content-input">
               <p class="label-input1">Type de Pièce</p>
-              <select class="select-search"  formControlName="typePiece" >
+              <select class="select-search"  formControlName="typePiece" required>
                 <option class="option" value="" disabled selected hidden>Choisir le type de Pièce</option>
                 <option *ngFor="let data of ListePiece" [value]="data.libelle">{{data.libelle}}</option>
               </select>
+              <p class="error-require-input-search" *ngIf="videtypePiece" >Veuillez séléctionner un type de pièce</p>
             </div>
             <div class="content-input">
               <p class="label-input2">Numéro Pièce</p>
-              <input class="input-search" type="text" formControlName="numeroPiece" placeholder="Numero Pièce">
+              <input class="input-search" type="text" formControlName="numeroPiece" placeholder="Numero Pièce" required>
+              <p class="error-require-input-search" *ngIf="videnumeroPiece" >Veuillez renseigner le numéro de piéce</p>
             </div>
           </div>
           <div class="content-row-form">
             <div class="content-input">
               <p class="label-input1">Société</p>
-              <select class="select-search" #entite formControlName="societe" (change)="directionsListe(entite.value)">
+              <select class="select-search" #entite formControlName="societe" (change)="directionsListe(entite.value)" required>
                 <option class="option" value="" disabled selected hidden>Choisir une société</option>
                 <option *ngFor="let data of dataSociete" [value]="data.id">{{data.libelle}}</option>
               </select>
+              <p class="error-require-input-search" *ngIf="videsociete" >Veuillez séléctionner une Société</p>
             </div>
             <div class="content-input">
               <p class="label-input2">Numéro Téléphone</p>
-              <input class="input-search" type="text" formControlName="telephone" placeholder="Numero Téléphone">
+              <input class="input-search" type="number" formControlName="telephone" placeholder="Numero Téléphone" required>
+              <p class="error-require-input-search" *ngIf="videtelephone" >Veuillez renseigner le numéro de téléphone</p>
             </div>
           </div>
           <div class="content-button-form">
@@ -51,19 +86,6 @@
             </p>
           </div>
         </div>
-      </div>
-      <div class="content-text-explication">
-        <p class="text-explication-head">Explication</p>
-        <p class="text-explication-libelle">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-          Quam, magni! Iste at ad obcaecati iure totam tempore repellat, 
-          atque optio error dicta porro, molestiae asperiores? Laboriosam 
-          <br><br>
-          porro esse ab assumenda. ipsum dolor sit amet consectetur adipisicing
-          elit. Blanditiis amet beatae, facilis dicta non, enim eos veritatis
-          autem vel at quae quam quibusdam? Distinctio ipsum magnam pariatur
-          impedit reprehenderit quod.
-        </p>
       </div>
     </div>
     <div *ngIf="isAdmissible" class="all1">
@@ -89,11 +111,11 @@
                         </div>
                         <div class="others">
                           <div class="infoinput2">
-                            <select class="select5"  formControlName="typePiece">
+                            <select class="select5"  formControlName="typePiece" [(ngModel)]="typePiece">
                               <option class="option" value="" disabled selected hidden>Type Pièce</option>
                               <option *ngFor="let data of ListePiece" [value]="data.libelle">{{data.libelle}}</option>
                             </select>
-                            <input class="input3" type="text" formControlName="numeroPiece" placeholder="Numero Pièce">
+                            <input class="input3" type="text" formControlName="numeroPiece" [(ngModel)]="numeroPiece" placeholder="Numero Pièce">
                           </div>
                           <!-- <div class="infoinput1">
                             <input type="text" formControlName="numeroPiece" placeholder="Numero Pièce">
@@ -106,7 +128,7 @@
                             <input type="text" formControlName="email" placeholder="Email">
                           </div>
                           <div class="infoinput1">
-                            <input type="text" formControlName="telephone" placeholder="Téléphone"> 
+                            <input type="text" formControlName="telephone" placeholder="Téléphone" [(ngModel)]="telephone"> 
                           </div>
                           <div class="infoinput1">
                             <input type="text" formControlName="adresse" placeholder="Adresse">
@@ -180,7 +202,7 @@
                           <input class="input3" type="date" formControlName="dateFin" placeholder="Date de Fin">
                         </div>  
                         <div class="contratinput2">
-                          <select class="select5" #entite formControlName="societeId" (change)="directionsListe(entite.value)">
+                          <select class="select5" #entite formControlName="societeId" [(ngModel)]="societe" (change)="directionsListe(entite.value)">
                             <option class="option" value="" disabled selected hidden>Societe</option>
                             <option *ngFor="let data of dataSociete" [value]="data.id">{{data.libelle}}</option>
                           </select>
@@ -212,6 +234,10 @@
                           <datalist id="postes">
                             <option *ngFor="let c of listeFonction" [value]="c.libelle" >{{c.libelle}}</option>
                           </datalist>
+                          <select class="select6"  formControlName="site">
+                            <option class="option" value="" disabled selected hidden>Service</option>
+                            <option *ngFor="let data of donneeService" value="{{data.id}}">{{data.libelle}}</option>
+                          </select> 
                         </div>
                     </div>
                     </div>
