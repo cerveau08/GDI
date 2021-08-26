@@ -1,13 +1,10 @@
 import { ListcommissionComponent } from './pages/settings/commission/listcommission/listcommission.component';
-import { DetailfonctionComponent } from './pages/settings/fonction/detailfonction/detailfonction.component';
 import { ModiffonctionComponent } from './pages/settings/fonction/modiffonction/modiffonction.component';
 import { AjoutfonctionComponent } from './pages/settings/fonction/ajoutfonction/ajoutfonction.component';
 import { ListfonctionComponent } from './pages/settings/fonction/listfonction/listfonction.component';
-import { DetaildomaineComponent } from './pages/settings/domaine/detaildomaine/detaildomaine.component';
 import { ModifdomaineComponent } from './pages/settings/domaine/modifdomaine/modifdomaine.component';
 import { AjoutdomaineComponent } from './pages/settings/domaine/ajoutdomaine/ajoutdomaine.component';
 import { ListdomaineComponent } from './pages/settings/domaine/listdomaine/listdomaine.component';
-import { DetailsiteComponent } from './pages/settings/site/detailsite/detailsite.component';
 import { ListsiteComponent } from './pages/settings/site/listsite/listsite.component';
 import { ModifsiteComponent } from './pages/settings/site/modifsite/modifsite.component';
 import { AjoutsiteComponent } from './pages/settings/site/ajoutsite/ajoutsite.component';
@@ -72,22 +69,17 @@ import { ModifEvaluerComponent } from './pages/evaluation/evaluer/modif-evaluer/
 import { StatageComponent } from './pages/statistiques/statage/statage.component';
 import { AjoutdirectionComponent } from './pages/settings/direction/ajoutdirection/ajoutdirection.component';
 import { ListdirectionComponent } from './pages/settings/direction/listdirection/listdirection.component';
-import { DetaildirectionComponent } from './pages/settings/direction/detaildirection/detaildirection.component';
 import { ModifdirectionComponent } from './pages/settings/direction/modifdirection/modifdirection.component';
 import { ModifperiodeComponent } from './pages/settings/periode/modifperiode/modifperiode.component';
-import { DetailperiodeComponent } from './pages/settings/periode/detailperiode/detailperiode.component';
 import { ListperiodeComponent } from './pages/settings/periode/listperiode/listperiode.component';
 import { AjoutperiodeComponent } from './pages/settings/periode/ajoutperiode/ajoutperiode.component';
 import { ModifprofilComponent } from './pages/settings/profil/modifprofil/modifprofil.component';
 import { AjoutprofilComponent } from './pages/settings/profil/ajoutprofil/ajoutprofil.component';
 import { ListprofilComponent } from './pages/settings/profil/listprofil/listprofil.component';
-import { DetailprofilComponent } from './pages/settings/profil/detailprofil/detailprofil.component';
 import { ModifsocieteComponent } from './pages/settings/societe/modifsociete/modifsociete.component';
-import { DetailsocieteComponent } from './pages/settings/societe/detailsociete/detailsociete.component';
 import { ListsocieteComponent } from './pages/settings/societe/listsociete/listsociete.component';
 import { AjoutsocieteComponent } from './pages/settings/societe/ajoutsociete/ajoutsociete.component';
 import { ModifstructureComponent } from './pages/settings/structure/modifstructure/modifstructure.component';
-import { DetailstructureComponent } from './pages/settings/structure/detailstructure/detailstructure.component';
 import { ListstructureComponent } from './pages/settings/structure/liststructure/liststructure.component';
 import { AjoutstructureComponent } from './pages/settings/structure/ajoutstructure/ajoutstructure.component';
 import { AjoutcategorieComponent } from './pages/settings/categorie/ajoutcategorie/ajoutcategorie.component';
@@ -395,10 +387,6 @@ const routes: Routes = [
         component:ListdirectionComponent,
         canActivate: [AuthGuard]
       },
-      { path: 'detaildirection',
-        component:DetaildirectionComponent,
-        canActivate: [AuthGuard]
-      },
       { path: 'modifdirection',
         component:ModifdirectionComponent,
         canActivate: [AuthGuard]
@@ -409,10 +397,6 @@ const routes: Routes = [
       },
       { path: 'liststructure',
         component:ListstructureComponent,
-        canActivate: [AuthGuard]
-      },
-      { path: 'detailstructure',
-        component:DetailstructureComponent,
         canActivate: [AuthGuard]
       },
       { path: 'modifstructure',
@@ -427,10 +411,6 @@ const routes: Routes = [
       component:ListsocieteComponent,
       canActivate: [AuthGuard]
     },
-    { path: 'detailsociete',
-      component:DetailsocieteComponent,
-      canActivate: [AuthGuard]
-    },
     { path: 'modifsociete',
       component:ModifsocieteComponent,
       canActivate: [AuthGuard]
@@ -443,10 +423,6 @@ const routes: Routes = [
     component:ListprofilComponent,
     canActivate: [AuthGuard]
   },
-  { path: 'detailprofil',
-    component:DetailprofilComponent,
-    canActivate: [AuthGuard]
-  },
   { path: 'modifprofil',
     component:ModifprofilComponent,
     canActivate: [AuthGuard]
@@ -457,10 +433,6 @@ const routes: Routes = [
 },
 { path: 'listperiode',
   component:ListperiodeComponent,
-  canActivate: [AuthGuard]
-},
-{ path: 'detailperiode',
-  component:DetailperiodeComponent,
   canActivate: [AuthGuard]
 },
 { path: 'modifperiode',

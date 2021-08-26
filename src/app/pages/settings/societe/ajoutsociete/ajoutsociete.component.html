@@ -1,5 +1,5 @@
 <div [formGroup]="searchForm" class="content-form-search">
-    <p class="ajouter">Rechercher un interimaire</p>
+    <p class="ajouter">Ajout Societe</p>
     <div class="content-form">
       <div class="content-row-form">
         <div class="content-input">
@@ -33,23 +33,6 @@
       </div>
       <div class="content-button-form">
         <button (click)="rechercherInterimaire()" class="button-rechercher">Rechercher</button>
-      </div>
-      <div class="text-result-search">
-        <p *ngIf="!isBlackliste" class="text-blacklist">
-          Vous ne pouvez pas ajouter <span class="inter-blackliste">{{prenom}} {{nom}}
-          </span> comme intérimaire dans une société liée à la SONATEL.
-          Il se trouve sur la liste noire de la société.
-        </p>
-        <p *ngIf="isAdmissible" class="text-blacklist">
-          Vous pouvez ajouter <span class="inter-ok">{{prenom}} {{nom}}
-          </span> en tant qu' intérimaire dans cette société pour une durée maximum de 
-          <span class="inter-ok">{{duree}}</span> mois.
-        </p>
-        <p *ngIf="isAdmissible" class="text-blacklist">
-          Vous ne pouvez pas ajouter <span class="inter-end">{{prenom}} {{nom}}
-          </span> en tant qu'intérimaire dans cette société car il a déja fait 
-          <span class="inter-end">24 mois</span> dans cette société.
-        </p>
       </div>
     </div>
   </div>
