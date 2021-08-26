@@ -207,7 +207,7 @@ export class AddinterComponent implements OnInit {
     let libelle = e.target.value;
     let list = this.listeFonction.filter(x => x.libelle === libelle)[0];
     console.log(list.libelle);
-    this.interForm.patchValue({poste: list.id});
+    this.interForm.patchValue({poste: list.libelle});
   }
 
   public saveDomaine(e): void {

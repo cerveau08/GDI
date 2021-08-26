@@ -88,6 +88,46 @@ import { StatcategorieComponent } from './pages/statistiques/statcategorie/statc
 import { ModifEvaluerComponent } from './pages/evaluation/evaluer/modif-evaluer/modif-evaluer.component';
 import { StatageComponent } from './pages/statistiques/statage/statage.component';
 import { DetailattestationComponent } from './pages/attestation/detailattestation/detailattestation.component';
+import { ListdomaineComponent } from './pages/settings/domaine/listdomaine/listdomaine.component';
+import { AjoutdomaineComponent } from './pages/settings/domaine/ajoutdomaine/ajoutdomaine.component';
+import { ModifdomaineComponent } from './pages/settings/domaine/modifdomaine/modifdomaine.component';
+import { DetaildomaineComponent } from './pages/settings/domaine/detaildomaine/detaildomaine.component';
+import { DetaildirectionComponent } from './pages/settings/domaine/detaildirection/detaildirection.component';
+import { AjoutdirectionComponent } from './pages/settings/direction/ajoutdirection/ajoutdirection.component';
+import { ModifdirectionComponent } from './pages/settings/direction/modifdirection/modifdirection.component';
+import { ListdirectionComponent } from './pages/settings/direction/listdirection/listdirection.component';
+import { ListcommissionComponent } from './pages/settings/commission/listcommission/listcommission.component';
+import { AjoutcommissionComponent } from './pages/settings/commission/ajoutcommission/ajoutcommission.component';
+import { DetailcommissionComponent } from './pages/settings/commission/detailcommission/detailcommission.component';
+import { ModifcommissionComponent } from './pages/settings/commission/modifcommission/modifcommission.component';
+import { ModifcategorieComponent } from './pages/settings/categorie/modifcategorie/modifcategorie.component';
+import { AjoutcategorieComponent } from './pages/settings/categorie/ajoutcategorie/ajoutcategorie.component';
+import { ListcategorieComponent } from './pages/settings/categorie/listcategorie/listcategorie.component';
+import { DetailcategorieComponent } from './pages/settings/categorie/detailcategorie/detailcategorie.component';
+import { DetailsiteComponent } from './pages/settings/site/detailsite/detailsite.component';
+import { AjoutsiteComponent } from './pages/settings/site/ajoutsite/ajoutsite.component';
+import { ListsiteComponent } from './pages/settings/site/listsite/listsite.component';
+import { ModifsiteComponent } from './pages/settings/site/modifsite/modifsite.component';
+import { ModifperiodeComponent } from './pages/settings/periode/modifperiode/modifperiode.component';
+import { ListperiodeComponent } from './pages/settings/periode/listperiode/listperiode.component';
+import { DetailperiodeComponent } from './pages/settings/periode/detailperiode/detailperiode.component';
+import { AjoutperiodeComponent } from './pages/settings/periode/ajoutperiode/ajoutperiode.component';
+import { AjoutprofilComponent } from './pages/settings/profil/ajoutprofil/ajoutprofil.component';
+import { DetailprofilComponent } from './pages/settings/profil/detailprofil/detailprofil.component';
+import { ListprofilComponent } from './pages/settings/profil/listprofil/listprofil.component';
+import { ModifprofilComponent } from './pages/settings/profil/modifprofil/modifprofil.component';
+import { ModifsocieteComponent } from './pages/settings/societe/modifsociete/modifsociete.component';
+import { DetailsocieteComponent } from './pages/settings/societe/detailsociete/detailsociete.component';
+import { ListsocieteComponent } from './pages/settings/societe/listsociete/listsociete.component';
+import { AjoutsocieteComponent } from './pages/settings/societe/ajoutsociete/ajoutsociete.component';
+import { AjoutstructureComponent } from './pages/settings/structure/ajoutstructure/ajoutstructure.component';
+import { DetailstructureComponent } from './pages/settings/structure/detailstructure/detailstructure.component';
+import { ListstructureComponent } from './pages/settings/structure/liststructure/liststructure.component';
+import { ModifstructureComponent } from './pages/settings/structure/modifstructure/modifstructure.component';
+import { ModiffonctionComponent } from './pages/settings/fonction/modiffonction/modiffonction.component';
+import { AjoutfonctionComponent } from './pages/settings/fonction/ajoutfonction/ajoutfonction.component';
+import { ListfonctionComponent } from './pages/settings/fonction/listfonction/listfonction.component';
+import { DetailfonctionComponent } from './pages/settings/fonction/detailfonction/detailfonction.component';
 ;
 
 @NgModule({
@@ -155,7 +195,47 @@ import { DetailattestationComponent } from './pages/attestation/detailattestatio
     StatcategorieComponent,
     ModifEvaluerComponent,
     StatageComponent,
-    DetailattestationComponent
+    DetailattestationComponent,
+    ListdomaineComponent,
+    AjoutdomaineComponent,
+    ModifdomaineComponent,
+    DetaildomaineComponent,
+    DetaildirectionComponent,
+    AjoutdirectionComponent,
+    ModifdirectionComponent,
+    ListdirectionComponent,
+    ListcommissionComponent,
+    AjoutcommissionComponent,
+    DetailcommissionComponent,
+    ModifcommissionComponent,
+    ModifcategorieComponent,
+    AjoutcategorieComponent,
+    ListcategorieComponent,
+    DetailcategorieComponent,
+    DetailsiteComponent,
+    AjoutsiteComponent,
+    ListsiteComponent,
+    ModifsiteComponent,
+    ModifperiodeComponent,
+    ListperiodeComponent,
+    DetailperiodeComponent,
+    AjoutperiodeComponent,
+    AjoutprofilComponent,
+    DetailprofilComponent,
+    ListprofilComponent,
+    ModifprofilComponent,
+    ModifsocieteComponent,
+    DetailsocieteComponent,
+    ListsocieteComponent,
+    AjoutsocieteComponent,
+    AjoutstructureComponent,
+    DetailstructureComponent,
+    ListstructureComponent,
+    ModifstructureComponent,
+    ModiffonctionComponent,
+    AjoutfonctionComponent,
+    ListfonctionComponent,
+    DetailfonctionComponent
   ],
   imports: [
     BrowserModule,
