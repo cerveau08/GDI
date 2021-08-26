@@ -326,6 +326,10 @@ const routes: Routes = [
         component: AjoutsiteComponent,
         canActivate: [AuthGuard]
       },
+      { path: 'listesite',
+        component: ListsiteComponent,
+        canActivate: [AuthGuard]
+      },
       { path: 'modifsite',
         component:ModifsiteComponent,
         canActivate: [AuthGuard]

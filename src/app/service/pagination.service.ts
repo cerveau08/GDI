@@ -192,7 +192,7 @@ export class PaginationService {
         }, {
           title: 'Fonction',  path: 'ajoutfonction',
         },{
-          title: 'Site',  path: 'ajoutsite',
+          title: 'Site',  path: 'listesite',
         }, {
           title: 'Catégorie',  path: 'ajoutcategorie',
         },{
