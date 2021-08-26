@@ -1,3 +1,4 @@
+import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Component, OnInit, HostListener } from '@angular/core';
 import { ApexAxisChartSeries, ApexChart, ApexDataLabels, ApexPlotOptions, ApexResponsive, ApexXAxis, ApexYAxis, ApexLegend, ApexFill, ChartComponent } from 'ng-apexcharts';
@@ -83,8 +84,7 @@ export class PresenceComponent implements OnInit {
   chart: ChartComponent;
   public chartOptions4: Partial<ChartOptions>;
   public chartOptions5: Partial<ChartOptions>;
-  constructor(private dataService: DataService,
-    private errormodalService: ErrormodalService,
+  constructor(private toastr: ToastrService,
               private otherService: OthersService) {
                 this.getScreenSize();
   }
@@ -93,14 +93,12 @@ export class PresenceComponent implements OnInit {
   getScreenSize(event?) {
         this.scrHeight = window.innerHeight;
         this.scrWidth = window.innerWidth;
-        console.log(this.scrHeight, this.scrWidth);
   }
   ngOnInit() {
     
     this.getTenLastYear();
     this.otherService.getAllSociete().subscribe(
       data => {
-        console.log(data);
         this.dataSociete = data["data"];
       }
     );
@@ -120,8 +118,6 @@ export class PresenceComponent implements OnInit {
   onChanges(): void {
     this.anneeForm.get('annee').valueChanges.subscribe(val => {
       if (val) {
-        console.log(val);
-        
         this.dateSelectionnerPresence(val);
       }
     });
@@ -150,8 +146,6 @@ export class PresenceComponent implements OnInit {
         annee: this.currentDate - 9
       },
     ];
-    console.log(this.lastTenYear);
-    
     return this.lastTenYear
   }
 
@@ -161,10 +155,8 @@ export class PresenceComponent implements OnInit {
     }
     this.otherService.getStatPresenceTab(value).subscribe(
       data => {
-        console.log(data);
         this.dataPresence = data;
         this.dataStatEffectifPresence = this.dataPresence.data;
-        //console.log(this.dataStatEffectifPresence);
         if(value == null) {
           this.axex = this.dataStatEffectifPresence.map(valueOfDirection => valueOfDirection.annee);
           this.malade = this.dataStatEffectifPresence.map(valueOfMalade => valueOfMalade.malade);
@@ -247,21 +239,13 @@ export class PresenceComponent implements OnInit {
   societeSelectionnerPresence(value){
     this.otherService.statDemandeDirection(value).subscribe(
       data => {
-        console.log(data);
         this.dataPresence = data;
         this.dataStatSocietePresence = this.dataPresence.data;
-        console.log(this.dataStatSocietePresence);
-        
     this.directions = this.dataStatSocietePresence.map(valueOfDirection => valueOfDirection.direction);
     this.mission = this.dataStatSocietePresence.map(valueOfMission=> parseInt(valueOfMission.mission));
     this.congeMaladie = this.dataStatSocietePresence.map(valueOfCongeMaladie => parseInt(valueOfCongeMaladie.congeMaladie));
     this.congeAnnuelle = this.dataStatSocietePresence.map(valueOfCongeAnnuelle => parseInt(valueOfCongeAnnuelle.congeAnnuelle));
     this.convenancePerso = this.dataStatSocietePresence.map(valueOfConvenancePerso => parseInt(valueOfConvenancePerso.convenancePerso));
-    console.log(this.convenancePerso);
-    console.log(this.congeAnnuelle);
-    console.log(this.mission);
-    console.log(this.directions);
-    console.log(this.congeMaladie);
     this.chartOptions5 = {
       colors: [
         "#ff7900",
@@ -316,7 +300,6 @@ export class PresenceComponent implements OnInit {
         bar: {
           horizontal: false,
           columnWidth: "30px",
-        //  endingShape: "rounded",
         },
       },
       dataLabels: {

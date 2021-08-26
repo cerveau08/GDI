@@ -76,14 +76,10 @@ export class InterarchiveComponent implements OnInit {
   successRequest
   totalItems : any;
   public reqUrl = environment.base_url;
-  constructor(private dataService: DataService,
-    private pagerService: PaginationService,
-    private modalService: ModalService,
-    private otherService: OthersService,
+  constructor(private otherService: OthersService,
     private errormodalService: ErrormodalService,
     public datepipe: DatePipe,
     public router: Router,
-    private http: HttpClient
     ) {  
       this.getScreenSize();
     }
@@ -106,7 +102,6 @@ export class InterarchiveComponent implements OnInit {
       moi: new FormControl (''),
       somme: new FormControl('')
     });
-    //this.datas = this.dataService.getData();;
 
     this.gty(this.page);
     this.isAdmissible(this.admissible);
@@ -118,15 +113,6 @@ export class InterarchiveComponent implements OnInit {
     if(this.filterForm.value.mois) {
       this.prenom = this.filterForm.value.prenom;
     }
-    
-
-    console.log(this.filterForm.value);
-
-    
-
-
-
-
   }
   openDetail(data) {
     this.router.navigate(['/accueil/detailinter'], {
@@ -136,23 +122,16 @@ export class InterarchiveComponent implements OnInit {
     })
   }
 
-
   isAdmissible(admissible){
     this.otherService.listArchivedFilter(this.page, this.itemsPerPage,admissible).subscribe((data: any) => {
       this.dataInterArchiv =  data.data;
       this.totalItems = data.total;
-      console.log(data);
-      }, error=> {
-        this.errorMsg = error;
-        this.errormodalService.open('error-modal-1');
-        console.log(error)
     })
   }
  
 
   getcolor1(p) {
     let color = "#10a900"
-  
     if(p.admissible==false) {
       color = "#ff0000"
     } else {
@@ -163,7 +142,6 @@ export class InterarchiveComponent implements OnInit {
 
 
   checkValue(event){
-    console.log(event.checked);
     this.admissible=event.checked;
     this.isAdmissible(this.admissible);
  }
@@ -175,5 +153,4 @@ export class InterarchiveComponent implements OnInit {
   closeErrorModal(id: string) {
     this.errormodalService.close(id);
   }
-
 }

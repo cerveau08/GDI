@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { FormGroup, FormControl } from '@angular/forms';
 import { DataService } from '../../../service/data.service';
 import { Component, OnInit } from '@angular/core';
@@ -104,20 +105,18 @@ export class DetailinterComponent implements OnInit {
   errorMsg: any;
   constructor(private activeroute: ActivatedRoute,
               private modalService: ModalService,
-              private dataService: DataService,
               private otherService: OthersService,
               private fileSaver: NgxFileSaverService,
               private errormodalService: ErrormodalService,
               private http: HttpClient,
-              public router: Router, ) { 
+              public router: Router, 
+              private toastr: ToastrService) { 
     this.activeroute.queryParams.subscribe(params => {
       this.item = JSON.parse(params["user"]);
-      console.log(this.item);
       this.otherService.getOneInterById(this.item).subscribe(
           data =>{
             this.data = data;
             this.dataInter = this.data.data;
-            console.log(this.dataInter);
             this.nom = this.dataInter.nom;
             this.prenom = this.dataInter.prenom;
             this.datedenaissance = this.dataInter.datedenaissance;
@@ -144,45 +143,20 @@ export class DetailinterComponent implements OnInit {
             this.etat = this.dataInter.etat;
             this.contratDoc = this.dataInter.fileContrat;
             this.fichePosteDoc = this.dataInter.fileFichePoste;
-        },
-        error=> {
-          this.errorMsg = error;
-          this.errormodalService.open('error-modal-1');
-          console.log(error)
         }
       );
     })
-
-
-
-    
-
-    //detail d'un contrat
-  /*  this.otherService.getContratById(this.id).subscribe(
-      data =>{
-        this.data = data;
-        this.dataContrat = this.data.data;
-        console.log(this.dataContrat);
-      })*/
     
   }
   ngOnInit() {
     this.role = localStorage.getItem('user');
-    // this.societeId = localStorage.getItem('user');
-    // // this.societeId = JSON.parse(params["currentUser"]);
-    
     this.societeData = JSON.parse(localStorage.getItem('currentUser'));
     this.societeIdDrh=this.societeData.data.societeId;
-    console.log(this.societeIdDrh);
-    console.log(this.societeIdInterim);
     this.otherService.getOneInterById(this.item).subscribe(
       data =>{
         this.data = data;
         this.societeIdInterim = this.data.data.societe.id;
         if(this.societeIdDrh == this.societeIdInterim) {
-          console.log(this.societeIdDrh);
-          console.log(this.societeIdInterim);
-    
           this.sameIdSociete = true;
         } else {
           this.sameIdSociete = false;
@@ -223,21 +197,11 @@ export class DetailinterComponent implements OnInit {
     this.otherService.getAllSociete().subscribe(
       data => {
         this.dataSociete = data["data"];
-        console.log(data);
-      }, error=> {
-        this.errorMsg = error;
-        this.errormodalService.open('error-modal-1');
-        console.log(error)
       }
     );
     this.otherService.getAllCategorie().subscribe(
       data => {
         this.dataCategorie = data["data"];
-        console.log(data);
-      }, error=> {
-        this.errorMsg = error;
-        this.errormodalService.open('error-modal-1');
-        console.log(error)
       }
     );
     this.arretForm = new FormGroup({
@@ -256,49 +220,36 @@ export class DetailinterComponent implements OnInit {
   gty(page: any){
     this.http.get(this.reqUrl + `/managers/list?page=${page}&limit=${this.itemsPerPage}`).subscribe((data: any) => {
       this.dataManageur =  data.data;
-      console.log(this.dataManageur);
-      console.log(data);
-    }, error=> {
-      this.errorMsg = error;
-      this.errormodalService.open('error-modal-1');
-      console.log(error)
     })
   }
 
   public saveMatriculeM(e): void {
     let matricule = e.target.value;
     let list = this.dataManageur.filter(x => x.matricule === matricule)[0];
-    console.log(list.matricule);
     this.validerForm.patchValue({profession: list.matricule});
   }
 
   directionsListe(value) {
-    console.log(value);
     this.otherService.getAllDirection(value).subscribe(
       data => {
         this.dataDirection = data['data'];
-       console.log(data);
        }
     ); 
   }
 
   departementListe(value) {
-    console.log(value);
     this.otherService.getAllDepartement(value).subscribe(
       data => {
         this.dataDepartement = data['data'];
-       console.log(data);
-       }
+      }
     ); 
   }
 
   serviceListe(value) {
-    console.log(value);
     this.otherService.getAllService(value).subscribe(
       data => {
         this.donneeService = data['data'];
-       console.log(data);
-       }
+      }
     ); 
   }
 
@@ -358,18 +309,21 @@ export class DetailinterComponent implements OnInit {
     formdata.append("procesVerbal",this.urlProcesVerbal);
     this.otherService.renouvelerContrat(formdata).subscribe(
       data => {
-        console.log(data);
         this.dataRenouveler = data;
         this.successMsgRenouveler = this.dataRenouveler.status;
         if(this.successMsgRenouveler == true){
           this.ngOnInit();
           this.closeModal('custom-modal-4');
+          this.toastr.success(this.dataRenouveler.message, 'Success', {
+            timeOut: 3000,
+          });
         }
       },
       error=> {
         this.errorMsg = error;
-        this.errormodalService.open('error-modal-1');
-        console.log(error)
+        this.toastr.error(this.errorMsg, 'Echec', {
+          timeOut: 5000,
+        });
       }
     )
   }
@@ -384,22 +338,21 @@ export class DetailinterComponent implements OnInit {
     formdata.append("fileContrat",this.urlcontrat);
     this.otherService.reconduireContrat(formdata).subscribe(
       data => {
-        console.log(data);
         this.dataReconduire = data;
         this.successMsgReconduire = this.dataReconduire.status;
         if(this.successMsgReconduire == true){
           this.ngOnInit();
           this.closeModal('custom-modal-5');
+          this.toastr.success(this.dataReconduire.message, 'Succes', {
+            timeOut: 3000,
+          });
         } 
-        // else {
-        //   this.errorMsg = this.dataReconduire.message;
-        //   this.errormodalService.open('error-modal-1');
-        // }
       },
       error=> {
         this.errorMsg = error;
-        this.errormodalService.open('error-modal-1');
-        console.log(error)
+        this.toastr.error(this.errorMsg, 'Echec', {
+          timeOut: 5000,
+        });
       }
     )
   }
@@ -428,22 +381,24 @@ export class DetailinterComponent implements OnInit {
   validerInterimaire() {
     this.otherService.validerInterimaire(this.validerForm.value, this.item).subscribe(
       data => {
-        console.log(data);
         this.dataValidation = data;
         this.successMsgValider = this.dataValidation.status;
         if(this.successMsgValider == true) {
           this.closeModal('custom-modal-8');
+          this.toastr.success(this.dataValidation.message, 'Success', {
+            timeOut: 3000,
+          });
           this.router.navigate(['accueil/souscontrat']);
         }
       }, error=> {
         this.errorMsg = error;
-        this.errormodalService.open('error-modal-1');
-        console.log(error)
+        this.toastr.error(this.errorMsg, 'Echec', {
+          timeOut: 5000,
+        });
       }
     )
   }
 
-   //recuperation de l'image
   getPhoto(e:any) {
     this.photo= e.files.item(0);
     let reader = new FileReader();
@@ -455,7 +410,6 @@ export class DetailinterComponent implements OnInit {
 
   contrat(e:any) {
     this.urlcontrat= e.files.item(0);
-    console.log(this.urlcontrat);
     this.filenamecontrat = this.urlcontrat.name;
     let reader = new FileReader();
     reader.readAsDataURL( this.urlcontrat)
@@ -464,7 +418,6 @@ export class DetailinterComponent implements OnInit {
   }
   fichedeposte(e:any) {
     this.urlfichedeposte= e.files.item(0);
-    console.log(this.urlfichedeposte);
     this.filenamefichedeposte = this.urlfichedeposte.name;
     let reader = new FileReader();
     reader.readAsDataURL( this.urlfichedeposte)
@@ -473,7 +426,6 @@ export class DetailinterComponent implements OnInit {
   }
   procesVerbal(e:any) {
     this.urlProcesVerbal= e.files.item(0);
-    console.log(this.urlProcesVerbal);
     this.filenameProceVerbal = this.urlProcesVerbal.name;
     let reader = new FileReader();
     reader.readAsDataURL( this.urlProcesVerbal)
@@ -481,41 +433,43 @@ export class DetailinterComponent implements OnInit {
     }
   }
   arretContrat() {
-    console.log(this.dataInter);
     this.otherService.arreterContrat(this.dataInter.contrat.id, this.arretForm.value).subscribe(
       (response) =>{
-        console.log(response)
         this.dataArret = response;
         this.successMsgArret = this.dataArret.status;
-        console.log(this.dataArret.status)
         if(this.successMsgArret == true) {
           this.closeModal('custom-modal-6');
           this.ngOnInit();
+          this.toastr.success(this.dataArret.message, 'Success', {
+            timeOut: 3000,
+          });
         }
       },
       error=> {
         this.errorMsg = error;
-        this.errormodalService.open('error-modal-1');
-        console.log(error)
+        this.toastr.error(this.errorMsg, 'Echec', {
+          timeOut: 5000,
+        });
       }
     );
   }
   bloquerInterimaire() {
-    console.log(this.dataInter);
     this.otherService.bolquerInter(this.item, this.bannirForm.value).subscribe(
       (response) =>{
-        console.log(response)
         this.dataBannir = response;
         this.successMsgBannir = this.dataBannir.status;
         if(this.successMsgBannir == true) {
           this.closeModal('custom-modal-7');
           this.ngOnInit();
+          this.toastr.success(this.dataBannir.message, 'Success', {
+            timeOut: 3000,
+          });
         }
-      },
-      error=> {
+      }, error=> {
         this.errorMsg = error;
-        this.errormodalService.open('error-modal-1');
-        console.log(error)
+        this.toastr.error(this.errorMsg, 'Echec', {
+          timeOut: 5000,
+        });
       }
     );
   }

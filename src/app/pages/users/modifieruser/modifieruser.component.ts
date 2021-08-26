@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -29,17 +30,18 @@ request;
 next;
 errorMsg
 userAgentForm: FormGroup;
+  data: any;
+  successMsg: any;
   constructor(private activeroute: ActivatedRoute,
     private route: Router,
     private errormodalService: ErrormodalService,
-    private otherService: OthersService) {
+    private otherService: OthersService,
+    private toastr: ToastrService) {
       this.activeroute.queryParams.subscribe(params => {
         this.item = JSON.parse(params["user"]);
-        console.log(this.item);
         this.otherService.detailUser(this.item).subscribe(
           data =>{
             this.dataUser = data;
-            console.log(this.dataUser);
             this.matricule = this.dataUser.data.matricule;
             this.prenom = this.dataUser.data.prenom;
             this.nom = this.dataUser.data.nom;
@@ -48,10 +50,6 @@ userAgentForm: FormGroup;
             this.profil = this.dataUser.data.profil.libelle;
             this.profilId = this.dataUser.data.profil.id;
             this.telephone = this.dataUser.data.telephone;
-          }, error=> {
-            this.errorMsg = error;
-            this.errormodalService.open('error-modal-1');
-            console.log(error)
           })
         })
      }
@@ -71,7 +69,6 @@ userAgentForm: FormGroup;
       this.otherService.getprofil().subscribe(
         data => {
           this.dataprofils = data["data"];
-          console.log(data);
         }
       );
   
@@ -80,11 +77,9 @@ userAgentForm: FormGroup;
   public saveFonction(e): void {
     let libelle = e.target.value;
     let list = this.listeFonction.filter(x => x.libelle === libelle)[0];
-    console.log(list.libelle);
     this.userAgentForm.patchValue({fonction: list.libelle});
   }
     modifierUser(){
-      console.log(this.userAgentForm.value);
       const value = this.userAgentForm.value;
       const info = new FormData();
       info.append("prenom",this.userAgentForm.value.prenom);
@@ -96,18 +91,21 @@ userAgentForm: FormGroup;
       if(this.photoUpload != undefined) {
         info.append("avatar",this.photoUpload);
       }
-      console.log(info);
       this.otherService.updateUser(info, this.item).subscribe(
-        (res) =>{
-          console.log(res);
-          if(res){
+        (response) =>{
+          this.data = response;
+          this.successMsg = this.data.status
+          if (this.successMsg == true) {
+            this.toastr.success(this.data.message, 'Success', {
+              timeOut: 3000,
+            });
             this.route.navigate(['/accueil/listeuser']);
           }
-        },
-        error=> {
+        }, error=> {
           this.errorMsg = error;
-          this.errormodalService.open('error-modal-1');
-          console.log(error)
+          this.toastr.error(this.errorMsg, 'Echec', {
+            timeOut: 5000,
+          });
         }
       )
     }
@@ -121,7 +119,6 @@ userAgentForm: FormGroup;
     }
   
     getPhoto(e:any) {
-      console.log(this.avatar);
       this.photoUpload = e.files.item(0);
       let reader = new FileReader();
       reader.readAsDataURL( this.photoUpload)

@@ -93,32 +93,22 @@ export class DetailcontratComponent implements OnInit {
   errorMsg: any;
   constructor(private activeroute: ActivatedRoute,
               private modalService: ModalService,
-              private dataService: DataService,
               private otherService: OthersService,
               private fileSaver: NgxFileSaverService,
               private errormodalService: ErrormodalService,
-              private http: HttpClient,
               public router: Router, ) { 
     this.activeroute.queryParams.subscribe(params => {
       this.item = JSON.parse(params["contrat"]);
-      console.log(this.item);
       this.otherService.getOneInterById(this.item).subscribe(
           data =>{
             this.data = data;
             this.dataInter = this.data.data;
-            console.log(this.dataInter);
             this.nom = this.dataInter.nom;
             this.prenom = this.dataInter.prenom;
-        },
-        error=> {
-          this.errorMsg = error;
-          this.errormodalService.open('error-modal-1');
-          console.log(error)
         }
       );
     })
 
-    //detail d'un contrat
     this.otherService.getContratById(this.item).subscribe(
       data =>{
         this.data = data;
@@ -132,13 +122,11 @@ export class DetailcontratComponent implements OnInit {
         this.service = this.dataContrat.structure.service;
         this.categorie = this.dataContrat.categorie;
         this.domaine = this.dataContrat.domaine;
-        console.log(this.dataContrat);
       })
     
   }
   ngOnInit() {
     this.role = localStorage.getItem('user')
-    
   }
 
   public get(p) {

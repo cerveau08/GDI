@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { Component, OnInit, HostListener } from '@angular/core';
 import { ApexAxisChartSeries, ApexChart, ApexDataLabels, ApexPlotOptions, ApexResponsive, ApexXAxis, ApexYAxis, ApexLegend, ApexFill, ChartComponent } from 'ng-apexcharts';
 import { DataService } from 'src/app/service/data.service';
@@ -85,8 +86,8 @@ export class GenreComponent implements OnInit {
   chart: ChartComponent;
   public chartOptions3: Partial<ChartOptions>;
   successMsg: any;
-  constructor(private dataService: DataService,
-    private errormodalService: ErrormodalService,
+  errorMsg: any;
+  constructor(private toastr: ToastrService,
               private otherService: OthersService) {
     this.getScreenSize();
   }
@@ -94,14 +95,12 @@ export class GenreComponent implements OnInit {
   getScreenSize(event?) {
         this.scrHeight = window.innerHeight;
         this.scrWidth = window.innerWidth;
-        //console.log(this.scrHeight, this.scrWidth);
   }
 
   ngOnInit() {
     this.otherService.getAllSociete().subscribe(
       data => {
         this.dataSociete = data["data"];
-        console.log(data);
       }
     );
 
@@ -118,50 +117,45 @@ export class GenreComponent implements OnInit {
     this.onChangesSociete();
   }
 
-  // onChanges(): void {
-  //   this.percentForm.get('id_societe').valueChanges.subscribe(val => {
-  //     if (val) {
-  //       console.log(val);
-  //       this.genrePourcentage(val);
-  //     }
-  //   });
-  // }
-
   onChangesSociete(): void {
     this.societeForm.get('societe').valueChanges.subscribe(val => {
       if (val) {
-        console.log(val);
         this.societeSelectionner(val);
       }
     });
   }
 
   exportgenrePourcentage() {
-    
     this.id_societe = this.percentForm.value.id_societe;
-    console.log(this.id_societe);
     this.otherService.extractionStatistiqueGenreInterim(this.id_societe).subscribe(
       data => {
-        console.log(data);
         this.data = data;
         this.successMsg = this.data.status
         if(this.successMsg == true) {
           window.open(data.data);
         }
+      }, error=> {
+        this.errorMsg = error;
+        this.toastr.error(this.errorMsg, 'Echec', {
+          timeOut: 5000,
+        });
       }
     )
   }
 
   exportStatInterimaireBySociete() {
-    console.log(this.societe);
     this.otherService.extractionStatistiqueInterim(this.societe).subscribe(
       data => {
-        console.log(data);
         this.data = data;
         this.successMsg = this.data.status
         if(this.successMsg == true) {
           window.open(data.data);
         }
+      }, error=> {
+        this.errorMsg = error;
+        this.toastr.error(this.errorMsg, 'Echec', {
+          timeOut: 5000,
+        });
       }
     )
   }
@@ -170,7 +164,6 @@ export class GenreComponent implements OnInit {
     const getDownloadProgress = () => {
       this.otherService.statInterPourcent(id_societe).subscribe(
         data => {
-          console.log(data);
           this.data = data;
           this.dataStatEffectifGenre = this.data.data[0];
           this.femme= this.dataStatEffectifGenre.femme;
@@ -178,7 +171,6 @@ export class GenreComponent implements OnInit {
           this.totalCercle= this.dataStatEffectifGenre.total;
           this.pourcentFemme = this.dataStatEffectifGenre.femmePourcent;
           this.pourcentFemmecercle = this.pourcentFemme - 2;
-          console.log(this.dataStatEffectifGenre)
         }
       )
       clearInterval(this.intervalId);
@@ -186,8 +178,6 @@ export class GenreComponent implements OnInit {
     this.intervalId = setInterval(getDownloadProgress, 1);
   }
   ngOnDestroy() {
-    console.log(this.intervalId);
-    
     clearInterval(this.intervalId);
   }
 
@@ -195,14 +185,12 @@ export class GenreComponent implements OnInit {
   societeSelectionner(value:string){
     this.otherService.statTotalInter(value).subscribe(
       data => {
-        console.log(data);
-        this.data = data;
-        this.dataStatEffectifGenre = this.data.data[0];
-    this.directs = this.dataStatEffectifGenre;
-    this.directions = this.dataStatEffectifGenre.map(valueOfDirection => valueOfDirection.direction);
-    this.hommes = this.dataStatEffectifGenre.map(valueOfHomme => valueOfHomme.homme);
-    this.femmes = this.dataStatEffectifGenre.map(valueOfFemmes => valueOfFemmes.femme);
-    
+      this.data = data;
+      this.dataStatEffectifGenre = this.data.data[0];
+      this.directs = this.dataStatEffectifGenre;
+      this.directions = this.dataStatEffectifGenre.map(valueOfDirection => valueOfDirection.direction);
+      this.hommes = this.dataStatEffectifGenre.map(valueOfHomme => valueOfHomme.homme);
+      this.femmes = this.dataStatEffectifGenre.map(valueOfFemmes => valueOfFemmes.femme);
     this.chartOptions3 = {
       colors: [
         "#009393",

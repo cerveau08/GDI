@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, HostListener, OnInit } from '@angular/core';
@@ -80,14 +81,13 @@ export class InterfincontratComponent implements OnInit {
   public direction = null;
   totalItems : any;
   public reqUrl = environment.base_url;
-  constructor(private dataService: DataService,
-    private pagerService: PaginationService,
-    private modalService: ModalService,
+  constructor(private modalService: ModalService,
     private otherService: OthersService,
     public datepipe: DatePipe,
     private errormodalService: ErrormodalService,
     public router: Router,
-    private http: HttpClient
+    private http: HttpClient,
+    private toastr:ToastrService
     ) {  
       this.getScreenSize();
     }
@@ -118,11 +118,6 @@ export class InterfincontratComponent implements OnInit {
     this.otherService.getAllSociete().subscribe(
       data => {
         this.dataSociete = data["data"];
-        console.log(data);
-      },error=> {
-        this.errorMsg = error;
-        this.errormodalService.open('error-modal-1');
-        console.log(error)
       }
     );
 
@@ -130,23 +125,19 @@ export class InterfincontratComponent implements OnInit {
 
     this.http.get(this.reqUrl + `/listeAgence?page=1&limit=100`).subscribe((data: any) => {
       this.dataAgence =  data.data;
-      console.log(this.dataAgence);
     })
   }
 
   public saveProfession(e): void {
     let libelle = e.target.value;
     let list = this.listeFonction.filter(x => x.libelle === libelle)[0];
-    console.log(list.libelle);
     this.filterForm.patchValue({poste: list.libelle});
   }
 
   directionsListe(value) {
-    console.log(value);
     this.otherService.getAllDirection(value).subscribe(
       data => {
         this.dataDirection = data['data'];
-       console.log(data);
        }
     ); 
   }
@@ -173,11 +164,6 @@ export class InterfincontratComponent implements OnInit {
     this.otherService.getInterimaireFinContrat(page, this.itemsPerPage, this.matricule, this.poste, this.agence, this.societe, this.direction).subscribe((data: any) => {
       this.dataFinContrat =  data.data;
       this.totalItems = data.total;
-      console.log(data);
-    }, error=> {
-      this.errorMsg = error;
-      this.errormodalService.open('error-modal-1');
-      console.log(error)
     })
   }
   openDetail(data) {
@@ -189,19 +175,24 @@ export class InterfincontratComponent implements OnInit {
   }
 
   extraireInter() {
-    console.log(this.filterForm.value);
     if (this.filterForm.value.poste == undefined) {
       this.filterForm.patchValue({poste: ''});
     }
-    console.log(this.filterForm.value);
     this.otherService.extraireInterimaire(this.filterForm.value).subscribe(
       data => {
-        console.log(data);
         this.data = data;
         this.successMsg = this.data.status
         if(this.successMsg == true) {
           window.open(data.data);
+          this.toastr.success(this.data.message, 'Success', {
+            timeOut: 3000,
+          });
         }
+      }, error=> {
+        this.errorMsg = error;
+        this.toastr.error(this.errorMsg, 'Echec', {
+          timeOut: 5000,
+        });
       }
     )
   }
@@ -212,7 +203,6 @@ export class InterfincontratComponent implements OnInit {
       moi: this.demandeForm.value.moi,
       somme: this.demandeForm.value.somme
     } 
-    console.log(demande);
   }
 
   openModal(id: string) {

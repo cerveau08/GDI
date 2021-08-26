@@ -40,10 +40,7 @@ export class ListeblacklisterComponent implements OnInit {
   parentCk=false;
   ck=false;
   viewer = 'google';  
-  selectedType = 'docx';   
-  DemoDoc="http://www.africau.edu/images/default/sample.pdf" 
-  DemoDoc1="https://file-examples.com/wp-content/uploads/2017/02/file-sample_100kB.doc"
-  DemoDoc2="https://www.le.ac.uk/oerresources/bdra/html/resources/example.txt" 
+  selectedType = 'docx';    
   scrHeight:any;
   scrWidth:any;
   validerForm : FormGroup;
@@ -67,16 +64,13 @@ export class ListeblacklisterComponent implements OnInit {
   getScreenSize(event?) {
         this.scrHeight = window.innerHeight;
         this.scrWidth = window.innerWidth;
-        console.log(this.scrHeight, this.scrWidth);
   }
   public reqUrl = environment.base_url;
-  constructor(private dataService: DataService,
-    private fb: FormBuilder,
+  constructor(private fb: FormBuilder,
     private modalService: ModalService,
     private errormodalService: ErrormodalService,
     private fileSaver: NgxFileSaverService,
     private otherService: OthersService,
-    private http: HttpClient,
     public datepipe: DatePipe) {
       this.form = this.fb.group({
         checkArray: this.fb.array([])
@@ -99,24 +93,12 @@ export class ListeblacklisterComponent implements OnInit {
     this.gty(this.page);
   }
   gty(page: any){
-  
       this.telephone = this.filterForm.value.telephone;
-  
-    
       this.typePiece = this.filterForm.value.typePiece;
-
- 
       this.numeroPiece = this.filterForm.value.numeroPiece;
-    
     this.otherService.getListeNoire(page, this.itemsPerPage, this.telephone, this.typePiece, this.numeroPiece).subscribe((data: any) => {
       this.dd =  data.data;
       this.totalItems = data.total;
-      console.log(data);
-      console.log(this.totalItems);
-    }, error=> {
-      this.errorMsg = error;
-      this.errormodalService.open('error-modal-1');
-      console.log(error)
     })
   }
   
@@ -138,10 +120,6 @@ export class ListeblacklisterComponent implements OnInit {
 
   closeModal(id: string) {
     this.modalService.close(id);
-  }
-
-  public getfilemodal() {
-    this.fileSaver.saveUrl(this.DemoDoc, 'contrat');
   }
 
   openErrorModal(id: string) {

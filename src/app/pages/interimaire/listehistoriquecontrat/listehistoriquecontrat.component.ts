@@ -48,27 +48,17 @@ export class ListehistoriquecontratComponent implements OnInit {
     private router: Router,) {
     this.activeroute.queryParams.subscribe(params => {
       this.item = JSON.parse(params["interimaire"]);
-      console.log(this.item);
     });
   }
 
   ngOnInit() {
     this.role = localStorage.getItem('user');
-    // this.interimConnect = JSON.parse(localStorage.getItem('currentUser'));
-    // this.item = this.interimConnect.interimaire.id
-    // console.log(this.interimConnect);
     this.otherService.getOneInterById(this.item).subscribe(
       data =>{
         this.data = data;
         this.dataInter = this.data.data;
-        console.log(this.dataInter);
         this.nom = this.dataInter.nom;
         this.prenom = this.dataInter.prenom;
-    },
-    error=> {
-      this.errorMsg = error;
-      this.errormodalService.open('error-modal-1');
-      console.log(error)
     }
   );
     this.gty(this.page);
@@ -79,14 +69,9 @@ export class ListehistoriquecontratComponent implements OnInit {
       this.data = data ;
       this.totalItems = data.total;
       this.histoContrat = this.data.data["contrats"];
-      console.log(this.data);
       if(this.data.code == 500) {
         this.isData = false;
       }
-    }, error=> {
-      this.errorMsg = error;
-      this.errormodalService.open('error-modal-1');
-      console.log(error)
     })
   }
 

@@ -103,11 +103,9 @@ export class StatistiquesComponent implements OnInit {
 
   //stats des interimaires par mois
   statInterMonth(value) {
-    console.log(value);
     this.otherService.statInterByMonth(value).subscribe(
       data => {
         this.dataStatistique = data['data'];
-       console.log(data);
        },
     ); 
   }
