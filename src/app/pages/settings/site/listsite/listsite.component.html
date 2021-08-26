@@ -19,20 +19,17 @@
                                 <mat-icon class="updown" fontSet="material-icons-outlined">unfold_more</mat-icon>
                             </div>
                         </th>
-                        <th *ngIf="user != 'MNG' && scrWidth>991"  id="manager">Région</th>
-                        <th *ngIf="user != 'MNG'" id="direction">code</th>
-                        <th *ngIf="user != 'AGN'" id="agence">Adresse</th>
-                        <!-- <th id="admissible">Admissible</th> -->
+                        <th  id="manager">Région</th>
+                        <th  id="direction">code</th>
+                        <th  id="agence">Adresse</th>
                 </tr>
                 </thead>
                 <tbody>
                     <tr  style="cursor: pointer;" >
-                        <td (click)="openDetail(p.id)">a</td>
-                        <td (click)="openDetail(p.id)">b</td>
-                        <td  (click)="openDetail(p.id)"> c</td>
-                        <td (click)="openDetail(p.id)" >d</td>
-                        <!-- <td (click)="openDetail(p.id)" >e</td> -->
-                        <!-- <td (click)="openDetail(p.id)"><div [style.background]="getcolor1(p)" class="status"></div></td> -->
+                        <td >a</td>
+                        <td >b</td>
+                        <td >c</td>
+                        <td >d</td>
                     </tr>
                 </tbody>
                 

@@ -11,7 +11,9 @@ export class ListsiteComponent implements OnInit {
   scrHeight: number;
   scrWidth: number;
   progress: number;
+  // data: any;
   intervalId;
+  dataSite;
   dataStatistique: any;
   show = 1;
   color: string;
@@ -43,7 +45,17 @@ export class ListsiteComponent implements OnInit {
     };
     this.intervalId = setInterval(getDownloadProgress, 1000);
 
+
+    // this.otherService.getListSite().subscribe(
+    //   data => {
+    //     this.dataSite = data["data"];
+    //   }
+    //   console.log(this.dataSite);
+    // );
   }
+
+
+  
 
   //stats des interimaires par mois
   statInterMonth(value) {
