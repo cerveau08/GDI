@@ -82,6 +82,11 @@ import { AjoutsocieteComponent } from './pages/settings/societe/ajoutsociete/ajo
 import { ModifstructureComponent } from './pages/settings/structure/modifstructure/modifstructure.component';
 import { ListstructureComponent } from './pages/settings/structure/liststructure/liststructure.component';
 import { AjoutstructureComponent } from './pages/settings/structure/ajoutstructure/ajoutstructure.component';
+import { AjoutcategorieComponent } from './pages/settings/categorie/ajoutcategorie/ajoutcategorie.component';
+import { ModifcategorieComponent } from './pages/settings/categorie/modifcategorie/modifcategorie.component';
+import { ListcategorieComponent } from './pages/settings/categorie/listcategorie/listcategorie.component';
+import { AjoutcommissionComponent } from './pages/settings/commission/ajoutcommission/ajoutcommission.component';
+import { ModifcommissionComponent } from './pages/settings/commission/modifcommission/modifcommission.component';
 
 
 const routes: Routes = [
@@ -324,6 +329,54 @@ const routes: Routes = [
       },
       { path: 'modifsite',
         component:ModifsiteComponent,
+        canActivate: [AuthGuard]
+      },
+      { path: 'ajoutdomaine',
+        component:AjoutdomaineComponent,
+        canActivate: [AuthGuard]
+      },
+      { path: 'modifdomaine',
+        component:ModifdomaineComponent,
+        canActivate: [AuthGuard]
+      },
+      { path: 'listedomaine',
+        component:ListdomaineComponent,
+        canActivate: [AuthGuard]
+      },
+      { path: 'listefonction',
+        component:ListfonctionComponent,
+        canActivate: [AuthGuard]
+      },
+      { path: 'ajoutfonction',
+        component:AjoutfonctionComponent,
+        canActivate: [AuthGuard]
+      },
+      { path: 'modiffonction',
+        component:ModiffonctionComponent,
+        canActivate: [AuthGuard]
+      },
+      { path: 'ajoutcategorie',
+        component:AjoutcategorieComponent,
+        canActivate: [AuthGuard]
+      },
+      { path: 'modifcategorie',
+        component:ModifcategorieComponent,
+        canActivate: [AuthGuard]
+      },
+      { path: 'listcategorie',
+        component:ListcategorieComponent,
+        canActivate: [AuthGuard]
+      },
+      { path: 'ajoutcommission',
+        component:AjoutcommissionComponent,
+        canActivate: [AuthGuard]
+      },
+      { path: 'modifcommission',
+        component:ModifcommissionComponent,
+        canActivate: [AuthGuard]
+      },
+      { path: 'listcommission',
+        component:ListcommissionComponent,
         canActivate: [AuthGuard]
       },
       { path: 'ajoutdirection',
