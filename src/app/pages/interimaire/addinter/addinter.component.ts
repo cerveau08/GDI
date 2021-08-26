@@ -133,6 +133,10 @@ export class AddinterComponent implements OnInit {
   videnumeroPiece = false;
   videtelephone = false;
   videsociete = false;
+  dataSite: any;
+  page = 1;
+  itemParPage = 900;
+  region = null;
   constructor(private otherService: OthersService,
               private errormodalService: ErrormodalService,
               private toastr: ToastrService,
@@ -196,9 +200,16 @@ export class AddinterComponent implements OnInit {
         this.dataCategorie = data["data"];
       }
     );
+    this.otherService.listeSite(this.page, this.itemParPage, this.region).subscribe(
+      data => {
+        console.log(data);
+        this.dataSite = data;
+      }
+    )
     this.otherService.getDomaine().subscribe(data => this.dataDomaine = data["data"]);
     this.otherService.getFonctions().subscribe(data => this.listeFonction = data.data);
   }
+  
   public saveProfession(e): void {
     let libelle = e.target.value;
     let list = this.listeFonction.filter(x => x.libelle === libelle)[0];
