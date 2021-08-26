@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 import { environment } from 'src/environments/environment';
@@ -42,14 +43,14 @@ export class InterenattenteComponent implements OnInit {
   dataAgence: any;
   listeFonction: any;
   successMsg: any;
-  constructor(private dataService: DataService,
-    public datepipe: DatePipe,
+  constructor(public datepipe: DatePipe,
     public router: Router,
     private fb: FormBuilder,
     private modalService: ModalService,
     private otherService: OthersService,
     private errormodalService: ErrormodalService,
-    private http: HttpClient
+    private http: HttpClient,
+    private toastr: ToastrService
     ) {
       this.form = this.fb.group({
         checkArray: this.fb.array([])
@@ -58,7 +59,6 @@ export class InterenattenteComponent implements OnInit {
 
   ngOnInit() {
     this.role = localStorage.getItem('user')
-   // this.getcolor(this.p);
     this.attestationForm = new FormGroup({
       interim_id: new FormControl(''),
       dateDebut: new FormControl(''),
@@ -86,11 +86,6 @@ export class InterenattenteComponent implements OnInit {
     this.otherService.getAllSociete().subscribe(
       data => {
         this.dataSociete = data["data"];
-        console.log(data);
-      },error=> {
-        this.errorMsg = error;
-        this.errormodalService.open('error-modal-1');
-        console.log(error)
       }
     );
 
@@ -98,11 +93,6 @@ export class InterenattenteComponent implements OnInit {
 
     this.http.get(this.reqUrl + `/listeAgence?page=1&limit=100`).subscribe((data: any) => {
       this.dataAgence =  data.data;
-      console.log(this.dataAgence);
-    }, error=> {
-      this.errorMsg = error;
-      this.errormodalService.open('error-modal-1');
-      console.log(error)
     })
   }
 
@@ -129,29 +119,28 @@ export class InterenattenteComponent implements OnInit {
     this.otherService.getInterimaireEnattente(page, this.itemsPerPage, this.cni, this.poste, this.agence, this.societe, this.direction).subscribe((data: any) => {
       this.dataInter =  data.data;
       this.totalItems = data.total;
-      console.log(data);
-      console.log(this.totalItems);
-    }, error=> {
-      this.errorMsg = error;
-      this.errormodalService.open('error-modal-1');
-      console.log(error)
     })
   }
 
   extraireInter() {
-    console.log(this.filterForm.value);
     if (this.filterForm.value.poste == undefined) {
       this.filterForm.patchValue({poste: ''});
     }
-    console.log(this.filterForm.value);
     this.otherService.extraireInterimaire(this.filterForm.value).subscribe(
       data => {
-        console.log(data);
         this.data = data;
         this.successMsg = this.data.status
         if(this.successMsg == true) {
+          this.toastr.success(this.data.message, 'Success', {
+            timeOut: 3000,
+          });
           window.open(data.data);
         }
+      }, error=> {
+        this.errorMsg = error;
+        this.toastr.error(this.errorMsg, 'Echec', {
+          timeOut: 5000,
+        });
       }
     )
   }
@@ -172,7 +161,6 @@ export class InterenattenteComponent implements OnInit {
   }
   checkIfAllSelected(event) {
     this.selectedAll = this.dataInter.every(function(item:any) {
-     // item.s = event.target.checked;
       return item.etat == 0;
     })
     this.getCheckedItemList();
@@ -185,13 +173,11 @@ export class InterenattenteComponent implements OnInit {
         this.http.post(`${this.reqUrl}/validerDemande/${this.dataInter[i].id}`, null).subscribe(
           data => {
             this.result = data;
-            console.log(data);
           }
         )
       }
     }
     this.checkedList = this.checkedList;
-    console.log(this.checkedList);
   }
   downloadFile(data: any) {
     const replacer = (key, value) => (value === null ? '' : value); // specify how you want to handle null values here

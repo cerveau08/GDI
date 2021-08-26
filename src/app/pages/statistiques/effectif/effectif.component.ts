@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { Component, OnInit, HostListener } from '@angular/core';
 import { ApexAxisChartSeries, ApexChart, ApexDataLabels, ApexPlotOptions, ApexResponsive, ApexXAxis, ApexYAxis, ApexLegend, ApexFill, ChartComponent } from 'ng-apexcharts';
 import { OthersService } from 'src/app/services/others.service';
@@ -70,7 +71,8 @@ export class EffectifComponent implements OnInit {
   public chartOptions1: Partial<ChartOptions>;
   public chartOptions2: Partial<ChartOptions>;
   successMsg: any;
-  constructor(
+  errorMsg: any;
+  constructor(private toastr: ToastrService,
               private otherService: OthersService) {
     this.getScreenSize();
   }
@@ -96,7 +98,6 @@ export class EffectifComponent implements OnInit {
       societeS: new FormControl(''),
     })
     this.dateSelectionner(this.annee);
-    console.log(this.societe);
     
     this.effectifSocieteSelectionner(String(this.societe));
     this.onChanges();
@@ -106,7 +107,6 @@ export class EffectifComponent implements OnInit {
   onChanges(): void {
     this.anneeForm.get('anneeA').valueChanges.subscribe(val => {
       if (val) {
-        console.log(val);
         this.dateSelectionner(val);
       }
     });
@@ -115,36 +115,40 @@ export class EffectifComponent implements OnInit {
   onChangesSociete(): void {
     this.societeForm.get('societeS').valueChanges.subscribe(val => {
       if (val) {
-        console.log(val);
-        
         this.effectifSocieteSelectionner(val);
       }
     });
   }
   exportStatInterimaireByYear() {
-    console.log(this.annee);
     this.otherService.exportStatInterimByYear(this.annee).subscribe(
       data => {
-        console.log(data);
         this.data = data;
         this.successMsg = this.data.status
         if(this.successMsg == true) {
           window.open(data.data);
         }
+      }, error=> {
+        this.errorMsg = error;
+        this.toastr.error(this.errorMsg, 'Echec', {
+          timeOut: 5000,
+        });
       }
     )
   }
 
   exportStatInterimaireBySociete() {
-    console.log(this.societe);
     this.otherService.extractionStatistiqueInterim(this.societe).subscribe(
       data => {
-        console.log(data);
         this.data = data;
         this.successMsg = this.data.status
         if(this.successMsg == true) {
           window.open(data.data);
         }
+      }, error=> {
+        this.errorMsg = error;
+        this.toastr.error(this.errorMsg, 'Echec', {
+          timeOut: 5000,
+        });
       }
     )
   }
@@ -172,12 +176,9 @@ export class EffectifComponent implements OnInit {
         annee: this.currentDate - 9
       },
     ];
-    console.log(this.lastTenYear);
     return this.lastTenYear
   }
-  //stats interimaire par annee
   dateSelectionner(value){
-    console.log(value);
     if(value == "null"){
       value = null;
     }
@@ -185,7 +186,6 @@ export class EffectifComponent implements OnInit {
       data => {
         this.dataYear = data;
         this.dataStatEffectifAnnee = this.dataYear.data;
-        console.log(this.dataStatEffectifAnnee);
         if(value == null) {
           this.donneeAbscisse = this.dataStatEffectifAnnee.map(valueOfDirection => valueOfDirection.annee);
           this.nouveau = this.dataStatEffectifAnnee.map(valueOfNouveau => valueOfNouveau.nouveaux);
@@ -198,7 +198,6 @@ export class EffectifComponent implements OnInit {
           this.total = this.dataStatEffectifAnnee.map(valueOfTotal => valueOfTotal.total);
         }
         this.axex = this.donneeAbscisse;
-        console.log(this.axex);
         
         this.chartOptions1 = {
           colors: [
@@ -269,21 +268,16 @@ export class EffectifComponent implements OnInit {
             opacity: 4,
           },
         };
-        console.log(this.chartOptions1);
-        
         return this.chartOptions1;
     }
     )
   }
 
   effectifSocieteSelectionner(value:string){
-    console.log(value);
     this.otherService.statTotalInter(value).subscribe(
       data => {
-      console.log(data);
       this.data = data;
       this.dataStatEffectifSociete = this.data.data;
-      console.log(this.dataStatEffectifSociete);
       this.directions = this.dataStatEffectifSociete.map(valueOfDirection => valueOfDirection.direction);
       this.hommes = this.dataStatEffectifSociete.map(valueOfHomme => valueOfHomme.homme);
       this.femmes = this.dataStatEffectifSociete.map(valueOfFemme => valueOfFemme.femme);
@@ -355,11 +349,5 @@ export class EffectifComponent implements OnInit {
       };
       return this.chartOptions2;
     })
-    // error=> {
-    //   this.errorMsg = error;
-    //   this.errormodalService.open('error-modal-1');
-    //   console.log(error)
-    // })
   }
-
 }

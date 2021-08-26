@@ -160,7 +160,6 @@ export class ListeevaluationComponent implements OnInit {
   }
 
   openEvaluer() {
-    console.log(this.item);
     this.router.navigate(['/accueil/evaluer'], {
       queryParams: {
         interimaire: JSON.stringify(this.item),

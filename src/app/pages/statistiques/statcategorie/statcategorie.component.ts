@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { Component, OnInit, HostListener } from '@angular/core';
 import { ApexAxisChartSeries, ApexChart, ApexDataLabels, ApexPlotOptions, ApexResponsive, ApexXAxis, ApexYAxis, ApexLegend, ApexFill, ChartComponent } from 'ng-apexcharts';
 import { FormGroup, FormControl } from '@angular/forms';
@@ -73,7 +74,8 @@ export class StatcategorieComponent implements OnInit {
   public chartOptions2: Partial<ChartOptions>;
   successMsg: any;
   directs: any;
-  constructor(
+  errorMsg: any;
+  constructor(private toastr: ToastrService,
               private otherService: OthersService) {
     this.getScreenSize();
   }
@@ -112,12 +114,16 @@ export class StatcategorieComponent implements OnInit {
     }
     this.otherService.exportStatInterimByYear(this.annee).subscribe(
       data => {
-        console.log(data);
         this.data = data;
         this.successMsg = this.data.status
         if(this.successMsg == true) {
           window.open(data.data);
         }
+      }, error=> {
+        this.errorMsg = error;
+        this.toastr.error(this.errorMsg, 'Echec', {
+          timeOut: 5000,
+        });
       }
     )
   }
@@ -131,12 +137,16 @@ export class StatcategorieComponent implements OnInit {
     }
     this.otherService.extractionInterCategorieParDirection(annee, societe).subscribe(
       data => {
-        console.log(data);
         this.data = data;
         this.successMsg = this.data.status
         if(this.successMsg == true) {
           window.open(data.data);
         }
+      }, error=> {
+        this.errorMsg = error;
+        this.toastr.error(this.errorMsg, 'Echec', {
+          timeOut: 5000,
+        });
       }
     )
   }
@@ -164,12 +174,10 @@ export class StatcategorieComponent implements OnInit {
         annee: this.currentDate - 9
       },
     ];
-    console.log(this.lastTenYear);
     return this.lastTenYear
   }
   //stats interimaire par annee
   dateSelectionner(annee, societe){
-    console.log(annee);
     if(annee == undefined || annee == "null"){
       annee = new Date().getFullYear();
     }
@@ -180,13 +188,10 @@ export class StatcategorieComponent implements OnInit {
       data => {
         this.dataYear = data;
         this.dataStatEffectifAnnee = this.dataYear.data;
-        console.log(this.dataStatEffectifAnnee);
           this.donneeAbscisse = this.dataStatEffectifAnnee.map(valueOfDirection => valueOfDirection.categorie.libelle);
           this.hommes = this.dataStatEffectifAnnee.map(valueOfNouveau => valueOfNouveau.hommes);
           this.femmes = this.dataStatEffectifAnnee.map(valueOfFini => valueOfFini.femmes);
         this.axex = this.donneeAbscisse;
-        console.log(this.axex);
-        
         this.chartOptions1 = {
           colors: [
             "#ff0000",
@@ -251,16 +256,12 @@ export class StatcategorieComponent implements OnInit {
             opacity: 4,
           },
         };
-        console.log(this.chartOptions1);
-        
         return this.chartOptions1;
     }
     )
   }
 
   effectifSocieteSelectionner(annee, societe){
-    console.log(annee);
-    console.log(annee);
     if(annee == undefined){
       annee = new Date().getFullYear();
     }
@@ -269,14 +270,11 @@ export class StatcategorieComponent implements OnInit {
     }
     this.otherService.statInterCategorieParDirection(annee, societe).subscribe(
       data => {
-      console.log(data);
       this.data = data;
-      this.dataStatEffectifSociete = this.data.data
-      console.log(this.dataStatEffectifSociete);
+      this.dataStatEffectifSociete = this.data.data;
       this.directions = this.dataStatEffectifSociete.map(valueOfDirection => valueOfDirection.direction.libelle);
       this.hommes = this.dataStatEffectifSociete.map(valueOfHomme => valueOfHomme.AM1);
       this.femmes = this.dataStatEffectifSociete.map(valueOfFemme => valueOfFemme.AM2);
-      // this.totalSociete = this.dataStatEffectifSociete.map(valueOfTotal => valueOfTotal.homme);
       this.chartOptions2 = {
         colors: [
           "#ff7900",
@@ -344,18 +342,12 @@ export class StatcategorieComponent implements OnInit {
       };
       return this.chartOptions2;
     })
-    // error=> {
-    //   this.errorMsg = error;
-    //   this.errormodalService.open('error-modal-1');
-    //   console.log(error)
-    // })
   }
 
   //deuxieme
   societeSelectionner(valueSociete, valueAnnee){ 
     this.otherService.statInterCategorie(valueSociete, valueAnnee).subscribe(
       data => {
-        console.log(data);
         this.data = data;
         this.dataStatEffectifGenre = this.data.data;
     this.directs = this.dataStatEffectifGenre;

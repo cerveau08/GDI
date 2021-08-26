@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { DataService } from 'src/app/service/data.service';
 import { QueryBindingType } from '@angular/compiler/src/core';
 import { OthersService } from 'src/app/services/others.service';
@@ -107,14 +108,13 @@ export class HomeComponent implements OnInit {
         this.scrWidth = window.innerWidth;
   }
 
-  constructor(private dataService: DataService ,
-    private errormodalService: ErrormodalService,
+  constructor(private errormodalService: ErrormodalService,
     public router: Router,
-    private otherService: OthersService) {
+    private otherService: OthersService,
+    private toastr: ToastrService) {
     this.getScreenSize();
     this.otherService.getInter().subscribe(
       data => {
-        console.log(data);
         this.dataInterFin = data.data;
       }
     );
@@ -123,14 +123,12 @@ export class HomeComponent implements OnInit {
     this.otherService.getNouveauRecrus().subscribe(
       data => {
        this.nouveauxRrecrus = data.data;
-       console.log(data);
       }
     );
 
     this.otherService.getStatPresence().subscribe(
       data => {
         this.pmc = data.data;
-        console.log(data);
         this.present = this.pmc.present;
         this.malade = this.pmc.malade;
         this.conge = this.pmc.conge;
@@ -150,11 +148,6 @@ export class HomeComponent implements OnInit {
       this.otherService.getInter().subscribe(
         data => {
         this.dataInterFin = data.data;
-        console.log(data);
-        }, error=> {
-          this.errorMsg = error;
-          this.errormodalService.open('error-modal-1');
-          console.log(error)
         }
       );
 
@@ -162,7 +155,6 @@ export class HomeComponent implements OnInit {
       this.getTenLastYear();
       this.otherService.getAllSociete().subscribe(
         data => {
-          console.log(data);
           this.dataSociete = data["data"];
         }
       );
@@ -187,7 +179,6 @@ export class HomeComponent implements OnInit {
       this.otherService.getAllSociete().subscribe(
         data => {
           this.dataSociete = data["data"];
-          console.log(data);
         }
       );
       
@@ -210,7 +201,6 @@ export class HomeComponent implements OnInit {
       const getDownloadProgress = () => {
         this.otherService.statInterPourcent(id_societe).subscribe(
           data => {
-            console.log(data);
             this.data = data;
             this.dataStatEffectifGenre = this.data.data[0];
             this.femme= this.dataStatEffectifGenre.femme;
@@ -218,7 +208,6 @@ export class HomeComponent implements OnInit {
             this.totalCercle= this.dataStatEffectifGenre.total;
             this.pourcentFemme = this.dataStatEffectifGenre.femmePourcent;
             this.pourcentFemmecercle = this.pourcentFemme - 2;
-            console.log(this.dataStatEffectifGenre)
             clearInterval(this.intervalId);
           }
         )
@@ -230,8 +219,6 @@ export class HomeComponent implements OnInit {
   onChanges(): void {
     this.anneeForm.get('annee').valueChanges.subscribe(val => {
       if (val) {
-        console.log(val);
-        
         this.dateSelectionner(val);
       }
     });
@@ -261,13 +248,10 @@ export class HomeComponent implements OnInit {
         annee: this.currentDate - 9
       },
     ];
-    console.log(this.lastTenYear);
-    
     return this.lastTenYear
   }
 
   dateSelectionner(value){
-    console.log(value);
     if(value == "null"){
       value = null;
     }
@@ -275,7 +259,6 @@ export class HomeComponent implements OnInit {
       data => {
         this.dataYear = data;
         this.dataStatEffectifAnnee = this.dataYear.data;
-        console.log(this.dataStatEffectifAnnee);
         if(value == null) {
           this.donneeAbscisse = this.dataStatEffectifAnnee.map(valueOfDirection => valueOfDirection.annee);
           this.nouveau = this.dataStatEffectifAnnee.map(valueOfNouveau => valueOfNouveau.nouveaux);
@@ -288,7 +271,6 @@ export class HomeComponent implements OnInit {
           this.total = this.dataStatEffectifAnnee.map(valueOfTotal => valueOfTotal.total);
         }
         this.axex = this.donneeAbscisse;
-        console.log(this.axex);
         
         this.chartOptions = {
           colors: [
@@ -359,8 +341,6 @@ export class HomeComponent implements OnInit {
             opacity: 4,
           },
         };
-        console.log(this.chartOptions);
-        
         return this.chartOptions;
     }
     )
@@ -394,10 +374,6 @@ export class HomeComponent implements OnInit {
     let left1 = this.nombre - 1;
     this.left = left1 + "%";
     return this.left;
-  }
-  moisSelectionner(mois) {
-    console.log(mois);
-    
   }
   openErrorModal(id: string) {
     this.errormodalService.open(id);

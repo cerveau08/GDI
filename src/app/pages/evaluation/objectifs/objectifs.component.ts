@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { FormControl, FormGroup } from '@angular/forms';
 import { OthersService } from 'src/app/services/others.service';
 import { Component, ElementRef, OnInit } from '@angular/core';
@@ -41,27 +42,19 @@ export class ObjectifsComponent implements OnInit {
     private modalService: ModalService,
     private activeroute: ActivatedRoute,
     private errormodalService: ErrormodalService,
-    private http: HttpClient,) {
+    private http: HttpClient,
+    private toastr: ToastrService) {
     this.activeroute.queryParams.subscribe(params => {
       this.item = JSON.parse(params["interimaire"]);
-      console.log(this.item);
     });
   }
 
   ngOnInit() {
     this.role = localStorage.getItem('user');
-    // this.interimConnect = JSON.parse(localStorage.getItem('currentUser'));
-    // this.item = this.interimConnect.interimaire.id
-    // console.log(this.interimConnect);
     this.otherService.getListeObjectif(this.item).subscribe(
       data => {
         this.data = data
         this.objectif = this.data["data"];
-        console.log(data);
-      }, error=> {
-        this.errorMsg = error;
-        this.errormodalService.open('error-modal-1');
-        console.log(error)
       }
     );
     this.objectifForm = new FormGroup({
@@ -87,11 +80,6 @@ export class ObjectifsComponent implements OnInit {
           structure_id: this.interimaire.data.structure.id,
           interimaire: this.item
         });
-      },
-      error=> {
-        this.errorMsg = error;
-        this.errormodalService.open('error-modal-1');
-        console.log(error)
       }
     );
     this.gty(this.page);
@@ -102,19 +90,12 @@ export class ObjectifsComponent implements OnInit {
       this.data = data
       this.totalItems = data.total;
       this.objectif = this.data["data"];
-      console.log(data);
-    }, error=> {
-      this.errorMsg = error;
-      this.errormodalService.open('error-modal-1');
-      console.log(error)
     })
   }
 
   addObject() {
-    console.log(this.objectifForm.value);
     this.otherService.addObjectifs(this.objectifForm.value).subscribe(
       data =>{
-        console.log(data);
         this.data = data;
         this.successMsg = this.data.status
         if(this.successMsg == true) {
@@ -125,17 +106,16 @@ export class ObjectifsComponent implements OnInit {
       error=> {
         this.errorMsg = error;
         this.closeModal('objectif-modal-1');
-        this.errormodalService.open('error-modal-1');
-        console.log(error)
+        this.toastr.error(this.errorMsg, 'Echec', {
+          timeOut: 5000,
+        });
       }
     );
   }
 
   notezObjectif(id) {
-    console.log(this.noteForm.value);
     this.otherService.notezObjectif(this.noteForm.value, id).subscribe(
       data =>{
-        console.log(data);
         this.data = data;
         this.successMsg = this.data.status
         if(this.successMsg == true) {
@@ -146,13 +126,13 @@ export class ObjectifsComponent implements OnInit {
       error=> {
         this.errorMsg = error;
         this.closeModal('custom-modal-'+id);
-        this.errormodalService.open('error-modal-1');
-        console.log(error)
+        this.toastr.error(this.errorMsg, 'Echec', {
+          timeOut: 5000,
+        });
       }
     )
   }
   modifierObjectif(id) {
-    console.log(this.modifierForm.value);
     this.otherService.modifierObjectif(this.modifierForm.value, id).subscribe(
       data =>{
         this.data = data;
@@ -160,13 +140,17 @@ export class ObjectifsComponent implements OnInit {
         if(this.successMsg == true) {
           this.ngOnInit();
           this.closeModal('custom-modal-'+id);
+          this.toastr.success(this.data.message, 'Success', {
+            timeOut: 3000,
+          });
         }
       },
       error=> {
         this.errorMsg = error;
         this.closeModal('custom-modal-'+id);
-        this.errormodalService.open('error-modal-1');
-        console.log(error)
+        this.toastr.error(this.errorMsg, 'Echec', {
+          timeOut: 5000,
+        });
       }
     )
   }
