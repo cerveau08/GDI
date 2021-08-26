@@ -1,16 +1,26 @@
+<<<<<<< HEAD
 <div  class="content-form-search">
+=======
+<div [formGroup]="profilForm" class="content-form-search">
+>>>>>>> 5be9a04f53180b182b54cfc11da487a36b2e3876
     <p class="ajouter">Ajout Profil</p>
     <div class="content-form">
       <div class="content-row-form">
         <div class="content-input">
           <p class="label-input2">Libelle</p>
+<<<<<<< HEAD
           <input class="input-search" type="text"  placeholder="Numero Pièce" required>
           <p class="error-require-input-search"  >Veuillez renseigner le libelle</p>
+=======
+          <input class="input-search" type="text" formControlName="libelle" placeholder="Libelle" required>
+          <p class="error-require-input-search" *ngIf="emptyLib" >Veuillez renseigner le libelle</p>
+>>>>>>> 5be9a04f53180b182b54cfc11da487a36b2e3876
         </div>
       </div>
       <div class="content-row-form">
         <div class="content-input">
           <p class="label-input1">Code</p>
+<<<<<<< HEAD
           <input class="input-search" type="number" placeholder="Numero Téléphone" required>
           <p class="error-require-input-search" *ngIf="videtelephone" >Veuillez renseigner le code du profil</p>
         </div>
@@ -18,10 +28,17 @@
           <p class="label-input2">Description</p>
           <input class="input-search" type="number" w placeholder="Numero Téléphone" required>
           <p class="error-require-input-search" >Veuillez renseigner une description</p>
+=======
+          <input class="input-search" type="text" formControlName="code" placeholder="Code du Profil" required>
+        </div>
+        <div class="content-input">
+          <p class="label-input2">Description</p>
+          <input class="input-search" type="text" formControlName="description" placeholder="Description du Profil" required>
+>>>>>>> 5be9a04f53180b182b54cfc11da487a36b2e3876
         </div>
       </div>
       <div class="content-button-form">
-        <button (click)="ajouterProfil()" class="button-rechercher">Rechercher</button>
+        <button (click)="ajouterProfil()" class="button-rechercher">Ajouter</button>
       </div>
     </div>
   </div>

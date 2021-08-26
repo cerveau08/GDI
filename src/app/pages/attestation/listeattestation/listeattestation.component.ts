@@ -29,7 +29,7 @@ export class ListeattestationComponent implements OnInit {
   dataAttest: any;
   page = 1;
   demandeForm: FormGroup;
-  itemsPerPage = 8;
+  itemsPerPage = 10;
   lastTenYear;
   totalItems : any;
   user;
@@ -114,6 +114,10 @@ export class ListeattestationComponent implements OnInit {
         annee: this.currentDate - 1
       },{
         annee: this.currentDate - 2
+      },{
+        annee: this.currentDate - 3
+      },{
+        annee: this.currentDate - 4
       }
     ];
 

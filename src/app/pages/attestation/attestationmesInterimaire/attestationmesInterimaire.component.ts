@@ -18,8 +18,8 @@ import { OthersService } from 'src/app/services/others.service';
 export class AttestationmesInterimaireComponent implements OnInit {
 
   
-  annee;
-  mois;
+  annee = null;
+  mois = null;
   checkedList:any;
   selectedAll: any;
   filterForm: FormGroup;
@@ -29,7 +29,7 @@ export class AttestationmesInterimaireComponent implements OnInit {
   filterterm: string;
   dataAttest: any;
   page = 1;
-  itemsPerPage = 8;
+  itemsPerPage = 10;
   totalItems : any;
   user;
   public reqUrl = environment.base_url;
@@ -83,6 +83,9 @@ export class AttestationmesInterimaireComponent implements OnInit {
       libelle: "decembre",
     },
   ];
+  lastTenYear;
+  currentDate = new Date().getFullYear();
+  reference = null;
   constructor(private http: HttpClient,
               private errormodalService: ErrormodalService,
               private otherService: OthersService,
@@ -90,14 +93,37 @@ export class AttestationmesInterimaireComponent implements OnInit {
 
   ngOnInit() {
     this.user = localStorage.getItem('user');
-    this.gty(this.page);
+    this.lastTenYear = [
+      {
+        annee: this.currentDate
+      },{
+        annee: this.currentDate - 1
+      },{
+        annee: this.currentDate - 2
+      },{
+        annee: this.currentDate - 3
+      },{
+        annee: this.currentDate - 4
+      }
+    ];
     this.filterForm = new FormGroup({
       mois: new FormControl(''),
-      annee: new FormControl('')
+      annee: new FormControl(''),
+      reference: new FormControl('')
     });
+    this.gty(this.page);
   }
   gty(page: any){
-    this.http.get(this.reqUrl + `/attestationMesInterimaires?page=${page}&limit=${this.itemsPerPage}`).subscribe(
+    if(this.filterForm.value.mois) {
+      this.mois = this.filterForm.value.mois;
+    }
+    if(this.filterForm.value.reference) {
+      this.reference = this.filterForm.value.reference;
+    }
+    if(this.filterForm.value.annee) {
+      this.annee = this.filterForm.value.annee; 
+    }
+    this.otherService.listMesAttestationFilter(page,this.itemsPerPage, this.mois, this.annee, this.reference).subscribe(
       (data: any) => {
         this.dataAttest =  data.data[0];
         this.totalItems = data.total;

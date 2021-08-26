@@ -329,6 +329,11 @@ addAgence(data) {
     return this.http.get<any>(this.reqUrl + '/listeAttestation', {params: data});
   }
 
+  listMesAttestationFilter(page,limit, mois, annee, reference) {
+    const data = {page: page, limit: limit, mois: mois,  annee: annee ,reference: reference};
+    return this.http.get<any>(this.reqUrl + '/attestationMesInterimaires', {params: data});
+  }
+
 
   listArchivedFilter(page, limit, admissible) {
     const data = {page: page, limit: limit ,admissible:admissible};
@@ -387,5 +392,16 @@ addAgence(data) {
   getOneAttestation(id) {
     return this.http.get<any>(`${this.reqUrl}/detailAttestation/${id}`);
   }
-
+  addProfil(data){
+    return this.http.get<any>(`${this.reqUrl}/profils`, data);
+  }
+  addDirection(data){
+    return this.http.get<any>(`${this.reqUrl}/direction`, data);
+  }
+  addSociete(data){
+    return this.http.get<any>(`${this.reqUrl}/societe`, data);
+  }
+  addStructure(data){
+    return this.http.get<any>(`${this.reqUrl}/structure/create`, data);
+  }
 }

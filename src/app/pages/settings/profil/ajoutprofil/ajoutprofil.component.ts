@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { OthersService } from './../../../../services/others.service';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
@@ -13,7 +14,12 @@ export class AjoutprofilComponent implements OnInit {
   code;
   description;
   emptyLib = false;
-  constructor(private otherService: OthersService) { }
+  data: any;
+  successMsg: any;
+  toastr: any;
+  errorMsg: any;
+  constructor(private otherService: OthersService,
+              private router: Router) { }
 
   ngOnInit() {
     this.profilForm = new FormGroup({
@@ -23,15 +29,25 @@ export class AjoutprofilComponent implements OnInit {
     });
   }
 
-  rechercherInterimaire() { 
-    this.libelle = this.profilForm.value.libelle;
-    this.code = this.profilForm.value.code;
-    this.description = this.profilForm.value.description;
-    if(!this.libelle) {
-      this.emptyLib = true;
-    }
-    this.otherService.pieceFilter(this.profilForm.value).subscribe(
-    )
+  ajouterProfil(data) { 
+    this.otherService.addProfil(this.profilForm.value).subscribe(
+      data =>{
+      this.data = data;
+        this.successMsg = this.data.status
+        if(this.successMsg == true) {
+          this.toastr.success(this.data.message, 'Success', {
+            timeOut: 3000,
+          });
+          this.router.navigate(['/accueil/listprofil'])
       }
-  }
+    },
+      error=> {
+        this.errorMsg = error;
+        this.toastr.error(this.errorMsg, 'Echec', {
+         timeOut: 5000,
+        });
+      }
+  )
+}
+}
 
