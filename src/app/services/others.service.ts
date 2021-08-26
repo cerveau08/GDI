@@ -271,6 +271,8 @@ addAgence(data) {
   getListAttestation() {
     return this.http.get<any>(`${this.reqUrl}/listeAttestation`);
   }
+
+
   attestionMesInter(){
     return this.http.get<any>(this.reqUrl + '/attestationMesInterimaires');
   }
