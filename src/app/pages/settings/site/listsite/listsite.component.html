@@ -1,24 +1,16 @@
 <div class="all-container">
     <div class="all">
-        <p class="statt-header">Statistiques</p>
+        <p class="statt-header">Gestion Site</p>
         <div class="liste-sous-header">
-            <div [style.background]="show==1?'white':'#f5f6f9'" class="effectif-content" (click)="changeshow1()">
-                <p id="effectis" class="statt-sous-header">Effectifs</p>
+            <div [style.border]="border1" (click)="changeShow1()" class="effectif-content" >
+                <p [style.color]="color1" id="effectis" class="statt-sous-header">Liste</p>
             </div>
-            <div [style.background]="show==2?'white':'#f5f6f9'" class="effectif-content" (click)="changeshow2()">
-                <p id="genre" class="statt-sous-header">Genre</p>
-            </div>
-            <div [style.background]="show==3?'white':'#f5f6f9'" class="effectif-content" (click)="changeshow3()">
-                <p id="presence" class="statt-sous-header">Présence</p>
-            </div>
-            <div [style.background]="show==4?'white':'#f5f6f9'" class="effectif-content" (click)="changeshow4()">
-                <p id="presence" class="statt-sous-header">Agence</p>
+            <div [style.border]="border2"  (click)="changeShow2()" class="effectif-content">
+                <p [style.color]="color2" id="genre" class="statt-sous-header">Ajouter</p>
             </div>
         </div>
-        <app-effectif *ngIf="show==1"></app-effectif>
-        <app-genre *ngIf="show==2"></app-genre>
-        <app-presence *ngIf="show==3"></app-presence>
-        <app-statagence *ngIf="show==4"></app-statagence>
+        <div *ngIf="show==1" class="content-all-liste-site">Liste Site Work</div>
+        <app-ajoutsite *ngIf="show==2"></app-ajoutsite>
     </div>
 </div>
 

@@ -192,24 +192,24 @@ export class PaginationService {
         }, {
           title: 'Fonction',  path: 'ajoutfonction',
         },{
-          title: 'Site',  path: 'ajoutsite',
+          title: 'Site',  path: 'listesite',
         }, {
           title: 'Catégorie',  path: 'ajoutcategorie',
         },{
-          title: 'Commission',  path: 'ajoutcommission',
+          title: 'Comission',  path: 'ajoutcommission',
         },{
-          title: 'Direction',  path: 'statcategorie',
+          title: 'Direction',  path: 'ajoutdirection',
         },{
-          title: 'Profil',  path: 'statage',
+          title: 'Profil',  path: 'ajoutprofil',
         }
         ,{
-          title: 'Periode',  path: 'statage',
+          title: 'Periode',  path: 'ajoutperiode',
         }
         ,{
-          title: 'Societe',  path: 'statage',
+          title: 'Societe',  path: 'ajoutsociete',
         }
         ,{
-          title: 'Structure',  path: 'statage',
+          title: 'Structure',  path: 'ajoutstructure',
         },
       ]
     }
