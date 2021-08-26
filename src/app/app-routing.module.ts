@@ -1,3 +1,5 @@
+import { ModifsiteComponent } from './pages/settings/site/modifsite/modifsite.component';
+import { AjoutsiteComponent } from './pages/settings/site/ajoutsite/ajoutsite.component';
 import { DetailattestationComponent } from './pages/attestation/detailattestation/detailattestation.component';
 import { StatcategorieComponent } from './pages/statistiques/statcategorie/statcategorie.component';
 import { StatagenceComponent } from './pages/statistiques/statagence/statagence.component';
@@ -287,6 +289,14 @@ const routes: Routes = [
       },
       { path: 'deatilattestation',
         component: DetailattestationComponent,
+        canActivate: [AuthGuard]
+      },
+      { path: 'ajoutsite',
+        component: AjoutsiteComponent,
+        canActivate: [AuthGuard]
+      },
+      { path: 'modifsite',
+        component:ModifsiteComponent,
         canActivate: [AuthGuard]
       },
       {
