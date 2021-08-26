@@ -198,18 +198,18 @@ export class PaginationService {
         },{
           title: 'Comission',  path: 'ajoutcommission',
         },{
-          title: 'Direction',  path: 'ajoutdirection',
+          title: 'Direction',  path: 'listdirection',
         },{
-          title: 'Profil',  path: 'ajoutprofil',
+          title: 'Profil',  path: 'listprofil',
         }
         ,{
-          title: 'Periode',  path: 'ajoutperiode',
+          title: 'Periode',  path: 'listperiode',
         }
         ,{
-          title: 'Societe',  path: 'ajoutsociete',
+          title: 'Societe',  path: 'listsociete',
         }
         ,{
-          title: 'Structure',  path: 'ajoutstructure',
+          title: 'Structure',  path: 'liststructure',
         },
       ]
     }
