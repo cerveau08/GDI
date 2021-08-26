@@ -97,29 +97,19 @@ export class DetailevaluationComponent implements OnInit {
   errorMsg: any;
   constructor(private activeroute: ActivatedRoute,
               private modalService: ModalService,
-              private dataService: DataService,
               private otherService: OthersService,
-              private fileSaver: NgxFileSaverService,
               private errormodalService: ErrormodalService,
               private http: HttpClient,
               public router: Router, ) { 
     this.activeroute.queryParams.subscribe(params => {
       this.item = JSON.parse(params["evaluation"]);
       this.interim_id = JSON.parse(params["interimaire"]);
-      console.log(this.item);
-      console.log(this.interim_id);
       this.otherService.getOneInterById(this.interim_id).subscribe(
-          data =>{
-            this.data = data;
-            this.dataInter = this.data.data;
-            console.log(this.dataInter);
-            this.nom = this.dataInter.nom;
-            this.prenom = this.dataInter.prenom;
-        },
-        error=> {
-          this.errorMsg = error;
-          this.errormodalService.open('error-modal-1');
-          console.log(error)
+        data =>{
+          this.data = data;
+          this.dataInter = this.data.data;
+          this.nom = this.dataInter.nom;
+          this.prenom = this.dataInter.prenom;
         }
       );
     })
@@ -127,13 +117,11 @@ export class DetailevaluationComponent implements OnInit {
     this.otherService.getOneEvaluation(this.item).subscribe(
       data =>{
         this.data = data;
-        console.log(data);
         this.dataEvaluation = this.data.data;
         this.dateDebut = this.dataEvaluation.dateDebut;
         this.dateFin = this.dataEvaluation.dateFin;
         this.note = this.dataEvaluation.note;
         this.commentaire = this.dataEvaluation.commentaire;
-        console.log(this.dataEvaluation);
       }
     )
     
@@ -147,12 +135,7 @@ export class DetailevaluationComponent implements OnInit {
     this.http.get(this.reqUrl + `/objectif/${this.interim_id}/${this.item}?page=${page}&limit=${this.itemsPerPage}`).subscribe((data: any) => {
       this.data = data
       this.totalItems = data.total;
-      console.log(data);
       this.objectif = this.data["data"];
-    }, error=> {
-      this.errorMsg = error;
-      this.errormodalService.open('error-modal-1');
-      console.log(error)
     })
   }
 
@@ -182,7 +165,6 @@ export class DetailevaluationComponent implements OnInit {
   }
 
   openEvaluer() {
-    console.log(this.interim_id);
     this.router.navigate(['/accueil/evaluer'], {
       queryParams: {
         interimaire: JSON.stringify(this.interim_id),

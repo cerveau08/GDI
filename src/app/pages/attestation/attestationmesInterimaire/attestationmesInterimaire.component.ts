@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { HttpClient } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
 import { Component, HostListener, OnInit } from '@angular/core';
@@ -82,10 +83,10 @@ export class AttestationmesInterimaireComponent implements OnInit {
       libelle: "decembre",
     },
   ];
-  constructor(private dataService: DataService,
-              private http: HttpClient,
+  constructor(private http: HttpClient,
               private errormodalService: ErrormodalService,
-              private otherService: OthersService) { }
+              private otherService: OthersService,
+              private toastr: ToastrService) { }
 
   ngOnInit() {
     this.user = localStorage.getItem('user');
@@ -100,7 +101,6 @@ export class AttestationmesInterimaireComponent implements OnInit {
       (data: any) => {
         this.dataAttest =  data.data[0];
         this.totalItems = data.total;
-        console.log(this.dataAttest);
       }
     )
   }
@@ -119,16 +119,22 @@ export class AttestationmesInterimaireComponent implements OnInit {
     } else {
       this.filterForm.patchValue({annee: ''});
     }
-    console.log(this.filterForm.value);
     this.otherService.extraireAttestation(this.filterForm.value).subscribe(
       data => {
-        console.log(data);
         this.data = data;
         this.successMsg = this.data.status
         if(this.successMsg == true) {
+          this.toastr.error('Le fichier a été télécharger', 'Success', {
+            timeOut: 3000,
+          });
           window.open(data.data);
         }
-      }
+      }, error=> {
+        this.errorMsg = error;
+        this.toastr.error(this.errorMsg, 'Echec', {
+         timeOut: 5000,
+        });
+       }
     )
   }
 }

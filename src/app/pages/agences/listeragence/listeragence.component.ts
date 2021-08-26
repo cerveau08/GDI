@@ -35,11 +35,9 @@ export class ListeragenceComponent implements OnInit {
   public reqUrl = environment.base_url;
   constructor(private dataService: DataService,
     private modalService: ModalService,
-    private activeroute: ActivatedRoute,
     public router: Router,
     private errormodalService: ErrormodalService,
-    private http: HttpClient,
-    private otherService: OthersService) {}
+    private http: HttpClient,) {}
 
   ngOnInit() {
     this.user = localStorage.getItem('user');
@@ -75,10 +73,6 @@ export class ListeragenceComponent implements OnInit {
       this.totalItems = data.total;
       console.log(this.dataAgence);
       console.log(this.totalItems);
-    }, error=> {
-      this.errorMsg = error;
-      this.errormodalService.open('error-modal-1');
-      console.log(error)
     })
   }
 
@@ -90,7 +84,6 @@ export class ListeragenceComponent implements OnInit {
     })
   }
   submitted1() {
-    console.log(this.agenceForm.value);
     const value = this.agenceForm.value;
     const info = new FormData();
     info.append("nom",value.nom);
@@ -107,7 +100,6 @@ export class ListeragenceComponent implements OnInit {
     info.append("cnidg",value.cnidg);
     info.append("ninea",value.ninea);
     info.append("rccm",value.rccm);
-   console.log(info);
   }
 
   openModal(id: string) {
@@ -119,7 +111,6 @@ export class ListeragenceComponent implements OnInit {
   }
 
   readUrl(event: any) {
-    console.log('readUrl');
       if (event.target.files && event.target.files[0]) {
         var reader = new FileReader();
         reader.onload = (event: any) => {
@@ -130,7 +121,6 @@ export class ListeragenceComponent implements OnInit {
       }
   }
   readUrl1(event: any) {
-    console.log('readUrl');
       if (event.target.files && event.target.files[0]) {
         var reader = new FileReader();
       

@@ -59,7 +59,6 @@ export class MonAgenceComponent implements OnInit {
 
   constructor(private fileSaver: NgxFileSaverService,
     private modalService: ModalService,
-    private dataService: DataService,
     private errormodalService: ErrormodalService,
     private otherService: OthersService) { }
 
@@ -87,7 +86,6 @@ export class MonAgenceComponent implements OnInit {
       photo: new FormControl (''),
     });
     this.item = JSON.parse(localStorage.getItem('currentUser'));
-    console.log(this.item.data.agence)
     this.user = localStorage.getItem('user');
     if(this.user == 'agence') {
       this.showupdate = true;
@@ -102,7 +100,6 @@ export class MonAgenceComponent implements OnInit {
     this.otherService.getOneAgenceById(this.item.agence.id).subscribe(
       data =>{
         this.dataAgence = data;
-        console.log(this.dataAgence);
         this.nom = this.dataAgence.data.nom;
         this.responsable  = this.dataAgence.data.responsable;
         this.email = this.dataAgence.data.email;
@@ -115,28 +112,18 @@ export class MonAgenceComponent implements OnInit {
       //  this.cnidg = this.dataAgence.data.data.cnidg;
         this.numerodg = this.dataAgence.data.numdg;
         this.userAgence = this.dataAgence.data['user'];
-        console.log(this.userAgence);
         
-      },
-      error=> {
-        this.errorMsg = error;
-        this.errormodalService.open('error-modal-1');
-        console.log(error)
       }
     );
     this.otherService.getTotalAgenceActifInactif(this.item.agence.id).subscribe(
       data =>{
-        this.data = data;
-        console.log(data);
-        this.dataTotalAgence = this.data;
-        this.nom = this.dataTotalAgence.nom;
-        this.total = this.dataTotalAgence.total;
-        this.actifs = this.dataTotalAgence.actifs;
-        this.inactifs = this.dataTotalAgence.inactifs;
-      }, error=> {
-        this.errorMsg = error;
-        this.errormodalService.open('error-modal-1');
-        console.log(error)
+        this.dataAgence = data;
+        this.dataTotalAgence = this.dataAgence['data'];
+        this.nom = this.dataTotalAgence[0].nom;
+        
+        this.total = this.dataTotalAgence[0].total;
+        this.actifs = this.dataTotalAgence[0].actifs;
+        this.inactifs = this.dataTotalAgence[0].inactifs;
       });
 
       //detail d'un contrat
@@ -144,12 +131,8 @@ export class MonAgenceComponent implements OnInit {
       data =>{
         this.data = data;
         this.dataContrat = this.data.data;
-        console.log(this.dataContrat);
-      }, error=> {
-        this.errorMsg = error;
-        this.errormodalService.open('error-modal-1');
-        console.log(error)
-      })
+      }
+    )
     
   }
 
@@ -167,7 +150,6 @@ export class MonAgenceComponent implements OnInit {
         contrat: this.agenceForm.value.contrat,
         cnidg: this.agenceForm.value.cnidg, 
     } 
-    console.log(info);
     return info;
   }
 
@@ -186,7 +168,6 @@ export class MonAgenceComponent implements OnInit {
   }
 //photo
   readUrl(event: any) {
-    console.log('readUrl');
       if (event.target.files && event.target.files[0]) {
         var reader = new FileReader();
         reader.onload = (event: any) => {
@@ -198,7 +179,6 @@ export class MonAgenceComponent implements OnInit {
   }
 //contrat
   readUrl1(event: any) {
-    console.log('readUrl');
       if (event.target.files && event.target.files[0]) {
         var reader = new FileReader();
       
@@ -211,7 +191,6 @@ export class MonAgenceComponent implements OnInit {
   }
   //cnidg
   readUrl2(event: any) {
-    console.log('readUrl');
       if (event.target.files && event.target.files[0]) {
         var reader = new FileReader();
       
@@ -224,7 +203,6 @@ export class MonAgenceComponent implements OnInit {
   }
 
   readUrlUser(event: any) {
-    console.log('readUrl');
       if (event.target.files && event.target.files[0]) {
         var reader = new FileReader();
       

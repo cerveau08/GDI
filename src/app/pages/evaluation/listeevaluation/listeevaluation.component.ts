@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { environment } from 'src/environments/environment';
@@ -41,7 +42,8 @@ export class ListeevaluationComponent implements OnInit {
     private activeroute: ActivatedRoute,
     private errormodalService: ErrormodalService,
     private router: Router,
-    private http: HttpClient,) {
+    private http: HttpClient,
+    private toastr: ToastrService) {
     this.activeroute.queryParams.subscribe(params => {
       this.item = JSON.parse(params["interimaire"]);
     });
@@ -84,20 +86,14 @@ export class ListeevaluationComponent implements OnInit {
   gty(page: any){
     this.http.get(this.reqUrl + `/listEvaluations/${this.item}?page=${page}&limit=${this.itemsPerPage}`).subscribe((data: any) => {
       this.data = data
-      console.log(data);
       this.evaluations = this.data["data"];
       this.totalItems = data.total;
-    }, error=> {
-      this.errorMsg = error;
-      this.errormodalService.open('error-modal-1');
     })
   }
 
   addObject() {
-    console.log(this.objectifForm.value);
     this.otherService.addObjectifs(this.objectifForm.value).subscribe(
       data =>{
-        console.log(data);
         this.data = data;
         this.successMsg = this.data.status
         if(this.successMsg == true) {
@@ -108,17 +104,16 @@ export class ListeevaluationComponent implements OnInit {
       error=> {
         this.errorMsg = error;
         this.closeModal('objectif-modal-1');
-        this.errormodalService.open('error-modal-1');
-        console.log(error)
+        this.toastr.error(this.errorMsg, 'Echec', {
+          timeOut: 5000,
+        });
       }
     );
   }
 
   notezObjectif(id) {
-    console.log(this.noteForm.value);
     this.otherService.notezObjectif(this.noteForm.value, id).subscribe(
       data =>{
-        console.log(data);
         this.data = data;
         this.successMsg = this.data.status
         if(this.successMsg == true) {
@@ -129,13 +124,13 @@ export class ListeevaluationComponent implements OnInit {
       error=> {
         this.errorMsg = error;
         this.closeModal('custom-modal-'+id);
-        this.errormodalService.open('error-modal-1');
-        console.log(error)
+        this.toastr.error(this.errorMsg, 'Echec', {
+          timeOut: 5000,
+        });
       }
     )
   }
   modifierObjectif(id) {
-    console.log(this.modifierForm.value);
     this.otherService.modifierObjectif(this.modifierForm.value, id).subscribe(
       data =>{
         this.data = data;
@@ -148,8 +143,9 @@ export class ListeevaluationComponent implements OnInit {
       error=> {
         this.errorMsg = error;
         this.closeModal('custom-modal-'+id);
-        this.errormodalService.open('error-modal-1');
-        console.log(error)
+        this.toastr.error(this.errorMsg, 'Echec', {
+          timeOut: 5000,
+        });
       }
     )
   }

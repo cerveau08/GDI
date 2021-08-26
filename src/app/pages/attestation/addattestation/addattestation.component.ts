@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { Component, OnInit, HostListener } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { environment } from 'src/environments/environment';
@@ -91,14 +92,14 @@ export class AddattestationComponent implements OnInit {
   scrHeight:any;
   scrWidth:any;
   detailinter;
-  constructor(private dataService: DataService,
-    public datepipe: DatePipe,
+  constructor(public datepipe: DatePipe,
     public router: Router,
     private modalService: ModalService,
     private otherService: OthersService,
     private errormodalService: ErrormodalService,
     private http: HttpClient,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private toastr: ToastrService
     ) {
       this.attestationForm = this.formBuilder.group({
         interDetail: this.formBuilder.array([
@@ -139,13 +140,11 @@ export class AddattestationComponent implements OnInit {
         annee: this.currentDate - 2
       }
     ];
-    console.log(this.lastTenYear);
     return this.lastTenYear
   }
   gty(page: any){
     this.http.get(this.reqUrl + `/interimSousContrat`).subscribe((data: any) => {
       this.dataInter =  data.data;
-      console.log(this.dataInter);
       this.totalItems = data.total;
       this.attestationForm = this.formBuilder.group({
         annee: ['', Validators.required],
@@ -162,20 +161,14 @@ export class AddattestationComponent implements OnInit {
   }
 
   attestaionFormGet(page) {
-    console.log(this.totalItems);
-    console.log(this.itemsPerPage);
     if(this.totalItems % this.itemsPerPage == 0) {
       this.nombrePage = this.totalItems / this.itemsPerPage;
     } else {
       this.nombrePage = Math.floor(this.totalItems / this.itemsPerPage) + 1;
     }
-    console.log(this.nombrePage);
     for(var i = 0; i < this.nombrePage; i++) {
 
     }
-    console.log(page);
-    console.log(this.attestationForm.value);
-    console.log([page]);
   }
 
   addAttestation() {
@@ -189,19 +182,21 @@ export class AddattestationComponent implements OnInit {
       annee: this.periodForm.value.annee,
       mois: this.periodForm.value.mois,
     });
-    console.log(this.attestationForm.value);
      this.otherService.addAttestationEnMasse(this.attestationForm.value).subscribe(
       data => {
-        console.log(data);
         this.result = data
         this.successMsg = this.result.status
         if(this.successMsg == true) {
-          this.ngOnInit();
+          this.toastr.success('Attestation ajouté avec success', 'Echec', {
+            timeOut: 3000,
+          });
+          this.router.navigate(['/accueil/attestationmesinterimaires'])
         }
       }, error=> {
        this.errorMsg = error;
-       this.errormodalService.open('error-modal-1');
-       console.log(error)
+       this.toastr.error(this.errorMsg, 'Echec', {
+        timeOut: 5000,
+       });
       }
     )
   }

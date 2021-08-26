@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { PaginationService } from 'src/app/service/pagination.service';
 import { DataService } from 'src/app/service/data.service';
 import { Component, OnInit } from '@angular/core';
@@ -71,17 +72,8 @@ export class ParametreComponent implements OnInit {
              private router: Router,
              public fb: FormBuilder,
              private errormodalService: ErrormodalService,
-             ) { 
-              /*this.passwordForm = this.fb.group({
-                email: [''],
-                password: [''],
-                password_confirmation: [''],
-                passwordToken: ['']
-              });
-              route.queryParams.subscribe((params) => {
-                this.passwordForm.controls.passwordToken.setValue(params.token);
-              });*/
-             }
+             private toastr: ToastrService
+             ) { }
 
   ngOnInit() {
     this.user = localStorage.getItem('user');
@@ -92,30 +84,22 @@ export class ParametreComponent implements OnInit {
     }
     this.datas = this.dataService.getData();
     this.videos = this.paginationService.getVidoes();
-    // this.passwordForm = new FormGroup({
-    //   password: new FormControl('')
-    // });
     this.newpasswordForm = new FormGroup({
       password: new FormControl(''),
       plainPassword: new FormControl(''),
       oldPassword: new FormControl('')
     })
   }
-//verifier password
   validerPassword() {
     const password = {
       password: this.passwordForm.value.password
     }
-    console.log(password);
     this.changepassword = true;
   }
   
-  //changer password
   confirmPassword() {
     this.otherService.changePassword(this.newpasswordForm.value).subscribe(
-      result => {
-        //alert('Password has been updated');
-        console.log(result);
+      result => {;
         this.datas = result;
         this.successMsg = this.datas.status;
         if(this.successMsg == true) {
@@ -124,9 +108,10 @@ export class ParametreComponent implements OnInit {
         }
       }, error=> {
         this.errorMsg = error;
-        this.errormodalService.open('error-modal-1');
-        console.log(error)
-      }
+        this.toastr.error(this.errorMsg, 'Echec', {
+         timeOut: 5000,
+        });
+       }
     );
   }
   

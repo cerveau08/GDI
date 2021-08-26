@@ -87,7 +87,6 @@ export class DetailagenceComponent implements OnInit {
           data =>{
             this.data = data;
             this.dataAgence = this.data.data;
-            console.log(this.dataAgence);
             this.nom = this.dataAgence.nom;
             this.responsable  = this.dataAgence.responsable;
             this.numDg = this.dataAgence.numDg;
@@ -168,9 +167,6 @@ export class DetailagenceComponent implements OnInit {
     this.otherService.getprofil().subscribe(
       data => {
         this.dataprofils = data["data"];
-      }, error=> {
-        this.errorMsg = error;
-        this.errormodalService.open('error-modal-1');
       }
     );
     this.gty(this.page);
@@ -203,8 +199,6 @@ export class DetailagenceComponent implements OnInit {
     formdata.append("email",this.userAgentForm.value.emailUser);
     formdata.append("telephone",this.userAgentForm.value.telephoneUser);
     formdata.append("avatar",this.fichierPhoto);
-    console.log(formdata);
-    console.log(this.userAgentForm.value);
     this.otherService.addUser(formdata).subscribe(
       (response) =>{
         this.data = response;
@@ -239,8 +233,6 @@ export class DetailagenceComponent implements OnInit {
     info.append("logo",this.logo);
     info.append("cnidg",this.fichierCnidg);
     info.append("contrat",this.fichierContrat);
-    console.log(info);
-    console.log(this.item);
     this.otherService.updateAgence(info, this.item).subscribe(
       (res) =>{
         console.log(res);
@@ -250,8 +242,9 @@ export class DetailagenceComponent implements OnInit {
       },
       error=> {
         this.errorMsg = error;
-        this.errormodalService.open('error-modal-1');
-        console.log(error)
+        this.toastr.error(this.errorMsg, 'Echec', {
+          timeOut: 5000,
+        });
       }
     )
     } 
@@ -274,7 +267,6 @@ export class DetailagenceComponent implements OnInit {
     reader.readAsDataURL( this.fichierPhoto);
     reader.onload= ()=>{
       this.image= reader.result;
-      console.log(this.image);
     }
   }
  
@@ -282,14 +274,11 @@ export class DetailagenceComponent implements OnInit {
    getFileContrat(event: any) {
     this.fichierContrat = event.target.files[0];
     this.contratName = this.fichierContrat.name;
-    console.log(this.contratName);
   }
    //recuperation  du cnidg
    getCnidg(e:any) {
     this.fichierCnidg= e.files.item(0);
-    console.log(this.fichierCnidg.type);
     this.cnidgName = this.fichierCnidg.name;
-    console.log(this.cnidgName);
   }
 
   public getfilemodal() {
@@ -315,15 +304,15 @@ export class DetailagenceComponent implements OnInit {
   delete() {
     this.otherService.deleteAgence(this.item).subscribe(
       (response) => {
-       console.log(response)
        if (response) {
         this.route.navigate(['/accueil/listagence']);
        }
       },
       error => {
         this.errorMsg = error;
-        this.errormodalService.open('error-modal-1');
-        console.log(error)
+        this.toastr.error(this.errorMsg, 'Echec', {
+          timeOut: 5000,
+        });
       }
     );
   }

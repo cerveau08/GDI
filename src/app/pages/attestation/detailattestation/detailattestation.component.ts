@@ -42,18 +42,13 @@ export class DetailattestationComponent implements OnInit {
   errorMsg: any;
   constructor(private activeroute: ActivatedRoute,
               private modalService: ModalService,
-              private dataService: DataService,
               private otherService: OthersService,
-              private fileSaver: NgxFileSaverService,
               private errormodalService: ErrormodalService,
-              private http: HttpClient,
               public router: Router, ) { 
     this.activeroute.queryParams.subscribe(params => {
       this.item = JSON.parse(params["attestation"]);
-      console.log(this.item);
       this.otherService.getOneAttestation(this.item).subscribe(
         data =>{
-          console.log(data.data[0]);
           this.dataAttestation = data.data[0];
           this.nom = this.dataAttestation.nom;
           this.prenom = this.dataAttestation.prenom;
@@ -73,19 +68,12 @@ export class DetailattestationComponent implements OnInit {
           this.dateDebut = this.dataAttestation.dateDebut;
           this.dateFin = this.dataAttestation.dateFin;
           this.agence = this.dataAttestation.agence;
-        },
-        error=> {
-          this.errorMsg = error;
-          this.errormodalService.open('error-modal-1');
-          console.log(error)
         }
       );
     })
     
   }
   ngOnInit() {
-    console.log(this.prenom);
-    
     
   }
 
@@ -118,5 +106,4 @@ export class DetailattestationComponent implements OnInit {
   closeErrorModal(id: string) {
     this.errormodalService.close(id);
   }
-
 }
