@@ -13,10 +13,14 @@ export class ListsiteComponent implements OnInit {
   progress: number;
   intervalId;
   dataStatistique: any;
-  show: number;
+  show = 1;
   color: string;
   jan: string;
-
+  show1: boolean;
+  color1 = "#ff7900";
+  border1 = "1px solid #ff7900";
+  color2 = "#000";
+  border2= "1px solid #000";
   
   constructor(
     private errormodalService: ErrormodalService,
@@ -93,6 +97,23 @@ export class ListsiteComponent implements OnInit {
 
   closeErrorModal(id: string) {
     this.errormodalService.close(id);
+  }
+
+  changeShow1() {
+    this.show = 1;
+    this.color1 = "#ff7900";
+    this.border1 = "1px solid #ff7900";
+    this.color2 = "#000";
+    this.border2= "1px solid #000";
+    return this.show1;
+  }
+  changeShow2() {  
+    this.show = 2;
+    this.color1 = "#000";
+    this.border1 = "1px solid #000";
+    this.border2 = "1px solid #ff7900";
+    this.color2 = "#ff7900";
+    return this.show1;
   }
 
 }
