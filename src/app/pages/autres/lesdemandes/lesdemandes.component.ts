@@ -56,11 +56,9 @@ export class LesdemandesComponent implements OnInit {
         this.scrWidth = window.innerWidth;
   }
   public reqUrl = environment.base_url;
-  constructor(private dataService: DataService,
-    private fb: FormBuilder,
+  constructor(private fb: FormBuilder,
     private modalService: ModalService,
     private errormodalService: ErrormodalService,
-    private fileSaver: NgxFileSaverService,
     private otherService: OthersService,
     private http: HttpClient,
     public datepipe: DatePipe) {
@@ -89,7 +87,7 @@ export class LesdemandesComponent implements OnInit {
     this.otherService.getTypeDemande().subscribe((data: any) => {
       this.listeDemande =  data.data;
     })
-    this.http.get(this.reqUrl + `/listeAgence?page=1&limit=100`).subscribe((data: any) => {
+    this.http.get(this.reqUrl + `/listeAgence?page=1&limit=900`).subscribe((data: any) => {
       this.dataAgence =  data.data;
     })
     this.gty(this.page);
@@ -110,8 +108,6 @@ export class LesdemandesComponent implements OnInit {
   }
   
   gty(page: any){
-    console.log(this.filterForm.value.type);
-    
     if (this.filterForm.value.type == undefined) {
       this.filterForm.patchValue({type: ''});
     }
@@ -121,9 +117,6 @@ export class LesdemandesComponent implements OnInit {
     this.otherService.getListedesDemande(page, this.itemsPerPage, this.type).subscribe((data: any) => {
       this.dd =  data.data;
       this.totalItems = data.total;
-    }, error=> {
-      this.errorMsg = error;
-      this.errormodalService.open('error-modal-1');
     })
   }
   

@@ -5,7 +5,6 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { OthersService } from '../../../services/others.service';
 import { from } from 'rxjs';
 import { Router } from '@angular/router';
-import { ModalService } from 'src/app/modal/_modal/modal.service';
 import { ErrormodalService } from 'src/app/modal/_errormodals';
 
 @Component({

@@ -75,14 +75,8 @@ export class ModifEvaluerComponent implements OnInit {
       data =>{
         this.data = data;
         this.dataInter = this.data.data;
-        console.log(this.dataInter);
         this.nom = this.dataInter.nom;
         this.prenom = this.dataInter.prenom;
-      },
-      error=> {
-        this.errorMsg = error;
-        this.errormodalService.open('error-modal-1');
-        console.log(error)
       }
     );
   }
@@ -100,7 +94,6 @@ export class ModifEvaluerComponent implements OnInit {
     this.otherService.getOneEvaluation(this.evaluation_id).subscribe(
       data =>{
         this.data = data;
-        console.log(data);
         this.dataEvaluation = this.data.data;
         this.dateDebut = this.dataEvaluation.dateDebut;
         this.dateFin = this.dataEvaluation.dateFin;
@@ -123,7 +116,6 @@ export class ModifEvaluerComponent implements OnInit {
             }))
           )
         })
-        console.log(this.notations);
       }
     )
   }

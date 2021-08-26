@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { OthersService } from 'src/app/services/others.service';
 import { PaginationService } from '../../../service/pagination.service';
 import { DataService } from '../../../service/data.service';
@@ -17,30 +18,10 @@ import { ErrormodalService } from 'src/app/modal/_errormodals';
 })
 export class DemandeComponent implements OnInit {
 
- /* demandes: any = [
-    {
-      id: 1,
-      libelle: 'mission', 
-    },
-    {
-      id: 2,
-      libelle: 'convenance personnelle', 
-    },
-    {
-      id: 3,
-      libelle: 'conge maladie', 
-    },
-    {
-      id: 4,
-      libelle: 'conge annuelle', 
-    }
-  ];*/
   demandes;
   demandeForm: FormGroup;
   currentUser;
   public datas: any;
-  // pager object
-  //pager: any = {};
   filterterm: string;
   dataDemande;
   pagedItems: any[];
@@ -53,13 +34,11 @@ export class DemandeComponent implements OnInit {
   data;
   successMsg;
   errorMsg: any;
-  constructor(private dataService: DataService,
-    private modalService: ModalService, 
-    private router: Router,
-    private pagerService: PaginationService, 
+  constructor(private modalService: ModalService, 
     private otherService: OthersService,
     private errormodalService: ErrormodalService,
-    private http: HttpClient
+    private http: HttpClient,
+    private toastr: ToastrService
     ) { }
 
   ngOnInit() {
@@ -72,15 +51,10 @@ export class DemandeComponent implements OnInit {
     }
    
      this.otherService.getTypeDemande().subscribe(
-     data => {
-       this.demandes = data.data;
-       console.log(data);
-     }, error=> {
-      this.errorMsg = error;
-      this.errormodalService.open('error-modal-1');
-      console.log(error)
-    }
-    )
+      data => {
+        this.demandes = data.data;
+      }
+     )
     this.demandeForm = new FormGroup({
       type: new FormControl (''),
       dateDebut: new FormControl(''),
@@ -95,37 +69,32 @@ export class DemandeComponent implements OnInit {
     this.http.get(this.reqUrl + `/listeDemandes?page=${page}&limit=${this.itemsPerPage}`).subscribe((data: any) => {
       this.dataDemande =  data.data;
       this.totalItems = data.total;
-      console.log(data);
-      console.log(this.totalItems);
-    }, error=> {
-      this.errorMsg = error;
-      this.errormodalService.open('error-modal-1');
-      console.log(error)
     })
   
   }
   onSubmit() {
-    console.log(this.demandeForm.value);
     this.otherService.addDemande(this.demandeForm.value).subscribe(
       data =>{
-        console.log(data);
         this.data = data;
         this.successMsg = this.data.status
         if (this.successMsg == true) {
           this.ngOnInit();
-          this.closeModal('custom-modal-8')
+          this.closeModal('custom-modal-8');
+            this.toastr.success('Demande ajouté avec success', 'Success', {
+             timeOut: 3000,
+            });
         }
-      },
-      error=> {
+      }, error=> {
         this.errorMsg = error;
-        this.errormodalService.open('error-modal-1');
-        console.log(error)
-      })
+        this.toastr.error(this.errorMsg, 'Echec', {
+         timeOut: 5000,
+        });
+      }
+    )
   }
 
   openModal(id: string) {
     this.modalService.open(id);
-    
   }
 
   closeModal(id: string) {

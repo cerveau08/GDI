@@ -13,13 +13,9 @@ import { ErrormodalService } from 'src/app/modal/_errormodals';
 export class RestaurationComponent implements OnInit {
 
   public datas: any;
-  // pager object
   pager: any = {};
   filterterm: string;
-  // paged items
   pagedItems: any[];
-
-  // City Names
   mois: any = [
     'Janvier', 
     'Février', 
@@ -46,7 +42,6 @@ export class RestaurationComponent implements OnInit {
   moisSelect
   demandeForm: FormGroup;
   constructor(private dataService: DataService,
-    private pagerService: PaginationService,
     private errormodalService: ErrormodalService,
     private modalService: ModalService,
     public fb: FormBuilder) { }
@@ -56,7 +51,6 @@ export class RestaurationComponent implements OnInit {
       moi: new FormControl (''),
       somme: new FormControl('')
     });
-    this.datas = this.dataService.getData();
   }
 
   onSubmit(id: string) {
@@ -65,7 +59,6 @@ export class RestaurationComponent implements OnInit {
       moi: this.demandeForm.value.moi,
       somme: this.demandeForm.value.somme
     } 
-    console.log(demande);
   }
 
 

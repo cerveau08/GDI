@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { environment } from 'src/environments/environment';
@@ -45,10 +46,10 @@ export class EvaluerComponent implements OnInit {
     private errormodalService: ErrormodalService,
     private http: HttpClient,
     private router: Router,
-    private formBuilder: FormBuilder) {
+    private formBuilder: FormBuilder,
+    private toastr: ToastrService) {
     this.activeroute.queryParams.subscribe(params => {
       this.item = JSON.parse(params["interimaire"]);
-      console.log(this.item);
     });
     this.evaluerForm = this.formBuilder.group({
       interimaireId: ['', Validators.required],
@@ -68,14 +69,8 @@ export class EvaluerComponent implements OnInit {
       data =>{
         this.data = data;
         this.dataInter = this.data.data;
-        console.log(this.dataInter);
         this.nom = this.dataInter.nom;
         this.prenom = this.dataInter.prenom;
-      },
-      error=> {
-        this.errorMsg = error;
-        this.errormodalService.open('error-modal-1');
-        console.log(error)
       }
     );
   }
@@ -107,7 +102,6 @@ export class EvaluerComponent implements OnInit {
       this.data = data
       this.totalItems = data.total;
       this.objectif = this.data["data"];
-      console.log(data);
       this.evaluerForm = this.formBuilder.group({
         interimaireId: this.item,
         commentaire: ['', Validators.required],
@@ -122,88 +116,77 @@ export class EvaluerComponent implements OnInit {
           }))
         )
       })
-    }, error=> {
-      this.errorMsg = error;
-      this.errormodalService.open('error-modal-1');
-      console.log(error)
     })
   }
 
   addObject() {
-    console.log(this.objectifForm.value);
     this.otherService.addObjectifs(this.objectifForm.value).subscribe(
       data =>{
-        console.log(data);
         this.data = data;
         this.successMsg = this.data.status
         if(this.successMsg == true) {
           this.ngOnInit();
           this.closeModal('objectif-modal-1');
         }
-      },
-      error=> {
+      }, error=> {
         this.errorMsg = error;
         this.closeModal('objectif-modal-1');
-        this.errormodalService.open('error-modal-1');
-        console.log(error)
+        this.toastr.error(this.errorMsg, 'Echec', {
+         timeOut: 5000,
+        });
       }
     );
   }
 
   evaluer() {
-    console.log(this.evaluerForm.value);
     this.detailNotation = this.evaluerForm.value.notation;
-    console.log(this.detailNotation);
     this.detailNotation.forEach((currentValue, index) => {
       if(!currentValue.note || currentValue.note == null || currentValue.note == "") {
           this.detailNotation.splice(index, 1);
       }
     });
-    console.log(this.detailNotation);
-    console.log(this.evaluerForm.value);
     this.otherService.evaluer(this.evaluerForm.value).subscribe(
       data =>{
-        console.log(data);
         this.data = data;
         this.successMsg = this.data.status
         if(this.successMsg == true) {
+          this.toastr.success(this.data.message, 'Success', {
+            timeOut: 3000,
+          });
           this.router.navigate(['/accueil/listeevaluation'], {
             queryParams: {
               interimaire: JSON.stringify(this.item),
             }
           })
         }
-      },
-      error=> {
+      }, error=> {
         this.errorMsg = error;
-        this.errormodalService.open('error-modal-1');
-        console.log(error)
+        this.toastr.error(this.errorMsg, 'Echec', {
+         timeOut: 5000,
+        });
       }
     )
   }
 
   notezObjectif(id) {
-    console.log(this.noteForm.value);
     this.otherService.notezObjectif(this.noteForm.value, id).subscribe(
       data =>{
-        console.log(data);
         this.data = data;
         this.successMsg = this.data.status
         if(this.successMsg == true) {
           this.ngOnInit();
           this.closeModal('custom-modal-'+id);
         }
-      },
-      error=> {
+      }, error=> {
         this.errorMsg = error;
         this.closeModal('custom-modal-'+id);
-        this.errormodalService.open('error-modal-1');
-        console.log(error)
+        this.toastr.error(this.errorMsg, 'Echec', {
+         timeOut: 5000,
+        });
       }
     )
   }
   modifierObjectif(id) {
-    console.log(this.modifierForm.value);
     this.otherService.modifierObjectif(this.modifierForm.value, id).subscribe(
       data =>{
         this.data = data;
@@ -216,8 +199,9 @@ export class EvaluerComponent implements OnInit {
       error=> {
         this.errorMsg = error;
         this.closeModal('custom-modal-'+id);
-        this.errormodalService.open('error-modal-1');
-        console.log(error)
+        this.toastr.error(this.errorMsg, 'Echec', {
+          timeOut: 5000,
+        });
       }
     )
   }

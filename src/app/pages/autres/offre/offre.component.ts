@@ -22,18 +22,12 @@ export class OffreComponent implements OnInit {
       this.otherService.getNouveauRecrus().subscribe(
         data => {
          this.nouveauxRrecrus = data.data;
-         console.log(data);
-        }, error=> {
-          this.errorMsg = error;
-          this.errormodalService.open('error-modal-1');
-          console.log(error)
         }
       );
 
     }
 
   ngOnInit() {
-    this.datas = this.dataService.getData();
   }
 
   openErrorModal(id: string) {

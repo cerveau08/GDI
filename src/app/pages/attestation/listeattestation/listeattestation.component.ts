@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { Component, OnInit, HostListener, ViewChild, ElementRef } from '@angular/core';
 import { NgxFileSaverService } from '@clemox/ngx-file-saver';
 import { ModalService } from 'src/app/modal/_modal/modal.service';
@@ -96,11 +97,11 @@ export class ListeattestationComponent implements OnInit {
         console.log(this.scrHeight, this.scrWidth);
   }
   constructor(
-              private http: HttpClient,
               private errormodalService: ErrormodalService,
               private modalService: ModalService,
               private router: Router,
-              private otherService: OthersService) {
+              private otherService: OthersService,
+              private toastr: ToastrService) {
                 this.getScreenSize()
               }
 
@@ -137,26 +138,12 @@ export class ListeattestationComponent implements OnInit {
     if(this.filterForm.value.annee) {
       this.annee = this.filterForm.value.annee; 
     }
-
-    console.log(this.filterForm.value);
-
-    // this.http.get(this.reqUrl + `/listeAttestation?page=${page}&limit=${this.itemsPerPage}`).subscribe(
-    //   (data: any) => {
-    //     this.dataAttest =  data.data[0];
-    //     this.totalItems = data.total;
-    //     console.log(this.dataAttest);
-    //   }
-    // )
-
-    this.otherService.listAttestationFilter(page,this.itemsPerPage, this.mois, this.annee, this.reference).subscribe((data: any) => {
-      this.dataAttest =  data.data[0];
+    this.otherService.listAttestationFilter(page,this.itemsPerPage, this.mois, this.annee, this.reference).subscribe(
+      (data: any) => {
+        this.dataAttest =  data.data[0];
         this.totalItems = data.total;
-       console.log(this.dataAttest);
-      }, error=> {
-      this.errorMsg = error;
-      this.errormodalService.open('error-modal-1');
-      console.log(error)
-    })
+      }
+    )
 
   }
 
@@ -203,16 +190,22 @@ export class ListeattestationComponent implements OnInit {
     } else {
       this.filterForm.patchValue({annee: ''});
     }
-    console.log(this.filterForm.value);
     this.otherService.extraireAttestation(this.filterForm.value).subscribe(
       data => {
-        console.log(data);
         this.data = data;
         this.successMsg = this.data.status
         if(this.successMsg == true) {
           window.open(data.data);
+          this.toastr.success('Le fichier a été télécharger', 'Succes', {
+            timeOut: 3000,
+          });
         }
-      }
+      }, error=> {
+        this.errorMsg = error;
+        this.toastr.error(this.errorMsg, 'Echec', {
+         timeOut: 5000,
+        });
+       }
     )
   }
 }

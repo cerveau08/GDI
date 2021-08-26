@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { FormGroup, FormControl, FormArray } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
@@ -79,26 +80,22 @@ export class AttestationpresenceComponent implements OnInit {
       libelle: "decembre",
     },
   ];
-  constructor(private dataService: DataService,
-              private http: HttpClient,
+  constructor(private http: HttpClient,
               private errormodalService: ErrormodalService,
-              private otherService: OthersService) { }
+              private otherService: OthersService,
+              private toastr: ToastrService) { }
 
   ngOnInit() {
     this.user = localStorage.getItem('user');
-    
     this.filterForm = new FormGroup({
       mois: new FormControl(''),
       annee: new FormControl('') ,
       reference: new FormControl('')
-
-
     });
     this.gty(this.page);
   }
 
   gty(page: any){
-
     if(this.filterForm.value.mois) {
       this.mois = this.filterForm.value.mois;
     }
@@ -108,25 +105,12 @@ export class AttestationpresenceComponent implements OnInit {
     if(this.filterForm.value.annee) {
       this.annee = this.filterForm.value.annee; 
     }
-
-    console.log(this.filterForm.value);
-
-
-    // this.http.get(this.reqUrl + `/listeAttestation`).subscribe((data: any) => 
-    //   this.dataAttest =  data.data[0],
-    // )
-
-
-    this.otherService.listAttestationFilter(page,this.itemsPerPage, this.mois, this.annee, this.reference).subscribe((data: any) => {
-      this.dataAttest =  data.data[0];
+    this.otherService.listAttestationFilter(page,this.itemsPerPage, this.mois, this.annee, this.reference).subscribe(
+      (data: any) => {
+        this.dataAttest =  data.data[0];
         this.totalItems = data.total;
-       console.log(this.dataAttest);
-      }, error=> {
-      this.errorMsg = error;
-      this.errormodalService.open('error-modal-1');
-      console.log(error)
-    })
-
+      }
+    )
   }
   selectAll() {
     for (var i = 0; i < this.dataAttest.length; i++) {
@@ -141,7 +125,6 @@ export class AttestationpresenceComponent implements OnInit {
     this.getCheckedItemList();
   }
   getCheckedItemList() {
-    console.log(this.dataAttest);
     this.checkedList = [];
     for (var i = 0; i < this.dataAttest.length; i++) {
       if(this.dataAttest[i].etat) {
@@ -149,17 +132,16 @@ export class AttestationpresenceComponent implements OnInit {
         this.http.get(`${this.reqUrl}/validerAttestation/${this.dataAttest[i].id}`).subscribe(
           data => {
             this.result = data;
-            console.log(data);
           }, error=> {
             this.errorMsg = error;
-            this.errormodalService.open('error-modal-1');
-            console.log(error)
-          }
+            this.toastr.error(this.errorMsg, 'Echec', {
+             timeOut: 5000,
+            });
+           }
         )
       }
     }
     this.checkedList = this.checkedList;
-    console.log(this.checkedList);
   }
   openErrorModal(id: string) {
     this.errormodalService.open(id);
@@ -175,16 +157,22 @@ export class AttestationpresenceComponent implements OnInit {
     } else {
       this.filterForm.patchValue({annee: ''});
     }
-    console.log(this.filterForm.value);
     this.otherService.extraireAttestation(this.filterForm.value).subscribe(
       data => {
-        console.log(data);
         this.data = data;
         this.successMsg = this.data.status
         if(this.successMsg == true) {
           window.open(data.data);
+          this.toastr.success('Le fichier a été télécharger', 'Success', {
+            timeOut: 3000,
+          });
         }
-      }
+      }, error=> {
+        this.errorMsg = error;
+        this.toastr.error(this.errorMsg, 'Echec', {
+         timeOut: 5000,
+        });
+       }
     )
   }
 }
