@@ -22,7 +22,7 @@ export class ListuserComponent implements OnInit {
   dataUser: any;
   attestationForm: FormGroup;
   page = 1;
-  itemsPerPage = 7;
+  itemsPerPage = 12;
   totalItems : any;
   filterterm
   public reqUrl = environment.base_url;

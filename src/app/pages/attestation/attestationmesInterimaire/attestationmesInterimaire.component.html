@@ -6,14 +6,25 @@
                 <div class="exporter">
                     <div class="content-input-extraction">
                         <div class="filtrer-mois">
+                            <p class="label-input" for="titre">Référence: </p>
+                            <input type="text" class="input-extraction" formControlName="reference">
+                        </div>
+                        <div class="filtrer-mois">
                             <p class="label-input" for="titre">Mois: </p>
-                            <select  formControlName="mois" class="select-mois" >
-                                <option class="option" value="" disabled selected hidden>Mois: </option>
+                            <select type="number" formControlName="mois"  class="select-mois" >
+                                <option value="null">Aucun Choix</option>
                                 <option *ngFor="let data of ListeMois"  [value]="data.libelle">{{data.libelle}}</option>
                             </select>
                         </div>
-                        <div class="input-annee">
-                            <jp-multi-datepicker formControlName="annee" tabindex="-1"  mode="YEAR" label="Année" [(ngModel)]="annee" [min]="2000"></jp-multi-datepicker>
+                        <div class="filtrer-mois">
+                            <p class="label-input" for="titre">Année: </p>
+                            <select  formControlName="annee" class="select-mois" >
+                                <option value="null">Aucun Choix</option>
+                                <option *ngFor="let data of lastTenYear"  [value]="data.annee">{{data.annee}}</option>
+                            </select>
+                        </div>
+                        <div class="content-extraction">
+                            <mat-icon class="icon-search" (click)="gty(page)" fontSet="material-icons-outlined" >search</mat-icon>
                         </div>
                         <div class="content-extraction">
                             <button (click)="extraireAttestation()" class="button-extraire">Extraire en CSV</button>
