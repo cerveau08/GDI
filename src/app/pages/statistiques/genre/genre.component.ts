@@ -5,6 +5,7 @@ import { DataService } from 'src/app/service/data.service';
 import { ErrormodalService } from 'src/app/modal/_errormodals';
 import { OthersService } from 'src/app/services/others.service';
 import { FormGroup, FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -88,6 +89,7 @@ export class GenreComponent implements OnInit {
   successMsg: any;
   errorMsg: any;
   constructor(private toastr: ToastrService,
+    private router: Router,
               private otherService: OthersService) {
     this.getScreenSize();
   }
@@ -125,6 +127,14 @@ export class GenreComponent implements OnInit {
     });
   }
 
+  // exportAsExcel() {
+  //   const date = new Date();
+  //   const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(this.table.nativeElement, { raw: true });
+  //   const wb: XLSX.WorkBook = XLSX.utils.book_new();
+  //   XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+  //   XLSX.writeFile(wb, 'reporting-financier-' + date + '.xlsx');
+  // }
+
   exportgenrePourcentage() {
     this.id_societe = this.percentForm.value.id_societe;
     this.otherService.extractionStatistiqueGenreInterim(this.id_societe).subscribe(
@@ -149,7 +159,8 @@ export class GenreComponent implements OnInit {
         this.data = data;
         this.successMsg = this.data.status
         if(this.successMsg == true) {
-          window.open(this.data.data, '_blank');
+          //window.open(this.data.data, '_blank');
+          this.router.navigate([]).then(result => {  window.open(this.data.data, '_blank'); });
         }
       }, error=> {
         this.errorMsg = error;
