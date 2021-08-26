@@ -417,13 +417,19 @@ export class AddinterComponent implements OnInit {
         this.data = data
         this.successMsg = this.data.status
         if(this.successMsg == true) {
+          this.toastr.success('L\'intérimaire a été ajouté', 'Success', {
+            timeOut: 3000,
+          });
           this.submited = true;
         }
       },
       error=> {
         this.errorMsg = error;
-        this.errormodalService.open('error-modal-1');
-        console.log(error)
+        this.toastr.error(this.errorMsg, 'Echec', {
+          timeOut: 5000,
+        });
+        // this.errormodalService.open('error-modal-1');
+        // console.log(error)
       }
     )
   }
