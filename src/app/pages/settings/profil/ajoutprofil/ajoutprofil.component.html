@@ -1,1 +1,27 @@
-<p>ajoutprofil works!</p>
+<div [formGroup]="searchForm" class="content-form-search">
+    <p class="ajouter">Ajout Profil</p>
+    <div class="content-form">
+      <div class="content-row-form">
+        <div class="content-input">
+          <p class="label-input2">Libelle</p>
+          <input class="input-search" type="text" formControlName="libelle" placeholder="Numero Pièce" required>
+          <p class="error-require-input-search" *ngIf="videnumeroPiece" >Veuillez renseigner le libelle</p>
+        </div>
+      </div>
+      <div class="content-row-form">
+        <div class="content-input">
+          <p class="label-input1">Code</p>
+          <input class="input-search" type="number" formControlName="code" placeholder="Numero Téléphone" required>
+          <p class="error-require-input-search" *ngIf="videtelephone" >Veuillez renseigner le code du profil</p>
+        </div>
+        <div class="content-input">
+          <p class="label-input2">Description</p>
+          <input class="input-search" type="number" formControlName="description" placeholder="Numero Téléphone" required>
+          <p class="error-require-input-search" *ngIf="videtelephone" >Veuillez renseigner une description</p>
+        </div>
+      </div>
+      <div class="content-button-form">
+        <button (click)="ajouterProfil()" class="button-rechercher">Rechercher</button>
+      </div>
+    </div>
+  </div>

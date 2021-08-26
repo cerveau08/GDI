@@ -1,1 +1,38 @@
-<p>ajoutperiode works!</p>
+<div [formGroup]="searchForm" class="content-form-search">
+    <p class="ajouter">Ajout Societe</p>
+    <div class="content-form">
+      <div class="content-row-form">
+        <div class="content-input">
+          <p class="label-input1">Type de Pièce</p>
+          <select class="select-search"  formControlName="typePiece" required>
+            <option class="option" value="" disabled selected hidden>Choisir le type de Pièce</option>
+            <option *ngFor="let data of ListePiece" [value]="data.libelle">{{data.libelle}}</option>
+          </select>
+          <p class="error-require-input-search" *ngIf="videtypePiece" >Veuillez séléctionner un type de pièce</p>
+        </div>
+        <div class="content-input">
+          <p class="label-input2">Numéro Pièce</p>
+          <input class="input-search" type="text" formControlName="numeroPiece" placeholder="Numero Pièce" required>
+          <p class="error-require-input-search" *ngIf="videnumeroPiece" >Veuillez renseigner le numéro de piéce</p>
+        </div>
+      </div>
+      <div class="content-row-form">
+        <div class="content-input">
+          <p class="label-input1">Société</p>
+          <select class="select-search" #entite formControlName="societe" (change)="directionsListe(entite.value)" required>
+            <option class="option" value="" disabled selected hidden>Choisir une société</option>
+            <option *ngFor="let data of dataSociete" [value]="data.id">{{data.libelle}}</option>
+          </select>
+          <p class="error-require-input-search" *ngIf="videsociete" >Veuillez séléctionner une Société</p>
+        </div>
+        <div class="content-input">
+          <p class="label-input2">Numéro Téléphone</p>
+          <input class="input-search" type="number" formControlName="telephone" placeholder="Numero Téléphone" required>
+          <p class="error-require-input-search" *ngIf="videtelephone" >Veuillez renseigner le numéro de téléphone</p>
+        </div>
+      </div>
+      <div class="content-button-form">
+        <button (click)="rechercherInterimaire()" class="button-rechercher">Rechercher</button>
+      </div>
+    </div>
+  </div>
