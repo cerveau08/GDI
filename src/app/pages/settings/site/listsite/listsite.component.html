@@ -15,21 +15,21 @@
                     <tr class="head">
                         <th class="typ" id="prenom">
                             <div class="type">
-                                <p>Nom</p> 
+                                <p><b>Nom</b></p> 
                                 <mat-icon class="updown" fontSet="material-icons-outlined">unfold_more</mat-icon>
                             </div>
                         </th>
-                        <th  id="manager">Région</th>
-                        <th  id="direction">code</th>
-                        <th  id="agence">Adresse</th>
+                        <th  id="manager"><b>Région</b></th>
+                        <th  id="direction"><b>code</b></th>
+                        <th  id="agence"><b>Adresse</b></th>
                 </tr>
                 </thead>
-                <tbody>
+                <tbody *ngFor="let data of dataSite">
                     <tr  style="cursor: pointer;" >
-                        <td >a</td>
-                        <td >b</td>
-                        <td >c</td>
-                        <td >d</td>
+                        <td >{{data.libelle}}</td>
+                        <td >{{data.region.libelle}}</td>
+                        <td >{{data.code}}</td>
+                        <td >{{data.adresse}}</td>
                     </tr>
                 </tbody>
                 

@@ -12,6 +12,9 @@ export class ListsiteComponent implements OnInit {
   scrWidth: number;
   progress: number;
   // data: any;
+  page = 1;
+  itemParPage = 900;
+  region = null;
   intervalId;
   dataSite;
   dataStatistique: any;
@@ -46,12 +49,12 @@ export class ListsiteComponent implements OnInit {
     this.intervalId = setInterval(getDownloadProgress, 1000);
 
 
-    // this.otherService.getListSite().subscribe(
-    //   data => {
-    //     this.dataSite = data["data"];
-    //   }
-    //   console.log(this.dataSite);
-    // );
+    this.otherService.listeSite(this.page, this.itemParPage, this.region).subscribe(
+      data => {
+        console.log(data);
+        this.dataSite = data.data;
+      }
+    )
   }
 
 
