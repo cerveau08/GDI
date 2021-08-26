@@ -156,7 +156,7 @@ export class InterarchiveComponent implements OnInit {
     if(p.admissible==false) {
       color = "#ff0000"
     } else {
-      color = "#10a900"
+      color = "#10a900" 
     }  
     return color; 
   } 
