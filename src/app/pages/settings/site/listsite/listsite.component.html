@@ -9,7 +9,39 @@
                 <p [style.color]="color2" id="genre" class="statt-sous-header">Ajouter</p>
             </div>
         </div>
-        <div *ngIf="show==1" class="content-all-liste-site">Liste Site Work</div>
+        <div *ngIf="show==1" class="content-all-liste-site">
+            <table style="overflow-x:auto;"aria-describedby = "mydesc" >
+                <thead>
+                    <tr class="head">
+                        <th class="typ" id="prenom">
+                            <div class="type">
+                                <p>Nom</p> 
+                                <mat-icon class="updown" fontSet="material-icons-outlined">unfold_more</mat-icon>
+                            </div>
+                        </th>
+                        <th *ngIf="user != 'MNG' && scrWidth>991"  id="manager">Région</th>
+                        <th *ngIf="user != 'MNG'" id="direction">code</th>
+                        <th *ngIf="user != 'AGN'" id="agence">Adresse</th>
+                        <!-- <th id="admissible">Admissible</th> -->
+                </tr>
+                </thead>
+                <tbody>
+                    <tr  style="cursor: pointer;" >
+                        <td (click)="openDetail(p.id)">a</td>
+                        <td (click)="openDetail(p.id)">b</td>
+                        <td  (click)="openDetail(p.id)"> c</td>
+                        <td (click)="openDetail(p.id)" >d</td>
+                        <!-- <td (click)="openDetail(p.id)" >e</td> -->
+                        <!-- <td (click)="openDetail(p.id)"><div [style.background]="getcolor1(p)" class="status"></div></td> -->
+                    </tr>
+                </tbody>
+                
+            </table>
+        </div>
+
+
+        
+         
         <app-ajoutsite *ngIf="show==2"></app-ajoutsite>
     </div>
 </div>

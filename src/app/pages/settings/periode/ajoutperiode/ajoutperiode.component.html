@@ -1,5 +1,5 @@
 <div [formGroup]="searchForm" class="content-form-search">
-    <p class="ajouter">Ajout Societe</p>
+    <p class="ajouter">Ajout Période</p>
     <div class="content-form">
       <div class="content-row-form">
         <div class="content-input">
@@ -18,7 +18,7 @@
       </div>
       <div class="content-row-form">
         <div class="content-input">
-          <p class="label-input1">Société</p>
+          <p class="label-input1">Période</p>
           <select class="select-search" #entite formControlName="societe" (change)="directionsListe(entite.value)" required>
             <option class="option" value="" disabled selected hidden>Choisir une société</option>
             <option *ngFor="let data of dataSociete" [value]="data.id">{{data.libelle}}</option>
