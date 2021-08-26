@@ -1,3 +1,14 @@
+import { ListcommissionComponent } from './pages/settings/commission/listcommission/listcommission.component';
+import { DetailfonctionComponent } from './pages/settings/fonction/detailfonction/detailfonction.component';
+import { ModiffonctionComponent } from './pages/settings/fonction/modiffonction/modiffonction.component';
+import { AjoutfonctionComponent } from './pages/settings/fonction/ajoutfonction/ajoutfonction.component';
+import { ListfonctionComponent } from './pages/settings/fonction/listfonction/listfonction.component';
+import { DetaildomaineComponent } from './pages/settings/domaine/detaildomaine/detaildomaine.component';
+import { ModifdomaineComponent } from './pages/settings/domaine/modifdomaine/modifdomaine.component';
+import { AjoutdomaineComponent } from './pages/settings/domaine/ajoutdomaine/ajoutdomaine.component';
+import { ListdomaineComponent } from './pages/settings/domaine/listdomaine/listdomaine.component';
+import { DetailsiteComponent } from './pages/settings/site/detailsite/detailsite.component';
+import { ListsiteComponent } from './pages/settings/site/listsite/listsite.component';
 import { ModifsiteComponent } from './pages/settings/site/modifsite/modifsite.component';
 import { AjoutsiteComponent } from './pages/settings/site/ajoutsite/ajoutsite.component';
 import { DetailattestationComponent } from './pages/attestation/detailattestation/detailattestation.component';
@@ -59,6 +70,13 @@ import { DetailcontratComponent } from './pages/interimaire/detailcontrat/detail
 import { AttestationmesInterimaireComponent } from './pages/attestation/attestationmesInterimaire/attestationmesInterimaire.component';
 import { ModifEvaluerComponent } from './pages/evaluation/evaluer/modif-evaluer/modif-evaluer.component';
 import { StatageComponent } from './pages/statistiques/statage/statage.component';
+import { ListcategorieComponent } from './pages/settings/categorie/listcategorie/listcategorie.component';
+import { AjoutcategorieComponent } from './pages/settings/categorie/ajoutcategorie/ajoutcategorie.component';
+import { ModifcategorieComponent } from './pages/settings/categorie/modifcategorie/modifcategorie.component';
+import { DetailcategorieComponent } from './pages/settings/categorie/detailcategorie/detailcategorie.component';
+import { AjoutcommissionComponent } from './pages/settings/commission/ajoutcommission/ajoutcommission.component';
+import { ModifcommissionComponent } from './pages/settings/commission/modifcommission/modifcommission.component';
+import { DetailcommissionComponent } from './pages/settings/commission/detailcommission/detailcommission.component';
 
 
 const routes: Routes = [
@@ -297,6 +315,78 @@ const routes: Routes = [
       },
       { path: 'modifsite',
         component:ModifsiteComponent,
+        canActivate: [AuthGuard]
+      },
+      { path: 'listesite',
+        component:ListsiteComponent,
+        canActivate: [AuthGuard]
+      },
+      { path: 'detailsite',
+        component:DetailsiteComponent,
+        canActivate: [AuthGuard]
+      },
+      { path: 'listedomaine',
+        component:ListdomaineComponent,
+        canActivate: [AuthGuard]
+      },
+      { path: 'ajoutdomaine',
+        component:AjoutdomaineComponent,
+        canActivate: [AuthGuard]
+      },
+      { path: 'modifdomaine',
+        component:ModifdomaineComponent,
+        canActivate: [AuthGuard]
+      },
+      { path: 'detaildomaine',
+        component:DetaildomaineComponent,
+        canActivate: [AuthGuard]
+      },
+      { path: 'listefonction',
+        component:ListfonctionComponent,
+        canActivate: [AuthGuard]
+      },
+      { path: 'ajoutfonction',
+        component:AjoutfonctionComponent,
+        canActivate: [AuthGuard]
+      },
+      { path: 'modifierfonction',
+        component:ModiffonctionComponent,
+        canActivate: [AuthGuard]
+      },
+      { path: 'detailfonction',
+        component:DetailfonctionComponent,
+        canActivate: [AuthGuard]
+      },
+      { path: 'listecategorie',
+        component:ListcategorieComponent,
+        canActivate: [AuthGuard]
+      },
+      { path: 'ajoutcategorie',
+        component:AjoutcategorieComponent,
+        canActivate: [AuthGuard]
+      },
+      { path: 'modifcategorie',
+        component:ModifcategorieComponent,
+        canActivate: [AuthGuard]
+      },
+      { path: 'detailcategorie',
+        component:DetailcategorieComponent,
+        canActivate: [AuthGuard]
+      },
+      { path: 'listecommission',
+        component:ListcommissionComponent,
+        canActivate: [AuthGuard]
+      },
+      { path: 'ajoutcommission',
+        component:AjoutcommissionComponent,
+        canActivate: [AuthGuard]
+      },
+      { path: 'modifcommission',
+        component:ModifcommissionComponent,
+        canActivate: [AuthGuard]
+      },
+      { path: 'detailcommission',
+        component:DetailcommissionComponent,
         canActivate: [AuthGuard]
       },
       {
