@@ -188,28 +188,28 @@ export class PaginationService {
     //  click: false,  activeChoice: -1,
       liste: [  
         {
-          title: 'Domaine',  path: 'stateffectif',
+          title: 'Domaine',  path: 'ajoutdomaine',
         }, {
-          title: 'Fonction',  path: 'statgenre',
+          title: 'Fonction',  path: 'ajoutfonction',
         },{
-          title: 'Site',  path: 'statagence',
+          title: 'Site',  path: 'ajoutsite',
         }, {
-          title: 'Catégorie',  path: 'statpresence',
+          title: 'Catégorie',  path: 'ajoutcategorie',
         },{
-          title: 'Comission',  path: 'statpresence',
+          title: 'Comission',  path: 'ajoutcommission',
         },{
-          title: 'Direction',  path: 'statcategorie',
+          title: 'Direction',  path: 'ajoutdirection',
         },{
-          title: 'Profil',  path: 'statage',
+          title: 'Profil',  path: 'ajoutprofil',
         }
         ,{
-          title: 'Periode',  path: 'statage',
+          title: 'Periode',  path: 'ajoutperiode',
         }
         ,{
-          title: 'Societe',  path: 'statage',
+          title: 'Societe',  path: 'ajoutsociete',
         }
         ,{
-          title: 'Structure',  path: 'statage',
+          title: 'Structure',  path: 'ajoutstructure',
         },
       ]
     }

@@ -59,6 +59,26 @@ import { DetailcontratComponent } from './pages/interimaire/detailcontrat/detail
 import { AttestationmesInterimaireComponent } from './pages/attestation/attestationmesInterimaire/attestationmesInterimaire.component';
 import { ModifEvaluerComponent } from './pages/evaluation/evaluer/modif-evaluer/modif-evaluer.component';
 import { StatageComponent } from './pages/statistiques/statage/statage.component';
+import { AjoutdirectionComponent } from './pages/settings/direction/ajoutdirection/ajoutdirection.component';
+import { ListdirectionComponent } from './pages/settings/direction/listdirection/listdirection.component';
+import { DetaildirectionComponent } from './pages/settings/direction/detaildirection/detaildirection.component';
+import { ModifdirectionComponent } from './pages/settings/direction/modifdirection/modifdirection.component';
+import { ModifperiodeComponent } from './pages/settings/periode/modifperiode/modifperiode.component';
+import { DetailperiodeComponent } from './pages/settings/periode/detailperiode/detailperiode.component';
+import { ListperiodeComponent } from './pages/settings/periode/listperiode/listperiode.component';
+import { AjoutperiodeComponent } from './pages/settings/periode/ajoutperiode/ajoutperiode.component';
+import { ModifprofilComponent } from './pages/settings/profil/modifprofil/modifprofil.component';
+import { AjoutprofilComponent } from './pages/settings/profil/ajoutprofil/ajoutprofil.component';
+import { ListprofilComponent } from './pages/settings/profil/listprofil/listprofil.component';
+import { DetailprofilComponent } from './pages/settings/profil/detailprofil/detailprofil.component';
+import { ModifsocieteComponent } from './pages/settings/societe/modifsociete/modifsociete.component';
+import { DetailsocieteComponent } from './pages/settings/societe/detailsociete/detailsociete.component';
+import { ListsocieteComponent } from './pages/settings/societe/listsociete/listsociete.component';
+import { AjoutsocieteComponent } from './pages/settings/societe/ajoutsociete/ajoutsociete.component';
+import { ModifstructureComponent } from './pages/settings/structure/modifstructure/modifstructure.component';
+import { DetailstructureComponent } from './pages/settings/structure/detailstructure/detailstructure.component';
+import { ListstructureComponent } from './pages/settings/structure/liststructure/liststructure.component';
+import { AjoutstructureComponent } from './pages/settings/structure/ajoutstructure/ajoutstructure.component';
 
 
 const routes: Routes = [
@@ -299,6 +319,86 @@ const routes: Routes = [
         component:ModifsiteComponent,
         canActivate: [AuthGuard]
       },
+      { path: 'ajoutdirection',
+        component:AjoutdirectionComponent,
+        canActivate: [AuthGuard]
+      },
+      { path: 'listdirection',
+        component:ListdirectionComponent,
+        canActivate: [AuthGuard]
+      },
+      { path: 'detaildirection',
+        component:DetaildirectionComponent,
+        canActivate: [AuthGuard]
+      },
+      { path: 'modifdirection',
+        component:ModifdirectionComponent,
+        canActivate: [AuthGuard]
+      },
+      { path: 'ajoutstructure',
+        component:AjoutstructureComponent,
+        canActivate: [AuthGuard]
+      },
+      { path: 'liststructure',
+        component:ListstructureComponent,
+        canActivate: [AuthGuard]
+      },
+      { path: 'detailstructure',
+        component:DetailstructureComponent,
+        canActivate: [AuthGuard]
+      },
+      { path: 'modifstructure',
+        component:ModifstructureComponent,
+        canActivate: [AuthGuard]
+      },
+      { path: 'ajoutsociete',
+      component:AjoutsocieteComponent,
+      canActivate: [AuthGuard]
+    },
+    { path: 'listsociete',
+      component:ListsocieteComponent,
+      canActivate: [AuthGuard]
+    },
+    { path: 'detailsociete',
+      component:DetailsocieteComponent,
+      canActivate: [AuthGuard]
+    },
+    { path: 'modifsociete',
+      component:ModifsocieteComponent,
+      canActivate: [AuthGuard]
+    },
+    { path: 'ajoutprofil',
+    component:AjoutprofilComponent,
+    canActivate: [AuthGuard]
+  },
+  { path: 'listprofil',
+    component:ListprofilComponent,
+    canActivate: [AuthGuard]
+  },
+  { path: 'detailprofil',
+    component:DetailprofilComponent,
+    canActivate: [AuthGuard]
+  },
+  { path: 'modifprofil',
+    component:ModifprofilComponent,
+    canActivate: [AuthGuard]
+  },
+  { path: 'ajoutperiode',
+  component:AjoutperiodeComponent,
+  canActivate: [AuthGuard]
+},
+{ path: 'listperiode',
+  component:ListperiodeComponent,
+  canActivate: [AuthGuard]
+},
+{ path: 'detailperiode',
+  component:DetailperiodeComponent,
+  canActivate: [AuthGuard]
+},
+{ path: 'modifperiode',
+  component:ModifperiodeComponent,
+  canActivate: [AuthGuard]
+},
       {
         path: '',
         redirectTo: 'accueil/home',
