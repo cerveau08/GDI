@@ -30,24 +30,17 @@ export class ListermanagerComponent implements OnInit {
   getScreenSize(event?) {
         this.scrHeight = window.innerHeight;
         this.scrWidth = window.innerWidth;
-       // console.log(this.scrHeight, this.scrWidth);
   }
   public reqUrl = environment.base_url;
-  constructor(private dataService: DataService,
-    private pagerService: PaginationService,
-    private modalService: ModalService,
-    public datepipe: DatePipe,
+  constructor(public datepipe: DatePipe,
     private errormodalService: ErrormodalService,
     public router: Router,
-    private otherService: OthersService,
     private http: HttpClient
     ) { 
       this.getScreenSize();
     }
 
   ngOnInit() {
-   // this.datas = this.dataService.getData();
-    //this.getManager();
     this.gty(this.page);
   }
 
@@ -56,12 +49,6 @@ gty(page: any){
   this.http.get(this.reqUrl + `/managers/list?page=${page}&limit=${this.itemsPerPage}`).subscribe((data: any) => {
     this.datas =  data.data;
     this.totalItems = data.total;
-    console.log(this.datas);
-    console.log(this.totalItems);
-  }, error=> {
-    this.errorMsg = error;
-    this.errormodalService.open('error-modal-1');
-    console.log(error)
   })
 }
 

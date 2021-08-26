@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { Component, OnInit, HostListener } from '@angular/core';
 import { ApexAxisChartSeries, ApexChart, ApexDataLabels, ApexPlotOptions, ApexResponsive, ApexXAxis, ApexYAxis, ApexLegend, ApexFill, ChartComponent } from 'ng-apexcharts';
 import { FormGroup, FormControl } from '@angular/forms';
@@ -75,7 +76,8 @@ export class StatageComponent implements OnInit {
   public chartOptions2: Partial<ChartOptions>;
   successMsg: any;
   directs: any;
-  constructor(
+  errorMsg: any;
+  constructor(private toastr: ToastrService,
               private otherService: OthersService) {
     this.getScreenSize();
   }
@@ -100,8 +102,6 @@ export class StatageComponent implements OnInit {
     
   }
   ngOnDestroy() {
-    console.log(this.intervalId);
-    
     clearInterval(this.intervalId);
   }
 
@@ -109,7 +109,6 @@ export class StatageComponent implements OnInit {
   societeSelectionner(valueSociete, valueAnnee){
     this.otherService.statInterAge(valueSociete, valueAnnee).subscribe(
       data => {
-        console.log(data);
         this.data = data;
         this.dataStatEffectifGenre = this.data.data[0];
     this.directs = this.dataStatEffectifGenre;
@@ -188,15 +187,18 @@ export class StatageComponent implements OnInit {
 }
 
   exportStatInterimaireByYear() {
-    console.log(this.annee);
     this.otherService.exportStatInterimByYear(this.annee).subscribe(
       data => {
-        console.log(data);
         this.data = data;
         this.successMsg = this.data.status
         if(this.successMsg == true) {
           window.open(data.data);
         }
+      }, error=> {
+        this.errorMsg = error;
+        this.toastr.error(this.errorMsg, 'Echec', {
+          timeOut: 5000,
+        });
       }
     )
   }
@@ -225,13 +227,10 @@ export class StatageComponent implements OnInit {
         annee: this.currentDate - 9
       },
     ];
-    console.log(this.lastTenYear);
     return this.lastTenYear
   }
   //stats interimaire par annee
   dateSelectionner(annee, societe){
-    console.log(annee);
-    console.log(societe);
     if(societe == "null"){
       societe = null;
     }
@@ -242,13 +241,11 @@ export class StatageComponent implements OnInit {
       data => {
         this.dataYear = data;
         this.dataStatEffectifAnnee = this.dataYear.data;
-        console.log(this.dataStatEffectifAnnee);
           this.donneeAbscisse = this.dataStatEffectifAnnee.map(valueOfDirection => valueOfDirection.tranche);
           this.homme = this.dataStatEffectifAnnee.map(valueOfHomme => valueOfHomme.homme);
           this.femme = this.dataStatEffectifAnnee.map(valueOfFemme => valueOfFemme.femme);
  
         this.axex = this.donneeAbscisse;
-        console.log(this.axex);
         
         this.chartOptions1 = {
           colors: [
@@ -314,8 +311,6 @@ export class StatageComponent implements OnInit {
             opacity: 4,
           },
         };
-        console.log(this.chartOptions1);
-        
         return this.chartOptions1;
     }
     )

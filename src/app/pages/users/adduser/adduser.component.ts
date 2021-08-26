@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { OthersService } from '../../../services/others.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -60,7 +61,7 @@ export class AdduserComponent implements OnInit {
   p = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
   public reqUrl = environment.base_url;
   errorMsg: any;
-  constructor(private dataService: DataService, 
+  constructor(private toastr: ToastrService, 
               private otherService: OthersService,
               private route: Router,
               private http: HttpClient,
@@ -72,11 +73,6 @@ export class AdduserComponent implements OnInit {
     this.otherService. getInterSousContrat().subscribe(
       data => {
        this.dataInterSousContrat = data.data;
-       console.log(data);
-      }, error=> {
-        this.errorMsg = error;
-        this.errormodalService.open('error-modal-1');
-        console.log(error)
       }
     );
     this.pieceForm = new FormGroup({
@@ -111,32 +107,16 @@ export class AdduserComponent implements OnInit {
     this.otherService.getAllSociete().subscribe(
       data => {
         this.dataSociete = data["data"];
-        console.log(data);
-      }, error=> {
-        this.errorMsg = error;
-        this.errormodalService.open('error-modal-1');
-        console.log(error)
       }
     );
 
     this.otherService.getAllStructure().subscribe(data => {
-      console.log(data);
       this.dataStructure = data['data'];
-    }, error=> {
-      this.errorMsg = error;
-      this.errormodalService.open('error-modal-1');
-      console.log(error)
     })
 
-      //recupere les profils
     this.otherService.getprofil().subscribe(
       data => {
         this.dataprofils = data["data"];
-        console.log(data);
-      }, error=> {
-        this.errorMsg = error;
-        this.errormodalService.open('error-modal-1');
-        console.log(error)
       }
     );
     this.onChanges();
@@ -150,12 +130,6 @@ export class AdduserComponent implements OnInit {
     this.http.get(this.reqUrl + `/listeAgence?page=${page}&limit=${this.itemsPerPage}`).subscribe((data: any) => {
       this.dataAgence =  data.data;
       this.totalItems = data.total;
-      console.log(this.dataAgence);
-      console.log(this.totalItems);
-    }, error=> {
-      this.errorMsg = error;
-      this.errormodalService.open('error-modal-1');
-      console.log(error)
     })
   }
 
@@ -174,16 +148,9 @@ export class AdduserComponent implements OnInit {
     reader.readAsDataURL( this.fichierPhoto);
     reader.onload= ()=>{
       this.image= reader.result;
-      console.log(this.image);
     }
   }
   submitted1() {
-  /*  const info = {
-      matricule: this.pieceForm.value.matricule,
-    } 
-    this.show = true;
-    console.log(info);
-    return info;*/
   }
   submitted2() {
     this.show = false;
@@ -193,14 +160,15 @@ export class AdduserComponent implements OnInit {
     this.otherService.matriculeFilter(matricule).subscribe(
       (response) => {
         this.dataMatriculeInter = response;
-        console.log(this.dataMatriculeInter);
         this.prenom = this.dataMatriculeInter.data.personne.prenom;
         this.nom = this.dataMatriculeInter.data.personne.nom;
         this.telephone = this.dataMatriculeInter.data.personne.telephone;
         this.userAgentForm.patchValue({interimaireId: this.dataMatriculeInter.data.interimaire.id});
-      },
-      (error) =>{
-        console.log(error)
+      }, error=> {
+        this.errorMsg = error;
+        this.toastr.error(this.errorMsg, 'Echec', {
+          timeOut: 5000,
+        });
       }
     )
   }
@@ -208,7 +176,6 @@ export class AdduserComponent implements OnInit {
   public saveFonction(e): void {
     let libelle = e.target.value;
     let list = this.listeFonction.filter(x => x.libelle === libelle)[0];
-    console.log(list.libelle);
     this.userAgentForm.patchValue({fonction: list.libelle});
   }
 
@@ -227,23 +194,21 @@ export class AdduserComponent implements OnInit {
     formdata.append("interimaireId",this.userAgentForm.value.interimaireId);
     formdata.append("structureId",this.userAgentForm.value.structureId);
     formdata.append("avatar",this.fichierPhoto);
-    console.log(formdata);
-    console.log(this.userAgentForm.value);
     this.otherService.addUser(formdata).subscribe(
       (response) =>{
-        console.log(response)
         this.data = response;
         this.successMsg = this.data.status
-        console.log(this.successMsg);
-        
         if (this.successMsg == true) {
+          this.toastr.success(this.data.message, 'Success', {
+            timeOut: 3000,
+          });
           this.route.navigate(['/accueil/listeuser']);
         }
-      },
-      error=> {
+      }, error=> {
         this.errorMsg = error;
-        this.errormodalService.open('error-modal-1');
-        console.log(error)
+        this.toastr.error(this.errorMsg, 'Echec', {
+          timeOut: 5000,
+        });
       }
     )
   }

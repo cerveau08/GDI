@@ -17,9 +17,6 @@ export class DetailmanagerComponent implements OnInit {
   scrHeight:any;
   scrWidth:any;
   viewer = 'google';   
-  DemoDoc="http://www.africau.edu/images/default/sample.pdf" 
-  DemoDoc1="https://file-examples.com/wp-content/uploads/2017/02/file-sample_100kB.doc"
-  DemoDoc2="https://www.le.ac.uk/oerresources/bdra/html/resources/example.txt" 
   filterterm: string;
   datas: any;
   showHome = true;
@@ -40,8 +37,7 @@ export class DetailmanagerComponent implements OnInit {
   itemsPerPage = 10;
   totalItems : any;
   public reqUrl = environment.base_url;
-  constructor(private dataService: DataService,
-    private modalService: ModalService,
+  constructor(private modalService: ModalService,
     private errormodalService: ErrormodalService,
     private fileSaver: NgxFileSaverService,
     private otherService: OthersService,
@@ -51,7 +47,6 @@ export class DetailmanagerComponent implements OnInit {
 
       this.activeroute.queryParams.subscribe(params => {
         this.item = JSON.parse(params["user"]);
-        console.log(this.item);
       })
     }
 
@@ -62,11 +57,6 @@ export class DetailmanagerComponent implements OnInit {
         this.data = result;
         this.managerinfo = this.data.data.detail
         this.datas = this.data.data.interimaires
-        console.log(result);
-      }, error=> {
-        this.errorMsg = error;
-        this.errormodalService.open('error-modal-1');
-        console.log(error)
       }
     )
     if(this.user == 'inter') {
@@ -78,11 +68,6 @@ export class DetailmanagerComponent implements OnInit {
      this.otherService.getInter().subscribe(
       data => {
        this.dataInterFin = data.data;
-       console.log(data);
-      }, error=> {
-        this.errorMsg = error;
-        this.errormodalService.open('error-modal-1');
-        console.log(error)
       }
     ); 
     this.gty(this.page);
@@ -92,12 +77,6 @@ export class DetailmanagerComponent implements OnInit {
     this.http.get(this.reqUrl + `/manager/${this.item}?page=${page}&limit=${this.itemsPerPage}`).subscribe((data: any) => {
       this.datas =  data.data;
       this.totalItems = this.datas.total
-      console.log(this.datas);
-      console.log(this.totalItems);
-    }, error=> {
-      this.errorMsg = error;
-      this.errormodalService.open('error-modal-1');
-      console.log(error)
     })
   }
 
@@ -108,9 +87,7 @@ export class DetailmanagerComponent implements OnInit {
   closeModal(id: string) {
     this.modalService.close(id);
   }
-  public getfilemodal() {
-    this.fileSaver.saveUrl(this.DemoDoc, 'contrat');
-  }
+  
   openErrorModal(id: string) {
     this.errormodalService.open(id);
   }

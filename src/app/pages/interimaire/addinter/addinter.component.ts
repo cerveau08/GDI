@@ -133,9 +133,7 @@ export class AddinterComponent implements OnInit {
   videnumeroPiece = false;
   videtelephone = false;
   videsociete = false;
-  constructor(private fb: FormBuilder,
-              private modalService: ModalService,
-              private otherService: OthersService,
+  constructor(private otherService: OthersService,
               private errormodalService: ErrormodalService,
               private toastr: ToastrService,
               private router: Router) {
@@ -188,42 +186,33 @@ export class AddinterComponent implements OnInit {
       telephone: new FormControl(''),
       typePiece: new FormControl(''),
     })
-      //recupere les societes
     this.otherService.getAllSociete().subscribe(
       data => {
         this.dataSociete = data["data"];
-        console.log(data);
       }
     );
-     //recupere les categories
      this.otherService.getAllCategorie().subscribe(
       data => {
         this.dataCategorie = data["data"];
-        console.log(data);
       }
     );
     this.otherService.getDomaine().subscribe(data => this.dataDomaine = data["data"]);
-    //  this.saveCode(this.item)
     this.otherService.getFonctions().subscribe(data => this.listeFonction = data.data);
-   // this.onChanges();
   }
   public saveProfession(e): void {
     let libelle = e.target.value;
     let list = this.listeFonction.filter(x => x.libelle === libelle)[0];
-    console.log(list.libelle);
     this.interForm.patchValue({profession: list.libelle});
   }
   public savePoste(e): void {
     let libelle = e.target.value;
     let list = this.listeFonction.filter(x => x.libelle === libelle)[0];
-    console.log(list.libelle);
     this.interForm.patchValue({poste: list.libelle});
   }
 
   public saveDomaine(e): void {
     let libelle = e.target.value;
     let list = this.dataDomaine.filter(x => x.libelle === libelle)[0];
-    console.log(list.libelle);
     this.interForm.patchValue({domaineId: list.id});
   }
   
@@ -255,12 +244,10 @@ export class AddinterComponent implements OnInit {
     if(this.typePiece && this.numeroPiece && this.telephone && this.societe) {
       this.otherService.pieceFilter(this.searchForm.value).subscribe(
         (response) => {
-          console.log(response);
           this.dataMatriculeInter = response;
           this.isBlackliste = this.dataMatriculeInter.isBlacklisted
           if(this.isBlackliste == false) {
             if(this.dataMatriculeInter.data) {
-              console.log(this.dataMatriculeInter.data);
               if(this.dataMatriculeInter.data.interimaire) {
                 this.toastr.info('Cette personne existe deja comme interimaire veuillez l\'ajouter un contrat à partir de la page détail intérimaire', 'Information', {
                   timeOut: 10000,
@@ -322,9 +309,7 @@ export class AddinterComponent implements OnInit {
   getDiplomes(e:any) {
     this.fichierDiplome= e.target.files.item(0);
     for (let i = 0; i < this.diplome.length; i++) {
-      console.log(this.diplome.at(i).value);
       this.diplomeName = this.fichierDiplome.name;
-      console.log(this.diplomeName);
     }
   }
   submitted1(){
@@ -412,10 +397,8 @@ export class AddinterComponent implements OnInit {
     if(this.fichierdiplome3 != undefined) {
       formdata.append("fileDiplome[]",this.fichierdiplome3);
     }
-    console.log(this.interForm.value);
     this.otherService.addInter(formdata).subscribe(
       data => {
-        console.log(data);
         this.data = data
         this.successMsg = this.data.status
         if(this.successMsg == true) {
@@ -424,57 +407,45 @@ export class AddinterComponent implements OnInit {
           });
           this.submited = true;
         }
-      },
-      error=> {
+      }, error=> {
         this.errorMsg = error;
         this.toastr.error(this.errorMsg, 'Echec', {
           timeOut: 5000,
         });
-        // this.errormodalService.open('error-modal-1');
-        // console.log(error)
       }
     )
   }
 
   directionsListe(value) {
-    console.log(value);
     this.otherService.getAllDirection(value).subscribe(
       data => {
         this.dataDirection = data['data'];
-       console.log(data);
        }
     ); 
   }
 
   departementListe(value) {
-    console.log(value);
     this.otherService.getAllDepartement(value).subscribe(
       data => {
         this.dataDepartement = data['data'];
-       console.log(data);
        }
     ); 
   }
 
   serviceListe(value) {
-    console.log(value);
     this.otherService.getAllService(value).subscribe(
       data => {
         this.donneeService = data['data'];
-       console.log(data);
        }
     ); 
   }
 
-   //recuperation de l'image
    getPhoto(e:any) {
     this.photo= e.files.item(0);
-    console.log(this.photo.type);
     let reader = new FileReader();
     reader.readAsDataURL( this.photo)
     reader.onload= ()=>{
       this.image= reader.result
-      console.log(this.image)
     }
   }
 
@@ -482,7 +453,6 @@ export class AddinterComponent implements OnInit {
   getFileContrat(event: any) {
     this.fichierContrat = event.target.files[0];
     this.contratName = this.fichierContrat.name;
-    console.log(this.contratName);
   }
 
   //les diplomes
@@ -494,37 +464,29 @@ export class AddinterComponent implements OnInit {
   getDiplome2(event: any) {
     this.fichierdiplome2 = event.target.files[0];
     this.diplomeName2 = this.fichierdiplome2.name;
-    console.log(this.diplomeName2);
   }
   getDiplome3(event: any) {
     this.fichierdiplome3 = event.target.files[0];
     this.diplomeName3 = this.fichierdiplome3.name;
-    console.log(this.diplomeName3);
   }
 
    //recuperation  du proceverbal
    getProceVerbal(e:any) {
     this.fichierProceVerbal= e.target.files.item(0);
-    console.log(this.fichierProceVerbal.type);
     this.proceverbalName = this.fichierProceVerbal.name;
-    console.log(this.proceverbalName);
   }
 
    //recuperation du fiche de poste
    getFichePoste(e:any) {
     this.fichierPoste= e.target.files.item(0);
-    console.log(this.fichierPoste.type);
     this.fichedeposteName = this.fichierPoste.name;
-    console.log(this.fichedeposteName);
   }
 
   
 
   getFileCni(e:any) {
     this.fichierCni= e.target.files.item(0);
-   // console.log(this.fichierCni);
     this.cniName = this.fichierCni.name;
-    console.log(this.cniName);
     
   }
 

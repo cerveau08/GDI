@@ -97,13 +97,11 @@ export class CompteComponent implements OnInit {
 
   ngOnInit() {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    console.log(this.currentUser.data.id);  
 
     this.otherService.getOneInterById(this.currentUser.interimaire.id).subscribe(
       data =>{
        this.data = data;
        this.dataInter = this.data.data;
-       console.log(this.dataInter);
        this.nom = this.dataInter.nom;
        this.prenom = this.dataInter.prenom;
        this.datedenaissance = this.dataInter.datedenaissance;
@@ -130,15 +128,8 @@ export class CompteComponent implements OnInit {
        this.contratDoc = this.dataInter.fileContrat;
        this.fichePosteDoc = this.dataInter.fileFichePoste;
        this.contrat = this.dataInter.contrat;
-       console.log(this.contrat);
-       
-    },error=> {
-      this.errorMsg = error;
-      this.toastr.error(this.errorMsg, 'Echec', {
-        timeOut: 5000,
-      });
-    }
- );
+    },
+  );
 
     if(this.user == 'inter') {
       this.showHome = false;

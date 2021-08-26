@@ -31,29 +31,18 @@ export class NewinterComponent implements OnInit {
       this.otherService.getInter().subscribe(
         data => {
          this.dataInterFin = data.data;
-         console.log(data);
-        }, error=> {
-          this.errorMsg = error;
-          this.errormodalService.open('error-modal-1');
-          console.log(error)
         }
       );
 
       this.otherService.getNouveauRecrus().subscribe(
         data => {
          this.nouveauxRrecrus = data.data;
-         console.log(data);
-        }, error=> {
-          this.errorMsg = error;
-          this.errormodalService.open('error-modal-1');
-          console.log(error)
         }
       );
 
      }
 
   ngOnInit() {
-    this.datas = this.dataService.getData();
   }
 
   openDetail(data) {

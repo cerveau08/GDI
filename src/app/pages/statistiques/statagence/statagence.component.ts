@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Component, OnInit, HostListener } from '@angular/core';
 import { ApexAxisChartSeries, ApexChart, ApexDataLabels, ApexPlotOptions, ApexResponsive, ApexXAxis, ApexYAxis, ApexLegend, ApexFill, ChartComponent } from 'ng-apexcharts';
@@ -79,8 +80,7 @@ export class StatagenceComponent implements OnInit {
   data: Object;
   lastTenYear: { annee: number; }[];
   dataSociete: any;
-  constructor(private dataService: DataService,
-    private errormodalService: ErrormodalService,
+  constructor(private toastr: ToastrService,
               private otherService: OthersService) {
     this.getScreenSize();
   }
@@ -88,7 +88,6 @@ export class StatagenceComponent implements OnInit {
   getScreenSize(event?) {
         this.scrHeight = window.innerHeight;
         this.scrWidth = window.innerWidth;
-        console.log(this.scrHeight, this.scrWidth);
   }
 
   ngOnInit() {
@@ -130,7 +129,6 @@ export class StatagenceComponent implements OnInit {
         annee: this.currentDate - 9
       },
     ];
-    console.log(this.lastTenYear);
     return this.lastTenYear
   }
   
@@ -139,7 +137,6 @@ export class StatagenceComponent implements OnInit {
       data => {
         this.dataAgence = data;
         this.dataInterimByAgence = this.dataAgence.data[0];
-        console.log(this.dataInterimByAgence);
     this.axex = this.dataInterimByAgence.map(valueOfDirection => valueOfDirection.nom);
     this.actifs = this.dataInterimByAgence.map(valueOfActifs => valueOfActifs.actifs);
     this.inactifs = this.dataInterimByAgence.map(valueOfInactifs => valueOfInactifs.inactifs);
@@ -217,85 +214,5 @@ export class StatagenceComponent implements OnInit {
     return this.chartOptions6;
     })
   }
-
-  
-  // serviceSelectionnerAgence(value){
-  //   this.axex = this.dataStatEffectifService.map(valueOfDirection => valueOfDirection.annee);
-  //   this.actifs = this.dataStatEffectifService.map(valueOfNouveau => valueOfNouveau.actifs);
-  //   this.inactifs = this.dataStatEffectifService.map(valueOfFini => valueOfFini.inactifs);
-  //   this.total = this.dataStatEffectifService.map(valueOfTotal => valueOfTotal.total);
-  //   this.chartOptions7 = {
-  //     colors: [
-  //       "#ff0000",
-  //       "#009393",
-  //       "#000000",
-  //     ],
-  //     series: [
-  //       {
-  //         name: "Actifs",
-  //         data: this.actifs
-  //       },
-  //       {
-  //         name: "Inactifs",
-  //         data: this.inactifs
-  //       },
-  //       {
-  //         name: "Total",
-  //         data: this.total
-  //       },
-  //     ],
-  //     chart: {
-  //       type: "bar",
-  //       height: 300,
-  //       width: 550,
-  //       stacked: true,
-  //       toolbar: {
-  //         show: false
-  //       },
-  //       zoom: {
-  //         enabled: false
-  //       }
-  //     },
-  //     responsive: [
-  //       {
-  //         breakpoint: 480,
-  //         options: {
-  //           legend: {
-  //             show: false,
-  //             position: "bottom",
-  //             offsetX: -10,
-  //             offsetY: 0
-  //           }
-  //         }
-  //       }
-  //     ],
-  //     plotOptions: {
-  //       bar: {
-  //         horizontal: false,
-  //         columnWidth: "10px",
-  //       //  endingShape: "rounded",
-  //       },
-  //     },
-  //     dataLabels: {
-  //       enabled: false,
-  //       style: {
-  //         colors: ['#f3f4f5', '#fff']
-  //       }
-  //     },
-  //     xaxis: {
-  //       type: "category",
-  //       categories: 
-  //         this.axex
-  //     },
-  //     legend: {
-  //       show: false,
-  //     },
-  //     fill: {
-  //       opacity: 4,
-  //     },
-  //   };
-  //   return this.chartOptions7;
-    
-  // }
 
 }

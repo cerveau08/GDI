@@ -17,10 +17,6 @@ import { ErrormodalService } from 'src/app/modal/_errormodals';
 export class ManagerComponent implements OnInit {
   scrHeight:any;
   scrWidth:any;
-  viewer = 'google';   
-  DemoDoc="http://www.africau.edu/images/default/sample.pdf" 
-  DemoDoc1="https://file-examples.com/wp-content/uploads/2017/02/file-sample_100kB.doc"
-  DemoDoc2="https://www.le.ac.uk/oerresources/bdra/html/resources/example.txt" 
   filterterm: string;
   datas: any;
   showHome = true;
@@ -35,41 +31,27 @@ export class ManagerComponent implements OnInit {
   getScreenSize(event?) {
         this.scrHeight = window.innerHeight;
         this.scrWidth = window.innerWidth;
-        console.log(this.scrHeight, this.scrWidth);
   }
   page = 1;
   itemsPerPage = 5;
   totalItems : any;
   public reqUrl = environment.base_url;
-  constructor(private dataService: DataService,
-    private modalService: ModalService,
+  constructor(private modalService: ModalService,
     private errormodalService: ErrormodalService,
     private fileSaver: NgxFileSaverService,
     private otherService: OthersService,
-    private http: HttpClient,
-    private activeroute: ActivatedRoute) {
+    private http: HttpClient,) {
       this.getScreenSize();
-
-      // this.activeroute.queryParams.subscribe(params => {
-      //   this.item = JSON.parse(params["user"]);
-      //   console.log(this.item);
-      // })
     }
 
   ngOnInit() {
     this.user = localStorage.getItem('user');
     this.item = JSON.parse(localStorage.getItem('currentUser'));
-    console.log(this.item);
     this.otherService.getDetailsManagerById(this.item.data.id).subscribe( 
       result => {
         this.data = result;
         this.managerinfo = this.data.data.detail
         this.datas = this.data.data.interimaires
-        console.log(result);
-      }, error=> {
-        this.errorMsg = error;
-        this.errormodalService.open('error-modal-1');
-        console.log(error)
       }
     )
     if(this.user == 'inter') {
@@ -81,11 +63,6 @@ export class ManagerComponent implements OnInit {
      this.otherService.getInter().subscribe(
       data => {
        this.dataInterFin = data.data;
-       console.log(data);
-      }, error=> {
-        this.errorMsg = error;
-        this.errormodalService.open('error-modal-1');
-        console.log(error)
       }
     ); 
     this.gty(this.page);
@@ -95,12 +72,6 @@ export class ManagerComponent implements OnInit {
     this.http.get(this.reqUrl + `/manager/${this.item.data.id}?page=${page}&limit=${this.itemsPerPage}`).subscribe((data: any) => {
       this.datas =  data.data;
       this.totalItems = this.datas.total
-      console.log(this.datas);
-      console.log(this.totalItems);
-    }, error=> {
-      this.errorMsg = error;
-      this.errormodalService.open('error-modal-1');
-      console.log(error)
     })
   }
 
@@ -112,7 +83,7 @@ export class ManagerComponent implements OnInit {
     this.modalService.close(id);
   }
   public getfilemodal() {
-    this.fileSaver.saveUrl(this.DemoDoc, 'contrat');
+    this.fileSaver.saveUrl(this.item, 'contrat');
   }
 
   openErrorModal(id: string) {

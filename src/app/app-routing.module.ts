@@ -1,3 +1,14 @@
+import { ListcommissionComponent } from './pages/settings/commission/listcommission/listcommission.component';
+import { DetailfonctionComponent } from './pages/settings/fonction/detailfonction/detailfonction.component';
+import { ModiffonctionComponent } from './pages/settings/fonction/modiffonction/modiffonction.component';
+import { AjoutfonctionComponent } from './pages/settings/fonction/ajoutfonction/ajoutfonction.component';
+import { ListfonctionComponent } from './pages/settings/fonction/listfonction/listfonction.component';
+import { DetaildomaineComponent } from './pages/settings/domaine/detaildomaine/detaildomaine.component';
+import { ModifdomaineComponent } from './pages/settings/domaine/modifdomaine/modifdomaine.component';
+import { AjoutdomaineComponent } from './pages/settings/domaine/ajoutdomaine/ajoutdomaine.component';
+import { ListdomaineComponent } from './pages/settings/domaine/listdomaine/listdomaine.component';
+import { DetailsiteComponent } from './pages/settings/site/detailsite/detailsite.component';
+import { ListsiteComponent } from './pages/settings/site/listsite/listsite.component';
 import { ModifsiteComponent } from './pages/settings/site/modifsite/modifsite.component';
 import { AjoutsiteComponent } from './pages/settings/site/ajoutsite/ajoutsite.component';
 import { DetailattestationComponent } from './pages/attestation/detailattestation/detailattestation.component';

@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { HttpClient } from '@angular/common/http';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { DatePipe } from '@angular/common';
@@ -95,13 +96,13 @@ export class IntersouscontratComponent implements OnInit {
   public agence = null;
   public societe = null;
   public direction = null;
-  constructor(private dataService: DataService,
-    public datepipe: DatePipe,
+  constructor(public datepipe: DatePipe,
     public router: Router,
     private modalService: ModalService,
     private otherService: OthersService,
     private errormodalService: ErrormodalService,
-    private http: HttpClient
+    private http: HttpClient,
+    private toastr: ToastrService
     ) { }
 
   ngOnInit() {
@@ -133,7 +134,6 @@ export class IntersouscontratComponent implements OnInit {
     this.otherService.getAllSociete().subscribe(
       data => {
         this.dataSociete = data["data"];
-        console.log(data);
       }
     );
 
@@ -141,24 +141,20 @@ export class IntersouscontratComponent implements OnInit {
 
     this.http.get(this.reqUrl + `/listeAgence?page=${this.pageAgence}&limit=${this.itemsPerPageAgence}`).subscribe((data: any) => {
       this.dataAgence =  data.data;
-      console.log(this.dataAgence);
     })
   }
 
   public saveProfession(e): void {
     let libelle = e.target.value;
     let list = this.listeFonction.filter(x => x.libelle === libelle)[0];
-    console.log(list.libelle);
     this.filterForm.patchValue({poste: list.libelle});
   }
 
   directionsListe(value) {
-    console.log(value);
     this.otherService.getAllDirection(value).subscribe(
       data => {
         this.dataDirection = data['data'];
-       console.log(data);
-       }
+      }
     ); 
   }
 
@@ -169,44 +165,31 @@ export class IntersouscontratComponent implements OnInit {
     if(this.filterForm.value.poste) {
       this.poste = this.filterForm.value.poste;
     }
-   // if(this.filterForm.value.matricule) {
       this.matricule = this.filterForm.value.matricule;
-  //  }
-    if(this.filterForm.value.agence) {
       this.agence = this.filterForm.value.agence;
-    }
-    if(this.filterForm.value.societe) {
       this.societe = this.filterForm.value.societe;
-    }
-    if(this.filterForm.value.direction) {
       this.direction = this.filterForm.value.direction;
-    }
-    console.log(this.filterForm.value);
     this.otherService.getInterimaireSousContrat(page, this.itemsPerPage, this.matricule, this.poste, this.agence, this.societe, this.direction).subscribe((data: any) => {
       this.dataInter =  data.data;
       this.totalItems = data.total;
     }, error=> {
       this.errorMsg = error;
-      this.errormodalService.open('error-modal-1');
-      console.log(error)
+      this.toastr.error(this.errorMsg, 'Echec', {
+        timeOut: 5000,
+      });
     })
   }
 
   submit(interimaire_id) {
-    console.log(interimaire_id);
     this.yearOnly = this.attestationForm.value.annee.getFullYear();
-    console.log(this.yearOnly);
     let donneeForm = {
       interim_id: interimaire_id,
-    //  contrat_id: contrat_interimaire_id,
       mois: this.attestationForm.value.mois,
       annee: this.yearOnly,
       nbr_jr_absence: this.attestationForm.value.nbr_jr_absence,
     }
-    console.log(donneeForm);
     this.otherService.addAttestation(donneeForm).subscribe(
       data => {
-        console.log(data);
         this.result = data
         this.successMsg = this.result.status
 
@@ -215,8 +198,9 @@ export class IntersouscontratComponent implements OnInit {
         }
       }, error=> {
         this.errorMsg = error;
-        this.errormodalService.open('error-modal-1');
-        console.log(error)
+        this.toastr.error(this.errorMsg, 'Echec', {
+          timeOut: 5000,
+        });
       }
     )
   }
@@ -252,14 +236,11 @@ export class IntersouscontratComponent implements OnInit {
   }
 
   extraireInter() {
-    console.log(this.filterForm.value);
     if (this.filterForm.value.poste == undefined) {
       this.filterForm.patchValue({poste: ''});
     }
-    console.log(this.filterForm.value);
     this.otherService.extraireInterimaire(this.filterForm.value).subscribe(
       data => {
-        console.log(data);
         this.data = data;
         this.successMsg = this.data.status
         if(this.successMsg == true) {

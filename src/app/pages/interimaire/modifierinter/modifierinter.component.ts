@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -128,20 +129,18 @@ export class ModifierinterComponent implements OnInit {
   ];
   info = new FormData();
   errorMsg: any;
+  data: any;
+  successMsg: any;
   constructor(private activeroute: ActivatedRoute,
-    private fb: FormBuilder,
-    private dataService: DataService,
     private route: Router,
     private errormodalService: ErrormodalService,
-    private otherService: OthersService) {
-      //this.datas = this.dataService.getData();
+    private otherService: OthersService,
+    private toastr: ToastrService) {
       this.activeroute.queryParams.subscribe(params => {
         this.item = JSON.parse(params["user"]);
-        console.log(this.item);
         this.otherService.getOneInterById(this.item).subscribe(
           data =>{
             this.dataInter = data;
-            console.log(this.dataInter);
             this.photo = this.dataInter.data.photo;
             this.prenom = this.dataInter.data.prenom;
             this.nom = this.dataInter.data.nom;
@@ -172,18 +171,12 @@ export class ModifierinterComponent implements OnInit {
             this.fichierProceVerbal = this.dataInter.data.proceverbal;
             this.universite = this.dataInter.data.universite;
             this.agence = this.dataInter.data.agence;
-          },
-          error=> {
-            this.errorMsg = error;
-            this.errormodalService.open('error-modal-1');
-            console.log(error)
           }
         );
       })
   }
 
   ngOnInit() {
-   /* this.url1 = this.item.photo;*/
     this.interForm = new FormGroup({
         numeroPiece: new FormControl(''),
         prenom: new FormControl(''),
@@ -230,39 +223,21 @@ export class ModifierinterComponent implements OnInit {
         ])
     });
 
-      //recupere les societes
-      this.otherService.getAllSociete().subscribe(
-        data => {
-          this.dataSociete = data["data"];
-          console.log(data);
-        }, error=> {
-          this.errorMsg = error;
-          this.errormodalService.open('error-modal-1');
-          console.log(error)
-        }
-      );
-         //recupere les domaines
-     this.otherService.getDomaine().subscribe(
+    this.otherService.getAllSociete().subscribe(
       data => {
-        this.dataDomaine = data["data"];
-        console.log(data);
-      }, error=> {
-        this.errorMsg = error;
-        this.errormodalService.open('error-modal-1');
-        console.log(error)
+        this.dataSociete = data["data"];
       }
     );
-       //recupere les categories
-       this.otherService.getAllCategorie().subscribe(
-        data => {
-          this.dataCategorie = data["data"];
-          console.log(data);
-        }, error=> {
-          this.errorMsg = error;
-          this.errormodalService.open('error-modal-1');
-          console.log(error)
-        }
-      );
+    this.otherService.getDomaine().subscribe(
+      data => {
+        this.dataDomaine = data["data"];
+      }
+    );
+    this.otherService.getAllCategorie().subscribe(
+    data => {
+      this.dataCategorie = data["data"];
+    }
+  );
   }
 
   get f() { return this.interForm.controls; }
@@ -285,21 +260,10 @@ export class ModifierinterComponent implements OnInit {
   getDiplomes(e:any) {
     this.fichierDiplome= e.target.files.item(0);
     for (let i = 0; i < this.fileDiplome.length; i++) {
-      console.log(this.fileDiplome.at(i).value);
       this.diplomeName = this.fichierDiplome.name;
-      console.log(this.diplomeName);
     }
   }
-
-   //recuperation du  contrat
-  //  getFileContrat(event: any) {
-  //   this.fichierContrat = event.target.files[0];
-  //   this.contratName = this.fichierContrat.name;
-  //   console.log(this.contratName);
-  // }
-  //recuperation de l'image
   getPhoto(e:any) {
-    console.log(this.photo);
     this.photoUpload = e.files.item(0);
     let reader = new FileReader();
     reader.readAsDataURL( this.photoUpload)
@@ -310,9 +274,7 @@ export class ModifierinterComponent implements OnInit {
   
   getFileContrat(e:any) {
     this.fichierContratUpload = e.target.files.item(0);
-    console.log(this.fichierContratUpload.type);
     this.contratName = this.fichierContratUpload.name;
-    console.log(this.contratName);
   }
 
   getFileCni(event: any) {
@@ -324,33 +286,27 @@ export class ModifierinterComponent implements OnInit {
   getFichePoste(event: any) {
     this.fichierPosteUpload = event.target.files[0];
     this.fichedeposteName = this.fichierPosteUpload.name;
-    console.log(this.fichedeposteName);
     
   }
 
   getProceVerbal(event: any) {
     this.fichierProceVerbalUpload = event.target.files[0];
     this.proceverbalName = this.fichierProceVerbalUpload.name;
-    console.log(this.proceverbalName);
   }
 
   //les diplomes
   getDiplome1(event: any) {
     this.fichierdiplome1Upload = event.target.files[0];
-    console.log(this.fichierdiplome1Upload);
     
     this.diplomeName1 = this.fichierdiplome1Upload.name;
-    console.log(this.diplomeName1);
   }
   getDiplome2(event: any) {
     this.fichierdiplome2Upload = event.target.files[0];
     this.diplomeName2 = this.fichierdiplome2Upload.name;
-    console.log(this.diplomeName2);
   }
   getDiplome3(event: any) {
     this.fichierdiplome3Upload = event.target.files[0];
     this.diplomeName3 = this.fichierdiplome3Upload.name;
-    console.log(this.diplomeName3);
   }
 
   submit() {
@@ -370,8 +326,6 @@ export class ModifierinterComponent implements OnInit {
         diplome: this.fichierdiplome3Upload
       },
     ];
-    console.log(this.lesDiplomeUpload[0].diplome);
-    console.log(this.interForm.value);
     const value = this.interForm.value;
     const info = new FormData();
     info.append("adresse",this.interForm.value.adresse);
@@ -413,70 +367,52 @@ export class ModifierinterComponent implements OnInit {
     if(this.fichierProceVerbalUpload != undefined) {
       info.append("fileproceverbal",this.fichierProceVerbalUpload);
     }
-   // info.append("matriculeManager",this.interForm.value.matriculeManager);
-  //  info.append("fileDiplome",this.lesDiplomeUpload);
-    console.log(info);
-    console.log(this.item);
     this.otherService.updateInter(info, this.item).subscribe(
-      (res) =>{
-        console.log(res);
-        if(res){
-          this.route.navigate(['/accueil/souscontrat']);
+      (data) =>{
+        if(data){
+          this.data = data
+          this.successMsg = this.data.status
+          if(this.successMsg == true) {
+            this.toastr.success(this.data.message, 'Success', {
+              timeOut: 3000,
+            });
+          }
         }
-      },
-       error=> {
+      }, error=> {
         this.errorMsg = error;
-        this.errormodalService.open('error-modal-1');
-        console.log(error)
+        this.toastr.error(this.errorMsg, 'Echec', {
+          timeOut: 5000,
+        });
       }
     )
   }
 
   directionsListe(value) {
-    console.log(value);
     this.otherService.getAllDirection(value).subscribe(
       data => {
         this.dataDirection = data['data'];
-       console.log(data);
-      }, error=> {
-        this.errorMsg = error;
-        this.errormodalService.open('error-modal-1');
-        console.log(error)
       }
     ); 
   }
 
   departementListe(value) {
-    console.log(value);
     this.otherService.getAllDepartement(value).subscribe(
       data => {
         this.dataDepartement = data['data'];
-       console.log(data);
-      }, error=> {
-        this.errorMsg = error;
-        this.errormodalService.open('error-modal-1');
-        console.log(error)
       }
     ); 
   }
 
   serviceListe(value) {
-    console.log(value);
     this.otherService.getAllService(value).subscribe(
       data => {
         this.donneeService = data['data'];
-       console.log(data);
-      }, error=> {
-        this.errorMsg = error;
-        this.errormodalService.open('error-modal-1');
-        console.log(error)
       }
     ); 
   }
     
   
   readUrl1(event: any) {
-    console.log('readUrl');
       if (event.target.files && event.target.files[0]) {
         var reader = new FileReader();
       
@@ -489,7 +425,6 @@ export class ModifierinterComponent implements OnInit {
   }
   
   readUrl2(event: any) {
-    console.log('readUrl');
       if (event.target.files && event.target.files[0]) {
         var reader = new FileReader();
       
@@ -502,7 +437,6 @@ export class ModifierinterComponent implements OnInit {
   }
 
   readUrl3(event: any) {
-    console.log('readUrl');
       if (event.target.files && event.target.files[0]) {
         var reader = new FileReader();
       
@@ -514,7 +448,6 @@ export class ModifierinterComponent implements OnInit {
       }
   }
   readUrl4(event: any) {
-    console.log('readUrl');
       if (event.target.files && event.target.files[0]) {
         var reader = new FileReader();
       

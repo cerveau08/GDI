@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -55,15 +56,15 @@ export class DetailuserComponent implements OnInit {
   errorMsg: any;
   successMsgBannir: any;
   dataBannir: any;
+  successMsg: any;
   constructor(private activeroute: ActivatedRoute,
               private modalService: ModalService,
               private otherService: OthersService,
               private errormodalService: ErrormodalService,
-              public router: Router, ) { 
+              public router: Router, 
+              private toastr: ToastrService) { 
     this.activeroute.queryParams.subscribe(params => {
       this.item = JSON.parse(params["user"]);
-      console.log(this.item);
-      
     })
     
   }
@@ -73,7 +74,6 @@ export class DetailuserComponent implements OnInit {
       data =>{
        this.data = data;
        this.dataUser = this.data.data;
-       console.log(this.dataUser);
        this.nom = this.dataUser.nom;
        this.prenom = this.dataUser.prenom;
        this.email = this.dataUser.email;
@@ -82,11 +82,6 @@ export class DetailuserComponent implements OnInit {
        //this.agence = this.dataUser.agence;
        this.matricule = this.dataUser.matricule;
        this.photo = this.dataUser.photo;
-      },
-      error=> {
-        this.errorMsg = error;
-        this.errormodalService.open('error-modal-1');
-        console.log(error)
       }
     );
     this.contratForm = new FormGroup({
@@ -118,11 +113,6 @@ export class DetailuserComponent implements OnInit {
     this.otherService.getAllSociete().subscribe(
       data => {
         this.dataSociete = data["data"];
-        console.log(data);
-      }, error=> {
-        this.errorMsg = error;
-        this.errormodalService.open('error-modal-1');
-        console.log(error)
       }
     );
     this.arretForm = new FormGroup({
@@ -140,7 +130,6 @@ export class DetailuserComponent implements OnInit {
     reader.readAsDataURL( this.fichierPhoto);
     reader.onload= ()=>{
       this.image= reader.result;
-      console.log(this.image);
     }
   }
 
@@ -159,17 +148,21 @@ export class DetailuserComponent implements OnInit {
     formdata.append("interimaireId",this.userForm.value.interimaireId);
     formdata.append("structureId",this.userForm.value.structureId);
     formdata.append("avatar",this.fichierPhoto);
-    console.log(formdata);
-    console.log(this.userForm.value);
     this.otherService.addUser(formdata).subscribe(
       (response) =>{
-        console.log(response)
-        this.router.navigate(['/accueil/listeuser']);
-      },
-      error=> {
+        this.data = response;
+        this.successMsg = this.data.status
+        if (this.successMsg == true) {
+          this.toastr.success(this.data.message, 'Success', {
+            timeOut: 3000,
+          });
+          this.router.navigate(['/accueil/listeuser']);
+        }
+      }, error=> {
         this.errorMsg = error;
-        this.errormodalService.open('error-modal-1');
-        console.log(error)
+        this.toastr.error(this.errorMsg, 'Echec', {
+          timeOut: 5000,
+        });
       }
     )
   }

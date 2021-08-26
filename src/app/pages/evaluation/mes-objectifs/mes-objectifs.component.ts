@@ -39,7 +39,6 @@ export class MesObjectifsComponent implements OnInit {
   errorMsg: any;
   constructor(private otherService: OthersService,
     private errormodalService: ErrormodalService,
-    private modalService: ModalService,
     private http: HttpClient,) {
   }
 
@@ -47,16 +46,10 @@ export class MesObjectifsComponent implements OnInit {
     this.role = localStorage.getItem('user');
     this.interimConnect = JSON.parse(localStorage.getItem('currentUser'));
     this.item = this.interimConnect.interimaire.id
-    console.log(this.interimConnect);
     this.otherService.getListeObjectif(this.item).subscribe(
       data => {
         this.data = data
         this.objectif = this.data["data"];
-        console.log(data);
-      }, error=> {
-        this.errorMsg = error;
-        this.errormodalService.open('error-modal-1');
-        console.log(error)
       }
     );
     this.gty(this.page);
@@ -66,11 +59,6 @@ export class MesObjectifsComponent implements OnInit {
     this.http.get(this.reqUrl + `/listeObjectif/${this.item}?page=${page}&limit=${this.itemsPerPage}`).subscribe((data: any) => {
       this.data = data
       this.objectif = this.data["data"];
-      console.log(data);
-    }, error=> {
-      this.errorMsg = error;
-      this.errormodalService.open('error-modal-1');
-      console.log(error)
     })
   }
 

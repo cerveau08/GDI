@@ -41,7 +41,6 @@ export class ListuserComponent implements OnInit {
 
   ngOnInit() {
     this.role = localStorage.getItem('user');
-   // this.getcolor(this.p);
     
     this.gty(this.page);
   }
@@ -51,12 +50,6 @@ export class ListuserComponent implements OnInit {
     this.http.get(this.reqUrl + `/users/all?page=${page}&limit=${this.itemsPerPage}`).subscribe((data: any) => {
       this.dataUser =  data.data;
       this.totalItems = data.total;
-      console.log(data);
-      console.log(this.totalItems);
-    }, error=> {
-      this.errorMsg = error;
-      this.errormodalService.open('error-modal-1');
-      console.log(error)
     })
   }
 

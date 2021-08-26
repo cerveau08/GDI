@@ -33,7 +33,6 @@ export class AddmanagerComponent implements OnInit {
         matricule: this.matriculeForm.value.matricule,
     } 
     this.show = true;
-    console.log(info);
     return info;
   }
   submitted2() {
