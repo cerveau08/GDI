@@ -7,6 +7,7 @@ import { DataService } from 'src/app/service/data.service';
 import { OthersService } from 'src/app/services/others.service';
 import { ModalService } from 'src/app/modal/_modal/modal.service';
 import { ErrormodalService } from 'src/app/modal/_errormodals';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-addinter',
@@ -125,10 +126,18 @@ export class AddinterComponent implements OnInit {
   profession;
   poste;
   searchForm: FormGroup;
+  numeroPiece;
+  typePiece;
+  societe;
+  videtypePiece = false;
+  videnumeroPiece = false;
+  videtelephone = false;
+  videsociete = false;
   constructor(private fb: FormBuilder,
               private modalService: ModalService,
               private otherService: OthersService,
               private errormodalService: ErrormodalService,
+              private toastr: ToastrService,
               private router: Router) {
    // this.datajson = this.dataService.getData();
    }
@@ -161,6 +170,7 @@ export class AddinterComponent implements OnInit {
         societeId: new FormControl(''),
         profession: new FormControl(''),
         poste: new FormControl(''),
+        site: new FormControl(''),
         contratDoc: new FormControl(''),
         matriculeManager: new FormControl(''),
         fileFicheposte: new FormControl(''),
@@ -218,40 +228,74 @@ export class AddinterComponent implements OnInit {
   }
   
   rechercherInterimaire() { 
-    console.log(this.searchForm.value); 
-    this.otherService.pieceFilter(this.searchForm.value).subscribe(
-      (response) => {
-        console.log(response);
-        this.dataMatriculeInter = response;
-        this.isBlackliste = this.dataMatriculeInter.isBlacklisted
-        if(this.isBlackliste == false) {
-          if(this.dataMatriculeInter.data) {
-            console.log(this.dataMatriculeInter.data);
-            if(this.dataMatriculeInter.data.interimaire) {
-              this.router.navigate(['/accueil/detailinter'], {
-                queryParams: {
-                  user: JSON.stringify(this.dataMatriculeInter.data.interimaire.id)
-                }
+    this.typePiece = this.searchForm.value.typePiece;
+    this.numeroPiece = this.searchForm.value.numeroPiece;
+    this.telephone = this.searchForm.value.telephone;
+    this.societe = this.searchForm.value.societe;
+    if(!this.typePiece) {
+      this.videtypePiece = true;
+    } else {
+      this.videtypePiece = false;
+    }
+    if(!this.numeroPiece) {
+      this.videnumeroPiece = true;
+    } else {
+      this.videnumeroPiece = false;
+    }
+    if(!this.telephone) {
+      this.videtelephone = true;
+    } else {
+      this.videtelephone = false;
+    }
+    if(!this.societe) {
+      this.videsociete = true;
+    } else {
+      this.videsociete = false;
+    }
+    if(this.typePiece && this.numeroPiece && this.telephone && this.societe) {
+      this.otherService.pieceFilter(this.searchForm.value).subscribe(
+        (response) => {
+          console.log(response);
+          this.dataMatriculeInter = response;
+          this.isBlackliste = this.dataMatriculeInter.isBlacklisted
+          if(this.isBlackliste == false) {
+            if(this.dataMatriculeInter.data) {
+              console.log(this.dataMatriculeInter.data);
+              if(this.dataMatriculeInter.data.interimaire) {
+                this.toastr.info('Cette personne existe deja comme interimaire veuillez l\'ajouter un contrat à partir de la page détail intérimaire', 'Information', {
+                  timeOut: 10000,
+                });
+                this.router.navigate(['/accueil/detailinter'], {
+                  queryParams: {
+                    user: JSON.stringify(this.dataMatriculeInter.data.interimaire.id)
+                  }
+                });
+              } else {
+                this.toastr.success('Vous pouvez ajouter cette personne comme interimaire', 'Success', {
+                  timeOut: 3000,
+                });
+                this.isAdmissible = true;
+              }
+            }
+            if(this.dataMatriculeInter.message == 'Interimaire inexistant!') {
+              this.toastr.success('Vous pouvez ajouter cette personne comme interimaire', 'Success', {
+                timeOut: 3000,
               });
-            } else {
               this.isAdmissible = true;
             }
+          } else if(this.isBlackliste == true) {
+            if(this.dataMatriculeInter.data.personne) {
+              this.prenom = this.dataMatriculeInter.data.personne.prenom;
+              this.nom = this.dataMatriculeInter.data.personne.nom;
+            } else {
+              this.prenom = "cette";
+              this.nom = "personne";
+            }
+            this.openErrorModal('blacklist-modal-1');
           }
-          if(this.dataMatriculeInter.message == 'Interimaire inexistant!') {
-            this.isAdmissible = true;
-          }
-        } else if(this.isBlackliste == true) {
-          if(this.dataMatriculeInter.data.personne) {
-            this.prenom = this.dataMatriculeInter.data.personne.prenom;
-            this.nom = this.dataMatriculeInter.data.personne.nom;
-          } else {
-            this.prenom = "cette";
-            this.nom = "personne";
-          }
-          this.openErrorModal('blacklist-modal-1');
         }
-      }
-    )
+      );
+    }
   }
   
   get diplome(): FormArray {
@@ -296,6 +340,8 @@ export class AddinterComponent implements OnInit {
     this.color3 = "20px solid #ff7900";
   }
   submit() {
+    console.log(this.interForm.value.poste);
+    
     this.colorc = "#f16e00";
     this.color3 = "20px solid #f16e00";
     const formdata = new FormData();
@@ -323,6 +369,9 @@ export class AddinterComponent implements OnInit {
     }
     if(this.interForm.value.salaireBrut != "") {
       formdata.append("salaireBrut", this.interForm.value.salaireBrut);
+    }
+    if(this.interForm.value.site != "") {
+      formdata.append("site", this.interForm.value.site);
     }
     if(this.interForm.value.dateDebut != "") {
       formdata.append("dateDebut", this.interForm.value.dateDebut);
@@ -370,13 +419,19 @@ export class AddinterComponent implements OnInit {
         this.data = data
         this.successMsg = this.data.status
         if(this.successMsg == true) {
+          this.toastr.success('L\'intérimaire a été ajouté', 'Success', {
+            timeOut: 3000,
+          });
           this.submited = true;
         }
       },
       error=> {
         this.errorMsg = error;
-        this.errormodalService.open('error-modal-1');
-        console.log(error)
+        this.toastr.error(this.errorMsg, 'Echec', {
+          timeOut: 5000,
+        });
+        // this.errormodalService.open('error-modal-1');
+        // console.log(error)
       }
     )
   }

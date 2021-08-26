@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { OthersService } from 'src/app/services/others.service';
 import { Component, OnInit } from '@angular/core';
@@ -89,6 +90,7 @@ export class CompteComponent implements OnInit {
     private otherService: OthersService,
     private modalService: ModalService,
     private dataService: DataService,
+    private toastr: ToastrService,
     private errormodalService: ErrormodalService,
     private router: Router,
   ) { }
@@ -132,8 +134,9 @@ export class CompteComponent implements OnInit {
        
     },error=> {
       this.errorMsg = error;
-      this.errormodalService.open('error-modal-1');
-      console.log(error)
+      this.toastr.error(this.errorMsg, 'Echec', {
+        timeOut: 5000,
+      });
     }
  );
 

@@ -12,14 +12,17 @@
 .content-text-explication{
   padding-right: 15px;
 }
-.content-row-form{
-  display: flex;
+.error-require-input-search{
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 11px;
+  color: #ff0000;
 }
 .content-form{
   margin-top: 40px;
 }
 .select-search{
-  width: 190px;
+  width: 390px;
   height: 24px;
   background-color: #f5f6f9;
   outline: none;
@@ -39,8 +42,7 @@
   }
 }
 .input-search{
-  margin-left: 10px;
-  width: 180px;
+  width: 375px;
   height: 20px;
   background-color: #f5f6f9;
   border-radius: 1px;
@@ -55,7 +57,7 @@
   font-size: 12px;
   margin-bottom: 5px;
   margin-top: 10px;
-  margin-left: 10px;
+  //margin-left: 10px;
 }
 .text-explication-libelle{
   font-size: 12px;
@@ -1241,5 +1243,32 @@ button {
   .fiche-et-pv {
     display: grid;
    // grid-template-columns: 1fr;
+  }
+  .content-search-inter{
+    display: block;
+    grid-template-columns: 1fr;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  .content-text-explication{
+    padding-right: 5px;
+  }
+  .content-form{
+    margin-top: 20px;
+  }
+  .select-search{
+    width: 290px;
+    option {
+        font-size: 12px;
+        
+    }
+  }
+  
+  .input-search{
+    width: 275px;
+    height: 20px;
+    background-color: #f5f6f9;
+    border-radius: 1px;
+    border: solid 1px #d8d8d8;
   }
 }
