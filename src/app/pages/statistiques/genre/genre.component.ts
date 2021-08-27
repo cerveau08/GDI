@@ -160,7 +160,6 @@ export class GenreComponent implements OnInit {
         this.successMsg = this.data.status
         if(this.successMsg == true) {
           //window.open(this.data.data, '_blank');
-          this.router.navigate([]).then(result => {  window.open(this.data.data, '_blank'); });
         }
       }, error=> {
         this.errorMsg = error;
