@@ -255,7 +255,7 @@ export class HomeComponent implements OnInit {
     if(value == "null"){
       value = null;
     }
-    this.otherService.statInterByYear(value).subscribe(
+    this.otherService.statInterByYear(this.annee, this.societe).subscribe(
       data => {
         this.dataYear = data;
         this.dataStatEffectifAnnee = this.dataYear.data;

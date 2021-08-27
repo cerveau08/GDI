@@ -57,8 +57,15 @@
                             <option *ngFor="let p of dataSociete" class="option" [value]="p.id">{{p.libelle}}</option>
                         </select>
                     </div>
+                    <div class="filtrer-societe" style="cursor: pointer;">
+                        <p class="label-input-percent">Socété</p>
+                        <select class="select-societe" formControlName="id_societe" #mySelect (change)='genrePourcentage(mySelect.value)'>
+                            <option *ngFor="let p of dataSociete" class="option" [value]="p.id">{{p.libelle}}</option>
+                        </select>
+                    </div>
                     <div class="content-extraction">
-                        <button (click)="exportgenrePourcentage()" class="button-extraire">Extraire en CSV</button>
+                        <!-- <button (click)="exportgenrePourcentage()" class="button-extraire">Extraire en CSV</button> -->
+                        <button (click)="exportCsv1(societeForm.value.anneeS, societeForm.value.societeS)" class="button-extraire">Extraire en CSV</button>
                     </div>
                 </div>
                 
@@ -85,12 +92,19 @@
                 <div class="filtre-societe-direction" [formGroup]="societeForm">
                     <div [style.border]="borderfilter1" id="filter-annee" class="filtrer-annees">
                         <mat-icon [style.color]="colorfilter1" id="icon-calendar-annee"  class="icone-calendar1" fontSet="material-icons-outlined">home</mat-icon>
-                        <select class="select-mois" formControlName="societe" [(ngModel)]="societe">
+                        <select class="select-mois" formControlName="societeS" [(ngModel)]="societeS">
+                            <option *ngFor="let p of dataSociete" class="option" [value]="p.id">{{p.libelle}}</option>
+                        </select>
+                    </div>
+                    <div [style.border]="borderfilter1" id="filter-annee" class="filtrer-annees">
+                        <mat-icon [style.color]="colorfilter1" id="icon-calendar-annee"  class="icone-calendar1" fontSet="material-icons-outlined">home</mat-icon>
+                        <select class="select-mois" formControlName="anneeS" [(ngModel)]="anneeS">
                             <option *ngFor="let p of dataSociete" class="option" [value]="p.id">{{p.libelle}}</option>
                         </select>
                     </div>
                     <div class="content-extraction">
-                        <button (click)="exportStatInterimaireBySociete()" class="button-extraire">Extraire en CSV</button>
+                        <!-- <button (click)="exportStatInterimaireBySociete()" class="button-extraire">Extraire en CSV</button> -->
+                        <button (click)="exportCsv(societeForm.value.anneeS, societeForm.value.societeS)" class="button-extraire">Extraire en CSV</button>
                     </div>
                 </div>
                 <div class="">

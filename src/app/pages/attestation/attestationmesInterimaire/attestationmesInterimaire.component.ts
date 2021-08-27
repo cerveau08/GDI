@@ -1,3 +1,4 @@
+import { AuthService } from 'src/app/services/auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { HttpClient } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
@@ -9,7 +10,7 @@ import { ModalService } from 'src/app/modal/_modal/modal.service';
 import { environment } from 'src/environments/environment';
 import { ErrormodalService } from 'src/app/modal/_errormodals';
 import { OthersService } from 'src/app/services/others.service';
-import * as FileSaver from 'file-saver';
+
 
 const CSV_EXTENSION = '.csv';
 const CSV_TYPE = 'text/plain;charset=utf-8';
@@ -90,7 +91,7 @@ export class AttestationmesInterimaireComponent implements OnInit {
   lastTenYear;
   currentDate = new Date().getFullYear();
   reference = null;
-  constructor(private http: HttpClient,
+  constructor(private extractionService: AuthService,
               private errormodalService: ErrormodalService,
               private otherService: OthersService,
               private toastr: ToastrService) { }
@@ -168,59 +169,6 @@ export class AttestationmesInterimaireComponent implements OnInit {
     )
   }
 
-   /**
-   * Saves the file on client's machine via FileSaver library.
-   *
-   * @param buffer The data that need to be saved.
-   * @param fileName File name to save as.
-   * @param fileType File type to save as.
-   */
-  private saveAsFile(buffer: any, fileName: string, fileType: string): void {
-    const data: Blob = new Blob([buffer], { type: fileType });
-    FileSaver.saveAs(data, fileName);
-  }
-
-  /**
-   * Creates an array of data to csv. It will automatically generate title row based on object keys.
-   *
-   * @param rows array of data to be converted to CSV.
-   * @param fileName filename to save as.
-   * @param columns array of object properties to convert to CSV. If skipped, then all object properties will be used for CSV.
-   */
-  public exportToCsv(rows: object[], fileName: string, columns?: string[]): string {
-    if (!rows || !rows.length) {
-      return;
-    }
-    const separator = ',';
-    const keys = Object.keys(rows[0]).filter(k => {
-      if (columns.length) {
-        return columns.includes(k);
-      } else {
-        return true;
-      }
-    });
-    const csvContent =
-      keys.join(separator) +
-      '\n' +
-      rows.map(row => {
-        return keys.map(k => {
-          let cell = row[k] === null || row[k] === undefined ? '' : row[k];
-          cell = cell instanceof Date
-            ? cell.toLocaleString()
-            : cell.toString().replace(/"/g, '""');
-          if (cell.search(/("|,|\n)/g) >= 0) {
-            cell = `"${cell}"`;
-          }
-          return cell;
-        }).join(separator);
-      }).join('\n');
-    this.saveAsFile(csvContent, `${fileName}${CSV_EXTENSION}`, CSV_TYPE);
-  }
-
-  /**
-   * Funtion prepares data to pass to export service to create csv from Json
-   *
-   */
   exportCsv(): void {
     if(this.filterForm.value.mois) {
       this.mois = this.filterForm.value.mois;
@@ -234,7 +182,7 @@ export class AttestationmesInterimaireComponent implements OnInit {
     this.otherService.listMesAttestationFilter(this.page,this.itemsPerPage, this.mois, this.annee, this.reference).subscribe(
       (data: any) => {
         this.dataAttest =  data.data[0];
-        this.exportToCsv(
+        this.extractionService.exportToCsv(
           this.dataAttest, 
           'ExtractionAttestation' + '-' + this.date.getFullYear() + '-' + this.date.getMonth() + '-' + this.date.getDay() + '-' + this.date.getHours()+ '-' + this.date.getMinutes(),
           ['reference', 'matricule', 'prenom', 'nom', 'agence', 'nombreJourAbscence', 'dateDebut', 'dateFin', 'prenom_manager', 'nom_manager', 'statut']

@@ -3,6 +3,8 @@ import { Component, OnInit, HostListener } from '@angular/core';
 import { ApexAxisChartSeries, ApexChart, ApexDataLabels, ApexPlotOptions, ApexResponsive, ApexXAxis, ApexYAxis, ApexLegend, ApexFill, ChartComponent } from 'ng-apexcharts';
 import { OthersService } from 'src/app/services/others.service';
 import { FormGroup, FormControl } from '@angular/forms';
+import { AuthService } from 'src/app/services/auth.service';
+import { loadavg } from 'os';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -62,6 +64,8 @@ export class EffectifComponent implements OnInit {
   societe = 1;
   date = new Date();
   annee = null;
+  annee1 = null;
+  societe1 = 1;
   dataStatEffectifAnnee: any;
   dataStatEffectifSociete;
   dataStatistique;
@@ -72,7 +76,9 @@ export class EffectifComponent implements OnInit {
   public chartOptions2: Partial<ChartOptions>;
   successMsg: any;
   errorMsg: any;
+  dataInter: any;
   constructor(private toastr: ToastrService,
+    private extractionService: AuthService,
               private otherService: OthersService) {
     this.getScreenSize();
   }
@@ -97,27 +103,27 @@ export class EffectifComponent implements OnInit {
       anneeS: new FormControl(''),
       societeS: new FormControl(''),
     })
-    this.dateSelectionner(this.annee);
+    this.dateSelectionner(this.annee, this.societe);
     
-    this.effectifSocieteSelectionner(String(this.societe));
+    this.effectifSocieteSelectionner(this.annee1, this.societe1);
     this.onChanges();
     this.onChangesSociete();
   }
 
   onChanges(): void {
-    this.anneeForm.get('anneeA').valueChanges.subscribe(val => {
-      if (val) {
-        this.dateSelectionner(val);
-      }
-    });
+    // this.anneeForm.get('anneeA').valueChanges.subscribe(val => {
+    //   if (val) {
+    //     this.dateSelectionner(val);
+    //   }
+    // });
   }
 
   onChangesSociete(): void {
-    this.societeForm.get('societeS').valueChanges.subscribe(val => {
-      if (val) {
-        this.effectifSocieteSelectionner(val);
-      }
-    });
+    // this.societeForm.get('societeS').valueChanges.subscribe(val => {
+    //   if (val) {
+    //     this.effectifSocieteSelectionner(val);
+    //   }
+    // });
   }
   exportStatInterimaireByYear() {
     this.otherService.exportStatInterimByYear(this.annee).subscribe(
@@ -178,15 +184,12 @@ export class EffectifComponent implements OnInit {
     ];
     return this.lastTenYear
   }
-  dateSelectionner(value){
-    if(value == "null"){
-      value = null;
-    }
-    this.otherService.statInterByYear(value).subscribe(
+  dateSelectionner(annee, societe){
+    this.otherService.statInterByYear(annee, societe).subscribe(
       data => {
         this.dataYear = data;
         this.dataStatEffectifAnnee = this.dataYear.data;
-        if(value == null) {
+        if(this.dataStatEffectifAnnee[0].annee != undefined) {
           this.donneeAbscisse = this.dataStatEffectifAnnee.map(valueOfDirection => valueOfDirection.annee);
           this.nouveau = this.dataStatEffectifAnnee.map(valueOfNouveau => valueOfNouveau.nouveaux);
           this.fini = this.dataStatEffectifAnnee.map(valueOfFini => valueOfFini.fin);
@@ -273,11 +276,12 @@ export class EffectifComponent implements OnInit {
     )
   }
 
-  effectifSocieteSelectionner(value:string){
-    this.otherService.statTotalInter(value).subscribe(
+  effectifSocieteSelectionner(annee, societe){
+    this.otherService.statTotalInter(annee, societe).subscribe(
       data => {
       this.data = data;
-      this.dataStatEffectifSociete = this.data.data;
+      this.dataStatEffectifSociete = this.data.data[0];
+      console.log(this.dataStatEffectifSociete);
       this.directions = this.dataStatEffectifSociete.map(valueOfDirection => valueOfDirection.direction);
       this.hommes = this.dataStatEffectifSociete.map(valueOfHomme => valueOfHomme.homme);
       this.femmes = this.dataStatEffectifSociete.map(valueOfFemme => valueOfFemme.femme);
@@ -348,6 +352,58 @@ export class EffectifComponent implements OnInit {
         },
       };
       return this.chartOptions2;
+    })
+  }
+
+  exportCsv(annee, societe): void {
+    if(annee == undefined) {
+      annee = null;
+    }
+    if(societe == undefined) {
+      societe = 1;
+    }
+    this.dateSelectionner(annee, societe);
+    this.otherService.statInterByYear(annee, societe).subscribe((data: any) => {
+      this.dataInter =  data.data;
+      if(annee == null) {
+        this.extractionService.exportToCsv(
+          this.dataInter, 
+          'ExtractionStatAnnee' + '-' + this.date.getFullYear() + '-' + this.date.getMonth() + '-' + this.date.getDay() + '-' + this.date.getHours()+ '-' + this.date.getMinutes(),
+          ['annee', 'nouveaux', 'fin', 'total']
+        );
+      } else {
+        this.extractionService.exportToCsv(
+          this.dataInter, 
+          'ExtractionStatMois' + '-' + this.date.getFullYear() + '-' + this.date.getMonth() + '-' + this.date.getDay() + '-' + this.date.getHours()+ '-' + this.date.getMinutes(),
+          ['mois', 'nouveaux', 'fin', 'total']
+        );
+      }
+    })
+  }
+
+  exportCsv1(annee, societe): void {
+    if(annee == undefined) {
+      annee = null;
+    }
+    if(societe == undefined) {
+      societe = 1;
+    }
+    this.effectifSocieteSelectionner(annee, societe);
+    this.otherService.statTotalInter(annee, societe).subscribe((data: any) => {
+      this.dataInter =  data.data;
+      if(this.annee == null) {
+        this.extractionService.exportToCsv(
+          this.dataInter, 
+          'ExtractionStatAnnee' + '-' + this.date.getFullYear() + '-' + this.date.getMonth() + '-' + this.date.getDay() + '-' + this.date.getHours()+ '-' + this.date.getMinutes(),
+          ['annee', 'nouveaux', 'fin', 'total']
+        );
+      } else {
+        this.extractionService.exportToCsv(
+          this.dataInter, 
+          'ExtractionStatMois' + '-' + this.date.getFullYear() + '-' + this.date.getMonth() + '-' + this.date.getDay() + '-' + this.date.getHours()+ '-' + this.date.getMinutes(),
+          ['mois', 'nouveaux', 'fin', 'total']
+        );
+      }
     })
   }
 }

@@ -41,7 +41,8 @@
                             <mat-icon class="icon-search" (click)="gty(page)" fontSet="material-icons-outlined" >search</mat-icon>
                         </div>
                         <div class="content-extraction">
-                            <button (click)="extraireInter()" class="button-extraire">Extraire en CSV</button>
+                            <!-- <button (click)="extraireInter()" class="button-extraire">Extraire en CSV</button> -->
+                            <button (click)="exportCsv()" class="button-extraire">Extraire en CSV</button>
                         </div>
                     </div>
                     <div class="content-error-msg" *ngIf="successMsg == false">
