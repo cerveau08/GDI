@@ -1,6 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, HostListener } from '@angular/core';
 import { ErrormodalService } from 'src/app/modal/_errormodals/errormodal.service';
 import { OthersService } from 'src/app/services/others.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-listprofil',
@@ -22,9 +24,17 @@ export class ListprofilComponent implements OnInit {
   border1 = "1px solid #ff7900";
   color2 = "#000";
   border2= "1px solid #000";
+  page = 1;
+  itemsPerPage = 12;
+  totalItems : any;
+  filterterm;
+  role;
+  dataProfil: any;
+  public reqUrl = environment.base_url;
   
   constructor(
     private errormodalService: ErrormodalService,
+              private http: HttpClient,
               private otherService: OthersService) {
     this.getScreenSize();
   }
@@ -43,7 +53,17 @@ export class ListprofilComponent implements OnInit {
       }
     };
     this.intervalId = setInterval(getDownloadProgress, 1000);
+    this.role = localStorage.getItem('user');
+    
+    this.gty(this.page);
+  }
 
+  
+  gty(page: any){
+    this.http.get(this.reqUrl + `/profils/?page=${page}&limit=${this.itemsPerPage}`).subscribe((data: any) => {
+      this.dataProfil =  data.data;
+      this.totalItems = data.total;
+    })
   }
 
   //stats des interimaires par mois
@@ -116,5 +136,6 @@ export class ListprofilComponent implements OnInit {
     this.color2 = "#ff7900";
     return this.show1;
   }
+
 
 }

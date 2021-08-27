@@ -203,7 +203,7 @@ export class AddinterComponent implements OnInit {
     this.otherService.listeSite(this.page, this.itemParPage, this.region).subscribe(
       data => {
         console.log(data.data);
-        this.dataSite = data;
+        this.dataSite = data.data;
       }
     )
     this.otherService.getDomaine().subscribe(data => this.dataDomaine = data["data"]);

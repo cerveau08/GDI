@@ -189,11 +189,11 @@ export class ListeattestationComponent implements OnInit {
   }
 
   extraireAttestation() {
-    if (this.filterForm.value.annee) {
-      this.filterForm.patchValue({annee: this.filterForm.value.annee.getFullYear()});
-    } else {
-      this.filterForm.patchValue({annee: ''});
-    }
+    // if (this.filterForm.value.annee) {
+    //   this.filterForm.patchValue({annee: this.filterForm.value.annee.getFullYear()});
+    // } else {
+    //   this.filterForm.patchValue({annee: ''});
+    // }
     this.otherService.extraireAttestation(this.filterForm.value).subscribe(
       data => {
         this.data = data;
