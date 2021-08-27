@@ -168,7 +168,7 @@ export class HomeComponent implements OnInit {
          
       this.otherService.getLastNotification().subscribe(
         data => {
-          if(data.data[0]){
+          if(data.data){
             this.lastnotif =data.data[0].description;
           }else{
             this.lastnotif ="Aucune notification "

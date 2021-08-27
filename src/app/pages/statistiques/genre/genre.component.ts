@@ -317,4 +317,21 @@ export class GenreComponent implements OnInit {
         );
     })
   }
+
+  exportCsv1(societe): void {
+    if(societe == undefined || societe == "") {
+      societe = 1;
+    }
+    console.log(societe);
+    this.genrePourcentage(societe);
+    this.otherService.statInterPourcent(societe).subscribe((data: any) => {
+      this.data = data;
+          this.dataStatEffectifGenre = this.data.data[0];
+        this.extractionService.exportToCsv(
+          this.dataStatEffectifGenre, 
+          'ExtractionStatAnnee' + '-' + this.date.getFullYear() + '-' + this.date.getMonth() + '-' + this.date.getDay() + '-' + this.date.getHours()+ '-' + this.date.getMinutes(),
+          ['direction', 'homme', 'femme']
+        );
+    })
+  }
 }

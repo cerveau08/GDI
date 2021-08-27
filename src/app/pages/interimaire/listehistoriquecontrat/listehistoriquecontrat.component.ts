@@ -78,7 +78,8 @@ export class ListehistoriquecontratComponent implements OnInit {
   openDetail(data) {
     this.router.navigate(['/accueil/detailcontrat'], {
       queryParams: {
-        contrat: JSON.stringify(data)
+        contrat: JSON.stringify(data),
+        interimaire: JSON.stringify(this.item)
       }
     })
   }
