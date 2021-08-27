@@ -87,6 +87,7 @@ import { ModifcategorieComponent } from './pages/settings/categorie/modifcategor
 import { ListcategorieComponent } from './pages/settings/categorie/listcategorie/listcategorie.component';
 import { AjoutcommissionComponent } from './pages/settings/commission/ajoutcommission/ajoutcommission.component';
 import { ModifcommissionComponent } from './pages/settings/commission/modifcommission/modifcommission.component';
+import { DomaineComponent } from './pages/statistiques/domaine/domaine.component';
 
 
 const routes: Routes = [
@@ -296,6 +297,10 @@ const routes: Routes = [
       },
       { path: 'statpresence',
         component: PresenceComponent,
+          canActivate: [AuthGuard]
+      },
+      { path: 'statdomaine',
+        component: DomaineComponent,
           canActivate: [AuthGuard]
       },
       { path: 'statcategorie',
