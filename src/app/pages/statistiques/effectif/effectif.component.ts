@@ -4,7 +4,6 @@ import { ApexAxisChartSeries, ApexChart, ApexDataLabels, ApexPlotOptions, ApexRe
 import { OthersService } from 'src/app/services/others.service';
 import { FormGroup, FormControl } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
-import { loadavg } from 'os';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
