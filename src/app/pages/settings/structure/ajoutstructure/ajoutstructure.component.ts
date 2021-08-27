@@ -1,3 +1,4 @@
+import { OthersService } from './../../../../services/others.service';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
@@ -7,17 +8,45 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./ajoutstructure.component.scss']
 })
 export class AjoutstructureComponent implements OnInit {
-  searchForm: FormGroup;
-  constructor() { }
+  structureForm: FormGroup;
+  dataDirection;
+  dataDepartement;
+  donneeService;
+  constructor(private otherService: OthersService) { }
 
   ngOnInit() {
     
-    this.searchForm = new FormGroup({
-      numeroPiece: new FormControl(''),
-      societe: new FormControl(''),
-      telephone: new FormControl(''),
-      typePiece: new FormControl(''),
+    this.structureForm = new FormGroup({
+      libelle: new FormControl(''),
+      directionId: new FormControl(''),
+      service: new FormControl(''),
+      typeStructureId: new FormControl(''),
+      bu: new FormControl(''),
+      pole: new FormControl(''),
     });
+  }
+  directionsListe(value) {
+    this.otherService.getAllDirection(value).subscribe(
+      data => {
+        this.dataDirection = data['data'];
+       }
+    ); 
+  }
+
+  departementListe(value) {
+    this.otherService.getAllDepartement(value).subscribe(
+      data => {
+        this.dataDepartement = data['data'];
+       }
+    ); 
+  }
+
+  serviceListe(value) {
+    this.otherService.getAllService(value).subscribe(
+      data => {
+        this.donneeService = data['data'];
+       }
+    ); 
   }
 
 }

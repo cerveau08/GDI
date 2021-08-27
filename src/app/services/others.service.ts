@@ -393,15 +393,18 @@ addAgence(data) {
     return this.http.get<any>(`${this.reqUrl}/detailAttestation/${id}`);
   }
   addProfil(data){
-    return this.http.get<any>(`${this.reqUrl}/profils`, data);
+    return this.http.post<any>(`${this.reqUrl}/profils`, data);
   }
   addDirection(data){
-    return this.http.get<any>(`${this.reqUrl}/direction`, data);
+    return this.http.post<any>(`${this.reqUrl}/direction`, data);
   }
   addSociete(data){
-    return this.http.get<any>(`${this.reqUrl}/societe`, data);
+    return this.http.post<any>(`${this.reqUrl}/societe`, data);
   }
   addStructure(data){
-    return this.http.get<any>(`${this.reqUrl}/structure/create`, data);
+    return this.http.post<any>(`${this.reqUrl}/structure/create`, data);
+  }
+  getProfil(){
+    return this.http.get<any>(`${this.reqUrl}/profils`);
   }
 }
