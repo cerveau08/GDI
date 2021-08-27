@@ -120,6 +120,7 @@ import { ModiffonctionComponent } from './pages/settings/fonction/modiffonction/
 import { AjoutfonctionComponent } from './pages/settings/fonction/ajoutfonction/ajoutfonction.component';
 import { ListfonctionComponent } from './pages/settings/fonction/listfonction/listfonction.component';
 import { ToastrModule } from 'ngx-toastr';
+import { DomaineComponent } from './pages/statistiques/domaine/domaine.component';
 ;
 
 @NgModule({
@@ -218,6 +219,7 @@ import { ToastrModule } from 'ngx-toastr';
     ModiffonctionComponent,
     AjoutfonctionComponent,
     ListfonctionComponent,
+    DomaineComponent,
   ],
   imports: [
     BrowserModule,

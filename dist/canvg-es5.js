@@ -15001,7 +15001,7 @@
       var STATIC = options.stat;
       var PROTO = options.proto;
       var nativeSource = GLOBAL ? global : STATIC ? global[TARGET] : (global[TARGET] || {}).prototype;
-      var target = GLOBAL ? path : path[TARGET] || (path[TARGET] = {});
+      var target = GLOBAL ? path : path[TARGET] || createNonEnumerableProperty(path, TARGET, {})[TARGET];
       var targetPrototype = target.prototype;
       var FORCED, USE_NATIVE, VIRTUAL_PROTOTYPE;
       var key, sourceProperty, targetProperty, nativeProperty, resultProperty, descriptor;
@@ -15028,7 +15028,7 @@
           createNonEnumerableProperty(resultProperty, 'sham', true);
         }
 
-        target[key] = resultProperty;
+        createNonEnumerableProperty(target, key, resultProperty);
 
         if (PROTO) {
           VIRTUAL_PROTOTYPE = TARGET + 'Prototype';
@@ -15038,7 +15038,7 @@
           } // export virtual prototype methods
 
 
-          path[VIRTUAL_PROTOTYPE][key] = sourceProperty; // export real prototype methods
+          createNonEnumerableProperty(path[VIRTUAL_PROTOTYPE], key, sourceProperty); // export real prototype methods
 
           if (options.real && targetPrototype && !targetPrototype[key]) {
             createNonEnumerableProperty(targetPrototype, key, sourceProperty);
@@ -15635,6 +15635,19 @@
 
     module.exports = Array.isArray || function isArray(arg) {
       return classof(arg) == 'Array';
+    };
+    /***/
+
+  },
+
+  /***/
+  "./node_modules/core-js-pure/internals/is-data-descriptor.js": function node_modulesCoreJsPureInternalsIsDataDescriptorJs(module, exports, __webpack_require__) {
+    var has = __webpack_require__(
+    /*! ../internals/has */
+    "./node_modules/core-js-pure/internals/has.js");
+
+    module.exports = function (descriptor) {
+      return descriptor !== undefined && (has(descriptor, 'value') || has(descriptor, 'writable'));
     };
     /***/
 
@@ -16949,7 +16962,7 @@
     (module.exports = function (key, value) {
       return store[key] || (store[key] = value !== undefined ? value : {});
     })('versions', []).push({
-      version: '3.16.2',
+      version: '3.16.3',
       mode: IS_PURE ? 'pure' : 'global',
       copyright: '© 2021 Denis Pushkarev (zloirock.ru)'
     });
@@ -19581,9 +19594,9 @@
     /*! ../internals/an-object */
     "./node_modules/core-js-pure/internals/an-object.js");
 
-    var has = __webpack_require__(
-    /*! ../internals/has */
-    "./node_modules/core-js-pure/internals/has.js");
+    var isDataDescriptor = __webpack_require__(
+    /*! ../internals/is-data-descriptor */
+    "./node_modules/core-js-pure/internals/is-data-descriptor.js");
 
     var getOwnPropertyDescriptorModule = __webpack_require__(
     /*! ../internals/object-get-own-property-descriptor */
@@ -19601,7 +19614,8 @@
       var receiver = arguments.length < 3 ? target : arguments[2];
       var descriptor, prototype;
       if (anObject(target) === receiver) return target[propertyKey];
-      if (descriptor = getOwnPropertyDescriptorModule.f(target, propertyKey)) return has(descriptor, 'value') ? descriptor.value : descriptor.get === undefined ? undefined : descriptor.get.call(receiver);
+      descriptor = getOwnPropertyDescriptorModule.f(target, propertyKey);
+      if (descriptor) return isDataDescriptor(descriptor) ? descriptor.value : descriptor.get === undefined ? undefined : descriptor.get.call(receiver);
       if (isObject(prototype = getPrototypeOf(target))) return get(prototype, propertyKey, receiver);
     }
 
