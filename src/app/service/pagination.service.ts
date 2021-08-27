@@ -167,7 +167,7 @@ export class PaginationService {
         }, {
           title: 'Par Présence',  path: 'statpresence',
         },{
-          title: 'Par Domaine',  path: 'statpresence',
+          title: 'Par Domaine',  path: 'statdomaine',
         },{
           title: 'Par Catégorie',  path: 'statcategorie',
         },{
