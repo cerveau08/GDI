@@ -12582,7 +12582,7 @@ module.exports = function (options, source) {
 
   var nativeSource = GLOBAL ? global : STATIC ? global[TARGET] : (global[TARGET] || {}).prototype;
 
-  var target = GLOBAL ? path : path[TARGET] || (path[TARGET] = {});
+  var target = GLOBAL ? path : path[TARGET] || createNonEnumerableProperty(path, TARGET, {})[TARGET];
   var targetPrototype = target.prototype;
 
   var FORCED, USE_NATIVE, VIRTUAL_PROTOTYPE;
@@ -12619,7 +12619,7 @@ module.exports = function (options, source) {
       createNonEnumerableProperty(resultProperty, 'sham', true);
     }
 
-    target[key] = resultProperty;
+    createNonEnumerableProperty(target, key, resultProperty);
 
     if (PROTO) {
       VIRTUAL_PROTOTYPE = TARGET + 'Prototype';
@@ -12627,7 +12627,7 @@ module.exports = function (options, source) {
         createNonEnumerableProperty(path, VIRTUAL_PROTOTYPE, {});
       }
       // export virtual prototype methods
-      path[VIRTUAL_PROTOTYPE][key] = sourceProperty;
+      createNonEnumerableProperty(path[VIRTUAL_PROTOTYPE], key, sourceProperty);
       // export real prototype methods
       if (options.real && targetPrototype && !targetPrototype[key]) {
         createNonEnumerableProperty(targetPrototype, key, sourceProperty);
@@ -13185,6 +13185,22 @@ var classof = __webpack_require__(/*! ../internals/classof-raw */ "./node_module
 // eslint-disable-next-line es/no-array-isarray -- safe
 module.exports = Array.isArray || function isArray(arg) {
   return classof(arg) == 'Array';
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/core-js-pure/internals/is-data-descriptor.js":
+/*!*******************************************************************!*\
+  !*** ./node_modules/core-js-pure/internals/is-data-descriptor.js ***!
+  \*******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var has = __webpack_require__(/*! ../internals/has */ "./node_modules/core-js-pure/internals/has.js");
+
+module.exports = function (descriptor) {
+  return descriptor !== undefined && (has(descriptor, 'value') || has(descriptor, 'writable'));
 };
 
 
@@ -14397,7 +14413,7 @@ var store = __webpack_require__(/*! ../internals/shared-store */ "./node_modules
 (module.exports = function (key, value) {
   return store[key] || (store[key] = value !== undefined ? value : {});
 })('versions', []).push({
-  version: '3.16.2',
+  version: '3.16.3',
   mode: IS_PURE ? 'pure' : 'global',
   copyright: '© 2021 Denis Pushkarev (zloirock.ru)'
 });
@@ -16549,7 +16565,7 @@ $({ target: 'Reflect', stat: true, sham: !CORRECT_PROTOTYPE_GETTER }, {
 var $ = __webpack_require__(/*! ../internals/export */ "./node_modules/core-js-pure/internals/export.js");
 var isObject = __webpack_require__(/*! ../internals/is-object */ "./node_modules/core-js-pure/internals/is-object.js");
 var anObject = __webpack_require__(/*! ../internals/an-object */ "./node_modules/core-js-pure/internals/an-object.js");
-var has = __webpack_require__(/*! ../internals/has */ "./node_modules/core-js-pure/internals/has.js");
+var isDataDescriptor = __webpack_require__(/*! ../internals/is-data-descriptor */ "./node_modules/core-js-pure/internals/is-data-descriptor.js");
 var getOwnPropertyDescriptorModule = __webpack_require__(/*! ../internals/object-get-own-property-descriptor */ "./node_modules/core-js-pure/internals/object-get-own-property-descriptor.js");
 var getPrototypeOf = __webpack_require__(/*! ../internals/object-get-prototype-of */ "./node_modules/core-js-pure/internals/object-get-prototype-of.js");
 
@@ -16559,11 +16575,10 @@ function get(target, propertyKey /* , receiver */) {
   var receiver = arguments.length < 3 ? target : arguments[2];
   var descriptor, prototype;
   if (anObject(target) === receiver) return target[propertyKey];
-  if (descriptor = getOwnPropertyDescriptorModule.f(target, propertyKey)) return has(descriptor, 'value')
+  descriptor = getOwnPropertyDescriptorModule.f(target, propertyKey);
+  if (descriptor) return isDataDescriptor(descriptor)
     ? descriptor.value
-    : descriptor.get === undefined
-      ? undefined
-      : descriptor.get.call(receiver);
+    : descriptor.get === undefined ? undefined : descriptor.get.call(receiver);
   if (isObject(prototype = getPrototypeOf(target))) return get(prototype, propertyKey, receiver);
 }
 
