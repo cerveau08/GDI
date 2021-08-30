@@ -2,51 +2,13 @@
     <div class="tableau">
         <p class="detail1" id="mydesc">Liste des interimaires sous contrat</p>
         <div class="exporter">
-            <form [formGroup]="filterForm">
+            <form >
                 <div class="exporter">
                     <div class="content-input-extraction">
-                        <div class="filtrer-mois">
-                            <p class="label-input" for="titre">Matricule: </p>
-                            <input type="text" class="input-extraction" formControlName="matricule">
-                        </div>
-                        <div class="filtrer-mois">
-                            <p class="label-input" for="titre">Société: </p>
-                            <select type="number" formControlName="societe" #societe class="select-mois" (change)="directionsListe(societe.value)">
-                                <option value="null">Aucun Choix</option>
-                                <option *ngFor="let data of dataSociete"  [value]="data.id">{{data.libelle}}</option>
-                            </select>
-                        </div>
-                        <div class="filtrer-mois">
-                            <p class="label-input" for="titre">Direction: </p>
-                            <select  formControlName="direction" class="select-mois" >
-                                <option value="null">Aucun Choix</option>
-                                <option *ngFor="let data of dataDirection"  [value]="data.id">{{data.libelle}}</option>
-                            </select>
-                        </div>
-                        <div class="filtrer-mois">
-                            <p class="label-input" for="titre">Agence: </p>
-                            <select  formControlName="agence" class="select-mois" >
-                                <option value="null">Aucun Choix</option>
-                                <option *ngFor="let data of dataAgence"  [value]="data.id">{{data.nom}}</option>
-                            </select>
-                        </div>
-                        <div class="filtrer-mois">
-                            <p class="label-input" for="titre">Poste: </p>
-                            <select  formControlName="poste" class="select-mois" >
-                                <option value="null">Aucun Choix</option>
-                                <option *ngFor="let data of listeFonction"  [value]="data.libelle">{{data.libelle}}</option>
-                            </select>
-                        </div>
+                        
                         <div class="content-extraction">
-                            <mat-icon class="icon-search" (click)="gty(page)" fontSet="material-icons-outlined" >search</mat-icon>
-                        </div>
-                        <div class="content-extraction">
-                            <!-- <button (click)="extraireInter()" class="button-extraire">Extraire en CSV</button> -->
                             <button (click)="exportCsv()" class="button-extraire">Extraire en CSV</button>
                         </div>
-                    </div>
-                    <div class="content-error-msg" *ngIf="successMsg == false">
-                        <p class="error-alert">{{ data?.message}}: mois et année</p>
                     </div>
                 </div>
             </form>
@@ -57,10 +19,6 @@
                     <th id="manager">Matricule</th>
                     <th class="typ" id="prenom">Prenom</th>
                     <th class="typ" id="nom">Nom</th>
-                    <th *ngIf="role != 'MNG'" id="manager">Manager</th>
-                    <th id="manager">Poste</th>
-                    <th *ngIf="role != 'MNG'" id="direction">Direction</th>
-                    <th *ngIf="role != 'AGN'" id="agence">Agence</th>
                     <th id="contrat">Début de Contrat</th>
                     <th id="contrat">Fin de Contrat</th>
             </tr>
@@ -74,14 +32,8 @@
                     <td (click)="openDetail(p.id)">{{p.matricule}}</td>
                     <td (click)="openDetail(p.id)">{{p.prenom}}</td>
                     <td (click)="openDetail(p.id)">{{p.nom}}</td>
-                    <td (click)="openDetail(p.id)" *ngIf="role != 'MNG'"> 
-                        <img class="photo" alt="" src="{{p.manager?.avatar}}">
-                    </td>
-                    <td (click)="openDetail(p.id)">{{p.poste}}</td>
-                    <td *ngIf="role != 'MNG'" (click)="openDetail(p.id)">{{p.direction}}/{{p.departement}}/{{p.service}}</td>
-                    <td *ngIf="role != 'AGN'" (click)="openDetail(p.id)">{{p.agence}}</td>
-                    <td (click)="openDetail(p.id)"> <p>{{p.debut_contrat  | date:'dd/MM/yyyy'}}</p> </td>
-                    <td (click)="openDetail(p.id)"> <p>{{p.fin_contrat  | date:'dd/MM/yyyy'}}</p> </td>
+                    <td (click)="openDetail(p.id)"> <p>{{p.debutContrat  | date:'dd/MM/yyyy'}}</p> </td>
+                    <td (click)="openDetail(p.id)"> <p>{{p.finContrat  | date:'dd/MM/yyyy'}}</p> </td>
                 </tr>
             </tbody>
         </table> 

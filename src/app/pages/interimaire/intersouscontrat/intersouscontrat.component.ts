@@ -289,13 +289,15 @@ export class IntersouscontratComponent implements OnInit {
     this.societe = this.filterForm.value.societe;
     this.direction = this.filterForm.value.direction;
     this.otherService.getInterimaireSousContrat(this.page, this.itemsPerPage, this.matricule, this.poste, this.agence, this.societe, this.direction).subscribe((data: any) => {
-      this.dataInter =  data.data;
-      this.extractionService.exportToCsv(
-        this.dataInter, 
-        'ExtractionInterimaireSousContrat' + '-' + this.date.getFullYear() + '-' + this.date.getMonth() + '-' + this.date.getDay() + '-' + this.date.getHours()+ '-' + this.date.getMinutes(),
-        ['matricule', 'prenom', 'nom', 'agence', 'poste', 'direction', 'departement', 'service', 'debut_contrat', 'fin_contrat']
-      );
       this.totalItems = data.total;
+      this.otherService.getInterimaireSousContrat(this.page, this.totalItems, this.matricule, this.poste, this.agence, this.societe, this.direction).subscribe((data: any) => {
+        this.dataInter =  data.data;
+        this.extractionService.exportToCsv(
+          this.dataInter, 
+          'ExtractionInterimaireSousContrat' + '-' + this.date.getFullYear() + '-' + this.date.getMonth() + '-' + this.date.getDay() + '-' + this.date.getHours()+ '-' + this.date.getMinutes(),
+          ['matricule', 'prenom', 'nom', 'agence', 'poste', 'direction', 'departement', 'service', 'debut_contrat', 'fin_contrat']
+        );
+      })
     })
   }
 }

@@ -161,17 +161,8 @@ export class RestaurationComponent implements OnInit {
   }
 
   gty(page: any){
-    if (this.filterForm.value.poste == undefined) {
-      this.filterForm.patchValue({poste: ''});
-    }
-    if(this.filterForm.value.poste) {
-      this.poste = this.filterForm.value.poste;
-    }
-      this.matricule = this.filterForm.value.matricule;
-      this.agence = this.filterForm.value.agence;
-      this.societe = this.filterForm.value.societe;
-      this.direction = this.filterForm.value.direction;
-    this.otherService.getInterimaireSousContrat(page, this.itemsPerPage, this.matricule, this.poste, this.agence, this.societe, this.direction).subscribe((data: any) => {
+    this.otherService.interimRestau(page, this.itemsPerPage).subscribe((data: any) => {
+      console.log(data);
       this.dataInter =  data.data;
       this.totalItems = data.total;
     }, error=> {
@@ -182,30 +173,6 @@ export class RestaurationComponent implements OnInit {
     })
   }
 
-  submit(interimaire_id) {
-    this.yearOnly = this.attestationForm.value.annee.getFullYear();
-    let donneeForm = {
-      interim_id: interimaire_id,
-      mois: this.attestationForm.value.mois,
-      annee: this.yearOnly,
-      nbr_jr_absence: this.attestationForm.value.nbr_jr_absence,
-    }
-    this.otherService.addAttestation(donneeForm).subscribe(
-      data => {
-        this.result = data
-        this.successMsg = this.result.status
-
-        if(this.successMsg == true) {
-          this.closeModal('custom-modal-'+interimaire_id);
-        }
-      }, error=> {
-        this.errorMsg = error;
-        this.toastr.error(this.errorMsg, 'Echec', {
-          timeOut: 5000,
-        });
-      }
-    )
-  }
 
   openDetail(data) {
     this.router.navigate(['/accueil/detailinter'], {
@@ -238,10 +205,7 @@ export class RestaurationComponent implements OnInit {
   }
 
   extraireInter() {
-    if (this.filterForm.value.poste == undefined) {
-      this.filterForm.patchValue({poste: ''});
-    }
-    this.otherService.extraireInterimaire(this.filterForm.value).subscribe(
+    this.otherService.extractionListeResto().subscribe(
       data => {
         this.data = data;
         this.successMsg = this.data.status
@@ -269,24 +233,16 @@ export class RestaurationComponent implements OnInit {
   }
 
   exportCsv(): void {
-    if (this.filterForm.value.poste == undefined) {
-      this.filterForm.patchValue({poste: ''});
-    }
-    if(this.filterForm.value.poste) {
-      this.poste = this.filterForm.value.poste;
-    }
-    this.matricule = this.filterForm.value.matricule;
-    this.agence = this.filterForm.value.agence;
-    this.societe = this.filterForm.value.societe;
-    this.direction = this.filterForm.value.direction;
-    this.otherService.getInterimaireSousContrat(this.page, this.itemsPerPage, this.matricule, this.poste, this.agence, this.societe, this.direction).subscribe((data: any) => {
-      this.dataInter =  data.data;
-      this.extractionService.exportToCsv(
-        this.dataInter, 
-        'ExtractionInterimaireSousContrat' + '-' + this.date.getFullYear() + '-' + this.date.getMonth() + '-' + this.date.getDay() + '-' + this.date.getHours()+ '-' + this.date.getMinutes(),
-        ['matricule', 'prenom', 'nom', 'agence', 'poste', 'direction', 'departement', 'service', 'debut_contrat', 'fin_contrat']
-      );
+    this.otherService.interimRestau(this.page, this.itemsPerPage).subscribe((data: any) => {
       this.totalItems = data.total;
-    })
+      this.otherService.interimRestau(this.page, this.totalItems).subscribe((data: any) => {
+        this.dataInter = data.data;
+        this.extractionService.exportToCsv(
+          this.dataInter, 
+          'ExtractionInterimaireSousContrat' + '-' + this.date.getFullYear() + '-' + this.date.getMonth() + '-' + this.date.getDay() + '-' + this.date.getHours()+ '-' + this.date.getMinutes(),
+          ['matricule', 'prenom', 'nom', 'debutContrat', 'finContrat']
+        );
+      });
+    });
   }
 }

@@ -410,12 +410,12 @@ addAgence(data) {
   listeRegions() {
      return this.http.get<any>(this.reqUrl + '/listeRegions');
   }
-  interimRestau(){
-    return this.http.get<any>(this.reqUrl + '/interimRestau')
+  interimRestau(page, limit){
+    const data = {page: page, limit: limit};
+    return this.http.get<any>(this.reqUrl + '/interimRestau', {params: data})
   }
-  extractionListeResto(annee, societe){
-    const data = {annee: annee, societe: societe};
-    return this.http.get<any>(`${this.reqUrl}/extractionListeResto`, {params: data});
+  extractionListeResto(){
+    return this.http.get<any>(`${this.reqUrl}/extractionListeResto`);
   }
   addProfil(data){
     return this.http.post<any>(`${this.reqUrl}/profils`, data);
