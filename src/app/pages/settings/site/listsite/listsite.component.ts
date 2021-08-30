@@ -1,4 +1,5 @@
 import { Component, OnInit, HostListener } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ErrormodalService } from 'src/app/modal/_errormodals/errormodal.service';
 import { OthersService } from 'src/app/services/others.service';
 
@@ -13,10 +14,12 @@ export class ListsiteComponent implements OnInit {
   progress: number;
   // data: any;
   page = 1;
+  filterForm: FormGroup;
   itemParPage = 900;
-  region = null;
+  public region = null;
   intervalId;
   dataSite;
+  dataRegion;
   dataStatistique: any;
   show = 1;
   color: string;
@@ -46,18 +49,42 @@ export class ListsiteComponent implements OnInit {
         clearInterval(this.intervalId);
       }
     };
+
+  
+    this.filterForm = new FormGroup({
+      region: new FormControl('')
+    });
+  
     this.intervalId = setInterval(getDownloadProgress, 1000);
 
+    this.gty(this.page);
+    this.regionListe();
+   
+  
+  }
 
-    this.otherService.listeSite(this.page, this.itemParPage, this.region).subscribe(
+
+  regionListe() {
+    this.otherService.getAllRegion().subscribe(
+      data => {
+        this.dataRegion = data["data"];
+      }
+    );
+    }
+
+  gty(page: any){
+    this.region=this.filterForm.value.region;
+    if(this.region =='') {
+      this.region = null;
+    } 
+    console.log(this.region)
+    this.otherService.listeSite(page, this.itemParPage, this.region).subscribe(
       data => {
         console.log(data);
         this.dataSite = data.data;
       }
     )
   }
-
-
   
 
   //stats des interimaires par mois
