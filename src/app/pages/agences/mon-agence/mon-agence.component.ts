@@ -118,12 +118,10 @@ export class MonAgenceComponent implements OnInit {
     this.otherService.getTotalAgenceActifInactif(this.item.agence.id).subscribe(
       data =>{
         this.dataAgence = data;
-        this.dataTotalAgence = this.dataAgence['data'];
-        this.nom = this.dataTotalAgence[0].nom;
-        
-        this.total = this.dataTotalAgence[0].total;
-        this.actifs = this.dataTotalAgence[0].actifs;
-        this.inactifs = this.dataTotalAgence[0].inactifs;
+        this.dataTotalAgence = data;
+        this.total = this.dataTotalAgence.total;
+        this.actifs = this.dataTotalAgence.actifs;
+        this.inactifs = this.dataTotalAgence.inactifs;
       });
 
       //detail d'un contrat

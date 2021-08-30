@@ -7,6 +7,7 @@ import { OthersService } from 'src/app/services/others.service';
 import { environment } from 'src/environments/environment';
 import { ErrormodalService } from 'src/app/modal/_errormodals';
 import { AuthService } from 'src/app/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-attestationpresence',
@@ -89,6 +90,7 @@ export class AttestationpresenceComponent implements OnInit {
               private http: HttpClient,
               private errormodalService: ErrormodalService,
               private otherService: OthersService,
+              private router: Router,
               private toastr: ToastrService) { }
 
   ngOnInit() {
@@ -162,6 +164,15 @@ export class AttestationpresenceComponent implements OnInit {
     }
     this.checkedList = this.checkedList;
   }
+
+  openDetail(data) {
+    this.router.navigate(['/accueil/deatilattestation'], {
+      queryParams: {
+        attestation: JSON.stringify(data)
+      }
+    });
+  }
+
   openErrorModal(id: string) {
     this.errormodalService.open(id);
   }
