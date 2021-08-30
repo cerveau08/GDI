@@ -25,7 +25,9 @@ export class ListprofilComponent implements OnInit {
   color2 = "#000";
   border2= "1px solid #000";
   page = 1;
-  itemsPerPage = 12;
+  code;
+  description;
+  itemParPage = 4;
   totalItems : any;
   filterterm;
   role;
@@ -53,27 +55,16 @@ export class ListprofilComponent implements OnInit {
       }
     };
     this.intervalId = setInterval(getDownloadProgress, 1000);
-    this.role = localStorage.getItem('user');
-    
-    this.gty(this.page);
-  }
 
-  
-  gty(page: any){
-    this.http.get(this.reqUrl + `/profils/?page=${page}&limit=${this.itemsPerPage}`).subscribe((data: any) => {
-      this.dataProfil =  data.data;
-      this.totalItems = data.total;
-    })
-  }
 
-  //stats des interimaires par mois
-  statInterMonth(value) {
-    this.otherService.statInterByMonth(value).subscribe(
+    this.otherService.listeProfil(this.page, this.itemParPage, this.code, this.description).subscribe(
       data => {
-        this.dataStatistique = data['data'];
-       },
-    ); 
+        console.log(data);
+        this.dataProfil = data.data;
+      }
+    )
   }
+  
   changeshow1() {
     this.show = 1;
     return this.show;

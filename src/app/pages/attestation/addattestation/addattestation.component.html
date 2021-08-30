@@ -17,9 +17,6 @@
                         <option *ngFor="let data of lastTenYear"  [value]="data.annee">{{data.annee}}</option>
                     </select>
                 </div>
-                <!-- <div class="input-annee">
-                    <jp-multi-datepicker formControlName="annee" tabindex="-1"  mode="YEAR" label="Année" [(ngModel)]="annee" [min]="2000"></jp-multi-datepicker>
-                </div> -->
             </div>
             <div class="table-wrapper">
                 <table [formGroup]="attestationForm" style="overflow-x:auto;" aria-describedby = "mydesc">
