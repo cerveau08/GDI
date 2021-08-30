@@ -104,6 +104,10 @@ addAgence(data) {
   getAllSociete(){
     return this.http.get(this.reqUrl + '/societe/all');
   }
+
+  getAllRegion(){
+    return this.http.get(this.reqUrl + '/listeRegions');
+  }
   getAllCategorie(){
     return this.http.get(this.reqUrl + '/categories')
   }
