@@ -1,6 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, HostListener } from '@angular/core';
 import { ErrormodalService } from 'src/app/modal/_errormodals/errormodal.service';
 import { OthersService } from 'src/app/services/others.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-liststructure',
@@ -14,6 +16,7 @@ export class ListstructureComponent implements OnInit {
   progress: number;
   intervalId;
   dataStatistique: any;
+  public reqUrl = environment.base_url;
   show = 1;
   color: string;
   jan: string;
@@ -22,9 +25,13 @@ export class ListstructureComponent implements OnInit {
   border1 = "1px solid #ff7900";
   color2 = "#000";
   border2= "1px solid #000";
+  dataStructure;page = 1;
+  itemsPerPage = 8;
+  totalItems : any;
   
   constructor(
     private errormodalService: ErrormodalService,
+              private http: HttpClient,
               private otherService: OthersService) {
     this.getScreenSize();
   }
@@ -43,17 +50,11 @@ export class ListstructureComponent implements OnInit {
       }
     };
     this.intervalId = setInterval(getDownloadProgress, 1000);
-
+    this.http.get(this.reqUrl + `/structure/all?page=1&limit=100`).subscribe((data: any) => {
+      this.dataStructure =  data.data;
+    })
   }
-
-  //stats des interimaires par mois
-  statInterMonth(value) {
-    this.otherService.statInterByMonth(value).subscribe(
-      data => {
-        this.dataStatistique = data['data'];
-       },
-    ); 
-  }
+ 
   changeshow1() {
     this.show = 1;
     return this.show;

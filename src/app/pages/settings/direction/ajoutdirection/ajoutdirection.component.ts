@@ -23,6 +23,9 @@ export class AjoutdirectionComponent implements OnInit {
       }
     );
   }
+  ajouterDirection(){
+    
+  }
 
   ajouterDirection() {}
 

@@ -414,6 +414,10 @@ addAgence(data) {
     const data = {page: page, limit: limit};
     return this.http.get<any>(this.reqUrl + '/interimRestau', {params: data})
   }
+  listeDirections(id: number) {
+    return this.http.get<any>(`${this.reqUrl}/direction/${id}`);
+ }
+ 
   extractionListeResto(){
     return this.http.get<any>(`${this.reqUrl}/extractionListeResto`);
   }

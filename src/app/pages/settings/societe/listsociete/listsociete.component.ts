@@ -1,6 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, HostListener } from '@angular/core';
 import { ErrormodalService } from 'src/app/modal/_errormodals/errormodal.service';
 import { OthersService } from 'src/app/services/others.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-listsociete',
@@ -14,6 +16,7 @@ export class ListsocieteComponent implements OnInit {
   progress: number;
   intervalId;
   dataStatistique: any;
+  dataSociete;
   show = 1;
   color: string;
   jan: string;
@@ -22,9 +25,10 @@ export class ListsocieteComponent implements OnInit {
   border1 = "1px solid #ff7900";
   color2 = "#000";
   border2= "1px solid #000";
-  
+  public reqUrl = environment.base_url;
   constructor(
-    private errormodalService: ErrormodalService,
+              private errormodalService: ErrormodalService,
+              private http: HttpClient,
               private otherService: OthersService) {
     this.getScreenSize();
   }
@@ -42,8 +46,9 @@ export class ListsocieteComponent implements OnInit {
         clearInterval(this.intervalId);
       }
     };
-    this.intervalId = setInterval(getDownloadProgress, 1000);
-
+    this.http.get(this.reqUrl + `/societe/all?page=1&limit=100`).subscribe((data: any) => {
+      this.dataSociete =  data.data;
+    })
   }
 
   //stats des interimaires par mois

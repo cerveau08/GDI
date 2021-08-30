@@ -1,6 +1,7 @@
 import { OthersService } from './../../../../services/others.service';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-ajoutstructure',
@@ -12,7 +13,12 @@ export class AjoutstructureComponent implements OnInit {
   dataDirection;
   dataDepartement;
   donneeService;
-  constructor(private otherService: OthersService) { }
+  data: any;
+  successMsg: any;
+  toastr: any;
+  errorMsg: any;
+  constructor(private otherService: OthersService,
+              private router: Router) { }
 
   ngOnInit() {
     
@@ -39,14 +45,35 @@ export class AjoutstructureComponent implements OnInit {
         this.dataDepartement = data['data'];
        }
     ); 
-  }
-
-  serviceListe(value) {
-    this.otherService.getAllService(value).subscribe(
-      data => {
-        this.donneeService = data['data'];
-       }
-    ); 
+      }
+    serviceListe(value) {
+      this.otherService.getAllService(value).subscribe(
+        data => {
+          this.donneeService = data['data'];
+         }
+      ); 
+    }
+      
+    ajouterSocietete() { 
+      this.otherService.addSociete(this.structureForm.value).subscribe(
+        data =>{
+        this.data = data;
+        console.log(data);
+          this.successMsg = this.data.status
+          if(this.successMsg == true) {
+            this.toastr.success(this.data.message, 'Success', {
+              timeOut: 3000,
+            });
+            this.router.navigate(['/accueil/liststucture'])
+        }
+      },
+        error=> {
+          this.errorMsg = error;
+          this.toastr.error(this.errorMsg, 'Echec', {
+           timeOut: 5000,
+          });
+        }
+    )
   }
 
 }
