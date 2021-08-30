@@ -69,6 +69,8 @@ export class DemandeComponent implements OnInit {
     this.http.get(this.reqUrl + `/listeDemandes?page=${page}&limit=${this.itemsPerPage}`).subscribe((data: any) => {
       this.dataDemande =  data.data;
       this.totalItems = data.total;
+      console.log(data);
+      
     })
   
   }

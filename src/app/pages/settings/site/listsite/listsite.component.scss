@@ -1061,3 +1061,39 @@ table {
         cursor: pointer;
     }
 }
+
+.icon-search{
+    margin-top: 20px;
+    cursor: pointer;
+  }
+
+
+.forms {
+
+    position: relative;
+    top: -100px;
+}
+
+.content-extraction{
+   
+    margin-left: 0px;
+  }
+  .button-extraire{
+    margin: 10px;
+    width: 110px;
+    height: 30px;
+    color: white;
+    background-color: #ff7900;
+    border: none;
+    outline: none;
+  }
+  .export{
+      font-size: 13px;
+      font-weight: bold;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      color: #222222;
+      margin-top: 17px;
+  }

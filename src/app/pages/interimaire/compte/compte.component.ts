@@ -97,7 +97,6 @@ export class CompteComponent implements OnInit {
 
   ngOnInit() {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-
     this.otherService.getOneInterById(this.currentUser.interimaire.id).subscribe(
       data =>{
        this.data = data;
@@ -137,6 +136,14 @@ export class CompteComponent implements OnInit {
       this.showHome = true;
     }
     this.datas = this.dataService.getData();
+  }
+
+  evaluation() {
+    this.router.navigate(['accueil/listeevaluation'], {
+      queryParams: {
+        interimaire: JSON.stringify(this.currentUser.interimaire.id)
+      }
+    })
   }
 
   getwidth() {

@@ -25,6 +25,7 @@
             </div>
             <div class="info">
                 <div class="lot1">
+                    <p class="key">Matricule: <span class="value">{{dataInter?.matricule}}</span> </p>
                     <p class="key">Numéro CNI: <span class="value">{{dataInter?.numeroPiece}}</span> </p>
                     <p class="key">Date de naissance: <span class="value">{{dataInter?.datedenaissance}}</span> </p>
                     <p class="key">Lieu de naissance: <span class="value">{{dataInter?.lieudenaissance}}</span> </p>
@@ -45,6 +46,7 @@
             <button  class="button1" (click)="openModal('custom-modal-1')">Contrat</button>
             <button  class="button2" (click)="openModal('custom-modal-2')">Attestations de présence</button>
             <button  class="button3" (click)="openModal('custom-modal-3')">Fiche de poste</button>
+            <button class="button3" (click)="evaluation()">Evaluations</button>
             <button  class="button4"(click)="objectif()">Objectifs</button>
         </div>
     </div>
