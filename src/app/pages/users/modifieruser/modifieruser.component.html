@@ -40,10 +40,6 @@
                                         <option class="option" value=""  hidden>Agence</option>
                                         <option *ngFor="let data of dataAgence" value="{{data.id}}">{{data.nom}}</option>
                                     </select>
-                                    <select *ngIf="profilId == '4'" class="select6" formControlName="structureId">
-                                        <option class="option" value="" disabled selected hidden>Structure</option>
-                                        <option *ngFor="let data of dataStructure" value="{{data.id}}">{{data.libelle}}</option>
-                                    </select>
                                 </div>
                                 <div *ngIf="user != 'DRH'" class="infoinput1">
                                     <input type="text" list="fonctions" formControlName="fonction" (change)="saveFonction($event)"  [(ngModel)]="fonction"  placeholder="Fonction">

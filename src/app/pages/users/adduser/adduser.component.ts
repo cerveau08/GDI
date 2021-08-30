@@ -50,7 +50,7 @@ export class AdduserComponent implements OnInit {
   successMsg;
   data;
   page = 1;
-  itemsPerPage = 100;
+  itemsPerPage = 500;
   totalItems : any;
   dataAgence;
   dataStructure;
