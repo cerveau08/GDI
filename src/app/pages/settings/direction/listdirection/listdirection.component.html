@@ -9,7 +9,22 @@
                 <p [style.color]="color2" id="genre" class="statt-sous-header">Ajouter</p>
             </div>
         </div>
-        <div *ngIf="show==1" class="content-all-liste-site">Liste Direction</div>
+        <div *ngIf="show==1" class="content-all-liste-site">
+            <table style="overflow-x:auto;"aria-describedby = "mydesc" >
+                <thead>
+                    <tr class="head">
+                        <th  id="manager"><b>Libellé</b></th>
+                        <th  id="direction"><b>Societe</b></th>
+                    </tr>
+                </thead>
+                <tbody *ngFor="let data of dataDir">
+                    <tr  style="cursor: pointer;" >
+                        <td >{{data.libelle}}</td>
+                        <td >{{data.societe}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
         <app-ajoutdirection *ngIf="show==2"></app-ajoutdirection>
     </div>
 </div>

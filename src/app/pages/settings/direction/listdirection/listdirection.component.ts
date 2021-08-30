@@ -15,7 +15,9 @@ export class ListdirectionComponent implements OnInit {
   scrWidth: number;
   progress: number;
   intervalId;
-  dataStatistique: any;
+  page = 1;
+  itemParPage = 900;
+  dataDir;
   show = 1;
   color: string;
   jan: string;
@@ -24,7 +26,7 @@ export class ListdirectionComponent implements OnInit {
   border1 = "1px solid #ff7900";
   color2 = "#000";
   border2= "1px solid #000";
-  
+  societeId;
   constructor(
     private errormodalService: ErrormodalService,
               private otherService: OthersService) {
@@ -46,16 +48,14 @@ export class ListdirectionComponent implements OnInit {
     };
     this.intervalId = setInterval(getDownloadProgress, 1000);
 
-  }
-
-  //stats des interimaires par mois
-  statInterMonth(value) {
-    this.otherService.statInterByMonth(value).subscribe(
+    this.otherService.listeDirections(this.societeId).subscribe(
       data => {
-        this.dataStatistique = data['data'];
-       },
-    ); 
+        console.log(data);
+        this.dataDir = data.data;
+      }
+    )
   }
+  
   changeshow1() {
     this.show = 1;
     return this.show;

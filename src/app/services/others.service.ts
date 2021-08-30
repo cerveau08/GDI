@@ -406,6 +406,9 @@ addAgence(data) {
   listeRegions() {
      return this.http.get<any>(this.reqUrl + '/listeRegions');
   }
+  listeDirections(id: number) {
+    return this.http.get<any>(`${this.reqUrl}/direction/${id}`);
+ }
   interimRestau(){
     return this.http.get<any>(this.reqUrl + '/interimRestau')
   }
