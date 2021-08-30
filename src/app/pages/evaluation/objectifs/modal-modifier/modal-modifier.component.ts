@@ -12,7 +12,7 @@ import { ErrormodalService } from 'src/app/modal/_errormodals';
 })
 export class ModalModifierComponent implements OnInit {
 
-  @Input('objectifData') itemobjectif= '';
+  @Input('objectifData') itemobjectif;
   modifierForm: FormGroup;
   description;
   titre;
@@ -28,6 +28,8 @@ export class ModalModifierComponent implements OnInit {
     ) { }
 
   ngOnInit() {
+    console.log(this.itemobjectif);
+   // this.description = this.itemobjectif.description;
     this.modifierForm = new FormGroup({
       titre: new FormControl(''),
       description: new FormControl('')

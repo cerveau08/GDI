@@ -104,11 +104,11 @@
                         </div>
                         <div>
                             <div class="infoinput2">
-                                <input type="text" formControlName="prenomUser"   [(ngModel)]="prenomUser" placeholder="Prénom">
-                                <input class="input3" type="text" formControlName="nomUser"  [(ngModel)]="nomUser" placeholder="Nom">
+                                <input type="text" formControlName="prenomUser"  placeholder="Prénom">
+                                <input class="input3" type="text" formControlName="nomUser" placeholder="Nom">
                             </div>
                             <div class="infoinput1">
-                                <input type="text" formControlName="emailUser"  [(ngModel)]="emailUser" placeholder="Email">
+                                <input type="text" formControlName="emailUser" placeholder="Email">
                                 <div class="form-control-feedback"
                                     *ngIf="userAgentForm.controls['emailUser'].errors && (userAgentForm.controls['emailUser'].dirty || userAgentForm.controls['emailUser'].touched)">
                                     <p class="error-alert" *ngIf="userAgentForm.controls['emailUser'].errors.required">l'email est obligatoire</p>
@@ -116,17 +116,17 @@
                                 </div>
                             </div>
                             <div class="infoinput2">
-                                <input type="number" formControlName="telephoneUser"  [(ngModel)]="telephoneUser"  placeholder="Téléphone">
+                                <input type="number" formControlName="telephoneUser"  placeholder="Téléphone">
                                 <select class="select6" #profil formControlName="profil">
                                     <option class="option" value="" disabled selected hidden>Profil</option>
                                     <option *ngFor="let data of dataprofils" value="{{data.id}}">{{data.libelle}}</option>
                                 </select>
                             </div>
                             <div *ngIf="user == 'DRH'" class="infoinput2">
-                                <input type="text" formControlName="fonction"  [(ngModel)]="fonction"  placeholder="Fonction">
+                                <input type="text" formControlName="fonction"  placeholder="Fonction">
                             </div>
                             <div *ngIf="user != 'DRH'" class="infoinput1">
-                                <input type="text" list="fonctions" formControlName="fonction" (change)="saveFonction($event)"  [(ngModel)]="fonction"  placeholder="Fonction">
+                                <input type="text" list="fonctions" formControlName="fonction" (change)="saveFonction($event)" placeholder="Fonction">
                                 <datalist id="fonctions">
                                     <option *ngFor="let c of listeFonction" [value]="c.libelle" >{{c.libelle}}</option>
                                 </datalist>

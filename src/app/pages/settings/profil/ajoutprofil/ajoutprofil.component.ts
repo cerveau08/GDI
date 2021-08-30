@@ -29,7 +29,7 @@ export class AjoutprofilComponent implements OnInit {
     });
   }
 
-  ajouterProfil(data) { 
+  ajouterProfil() { 
     this.otherService.addProfil(this.profilForm.value).subscribe(
       data =>{
       this.data = data;

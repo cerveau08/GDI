@@ -103,7 +103,7 @@ export class AjoutperiodeComponent implements OnInit {
     ];
     return this.lastTenYear
   }
-  ajouterSite() { 
+  ajoutPeriode() { 
     this.otherService.addPeriode(this.periodeForm.value).subscribe(
       data =>{
       this.data = data;

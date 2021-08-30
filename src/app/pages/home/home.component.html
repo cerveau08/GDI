@@ -139,8 +139,8 @@
                         <p class="total">Variation de l’effectif</p>
                     </div>
                     <div [formGroup]="anneeForm" class="filter-date">
-                        <div [style.border]="borderfilter1" id="filter-annee" class="filtrer-annees">
-                            <mat-icon [style.color]="colorfilter1" id="icon-calendar-annee"  class="icone-calendar1" fontSet="material-icons-outlined">date_range</mat-icon>
+                        <div id="filter-annee" class="filtrer-annees">
+                            <mat-icon  id="icon-calendar-annee"  class="icone-calendar1" fontSet="material-icons-outlined">date_range</mat-icon>
                             <select class="select-mois" formControlName="annee" [(ngModel)]="annee">
                                 <option class="option" value="null">Annee</option>
                                 <option *ngFor="let p of lastTenYear" class="option" [value]="p.annee">{{p.annee}}</option>
@@ -277,10 +277,10 @@
                 <div  class="manager-detail-aside">
                     <p class="dernier-aside">Manager</p>
                     <div class="manager-aside">
-                    <img src="{{photo}}" alt="">
+                    <img src="{{photoManager}}" alt="">
                     </div>
-                    <p class="nom-aside">{{prenom}} {{nom}}</p>
-                    <p class="postem-aside">{{poste}}</p>
+                    <p class="nom-aside">{{prenomManager}} {{nomManager}}</p>
+                    <p class="postem-aside">{{posteManager}}</p>
                     <div class="content-button-aside">
                         <button  class="button-aside" routerLink="/accueil/monmanager">Afficher</button>
                     </div>

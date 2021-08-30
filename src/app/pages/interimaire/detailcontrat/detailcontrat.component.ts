@@ -94,6 +94,7 @@ export class DetailcontratComponent implements OnInit {
   evaluations: any;
   totalItems: any;
   interim_id: any;
+  procesVerbal;
   constructor(private activeroute: ActivatedRoute,
               private modalService: ModalService,
               private otherService: OthersService,

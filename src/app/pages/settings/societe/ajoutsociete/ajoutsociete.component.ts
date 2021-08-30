@@ -43,4 +43,5 @@ export class AjoutsocieteComponent implements OnInit {
   )
 }
 
+  rechercherInterimaire() {}
 }

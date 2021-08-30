@@ -32,7 +32,7 @@
                         </div>
                         <div class="filtrer-mois">
                             <p class="label-input" for="titre">Poste: </p>
-                            <input type="text" class="input-extraction" list="professions" formControlName="poste" [(ngModel)]="profession" (change)="saveProfession($event)">
+                            <input type="text" class="input-extraction" list="professions" formControlName="poste" [(ngModel)]="poste" (change)="saveProfession($event)">
                             <datalist id="professions">
                               <option *ngFor="let c of listeFonction" [value]="c.libelle" >{{c.libelle}}</option>
                             </datalist>
@@ -98,34 +98,7 @@
         </div>
     </div>
 </div>
-<!--modal-->
-<div class="modal">
-    <jw-modal id="custom-modal-1">
-        <h1>Demande restauration</h1>
-        <mat-icon style="cursor: pointer;" (click)="closeModal('custom-modal-1');" class="clear">clear</mat-icon>
-        <div>
-            <form [formGroup]="demandeForm">
-                <div class="forms">
-                    <div class="mois">
-                        <select class="custom-select" formControlName="moi">
-                            <option value="" disabled selected hidden>Mois...</option>
-                            <option *ngFor="let moi of mois" [ngValue]="moi">{{moi}}</option>
-                         </select>
-                    </div>
-                    <div class="sommes">
-                        <select class="custom-select" formControlName="somme">
-                            <option value="" disabled selected hidden>Somme...</option>
-                            <option *ngFor="let som of sommes" [ngValue]="som">{{som}}</option>
-                        </select>
-                    </div>
-                    <div class="bouton">
-                        <button (click)="onSubmit()" class="button">valider</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </jw-modal>
-</div>
+
 
 <!--modal1-->
 <div class="modal">

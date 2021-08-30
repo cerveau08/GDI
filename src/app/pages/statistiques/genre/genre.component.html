@@ -85,13 +85,13 @@
                 <div class="filtre-societe-direction" [formGroup]="societeForm">
                     <div [style.border]="borderfilter1" id="filter-annee" class="filtrer-societe">
                         <p class="label-input-percent">Socété</p>
-                        <select class="select-societe" formControlName="societeS" [(ngModel)]="societeS">
+                        <select class="select-societe" formControlName="societeS">
                             <option *ngFor="let p of dataSociete" class="option" [value]="p.id">{{p.libelle}}</option>
                         </select>
                     </div>
                     <div [style.border]="borderfilter1" id="filter-annee" class="filtrer-societe">
                         <p class="label-input-percent">Année</p>
-                        <select class="select-societe" formControlName="anneeS" [(ngModel)]="anneeS">
+                        <select class="select-societe" formControlName="anneeS">
                             <option *ngFor="let p of lastTenYear" class="option" [value]="p.annee">{{p.annee}}</option>
                         </select>
                     </div>

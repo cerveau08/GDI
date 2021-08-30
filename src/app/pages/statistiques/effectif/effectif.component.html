@@ -6,14 +6,14 @@
                 <div [formGroup]="anneeForm" class="filter-date">
                     <div [style.border]="borderfilter1" id="filter-annee" class="filtrer-annees">
                         <mat-icon [style.color]="colorfilter1" id="icon-calendar-annee"  class="icone-calendar1" fontSet="material-icons-outlined">date_range</mat-icon>
-                        <select class="select-mois" formControlName="anneeA" [(ngModel)]="anneeA">
+                        <select class="select-mois" formControlName="anneeA">
                             <option class="option" value="null">Annee</option>
                             <option *ngFor="let p of lastTenYear" class="option" [value]="p.annee">{{p.annee}}</option>
                         </select>
                     </div>
                     <div [style.border]="borderfilter1" id="filter-annee" class="filtrer-annees">
                         <mat-icon [style.color]="colorfilter1" id="icon-calendar-annee"  class="icone-calendar1" fontSet="material-icons-outlined">home</mat-icon>
-                        <select class="select-mois" formControlName="societeA" [(ngModel)]="societeS">
+                        <select class="select-mois" formControlName="societeA">
                             <option *ngFor="let p of dataSociete" class="option" [value]="p.id">{{p.libelle}}</option>
                         </select>
                     </div>
@@ -68,13 +68,13 @@
                 <div class="filtre-societe-direction" [formGroup]="societeForm">
                     <div [style.border]="borderfilter1" id="filter-annee" class="filtrer-annees">
                         <mat-icon [style.color]="colorfilter1" id="icon-calendar-annee"  class="icone-calendar1" fontSet="material-icons-outlined">home</mat-icon>
-                        <select class="select-mois" formControlName="societeS" [(ngModel)]="societeS">
+                        <select class="select-mois" formControlName="societeS">
                             <option *ngFor="let p of dataSociete" class="option" [value]="p.id">{{p.libelle}}</option>
                         </select>
                     </div>
                     <div [style.border]="borderfilter1" id="filter-annee" class="filtrer-annees">
                         <mat-icon [style.color]="colorfilter1" id="icon-calendar-annee"  class="icone-calendar1" fontSet="material-icons-outlined">date_range</mat-icon>
-                        <select class="select-mois" formControlName="anneeS" [(ngModel)]="anneeS">
+                        <select class="select-mois" formControlName="anneeS">
                             <option class="option" value="null">Annee</option>
                             <option *ngFor="let p of lastTenYear" class="option" [value]="p.annee">{{p.annee}}</option>
                         </select>

@@ -140,6 +140,10 @@ export class PaginationService {
         },
       ]
     },{
+      id: 5,  title: 'Liste Restauration',
+      path: 'restauration',  icon: "restaurant",
+    }
+    ,{
       id: 5,  title: 'Demandes',
       path: 'lesdemande',  icon: "local_mall",
     },{

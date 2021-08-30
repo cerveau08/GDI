@@ -27,6 +27,7 @@ export class DetailmanagerComponent implements OnInit {
   dataInterFin;
   managerinfo;
   errorMsg: any;
+  DemoDoc1;
   @HostListener('window:resize', ['$event'])
   getScreenSize(event?) {
         this.scrHeight = window.innerHeight;

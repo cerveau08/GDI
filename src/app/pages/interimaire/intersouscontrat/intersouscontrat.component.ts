@@ -133,6 +133,15 @@ export class IntersouscontratComponent implements OnInit {
     });
     this.gty(this.page);
 
+    this.otherService.extraireInterimaire(this.filterForm.value).subscribe(
+      data => {
+        this.data = data;
+        this.successMsg = this.data.status
+        console.log(this.data);
+        
+      }
+    )
+
     this.otherService.getAllSociete().subscribe(
       data => {
         this.dataSociete = data["data"];
