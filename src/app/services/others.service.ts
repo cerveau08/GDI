@@ -403,6 +403,9 @@ addAgence(data) {
     const data = {page: page, limit: limit ,code: code, description: description};
     return this.http.get<any>(this.reqUrl + '/profils', {params: data});
   }
+  listeRegions() {
+     return this.http.get<any>(this.reqUrl + '/listeRegions');
+  }
   interimRestau(){
     return this.http.get<any>(this.reqUrl + '/interimRestau')
   }
@@ -418,6 +421,12 @@ addAgence(data) {
   }
   addSociete(data){
     return this.http.post<any>(`${this.reqUrl}/societe`, data);
+  }
+  addSite(data){
+    return this.http.post<any>(`${this.reqUrl}/addSite`, data);
+  }
+  addPeriode(data){
+    return this.http.post<any>(`${this.reqUrl}/addPeriode`, data);
   }
   addStructure(data){
     return this.http.post<any>(`${this.reqUrl}/structure/create`, data);

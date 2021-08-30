@@ -1,5 +1,7 @@
 import { FormControl, FormGroup } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import { OthersService } from 'src/app/services/others.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-ajoutperiode',
@@ -59,7 +61,13 @@ export class AjoutperiodeComponent implements OnInit {
       libelle: "decembre",
     },
   ];
-  constructor() { }
+  data: any;
+  dataR;
+  successMsg: any;
+  toastr: any;
+  errorMsg: any;
+  constructor(private otherService: OthersService,
+              private router: Router) { }
 
   ngOnInit() {
     this.getTenLastYear();
@@ -95,6 +103,26 @@ export class AjoutperiodeComponent implements OnInit {
     ];
     return this.lastTenYear
   }
- 
+  ajouterSite() { 
+    this.otherService.addPeriode(this.periodeForm.value).subscribe(
+      data =>{
+      this.data = data;
+     // console.log(data);
+        this.successMsg = this.data.status
+        if(this.successMsg == true) {
+          this.toastr.success(this.data.message, 'Success', {
+            timeOut: 3000,
+          });
+          this.router.navigate(['/accueil/listsite'])
+      }
+    },
+      error=> {
+        this.errorMsg = error;
+        this.toastr.error(this.errorMsg, 'Echec', {
+         timeOut: 5000,
+        });
+      }
+  )
+}
 
 }
