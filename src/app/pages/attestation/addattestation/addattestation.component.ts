@@ -187,7 +187,7 @@ export class AddattestationComponent implements OnInit {
         this.result = data
         this.successMsg = this.result.status
         if(this.successMsg == true) {
-          this.toastr.success('Attestation ajouté avec success', 'Echec', {
+          this.toastr.success('Attestation ajouté avec success', 'Succes', {
             timeOut: 3000,
           });
           this.router.navigate(['/accueil/attestationmesinterimaires'])
