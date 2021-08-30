@@ -9,40 +9,27 @@
                 <p [style.color]="color2" id="genre" class="statt-sous-header">Ajouter</p>
             </div>
         </div>
-        <div *ngIf="show==1" class="content-all-liste-site">Liste Profil</div>
+        <div *ngIf="show==1" class="content-all-liste-site">
+
+            <table style="overflow-x:auto;"aria-describedby = "mydesc" >
+                <thead>
+                    <tr class="head">
+                        <th  id="manager"><b>Libellé</b></th>
+                        <th  id="direction"><b>code</b></th>
+                        <th  id="agence"><b>Description</b></th>
+                </tr>
+                </thead>
+                <tbody *ngFor="let data of dataProfil">
+                    <tr  style="cursor: pointer;" >
+                        <td >{{data.libelle}}</td>
+                        <td >{{data.code}}</td>
+                        <td >{{data.description}}</td>
+                    </tr>
+                </tbody>
+                
+            </table>
+        </div>
         <app-ajoutprofil *ngIf="show==2"></app-ajoutprofil>
     </div>
+</div> 
     
-    <!--modal1-->
-    <div class="modal">
-        <sonatel-pma-errormodal id="error-modal-1">
-            <div class="error-modal-all" >
-                <mat-icon style="cursor: pointer;" (click)="closeErrorModal('error-modal-1');" class="clear-error">clear</mat-icon>
-                <div class="error-content-image">
-                    <div class="error-image"></div>
-                </div>
-                <p class="error-text">{{errorMsg}}</p>
-                <p class="error-message-admin">Veuillez contacter l'administrateur du site à partir de la page paramètre</p> 
-                <div class="error-content-button">
-                    <button (click)="closeErrorModal('error-modal-1');" class="error-button">Ok</button>
-                </div>
-            </div>
-        </sonatel-pma-errormodal>
-</div>
-
-<!--modal1-->
-<div class="modal">
-    <sonatel-pma-errormodal id="error-modal-1">
-        <div class="error-modal-all" >
-            <mat-icon style="cursor: pointer;" (click)="closeErrorModal('error-modal-1');" class="clear-error">clear</mat-icon>
-            <div class="error-content-image">
-                <div class="error-image"></div>
-            </div>
-            <p class="error-text">{{errorMsg}}</p>
-            <p class="error-message-admin">Veuillez contacter l'administrateur du site à partir de la page paramètre</p> 
-            <div class="error-content-button">
-                <button (click)="closeErrorModal('error-modal-1');" class="error-button">Ok</button>
-            </div>
-        </div>
-    </sonatel-pma-errormodal>
-</div>

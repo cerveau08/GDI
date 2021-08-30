@@ -4,6 +4,8 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { OthersService } from 'src/app/services/others.service';
 import { ErrormodalService } from 'src/app/modal/_errormodals';
+import { environment } from 'src/environments/environment';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-modifieruser',
@@ -13,6 +15,7 @@ import { ErrormodalService } from 'src/app/modal/_errormodals';
 export class ModifieruserComponent implements OnInit {
 item;
 prenom;
+itemsPerPage = 500;
 nom;
 fonction;
 matricule;
@@ -29,13 +32,19 @@ profilId;
 request;
 next;
 errorMsg
+user;
 userAgentForm: FormGroup;
   data: any;
   successMsg: any;
+  url1;
+  public reqUrl = environment.base_url;
+  dataAgence: any;
+  totalItems: any;
   constructor(private activeroute: ActivatedRoute,
     private route: Router,
     private errormodalService: ErrormodalService,
     private otherService: OthersService,
+    private http: HttpClient,
     private toastr: ToastrService) {
       this.activeroute.queryParams.subscribe(params => {
         this.item = JSON.parse(params["user"]);
@@ -53,7 +62,8 @@ userAgentForm: FormGroup;
           })
         })
      }
-     ngOnInit() {
+    ngOnInit() {
+      this.user = localStorage.getItem('user');
       this.userAgentForm = new FormGroup({
         matricule: new FormControl(''),
         prenom: new FormControl(''),
@@ -63,7 +73,7 @@ userAgentForm: FormGroup;
         profil: new FormControl(''),
         avatar: new FormControl(''),
         fonction: new FormControl(''),
-    })
+      })
 
       //recupere les profils
       this.otherService.getprofil().subscribe(
@@ -73,7 +83,14 @@ userAgentForm: FormGroup;
       );
   
       this.otherService.getFonctions().subscribe(data => this.listeFonction = data.data);
-  }
+    }
+
+    gty(page: any){
+      this.http.get(this.reqUrl + `/listeAgence?page=${page}&limit=${this.itemsPerPage}`).subscribe((data: any) => {
+        this.dataAgence =  data.data;
+        this.totalItems = data.total;
+      })
+    }
   public saveFonction(e): void {
     let libelle = e.target.value;
     let list = this.listeFonction.filter(x => x.libelle === libelle)[0];

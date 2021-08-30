@@ -6,6 +6,7 @@ import { DataService } from 'src/app/service/data.service';
 import { OthersService } from 'src/app/services/others.service';
 import { environment } from 'src/environments/environment';
 import { ErrormodalService } from 'src/app/modal/_errormodals';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-attestationpresence',
@@ -14,6 +15,8 @@ import { ErrormodalService } from 'src/app/modal/_errormodals';
 })
 export class AttestationpresenceComponent implements OnInit {
 
+  p = 1;
+  date = new Date();
   checkedList:any;
   selectedAll: any;
   filterForm: FormGroup;
@@ -80,12 +83,28 @@ export class AttestationpresenceComponent implements OnInit {
       libelle: "decembre",
     },
   ];
-  constructor(private http: HttpClient,
+  currentDate = new Date().getFullYear();
+  lastTenYear: { annee: any; }[];
+  constructor(private extractionService: AuthService,
+              private http: HttpClient,
               private errormodalService: ErrormodalService,
               private otherService: OthersService,
               private toastr: ToastrService) { }
 
   ngOnInit() {
+    this.lastTenYear = [
+      {
+        annee: this.currentDate
+      },{
+        annee: this.currentDate - 1
+      },{
+        annee: this.currentDate - 2
+      },{
+        annee: this.currentDate - 3
+      },{
+        annee: this.currentDate - 4
+      }
+    ];
     this.user = localStorage.getItem('user');
     this.filterForm = new FormGroup({
       mois: new FormControl(''),
@@ -118,7 +137,7 @@ export class AttestationpresenceComponent implements OnInit {
     }
     this.getCheckedItemList();
   }
-  checkIfAllSelected(event) {
+  checkIfAllSelected() {
     this.selectedAll = this.dataAttest.every(function(item:any) {
       return item.etat == 0;
     })
@@ -173,6 +192,29 @@ export class AttestationpresenceComponent implements OnInit {
          timeOut: 5000,
         });
        }
+    )
+  }
+
+  exportCsv(): void {
+    if(this.filterForm.value.mois) {
+      this.mois = this.filterForm.value.mois;
+    }
+    if(this.filterForm.value.reference) {
+      this.reference = this.filterForm.value.reference;
+    }
+    if(this.filterForm.value.annee) {
+      this.annee = this.filterForm.value.annee; 
+    }
+    this.otherService.listAttestationFilter(this.page,this.itemsPerPage, this.mois, this.annee, this.reference).subscribe(
+      (data: any) => {
+        this.dataAttest =  data.data[0];
+        this.extractionService.exportToCsv(
+          this.dataAttest, 
+          'ExtractionAttestation' + '-' + this.date.getFullYear() + '-' + this.date.getMonth() + '-' + this.date.getDay() + '-' + this.date.getHours()+ '-' + this.date.getMinutes(),
+          ['reference', 'matricule', 'prenom', 'nom', 'agence', 'nombreJourAbscence', 'dateDebut', 'dateFin', 'prenom_manager', 'nom_manager', 'statut']
+        );
+        this.totalItems = data.total;
+      }
     )
   }
 }

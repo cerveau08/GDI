@@ -11,6 +11,7 @@ import { ErrormodalService } from 'src/app/modal/_errormodals';
 })
 export class OffreComponent implements OnInit {
 
+  p = 1;
   nouveauxRrecrus;
   datas: any;
   errorMsg: any;

@@ -102,6 +102,13 @@ export class HomeComponent implements OnInit {
   present;
   malade;
   conge;
+  photo;
+  nomManager;
+  prenomManager
+  posteManager;
+  photoManager;
+  interimaireInfo;
+  managerinfo: any;
   @HostListener('window:resize', ['$event'])
   getScreenSize(event?) {
         this.scrHeight = window.innerHeight;
@@ -140,6 +147,22 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.prenom = localStorage.getItem('prenom');
     this.user = localStorage.getItem('user');
+    if(this.user == 'INT') {
+      this.interimaireInfo = JSON.parse(localStorage.getItem('currentUser'));
+      this.otherService.getDetailsManagerById(this.interimaireInfo.manager.id).subscribe( 
+        result => {
+          this.data = result;
+          this.managerinfo = this.data.data.detail;
+          console.log(this.managerinfo);
+          
+          this.prenomManager = this.managerinfo.prenom;
+          this.nomManager = this.managerinfo.nom;
+          this.photoManager = this.managerinfo.photo;
+          this.posteManager = this.managerinfo.fonction;
+        }
+      )
+    }
+    console.log(this.interimaireInfo);
       if(this.user == 'INT') {
         this.showHome = false;
       } else {
@@ -168,7 +191,7 @@ export class HomeComponent implements OnInit {
          
       this.otherService.getLastNotification().subscribe(
         data => {
-          if(data.data[0]){
+          if(data.data){
             this.lastnotif =data.data[0].description;
           }else{
             this.lastnotif ="Aucune notification "
@@ -255,7 +278,7 @@ export class HomeComponent implements OnInit {
     if(value == "null"){
       value = null;
     }
-    this.otherService.statInterByYear(value).subscribe(
+    this.otherService.statInterByYear(this.annee, this.societe).subscribe(
       data => {
         this.dataYear = data;
         this.dataStatEffectifAnnee = this.dataYear.data;

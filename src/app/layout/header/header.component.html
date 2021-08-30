@@ -64,39 +64,50 @@
                     </div>
                     <div class="sele">
                       <div class="sele1">
-                        <select class="custom-select" formControlName="direction">
-                            <option value="" disabled selected hidden>Direction</option>
-                            <option *ngFor="let moi of mois" [ngValue]="moi">{{moi}}</option>
+                        <select class="custom-select" #entite formControlName="societe" (change)="directionsListe(entite.value)">
+                            <option value="" disabled selected hidden>Société</option>
+                            <option *ngFor="let p of dataSociete" [ngValue]="p.id">{{p.libelle}}</option>
                          </select>
                       </div>
                       <div class="sele2">
-                        <select class="custom-select" formControlName="departement">
-                            <option value="" disabled selected hidden>Département</option>
-                            <option *ngFor="let som of sommes" [ngValue]="som">{{som}}</option>
+                        <select class="custom-select" #direct formControlName="direction" (change)="departementListe(direct.value)">
+                            <option value="" disabled selected hidden>Direction</option>
+                            <option *ngFor="let p of dataDirection" [ngValue]="p.id">{{p.libelle}}</option>
                         </select>
                       </div>
                       <div class="sele3">
-                        <select class="custom-select" formControlName="service">
-                            <option value="" disabled selected hidden>Services</option>
-                            <option *ngFor="let som of sommes" [ngValue]="som">{{som}}</option>
+                        <select class="custom-select" #dep formControlName="departement" (change)="serviceListe(dep.value)">
+                            <option value="" disabled selected hidden>Département</option>
+                            <option *ngFor="let p of dataDepartement" [ngValue]="p.id">{{p.libelle}}</option>
                         </select>
                       </div>
                     </div>
                     <div class="sele">
                       <div class="sele1">
-                        <select class="custom-select" formControlName="agence">
-                            <option value="" disabled selected hidden>Agence</option>
-                            <option *ngFor="let moi of mois" [ngValue]="moi">{{moi}}</option>
+                        <select class="custom-select" formControlName="service">
+                            <option value="" disabled selected hidden>Service</option>
+                            <option *ngFor="let p of donneeService" [ngValue]="p.id">{{p.libelle}}</option>
                          </select>
                       </div>
                       <div class="sele2">
-                        <select class="custom-select" formControlName="annee">
-                            <option value="" disabled selected hidden>Année</option>
-                            <option *ngFor="let som of sommes" [ngValue]="som">{{som}}</option>
+                        <select class="custom-select" formControlName="agence">
+                            <option value="" disabled selected hidden>Agence</option>
+                            <option *ngFor="let p of dataAgence" [ngValue]="p.id">{{p.nom}}</option>
                         </select>
                       </div>
-                      <div class="input2">
-                        <input class="input4" type="text" formControlName="poste" placeholder="Poste">
+                      <div class="sele3">
+                        <select class="custom-select" formControlName="annee">
+                            <option value="" disabled selected hidden>Annee</option>
+                            <option *ngFor="let p of lastTenYear" [ngValue]="p.annee">{{p.annee}}</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="sele">
+                      <div class="sele1">
+                        <select class="custom-select" formControlName="poste">
+                            <option value="" disabled selected hidden>Poste</option>
+                            <option *ngFor="let p of listeFonction" [ngValue]="p.id">{{p.libelle}}</option>
+                         </select>
                       </div>
                     </div>
                     <div class="content-error-msg" *ngIf="successRequest == false">

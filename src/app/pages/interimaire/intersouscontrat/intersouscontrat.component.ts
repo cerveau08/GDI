@@ -10,6 +10,7 @@ import { ModalService } from 'src/app/modal/_modal';
 import { OthersService } from 'src/app/services/others.service';
 import { environment } from 'src/environments/environment';
 import { ErrormodalService } from 'src/app/modal/_errormodals';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-intersouscontrat',
@@ -18,9 +19,9 @@ import { ErrormodalService } from 'src/app/modal/_errormodals';
 })
 export class IntersouscontratComponent implements OnInit {
   public data; any;
+  date = new Date();
   public datas: any;
   isData = false;
-  date: any;
   role;
   dataInter: any;
   attestationForm: FormGroup;
@@ -98,6 +99,7 @@ export class IntersouscontratComponent implements OnInit {
   public direction = null;
   constructor(public datepipe: DatePipe,
     public router: Router,
+    private extractionService: AuthService,
     private modalService: ModalService,
     private otherService: OthersService,
     private errormodalService: ErrormodalService,
@@ -130,6 +132,15 @@ export class IntersouscontratComponent implements OnInit {
       matricule: new FormControl(''),
     });
     this.gty(this.page);
+
+    this.otherService.extraireInterimaire(this.filterForm.value).subscribe(
+      data => {
+        this.data = data;
+        this.successMsg = this.data.status
+        console.log(this.data);
+        
+      }
+    )
 
     this.otherService.getAllSociete().subscribe(
       data => {
@@ -264,5 +275,27 @@ export class IntersouscontratComponent implements OnInit {
 
   closeErrorModal(id: string) {
     this.errormodalService.close(id);
+  }
+
+  exportCsv(): void {
+    if (this.filterForm.value.poste == undefined) {
+      this.filterForm.patchValue({poste: ''});
+    }
+    if(this.filterForm.value.poste) {
+      this.poste = this.filterForm.value.poste;
+    }
+    this.matricule = this.filterForm.value.matricule;
+    this.agence = this.filterForm.value.agence;
+    this.societe = this.filterForm.value.societe;
+    this.direction = this.filterForm.value.direction;
+    this.otherService.getInterimaireSousContrat(this.page, this.itemsPerPage, this.matricule, this.poste, this.agence, this.societe, this.direction).subscribe((data: any) => {
+      this.dataInter =  data.data;
+      this.extractionService.exportToCsv(
+        this.dataInter, 
+        'ExtractionInterimaireSousContrat' + '-' + this.date.getFullYear() + '-' + this.date.getMonth() + '-' + this.date.getDay() + '-' + this.date.getHours()+ '-' + this.date.getMinutes(),
+        ['matricule', 'prenom', 'nom', 'agence', 'poste', 'direction', 'departement', 'service', 'debut_contrat', 'fin_contrat']
+      );
+      this.totalItems = data.total;
+    })
   }
 }

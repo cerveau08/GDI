@@ -197,13 +197,7 @@ export class InterfincontratComponent implements OnInit {
     )
   }
 
-  onSubmit(id: string) {
-    const demande =
-    {
-      moi: this.demandeForm.value.moi,
-      somme: this.demandeForm.value.somme
-    } 
-  }
+ 
 
   openModal(id: string) {
     this.modalService.open(id);

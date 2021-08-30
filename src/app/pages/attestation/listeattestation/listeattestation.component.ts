@@ -10,6 +10,7 @@ import { OthersService } from 'src/app/services/others.service';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-listeattestation',
@@ -18,6 +19,7 @@ import { Router } from '@angular/router';
 })
 export class ListeattestationComponent implements OnInit {
 
+  date = new Date();
   checkedList:any;
   selectedAll: any;
   filterForm: FormGroup;
@@ -96,7 +98,7 @@ export class ListeattestationComponent implements OnInit {
         this.scrWidth = window.innerWidth;
         console.log(this.scrHeight, this.scrWidth);
   }
-  constructor(
+  constructor(private extractionService: AuthService,
               private errormodalService: ErrormodalService,
               private modalService: ModalService,
               private router: Router,
@@ -189,11 +191,6 @@ export class ListeattestationComponent implements OnInit {
   }
 
   extraireAttestation() {
-    // if (this.filterForm.value.annee) {
-    //   this.filterForm.patchValue({annee: this.filterForm.value.annee.getFullYear()});
-    // } else {
-    //   this.filterForm.patchValue({annee: ''});
-    // }
     this.otherService.extraireAttestation(this.filterForm.value).subscribe(
       data => {
         this.data = data;
@@ -210,6 +207,29 @@ export class ListeattestationComponent implements OnInit {
          timeOut: 5000,
         });
        }
+    )
+  }
+
+  exportCsv(): void {
+    if(this.filterForm.value.mois) {
+      this.mois = this.filterForm.value.mois;
+    }
+    if(this.filterForm.value.reference) {
+      this.reference = this.filterForm.value.reference;
+    }
+    if(this.filterForm.value.annee) {
+      this.annee = this.filterForm.value.annee; 
+    }
+    this.otherService.listAttestationFilter(this.page,this.itemsPerPage, this.mois, this.annee, this.reference).subscribe(
+      (data: any) => {
+        this.dataAttest =  data.data[0];
+        this.extractionService.exportToCsv(
+          this.dataAttest, 
+          'ExtractionAttestation' + '-' + this.date.getFullYear() + '-' + this.date.getMonth() + '-' + this.date.getDay() + '-' + this.date.getHours()+ '-' + this.date.getMinutes(),
+          ['reference', 'matricule', 'prenom', 'nom', 'agence', 'nombreJourAbscence', 'dateDebut', 'dateFin', 'prenom_manager', 'nom_manager', 'statut']
+        );
+        this.totalItems = data.total;
+      }
     )
   }
 }

@@ -1,6 +1,6 @@
 <div class="objectif-container">
     <h1 class="titre-objectif">Liste des objectifs du contrat de {{item.prenom}} {{item.nom}}</h1>
-    <button *ngIf="role == 'MNG'" class="button-ajouter" (click)="openModal('objectif-modal-1');">Ajouter Objectif</button>
+    <button *ngIf="role == 'MNG'" class="button-ajouter" >Ajouter Objectif</button>
     <div class="content-list-objectif">
         <div class="item-objectif" *ngFor="let p of objectif | paginate: {  itemsPerPage: itemsPerPage,
             currentPage: page,

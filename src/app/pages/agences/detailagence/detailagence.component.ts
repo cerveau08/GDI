@@ -51,6 +51,7 @@ export class DetailagenceComponent implements OnInit {
   fixe;
   site;
   adresse;
+  mobile;
   logo;
   contrat;
   cnidg;

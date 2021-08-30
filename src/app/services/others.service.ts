@@ -172,12 +172,12 @@ addAgence(data) {
   getTotalAgenceActifInactif(id: number) {
     return this.http.get(`${this.reqUrl}/statInterimaireAgence/${id}`);
   }
-  statInterByYear(an){
-    const data = {annee: an};
+  statInterByYear(an, so){
+    const data = {annee: an, societe: so};
     return this.http.get(`${this.reqUrl}/statInterimaireByYear`, {params: data});
   } 
-  statTotalInter(societe){
-    const data = {societe: societe};
+  statTotalInter(annee, societe){
+    const data = {annee: annee, societe: societe};
     return this.http.get(`${this.reqUrl}/statInterimaire`, {params: data});
   }
 
@@ -295,8 +295,8 @@ addAgence(data) {
   getStatPresence(): Observable<any> {
     return this.http.get<any>(this.reqUrl + '/statDemande');
   }
-  getStatPresenceTab(annee): Observable<any> {
-    const data = {annee: annee};
+  getStatPresenceTab(annee, societe): Observable<any> {
+    const data = {annee: annee, societe: societe};
     return this.http.get<any>(`${this.reqUrl}/statDemandeAnnee`, {params: data});
   }
 
@@ -403,7 +403,20 @@ addAgence(data) {
     const data = {page: page, limit: limit ,region: region};
     return this.http.get<any>(this.reqUrl + '/listeSite', {params: data});
   }
-
+  listeProfil(page, limit, code, description) {
+    const data = {page: page, limit: limit ,code: code, description: description};
+    return this.http.get<any>(this.reqUrl + '/profils', {params: data});
+  }
+  listeRegions() {
+     return this.http.get<any>(this.reqUrl + '/listeRegions');
+  }
+  interimRestau(){
+    return this.http.get<any>(this.reqUrl + '/interimRestau')
+  }
+  extractionListeResto(annee, societe){
+    const data = {annee: annee, societe: societe};
+    return this.http.get<any>(`${this.reqUrl}/extractionListeResto`, {params: data});
+  }
   addProfil(data){
     return this.http.post<any>(`${this.reqUrl}/profils`, data);
   }
@@ -412,6 +425,12 @@ addAgence(data) {
   }
   addSociete(data){
     return this.http.post<any>(`${this.reqUrl}/societe`, data);
+  }
+  addSite(data){
+    return this.http.post<any>(`${this.reqUrl}/addSite`, data);
+  }
+  addPeriode(data){
+    return this.http.post<any>(`${this.reqUrl}/addPeriode`, data);
   }
   addStructure(data){
     return this.http.post<any>(`${this.reqUrl}/structure/create`, data);

@@ -33,11 +33,12 @@ export class ListeragenceComponent implements OnInit {
   itemsPerPage = 3;
   totalItems : any;
   public reqUrl = environment.base_url;
-  constructor(private dataService: DataService,
+  constructor(private http: HttpClient,
+    private dataService: DataService,
     private modalService: ModalService,
     public router: Router,
     private errormodalService: ErrormodalService,
-    private http: HttpClient,) {}
+    ) {}
 
   ngOnInit() {
     this.user = localStorage.getItem('user');
@@ -71,8 +72,6 @@ export class ListeragenceComponent implements OnInit {
     this.http.get(this.reqUrl + `/listeAgence?page=${page}&limit=${this.itemsPerPage}`).subscribe((data: any) => {
       this.dataAgence =  data.data;
       this.totalItems = data.total;
-      console.log(this.dataAgence);
-      console.log(this.totalItems);
     })
   }
 

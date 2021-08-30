@@ -23,7 +23,7 @@ export class DetailcontratComponent implements OnInit {
   public left: any;
   donnees: any;
   page = 1
-  itemsPerPage = 7;
+  itemsPerPage = 4;
   dataInter:any;
   dataContrat: any;
   dataManageur;
@@ -91,14 +91,20 @@ export class DetailcontratComponent implements OnInit {
   successMsgArret;
   public reqUrl = environment.base_url;
   errorMsg: any;
+  evaluations: any;
+  totalItems: any;
+  interim_id: any;
+  procesVerbal;
   constructor(private activeroute: ActivatedRoute,
               private modalService: ModalService,
               private otherService: OthersService,
               private fileSaver: NgxFileSaverService,
+              private http: HttpClient,
               private errormodalService: ErrormodalService,
               public router: Router, ) { 
     this.activeroute.queryParams.subscribe(params => {
       this.item = JSON.parse(params["contrat"]);
+      this.interim_id = JSON.parse(params["interimaire"]);
       this.otherService.getOneInterById(this.item).subscribe(
           data =>{
             this.data = data;
@@ -127,6 +133,15 @@ export class DetailcontratComponent implements OnInit {
   }
   ngOnInit() {
     this.role = localStorage.getItem('user')
+    this.gty(this.page)
+  }
+
+  gty(page: any){
+    this.http.get(this.reqUrl + `/listEvaluations/${this.interim_id}?page=${page}&limit=${this.itemsPerPage}`).subscribe((data: any) => {
+      this.data = data
+      this.evaluations = this.data["data"];
+      this.totalItems = data.total;
+    })
   }
 
   public get(p) {

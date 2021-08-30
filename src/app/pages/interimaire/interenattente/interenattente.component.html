@@ -32,7 +32,7 @@
                         </div>
                         <div class="filtrer-mois">
                             <p class="label-input" for="titre">Poste: </p>
-                            <input type="text" class="input-extraction" list="professions" formControlName="poste" [(ngModel)]="profession" (change)="saveProfession($event)">
+                            <input type="text" class="input-extraction" list="professions" formControlName="poste" (change)="saveProfession($event)">
                             <datalist id="professions">
                               <option *ngFor="let c of listeFonction" [value]="c.libelle" >{{c.libelle}}</option>
                             </datalist>
@@ -40,9 +40,9 @@
                         <div class="content-extraction">
                             <mat-icon class="icon-search" (click)="gty(page)" fontSet="material-icons-outlined" >search</mat-icon>
                         </div>
-                        <div class="content-extraction">
+                        <!-- <div class="content-extraction">
                             <button (click)="extraireInter()" class="button-extraire">Extraire en CSV</button>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="content-error-msg" *ngIf="successMsg == false">
                         <p class="error-alert">{{ data?.message}}: mois et année</p>
