@@ -57,17 +57,6 @@ export class ListsiteComponent implements OnInit {
     )
   }
 
-
-  
-
-  //stats des interimaires par mois
-  statInterMonth(value) {
-    this.otherService.statInterByMonth(value).subscribe(
-      data => {
-        this.dataStatistique = data['data'];
-       },
-    ); 
-  }
   changeshow1() {
     this.show = 1;
     return this.show;

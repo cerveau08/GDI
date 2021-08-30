@@ -399,7 +399,17 @@ addAgence(data) {
     const data = {page: page, limit: limit ,region: region};
     return this.http.get<any>(this.reqUrl + '/listeSite', {params: data});
   }
-
+  listeProfil(page, limit, code, description) {
+    const data = {page: page, limit: limit ,code: code, description: description};
+    return this.http.get<any>(this.reqUrl + '/profils', {params: data});
+  }
+  interimRestau(){
+    return this.http.get<any>(this.reqUrl + '/interimRestau')
+  }
+  extractionListeResto(annee, societe){
+    const data = {annee: annee, societe: societe};
+    return this.http.get<any>(`${this.reqUrl}/extractionListeResto`, {params: data});
+  }
   addProfil(data){
     return this.http.post<any>(`${this.reqUrl}/profils`, data);
   }
