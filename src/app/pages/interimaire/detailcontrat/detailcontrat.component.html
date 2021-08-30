@@ -33,65 +33,29 @@
                 </div>
             </div>
             <div class="info-evaluation">
-                <div class="content-evaluation">
+                <div class="content-evaluation" *ngFor="let p of evaluations | paginate: {  itemsPerPage: itemsPerPage,
+                    currentPage: page,
+                    totalItems: totalItems
+                    }; let i = index">
                     <p class="key-evaluation-head">
                         Évaluation du: 
-                        <span class="value-evaluation-head">{{dateDebut | date:'dd MMMM yyyy'}} </span>
+                        <span class="value-evaluation-head">{{p.dateDebut | date:'dd MMMM yyyy'}} </span>
                          au 
-                        <span class="value-evaluation-head"> {{dateFin | date:'dd MMMM yyyy'}} </span>
+                        <span class="value-evaluation-head"> {{p.dateFin | date:'dd MMMM yyyy'}} </span>
                     </p>
                     <p class="key-evaluation">
                         Note Globale: 
-                        <span class="value-evaluation-note">{{dateDebut | date:'dd'}} </span>
+                        <span class="value-evaluation-note">{{p.note}} </span>
                     </p>
                     <p class="key-evaluation-commentaire">
                         Commentaire: 
                         <span class="value-commentaire">
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                            Minima quod saepe iure deleniti odio animi, sunt quis 
-                            ipsam sed, quos sit culpa voluptates molestias quam
+                            {{p.commentaire}}
                         </span>
                     </p>
                 </div>
-                <div class="content-evaluation">
-                    <p class="key-evaluation-head">
-                        Évaluation du: 
-                        <span class="value-evaluation-head">{{dateDebut | date:'dd MMMM yyyy'}} </span>
-                         au 
-                        <span class="value-evaluation-head"> {{dateFin | date:'dd MMMM yyyy'}} </span>
-                    </p>
-                    <p class="key-evaluation">
-                        Note Globale: 
-                        <span class="value-evaluation-note">{{dateDebut | date:'dd'}} </span>
-                    </p>
-                    <p class="key-evaluation-commentaire">
-                        Commentaire: 
-                        <span class="value-commentaire">
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                            Minima quod saepe iure deleniti odio animi, sunt quis 
-                            ipsam sed, quos sit culpa voluptates molestias quam
-                        </span>
-                    </p>
-                </div>
-                <div class="content-evaluation">
-                    <p class="key-evaluation-head">
-                        Évaluation du: 
-                        <span class="value-evaluation-head">{{dateDebut | date:'dd MMMM yyyy'}} </span>
-                         au 
-                        <span class="value-evaluation-head"> {{dateFin | date:'dd MMMM yyyy'}} </span>
-                    </p>
-                    <p class="key-evaluation">
-                        Note Globale: 
-                        <span class="value-evaluation-note">{{dateDebut | date:'dd'}} </span>
-                    </p>
-                    <p class="key-evaluation-commentaire">
-                        Commentaire: 
-                        <span class="value-commentaire">
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                            Minima quod saepe iure deleniti odio animi, sunt quis 
-                            ipsam sed, quos sit culpa voluptates molestias quam
-                        </span>
-                    </p>
+                <div class="pagination">
+                    <pagination-controls (pageChange)="gty(page = $event)" previousLabel="Précédent" nextLabel="Suivant"></pagination-controls>
                 </div>
             </div>
         </div>
@@ -120,22 +84,18 @@
     <jw-modal id="custom-modal-2">
         <div class="tableau">
             <mat-icon style="cursor: pointer;" (click)="closeModal('custom-modal-2');" class="clear">clear</mat-icon>
-            <p class="dtl1">Liste des Attestions de présence</p>
-            <div class="grid" *ngFor="let p of donnees">
-               <div>
-                   <p class="date">{{p.dateFin | date: "M yyyy"}}</p>
-               </div>
-               <div>
-                   <p class="user">{{p.prenom}} {{p.nom}}</p>
-               </div>
-               <div>
-                <button (click)="get(p)"  class="btn1">Télécharger PDF</button>
-               </div>
+            <p class="dtl1">Proces Verbal {{prenom}} {{nom}}</p>
+            <pdf-viewer [src]="procesVerbal"
+              [render-text]="true"
+              [autoresize]="true"
+              [original-size]="false"
+            ></pdf-viewer>
+            <div class="btns3">
+                <button (click)="getFicheDePoste()"  class="btn2">Télécharger</button>
             </div>
         </div>
     </jw-modal>
 </div>
-
 <!--modal3-->
 <div class="modal">
     <jw-modal id="custom-modal-3">

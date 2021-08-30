@@ -5,6 +5,7 @@ import { ApexAxisChartSeries, ApexChart, ApexDataLabels, ApexPlotOptions, ApexRe
 import { DataService } from 'src/app/service/data.service';
 import { ErrormodalService } from 'src/app/modal/_errormodals';
 import { OthersService } from 'src/app/services/others.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -84,7 +85,11 @@ export class PresenceComponent implements OnInit {
   chart: ChartComponent;
   public chartOptions4: Partial<ChartOptions>;
   public chartOptions5: Partial<ChartOptions>;
+  date = new Date();
+  dataInter: object[];
+    
   constructor(private toastr: ToastrService,
+    private extractionService: AuthService,
               private otherService: OthersService) {
                 this.getScreenSize();
   }
@@ -110,17 +115,17 @@ export class PresenceComponent implements OnInit {
       anneeS: new FormControl(''),
       societeS: new FormControl(''),
     })
-    this.dateSelectionnerPresence(this.annee);
+    this.dateSelectionnerPresence(this.annee, this.societe);
     this.societeSelectionnerPresence(this.societe);
     this.onChanges();
   }
 
   onChanges(): void {
-    this.anneeForm.get('annee').valueChanges.subscribe(val => {
-      if (val) {
-        this.dateSelectionnerPresence(val);
-      }
-    });
+    // this.anneeForm.get('annee').valueChanges.subscribe(val => {
+    //   if (val) {
+    //     this.dateSelectionnerPresence(val);
+    //   }
+    // });
   }
   getTenLastYear() {
     this.lastTenYear = [
@@ -149,15 +154,13 @@ export class PresenceComponent implements OnInit {
     return this.lastTenYear
   }
 
-  dateSelectionnerPresence(value: string){
-    if(value == "null"){
-      value = null;
-    }
-    this.otherService.getStatPresenceTab(value).subscribe(
+  dateSelectionnerPresence(annee, societe){
+   
+    this.otherService.getStatPresenceTab(annee, societe).subscribe(
       data => {
         this.dataPresence = data;
         this.dataStatEffectifPresence = this.dataPresence.data;
-        if(value == null) {
+        if(annee == null) {
           this.axex = this.dataStatEffectifPresence.map(valueOfDirection => valueOfDirection.annee);
           this.malade = this.dataStatEffectifPresence.map(valueOfMalade => valueOfMalade.malade);
           this.conge = this.dataStatEffectifPresence.map(valueOfConge => valueOfConge.conge);
@@ -236,8 +239,8 @@ export class PresenceComponent implements OnInit {
     })
   }
 
-  societeSelectionnerPresence(value){
-    this.otherService.statDemandeDirection(value).subscribe(
+  societeSelectionnerPresence(societe){
+    this.otherService.statDemandeDirection(societe).subscribe(
       data => {
         this.dataPresence = data;
         this.dataStatSocietePresence = this.dataPresence.data;
@@ -322,5 +325,57 @@ export class PresenceComponent implements OnInit {
     };
     return this.chartOptions5;
   })
+  }
+
+  exportCsv(annee, societe): void {
+    if(annee == undefined) {
+      annee = null;
+    }
+    if(societe == undefined) {
+      societe = 1;
+    }
+    this.dateSelectionnerPresence(annee, societe);
+    this.otherService.getStatPresenceTab(annee, societe).subscribe((data: any) => {
+      this.dataInter =  data.data;
+      if(annee == null) {
+        this.extractionService.exportToCsv(
+          this.dataInter, 
+          'ExtractionStatAnnee' + '-' + this.date.getFullYear() + '-' + this.date.getMonth() + '-' + this.date.getDay() + '-' + this.date.getHours()+ '-' + this.date.getMinutes(),
+          ['annee', 'malade', 'conge']
+        );
+      } else {
+        this.extractionService.exportToCsv(
+          this.dataInter, 
+          'ExtractionStatMois' + '-' + this.date.getFullYear() + '-' + this.date.getMonth() + '-' + this.date.getDay() + '-' + this.date.getHours()+ '-' + this.date.getMinutes(),
+          ['mois', 'malade', 'conge']
+        );
+      }
+    })
+  }
+
+  exportCsv1(societe): void {
+    // if(annee == undefined) {
+    //   annee = null;
+    // }
+    if(societe == undefined) {
+      societe = 1;
+    }
+    this.societeSelectionnerPresence(societe);
+    this.otherService.statDemandeDirection(societe).subscribe((data: any) => {
+      this.dataInter =  data.data;
+      if(this.annee == null) {
+        this.extractionService.exportToCsv(
+          this.dataInter, 
+          'ExtractionStatAnnee' + '-' + this.date.getFullYear() + '-' + this.date.getMonth() + '-' + this.date.getDay() + '-' + this.date.getHours()+ '-' + this.date.getMinutes(),
+          ['direction', 'mission', 'congeMaladie', 'congeAnnuelle', 'convenancePerso']
+        );
+      } else {
+        this.extractionService.exportToCsv(
+          this.dataInter, 
+          'ExtractionStatMois' + '-' + this.date.getFullYear() + '-' + this.date.getMonth() + '-' + this.date.getDay() + '-' + this.date.getHours()+ '-' + this.date.getMinutes(),
+          ['direction', 'mission', 'congeMaladie', 'congeAnnuelle', 'convenancePerso']
+        );
+      }
+    })
   }
 }

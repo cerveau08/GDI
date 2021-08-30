@@ -6,6 +6,8 @@ import { AuthService } from 'src/app/services/auth.service';
 import { SidenavService } from 'src/app/modal/sidenav/sidenav.service';
 import { ModalService } from 'src/app/modal/_modal/modal.service';
 import {OthersService} from '../../services/others.service';
+import { environment } from 'src/environments/environment';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-header',
@@ -31,6 +33,20 @@ export class HeaderComponent implements OnInit {
   lastnotif;
   currentUser;
   photo;
+  dataSociete: any;
+  dataCategorie: any;
+  dataSite: any;
+  listeFonction: any;
+  dataDomaine: any;
+  page = 1;
+  itemParPage = 900;
+  region = null;
+  dataDirection: any;
+  dataDepartement: any;
+  donneeService: any;
+  dataAgence: any;
+  lastTenYear: { annee: any; }[];
+  currentDate = new Date().getFullYear();
   @HostListener('window:resize', ['$event'])
   getScreenSize(event?) {
         this.scrHeight = window.innerHeight;
@@ -44,7 +60,9 @@ export class HeaderComponent implements OnInit {
   public menus: any;
   prenom;
   role;
-  constructor(private modalService: ModalService, 
+  public reqUrl = environment.base_url;
+  constructor(private http: HttpClient,
+    private modalService: ModalService, 
     private sidenavService: SidenavService,
     private authService: AuthService,
     private paginationService: PaginationService,
@@ -105,27 +123,85 @@ export class HeaderComponent implements OnInit {
       direction: new FormControl (''),
       departement: new FormControl(''),
       service: new FormControl (''),
+      societe: new FormControl (''),
       agence: new FormControl(''),
       annee: new FormControl (''),
       poste: new FormControl(''),
     });
+
+    this.otherService.getAllSociete().subscribe(
+      data => {
+        this.dataSociete = data["data"];
+      }
+    );
+     this.otherService.getAllCategorie().subscribe(
+      data => {
+        this.dataCategorie = data["data"];
+      }
+    );
+    this.otherService.listeSite(this.page, this.itemParPage, this.region).subscribe(
+      data => {
+        this.dataSite = data.data;
+      }
+    )
+    this.http.get(this.reqUrl + `/listeAgence?page=${this.page}&limit=${this.itemParPage}`).subscribe((data: any) => {
+      this.dataAgence =  data.data;
+    })
+    this.otherService.getDomaine().subscribe(data => this.dataDomaine = data["data"]);
+    this.otherService.getFonctions().subscribe(data => this.listeFonction = data.data);
+
+    this.lastTenYear = [
+      {
+        annee: this.currentDate
+      },{
+        annee: this.currentDate - 1
+      },{
+        annee: this.currentDate - 2
+      },{
+        annee: this.currentDate - 3
+      },{
+        annee: this.currentDate - 4
+      },{
+        annee: this.currentDate - 5
+      },{
+        annee: this.currentDate - 6
+      },{
+        annee: this.currentDate - 7
+      },{
+        annee: this.currentDate - 8
+      },{
+        annee: this.currentDate - 9
+      },
+    ];
   }
 
-  onSubmit() {
-    const info = new FormData();
-    this.demandeForm.value.prenom = ""?info.append("prenom", this.demandeForm.value.prenom):'';
-    this.demandeForm.value.nom = ""?info.append("nom", this.demandeForm.value.nom):'';
-    this.demandeForm.value.email != ""?info.append("email", this.demandeForm.value.email):'';
-    this.demandeForm.value.matricule != ""?info.append("matricule", this.demandeForm.value.matricule):'';
-    this.demandeForm.value.direction != ""?info.append("direction", this.demandeForm.value.direction):'';
-    this.demandeForm.value.service != ""?info.append("service", this.demandeForm.value.service):'';
-    this.demandeForm.value.agence != ""?info.append("agence", this.demandeForm.value.agence):'';
-    this.demandeForm.value.departement != ""?info.append("departement", this.demandeForm.value.departement):'';
-    this.demandeForm.value.annee != ""?info.append("annee", this.demandeForm.value.annee):'';
-    this.demandeForm.value.poste != ""?info.append("poste", this.demandeForm.value.poste):'';
+  directionsListe(value) {
+    this.otherService.getAllDirection(value).subscribe(
+      data => {
+        this.dataDirection = data['data'];
+       }
+    ); 
+  }
 
-    console.log(info);
-    this.otherService.rechercheAvance(info).subscribe(
+  departementListe(value) {
+    this.otherService.getAllDepartement(value).subscribe(
+      data => {
+        this.dataDepartement = data['data'];
+       }
+    ); 
+  }
+
+  serviceListe(value) {
+    this.otherService.getAllService(value).subscribe(
+      data => {
+        this.donneeService = data['data'];
+       }
+    ); 
+  }
+  
+
+  onSubmit() {
+    this.otherService.rechercheAvance(this.demandeForm.value).subscribe(
       data => {
         console.log(data);  
         this.donneesSearch = data;
@@ -151,7 +227,6 @@ export class HeaderComponent implements OnInit {
           this.lastnotif =data.data[0].description;
         }else{
           this.lastnotif ="Aucune notification "
-  
         }
       }
     );      

@@ -168,7 +168,7 @@ export class HomeComponent implements OnInit {
          
       this.otherService.getLastNotification().subscribe(
         data => {
-          if(data.data[0]){
+          if(data.data){
             this.lastnotif =data.data[0].description;
           }else{
             this.lastnotif ="Aucune notification "
@@ -255,7 +255,7 @@ export class HomeComponent implements OnInit {
     if(value == "null"){
       value = null;
     }
-    this.otherService.statInterByYear(value).subscribe(
+    this.otherService.statInterByYear(this.annee, this.societe).subscribe(
       data => {
         this.dataYear = data;
         this.dataStatEffectifAnnee = this.dataYear.data;

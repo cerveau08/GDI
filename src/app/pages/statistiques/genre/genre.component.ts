@@ -6,6 +6,7 @@ import { ErrormodalService } from 'src/app/modal/_errormodals';
 import { OthersService } from 'src/app/services/others.service';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -69,6 +70,7 @@ export class GenreComponent implements OnInit {
   color: any;
   public datas: any;
   public diagrammes: any;
+  annee = null;
   jan: any;
   pager: any = {};
   filterterm: string;
@@ -88,8 +90,10 @@ export class GenreComponent implements OnInit {
   public chartOptions3: Partial<ChartOptions>;
   successMsg: any;
   errorMsg: any;
+  lastTenYear: { annee: number; }[];
   constructor(private toastr: ToastrService,
     private router: Router,
+    private extractionService: AuthService,
               private otherService: OthersService) {
     this.getScreenSize();
   }
@@ -105,9 +109,32 @@ export class GenreComponent implements OnInit {
         this.dataSociete = data["data"];
       }
     );
-
+    this.lastTenYear = [
+      {
+        annee: this.currentDate
+      },{
+        annee: this.currentDate - 1
+      },{
+        annee: this.currentDate - 2
+      },{
+        annee: this.currentDate - 3
+      },{
+        annee: this.currentDate - 4
+      },{
+        annee: this.currentDate - 5
+      },{
+        annee: this.currentDate - 6
+      },{
+        annee: this.currentDate - 7
+      },{
+        annee: this.currentDate - 8
+      },{
+        annee: this.currentDate - 9
+      },
+    ];
     this.societeForm = new FormGroup({
-      societe: new FormControl('')
+      societeS: new FormControl(''),
+      anneeS: new FormControl('')
     })
 
     this.percentForm = new FormGroup({
@@ -115,16 +142,16 @@ export class GenreComponent implements OnInit {
     })
     
     this.genrePourcentage(String(this.id_societe));
-    this.societeSelectionner(String(this.societe));
+    this.societeSelectionner(this.annee, this.societe);
     this.onChangesSociete();
   }
 
   onChangesSociete(): void {
-    this.societeForm.get('societe').valueChanges.subscribe(val => {
-      if (val) {
-        this.societeSelectionner(val);
-      }
-    });
+    // this.societeForm.get('societe').valueChanges.subscribe(val => {
+    //   if (val) {
+    //     this.societeSelectionner(val);
+    //   }
+    // });
   }
 
   // exportAsExcel() {
@@ -192,8 +219,10 @@ export class GenreComponent implements OnInit {
   }
 
   //deuxieme
-  societeSelectionner(value:string){
-    this.otherService.statTotalInter(value).subscribe(
+  societeSelectionner(annee, societe){
+    this.annee = this.societeForm.value.anneeS;
+    this.societe = this.societeForm.value.societeS;
+    this.otherService.statTotalInter(annee, societe).subscribe(
       data => {
       this.data = data;
       this.dataStatEffectifGenre = this.data.data[0];
@@ -270,4 +299,39 @@ export class GenreComponent implements OnInit {
   },
   )
 }
+
+  exportCsv(annee, societe): void {
+    if(annee == undefined) {
+      annee = null;
+    }
+    if(societe == undefined) {
+      societe = 1;
+    }
+    this.societeSelectionner(annee, societe);
+    this.otherService.statInterByYear(annee, societe).subscribe((data: any) => {
+      this.dataStatEffectifGenre = data.data[0];
+        this.extractionService.exportToCsv(
+          this.dataStatEffectifGenre, 
+          'ExtractionStatAnnee' + '-' + this.date.getFullYear() + '-' + this.date.getMonth() + '-' + this.date.getDay() + '-' + this.date.getHours()+ '-' + this.date.getMinutes(),
+          ['direction', 'homme', 'femme']
+        );
+    })
+  }
+
+  exportCsv1(societe): void {
+    if(societe == undefined || societe == "") {
+      societe = 1;
+    }
+    console.log(societe);
+    this.genrePourcentage(societe);
+    this.otherService.statInterPourcent(societe).subscribe((data: any) => {
+      this.data = data;
+          this.dataStatEffectifGenre = this.data.data[0];
+        this.extractionService.exportToCsv(
+          this.dataStatEffectifGenre, 
+          'ExtractionStatAnnee' + '-' + this.date.getFullYear() + '-' + this.date.getMonth() + '-' + this.date.getDay() + '-' + this.date.getHours()+ '-' + this.date.getMinutes(),
+          ['direction', 'homme', 'femme']
+        );
+    })
+  }
 }
