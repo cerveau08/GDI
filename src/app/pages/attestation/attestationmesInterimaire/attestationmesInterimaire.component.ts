@@ -22,6 +22,7 @@ const CSV_TYPE = 'text/plain;charset=utf-8';
 })
 export class AttestationmesInterimaireComponent implements OnInit {
 
+  p = 1;
   date = new Date();
   annee = null;
   mois = null;

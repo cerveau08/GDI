@@ -19,7 +19,7 @@
       <div class="content-row-form">
         <div class="content-input">
           <p class="label-input1">Société</p>
-          <select class="select-search" #entite formControlName="societe" (change)="directionsListe(entite.value)" required>
+          <select class="select-search" #entite formControlName="societe"  required>
             <option class="option" value="" disabled selected hidden>Choisir une société</option>
             <option *ngFor="let data of dataSociete" [value]="data.id">{{data.libelle}}</option>
           </select>

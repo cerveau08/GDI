@@ -43,6 +43,7 @@ export class InterenattenteComponent implements OnInit {
   dataAgence: any;
   listeFonction: any;
   successMsg: any;
+  dataDirection: any;
   constructor(public datepipe: DatePipe,
     public router: Router,
     private fb: FormBuilder,
@@ -96,6 +97,19 @@ export class InterenattenteComponent implements OnInit {
     })
   }
 
+  directionsListe(value) {
+    this.otherService.getAllDirection(value).subscribe(
+      data => {
+        this.dataDirection = data['data'];
+       }
+    ); 
+  }
+
+  public saveProfession(e): void {
+    let libelle = e.target.value;
+    let list = this.listeFonction.filter(x => x.libelle === libelle)[0];
+    this.filterForm.patchValue({poste: list.libelle});
+  }
   
   gty(page: any){
     if (this.filterForm.value.poste == undefined) {

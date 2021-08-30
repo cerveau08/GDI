@@ -8,6 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AjoutsocieteComponent implements OnInit {
   searchForm: FormGroup;
+  dataSociete;
+  videsociete;
+  videtelephone;
+  videnumeroPiece;
+  videtypePiece;
+  ListePiece;
   constructor() { }
 
   ngOnInit() {
@@ -19,4 +25,5 @@ export class AjoutsocieteComponent implements OnInit {
     });
   }
 
+  rechercherInterimaire() {}
 }

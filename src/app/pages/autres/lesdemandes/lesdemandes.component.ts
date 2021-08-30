@@ -127,7 +127,7 @@ export class LesdemandesComponent implements OnInit {
     }
     this.getCheckedItemList();
   }
-  checkIfAllSelected(event) {
+  checkIfAllSelected() {
     this.selectedAll = this.dd.every(function(item:any) {
       return item.etat == 0;
     })

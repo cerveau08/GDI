@@ -15,6 +15,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class AttestationpresenceComponent implements OnInit {
 
+  p = 1;
   date = new Date();
   checkedList:any;
   selectedAll: any;
@@ -136,7 +137,7 @@ export class AttestationpresenceComponent implements OnInit {
     }
     this.getCheckedItemList();
   }
-  checkIfAllSelected(event) {
+  checkIfAllSelected() {
     this.selectedAll = this.dataAttest.every(function(item:any) {
       return item.etat == 0;
     })

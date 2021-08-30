@@ -2,7 +2,6 @@ import { ToastrService } from 'ngx-toastr';
 import { OthersService } from '../../../services/others.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { DataService } from 'src/app/service/data.service';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';

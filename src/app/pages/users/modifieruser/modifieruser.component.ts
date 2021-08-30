@@ -32,6 +32,7 @@ errorMsg
 userAgentForm: FormGroup;
   data: any;
   successMsg: any;
+  url1;
   constructor(private activeroute: ActivatedRoute,
     private route: Router,
     private errormodalService: ErrormodalService,

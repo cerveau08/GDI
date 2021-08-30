@@ -2,14 +2,12 @@ import {DOCUMENT} from '@angular/common';
 import {
   AfterViewInit,
   Component,
-  ElementRef,
   EventEmitter,
   forwardRef,
   Inject,
   Input,
   OnDestroy,
   Output,
-  ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
 import {ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR} from '@angular/forms';
