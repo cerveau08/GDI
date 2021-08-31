@@ -223,10 +223,14 @@
                           </select> 
                         </div>
                         <div class="contratinput2">
-                          <input type="text" list="domaines" (change)="saveDomaine($event)" formControlName="domaineId" placeholder="Domaine">
+                          <select class="select5"  formControlName="domaineId">
+                            <option class="option" value="" disabled selected hidden>Domaine</option>
+                            <option *ngFor="let data of dataDomaine" value="{{data.id}}">{{data.libelle}}</option>
+                          </select>
+                          <!-- <input type="text" list="domaines" (change)="saveDomaine($event)" formControlName="domaineId" placeholder="Domaine">
                           <datalist id="domaines">
                             <option *ngFor="let c of dataDomaine" [value]="c.libelle" >{{c.libelle}}</option>
-                          </datalist>
+                          </datalist> -->
                           <input class="input3" type="date" formControlName="dateSignature" placeholder="Date de Signature">
                         </div>
                         <div class="contratinput2">

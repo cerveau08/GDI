@@ -168,9 +168,8 @@ export class DomaineComponent implements OnInit {
         
         this.chartOptions1 = {
           colors: [
-            "#ff0000",
+            "#ff7900",
             "#009393",
-            "#000000",
           ],
           series: [
             {

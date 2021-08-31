@@ -224,7 +224,7 @@ export class AddinterComponent implements OnInit {
   public saveDomaine(e): void {
     let libelle = e.target.value;
     let list = this.dataDomaine.filter(x => x.libelle === libelle)[0];
-    this.interForm.patchValue({domaineId: list.id});
+  //  this.interForm.patchValue({domaineId: list.id});
   }
   
   rechercherInterimaire() { 
@@ -367,7 +367,7 @@ export class AddinterComponent implements OnInit {
       formdata.append("salaireBrut", this.interForm.value.salaireBrut);
     }
     if(this.interForm.value.site != "") {
-      formdata.append("site", this.interForm.value.site);
+      formdata.append("siteId", this.interForm.value.site);
     }
     if(this.interForm.value.dateDebut != "") {
       formdata.append("dateDebut", this.interForm.value.dateDebut);

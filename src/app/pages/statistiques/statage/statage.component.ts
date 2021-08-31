@@ -188,8 +188,8 @@ export class StatageComponent implements OnInit {
         
         this.chartOptions1 = {
           colors: [
-            "#ff7900",
             "#009393",
+            "#ff7900",
           ],
           series: [
             {

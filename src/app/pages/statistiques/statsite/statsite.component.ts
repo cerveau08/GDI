@@ -180,7 +180,7 @@ export class StatsiteComponent implements OnInit {
           this.codeSite = this.dataStatEffectifAnnee.codeSite;
         this.chartOptions1 = {
           colors: [
-            "#ff0000",
+            "#ff7900",
             "#009393",
             "#000000",
           ],

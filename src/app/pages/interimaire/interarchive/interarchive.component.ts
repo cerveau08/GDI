@@ -32,29 +32,7 @@ export class InterarchiveComponent implements OnInit {
   user;
   showupdate;
   dataInterArchiv;
-  mois: any = [
-    'Janvier', 
-    'Février', 
-    'Mars', 
-    'Avril',
-    'Mai',
-    'Juin',
-    'Juillet', 
-    'Aout', 
-    'Septembre', 
-    'Octobre',
-    'Novembre',
-    'Décembre',
-  ];
-  sommes: any = [
-    '20.000f', 
-    '30.000f', 
-    '40.000f', 
-    '50.000f',
-    '60.000f',
-    '70.000f',
-    '80.000f', 
-  ];
+  isAdmissible: boolean;
   scrHeight:any;
   scrWidth:any;
   errorMsg: any;
@@ -72,7 +50,7 @@ export class InterarchiveComponent implements OnInit {
   demandeForm: FormGroup;
   page = 1;
   donneesSearch;
-  itemsPerPage = 7;
+  itemsPerPage = 10;
   successRequest
   totalItems : any;
   public reqUrl = environment.base_url;
@@ -102,30 +80,36 @@ export class InterarchiveComponent implements OnInit {
       moi: new FormControl (''),
       somme: new FormControl('')
     });
-
     this.gty(this.page);
-    this.isAdmissible(this.admissible);
   }
 
 
   gty(page: any){
-
-    if(this.filterForm.value.mois) {
-      this.prenom = this.filterForm.value.prenom;
-    }
+    this.otherService.listArchivedFilter(this.page, this.itemsPerPage, false).subscribe((data: any) => {
+      this.dataInterArchiv =  data.data;
+      this.totalItems = data.total;
+    })
   }
+
+  gtyYes(page: any){
+    this.otherService.listArchivedFilter(this.page, this.itemsPerPage, true).subscribe((data: any) => {
+      this.dataInterArchiv =  data.data;
+      this.totalItems = data.total;
+    })
+  }
+
+  gtyNon(page: any){
+    this.otherService.listArchivedFilter(this.page, this.itemsPerPage, false).subscribe((data: any) => {
+      this.dataInterArchiv =  data.data;
+      this.totalItems = data.total;
+    })
+  }
+
   openDetail(data) {
     this.router.navigate(['/accueil/detailinter'], {
       queryParams: {
         user: JSON.stringify(data)
       }
-    })
-  }
-
-  isAdmissible(admissible){
-    this.otherService.listArchivedFilter(this.page, this.itemsPerPage,admissible).subscribe((data: any) => {
-      this.dataInterArchiv =  data.data;
-      this.totalItems = data.total;
     })
   }
  
@@ -139,12 +123,6 @@ export class InterarchiveComponent implements OnInit {
     }  
     return color; 
   } 
-
-
-  checkValue(event){
-    this.admissible=event.checked;
-    this.isAdmissible(this.admissible);
- }
 
   openErrorModal(id: string) {
     this.errormodalService.open(id);

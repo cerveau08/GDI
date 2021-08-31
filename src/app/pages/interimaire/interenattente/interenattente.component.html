@@ -68,8 +68,8 @@
                     <th id="manager">Fonction</th>
                     <th id="direction">Direction</th>
                     <th *ngIf="role == 'DRH'" id="agence">Agence</th>
-                    <th id="direction">Catégorie</th>
-                    <th *ngIf="role != 'DRH'" id="direction">Manager</th>
+                    <th id="direction">Début Contrat</th>
+                    <th id="direction">Fin Contrat</th>
             </tr>
             </thead>
             <tbody>
@@ -83,8 +83,8 @@
                     <td (click)="openDetail(p.id)">{{p.poste}}</td>
                     <td (click)="openDetail(p.id)">{{p.direction}}</td>
                     <td *ngIf="role == 'DRH'" (click)="openDetail(p.id)">{{p.agence}}</td>
-                    <td (click)="openDetail(p.id)">{{p.categorie}}</td>
-                    <td *ngIf="role != 'DRH'" (click)="openDetail(p.id)">{{p.manager?.prenom}} {{p.manager?.nom}}</td>
+                    <td (click)="openDetail(p.id)">{{p.debut_contrat}}</td>
+                    <td (click)="openDetail(p.id)">{{p.fin_contrat}}</td>
                 </tr>
             </tbody>
             
