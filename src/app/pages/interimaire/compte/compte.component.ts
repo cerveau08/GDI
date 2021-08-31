@@ -86,6 +86,14 @@ export class CompteComponent implements OnInit {
   DemoDoc1="https://file-examples.com/wp-content/uploads/2017/02/file-sample_100kB.doc"
   DemoDoc2="https://www.le.ac.uk/oerresources/bdra/html/resources/example.txt" 
   errorMsg: any;
+  infoContrat: any;
+  anneeRestant: any;
+  moisRestant: any;
+  jourRestant: any;
+  totalJour: any;
+  totalJourRestatnt: any;
+  percentRestantwidth: string;
+  percentRestantposition: string;
   constructor(private fileSaver: NgxFileSaverService,
     private otherService: OthersService,
     private modalService: ModalService,
@@ -129,7 +137,20 @@ export class CompteComponent implements OnInit {
        this.contrat = this.dataInter.contrat;
     },
   );
-
+  
+  this.otherService.statContratInter(this.currentUser.interimaire.id).subscribe(
+    data => {
+      this.infoContrat = data.data;
+      this.anneeRestant = this.infoContrat.dureeContratRestant.annees;
+      this.moisRestant = this.infoContrat.dureeContratRestant.mois;
+      this.jourRestant = this.infoContrat.dureeContratRestant.jours;
+      this.totalJour = this.infoContrat.dureeTotalContratEnJours;
+      this.totalJourRestatnt = this.infoContrat.dureeTotalContratRestantJours;
+      this.dateFin = this.infoContrat.dateFinContrat;
+      this.percentRestantwidth = 100 - (this.totalJourRestatnt / this.totalJour) * 100 +'%';
+      this.percentRestantposition = 100 - (this.totalJourRestatnt / this.totalJour) * 100 - 1 +'%';
+    }
+  )
     if(this.user == 'inter') {
       this.showHome = false;
     } else {

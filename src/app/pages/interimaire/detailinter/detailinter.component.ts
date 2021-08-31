@@ -103,6 +103,15 @@ export class DetailinterComponent implements OnInit {
   successMsgArret;
   public reqUrl = environment.base_url;
   errorMsg: any;
+  infoContrat: any;
+  anneeRestant: any;
+  moisRestant: any;
+  jourRestant: any;
+  totalJour: any;
+  totalJourRestatnt: any;
+  percentRestantwidth: string;
+  dateFin: any;
+  percentRestantposition: string;
   constructor(private activeroute: ActivatedRoute,
               private modalService: ModalService,
               private otherService: OthersService,
@@ -212,6 +221,20 @@ export class DetailinterComponent implements OnInit {
       commentaire: new FormControl(''),
     });
     this.gty(this.page);
+
+    this.otherService.statContratInter(this.item).subscribe(
+      data => {
+        this.infoContrat = data.data;
+        this.anneeRestant = this.infoContrat.dureeContratRestant.annees;
+        this.moisRestant = this.infoContrat.dureeContratRestant.mois;
+        this.jourRestant = this.infoContrat.dureeContratRestant.jours;
+        this.totalJour = this.infoContrat.dureeTotalContratEnJours;
+        this.totalJourRestatnt = this.infoContrat.dureeTotalContratRestantJours;
+        this.dateFin = this.infoContrat.dateFinContrat;
+        this.percentRestantwidth = 100 - (this.totalJourRestatnt / this.totalJour) * 100 +'%';
+        this.percentRestantposition = 100 - (this.totalJourRestatnt / this.totalJour) * 100 - 1 +'%';
+      }
+    )
   }
 
 

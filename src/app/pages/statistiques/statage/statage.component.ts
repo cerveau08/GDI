@@ -3,6 +3,7 @@ import { Component, OnInit, HostListener } from '@angular/core';
 import { ApexAxisChartSeries, ApexChart, ApexDataLabels, ApexPlotOptions, ApexResponsive, ApexXAxis, ApexYAxis, ApexLegend, ApexFill, ChartComponent } from 'ng-apexcharts';
 import { FormGroup, FormControl } from '@angular/forms';
 import { OthersService } from 'src/app/services/others.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -78,6 +79,7 @@ export class StatageComponent implements OnInit {
   directs: any;
   errorMsg: any;
   constructor(private toastr: ToastrService,
+    private extractionService: AuthService,
               private otherService: OthersService) {
     this.getScreenSize();
   }
@@ -98,93 +100,30 @@ export class StatageComponent implements OnInit {
       anneeA: new FormControl(''),
       societeA: new FormControl(''),
     })
-    this.dateSelectionner(this.annee, this.societe);
+    this.dateSelectionner(this.societe, this.annee);
     
   }
   ngOnDestroy() {
     clearInterval(this.intervalId);
   }
 
-  //deuxieme
-  societeSelectionner(valueSociete, valueAnnee){
-    this.otherService.statInterAge(valueSociete, valueAnnee).subscribe(
-      data => {
-        this.data = data;
-        this.dataStatEffectifGenre = this.data.data[0];
-    this.directs = this.dataStatEffectifGenre;
-    this.age = this.dataStatEffectifGenre.map(valueOfDirection => valueOfDirection.age);
-    this.hommes = this.dataStatEffectifGenre.map(valueOfHomme => valueOfHomme.homme);
-    this.femmes = this.dataStatEffectifGenre.map(valueOfFemmes => valueOfFemmes.femme);
-    
-    this.chartOptions1 = {
-      colors: [
-        "#009393",
-        "#ff7900"
-      ],
-      series: [
-        {
-          name: "Hommes",
-          data: this.hommes
-        },
-        {
-          name: "Femmes",
-          data: this.femmes
-        }
-      ],
-      chart: {
-        type: "bar",
-        height: 380,
-        width: 750,
-        stacked: false,
-        toolbar: {
-          show: false
-        },
-        zoom: {
-          enabled: false
-        }
-      },
-      responsive: [
-        {
-          breakpoint: 480,
-          options: {
-            legend: {
-              show: false,
-              position: "bottom",
-              offsetX: -10,
-              offsetY: 0
-            }
-          }
-        }
-      ],
-      plotOptions: {
-        bar: {
-          horizontal: false,
-          columnWidth: "50px",
-        //  endingShape: "rounded",
-        },
-      },
-      dataLabels: {
-        enabled: false,
-        style: {
-          colors: ['#f3f4f5', '#fff']
-        }
-      },
-      xaxis: {
-        type: "category",
-        categories: 
-          this.age
-      },
-      legend: {
-        show: false,
-      },
-      fill: {
-        opacity: 4,
-      },
-    };
-    return this.chartOptions1;
-  },
-  )
-}
+  exportCsv(societe, annee): void {
+    if(annee == undefined || annee == "") {
+      annee = new Date().getFullYear();
+    }
+    if(societe == undefined || societe == "" || societe == null) {
+      societe = 1;
+    }
+    this.dateSelectionner(societe, annee);
+    this.otherService.statInterAge(societe, annee).subscribe((data: any) => {
+      this.dataStatEffectifGenre =  data.data;
+      this.extractionService.exportToCsv(
+        this.dataStatEffectifGenre, 
+        'ExtractionStatCategoreDirection' + '-' + this.date.getFullYear() + '-' + this.date.getMonth() + '-' + this.date.getDay() + '-' + this.date.getHours()+ '-' + this.date.getMinutes(),
+        ['tranche', 'homme', 'femme']
+      );
+    })
+  }
 
   exportStatInterimaireByYear() {
     this.otherService.exportStatInterimByYear(this.annee).subscribe(
@@ -230,14 +169,14 @@ export class StatageComponent implements OnInit {
     return this.lastTenYear
   }
   //stats interimaire par annee
-  dateSelectionner(annee, societe){
-    if(societe == "null"){
-      societe = null;
-    }
-    if(annee == "null"){
+  dateSelectionner(societe, annee){
+    if(annee == undefined || annee == "") {
       annee = null;
     }
-    this.otherService.statInterAge(annee, societe).subscribe(
+    if(societe == undefined || societe == null || societe == "") {
+      societe = 1;
+    }
+    this.otherService.statInterAge(societe, annee).subscribe(
       data => {
         this.dataYear = data;
         this.dataStatEffectifAnnee = this.dataYear.data;

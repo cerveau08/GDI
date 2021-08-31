@@ -1,3 +1,4 @@
+import { StatsiteComponent } from './pages/statistiques/statsite/statsite.component';
 import { ListcommissionComponent } from './pages/settings/commission/listcommission/listcommission.component';
 import { ModiffonctionComponent } from './pages/settings/fonction/modiffonction/modiffonction.component';
 import { AjoutfonctionComponent } from './pages/settings/fonction/ajoutfonction/ajoutfonction.component';
@@ -318,6 +319,9 @@ const routes: Routes = [
         canActivate: [AuthGuard]
       },{ path: 'statcategorie',
       component: StatcategorieComponent,
+        canActivate: [AuthGuard]
+      },{ path: 'statsite',
+      component: StatsiteComponent,
         canActivate: [AuthGuard]
       },
       { path: 'deatilattestation',

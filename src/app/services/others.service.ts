@@ -310,17 +310,17 @@ addAgence(data) {
     return this.http.get<any>(`${this.reqUrl}/statDemandeDirection/${id}`);
   }
 
-  statInterAge(annee, societe){
+  statInterAge(societe, annee){
     const data = {annee: annee, societe: societe};
     return this.http.get<any>(`${this.reqUrl}/statsInterAge`, {params: data});
   }
 
-  statInterCategorie(annee, societe){
+  statInterCategorie(societe, annee){
     const data = {annee: annee, societe: societe};
     return this.http.get<any>(`${this.reqUrl}/statsInterCategorie`, {params: data});
   }
 
-  statInterCategorieParDirection(annee, societe){
+  statInterCategorieParDirection(societe, annee){
     const data = {annee: annee, societe: societe};
     return this.http.get<any>(`${this.reqUrl}/statsInterCategorieByDirection`, {params: data});
   }
@@ -390,6 +390,25 @@ addAgence(data) {
     return this.http.get<any>(`${this.reqUrl}/extractionsInterCategorie`, {params: data});
   }
 
+  statDomaineByYear(an, so){
+    const data = {annee: an, societe: so};
+    return this.http.get(`${this.reqUrl}/statsInterDomaine`, {params: data});
+  } 
+  statSiteByYear(an, so){
+    const data = {annee: an, societe: so};
+    return this.http.get(`${this.reqUrl}/statSite`, {params: data});
+  } 
+
+  extractionStatSite(annee, societe){
+    const data = {annee: annee, societe: societe};
+    return this.http.get<any>(`${this.reqUrl}/extractStatSite`, {params: data});
+  }
+
+  // extractionStatSite(annee, societe){
+  //   const data = {annee: annee, societe: societe};
+  //   return this.http.get<any>(`${this.reqUrl}/extractStatSite`, {params: data});
+  // }
+
   extractionInterCategorieParDirection(annee, societe){
     const data = {annee: annee, societe: societe};
     return this.http.get<any>(`${this.reqUrl}/extractionStatInterimaireByCategorie`, {params: data});
@@ -416,7 +435,7 @@ addAgence(data) {
   }
   listeDirections(id: number) {
     return this.http.get<any>(`${this.reqUrl}/direction/${id}`);
- }
+  }
  
   extractionListeResto(){
     return this.http.get<any>(`${this.reqUrl}/extractionListeResto`);
@@ -441,5 +460,9 @@ addAgence(data) {
   }
   getProfil(){
     return this.http.get<any>(`${this.reqUrl}/profils`);
+  }
+
+  statContratInter(id: number) {
+    return this.http.get<any>(`${this.reqUrl}/interimaireDashboard/${id}`);
   }
 }

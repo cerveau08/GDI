@@ -57,6 +57,7 @@ export class AddagenceComponent implements OnInit {
       email: new FormControl('', Validators.required,),
       mobile: new FormControl ('', Validators.required,),
       fixe: new FormControl(''),
+      code: new FormControl(''),
       siteweb: new FormControl (''),
       adresse: new FormControl(''),
       logo: new FormControl ('', Validators.required,),
@@ -117,6 +118,7 @@ export class AddagenceComponent implements OnInit {
     info.append("fixe",value.fixe);
     info.append("siteweb",value.siteweb);
     info.append("adresse",value.adresse);
+    info.append("code",value.code);
     info.append("logo",this.logo);
     info.append("ninea",this.ninea);
     info.append("cnidg",this.cnidg);

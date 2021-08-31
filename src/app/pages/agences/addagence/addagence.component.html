@@ -21,10 +21,15 @@
                     </div>
                   </div>
                   <div class="input2">
+                    <input type="text" formControlName="code" placeholder="Abrégé le nom">
+                    <input class="input3"  type="text" formControlName="fixe" placeholder="Téléphone Fixe">
+                  </div>
+                  <div class="input1">
                     <input type="text" formControlName="nomdg" placeholder="Nom Directeur Général">
-
+                  </div>
+                  <div class="input2">
+                    <input type="text" formControlName="mobile" placeholder="Téléphone Mobile">
                     <input class="input3" type="number" formControlName="numdg" placeholder="Téléphone DG">
-
                   </div>
                   <div class="input1">
                     <input type="text" formControlName="email" placeholder="Email">
@@ -33,11 +38,6 @@
                       <p class="error-alert" *ngIf="infoForm.controls['email'].errors.required">l'email est obligatoire</p>
                       <p class="error-alert" *ngIf="infoForm.controls['email'].errors.pattern">Veuillez saisir un email valide</p>
                     </div>
-                  </div>
-                  <div class="input2">
-                    <input type="text" formControlName="mobile" placeholder="Téléphone Mobile">
-
-                    <input class="input3"  type="text" formControlName="fixe" placeholder="Téléphone Fixe">
                   </div>
                   <div class="input1">
                     <input type="text" formControlName="siteweb" placeholder="Site web">

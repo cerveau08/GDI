@@ -152,6 +152,31 @@ export class PresenceComponent implements OnInit {
     return this.lastTenYear
   }
 
+  exportCsv(annee, societe): void {
+    if(annee == undefined || annee == "") {
+      annee = null;
+    }
+    if(societe == undefined || societe == "" || societe == null) {
+      societe = 1;
+    }
+    this.dateSelectionnerPresence(annee, societe);
+    this.otherService.getStatPresenceTab(annee, societe).subscribe((data: any) => {
+      this.dataInter =  data.data;
+      if(annee == null || annee == undefined || annee == "") {
+        this.extractionService.exportToCsv(
+          this.dataInter, 
+          'ExtractionStatAnnee' + '-' + this.date.getFullYear() + '-' + this.date.getMonth() + '-' + this.date.getDay() + '-' + this.date.getHours()+ '-' + this.date.getMinutes(),
+          ['annee', 'malade', 'conge']
+        );
+      } else {
+        this.extractionService.exportToCsv(
+          this.dataInter, 
+          'ExtractionStatMois' + '-' + this.date.getFullYear() + '-' + this.date.getMonth() + '-' + this.date.getDay() + '-' + this.date.getHours()+ '-' + this.date.getMinutes(),
+          ['mois', 'malade', 'conge']
+        );
+      }
+    })
+  }
   dateSelectionnerPresence(annee, societe){
    
     this.otherService.getStatPresenceTab(annee, societe).subscribe(
@@ -234,6 +259,21 @@ export class PresenceComponent implements OnInit {
       },
     };
     return this.chartOptions4;
+    })
+  }
+
+  exportCsv1(societe): void {
+    if(societe == undefined || societe == "" || societe == null) {
+      societe = 1;
+    }
+    this.societeSelectionnerPresence(societe);
+    this.otherService.statDemandeDirection(societe).subscribe((data: any) => {
+      this.dataInter =  data.data;
+      this.extractionService.exportToCsv(
+        this.dataInter, 
+        'ExtractionStatAnnee' + '-' + this.date.getFullYear() + '-' + this.date.getMonth() + '-' + this.date.getDay() + '-' + this.date.getHours()+ '-' + this.date.getMinutes(),
+        ['direction', 'mission', 'congeMaladie', 'congeAnnuelle', 'convenancePerso']
+      );
     })
   }
 
@@ -323,57 +363,5 @@ export class PresenceComponent implements OnInit {
     };
     return this.chartOptions5;
   })
-  }
-
-  exportCsv(annee, societe): void {
-    if(annee == undefined) {
-      annee = null;
-    }
-    if(societe == undefined) {
-      societe = 1;
-    }
-    this.dateSelectionnerPresence(annee, societe);
-    this.otherService.getStatPresenceTab(annee, societe).subscribe((data: any) => {
-      this.dataInter =  data.data;
-      if(annee == null) {
-        this.extractionService.exportToCsv(
-          this.dataInter, 
-          'ExtractionStatAnnee' + '-' + this.date.getFullYear() + '-' + this.date.getMonth() + '-' + this.date.getDay() + '-' + this.date.getHours()+ '-' + this.date.getMinutes(),
-          ['annee', 'malade', 'conge']
-        );
-      } else {
-        this.extractionService.exportToCsv(
-          this.dataInter, 
-          'ExtractionStatMois' + '-' + this.date.getFullYear() + '-' + this.date.getMonth() + '-' + this.date.getDay() + '-' + this.date.getHours()+ '-' + this.date.getMinutes(),
-          ['mois', 'malade', 'conge']
-        );
-      }
-    })
-  }
-
-  exportCsv1(societe): void {
-    // if(annee == undefined) {
-    //   annee = null;
-    // }
-    if(societe == undefined) {
-      societe = 1;
-    }
-    this.societeSelectionnerPresence(societe);
-    this.otherService.statDemandeDirection(societe).subscribe((data: any) => {
-      this.dataInter =  data.data;
-      if(this.annee == null) {
-        this.extractionService.exportToCsv(
-          this.dataInter, 
-          'ExtractionStatAnnee' + '-' + this.date.getFullYear() + '-' + this.date.getMonth() + '-' + this.date.getDay() + '-' + this.date.getHours()+ '-' + this.date.getMinutes(),
-          ['direction', 'mission', 'congeMaladie', 'congeAnnuelle', 'convenancePerso']
-        );
-      } else {
-        this.extractionService.exportToCsv(
-          this.dataInter, 
-          'ExtractionStatMois' + '-' + this.date.getFullYear() + '-' + this.date.getMonth() + '-' + this.date.getDay() + '-' + this.date.getHours()+ '-' + this.date.getMinutes(),
-          ['direction', 'mission', 'congeMaladie', 'congeAnnuelle', 'convenancePerso']
-        );
-      }
-    })
   }
 }

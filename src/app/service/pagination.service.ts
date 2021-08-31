@@ -173,6 +173,8 @@ export class PaginationService {
         },{
           title: 'Par Domaine',  path: 'statdomaine',
         },{
+          title: 'Par Site',  path: 'statsite',
+        },{
           title: 'Par Catégorie',  path: 'statcategorie',
         },{
           title: 'Par Tranche d\'age',  path: 'statage',

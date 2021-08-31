@@ -3,6 +3,7 @@ import { Component, OnInit, HostListener } from '@angular/core';
 import { ApexAxisChartSeries, ApexChart, ApexDataLabels, ApexPlotOptions, ApexResponsive, ApexXAxis, ApexYAxis, ApexLegend, ApexFill, ChartComponent } from 'ng-apexcharts';
 import { FormGroup, FormControl } from '@angular/forms';
 import { OthersService } from 'src/app/services/others.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -76,6 +77,7 @@ export class StatcategorieComponent implements OnInit {
   directs: any;
   errorMsg: any;
   constructor(private toastr: ToastrService,
+    private extractionService: AuthService,
               private otherService: OthersService) {
     this.getScreenSize();
   }
@@ -100,8 +102,8 @@ export class StatcategorieComponent implements OnInit {
       anneeS: new FormControl(''),
       societeS: new FormControl(''),
     })
-    this.dateSelectionner(this.annee, this.societe);
-    this.effectifSocieteSelectionner(this.annee, this.societe);
+    this.societeSelectionner(this.societe, this.annee);
+    this.effectifSocieteSelectionner(this.societe, this.annee);
   }
 
   
@@ -176,103 +178,37 @@ export class StatcategorieComponent implements OnInit {
     ];
     return this.lastTenYear
   }
-  //stats interimaire par annee
-  dateSelectionner(annee, societe){
-    if(annee == undefined || annee == "null"){
+
+  exportCsv(societe, annee): void {
+    if(annee == undefined || annee == "") {
       annee = new Date().getFullYear();
     }
-    if(societe == undefined){
+    if(societe == undefined || societe == "" || societe == null) {
       societe = 1;
     }
-    this.otherService.statInterCategorie(annee, societe).subscribe(
-      data => {
-        this.dataYear = data;
-        this.dataStatEffectifAnnee = this.dataYear.data;
-          this.donneeAbscisse = this.dataStatEffectifAnnee.map(valueOfDirection => valueOfDirection.categorie.libelle);
-          this.hommes = this.dataStatEffectifAnnee.map(valueOfNouveau => valueOfNouveau.hommes);
-          this.femmes = this.dataStatEffectifAnnee.map(valueOfFini => valueOfFini.femmes);
-        this.axex = this.donneeAbscisse;
-        this.chartOptions1 = {
-          colors: [
-            "#ff0000",
-            "#009393",
-          ],
-          series: [
-            {
-              name: "Femmes",
-              data: this.femmes
-            },
-            {
-              name: "Hommes",
-              data: this.hommes
-            }
-          ],
-          chart: {
-            type: "bar",
-            height: 380,
-            width: 750,
-            stacked: false,
-            toolbar: {
-              show: false
-            },
-            zoom: {
-              enabled: false
-            }
-          },
-          responsive: [
-            {
-              breakpoint: 480,
-              options: {
-                legend: {
-                  show: false,
-                  position: "bottom",
-                  offsetX: -10,
-                  offsetY: 0
-                }
-              }
-            }
-          ],
-          plotOptions: {
-            bar: {
-              horizontal: false,
-              columnWidth: "60px",
-            },
-          },
-          dataLabels: {
-            enabled: false,
-            style: {
-              colors: ['#f3f4f5', '#fff']
-            }
-          },
-          xaxis: {
-            type: "category",
-            categories: 
-              this.axex
-          },
-          legend: {
-            show: false,
-          },
-          fill: {
-            opacity: 4,
-          },
-        };
-        return this.chartOptions1;
-    }
-    )
+    this.effectifSocieteSelectionner(societe, annee);
+    this.otherService.statInterCategorieParDirection(societe, annee).subscribe((data: any) => {
+      this.dataStatEffectifGenre =  data.data;
+      this.extractionService.exportToCsv(
+        this.dataStatEffectifGenre, 
+        'ExtractionStatCategoreDirection' + '-' + this.date.getFullYear() + '-' + this.date.getMonth() + '-' + this.date.getDay() + '-' + this.date.getHours()+ '-' + this.date.getMinutes(),
+        ['direction', 'AM1', 'AM2']
+      );
+    })
   }
 
-  effectifSocieteSelectionner(annee, societe){
+  effectifSocieteSelectionner(societe, annee){
     if(annee == undefined){
       annee = new Date().getFullYear();
     }
     if(societe == undefined || annee == "null"){
       societe = 1;
     }
-    this.otherService.statInterCategorieParDirection(annee, societe).subscribe(
+    this.otherService.statInterCategorieParDirection(societe, annee).subscribe(
       data => {
       this.data = data;
       this.dataStatEffectifSociete = this.data.data;
-      this.directions = this.dataStatEffectifSociete.map(valueOfDirection => valueOfDirection.direction.libelle);
+      this.directions = this.dataStatEffectifSociete.map(valueOfDirection => valueOfDirection.direction);
       this.hommes = this.dataStatEffectifSociete.map(valueOfHomme => valueOfHomme.AM1);
       this.femmes = this.dataStatEffectifSociete.map(valueOfFemme => valueOfFemme.AM2);
       this.chartOptions2 = {
@@ -282,11 +218,11 @@ export class StatcategorieComponent implements OnInit {
         ],
         series: [
           {
-            name: "Femmes",
+            name: "AM2",
             data: this.femmes
           },
           {
-            name: "Hommes",
+            name: "AM1",
             data: this.hommes
           },
         ],
@@ -344,6 +280,24 @@ export class StatcategorieComponent implements OnInit {
     })
   }
 
+  exportCsv1(societe, annee): void {
+    if(annee == undefined || annee == "") {
+      annee = new Date().getFullYear();
+    }
+    if(societe == undefined || societe == "" || societe == null) {
+      societe = 1;
+    }
+    this.societeSelectionner(societe, annee);
+    this.otherService.statInterCategorie(societe, annee).subscribe((data: any) => {
+      this.dataStatEffectifGenre =  data.data;
+      this.extractionService.exportToCsv(
+        this.dataStatEffectifGenre, 
+        'ExtractionStatCategoreSociete' + '-' + this.date.getFullYear() + '-' + this.date.getMonth() + '-' + this.date.getDay() + '-' + this.date.getHours()+ '-' + this.date.getMinutes(),
+        ['categorie', 'hommes', 'femmes']
+      );
+    })
+  }
+
   //deuxieme
   societeSelectionner(valueSociete, valueAnnee){ 
     this.otherService.statInterCategorie(valueSociete, valueAnnee).subscribe(
@@ -351,7 +305,7 @@ export class StatcategorieComponent implements OnInit {
         this.data = data;
         this.dataStatEffectifGenre = this.data.data;
     this.directs = this.dataStatEffectifGenre;
-    this.categorie = this.dataStatEffectifGenre.map(valueOfDirection => valueOfDirection.categorie.libelle);
+    this.categorie = this.dataStatEffectifGenre.map(valueOfDirection => valueOfDirection.categorie);
     this.hommes = this.dataStatEffectifGenre.map(valueOfHomme => valueOfHomme.hommes);
     this.femmes = this.dataStatEffectifGenre.map(valueOfFemmes => valueOfFemmes.femmes);
     

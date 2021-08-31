@@ -3,6 +3,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { Component, OnInit, HostListener } from '@angular/core';
 import { ApexAxisChartSeries, ApexChart, ApexDataLabels, ApexPlotOptions, ApexResponsive, ApexXAxis, ApexYAxis, ApexLegend, ApexFill, ChartComponent } from 'ng-apexcharts';
 import { OthersService } from 'src/app/services/others.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -43,6 +44,7 @@ export class StatagenceComponent implements OnInit {
   axex;
   mois;
   nom;
+  date = new Date();
   directs: any;
   directions: any;
   effectif;
@@ -79,6 +81,7 @@ export class StatagenceComponent implements OnInit {
   lastTenYear: { annee: number; }[];
   dataSociete: any;
   constructor(private toastr: ToastrService,
+    private extractionService: AuthService,
               private otherService: OthersService) {
     this.getScreenSize();
   }
@@ -129,13 +132,25 @@ export class StatagenceComponent implements OnInit {
     ];
     return this.lastTenYear
   }
+
+  exportCsv(): void {
+    this.dateSelectionnerAgence();
+    this.otherService.statInterByAgence().subscribe((data: any) => {
+      this.dataInterimByAgence =  data.data[0];
+      this.extractionService.exportToCsv(
+        this.dataInterimByAgence, 
+        'ExtractionStatAgence' + '-' + this.date.getFullYear() + '-' + this.date.getMonth() + '-' + this.date.getDay() + '-' + this.date.getHours()+ '-' + this.date.getMinutes(),
+        ['nom', 'code', 'actifs', 'inactifs', 'total']
+      );
+    })
+  }
   
   dateSelectionnerAgence(){
     this.otherService.statInterByAgence().subscribe(
       data => {
         this.dataAgence = data;
         this.dataInterimByAgence = this.dataAgence.data[0];
-    this.axex = this.dataInterimByAgence.map(valueOfDirection => valueOfDirection.nom);
+    this.axex = this.dataInterimByAgence.map(valueOfDirection => valueOfDirection.code);
     this.actifs = this.dataInterimByAgence.map(valueOfActifs => valueOfActifs.actifs);
     this.inactifs = this.dataInterimByAgence.map(valueOfInactifs => valueOfInactifs.inactifs);
     this.total = this.dataInterimByAgence.map(valueOfTotal => valueOfTotal.total);

@@ -4,25 +4,31 @@
             <div class="tit">
                 <p class="total">Variation de l’effectif</p>
                 <div [formGroup]="anneeForm" class="filter-date">
-                    <div [style.border]="borderfilter1" id="filter-annee" class="filtrer-annees">
-                        <mat-icon [style.color]="colorfilter1" id="icon-calendar-annee"  class="icone-calendar1" fontSet="material-icons-outlined">date_range</mat-icon>
-                        <select class="select-mois" formControlName="anneeA">
-                            <option class="option" value="null">Annee</option>
-                            <option *ngFor="let p of lastTenYear" class="option" [value]="p.annee">{{p.annee}}</option>
-                        </select>
+                    <div>
+                        <p class="label-input-search">Année</p>
+                        <div [style.border]="borderfilter1" id="filter-annee" class="filtrer-annees">
+                            <mat-icon [style.color]="colorfilter1" id="icon-calendar-annee"  class="icone-calendar1" fontSet="material-icons-outlined">date_range</mat-icon>
+                            <select class="select-mois" formControlName="anneeA">
+                                <option class="option" value="null">Annee</option>
+                                <option *ngFor="let p of lastTenYear" class="option" [value]="p.annee">{{p.annee}}</option>
+                            </select>
+                        </div>
                     </div>
-                    <div [style.border]="borderfilter1" id="filter-annee" class="filtrer-annees">
-                        <mat-icon [style.color]="colorfilter1" id="icon-calendar-annee"  class="icone-calendar1" fontSet="material-icons-outlined">home</mat-icon>
-                        <select class="select-mois" formControlName="societeA">
-                            <option *ngFor="let p of dataSociete" class="option" [value]="p.id">{{p.libelle}}</option>
-                        </select>
+                    <div>
+                        <p class="label-input-search">Société</p>
+                        <div [style.border]="borderfilter1" id="filter-annee" class="filtrer-annees">
+                            <mat-icon [style.color]="colorfilter1" id="icon-calendar-annee"  class="icone-calendar1" fontSet="material-icons-outlined">home</mat-icon>
+                            <select class="select-mois" formControlName="societeA">
+                                <option *ngFor="let p of dataSociete" class="option" [value]="p.id">{{p.libelle}}</option>
+                            </select>
+                        </div>
                     </div>
                     <div class="content-extraction">
-                        <button (click)="dateSelectionner(anneeForm.value.anneeA, anneeForm.value.societeA)" class="button-rafraichir">Rafraichir</button>
+                        <button (click)="dateSelectionner(anneeForm.value.societeA, anneeForm.value.anneeA)" class="button-rafraichir">Rafraichir</button>
                     </div>
-                    <!-- <div class="content-extraction">
-                        <button (click)="exportStatInterimaireByYear()" class="button-extraire">Extraire en CSV</button>
-                    </div> -->
+                    <div class="content-extraction">
+                        <button (click)="exportCsv(anneeForm.value.societeA, anneeForm.value.anneeA)" class="button-extraire">Extraire en CSV</button>
+                    </div>
                 </div>
             </div>
             <div class="diagra1">

@@ -104,26 +104,9 @@ export class EffectifComponent implements OnInit {
     })
     this.dateSelectionner(this.annee, this.societe);
     
-    this.effectifSocieteSelectionner(this.annee1, this.societe1);
-    this.onChanges();
-    this.onChangesSociete();
   }
 
-  onChanges(): void {
-    // this.anneeForm.get('anneeA').valueChanges.subscribe(val => {
-    //   if (val) {
-    //     this.dateSelectionner(val);
-    //   }
-    // });
-  }
-
-  onChangesSociete(): void {
-    // this.societeForm.get('societeS').valueChanges.subscribe(val => {
-    //   if (val) {
-    //     this.effectifSocieteSelectionner(val);
-    //   }
-    // });
-  }
+  
   exportStatInterimaireByYear() {
     this.otherService.exportStatInterimByYear(this.annee).subscribe(
       data => {
@@ -275,122 +258,17 @@ export class EffectifComponent implements OnInit {
     )
   }
 
-  effectifSocieteSelectionner(annee, societe){
-    this.otherService.statTotalInter(annee, societe).subscribe(
-      data => {
-      this.data = data;
-      this.dataStatEffectifSociete = this.data.data[0];
-      console.log(this.dataStatEffectifSociete);
-      this.directions = this.dataStatEffectifSociete.map(valueOfDirection => valueOfDirection.direction);
-      this.hommes = this.dataStatEffectifSociete.map(valueOfHomme => valueOfHomme.homme);
-      this.femmes = this.dataStatEffectifSociete.map(valueOfFemme => valueOfFemme.femme);
-      this.totalSociete = this.dataStatEffectifSociete.map(valueOfTotal => valueOfTotal.homme);
-      this.chartOptions2 = {
-        colors: [
-          "#ff7900",
-          "#009393",
-        ],
-        series: [
-          {
-            name: "Femmes",
-            data: this.femmes
-          },
-          {
-            name: "Hommes",
-            data: this.hommes
-          },
-        ],
-        chart: {
-          type: "bar",
-          height: 380,
-          width: 750,
-          stacked: false,
-          toolbar: {
-            show: false
-          },
-          zoom: {
-            enabled: false
-          }
-        },
-        responsive: [
-          {
-            breakpoint: 480,
-            options: {
-              legend: {
-                show: false,
-                position: "bottom",
-                offsetX: -10,
-                offsetY: 0
-              }
-            }
-          }
-        ],
-        plotOptions: {
-          bar: {
-            horizontal: false,
-            columnWidth: "20px",
-          //  endingShape: "rounded",
-          },
-        },
-        dataLabels: {
-          enabled: false,
-          style: {
-            colors: ['#f3f4f5', '#fff']
-          }
-        },
-        xaxis: {
-          type: "category",
-          categories: 
-            this.directions
-        },
-        legend: {
-          show: false,
-        },
-        fill: {
-          opacity: 4,
-        },
-      };
-      return this.chartOptions2;
-    })
-  }
-
   exportCsv(annee, societe): void {
-    if(annee == undefined) {
+    if(annee == undefined || annee == "") {
       annee = null;
     }
-    if(societe == undefined) {
+    if(societe == undefined || societe == null || societe == "") {
       societe = 1;
     }
     this.dateSelectionner(annee, societe);
     this.otherService.statInterByYear(annee, societe).subscribe((data: any) => {
       this.dataInter =  data.data;
       if(annee == null) {
-        this.extractionService.exportToCsv(
-          this.dataInter, 
-          'ExtractionStatAnnee' + '-' + this.date.getFullYear() + '-' + this.date.getMonth() + '-' + this.date.getDay() + '-' + this.date.getHours()+ '-' + this.date.getMinutes(),
-          ['annee', 'nouveaux', 'fin', 'total']
-        );
-      } else {
-        this.extractionService.exportToCsv(
-          this.dataInter, 
-          'ExtractionStatMois' + '-' + this.date.getFullYear() + '-' + this.date.getMonth() + '-' + this.date.getDay() + '-' + this.date.getHours()+ '-' + this.date.getMinutes(),
-          ['mois', 'nouveaux', 'fin', 'total']
-        );
-      }
-    })
-  }
-
-  exportCsv1(annee, societe): void {
-    if(annee == undefined) {
-      annee = null;
-    }
-    if(societe == undefined) {
-      societe = 1;
-    }
-    this.effectifSocieteSelectionner(annee, societe);
-    this.otherService.statTotalInter(annee, societe).subscribe((data: any) => {
-      this.dataInter =  data.data;
-      if(this.annee == null) {
         this.extractionService.exportToCsv(
           this.dataInter, 
           'ExtractionStatAnnee' + '-' + this.date.getFullYear() + '-' + this.date.getMonth() + '-' + this.date.getDay() + '-' + this.date.getHours()+ '-' + this.date.getMinutes(),

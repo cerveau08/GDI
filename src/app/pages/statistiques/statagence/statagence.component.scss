@@ -140,6 +140,11 @@
     height: 18px;
     width: 18px;
 }
+.label-input-search{
+    margin-top: 5px;
+    margin-bottom: 0;
+    font-size: 11px;
+}
 .filtrer-annees {
     display: flex;
     border: 1px solid #f5f6f9;
@@ -721,7 +726,6 @@ table {
     padding-bottom: 5px;
 }
 .diagra1 {
-    height: 320px;
     margin: 0 auto;
     margin-top: 0px;
     position: relative;
@@ -732,7 +736,26 @@ table {
         width: 10px !important;
     }
 }
-
+.content-all-legende{
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    width: 95%;
+    margin: 0 auto;
+}
+.item-legende{
+    display: flex;
+}
+.code-legende {
+    font-size: 13px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #009393;
+}
+.nom-legende {
+    font-size: 12px;
+    margin: 5px;
+}
 .selects-and-echelle {
     display: grid;
     grid-template-columns: 1fr 200px;

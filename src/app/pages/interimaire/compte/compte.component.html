@@ -2,12 +2,16 @@
     <div class="compte">
         <p class="detail">Détails</p>
         <div class="progres">
-            <p class="duree">Contrat <span>5 mois ( 35 jours</span> restant )</p>
+            <p class="duree">Contrat 
+                <span *ngIf="anneeRestant">{{anneeRestant}} année(s) </span>
+                <span *ngIf="moisRestant"> {{moisRestant}} mois </span>
+                <span> {{jourRestant}} jours</span> restant
+            </p>
             <div class="bar">
                 <div id="progress_bar">
-                    <div id="green_bar" [style.width]="getwidth()">&nbsp;</div>
+                    <div id="green_bar" [style.width]="percentRestantwidth">&nbsp;</div>
                 </div>
-                <div class="position" [style.left]="getposition()">
+                <div class="position" [style.left]="percentRestantposition">
                 </div>
             </div>
             <div class="datedebutetfin">

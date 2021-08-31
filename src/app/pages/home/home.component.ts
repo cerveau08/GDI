@@ -99,6 +99,16 @@ export class HomeComponent implements OnInit {
   dataStatEffectifGenre: any;
   nouveauxRrecrus;
   pmc;
+  infoContrat;
+  anneeRestant;
+  moisRestant;
+  jourRestant;
+  totalJourRestatnt;
+  percentRestantwidth;
+  percentRestantposition;
+  percentTotal;
+  dateFin;
+  totalJour;
   present;
   malade;
   conge;
@@ -133,14 +143,7 @@ export class HomeComponent implements OnInit {
       }
     );
 
-    this.otherService.getStatPresence().subscribe(
-      data => {
-        this.pmc = data.data;
-        this.present = this.pmc.present;
-        this.malade = this.pmc.malade;
-        this.conge = this.pmc.conge;
-      }
-    );
+    
   }
 
 
@@ -148,26 +151,54 @@ export class HomeComponent implements OnInit {
     this.prenom = localStorage.getItem('prenom');
     this.user = localStorage.getItem('user');
     if(this.user == 'INT') {
+      this.showHome = false;
+    } else {
+      this.showHome = true;
+    }
+    if(this.user != 'INT') {
+      this.otherService.getStatPresence().subscribe(
+        data => {
+          this.pmc = data.data;
+          this.present = this.pmc.present;
+          this.malade = this.pmc.malade;
+          this.conge = this.pmc.conge;
+        }
+      );
+      this.anneeForm = new FormGroup({
+        annee: new FormControl('')
+      })
+      this.dateSelectionner(this.annee);
+      this.genrePourcentage(String(this.id_societe));
+    }
+    if(this.user == 'INT') {
       this.interimaireInfo = JSON.parse(localStorage.getItem('currentUser'));
       this.otherService.getDetailsManagerById(this.interimaireInfo.manager.id).subscribe( 
         result => {
           this.data = result;
           this.managerinfo = this.data.data.detail;
-          console.log(this.managerinfo);
-          
           this.prenomManager = this.managerinfo.prenom;
           this.nomManager = this.managerinfo.nom;
           this.photoManager = this.managerinfo.photo;
           this.posteManager = this.managerinfo.fonction;
         }
       )
+      this.otherService.statContratInter(this.interimaireInfo.interimaire.id).subscribe(
+        data => {
+          this.infoContrat = data.data;
+          this.anneeRestant = this.infoContrat.dureeContratRestant.annees;
+          this.moisRestant = this.infoContrat.dureeContratRestant.mois;
+          this.jourRestant = this.infoContrat.dureeContratRestant.jours;
+          this.totalJour = this.infoContrat.dureeTotalContratEnJours;
+          this.totalJourRestatnt = this.infoContrat.dureeTotalContratRestantJours;
+          this.dateFin = this.infoContrat.dateFinContrat;
+          this.percentRestantwidth = 100 - (this.totalJourRestatnt / this.totalJour) * 100 +'%';
+          console.log(this.percentRestantwidth);
+          
+          this.percentRestantposition = 100 - (this.totalJourRestatnt / this.totalJour) * 100 - 1 +'%';
+        }
+      )
     }
-    console.log(this.interimaireInfo);
-      if(this.user == 'INT') {
-        this.showHome = false;
-      } else {
-        this.showHome = true;
-      }
+      
       this.otherService.getInter().subscribe(
         data => {
         this.dataInterFin = data.data;
@@ -181,11 +212,7 @@ export class HomeComponent implements OnInit {
           this.dataSociete = data["data"];
         }
       );
-      this.anneeForm = new FormGroup({
-        annee: new FormControl('')
-      })
       
-      this.dateSelectionner(this.annee);
       this.onChanges();
 
          
@@ -195,7 +222,6 @@ export class HomeComponent implements OnInit {
             this.lastnotif =data.data[0].description;
           }else{
             this.lastnotif ="Aucune notification "
-
           }
         }
       );
@@ -204,9 +230,7 @@ export class HomeComponent implements OnInit {
           this.dataSociete = data["data"];
         }
       );
-      
-      this.genrePourcentage(String(this.id_societe));
-    }
+  }
 
 
 

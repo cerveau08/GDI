@@ -216,97 +216,15 @@ export class GenreComponent implements OnInit {
     clearInterval(this.intervalId);
   }
 
-  //deuxieme
-  societeSelectionner(annee, societe){
-    this.annee = this.societeForm.value.anneeS;
-    this.societe = this.societeForm.value.societeS;
-    this.otherService.statTotalInter(annee, societe).subscribe(
-      data => {
-      this.data = data;
-      this.dataStatEffectifGenre = this.data.data[0];
-      this.directs = this.dataStatEffectifGenre;
-      this.directions = this.dataStatEffectifGenre.map(valueOfDirection => valueOfDirection.direction);
-      this.hommes = this.dataStatEffectifGenre.map(valueOfHomme => valueOfHomme.homme);
-      this.femmes = this.dataStatEffectifGenre.map(valueOfFemmes => valueOfFemmes.femme);
-    this.chartOptions3 = {
-      colors: [
-        "#009393",
-        "#ff7900"
-      ],
-      series: [
-        {
-          name: "Hommes",
-          data: this.hommes
-        },
-        {
-          name: "Femmes",
-          data: this.femmes
-        }
-      ],
-      chart: {
-        type: "bar",
-        height: 380,
-        width: 750,
-        stacked: false,
-        toolbar: {
-          show: false
-        },
-        zoom: {
-          enabled: false
-        }
-      },
-      responsive: [
-        {
-          breakpoint: 480,
-          options: {
-            legend: {
-              show: false,
-              position: "bottom",
-              offsetX: -10,
-              offsetY: 0
-            }
-          }
-        }
-      ],
-      plotOptions: {
-        bar: {
-          horizontal: false,
-          columnWidth: "20px",
-        //  endingShape: "rounded",
-        },
-      },
-      dataLabels: {
-        enabled: false,
-        style: {
-          colors: ['#f3f4f5', '#fff']
-        }
-      },
-      xaxis: {
-        type: "category",
-        categories: 
-          this.directions
-      },
-      legend: {
-        show: false,
-      },
-      fill: {
-        opacity: 4,
-      },
-    };
-    return this.chartOptions3;
-  },
-  )
-}
-
   exportCsv(annee, societe): void {
-    if(annee == undefined) {
+    if(annee == undefined || annee == "") {
       annee = null;
     }
-    if(societe == undefined) {
+    if(societe == undefined || societe == "" || societe == null) {
       societe = 1;
     }
     this.societeSelectionner(annee, societe);
-    this.otherService.statInterByYear(annee, societe).subscribe((data: any) => {
+    this.otherService.statTotalInter(annee, societe).subscribe((data: any) => {
       this.dataStatEffectifGenre = data.data[0];
         this.extractionService.exportToCsv(
           this.dataStatEffectifGenre, 
@@ -315,6 +233,89 @@ export class GenreComponent implements OnInit {
         );
     })
   }
+
+  //deuxieme
+  societeSelectionner(annee, societe){
+    this.annee = this.societeForm.value.anneeS;
+    this.societe = this.societeForm.value.societeS;
+    this.otherService.statTotalInter(annee, societe).subscribe(
+      data => {
+        this.data = data;
+        this.dataStatEffectifGenre = this.data.data[0];
+        this.directs = this.dataStatEffectifGenre;
+        this.directions = this.dataStatEffectifGenre.map(valueOfDirection => valueOfDirection.direction);
+        this.hommes = this.dataStatEffectifGenre.map(valueOfHomme => valueOfHomme.homme);
+        this.femmes = this.dataStatEffectifGenre.map(valueOfFemmes => valueOfFemmes.femme);
+        this.chartOptions3 = {
+          colors: [
+            "#009393",
+            "#ff7900"
+          ],
+          series: [
+            {
+              name: "Hommes",
+              data: this.hommes
+            },
+            {
+              name: "Femmes",
+              data: this.femmes
+            }
+          ],
+          chart: {
+            type: "bar",
+            height: 380,
+            width: 750,
+            stacked: false,
+            toolbar: {
+              show: false
+            },
+            zoom: {
+              enabled: false
+            }
+          },
+          responsive: [
+            {
+              breakpoint: 480,
+              options: {
+                legend: {
+                  show: false,
+                  position: "bottom",
+                  offsetX: -10,
+                  offsetY: 0
+                }
+              }
+            }
+          ],
+          plotOptions: {
+            bar: {
+              horizontal: false,
+              columnWidth: "20px",
+            //  endingShape: "rounded",
+            },
+          },
+          dataLabels: {
+            enabled: false,
+            style: {
+              colors: ['#f3f4f5', '#fff']
+            }
+          },
+          xaxis: {
+            type: "category",
+            categories: 
+              this.directions
+          },
+          legend: {
+            show: false,
+          },
+          fill: {
+            opacity: 4,
+          },
+        };
+        return this.chartOptions3;
+      },
+    )
+  }
+
 
   exportCsv1(societe): void {
     if(societe == undefined || societe == "") {

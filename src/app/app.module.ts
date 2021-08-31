@@ -121,6 +121,7 @@ import { AjoutfonctionComponent } from './pages/settings/fonction/ajoutfonction/
 import { ListfonctionComponent } from './pages/settings/fonction/listfonction/listfonction.component';
 import { ToastrModule } from 'ngx-toastr';
 import { DomaineComponent } from './pages/statistiques/domaine/domaine.component';
+import { StatsiteComponent } from './pages/statistiques/statsite/statsite.component';
 ;
 
 @NgModule({
@@ -216,6 +217,7 @@ import { DomaineComponent } from './pages/statistiques/domaine/domaine.component
     AjoutfonctionComponent,
     ListfonctionComponent,
     DomaineComponent,
+    StatsiteComponent,
   ],
   imports: [
     BrowserModule,
