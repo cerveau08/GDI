@@ -2,10 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
 import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { DataService } from 'src/app/service/data.service';
-import { PaginationService } from 'src/app/service/pagination.service';
-import { ModalService } from 'src/app/modal/_modal';
-import {OthersService} from '../../../services/others.service';
 import { environment } from 'src/environments/environment';
 import { ErrormodalService } from 'src/app/modal/_errormodals';
 

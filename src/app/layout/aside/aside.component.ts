@@ -25,6 +25,8 @@ export class AsideComponent implements OnInit {
   present;
   malade;
   conge;
+  page = 1;
+  itemsPerPage = 10;
   constructor(private dataService: DataService,private otherService: OthersService) {
     this.otherService.getInter().subscribe(
       data => {
@@ -63,7 +65,7 @@ export class AsideComponent implements OnInit {
     this.data = this .dataService.getData();
     
     if(this.user == 'INT') {
-      this.otherService.getDetailsManagerById(this.currentUser.manager.id).subscribe( 
+      this.otherService.getDetailsManagerById(this.page, this.itemsPerPage, this.currentUser.manager.id).subscribe( 
         result => {
           console.log(result);
           this.data = result;

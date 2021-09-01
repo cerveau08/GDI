@@ -29,7 +29,7 @@ export type ChartOptions = {
 })
 export class HomeComponent implements OnInit {
 
-
+  loading = true;
   anneeForm: FormGroup;
   lastTenYear;
   societe = 1;
@@ -78,6 +78,8 @@ export class HomeComponent implements OnInit {
   filterterm: string;
   pagedItems: any[];
   progress = 0;
+  page = 1;
+  itemsPerPage = 10;
   progressBar = document.querySelector(".progress-bar");
   intervalId;
   public restant: any;
@@ -136,14 +138,11 @@ export class HomeComponent implements OnInit {
       }
     );
 
-    
     this.otherService.getNouveauRecrus().subscribe(
       data => {
        this.nouveauxRrecrus = data.data;
       }
     );
-
-    
   }
 
 
@@ -172,8 +171,9 @@ export class HomeComponent implements OnInit {
     }
     if(this.user == 'INT') {
       this.interimaireInfo = JSON.parse(localStorage.getItem('currentUser'));
-      this.otherService.getDetailsManagerById(this.interimaireInfo.manager.id).subscribe( 
+      this.otherService.getDetailsManagerById(this.page, this.itemsPerPage, this.interimaireInfo.manager.id).subscribe( 
         result => {
+          this.loading = false;
           this.data = result;
           this.managerinfo = this.data.data.detail;
           this.prenomManager = this.managerinfo.prenom;
@@ -184,6 +184,7 @@ export class HomeComponent implements OnInit {
       )
       this.otherService.statContratInter(this.interimaireInfo.interimaire.id).subscribe(
         data => {
+          this.loading = false;
           this.infoContrat = data.data;
           this.anneeRestant = this.infoContrat.dureeContratRestant.annees;
           this.moisRestant = this.infoContrat.dureeContratRestant.mois;
@@ -192,8 +193,6 @@ export class HomeComponent implements OnInit {
           this.totalJourRestatnt = this.infoContrat.dureeTotalContratRestantJours;
           this.dateFin = this.infoContrat.dateFinContrat;
           this.percentRestantwidth = 100 - (this.totalJourRestatnt / this.totalJour) * 100 +'%';
-          console.log(this.percentRestantwidth);
-          
           this.percentRestantposition = 100 - (this.totalJourRestatnt / this.totalJour) * 100 - 1 +'%';
         }
       )
@@ -248,6 +247,7 @@ export class HomeComponent implements OnInit {
       const getDownloadProgress = () => {
         this.otherService.statInterPourcent(id_societe).subscribe(
           data => {
+            this.loading = false;
             this.data = data;
             this.dataStatEffectifGenre = this.data.data[0];
             this.femme= this.dataStatEffectifGenre.femme;
@@ -304,6 +304,7 @@ export class HomeComponent implements OnInit {
     }
     this.otherService.statInterByYear(this.annee, this.societe).subscribe(
       data => {
+        this.loading = false;
         this.dataYear = data;
         this.dataStatEffectifAnnee = this.dataYear.data;
         if(value == null) {
@@ -341,8 +342,8 @@ export class HomeComponent implements OnInit {
           ],
           chart: {
             type: "bar",
-            height: 210,
-            width: 338,
+            height: 220,
+            width: 388,
             stacked: true,
             toolbar: {
               show: false

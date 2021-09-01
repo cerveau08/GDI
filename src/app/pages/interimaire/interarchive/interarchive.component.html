@@ -2,41 +2,26 @@
     <div class="tableau">
         <p class="detail1" id="mydesc">Liste des interimaires archivés</p>
         <div class="exporter">
-            <form [formGroup]="filterForm" class="formtab">
+            <form [formGroup]="filterForm">
                 <div class="exporter">
                     <div class="content-input-extraction">
-                        <!-- <div class="filtrer-mois">
-                            <p class="label-input"  for="titre">Admissible seulement: </p>
-                            <input type="text" formControlName="prenom" class="input-extraction" >
-                            <datalist id="professions">
-                              <option></option>
-                            </datalist>
-                        </div> -->
-                        <!-- <div class="filter_mois styled">
-                            <label class="container content-extraction">Admissible seulement
-                                <input formControlName="admissible" type="checkbox" 
-                                [checked]="isAdmissible"
-                                [(ngModel)]="isAdmissible"
-                                [value]="isAdmissible" 
-                                (change)="checkValue($event.target)" >
-                                <span class="icon-search"></span>
-                              </label>
+                        <div class="filtrer-mois">
+                            <p class="label-input" for="titre">Société: </p>
+                            <select type="number" formControlName="societe" class="select-mois">
+                                <option value="null">Aucun Choix</option>
+                                <option *ngFor="let data of dataSociete"  [value]="data.id">{{data.libelle}}</option>
+                            </select>
+                        </div>
+                        <div class="filtrer-mois">
+                            <p class="label-input" for="titre">Admissibilité: </p>
+                            <select  formControlName="admissible" class="select-mois" >
+                                <option value="null">Aucun Choix</option>
+                                <option *ngFor="let data of listeAdmissible"  [value]="data.value">{{data.libelle}}</option>
+                            </select>
                         </div>
                         <div class="content-extraction">
-                            <mat-icon class="icon-search" fontSet="material-icons-outlined"  (click)="gty(page)" >search</mat-icon>
-                        </div> -->
-                        <div class="content-extraction">
-                            <button (click)="gtyYes(page)" class="button-admissible">Admissible</button>
+                            <button (click)="gty(page)" class="button-extraire">Filtrer</button>
                         </div>
-                        <div class="content-extraction">
-                            <button (click)="gtyNon(page)" class="button-non-admissible">Non Admissible</button>
-                        </div>
-                        <div class="content-extraction">
-                            <button (click)="gty(page)" class="button-extraire">Tout</button>
-                        </div>
-                    </div>
-                    <div class="content-error-msg" >
-                        <p class="error-alert"></p>
                     </div>
                 </div>
             </form>
@@ -44,18 +29,8 @@
         <table style="overflow-x:auto;"aria-describedby = "mydesc" >
             <thead>
                 <tr class="head">
-                    <th class="typ" id="prenom">
-                        <div class="type">
-                            <p>Prenom</p> 
-                            <mat-icon class="updown" fontSet="material-icons-outlined">unfold_more</mat-icon>
-                        </div>
-                    </th>
-                    <th class="typ" id="nom">
-                        <div class="type2">
-                            <p>Nom</p> 
-                            <mat-icon class="updown" fontSet="material-icons-outlined">unfold_more</mat-icon>
-                        </div>
-                    </th>
+                    <th class="typ" id="prenom">Prenom</th>
+                    <th class="typ" id="nom">Nom</th>
                     <th  id="direction">Direction</th>
                     <th  id="direction">Poste</th>
                     <th *ngIf="user != 'AGN'" id="agence">Agence</th>
@@ -73,7 +48,7 @@
                     <td (click)="openDetail(p.id)" >{{p.direction}}</td>
                     <td (click)="openDetail(p.id)" >{{p.poste}}</td>
                     <td *ngIf="user != 'AGN'" (click)="openDetail(p.id)" >{{p.agence}}</td>
-                    <td (click)="openDetail(p.id)"><div [style.background]="getcolor1(p)" class="status"></div></td>
+                    <td (click)="openDetail(p.id)"><div [style.background]="p.admissible" class="status"></div></td>
                 </tr>
             </tbody>
             

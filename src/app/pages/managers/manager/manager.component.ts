@@ -27,6 +27,7 @@ export class ManagerComponent implements OnInit {
   dataInterFin;
   managerinfo;
   errorMsg: any;
+  datasInter: any;
   @HostListener('window:resize', ['$event'])
   getScreenSize(event?) {
         this.scrHeight = window.innerHeight;
@@ -47,13 +48,7 @@ export class ManagerComponent implements OnInit {
   ngOnInit() {
     this.user = localStorage.getItem('user');
     this.item = JSON.parse(localStorage.getItem('currentUser'));
-    this.otherService.getDetailsManagerById(this.item.data.id).subscribe( 
-      result => {
-        this.data = result;
-        this.managerinfo = this.data.data.detail
-        this.datas = this.data.data.interimaires
-      }
-    )
+    
     if(this.user == 'inter') {
       this.showHome = false;
     } else {
@@ -69,10 +64,14 @@ export class ManagerComponent implements OnInit {
   }
 
   gty(page: any){
-    this.http.get(this.reqUrl + `/manager/${this.item.data.id}?page=${page}&limit=${this.itemsPerPage}`).subscribe((data: any) => {
-      this.datas =  data.data;
-      this.totalItems = this.datas.total
-    })
+    this.otherService.getDetailsManagerById(page, this.itemsPerPage, this.item.data.id).subscribe( 
+      result => {
+        this.data = result;
+        this.managerinfo = this.data.data.detail
+        this.datasInter = this.data.data.interimaires
+        this.totalItems = this.data.data.total
+      }
+    )
   }
 
   openModal(id: string) {

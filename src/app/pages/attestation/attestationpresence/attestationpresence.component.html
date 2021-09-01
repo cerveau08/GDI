@@ -40,24 +40,9 @@
                 <thead>
                     <tr class="head">
                         <th id="manager">Matricule</th>
-                        <th class="typ" id="prenom">
-                            <div class="type">
-                                <p>Prénom</p> 
-                                <mat-icon class="updown" fontSet="material-icons-outlined">unfold_more</mat-icon>
-                            </div>
-                        </th>
-                        <th class="typ" id="nom">
-                            <div class="type">
-                                <p>Nom</p> 
-                                <mat-icon class="updown" fontSet="material-icons-outlined">unfold_more</mat-icon>
-                            </div>
-                        </th>
-                        <th class="typ" id="reference   ">
-                            <div class="type">
-                                <p>Référence</p> 
-                                <mat-icon class="updown" fontSet="material-icons-outlined">unfold_more</mat-icon>
-                            </div>
-                        </th>
+                        <th class="typ" id="prenom">Prénom</th>
+                        <th class="typ" id="nom">Nom</th>
+                        <th class="typ" id="reference">Référence</th>
                         <th *ngIf="user != 'AGN' && user != 'INT'" id="action">Agence</th>
                         <th id="contrat">Période</th>
                         <th id="contrat">Absence</th>
@@ -70,8 +55,9 @@
                 </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let p of dataAttest | filter:filterterm | paginate: { itemsPerPage: 8, currentPage: p }; let i = index">
-                        <td >{{p.dateFin | date:'ddMMyyyy'}}</td>
+                    <tr *ngFor="let p of dataAttest | filter:filterterm | paginate: { 
+                        itemsPerPage: 8, currentPage: p }; let i = index" (click)="openDetail(p.id)" style="cursor: pointer;">
+                        <td >{{p.matricule}}</td>
                         <td>{{p.prenom}}</td>
                         <td>{{p.nom}}</td>
                         <td>{{p.reference}}</td>

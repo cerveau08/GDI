@@ -27,12 +27,12 @@ export class InterarchiveComponent implements OnInit {
   public p: any;
   pagedItems: any[];
   date: any;
-  admissible=false;
+  admissible = null;
   dateFin;
   user;
   showupdate;
   dataInterArchiv;
-  isAdmissible: boolean;
+  societe = null;
   scrHeight:any;
   scrWidth:any;
   errorMsg: any;
@@ -40,6 +40,8 @@ export class InterarchiveComponent implements OnInit {
   public nom = null;
   public email = null;
   public agence = null;
+  listeAdmissible: {}[];
+  dataSociete: any;
   @HostListener('window:resize', ['$event'])
   getScreenSize(event?) {
         this.scrHeight = window.innerHeight;
@@ -69,37 +71,44 @@ export class InterarchiveComponent implements OnInit {
     } else {
       this.showupdate = false;
     }
-
+    this.otherService.getAllSociete().subscribe(
+      data => {
+        this.dataSociete = data["data"];
+      }
+    );
+    
+    this.listeAdmissible = [
+      {
+        libelle: 'Admissible',
+        value: true
+      },
+      {
+        libelle: 'Non Admissible',
+        value: false
+      },
+    ]
 
     this.filterForm = new FormGroup({
-      admissible: new FormControl('')
-      
+      admissible: new FormControl(''),
+      societe: new FormControl('')
     });
 
-    this.demandeForm = new FormGroup({
-      moi: new FormControl (''),
-      somme: new FormControl('')
-    });
     this.gty(this.page);
   }
 
 
   gty(page: any){
-    this.otherService.listArchivedFilter(this.page, this.itemsPerPage, false).subscribe((data: any) => {
-      this.dataInterArchiv =  data.data;
-      this.totalItems = data.total;
-    })
-  }
-
-  gtyYes(page: any){
-    this.otherService.listArchivedFilter(this.page, this.itemsPerPage, true).subscribe((data: any) => {
-      this.dataInterArchiv =  data.data;
-      this.totalItems = data.total;
-    })
-  }
-
-  gtyNon(page: any){
-    this.otherService.listArchivedFilter(this.page, this.itemsPerPage, false).subscribe((data: any) => {
+    if(this.filterForm.value.admissible == undefined || this.filterForm.value.admissible == "") {
+      this.admissible = null;
+    } else {
+      this.admissible = this.filterForm.value.admissible;
+    }
+    if(this.filterForm.value.societe == undefined || this.filterForm.value.societe == "") {
+      this.societe = null;
+    } else {
+      this.societe = this.filterForm.value.societe;
+    }
+    this.otherService.listArchivedFilter(page, this.itemsPerPage, this.admissible, this.societe).subscribe((data: any) => {
       this.dataInterArchiv =  data.data;
       this.totalItems = data.total;
     })

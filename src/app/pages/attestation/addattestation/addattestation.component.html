@@ -34,7 +34,7 @@
                     <tbody formArrayName="interDetail">
                         <!-- <tr *ngFor="let p of dataInter | filter:filterterm | paginate: { itemsPerPage: 2, currentPage: p }; let i = index" [formGroupName]="i"> -->
                         <tr *ngFor="let p of dataInter ; let i = index" [formGroupName]="i">
-                            <td class="col-matricule" >{{p.fin_contrat  | date:'ddMMyyyy'}}</td>
+                            <td class="col-matricule" >{{p.matricule}}</td>
                             <td class="col-prenom" >{{p.prenom}}</td>
                             <td class="col-nom">{{p.nom}}</td>
                             <td class="col-agence" *ngIf="scrWidth>991" >{{p.agence}}</td>

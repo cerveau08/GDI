@@ -133,6 +133,7 @@ export class AttestationpresenceComponent implements OnInit {
       }
     )
   }
+
   selectAll() {
     for (var i = 0; i < this.dataAttest.length; i++) {
       this.dataAttest[i].etat = this.selectedAll;

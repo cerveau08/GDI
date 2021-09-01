@@ -35,8 +35,9 @@ export class OthersService {
     return this.http.get<any>(this.reqUrl + '/managers/list');
   } 
   // details manager
-  getDetailsManagerById(id: number) {
-    return this.http.get(this.reqUrl + `/manager/${id}`);
+  getDetailsManagerById(page, limit, id, ) {
+    const data = {page: page, limit: limit};
+    return this.http.get(this.reqUrl + `/manager/${id}`, {params: data});
   }
   //liste des demandes
   getListDemandes(): Observable<any> {
@@ -275,8 +276,6 @@ addAgence(data) {
   getListAttestation() {
     return this.http.get<any>(`${this.reqUrl}/listeAttestation`);
   }
-
-
   attestionMesInter(){
     return this.http.get<any>(this.reqUrl + '/attestationMesInterimaires');
   }
@@ -341,8 +340,8 @@ addAgence(data) {
   }
 
 
-  listArchivedFilter(page, limit, admissible) {
-    const data = {page: page, limit: limit ,admissible:admissible};
+  listArchivedFilter(page, limit, admissible, societe) {
+    const data = {page: page, limit: limit, admissible: admissible ,societe: societe};
     return this.http.get<any>(this.reqUrl + '/listArchived', {params: data});
   }
 
@@ -464,5 +463,9 @@ addAgence(data) {
 
   statContratInter(id: number) {
     return this.http.get<any>(`${this.reqUrl}/interimaireDashboard/${id}`);
+  }
+
+  listeInterForAttestation(){
+    return this.http.get<any>(`${this.reqUrl}/interimForAttestation`);
   }
 }

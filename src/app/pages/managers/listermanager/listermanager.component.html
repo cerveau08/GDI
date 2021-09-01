@@ -16,22 +16,12 @@
             <thead>
                 <tr class="head">
                     <th id="direction">Matricule</th>
-                    <th class="typ" id="prenom">
-                        <div class="type">
-                            <p>Prenom</p> 
-                            <mat-icon class="updown" fontSet="material-icons-outlined">unfold_more</mat-icon>
-                        </div>
-                    </th>
-                    <th class="typ" id="nom">
-                        <div class="type2">
-                            <p>Nom</p> 
-                            <mat-icon class="updown" fontSet="material-icons-outlined">unfold_more</mat-icon>
-                        </div>
-                    </th>
+                    <th class="typ" id="prenom">Prenom</th>
+                    <th class="typ" id="nom">Nom</th>
                     <th *ngIf="scrWidth>991" id="profil">Profil</th>
                     <th id="dep">Structure</th>
                     <th id="nbr">Nbre Interimaires</th>
-            </tr>
+                </tr>
             </thead>
             <tbody>
                 <tr (click)="openDetail(p)" style="cursor: pointer;" *ngFor="let p of datas | filter:filterterm | paginate: { 

@@ -1,6 +1,14 @@
 .all-nav {
-  height: 650px;
+ // height: 650px;
   background-color: white;
+}
+.content-all-nav{
+  position: fixed;
+  padding-bottom: 30px;
+  overflow: scroll;
+}
+.vide-content {
+  height: 80px;
 }
 li {
     list-style-type: none;

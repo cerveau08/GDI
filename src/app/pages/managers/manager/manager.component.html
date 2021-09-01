@@ -25,33 +25,26 @@
             <table style="overflow-x:auto;" aria-describedby = "mydesc">
                 <thead>
                     <tr class="head">
-                        <th class="typ" id="preno;">
-                            <div class="type">
-                                <p>Prénom</p> 
-                            </div>
-                        </th>
-                        <th class="typ" id="nom">
-                            <div class="type">
-                                <p>Nom</p> 
-                            </div>
-                        </th>
+                        <th class="typ" id="preno;">Matricule</th>
+                        <th class="typ" id="preno;">Prénom</th>
+                        <th class="typ" id="nom">Nom</th>
                         <th id="agence">Agence</th>
                         <th id="contrat">Fin de contrat</th>
                 </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let p of datas | paginate: { 
+                    <tr *ngFor="let p of datasInter | paginate: { 
                         itemsPerPage: itemsPerPage,
                         currentPage: page,
                         totalItems: totalItems
                         }; let i = index">
+                        <td>{{p.matricule}}</td>
                         <td>{{p.prenom}}</td>
                         <td>{{p.nom}}</td>
                         <td>{{p.nomAgence}}</td>
                         <td>{{p.dateFinContrat}}</td>
                     </tr>
                 </tbody>
-                
             </table>
             <pagination-controls (pageChange)="gty(page = $event)" previousLabel="Prcédent" nextLabel="Suivant"></pagination-controls>
         </div>

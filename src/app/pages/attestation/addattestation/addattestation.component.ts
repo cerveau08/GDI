@@ -143,7 +143,7 @@ export class AddattestationComponent implements OnInit {
     return this.lastTenYear
   }
   gty(page: any){
-    this.http.get(this.reqUrl + `/interimSousContrat`).subscribe((data: any) => {
+    this.otherService.listeInterForAttestation().subscribe((data: any) => {
       this.dataInter =  data.data;
       this.totalItems = data.total;
       this.attestationForm = this.formBuilder.group({

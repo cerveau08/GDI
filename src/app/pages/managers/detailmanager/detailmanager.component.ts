@@ -28,6 +28,7 @@ export class DetailmanagerComponent implements OnInit {
   managerinfo;
   errorMsg: any;
   DemoDoc1;
+  datasInter: any;
   @HostListener('window:resize', ['$event'])
   getScreenSize(event?) {
         this.scrHeight = window.innerHeight;
@@ -35,7 +36,7 @@ export class DetailmanagerComponent implements OnInit {
         console.log(this.scrHeight, this.scrWidth);
   }
   page = 1;
-  itemsPerPage = 10;
+  itemsPerPage = 6;
   totalItems : any;
   public reqUrl = environment.base_url;
   constructor(private modalService: ModalService,
@@ -53,13 +54,6 @@ export class DetailmanagerComponent implements OnInit {
 
   ngOnInit() {
     this.user = localStorage.getItem('user');
-    this.otherService.getDetailsManagerById(this.item).subscribe( 
-      result => {
-        this.data = result;
-        this.managerinfo = this.data.data.detail
-        this.datas = this.data.data.interimaires
-      }
-    )
     if(this.user == 'inter') {
       this.showHome = false;
     } else {
@@ -75,10 +69,14 @@ export class DetailmanagerComponent implements OnInit {
   }
 
   gty(page: any){
-    this.http.get(this.reqUrl + `/manager/${this.item}?page=${page}&limit=${this.itemsPerPage}`).subscribe((data: any) => {
-      this.datas =  data.data;
-      this.totalItems = this.datas.total
-    })
+    this.otherService.getDetailsManagerById(page, this.itemsPerPage, this.item).subscribe( 
+      result => {
+        this.data = result;
+        this.managerinfo = this.data.data.detail
+        this.datasInter = this.data.data.interimaires
+        this.totalItems = this.data.data.total
+      }
+    )
   }
 
   openModal(id: string) {

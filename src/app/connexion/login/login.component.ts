@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   statusLogin;
   scrHeight:any;
   scrWidth:any;
-  loading: boolean;
+  loading = false;
   constructor(private route: Router,
               private auth: AuthService) {
                 this.getScreenSize()
@@ -38,6 +38,7 @@ export class LoginComponent implements OnInit {
     this.loading = true;
     this.auth.login(this.loginForm.value).subscribe(
       data => {
+        this.loading = false;
         this.dataLogin = data;
         console.log(data);
         this.statusLogin = this.dataLogin.status;

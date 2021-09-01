@@ -40,18 +40,8 @@
                 <thead>
                     <tr class="head">
                         <th id="manager">Matricule</th>
-                        <th class="typ" id="prenom">
-                            <div class="type">
-                                <p>Prénom</p> 
-                                <mat-icon class="updown" fontSet="material-icons-outlined">unfold_more</mat-icon>
-                            </div>
-                        </th>
-                        <th class="typ" id="nom">
-                            <div class="type">
-                                <p>Nom</p> 
-                                <mat-icon class="updown" fontSet="material-icons-outlined">unfold_more</mat-icon>
-                            </div>
-                        </th>
+                        <th class="typ" id="prenom">Prénom</th>
+                        <th class="typ" id="nom">Nom</th>
                         <th *ngIf="user != 'AGN' && user != 'INT'" id="action">Agence</th>
                         <th id="contrat">Période</th>
                         <th id="contrat">Absence</th>
@@ -59,7 +49,8 @@
                 </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let p of dataAttest | paginate: { itemsPerPage: 8, currentPage: p }; let i = index">
+                    <tr *ngFor="let p of dataAttest | paginate: { 
+                        itemsPerPage: 8, currentPage: p }; let i = index" (click)="openDetail(p.id)" style="cursor: pointer;">
                         <td >{{p.matricule}}</td>
                         <td>{{p.prenom}}</td>
                         <td>{{p.nom}}</td>

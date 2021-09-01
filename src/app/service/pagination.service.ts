@@ -137,7 +137,9 @@ export class PaginationService {
           title: 'Pour tous',  path: 'listeattestation',
         }, {
           title: 'Pour mes Interimaires',  path: 'attestationmesinterimaires',
-        },
+        },{
+          id: 1,  title: 'Ajouter Attestation',  path: 'addattestation',
+        }
       ]
     },{
       id: 5,  title: 'Liste Restauration',
