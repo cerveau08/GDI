@@ -47,8 +47,8 @@ export class PaginationService {
       id: 7,  title: 'Alertes',
       path: '/',  icon: "query_builder",
     },{
-      id: 8,  title: 'Attestat',
-      path: 'attestationmesinterimaires',  icon: "folder_shared",
+      id: 8,  title: 'Attestation',
+      path: 'attestationmesinterimaires',  icon: "bookmark",
     },{
       id: 9,  title: 'Statistiques',
       path: '/',  icon: "leaderboard",
@@ -78,7 +78,7 @@ export class PaginationService {
       click: false,  activeChoice: -1,
     }, {
       id: 4,  title: 'Liste Attestations',
-      path: 'attestation',  icon: "grade",
+      path: 'attestation',  icon: "bookmark_border",
     },{
       id: 7,  title: 'Alertes',
       path: 'alertes',  icon: "query_builder",
@@ -130,7 +130,7 @@ export class PaginationService {
         },
       ]
     },{
-      id: 5,  title: 'Liste Attestations',  icon: "grade",
+      id: 5,  title: 'Liste Attestations',  icon: "bookmark_border",
       icon2: "expand_more",  icon3: "expand_less",
     //  click: false,  activeChoice: -1,
       liste: [  {
@@ -244,7 +244,7 @@ export class PaginationService {
       ]
     }, {
       id: 4,  title: 'Liste Attestations',
-      path: 'attestation',  icon: "done_all",
+      path: 'attestation',  icon: "bookmark_border",
     },{
       id: 5,  title: 'Demandes',
       path: 'lesdemande',  icon: "local_mall",
@@ -281,7 +281,7 @@ export class PaginationService {
       ]
     }, {
       id: 3,  title: 'Attestation',
-      icon: "done_all",  icon2: "expand_more", icon3: "expand_less",
+      icon: "bookmark_border",  icon2: "expand_more", icon3: "expand_less",
       liste: [{
           id: 1,  title: 'Ajouter Attestation',  path: 'addattestation',
         }, {

@@ -28,17 +28,29 @@
             <div class="detail-donnees">
                 <div class="elmt" >
                     <div class="tit1">
-                        <div class="titre">
-                            <img alt="" src="../assets/images/restaurant.png">
-                            <p>Paiement</p>
+                        <div class="titre-evaluation">
+                            <mat-icon class="icone-evaluation">grade</mat-icon>
+                            <p class="text-titre-evaluation">Evaluation</p>
                         </div>
                     </div>
-                    <div class="nombre">
-                        <img alt="" src="../assets/images/en-attent-1.png">
+                    <div class="content-note-evaluation">
+                        <p class="note-libelle-evaluation">note: </p>
+                        <p class="note-evaluation">{{noteEvaluation}}</p>
                     </div>
-                    <p class="mois">En attente</p>
-                    <div class="bouton">
-                        <button  class="button">Avril</button>
+                    <div class="content-periode">
+                        <p class="periode-debut">Période du 
+                            <span>{{dateDebutEvaluation | date: 'dd MMMM yyyy'}}</span>
+                        </p>
+                        <p class="periode-debut">au 
+                            <span>{{dateFinEvaluation | date: 'dd MMMM yyyy'}}</span>
+                        </p>
+                    </div>
+                    <div class="content-nombre-objectif">
+                        <p  class="nombre-objectif">Nombre objectifs évalués: </p>
+                        <p class="valeur-nbr-objectif">{{nombreObjectif}}</p>
+                    </div>
+                    <div class="content-bouton-detail">
+                        <button class="bouton-detail">Détail</button>
                     </div>
                 </div>
                 <div class="elmt1" title="messages">
@@ -58,17 +70,35 @@
                 </div>
                 <div class="elmt2" >
                     <div class="tit2">
-                        <div class="titre2">
-                            <img alt="" src="../assets/images/file.png">
-                            <p>Attestations</p>
+                        <div class="titre-evaluation">
+                            <mat-icon class="icone-evaluation">bookmark</mat-icon>
+                            <p class="text-titre-evaluation">Attestation</p>
                         </div>
                     </div>
-                    <div class="nombre2">
-                        <p class="chiffr">1</p>
+                    <div class="content-periode-attestation">
+                        <p class="periode-debut">Période du 
+                            <span>{{dateDebutAttestation | date: 'dd MMMM yyyy'}}</span>
+                        </p>
+                        <p class="periode-debut">au 
+                            <span>{{dateFinAttestation | date: 'dd MMMM yyyy'}}</span>
+                        </p>
                     </div>
-                    <p class="mois2">Disponible</p>
-                    <div class="bouton">
-                        <button routerLink="/accueil/listeattestation" class="button">Voir</button>
+                    <div class="content-jours-attestation">
+                        <p class="nbr-jour">Nombre de jours d'absence:  
+                            <span>{{nbr_jour}}</span>
+                        </p>
+                    </div>
+                    <p class="statut-attestation">Statut: 
+                        <span class="disponible" *ngIf="statutAttestation == 'VALIDER'">{{statutAttestation}}</span>
+                            <span class="en-attente" *ngIf="statutAttestation == 'EN ATTENTE'">{{statutAttestation}}</span>
+                    </p>
+                    <div class="content-periode">
+                        <p class="periode-debut">Date de création: 
+                            <span>{{dateCreationAttestation | date: 'dd MMMM yyyy'}}</span>
+                        </p>
+                    </div>
+                    <div class="content-bouton-detail">
+                        <button routerLink="/accueil/listeattestation" class="bouton-detail">Détail</button>
                     </div>
                 </div>
             </div>

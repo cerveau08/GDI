@@ -9,6 +9,121 @@
     margin-right: 0px;
     padding: 10px;
 }
+.titre-evaluation{
+    display: flex;
+}
+.text-titre-evaluation{
+    margin-top: 15px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.13px;
+    color: #000000; 
+}
+.content-note-evaluation{
+    display: flex;
+}
+.note-libelle-evaluation{
+    font-size: 14px;
+    font-weight: 800;
+    margin-top: 50px;
+    margin-left: 30px;
+}
+.note-evaluation{
+    font-weight: 800;
+    color: #009393;
+    text-align: center;
+    margin-left: 5px;
+    margin-top: 10px !important;
+    margin-bottom: 0px !important;
+    font-size: 55px;
+}
+.content-nombre-objectif{
+    display: flex;
+    margin-top: 5px;
+    margin-left: 10px;
+}
+.valeur-nbr-objectif{
+    color: #ff7900;
+    font-size: 30px;
+    margin-top: 0px;
+    margin-left: 10px;
+    margin-bottom: 0;
+    font-weight: 800;
+}
+.content-bouton-detail{
+    width: 60px;
+    margin: 0 auto;
+    margin-top: 5px;
+}
+.bouton-detail{
+    color: white;
+    background-color: #009393;
+    border: none;
+    outline: none;
+    height: 30px;
+    width: 60px;
+}
+.statut-attestation{
+    margin-top: 15px;
+    font-size: 14px;
+    margin-bottom: 0;
+    margin-left: 10px;
+    .disponible {
+        color: #009393;
+        font-size: 16px;
+    }
+    .en-attente {
+        color: #ff7900;
+        font-size: 16px;
+        font-weight: 600;
+    }
+}
+.nbr-jour{
+    font-size: 13px;
+    margin-top: 10px;
+    margin-bottom: 0;
+    margin-left: 10px;
+    span {
+        font-size: 20px;
+        font-weight: 800;
+    }
+}
+.content-periode-attestation{
+    margin-top: 15px;
+}
+.content-jours-attestation{
+    margin-top: 15px;
+}
+.nombre-objectif{
+    font-size: 13px;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+.content-periode{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.periode-debut{
+    text-align: center;
+    font-size: 14px;
+    margin-top: 0;
+    margin-bottom: 0;
+    span {
+        font-weight: 800;
+    }
+}
+.icone-evaluation{
+    height: 40px;
+    width: 40px;
+    font-size: 40px;
+    margin-top: 5px;
+}
 .bien{
     font-size: 26px;
     font-weight: bold;
@@ -113,15 +228,16 @@
 
 .titre {
     display: flex;
-    margin: 10px auto;
+    margin: 0px auto;
     img {
         height: 46px;
         width: 24px;
     }
     p{
-        margin-top: 10px;
+       margin-top: 10px;
+       margin-bottom: 10px;
        margin-left: 10px;
-       font-size: 16px;
+       font-size: 18px;
        font-weight: bold;
        font-stretch: normal;
        font-style: normal;
@@ -226,7 +342,7 @@
         line-height: normal;
         letter-spacing: -0.4px;
         color: #222222;
-        margin-top: -10px;
+        margin-top: 10px;
         margin-bottom: 0;
     }
 }
@@ -242,7 +358,7 @@
         line-height: normal;
         letter-spacing: -0.4px;
         color: #222222;
-        margin-top: -10px;
+        margin-top: 10px;
         margin-bottom: 0;
     }
 }

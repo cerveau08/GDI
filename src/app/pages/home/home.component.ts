@@ -121,6 +121,17 @@ export class HomeComponent implements OnInit {
   photoManager;
   interimaireInfo;
   managerinfo: any;
+  dataEvaluation: any;
+  dataAttestation: any;
+  noteEvaluation: any;
+  nombreObjectif: any;
+  dateDebutEvaluation: any;
+  dateFinEvaluation: any;
+  nbr_jour: any;
+  dateCreationAttestation: any;
+  statutAttestation: any;
+  dateDebutAttestation: any;
+  dateFinAttestation: any;
   @HostListener('window:resize', ['$event'])
   getScreenSize(event?) {
         this.scrHeight = window.innerHeight;
@@ -195,6 +206,26 @@ export class HomeComponent implements OnInit {
           this.percentRestantwidth = 100 - (this.totalJourRestatnt / this.totalJour) * 100 +'%';
           this.percentRestantposition = 100 - (this.totalJourRestatnt / this.totalJour) * 100 - 1 +'%';
         }
+      );
+      this.otherService.lastEvaluationInt(this.interimaireInfo.interimaire.id).subscribe(
+        data => {
+          this.dataEvaluation = data.data;
+          this.noteEvaluation = Math.round(this.dataEvaluation.note);
+          this.dateDebutEvaluation = this.dataEvaluation.dateDebut;
+          this.dateFinEvaluation = this.dataEvaluation.dateFin;
+          this.nombreObjectif = this.dataEvaluation.notation.length;
+        }
+      );
+      this.otherService.lastAttestationInt(this.interimaireInfo.interimaire.id).subscribe(
+        data => {
+          console.log(data);
+          this.dataAttestation = data.data;
+          this.nbr_jour = this.dataAttestation.jours_absence;
+          this.dateCreationAttestation = this.dataAttestation.dateCreation;
+          this.statutAttestation = this.dataAttestation.statut_attestation;
+          this.dateDebutAttestation = this.dataAttestation.dateDebut;
+          this.dateFinAttestation = this.dataAttestation.dateFin;
+        }
       )
     }
       
@@ -212,7 +243,7 @@ export class HomeComponent implements OnInit {
         }
       );
       
-      this.onChanges();
+    //  this.onChanges();
 
          
       this.otherService.getLastNotification().subscribe(
@@ -263,13 +294,13 @@ export class HomeComponent implements OnInit {
     }
     
 
-  onChanges(): void {
-    this.anneeForm.get('annee').valueChanges.subscribe(val => {
-      if (val) {
-        this.dateSelectionner(val);
-      }
-    });
-  }
+  // onChanges(): void {
+  //   this.anneeForm.get('annee').valueChanges.subscribe(val => {
+  //     if (val) {
+  //       this.dateSelectionner(val);
+  //     }
+  //   });
+  // }
 
   getTenLastYear() {
     this.lastTenYear = [

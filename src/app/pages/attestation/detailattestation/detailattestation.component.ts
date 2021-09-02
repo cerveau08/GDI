@@ -53,6 +53,7 @@ export class DetailattestationComponent implements OnInit {
           this.nom = this.dataAttestation.nom;
           this.prenom = this.dataAttestation.prenom;
           this.departement = this.dataAttestation.departement;
+          this.direction = this.dataAttestation.direction;
           this.service = this.dataAttestation.service;
           this.reference = this.dataAttestation.reference;
           this.matricule = this.dataAttestation.matricule;

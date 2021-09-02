@@ -468,4 +468,12 @@ addAgence(data) {
   listeInterForAttestation(){
     return this.http.get<any>(`${this.reqUrl}/interimForAttestation`);
   }
+
+  lastEvaluationInt(id: number) {
+    return this.http.get<any>(`${this.reqUrl}/lastEvaluationInterimaire/${id}`);
+  }
+
+  lastAttestationInt(id: number) {
+    return this.http.get<any>(`${this.reqUrl}/lastAttestationInterimaire/${id}`);
+  }
 }
