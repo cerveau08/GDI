@@ -13,11 +13,7 @@ export class PaginationService {
       path: '/', icon: "home",
     },{
       id: 2, title: 'Tableau de bord drh',
-      path: 'homedrh',
-      icon: "home",
-    },{
-      id: 2, title: 'Ma Restauration',
-      path: 'restauration',icon: "person",
+      path: 'home', icon: "home",
     },{
       id: 2,  title: 'Interimaires',
       icon: "person",  icon2: "expand_more", icon3: "expand_less",
@@ -26,10 +22,6 @@ export class PaginationService {
           id: 1,  title: 'Liste sous contrat',  path: '/',
         }, {
           id: 2, title: 'Liste en fin de contrat',  path: '/privacy-policy',
-        },{
-          id: 3,  title: 'restauration',  path: '/',
-        },{
-          id: 4,  title: 'Ajouter',  path: '/privacy-policy',
         },
       ]
     }, {
@@ -44,18 +36,39 @@ export class PaginationService {
         },
       ]
     },{
-      id: 7,  title: 'Alertes',
-      path: '/',  icon: "query_builder",
+      id: 10,  title: 'Paramètres',
+      path: 'parametre',  icon: "settings",
     },{
-      id: 8,  title: 'Attestation',
-      path: 'attestationmesinterimaires',  icon: "bookmark",
-    },{
-      id: 9,  title: 'Statistiques',
-      path: '/',  icon: "leaderboard",
-    },{
-      id: 10,  title: 'Statistiques',
-      path: '/',  icon: "settings",
-    },
+      id: 11,  title: 'Settings',  icon: "settings",
+      icon2: "expand_more",  icon3: "expand_less",
+    //  click: false,  activeChoice: -1,
+      liste: [  
+        {
+          title: 'Domaine',  path: 'ajoutdomaine',
+        }, {
+          title: 'Fonction',  path: 'ajoutfonction',
+        },{
+          title: 'Site',  path: 'listesite',
+        }, {
+          title: 'Catégorie',  path: 'ajoutcategorie',
+        },{
+          title: 'Comission',  path: 'ajoutcommission',
+        },{
+          title: 'Direction',  path: 'listdirection',
+        },{
+          title: 'Profil',  path: 'listprofil',
+        }
+        ,{
+          title: 'Periode',  path: 'listperiode',
+        }
+        ,{
+          title: 'Societe',  path: 'listsociete',
+        }
+        ,{
+          title: 'Structure',  path: 'liststructure',
+        },
+      ]
+    }
   ];
 
   public internav = [
@@ -307,6 +320,102 @@ export class PaginationService {
       path: 'parametre',  icon: "settings",
     },
   ];
+  public drhComnav = [
+    {
+      id: 1, title: 'Tableau de bord',
+      path: 'home',
+      icon: "home",
+    },{
+      id: 5,  title: 'Liste Restauration',
+      path: 'restauration',  icon: "restaurant",
+    },{
+      id: 3,  title: 'Interimaires',
+      icon: "person",  icon2: "expand_more", icon3: "expand_less",
+      liste: [{
+          id: 1,  title: 'Liste sous contrat',  path: 'souscontrat',
+        }, {
+          id: 2, title: 'Liste en fin de contrat',  path: 'fincontrat',
+        }, {
+          id: 2, title: 'Liste archivé',  path: 'interarchive',
+        }
+      ]
+    },{
+      id: 5,  title: 'Liste Agence',
+      path: 'listagence',  icon: "local_mall",
+    },{
+      id: 5,  title: 'Liste Attestations',  icon: "bookmark_border",
+      icon2: "expand_more",  icon3: "expand_less",
+      liste: [  {
+          title: 'Pour tous',  path: 'listeattestation',
+        }, {
+          title: 'Pour mes Interimaires',  path: 'attestationmesinterimaires',
+        }
+      ]
+    }
+    ,{
+      id: 5,  title: 'Demandes',
+      path: 'lesdemande',  icon: "local_mall",
+    },{
+      id: 6,  title: 'Alertes',
+      path: 'alertes',  icon: "query_builder",
+    }
+    ,{
+      id: 8,  title: 'Statistiques',  icon: "grade",
+      icon2: "expand_more",  icon3: "expand_less",
+      liste: [  
+        {
+          title: 'Par Effectif',  path: 'stateffectif',
+        }, {
+          title: 'Par Genre',  path: 'statgenre',
+        },{
+          title: 'Par Agence',  path: 'statagence',
+        }, {
+          title: 'Par Présence',  path: 'statpresence',
+        },{
+          title: 'Par Domaine',  path: 'statdomaine',
+        },{
+          title: 'Par Site',  path: 'statsite',
+        },{
+          title: 'Par Catégorie',  path: 'statcategorie',
+        },{
+          title: 'Par Tranche d\'age',  path: 'statage',
+        },
+      ]
+    },{
+      id: 11,  title: 'Liste Noire',
+      path: 'blacklist',  icon: "person_off",
+    },{
+      id: 10,  title: 'Paramètres',
+      path: 'parametre',  icon: "settings",
+    }
+  ];
+
+  constructor() { }
+
+  getMenu() {
+    this.role = localStorage.getItem('user')
+    if(this.role == "INT") {
+      this.menus = this.internav;
+    } else if(this.role == "DRH") {
+      this.menus = this.drhnav;
+    } else if(this.role == "AGN") {
+      this.menus = this.agencenav;
+    } else if(this.role == "MNG") {
+      this.menus = this.managernav;
+    } else if(this.role == "ASTDG") {
+      this.menus = this.agencenav;
+    } else if(this.role == "DRHAG") {
+      this.menus = this.agencenav;
+    } else if(this.role == "COM") {
+      this.menus = this.drhComnav;
+    } else if(this.role == "ASTCP") {
+      this.menus = this.agencenav;
+    } else {
+      this.menus = this.eventSources
+    }
+    return this.menus;
+  }
+
   private videos = [
     {
       id: 1,
@@ -336,27 +445,6 @@ export class PaginationService {
 
   public getVidoes() {
     return this.videos;
-  }
-  constructor() { }
-
-  getMenu() {
-    this.role = localStorage.getItem('user')
-    if(this.role == "INT") {
-      this.menus = this.internav;
-    } else if(this.role == "DRH") {
-      this.menus = this.drhnav;
-    } else if(this.role == "AGN") {
-      this.menus = this.agencenav;
-    } else if(this.role == "MNG") {
-      this.menus = this.managernav;
-    }else if(this.role == "ASTDG") {
-      this.menus = this.agencenav;
-    } else if(this.role == "DRHAG") {
-      this.menus = this.agencenav;
-    } else {
-      this.menus = this.eventSources
-    }
-    return this.menus;
   }
   
 }
