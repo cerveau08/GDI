@@ -132,6 +132,10 @@ export class HomeComponent implements OnInit {
   statutAttestation: any;
   dateDebutAttestation: any;
   dateFinAttestation: any;
+  idEvaluation: any;
+  idAttestation: any;
+  totalItems: any;
+  totalEnAttente: any;
   @HostListener('window:resize', ['$event'])
   getScreenSize(event?) {
         this.scrHeight = window.innerHeight;
@@ -211,6 +215,7 @@ export class HomeComponent implements OnInit {
         data => {
           this.dataEvaluation = data.data;
           this.noteEvaluation = Math.round(this.dataEvaluation.note);
+          this.idEvaluation = this.dataEvaluation.id;
           this.dateDebutEvaluation = this.dataEvaluation.dateDebut;
           this.dateFinEvaluation = this.dataEvaluation.dateFin;
           this.nombreObjectif = this.dataEvaluation.notation.length;
@@ -220,13 +225,17 @@ export class HomeComponent implements OnInit {
         data => {
           console.log(data);
           this.dataAttestation = data.data;
+          this.idAttestation = this.dataAttestation.id;
           this.nbr_jour = this.dataAttestation.jours_absence;
           this.dateCreationAttestation = this.dataAttestation.dateCreation;
           this.statutAttestation = this.dataAttestation.statut_attestation;
           this.dateDebutAttestation = this.dataAttestation.dateDebut;
           this.dateFinAttestation = this.dataAttestation.dateFin;
         }
-      )
+      );
+      this.otherService.getListedesDemande(this.page, this.itemsPerPage, null, 0).subscribe((data: any) => {
+        this.totalEnAttente = data.total;
+      })
     }
       
       this.otherService.getInter().subscribe(
@@ -270,7 +279,24 @@ export class HomeComponent implements OnInit {
           user: JSON.stringify(data)
         }
       })
-    }  
+    }
+    
+    openDetailAttestation(data) {
+      this.router.navigate(['/accueil/deatilattestation'], {
+        queryParams: {
+          attestation: JSON.stringify(data)
+        }
+      });
+    }
+
+    openDetailEvaluation(data) {
+      this.router.navigate(['/accueil/detailevaluation'], {
+        queryParams: {
+          evaluation: JSON.stringify(data),
+          interimaire: JSON.stringify(this.interimaireInfo.interimaire.id)
+        }
+      });
+    }
   
   //premier
   

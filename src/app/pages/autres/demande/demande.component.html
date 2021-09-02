@@ -14,15 +14,42 @@
                 <button  class="button2">Convenance perso</button>
                 <button  class="button3">Mission</button>
                 <button  class="button4">Congés Annuels</button>
+                <button  class="button3">Tout</button>
             </div>
         </div>
         <div class="tableau">
                 <p class="detail" id="mydesc">Liste des demandes</p>
+                <div class="exporter">
+                    <form [formGroup]="filterForm">
+                        <div class="exporter-form">
+                            <div class="content-input-extraction">
+                                <div class="filtrer-mois">
+                                    <p class="label-input" for="titre">Type: </p>
+                                    <select  formControlName="type" class="select-mois" >
+                                        <option value="null">Aucun Choix</option>
+                                        <option *ngFor="let data of listeDemande"  [value]="data.id">{{data.libelle}}</option>
+                                    </select>
+                                </div>
+                                <div class="filtrer-mois">
+                                    <p class="label-input" for="titre">Statut: </p>
+                                    <select  formControlName="etat" class="select-mois" >
+                                        <option value="null">Aucun Choix</option>
+                                        <option *ngFor="let data of listeEtat"  [value]="data.id">{{data.etat}}</option>
+                                    </select>
+                                </div>
+                                <div class="content-extraction">
+                                    <mat-icon class="icon-search" (click)="gty(page)" fontSet="material-icons-outlined" >search</mat-icon>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
                 <table style="overflow-x:auto;" aria-describedby = "mydesc">
                     <thead>
                         <tr class="head">
-                            <th class="id1" id="matricule">#</th>
+                            <th class="id1" id="matricule">Date demande</th>
                             <th class="typ" id="type">type</th>
+                            <th class="typ" id="type">Description</th>
                             <th id="etat">Etat</th>
                             <th id="datedebut">Date début</th>
                             <th id="datefin">Date fin</th>
@@ -34,9 +61,11 @@
                             currentPage: page,
                             totalItems: totalItems
                             }; let i = index">
-                            <td class="id1">{{p.id}}</td>
+                            <td class="id1">{{p.dateDemande | date: "dd/MM/yyyy"}}</td>
                             <td>{{p.typeDemande}}</td>
-                            <td>{{p.etat}}</td>
+                            <td>{{p.description}}</td>
+                            <td *ngIf="p.etat == 0">En attente</td>
+                            <td *ngIf="p.etat == 1">Validé</td>
                             <td>{{p.dateDebut | date: "dd/MM/yyyy"}}</td>
                             <td>{{p.dateFin | date: "dd/MM/yyyy"}}</td>
                         </tr>

@@ -50,7 +50,7 @@
                         <p class="valeur-nbr-objectif">{{nombreObjectif}}</p>
                     </div>
                     <div class="content-bouton-detail">
-                        <button class="bouton-detail">Détail</button>
+                        <button class="bouton-detail" (click)="openDetailEvaluation(idEvaluation)">Détail</button>
                     </div>
                 </div>
                 <div class="elmt1" title="messages">
@@ -61,7 +61,7 @@
                         </div>
                     </div>
                     <div class="nombre1">
-                        <p class="chiffr">5</p>
+                        <p class="chiffr">{{totalEnAttente}}</p>
                     </div>
                     <p class="mois1">En attentes</p>
                     <div class="bouton">
@@ -93,12 +93,12 @@
                             <span class="en-attente" *ngIf="statutAttestation == 'EN ATTENTE'">{{statutAttestation}}</span>
                     </p>
                     <div class="content-periode">
-                        <p class="periode-debut">Date de création: 
+                        <p class="date-creation">Date de création: 
                             <span>{{dateCreationAttestation | date: 'dd MMMM yyyy'}}</span>
                         </p>
                     </div>
                     <div class="content-bouton-detail">
-                        <button routerLink="/accueil/listeattestation" class="bouton-detail">Détail</button>
+                        <button (click)="openDetailAttestation(idAttestation)" class="bouton-detail">Détail</button>
                     </div>
                 </div>
             </div>

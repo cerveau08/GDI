@@ -85,7 +85,7 @@
 }
 .nbr-jour{
     font-size: 13px;
-    margin-top: 10px;
+    margin-top: 18px;
     margin-bottom: 0;
     margin-left: 10px;
     span {
@@ -94,7 +94,7 @@
     }
 }
 .content-periode-attestation{
-    margin-top: 15px;
+    margin-top: 25px;
 }
 .content-jours-attestation{
     margin-top: 15px;
@@ -108,6 +108,15 @@
 .content-periode{
     margin-top: 10px;
     margin-bottom: 10px;
+}
+.date-creation{
+    text-align: center;
+    font-size: 14px;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    span {
+        font-weight: 800;
+    }
 }
 .periode-debut{
     text-align: center;
@@ -397,14 +406,13 @@
 }
 .bouton{
     margin: 0 auto;
-    width: 100px;
+    width: 80px;
     .button {
-        width: 100px;
+        width: 80px;
         height: 30px;
-        background-color: white;
+        background-color: #ff7900;
         border: none;
-        color: black;
-        padding: 5px 2px;
+        color: #ffffff;
         text-align: center;
         text-decoration: none;
         font-weight: bold;
@@ -412,7 +420,7 @@
         font-size: 14px;
         cursor: pointer;
         outline: none;
-        border: 3px solid black;
+        border: none;
     }
 }
 

@@ -50,6 +50,8 @@ export class LesdemandesComponent implements OnInit {
   dataSociete: any;
   dataDirection: any;
   dataAgence: any;
+  etat = null;
+  listeEtat: { id: string; etat: string; }[];
   @HostListener('window:resize', ['$event'])
   getScreenSize(event?) {
         this.scrHeight = window.innerHeight;
@@ -69,6 +71,18 @@ export class LesdemandesComponent implements OnInit {
     }
 
   ngOnInit() {
+    this.listeEtat = [
+      {
+        id: '1',
+        etat: 'validé'
+      },{
+        id: '0',
+        etat: 'en attente'
+      }
+    ];
+    this.otherService.getTypeDemande().subscribe((data: any) => {
+      this.listeDemande =  data.data;
+    })
     this.validerForm = new FormGroup({
       status: new FormControl('')
     })
@@ -77,16 +91,14 @@ export class LesdemandesComponent implements OnInit {
       type: new FormControl(''),
       direction: new FormControl(''),
       agence: new FormControl(''),
-      societe: new FormControl(''),
+      etat: new FormControl('')
     });
     this.otherService.getAllSociete().subscribe(
       data => {
         this.dataSociete = data["data"];
       }
     );
-    this.otherService.getTypeDemande().subscribe((data: any) => {
-      this.listeDemande =  data.data;
-    })
+    
     this.http.get(this.reqUrl + `/listeAgence?page=1&limit=900`).subscribe((data: any) => {
       this.dataAgence =  data.data;
     })
@@ -108,13 +120,19 @@ export class LesdemandesComponent implements OnInit {
   }
   
   gty(page: any){
-    if (this.filterForm.value.type == undefined) {
-      this.filterForm.patchValue({type: ''});
+    if (this.filterForm.value.type == undefined || this.filterForm.value.type == null) {
+      this.type = ''
     }
     if(this.filterForm.value.type) {
       this.type = this.filterForm.value.type;
     }
-    this.otherService.getListedesDemande(page, this.itemsPerPage, this.type).subscribe((data: any) => {
+    if (this.filterForm.value.etat == undefined || this.filterForm.value.etat == null) {
+      this.etat = ''
+    }
+    if(this.filterForm.value.etat) {
+      this.etat = this.filterForm.value.etat;
+    }
+    this.otherService.getListedesDemande(page, this.itemsPerPage, this.type, this.etat).subscribe((data: any) => {
       this.dd =  data.data;
       this.totalItems = data.total;
     })

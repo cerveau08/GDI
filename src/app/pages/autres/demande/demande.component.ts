@@ -34,6 +34,11 @@ export class DemandeComponent implements OnInit {
   data;
   successMsg;
   errorMsg: any;
+  etat = null;
+  type = null;
+  filterForm: FormGroup;
+  listeEtat: { id: string; etat: string; }[];
+  listeDemande: any;
   constructor(private modalService: ModalService, 
     private otherService: OthersService,
     private errormodalService: ErrormodalService,
@@ -49,12 +54,30 @@ export class DemandeComponent implements OnInit {
     } else {
       this.showHome = true;
     }
-   
-     this.otherService.getTypeDemande().subscribe(
+    this.listeEtat = [
+      {
+        id: '1',
+        etat: 'validé'
+      },{
+        id: '0',
+        etat: 'en attente'
+      }
+    ];
+    this.otherService.getTypeDemande().subscribe((data: any) => {
+      this.listeDemande =  data.data;
+    })
+    this.filterForm = new FormGroup({
+      type: new FormControl(''),
+      direction: new FormControl(''),
+      agence: new FormControl(''),
+      etat: new FormControl('')
+    });
+
+    this.otherService.getTypeDemande().subscribe(
       data => {
         this.demandes = data.data;
       }
-     )
+    )
     this.demandeForm = new FormGroup({
       type: new FormControl (''),
       dateDebut: new FormControl(''),
@@ -66,13 +89,22 @@ export class DemandeComponent implements OnInit {
   }
 
   gty(page: any){
-    this.http.get(this.reqUrl + `/listeDemandes?page=${page}&limit=${this.itemsPerPage}`).subscribe((data: any) => {
+    if (this.filterForm.value.type == undefined || this.filterForm.value.type == null) {
+      this.type = ''
+    }
+    if(this.filterForm.value.type) {
+      this.type = this.filterForm.value.type;
+    }
+    if (this.filterForm.value.etat == undefined || this.filterForm.value.etat == null) {
+      this.etat = ''
+    }
+    if(this.filterForm.value.etat) {
+      this.etat = this.filterForm.value.etat;
+    }
+    this.otherService.getListedesDemande(page, this.itemsPerPage, this.type, this.etat).subscribe((data: any) => {
       this.dataDemande =  data.data;
       this.totalItems = data.total;
-      console.log(data);
-      
     })
-  
   }
   onSubmit() {
     this.otherService.addDemande(this.demandeForm.value).subscribe(

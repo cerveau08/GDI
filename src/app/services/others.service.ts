@@ -355,8 +355,8 @@ addAgence(data) {
     return this.http.get<any>(this.reqUrl + '/interimEnAttente', {params: data});
   }
 
-  getListedesDemande(page, limit, type) {
-    const data = {page: page, limit: limit, type: type};
+  getListedesDemande(page, limit, type, etat) {
+    const data = {page: page, limit: limit, type: type, etat: etat};
     return this.http.get<any>(this.reqUrl + '/listeDemandes', {params: data});
   }
 

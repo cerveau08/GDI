@@ -6,13 +6,6 @@
                 <form [formGroup]="filterForm">
                     <div class="exporter-form">
                         <div class="content-input-extraction">
-                            <!-- <div class="filtrer-mois">
-                                <p class="label-input" for="titre">Type: </p>
-                                <input type="text" class="input-extraction" list="professions" formControlName="type" [(ngModel)]="profession" (change)="saveProfession($event)">
-                                <datalist id="professions">
-                                  <option *ngFor="let c of listeDemande" [value]="c.libelle" >{{c.libelle}}</option>
-                                </datalist>
-                            </div> -->
                             <div class="filtrer-mois">
                                 <p class="label-input" for="titre">Type: </p>
                                 <select  formControlName="type" class="select-mois" >
@@ -20,13 +13,17 @@
                                     <option *ngFor="let data of listeDemande"  [value]="data.id">{{data.libelle}}</option>
                                 </select>
                             </div>
+                            <div class="filtrer-mois">
+                                <p class="label-input" for="titre">Statut: </p>
+                                <select  formControlName="etat" class="select-mois" >
+                                    <option value="null">Aucun Choix</option>
+                                    <option *ngFor="let data of listeEtat"  [value]="data.id">{{data.etat}}</option>
+                                </select>
+                            </div>
                             <div class="content-extraction">
                                 <mat-icon class="icon-search" (click)="gty(page)" fontSet="material-icons-outlined" >search</mat-icon>
                             </div>
                         </div>
-                        <!-- <div class="content-error-msg" *ngIf="successMsg == false">
-                            <p class="error-alert">{{ data?.message}}: mois et année</p>
-                        </div> -->
                     </div>
                 </form>
             </div>
