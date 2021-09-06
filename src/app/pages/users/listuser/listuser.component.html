@@ -7,10 +7,8 @@
                 <tr class="head">
                     <th class="typ" id="prenom">Prenom</th>
                     <th class="typ" id="nom">Nom</th>
-                    <th *ngIf="role == 'DRH'" id="direction">Matricule</th>
-                    <th *ngIf="role == 'DRH'" id="direction">Direction</th>
-                    <th *ngIf="role == 'AGN'" id="agence">Email</th>
-                    <th  id="contrat">Fonction</th>
+                    <th  id="agence">Email</th>
+                    <th  id="contrat">Téléphone</th>
             </tr>
             </thead>
             <tbody>
@@ -21,10 +19,8 @@
                     }; let i = index">
                     <td (click)="openDetail(p.id)">{{p.prenom}}</td>
                     <td (click)="openDetail(p.id)">{{p.nom}}</td>
-                    <td *ngIf="role == 'DRH'" (click)="openDetail(p.id)">{{p.matricule}}</td>
-                    <td *ngIf="role == 'DRH'" (click)="openDetail(p.id)">{{p.direction}}/{{p.departement}}/{{p.service}}</td>
-                    <td *ngIf="role == 'AGN'" (click)="openDetail(p.id)">{{p.email}}</td>
-                    <td (click)="openDetail(p.id)" id="contrat">{{p.fonction}}</td>
+                    <td (click)="openDetail(p.id)">{{p.email}}</td>
+                    <td (click)="openDetail(p.id)" id="contrat">{{p.telephone}}</td>
                 </tr>
             </tbody>
             

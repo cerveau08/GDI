@@ -97,17 +97,17 @@
                           </div> 
                           <div class="contratinput2">
                             <select class="select5" #societe [(ngModel)]="societeId" formControlName="societeId" (change)="directionsListe(societe.value)">
-                              <option class="option" value="" >Societe</option>
+                              <option class="option" [value]="societeId">{{societeName}}</option>
                               <option *ngFor="let data of dataSociete" [value]="data.id">{{data.libelle}}</option>
                             </select>
-                            <select class="select6" #direction [(ngModel)]="directionId" formControlName="direction" (change)="departementListe(direction.value)">
-                              <option class="option" value="" >Direction</option>
+                            <select class="select6" #direction [(ngModel)]="directionId" formControlName="directionId" (change)="departementListe(direction.value)">
+                              <option class="option" [value]="directionId">{{directionName}}</option>
                               <option *ngFor="let data of dataDirection" [value]="data.id">{{data.libelle}}</option>
                             </select>
                           </div>
                           <div class="contratinput2">
-                            <select class="select5" #departement [(ngModel)]="departementId" formControlName="departement" (change)="serviceListe(departement.value)">
-                              <option class="option" [value]="departementId">{{departementId}}</option>
+                            <select class="select5" #departement [(ngModel)]="departementId" formControlName="departementId" (change)="serviceListe(departement.value)">
+                              <option class="option" [value]="departementId">{{departementName}}</option>
                               <option *ngFor="let data of dataDepartement" [value]="data.id">{{data.libelle}}</option>
                             </select>
                             <select class="select6" [(ngModel)]="structureId" formControlName="structureId">

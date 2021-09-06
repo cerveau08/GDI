@@ -1,5 +1,9 @@
 <div class="all-container">
   <div class="all">
+    <ngx-loading [show]="loading" [config]="{
+      backdropBackgroundColour: 'rgba(109, 81, 59, 0.616)', backdropBorderRadius: '10px',
+      primaryColour: '#009393', secondaryColour: '#ff7900', tertiaryColour: '#009393' }">
+    </ngx-loading>
     <div *ngIf="!isAdmissible" class="content-search-inter">
       <div class="content-text-explication">
         <p class="ajouter">Bien lire avant de faire la recherche</p>
@@ -227,10 +231,6 @@
                             <option class="option" value="" disabled selected hidden>Domaine</option>
                             <option *ngFor="let data of dataDomaine" value="{{data.id}}">{{data.libelle}}</option>
                           </select>
-                          <!-- <input type="text" list="domaines" (change)="saveDomaine($event)" formControlName="domaineId" placeholder="Domaine">
-                          <datalist id="domaines">
-                            <option *ngFor="let c of dataDomaine" [value]="c.libelle" >{{c.libelle}}</option>
-                          </datalist> -->
                           <input class="input3" type="date" formControlName="dateSignature" placeholder="Date de Signature">
                         </div>
                         <div class="contratinput2">
@@ -311,6 +311,7 @@
                    </div>
                     <button class="button1" mat-button matStepperPrevious>Précédent</button>
                     <button class="button2" type="button" (click)="submit()" matSteppperNext>Enregistrer</button>
+                    <!-- <ngx-spinner></ngx-spinner> -->
                 </form>
                 </div>
                 <div class="message" *ngIf="submited" >

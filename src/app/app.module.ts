@@ -122,7 +122,7 @@ import { ListfonctionComponent } from './pages/settings/fonction/listfonction/li
 import { ToastrModule } from 'ngx-toastr';
 import { DomaineComponent } from './pages/statistiques/domaine/domaine.component';
 import { StatsiteComponent } from './pages/statistiques/statsite/statsite.component';
-;
+import { NgxSpinnerModule } from "ngx-spinner";
 
 @NgModule({
   declarations: [
@@ -288,6 +288,7 @@ import { StatsiteComponent } from './pages/statistiques/statsite/statsite.compon
       positionClass: 'toast-bottom-right',
       preventDuplicates: true,
     }),
+    NgxSpinnerModule,
   ],
   providers: [DatePipe,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorService, multi: true },

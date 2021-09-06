@@ -8,6 +8,7 @@ import { OthersService } from 'src/app/services/others.service';
 import { ModalService } from 'src/app/modal/_modal/modal.service';
 import { ErrormodalService } from 'src/app/modal/_errormodals';
 import { ToastrService } from 'ngx-toastr';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-addinter',
@@ -137,10 +138,13 @@ export class AddinterComponent implements OnInit {
   page = 1;
   itemParPage = 900;
   region = null;
+  loading = false;
   constructor(private otherService: OthersService,
               private errormodalService: ErrormodalService,
               private toastr: ToastrService,
-              private router: Router) {
+              private router: Router,
+              private spinner: NgxSpinnerService
+              ) {
    // this.datajson = this.dataService.getData();
    }
     
@@ -336,8 +340,7 @@ export class AddinterComponent implements OnInit {
     this.color3 = "20px solid #ff7900";
   }
   submit() {
-    console.log(this.interForm.value.poste);
-    
+    this.loading = true;
     this.colorc = "#f16e00";
     this.color3 = "20px solid #f16e00";
     const formdata = new FormData();
@@ -410,6 +413,7 @@ export class AddinterComponent implements OnInit {
     }
     this.otherService.addInter(formdata).subscribe(
       data => {
+        this.loading = false;
         this.data = data
         this.successMsg = this.data.status
         if(this.successMsg == true) {

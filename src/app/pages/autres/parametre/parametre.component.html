@@ -3,25 +3,15 @@
         <div>
             <p class="parametre-text">Mes paramétres</p>
         </div>
-        <div *ngIf="user != 'interimaire'" class="bouton-ajout-user">
-            <button routerLink="/accueil/adduser" class="button-add-user">Ajouter Utilisateur</button>
-        </div>
         <div class="parametre-header">
-            <div [style.border]="border1" *ngIf="user == 'AGN'" (click)="changeShowb()" class="header-1">
-                <p [style.color]="color1" class="parametre-header-title">Sécurité</p>
+            <div [style.border]="border1"  (click)="changeShowb()" class="header-2">
+                <p [style.color]="color1" class="parametre-header-title">Aide et assistance</p>
             </div>
-            <div [style.border]="border2"  (click)="changeShowa()" class="header-2">
-                <p [style.color]="color2" class="parametre-header-title">Aide et assistance</p>
+            <div [style.border]="border2" *ngIf="user == 'AGN'" (click)="changeShowa()" class="header-1">
+                <p [style.color]="color2" class="parametre-header-title">Sécurité</p>
             </div>
         </div>
-        <div *ngIf="!show1 && user == 'AGN'" class="content-securite">
-            <!-- <form [formGroup]="passwordForm">
-                <div class="actuel-password">
-                    <p class="label-input">Mot de passe actuel</p>
-                    <input formControlName="oldPassword" class="parametre-input" type="text" >
-                </div>
-                <button (click)="validerPassword()" class="valider-password">Envoyer</button>
-            </form> -->
+        <div *ngIf="show1 && user == 'AGN'" class="content-securite">
             <form [formGroup]="newpasswordForm">
                 <div>
                     <p class="message-change-password">Voulez-vous changer de mot de passe ? </p>
@@ -44,7 +34,7 @@
                 </div>
             </form>
         </div>
-        <div *ngIf="show1" class="content-aide-assistance">
+        <div *ngIf="!show1" class="content-aide-assistance">
             <div class="aide-assistance-header">
                 <div [style.border]="bordera" (click)="changedisplay1()" class="explication-header">
                     <p [style.color]="colora" class="aide-assistance-header-title">Fonctionnement</p>

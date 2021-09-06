@@ -131,6 +131,8 @@ export class ModifierinterComponent implements OnInit {
   errorMsg: any;
   data: any;
   successMsg: any;
+  departementName: any;
+  directionName: any;
   constructor(private activeroute: ActivatedRoute,
     private route: Router,
     private errormodalService: ErrormodalService,
@@ -160,8 +162,11 @@ export class ModifierinterComponent implements OnInit {
             this.departementId = this.dataInter.data.structure.departement;
             this.structureId = this.dataInter.data.structure.id;
             this.structureName = this.dataInter.data.structure.libelle;
-            this.directionId = this.dataInter.data.structure.direction;
-            this.societeId = this.dataInter.data.structure.societe;
+            this.societeName = this.dataInter.data.societe.libelle;
+            this.directionName = this.dataInter.data.structure.direction.libelle;
+            this.departementName = this.dataInter.data.structure.departement;
+            this.directionId = this.dataInter.data.structure.direction.id;
+            this.societeId = this.dataInter.data.societe.id;
             this.salaireBrut = this.dataInter.data.salaire_brut;
             this.categorie = this.dataInter.data.categorie.libelle;
             this.categorieId = this.dataInter.data.categorie.id;
@@ -171,6 +176,10 @@ export class ModifierinterComponent implements OnInit {
             this.fichierProceVerbal = this.dataInter.data.proceverbal;
             this.universite = this.dataInter.data.universite;
             this.agence = this.dataInter.data.agence;
+            console.log(this.directionName);
+            console.log(this.departementName);
+            console.log(this.directionId);
+            console.log(this.departementId);
           }
         );
       })
@@ -197,9 +206,9 @@ export class ModifierinterComponent implements OnInit {
         categorieId: new FormControl(''),
         salaireBrut: new FormControl(''),
         structureId: new FormControl(''),
-        direction: new FormControl(''),
+        directionId: new FormControl(''),
         societeId: new FormControl(''),
-        departement: new FormControl(''),
+        departementId: new FormControl(''),
         filecontrat: new FormControl(''),
         profession: new FormControl(''),
         telephone: new FormControl(''),
@@ -332,7 +341,7 @@ export class ModifierinterComponent implements OnInit {
     info.append("categorieId",this.interForm.value.categorieId);
     info.append("structureId", this.interForm.value.structureId);
     info.append("domaineId",this.interForm.value.domaineId);
-    info.append("societeId","1");
+    info.append("societeId",this.interForm.value.societeId);
     info.append("universite",this.interForm.value.universite);
     info.append("sexe",this.interForm.value.sexe);
     info.append("profession",this.interForm.value.profession);
