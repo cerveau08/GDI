@@ -36,6 +36,7 @@ export class AddagenceComponent implements OnInit {
   filenameUser = "";
   data;
   successMsg;
+  loading = false;
   constructor(
               private route: Router,
               private toastr: ToastrService,
@@ -108,6 +109,7 @@ export class AddagenceComponent implements OnInit {
   }
 
   submitted1() {
+    this.loading = true;
     const value = this.infoForm.value;
     const info = new FormData();
     info.append("nom",value.nom);
@@ -126,6 +128,7 @@ export class AddagenceComponent implements OnInit {
     info.append("contrat",this.contrat);
    this.otherService.addAgence(info).subscribe(
       data => {
+        this.loading = false;
         this.data = data;
         this.successMsg = this.data.status;
         if (this.successMsg == true) {
