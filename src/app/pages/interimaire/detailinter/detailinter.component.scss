@@ -741,6 +741,46 @@ select {
     outline: none;
     border: solid 1px #ff0000;
 }
+.content-manager-search{
+    display: grid;
+    grid-template-columns: 300px 1fr;
+}
+.label-input-search{
+    margin-top: 10px;
+    margin-bottom: 0px;
+    font-size: 12px;
+}
+.input-search-manager{
+    height: 20px;
+    width: 250px;
+    outline: none;
+    background-color: #f5f6f9;
+    border-radius: 1px;
+    border: solid 1px #d8d8d8;
+}
+.bouton-search-manager{
+    height: 25px;
+    widows: 90px;
+    font-size: 14px;
+    margin-top: 10px;
+    border: 2px solid #ff7900;
+    background-color: white;
+    color: #ff7900;
+}
+.nom-interimaire{
+    color: #ff7900;
+}
+.text-title-search{
+    font-size: 16px;
+    font-weight: 700;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.info-manager{
+    margin-top: 10px;
+    margin-bottom: 0;
+    font-size: 14px;
+}
 @media (max-width: 991px) {
     .chiffre-aside {
         display: grid;

@@ -73,6 +73,7 @@ export class DetailinterComponent implements OnInit {
   bannirForm: FormGroup;
   reconduireForm: FormGroup;
   validerForm: FormGroup;
+  searchForm: FormGroup;
   filenamecontrat;
   filenamefichedeposte;
   filenameProceVerbal;
@@ -112,6 +113,7 @@ export class DetailinterComponent implements OnInit {
   percentRestantwidth: string;
   dateFin: any;
   percentRestantposition: string;
+  messageVide: any;
   constructor(private activeroute: ActivatedRoute,
               private modalService: ModalService,
               private otherService: OthersService,
@@ -171,16 +173,11 @@ export class DetailinterComponent implements OnInit {
           this.sameIdSociete = false;
         }
       });
-    
-
-
     if(this.user == 'DRH') {
       this.showButton = false;
     } else {
       this.showButton = true;
     }
-   
-    
     this.contratForm = new FormGroup({
       categorieId: new FormControl(''),
       salaireBrut: new FormControl(''),
@@ -198,11 +195,14 @@ export class DetailinterComponent implements OnInit {
       interimaireId: new FormControl(''),
       procesVerbal: new FormControl(''),
     });
+    this.searchForm = new FormGroup({
+      matricule: new FormControl('')
+    });
     this.validerForm = new FormGroup({
       matricule: new FormControl(''),
       telephone: new FormControl(''),
       responsable: new FormControl('')
-    })
+    });
     this.otherService.getAllSociete().subscribe(
       data => {
         this.dataSociete = data["data"];
@@ -224,15 +224,17 @@ export class DetailinterComponent implements OnInit {
 
     this.otherService.statContratInter(this.item).subscribe(
       data => {
-        this.infoContrat = data.data;
-        this.anneeRestant = this.infoContrat.dureeContratRestant.annees;
-        this.moisRestant = this.infoContrat.dureeContratRestant.mois;
-        this.jourRestant = this.infoContrat.dureeContratRestant.jours;
-        this.totalJour = this.infoContrat.dureeTotalContratEnJours;
-        this.totalJourRestatnt = this.infoContrat.dureeTotalContratRestantJours;
-        this.dateFin = this.infoContrat.dateFinContrat;
-        this.percentRestantwidth = 100 - (this.totalJourRestatnt / this.totalJour) * 100 +'%';
-        this.percentRestantposition = 100 - (this.totalJourRestatnt / this.totalJour) * 100 - 1 +'%';
+        if(data.data) {
+          this.infoContrat = data.data;
+          this.anneeRestant = this.infoContrat.dureeContratRestant.annees;
+          this.moisRestant = this.infoContrat.dureeContratRestant.mois;
+          this.jourRestant = this.infoContrat.dureeContratRestant.jours;
+          this.totalJour = this.infoContrat.dureeTotalContratEnJours;
+          this.totalJourRestatnt = this.infoContrat.dureeTotalContratRestantJours;
+          this.dateFin = this.infoContrat.dateFinContrat;
+          this.percentRestantwidth = 100 - (this.totalJourRestatnt / this.totalJour) * 100 +'%';
+          this.percentRestantposition = 100 - (this.totalJourRestatnt / this.totalJour) * 100 - 1 +'%';
+        }
       }
     )
   }
@@ -401,7 +403,32 @@ export class DetailinterComponent implements OnInit {
     })
   } 
 
+  searchManager() {
+    this.validerForm.patchValue({responsable: this.searchForm.value.matricule});
+    this.otherService.searchInfoManager(this.searchForm.value).subscribe(
+      data => {
+        this.dataValidation = data;
+        this.successMsgValider = this.dataValidation.status;
+        if(this.successMsgValider == true) {
+          this.validerForm.patchValue({responsable: this.searchForm.value.matricule});
+          this.toastr.success(this.dataValidation.message, 'Success', {
+            timeOut: 3000,
+          });
+          this.router.navigate(['accueil/souscontrat']);
+        } else {
+          this.messageVide = this.dataValidation.message;
+        }
+      }, error=> {
+        this.errorMsg = error;
+        this.toastr.error(this.errorMsg, 'Echec', {
+          timeOut: 5000,
+        });
+      }
+    )
+  }
+
   validerInterimaire() {
+    console.log(this.validerForm.value);
     this.otherService.validerInterimaire(this.validerForm.value, this.item).subscribe(
       data => {
         this.dataValidation = data;

@@ -271,9 +271,6 @@ export class PaginationService {
       id: 8,  title: 'Mon Compte',
       path: 'agence',  icon: "folder_shared",
     },{
-      id: 11,  title: 'Liste Noire',
-      path: 'blacklist',  icon: "person_off",
-    },{
       id: 10,  title: 'Paramètres',
       path: 'parametre',  icon: "settings",
     },
@@ -301,10 +298,6 @@ export class PaginationService {
           id: 2, title: 'Liste Attestations',  path: 'listeattestation',
         },
       ]
-    }
-    ,{
-      id: 3,  title: 'Agence d\'interim',
-      icon: "local_mall",  path: 'listagence',
     },{
       id: 5,  title: 'Demandes',
       path: 'lesdemande',  icon: "local_mall",

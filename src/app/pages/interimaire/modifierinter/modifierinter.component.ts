@@ -335,7 +335,6 @@ export class ModifierinterComponent implements OnInit {
         diplome: this.fichierdiplome3Upload
       },
     ];
-    const value = this.interForm.value;
     const info = new FormData();
     info.append("adresse",this.interForm.value.adresse);
     info.append("categorieId",this.interForm.value.categorieId);

@@ -9,6 +9,17 @@
   max-width: 1000px;
   margin: 0 auto;
 }
+.label-input1{
+  font-size: 11px;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.label-input2{
+  font-size: 11px;
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-left: 10px;
+}
 .content-text-explication{
   padding-right: 15px;
 }
@@ -38,7 +49,7 @@
       letter-spacing: 0.07px;
       color: #000;
       margin-top: 10px;
-      text-align: center;
+      text-align: left;
   }
 }
 .input-search{
@@ -48,16 +59,10 @@
   border-radius: 1px;
   border: solid 1px #d8d8d8;
 }
-.label-input1{
+.label-input{
   font-size: 12px;
   margin-bottom: 5px;
   margin-top: 10px;
-}
-.label-input2{
-  font-size: 12px;
-  margin-bottom: 5px;
-  margin-top: 10px;
-  //margin-left: 10px;
 }
 .text-explication-libelle{
   font-size: 12px;
@@ -338,13 +343,19 @@ input {
   border: solid 1px #d8d8d8;
   margin-bottom: 10px;
 }
+.infoinput2{
+  display: flex;
+}
+.contratinput2{
+  display: flex;
+}
 .infoinput2 input {
   width: 147px;
   height: 20px;
   background-color: #f5f6f9;
   border-radius: 1px;
   border: solid 1px #d8d8d8;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 .infoinput3 {
   margin-left: 10px;
@@ -592,7 +603,7 @@ input {
       letter-spacing: 0.07px;
       color: #000;
       margin-top: 10px;
-      text-align: center;
+      text-align: left;
   }
 }
 .select6 {
@@ -614,7 +625,7 @@ input {
       letter-spacing: 0.07px;
       color: #000;
       margin-top: 10px;
-      text-align: center;
+      text-align: left;
   }
 }
 .mat-button, .mat-flat-button, .mat-icon-button, .mat-stroked-button {
