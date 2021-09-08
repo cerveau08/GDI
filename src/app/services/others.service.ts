@@ -477,7 +477,12 @@ addAgence(data) {
     return this.http.get<any>(`${this.reqUrl}/lastAttestationInterimaire/${id}`);
   }
 
-  searchInfoManager(data:any): Observable<any> {
-    return this.http.post<any>(`${this.reqUrl}/searchManager`, data);
+  // searchInfoManager(data:any): Observable<any> {
+  //   return this.http.post<any>(`${this.reqUrl}/searchManager`, data);
+  // }
+
+  searchInfoManager(matricule){
+    const data = {matricule: matricule};
+    return this.http.get<any>(this.reqUrl + '/searchManager', {params: data})
   }
 }

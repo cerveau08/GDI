@@ -114,6 +114,12 @@ export class DetailinterComponent implements OnInit {
   dateFin: any;
   percentRestantposition: string;
   messageVide: any;
+  prenomManager: any;
+  nomManager: any;
+  emailManager: any;
+  telephoneManager: any;
+  posteManager: any;
+  structureManager: any;
   constructor(private activeroute: ActivatedRoute,
               private modalService: ModalService,
               private otherService: OthersService,
@@ -404,17 +410,18 @@ export class DetailinterComponent implements OnInit {
   } 
 
   searchManager() {
-    this.validerForm.patchValue({responsable: this.searchForm.value.matricule});
-    this.otherService.searchInfoManager(this.searchForm.value).subscribe(
+    this.otherService.searchInfoManager(this.searchForm.value.matricule).subscribe(
       data => {
         this.dataValidation = data;
         this.successMsgValider = this.dataValidation.status;
         if(this.successMsgValider == true) {
           this.validerForm.patchValue({responsable: this.searchForm.value.matricule});
-          this.toastr.success(this.dataValidation.message, 'Success', {
-            timeOut: 3000,
-          });
-          this.router.navigate(['accueil/souscontrat']);
+          this.prenomManager = this.dataValidation.data.prenom;
+          this.nomManager = this.dataValidation.data.nom;
+          this.emailManager = this.dataValidation.data.email;
+          this.telephoneManager = this.dataValidation.data.telephone;
+          this.posteManager = this.dataValidation.data.poste;
+          this.structureManager = this.dataValidation.data.structure;
         } else {
           this.messageVide = this.dataValidation.message;
         }
