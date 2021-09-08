@@ -81,9 +81,6 @@ export class PaginationService {
     }, {
       id: 5,  title: 'Mes Demandes',
       path: 'demande',  icon: "local_mall",
-    },{
-      id: 4,  title: 'Mon Manager',
-      path: 'monmanager',  icon: "grade",
     },
     {
       id: 3,  title: 'Mon Agence',

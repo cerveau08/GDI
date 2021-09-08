@@ -141,20 +141,22 @@ export class LesdemandesComponent implements OnInit {
 
   selectAll() {
     for (var i = 0; i < this.dd.length; i++) {
-      this.dd[i].etat = this.selectedAll;
+      if(this.dd[i].etat == 0) {
+        this.dd[i].etat = this.selectedAll;
+      }
     }
-    this.getCheckedItemList();
+  //  this.getCheckedItemList();
   }
   checkIfAllSelected() {
     this.selectedAll = this.dd.every(function(item:any) {
       return item.etat == 0;
     })
-    this.getCheckedItemList();
+  //  this.getCheckedItemList();
   }
   getCheckedItemList() {
     this.checkedList = [];
     for (var i = 0; i < this.dd.length; i++) {
-      if(this.dd[i].etat) {
+      if(this.dd[i].etat == 0) {
         this.checkedList.push(this.dd[i]);
         this.http.post(`${this.reqUrl}/validerDemande/${this.dd[i].id}`, null).subscribe(
           data => {

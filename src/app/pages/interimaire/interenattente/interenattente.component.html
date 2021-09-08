@@ -6,10 +6,6 @@
                 <div class="exporter">
                     <div class="content-input-extraction">
                         <div class="filtrer-mois">
-                            <p class="label-input" for="titre">Matricule: </p>
-                            <input type="text" class="input-extraction" formControlName="cni">
-                        </div>
-                        <div class="filtrer-mois">
                             <p class="label-input" for="titre">Société: </p>
                             <select type="number" formControlName="societe" #societe class="select-mois" (change)="directionsListe(societe.value)">
                                 <option value="null">Aucun Choix</option>
@@ -53,23 +49,15 @@
         <table style="overflow-x:auto;" aria-describedby = "mydesc">
             <thead>
                 <tr class="head">
-                    <th class="typ" id="prenom">
-                        <div class="type">
-                            <p>Prenom</p> 
-                            <mat-icon class="updown" fontSet="material-icons-outlined">unfold_more</mat-icon>
-                        </div>
-                    </th>
-                    <th class="typ" id="nom">
-                        <div class="type2">
-                            <p>Nom</p> 
-                            <mat-icon class="updown" fontSet="material-icons-outlined">unfold_more</mat-icon>
-                        </div>
-                    </th>
+                    <th class="typ" id="prenom">Prenom</th>
+                    <th class="typ" id="nom">Nom</th>
                     <th id="manager">Fonction</th>
-                    <th id="direction">Direction</th>
+                    <th *ngIf="role != 'AGN'" id="direction">Direction</th>
                     <th *ngIf="role == 'DRH'" id="agence">Agence</th>
-                    <th id="direction">Début Contrat</th>
-                    <th id="direction">Fin Contrat</th>
+                    <th *ngIf="role == 'AGN'" id="direction">Email</th>
+                    <th *ngIf="role == 'AGN'" id="direction">Téléphone</th>
+                    <th *ngIf="role != 'AGN'" id="direction">Début Contrat</th>
+                    <th *ngIf="role != 'AGN'" id="direction">Fin Contrat</th>
             </tr>
             </thead>
             <tbody>
@@ -81,10 +69,12 @@
                     <td (click)="openDetail(p.id)">{{p.prenom}}</td>
                     <td (click)="openDetail(p.id)">{{p.nom}}</td>
                     <td (click)="openDetail(p.id)">{{p.poste}}</td>
-                    <td (click)="openDetail(p.id)">{{p.direction}}</td>
+                    <td *ngIf="role != 'AGN'" (click)="openDetail(p.id)">{{p.direction}}</td>
                     <td *ngIf="role == 'DRH'" (click)="openDetail(p.id)">{{p.agence}}</td>
-                    <td (click)="openDetail(p.id)">{{p.debut_contrat}}</td>
-                    <td (click)="openDetail(p.id)">{{p.fin_contrat}}</td>
+                    <td *ngIf="role == 'AGN'" (click)="openDetail(p.id)">{{p.email}}</td>
+                    <td *ngIf="role == 'AGN'" (click)="openDetail(p.id)">{{p.telephone}}</td>
+                    <td *ngIf="role != 'AGN'" (click)="openDetail(p.id)">{{p.debut_contrat}}</td>
+                    <td *ngIf="role != 'AGN'" (click)="openDetail(p.id)">{{p.fin_contrat}}</td>
                 </tr>
             </tbody>
             

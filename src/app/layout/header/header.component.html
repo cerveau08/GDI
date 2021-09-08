@@ -17,11 +17,6 @@
                <span *ngFor="let p of lastnotif"  class="info-notif" [style.background]="getcolornotif(p)">notif</span>
             </div>
         </div>
-        <div style="cursor: pointer;" class="elmt1 chat" title="messages">
-            <div routerLink="/accueil/alertes" style="outline: none;">
-              <mat-icon class="icon" fontSet="material-icons-outlined" >forum</mat-icon>
-            </div>
-        </div>
         <div style="cursor: pointer;" class="profil d-flex">
           <div (click)="updown()">
             <img class="img-profil" src="{{photo}}" alt="">
