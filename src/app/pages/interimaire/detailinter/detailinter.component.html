@@ -377,6 +377,8 @@
                     <div class="input-v">
                         <p class="libelle-motif">Téléphone OM</p>
                         <input class="input-valider" type="text" formControlName="telephone" placeholder="Telephone OM">
+                        <p class="error-message-number" *ngIf="videNumber">{{videNumber}}</p>
+                        <p class="error-message-number" *ngIf="invalideNumber">{{invalideNumber}}</p>
                     </div>
                     <div class="input-v">
                         <p class="libelle-motif">Matricule Manager</p>

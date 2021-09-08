@@ -1,5 +1,5 @@
 import { ToastrService } from 'ngx-toastr';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { DataService } from '../../../service/data.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -18,6 +18,13 @@ import { ErrormodalService } from 'src/app/modal/_errormodals';
 })
 export class DetailinterComponent implements OnInit {
 
+  validation_messages = {
+    'telephone': [
+        { type: 'required', message: 'Veuillez saisir votre numero de téléphone' },
+        { type: 'pattern', message: 'Le format de numéro que vous avez saisi est incorrecte' },
+        { type: 'validNumber', message: 'Ce numero de téléphone n\'existe pas' }
+    ],
+  };
   item: any;
   id: any;
   user: any;
@@ -120,6 +127,8 @@ export class DetailinterComponent implements OnInit {
   telephoneManager: any;
   posteManager: any;
   structureManager: any;
+  invalideNumber: string;
+  videNumber: string;
   constructor(private activeroute: ActivatedRoute,
               private modalService: ModalService,
               private otherService: OthersService,
@@ -127,6 +136,7 @@ export class DetailinterComponent implements OnInit {
               private errormodalService: ErrormodalService,
               private http: HttpClient,
               public router: Router, 
+              public formBuilder: FormBuilder, 
               private toastr: ToastrService) { 
     this.activeroute.queryParams.subscribe(params => {
       this.item = JSON.parse(params["user"]);
@@ -204,10 +214,13 @@ export class DetailinterComponent implements OnInit {
     this.searchForm = new FormGroup({
       matricule: new FormControl('')
     });
-    this.validerForm = new FormGroup({
+    this.validerForm = this.formBuilder.group({
       matricule: new FormControl(''),
-      telephone: new FormControl(''),
-      responsable: new FormControl('')
+      responsable: new FormControl(''),
+      telephone: new FormControl('', Validators.compose([
+        Validators.required,
+        Validators.pattern('7[7-8]{1}[0-9]{7}')
+      ])),
     });
     this.otherService.getAllSociete().subscribe(
       data => {
@@ -246,7 +259,9 @@ export class DetailinterComponent implements OnInit {
   }
 
 
-  
+  get errorControl() {
+    return this.validerForm.controls;
+  }
 
   gty(page: any){
     this.http.get(this.reqUrl + `/managers/list?page=${page}&limit=${this.itemsPerPage}`).subscribe((data: any) => {
@@ -435,25 +450,36 @@ export class DetailinterComponent implements OnInit {
   }
 
   validerInterimaire() {
-    console.log(this.validerForm.value);
-    this.otherService.validerInterimaire(this.validerForm.value, this.item).subscribe(
-      data => {
-        this.dataValidation = data;
-        this.successMsgValider = this.dataValidation.status;
-        if(this.successMsgValider == true) {
-          this.closeModal('custom-modal-8');
-          this.toastr.success(this.dataValidation.message, 'Success', {
-            timeOut: 3000,
+    if(this.validerForm.value.telephone.length === 0) {
+      this.videNumber = 'Veuillez saisir votre numero de téléphone';
+    } else {
+      this.videNumber = '';
+    }
+    if(this.validerForm.value.telephone.length !== 0 && this.validerForm.controls.telephone.status == 'INVALID') {
+      this.invalideNumber = 'Le format de numéro que vous avez saisi est incorrecte';
+    } else {
+      this.invalideNumber = '';
+    }
+    if(this.validerForm.valid) {
+      this.otherService.validerInterimaire(this.validerForm.value, this.item).subscribe(
+        data => {
+          this.dataValidation = data;
+          this.successMsgValider = this.dataValidation.status;
+          if(this.successMsgValider == true) {
+            this.closeModal('custom-modal-8');
+            this.toastr.success(this.dataValidation.message, 'Success', {
+              timeOut: 3000,
+            });
+            this.router.navigate(['accueil/souscontrat']);
+          }
+        }, error=> {
+          this.errorMsg = error;
+          this.toastr.error(this.errorMsg, 'Echec', {
+            timeOut: 5000,
           });
-          this.router.navigate(['accueil/souscontrat']);
         }
-      }, error=> {
-        this.errorMsg = error;
-        this.toastr.error(this.errorMsg, 'Echec', {
-          timeOut: 5000,
-        });
-      }
-    )
+      )
+    }
   }
 
   getPhoto(e:any) {

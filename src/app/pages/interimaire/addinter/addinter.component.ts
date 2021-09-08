@@ -139,10 +139,13 @@ export class AddinterComponent implements OnInit {
   itemParPage = 900;
   region = null;
   loading = false;
+  videNumber: string;
+  invalideNumber: string;
   constructor(private otherService: OthersService,
               private errormodalService: ErrormodalService,
               private toastr: ToastrService,
               private router: Router,
+              public formBuilder: FormBuilder, 
               private spinner: NgxSpinnerService
               ) {
    // this.datajson = this.dataService.getData();
@@ -188,11 +191,21 @@ export class AddinterComponent implements OnInit {
         diplome3: new FormControl(''),
         fonction: new FormControl('')
     });
-    this.searchForm = new FormGroup({
-      numeroPiece: new FormControl(''),
-      societe: new FormControl(''),
-      telephone: new FormControl(''),
-      typePiece: new FormControl(''),
+    this.searchForm = this.formBuilder.group({
+      numeroPiece: new FormControl('', Validators.compose([
+        Validators.required,
+       // Validators.pattern('[0-9]')
+      ])),
+      societe: new FormControl('', Validators.compose([
+        Validators.required
+      ])),
+      typePiece: new FormControl('', Validators.compose([
+        Validators.required
+      ])),
+      telephone: new FormControl('', Validators.compose([
+        Validators.required,
+        Validators.pattern('7[7-8]{1}[0-9]{7}')
+      ])),
     })
     this.otherService.getAllSociete().subscribe(
       data => {
@@ -232,6 +245,17 @@ export class AddinterComponent implements OnInit {
   }
   
   rechercherInterimaire() { 
+    console.log(this.searchForm.controls);
+    if(this.searchForm.value.telephone.length === 0) {
+      this.videNumber = 'Veuillez saisir votre numero de téléphone';
+    } else {
+      this.videNumber = '';
+    }
+    if(this.searchForm.value.telephone.length !== 0 && this.searchForm.controls.telephone.status == 'INVALID') {
+      this.invalideNumber = 'Le format de numéro que vous avez saisi est incorrecte';
+    } else {
+      this.invalideNumber = '';
+    }
     this.typePiece = this.searchForm.value.typePiece;
     this.numeroPiece = this.searchForm.value.numeroPiece;
     this.telephone = this.searchForm.value.telephone;
@@ -246,17 +270,12 @@ export class AddinterComponent implements OnInit {
     } else {
       this.videnumeroPiece = false;
     }
-    if(!this.telephone) {
-      this.videtelephone = true;
-    } else {
-      this.videtelephone = false;
-    }
     if(!this.societe) {
       this.videsociete = true;
     } else {
       this.videsociete = false;
     }
-    if(this.typePiece && this.numeroPiece && this.telephone && this.societe) {
+    if(this.searchForm.valid) {
       this.otherService.pieceFilter(this.searchForm.value).subscribe(
         (response) => {
           this.dataMatriculeInter = response;

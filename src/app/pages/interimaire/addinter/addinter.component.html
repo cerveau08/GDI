@@ -50,7 +50,7 @@
             </div>
             <div class="content-input">
               <p class="label-input">Numéro Pièce</p>
-              <input class="input-search" type="text" formControlName="numeroPiece" placeholder="Numero Pièce" required>
+              <input class="input-search" type="number" formControlName="numeroPiece" placeholder="Numero Pièce" required>
               <p class="error-require-input-search" *ngIf="videnumeroPiece" >Veuillez renseigner le numéro de piéce</p>
             </div>
           </div>
@@ -66,7 +66,8 @@
             <div class="content-input">
               <p class="label-input">Numéro Téléphone</p>
               <input class="input-search" type="number" formControlName="telephone" placeholder="Numero Téléphone" required>
-              <p class="error-require-input-search" *ngIf="videtelephone" >Veuillez renseigner le numéro de téléphone</p>
+              <p class="error-require-input-search" *ngIf="videNumber">{{videNumber}}</p>
+              <p class="error-require-input-search" *ngIf="invalideNumber">{{invalideNumber}}</p>
             </div>
           </div>
           <div class="content-button-form">
