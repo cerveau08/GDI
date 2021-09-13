@@ -88,7 +88,6 @@ export class StatistiquesComponent implements OnInit {
         this.scrWidth = window.innerWidth;
   }
   ngOnInit() {
-    this.datas = this.dataService.getData();
     const getDownloadProgress = () => {
       if (this.progress <= 99) {
         this.progress = 30;

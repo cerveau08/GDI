@@ -1,0 +1,79 @@
+<div class="objectif-container">
+    <div class="content-header-page">
+        <mat-icon class="bouton-retour" (click)="backClicked()">arrow_back</mat-icon>
+        <h1 class="titre-objectif">Ajouter des Objectifs pour {{prenom}} {{nom}}</h1>
+    </div>
+    <form action="" [formGroup]="objectifsForm">
+        <div class="content-other-input-form">
+            <div class="content-form-dateDebut">
+                <p class="text-other">
+                    <span class="comment-title">Date de Début</span>:
+                </p>
+                <input class="input-header" type="date" formControlName="dateDebut">
+            </div>
+            <div class="content-form-dateFin">
+                <p class="text-other">
+                    <span class="comment-title">Date de Fin</span>:
+                </p>
+                <input class="input-header" type="date" formControlName="dateFin">
+            </div>
+            <div class="content-form-libelle">
+                <p class="text-other">
+                    <span class="comment-title">Namming</span>:
+                </p>
+                <input class="input-header" type="text" formControlName="namming">
+            </div>
+        </div>
+        <div class="content-list-objectif" formArrayName="objectifs">
+            <p class="liste-des-objectifs">Formulaires des objectifs</p>
+            <div class="content-all-objectif">
+                <div class="item-objectif" *ngFor="let skill of objectifs.controls; let i=index">
+                    <div class="content-item-object">
+                        <div class="titre-et-description" [formGroupName]="i">
+                            <div class="content-form-note">
+                                <p class="text-label-titre">
+                                    <span class="note-title">Titre</span>:
+                                </p>
+                                <input class="input-note" type="text" formControlName="titre">
+                            </div>
+                            <div class="content-form-comment">
+                                <p class="text-label-description">
+                                    <span class="comment-title">Description</span>:
+                                </p>
+                                <input class="input-commentaire" type="text" formControlName="description">
+                            </div>
+                        </div>
+                        <div class="bareme-et-indicateur-et-valeur" [formGroupName]="i">
+                            <div class="content-form-note">
+                                <p class="text-label-titre">
+                                    <span class="note-title">Bareme</span>:
+                                </p>
+                                <input class="input-note" type="number" formControlName="bareme">
+                            </div>
+                            <div class="content-form-comment">
+                                <p class="text-label-description">
+                                    <span class="comment-title">Indicateur de mesure</span>:
+                                </p>
+                                <input class="input-commentaire" type="text" formControlName="indicateur">
+                            </div>
+                            <div class="content-form-comment">
+                                <p class="text-label-titre">
+                                    <span class="comment-title">Valeur Cible</span>:
+                                </p>
+                                <input class="input-commentaire" type="text" formControlName="valeurCible">
+                            </div>
+                            <mat-icon class="bouton-delete-objectif" (click)="removeobjectif(i)">delete</mat-icon>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="bouton-add-objectif" type="button" (click)="addObjectif()">+</button>
+        <div *ngIf="!successMsg" class="content-message-error">
+            <p class="message-error">{{mesgError}}</p>
+        </div>
+        <div class="content-button-evaluer">
+            <button (click)="ajouterObjectifs()" class="button-enregistrer-evaluation">Enregistrer</button>
+        </div>
+    </form>
+</div>

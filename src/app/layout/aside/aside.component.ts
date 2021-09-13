@@ -62,8 +62,6 @@ export class AsideComponent implements OnInit {
     } else {
       this.showHome = true;
     }
-    this.data = this .dataService.getData();
-    
     if(this.user == 'INT') {
       this.otherService.getDetailsManagerById(this.page, this.itemsPerPage, this.currentUser.manager.id).subscribe( 
         result => {

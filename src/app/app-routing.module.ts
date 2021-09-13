@@ -1,3 +1,4 @@
+import { AddobjectifComponent } from './pages/evaluation/addobjectif/addobjectif.component';
 import { StatsiteComponent } from './pages/statistiques/statsite/statsite.component';
 import { ListcommissionComponent } from './pages/settings/commission/listcommission/listcommission.component';
 import { ModiffonctionComponent } from './pages/settings/fonction/modiffonction/modiffonction.component';
@@ -101,13 +102,8 @@ const routes: Routes = [
     component: PasswordforgetComponent
   },
   { path: 'passwordreset', 
-  loadChildren: () => import('src/app/connexion/password-reset/password-reset.module').then(m => m.PasswordResetModule) },
-  // { path: 'passwordreset', 
-  // loadChildren: 'app/password-reset/password-reset.module#PasswordResetModule' },
-  // { 
-  //   path: 'passwordreset', 
-  //   component: PasswordResetComponent
-  // },
+    loadChildren: () => import('src/app/connexion/password-reset/password-reset.module').then(m => m.PasswordResetModule) 
+  },
   { 
     path: 'login', 
     component: LoginComponent
@@ -413,41 +409,45 @@ const routes: Routes = [
         canActivate: [AuthGuard]
       },
       { path: 'ajoutsociete',
-      component:AjoutsocieteComponent,
+        component:AjoutsocieteComponent,
+        canActivate: [AuthGuard]
+      },
+      { path: 'listsociete',
+        component:ListsocieteComponent,
+        canActivate: [AuthGuard]
+      },
+      { path: 'modifsociete',
+        component:ModifsocieteComponent,
+        canActivate: [AuthGuard]
+      },
+      { path: 'ajoutprofil',
+      component:AjoutprofilComponent,
       canActivate: [AuthGuard]
-    },
-    { path: 'listsociete',
-      component:ListsocieteComponent,
-      canActivate: [AuthGuard]
-    },
-    { path: 'modifsociete',
-      component:ModifsocieteComponent,
-      canActivate: [AuthGuard]
-    },
-    { path: 'ajoutprofil',
-    component:AjoutprofilComponent,
-    canActivate: [AuthGuard]
-  },
-  { path: 'listprofil',
-    component:ListprofilComponent,
-    canActivate: [AuthGuard]
-  },
-  { path: 'modifprofil',
-    component:ModifprofilComponent,
-    canActivate: [AuthGuard]
-  },
-  { path: 'ajoutperiode',
-  component:AjoutperiodeComponent,
-  canActivate: [AuthGuard]
-},
-{ path: 'listperiode',
-  component:ListperiodeComponent,
-  canActivate: [AuthGuard]
-},
-{ path: 'modifperiode',
-  component:ModifperiodeComponent,
-  canActivate: [AuthGuard]
-},
+      },
+      { path: 'listprofil',
+        component:ListprofilComponent,
+        canActivate: [AuthGuard]
+      },
+      { path: 'modifprofil',
+        component:ModifprofilComponent,
+        canActivate: [AuthGuard]
+      },
+      { path: 'ajoutperiode',
+        component:AjoutperiodeComponent,
+        canActivate: [AuthGuard]
+      },
+      { path: 'listperiode',
+        component:ListperiodeComponent,
+        canActivate: [AuthGuard]
+      },
+      { path: 'modifperiode',
+        component:ModifperiodeComponent,
+        canActivate: [AuthGuard]
+      },
+      { path: 'addobjectif',
+        component: AddobjectifComponent,
+        canActivate: [AuthGuard]
+      },
       {
         path: '',
         redirectTo: 'accueil/home',

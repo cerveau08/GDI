@@ -10,6 +10,30 @@
     font-size: 18px;
     font-weight: bold;
 }
+.objectif-text-title{
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 13px;
+}
+.objectif-text-bareme{
+    margin-top: 5px;
+    font-size: 13px;
+    margin-bottom: 0;
+}
+.content-header-page{
+    display: grid;
+    grid-template-columns: 100px 1fr;
+}
+.content-bareme-indicateur-vc{
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+}
+.bouton-retour{
+    background-color: #f5f6f9;
+    border-radius: 50%;
+    padding: 5px;
+    cursor: pointer;
+}
 .button-ajouter {
     position: absolute;
     top: 10px;
@@ -26,8 +50,12 @@
     margin-top: 5px;
 }
 .content-all-objectif{
-  height: 230px;
+//  height: 230px;
   overflow: scroll;
+}
+.select-mois{
+    width: 100%;
+    outline: none;
 }
 .item-objectif {
     border: 1px solid #000;

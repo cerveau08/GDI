@@ -1,5 +1,5 @@
 import { ToastrService } from 'ngx-toastr';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { environment } from 'src/environments/environment';
 import { OthersService } from 'src/app/services/others.service';
@@ -7,6 +7,7 @@ import { ModalService } from 'src/app/modal/_modal';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ErrormodalService } from 'src/app/modal/_errormodals';
 import { HttpClient } from '@angular/common/http';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-evaluer',
@@ -40,17 +41,29 @@ export class EvaluerComponent implements OnInit {
   public reqUrl = environment.base_url;
   errorMsg: any;
   detailNotation;
+  scrHeight: any;
+  scrWidth: any;
+  heightForm: number;
+  periodeobjectif: any;
+  @HostListener('window:resize', ['$event'])
+  getScreenSize(event?) {
+    this.scrHeight = window.innerHeight;
+    this.scrWidth = window.innerWidth;
+    this.heightForm = this.scrHeight - 290;
+  }
   constructor(private otherService: OthersService,
     private modalService: ModalService,
     private activeroute: ActivatedRoute,
     private errormodalService: ErrormodalService,
     private http: HttpClient,
     private router: Router,
+    private location: Location,
     private formBuilder: FormBuilder,
     private toastr: ToastrService) {
     this.activeroute.queryParams.subscribe(params => {
       this.item = JSON.parse(params["interimaire"]);
     });
+    this.getScreenSize();
     this.evaluerForm = this.formBuilder.group({
       interimaireId: ['', Validators.required],
       commentaire: ['', Validators.required],
@@ -77,6 +90,14 @@ export class EvaluerComponent implements OnInit {
 
   ngOnInit() {
     this.role = localStorage.getItem('user');
+
+    this.otherService.getPeriodeObjectif(this.item).subscribe(
+      data => {
+        this.data = data
+        this.periodeobjectif = this.data["data"];
+      }
+    );
+    
     this.objectifForm = new FormGroup({
       titre: new FormControl(''),
       description: new FormControl(''),
@@ -95,6 +116,10 @@ export class EvaluerComponent implements OnInit {
     });
     
     this.gty(this.page);
+  }
+
+  backClicked() {
+    this.location.back();
   }
 
   gty(page: any){
@@ -120,7 +145,7 @@ export class EvaluerComponent implements OnInit {
   }
 
   addObject() {
-    this.otherService.addObjectifs(this.objectifForm.value).subscribe(
+    this.otherService.addObjectifs(this.objectifForm.value, this.item).subscribe(
       data =>{
         this.data = data;
         this.successMsg = this.data.status

@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from 'src/app/service/data.service';
 import { OthersService } from 'src/app/services/others.service';
 import { ErrormodalService } from 'src/app/modal/_errormodals';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-modifierinter',
@@ -137,6 +138,7 @@ export class ModifierinterComponent implements OnInit {
     private route: Router,
     private errormodalService: ErrormodalService,
     private otherService: OthersService,
+    private location: Location,
     private toastr: ToastrService) {
       this.activeroute.queryParams.subscribe(params => {
         this.item = JSON.parse(params["user"]);
@@ -243,10 +245,14 @@ export class ModifierinterComponent implements OnInit {
       }
     );
     this.otherService.getAllCategorie().subscribe(
-    data => {
-      this.dataCategorie = data["data"];
-    }
-  );
+      data => {
+        this.dataCategorie = data["data"];
+      }
+    );
+  }
+
+  backClicked() {
+    this.location.back();
   }
 
   get f() { return this.interForm.controls; }

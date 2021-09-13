@@ -2,7 +2,10 @@
     <div class="compte">
         <div class="content-header">
             <div class="content-details">
-                <p class="detail">Détails</p>
+                <div class="content-header-page">
+                    <mat-icon class="bouton-retour" (click)="backClicked()">arrow_back</mat-icon>
+                    <p class="detail">Détails</p>
+                </div>
             </div>
             <div class="content-buttons-modifier">
                 <button *ngIf="etat == 'actif' && role == 'DRH'"  (click)="modifierInter()" class="button-modifier">Modifier</button>

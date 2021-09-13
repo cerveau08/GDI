@@ -133,9 +133,15 @@ addAgence(data) {
     return this.http.get<any>(this.reqUrl + '/notification/all/');
   }
  
-  getListeObjectif(id: number){
-    return this.http.get(`${this.reqUrl}/listeObjectifs/${id}`);
+  getListeObjectif(id, page,limit, periode) {
+    const data = {page: page, limit: limit, periode: periode};
+    return this.http.get(`${this.reqUrl}/listeObjectifs/${id}`, {params: data});
   }
+
+  getPeriodeObjectif(id: number){
+    return this.http.get(`${this.reqUrl}/periodeObjectif/${id}`);
+  }
+
   addUser(data) {
     return this.http.post<any>(`${this.reqUrl}/users/create`, data);
   }
@@ -204,8 +210,8 @@ addAgence(data) {
   getContratById(id: number) {
     return this.http.get(this.reqUrl + `/contrat/${id}`);
   }
-  addObjectifs(data){
-    return this.http.post(`${this.reqUrl}/ajoutObjectif`, data);
+  addObjectifs(data, id: number){
+    return this.http.post(`${this.reqUrl}/ajoutObjectif/${id}`, data);
   }
   notezObjectif(data:any, id: number): Observable<any> {
     return this.http.post<any>(`${this.reqUrl}/noterObjectif/${id}`, data);

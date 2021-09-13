@@ -20,7 +20,6 @@ export class AddmanagerComponent implements OnInit {
     private errormodalService: ErrormodalService,) { }
 
   ngOnInit() {
-    this.datas = this.dataService.getData();
     this.matriculeForm = new FormGroup({
       matricule: new FormControl(''),
     });

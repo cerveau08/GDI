@@ -10,6 +10,7 @@ import { formatCurrency } from '@angular/common';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { ErrormodalService } from 'src/app/modal/_errormodals';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-detailinter',
@@ -136,6 +137,7 @@ export class DetailinterComponent implements OnInit {
               private errormodalService: ErrormodalService,
               private http: HttpClient,
               public router: Router, 
+              private location: Location,
               public formBuilder: FormBuilder, 
               private toastr: ToastrService) { 
     this.activeroute.queryParams.subscribe(params => {
@@ -401,6 +403,9 @@ export class DetailinterComponent implements OnInit {
         });
       }
     )
+  }
+  backClicked() {
+    this.location.back();
   }
   objectif() {
     this.router.navigate(['accueil/objectif'], {

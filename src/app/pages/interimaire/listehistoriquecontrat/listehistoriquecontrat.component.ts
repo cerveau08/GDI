@@ -6,6 +6,7 @@ import { ModalService } from 'src/app/modal/_modal';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ErrormodalService } from 'src/app/modal/_errormodals';
 import { HttpClient } from '@angular/common/http';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-listehistoriquecontrat',
@@ -43,6 +44,7 @@ export class ListehistoriquecontratComponent implements OnInit {
   constructor(private otherService: OthersService,
     private modalService: ModalService,
     private activeroute: ActivatedRoute,
+    private location: Location,
     private errormodalService: ErrormodalService,
     private http: HttpClient,
     private router: Router,) {
@@ -62,6 +64,10 @@ export class ListehistoriquecontratComponent implements OnInit {
     }
   );
     this.gty(this.page);
+  }
+
+  backClicked() {
+    this.location.back();
   }
 
   gty(page: any){

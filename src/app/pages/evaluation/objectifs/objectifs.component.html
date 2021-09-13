@@ -1,25 +1,106 @@
 <div class="objectif-container">
-    <h1 class="titre-objectif">Liste des objectifs du contrat de {{item.prenom}} {{item.nom}}</h1>
-    <button *ngIf="role == 'MNG'" class="button-ajouter" (click)="openModal('objectif-modal-1');">Ajouter Objectif</button>
+    <div class="content-header-page">
+        <mat-icon class="bouton-retour" (click)="backClicked()">arrow_back</mat-icon>
+        <h1 class="titre-objectif">Liste des objectifs de {{prenom}} {{nom}}</h1>
+    </div>
+    <button *ngIf="role == 'MNG'" class="button-ajouter" (click)="openAddObjectif();">Ajouter Objectif</button>
+    <div class="exporter">
+        <form [formGroup]="filterForm">
+            <div class="exporter-content">
+                <div></div>
+                <div class="content-input-extraction">
+                    <div class="filtrer-mois">
+                        <p class="label-input" for="titre">Période: </p>
+                        <select type="number" formControlName="periode" class="select-mois">
+                            <option value="null">Aucun Choix</option>
+                            <option *ngFor="let data of periodeobjectif"  [value]="data.id_periode">
+                                période: {{data.periode}} du {{data.dateDebut | date: 'dd MMMM yyyy'}} au {{data.dateFin | date: 'dd MMMM yyyy'}}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="content-extraction">
+                        <mat-icon class="icon-search" (click)="gty(page)" fontSet="material-icons-outlined" >search</mat-icon>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
     <div class="content-list-objectif">
         <div class="item-objectif" *ngFor="let p of objectif | paginate: {  itemsPerPage: itemsPerPage,
             currentPage: page,
             totalItems: totalItems
             }; let i = index">
             <div class="content-item-object">
-                <p class="objectif-title">{{p.titre}}</p>
-                <p class="objectif-content">{{p.description}}</p>
-                <!-- <div class="note-et-comments">
-                    <p class="text-note-comments">
-                        <span class="note-title">NOTE</span>:<span class="la-note"> {{p.note}} / {{p.bareme}} </span>
-                        <span class="comment-title">Commentaires</span>:<span class="le-commentaire">
-                            {{p.commentaire}}
-                        </span>
-                    </p>
-                </div> -->
+                <div class="content-periode-item">
+                    <div class="content-text-objectif-periode">
+                        <p class="text-objectif-title">
+                            Nom de la période:
+                            <span class="objectif-title-namming">{{p.periode}}</span>
+                        </p>
+                    </div>
+                    <div class="content-text-objectif-date">
+                        <p class="text-objectif-content">
+                            Date de début:
+                            <span class="objectif-content">{{p.dateDebut}}</span>
+                        </p>
+                    </div>
+                    <div class="content-text-objectif-date">
+                        <p class="text-objectif-content">
+                            Date de Fin:
+                            <span class="objectif-content">{{p.dateFin}}</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="content-titre-description-item">
+                    <div class="content-text-objectif-title">
+                        <p class="text-objectif-title">
+                            Titre:
+                            <span class="objectif-title-titre">{{p.titre}}</span>
+                        </p>
+                    </div>
+                    <div class="content-text-objectif-description">
+                        <p class="text-objectif-content">
+                            Description:
+                            <span class="objectif-content-description">{{p.description}}</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="content-periode-item">
+                    <div class="content-text-objectif-bareme">
+                        <p class="text-objectif-title">
+                            Bareme:
+                            <span class="objectif-title">{{p.bareme}}</span>
+                        </p>
+                    </div>
+                    <div class="content-text-objectif-indicateur">
+                        <p class="text-objectif-content">
+                            Indicateur de mesure:
+                            <span class="objectif-content">{{p.indicateur}}</span>
+                        </p>
+                    </div>
+                    <div class="content-text-objectif-valeur">
+                        <p class="text-objectif-content">
+                            Valeur Cible:
+                            <span class="objectif-content">{{p.valeurCible}}</span>
+                        </p>
+                    </div>
+                </div>
+                <div *ngIf="p.note">
+                    <div class="content-text-objectif-note">
+                        <p class="text-objectif-title">
+                            Note:
+                            <span class="objectif-title">{{p.note}}</span>
+                        </p>
+                    </div>
+                    <div class="content-text-objectif-commentaire">
+                        <p class="text-objectif-content">
+                            Commentaire:
+                            <span class="objectif-content-commentaire">{{p.commentaire}}</span>
+                        </p>
+                    </div>
+                </div>
             </div>
             <div *ngIf="role == 'MNG'" class="objectif-buttons">
-                <!-- <button (click)="openModal('custom-modal-'+p.id);" class="button-evaluer">Evaluer</button> -->
                 <button (click)="openModal('modif-modal-'+p.id);" class="button-evaluer">Modifier</button>
             </div>
             <!--modal-1-->

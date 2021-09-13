@@ -7,6 +7,17 @@
 .titre-objectif {
     font-size: 18px;
     font-weight: bold;
+    margin-top: 5px;
+}
+.content-header-page{
+    display: grid;
+    grid-template-columns: 100px 1fr;
+}
+.bouton-retour{
+    background-color: #f5f6f9;
+    border-radius: 50%;
+    padding: 5px;
+    cursor: pointer;
 }
 .button-ajouter {
     position: absolute;

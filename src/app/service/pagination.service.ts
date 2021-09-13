@@ -12,9 +12,6 @@ export class PaginationService {
       id: 1, title: 'Tableau de bord',
       path: '/', icon: "home",
     },{
-      id: 2, title: 'Tableau de bord drh',
-      path: 'home', icon: "home",
-    },{
       id: 2,  title: 'Interimaires',
       icon: "person",  icon2: "expand_more", icon3: "expand_less",
       click: 0,  activeChoice: -1,
@@ -36,38 +33,8 @@ export class PaginationService {
         },
       ]
     },{
-      id: 10,  title: 'Paramètres',
+      id: 10,  title: 'Aide et Assistance',
       path: 'parametre',  icon: "settings",
-    },{
-      id: 11,  title: 'Settings',  icon: "settings",
-      icon2: "expand_more",  icon3: "expand_less",
-    //  click: false,  activeChoice: -1,
-      liste: [  
-        {
-          title: 'Domaine',  path: 'ajoutdomaine',
-        }, {
-          title: 'Fonction',  path: 'ajoutfonction',
-        },{
-          title: 'Site',  path: 'listesite',
-        }, {
-          title: 'Catégorie',  path: 'ajoutcategorie',
-        },{
-          title: 'Comission',  path: 'ajoutcommission',
-        },{
-          title: 'Direction',  path: 'listdirection',
-        },{
-          title: 'Profil',  path: 'listprofil',
-        }
-        ,{
-          title: 'Periode',  path: 'listperiode',
-        }
-        ,{
-          title: 'Societe',  path: 'listsociete',
-        }
-        ,{
-          title: 'Structure',  path: 'liststructure',
-        },
-      ]
     }
   ];
 
@@ -96,7 +63,7 @@ export class PaginationService {
       id: 8,  title: 'Mon Compte',
       path: 'compte',  icon: "folder_shared",
     },{
-      id: 10,  title: 'Paramètres',
+      id: 10,  title: 'Aide et Assistance',
       path: 'parametre',  icon: "settings",
     },
   ];
@@ -196,12 +163,11 @@ export class PaginationService {
       id: 11,  title: 'Liste Noire',
       path: 'blacklist',  icon: "person_off",
     },{
-      id: 10,  title: 'Paramètres',
+      id: 10,  title: 'Aide et Assistance',
       path: 'parametre',  icon: "settings",
     },
-
     {
-      id: 11,  title: 'Settings',  icon: "settings",
+      id: 11,  title: 'Paramètres',  icon: "settings",
       icon2: "expand_more",  icon3: "expand_less",
     //  click: false,  activeChoice: -1,
       liste: [  
@@ -248,6 +214,8 @@ export class PaginationService {
         id: 2, title: 'Liste en fin de contrat',  path: 'fincontrat',
       }, {
         id: 2, title: 'Liste en attente',  path: 'interenattente',
+      }, {
+        id: 2, title: 'Liste archivé',  path: 'interarchive',
       },{
         id: 4,  title: 'Ajouter',  path: 'addinter',
       },
@@ -268,7 +236,7 @@ export class PaginationService {
       id: 8,  title: 'Mon Compte',
       path: 'agence',  icon: "folder_shared",
     },{
-      id: 10,  title: 'Paramètres',
+      id: 10,  title: 'Aide et Assistance',
       path: 'parametre',  icon: "settings",
     },
   ];
@@ -284,7 +252,9 @@ export class PaginationService {
           id: 1,  title: 'Liste sous contrat',  path: 'souscontrat',
         }, {
           id: 2, title: 'Liste en fin de contrat',  path: 'fincontrat',
-        },
+        }, {
+          id: 2, title: 'Liste archivé',  path: 'interarchive',
+        }
       ]
     }, {
       id: 3,  title: 'Attestation',
@@ -306,7 +276,7 @@ export class PaginationService {
       id: 8,  title: 'Mon Compte',
       path: 'manager',  icon: "folder_shared",
     },{
-      id: 10,  title: 'Paramètres',
+      id: 10,  title: 'Aide et Assistance',
       path: 'parametre',  icon: "settings",
     },
   ];
@@ -396,9 +366,13 @@ export class PaginationService {
       this.menus = this.agencenav;
     } else if(this.role == "DRHAG") {
       this.menus = this.agencenav;
-    } else if(this.role == "COM") {
+    } else if(this.role == "RH_GDI") {
       this.menus = this.drhComnav;
-    } else if(this.role == "ASTCP") {
+    } else if(this.role == "RH_REP") {
+      this.menus = this.drhComnav;
+    } else if(this.role == "RH_AFS") {
+      this.menus = this.drhComnav;
+    } else if(this.role == "RH") {
       this.menus = this.agencenav;
     } else {
       this.menus = this.eventSources

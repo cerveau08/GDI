@@ -9,6 +9,7 @@ import { ModalService } from 'src/app/modal/_modal/modal.service';
 import { ErrormodalService } from 'src/app/modal/_errormodals';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-detailagence',
@@ -78,6 +79,7 @@ export class DetailagenceComponent implements OnInit {
     private modalService: ModalService,
     private toastr: ToastrService,
     private http: HttpClient,
+    private location: Location,
     private fileSaver: NgxFileSaverService,
     private otherService: OthersService,
     private errormodalService: ErrormodalService,
@@ -173,6 +175,10 @@ export class DetailagenceComponent implements OnInit {
     this.gty(this.page);
 
     this.otherService.getFonctions().subscribe(data => this.listeFonction = data.data);
+  }
+
+  backClicked() {
+    this.location.back();
   }
 
   gty(page: any){

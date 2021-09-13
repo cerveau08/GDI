@@ -1,5 +1,8 @@
 <div class="objectif-container">
-    <h1 class="titre-objectif">Historiques des contrats de {{prenom}} {{nom}}</h1>
+    <div class="content-header-page">
+        <mat-icon class="bouton-retour" (click)="backClicked()">arrow_back</mat-icon>
+        <h1 class="titre-objectif">Historiques des contrats de {{prenom}} {{nom}}</h1>
+    </div>
     <div *ngIf="isData" class="content-list-objectif">
         <div class="item-objectif" *ngFor="let p of histoContrat | paginate: {  itemsPerPage: itemsPerPage,
             currentPage: page,

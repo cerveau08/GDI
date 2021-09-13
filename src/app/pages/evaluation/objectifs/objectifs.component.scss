@@ -7,6 +7,8 @@
 .titre-objectif {
     font-size: 18px;
     font-weight: bold;
+    margin-bottom: 5px;
+    margin-top: 5px;
 }
 .button-ajouter {
     position: absolute;
@@ -33,15 +35,78 @@
 .content-item-object {
     padding-right: 10px;
 }
+.content-periode-item{
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+}
+.text-objectif-title {
+    font-size: 13px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.select-mois{
+    width: 100%;
+    outline: none;
+}
+.content-input-extraction{
+    display: grid;
+    grid-template-columns: 1fr 40px;
+}
+.exporter-content{
+    display: grid;
+    grid-template-columns: 1fr 550px;
+    margin-bottom: 5px;
+}
+.periode-option{
+    font-weight: bold;
+}
+.icon-search{
+    margin-top: 20px;
+    font-size: 30px;
+    cursor: pointer;
+}
+.content-header-page{
+    display: grid;
+    grid-template-columns: 100px 1fr;
+}
+.bouton-retour{
+    background-color: #f5f6f9;
+    border-radius: 50%;
+    padding: 5px;
+    cursor: pointer;
+}
+.objectif-title-namming{
+    color: #ff7900;
+    font-weight: bold;
+}
+.objectif-title-titre{
+    color: #009393;
+    font-weight: bold;
+}
+.objectif-content-description{
+    font-weight: normal;
+}
+.objectif-content-commentaire{
+    font-style: italic;
+}
+// .content-titre-description-item{
+//     display: grid;
+//     grid-template-columns: 150px 1fr;
+// }
+.text-objectif-content {
+    font-size: 12px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
 .objectif-title {
-    font-size: 14px;
+    font-size: 13px;
     font-weight: bold;
     margin-top: 0px;
     margin-bottom: 5px;
 }
 .objectif-content {
-    font-size: 13px;
-    font-weight: normal;
+    font-size: 12px;
+    font-weight: bold;
     margin-top: 5px;
     margin-bottom: 0;
     text-align: justify;

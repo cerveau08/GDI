@@ -123,6 +123,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { DomaineComponent } from './pages/statistiques/domaine/domaine.component';
 import { StatsiteComponent } from './pages/statistiques/statsite/statsite.component';
 import { NgxSpinnerModule } from "ngx-spinner";
+import { AddobjectifComponent } from './pages/evaluation/addobjectif/addobjectif.component';
 
 @NgModule({
   declarations: [
@@ -218,6 +219,7 @@ import { NgxSpinnerModule } from "ngx-spinner";
     ListfonctionComponent,
     DomaineComponent,
     StatsiteComponent,
+    AddobjectifComponent,
   ],
   imports: [
     BrowserModule,

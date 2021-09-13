@@ -8,6 +8,7 @@ import { OthersService } from 'src/app/services/others.service';
 import { NgxFileSaverService } from '@clemox/ngx-file-saver';
 import { ErrormodalService } from 'src/app/modal/_errormodals';
 import { HttpClient } from '@angular/common/http';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-detailcontrat',
@@ -100,6 +101,7 @@ export class DetailcontratComponent implements OnInit {
               private otherService: OthersService,
               private fileSaver: NgxFileSaverService,
               private http: HttpClient,
+              private location: Location,
               private errormodalService: ErrormodalService,
               public router: Router, ) { 
     this.activeroute.queryParams.subscribe(params => {
@@ -134,6 +136,10 @@ export class DetailcontratComponent implements OnInit {
   ngOnInit() {
     this.role = localStorage.getItem('user')
     this.gty(this.page)
+  }
+
+  backClicked() {
+    this.location.back();
   }
 
   gty(page: any){

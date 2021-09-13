@@ -144,7 +144,9 @@
                           </div>
                           <div class="infoinput1">
                             <p class="label-input1">Email</p>
-                            <input type="text" formControlName="email" placeholder="Email">
+                            <input type="email" formControlName="email" placeholder="Email">
+                            <p class="error-require-input-search" *ngIf="videEmail">{{videEmail}}</p>
+                            <p class="error-require-input-search" *ngIf="invalidEmail">{{invalidEmail}}</p>
                           </div>
                           <div class="infoinput1">
                             <p class="label-input1">Téléphone</p>

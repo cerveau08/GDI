@@ -141,6 +141,8 @@ export class AddinterComponent implements OnInit {
   loading = false;
   videNumber: string;
   invalideNumber: string;
+  invalidEmail: string;
+  videEmail: string;
   constructor(private otherService: OthersService,
               private errormodalService: ErrormodalService,
               private toastr: ToastrService,
@@ -156,7 +158,10 @@ export class AddinterComponent implements OnInit {
         numeroPiece: new FormControl(''),
         prenom: new FormControl(''),
         nom: new FormControl(''),
-        email: new FormControl(''),
+        email: new FormControl('', Validators.compose([
+          Validators.required,
+          Validators.pattern('[A-Za-z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,3}')
+        ])),
         telephone: new FormControl(''),
         dateNaissance: new FormControl(''),
         lieuNaissance: new FormControl(''),
@@ -245,7 +250,6 @@ export class AddinterComponent implements OnInit {
   }
   
   rechercherInterimaire() { 
-    console.log(this.searchForm.controls);
     if(this.searchForm.value.telephone.length === 0) {
       this.videNumber = 'Veuillez saisir votre numero de téléphone';
     } else {
@@ -347,6 +351,16 @@ export class AddinterComponent implements OnInit {
     }
   }
   submitted1(){
+    if(this.interForm.value.email.length === 0) {
+      this.videEmail = 'Veuillez saisir votre email';
+    } else {
+      this.videEmail = '';
+    }
+    if(this.interForm.value.email.length !== 0 && this.interForm.controls.email.status == 'INVALID') {
+      this.invalidEmail = 'Le format d\'email que vous avez saisi est incorrecte';
+    } else {
+      this.invalidEmail = '';
+    }
     this.colora = "#f16e00";
     this.colorb = "#ff7900";
     this.color1 = "20px solid #f16e00";
@@ -359,6 +373,11 @@ export class AddinterComponent implements OnInit {
     this.color3 = "20px solid #ff7900";
   }
   submit() {
+    if(this.interForm.value.email.length !== 0 && this.interForm.controls.email.status == 'INVALID') {
+      this.invalidEmail = 'Le format d\'email que vous avez saisi est incorrecte';
+    } else {
+      this.invalidEmail = '';
+    }
     this.loading = true;
     this.colorc = "#f16e00";
     this.color3 = "20px solid #f16e00";

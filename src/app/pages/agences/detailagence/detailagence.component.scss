@@ -6,6 +6,12 @@
     background-color: white;
     margin-right: 0px;
 }
+.bouton-retour{
+    background-color: #f5f6f9;
+    border-radius: 50%;
+    padding: 5px;
+    cursor: pointer;
+}
 .grid2 {
     display: grid;
     grid-template-columns: 140px 1fr;

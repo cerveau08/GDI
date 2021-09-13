@@ -47,8 +47,6 @@ export class ListeragenceComponent implements OnInit {
     } else {
       this.showupdate = false;
     }
-   
-    this.datas = this.dataService.getData();
     this.agenceForm = new FormGroup({
       nom: new FormControl (''),
       nomdg: new FormControl(''),

@@ -85,8 +85,8 @@ export class HomeComponent implements OnInit {
   public restant: any;
   public nombre = 39;
   public left: any;
-  scrHeight:any;
-  scrWidth:any;
+  scrHeight: any;
+  scrWidth: any;
   user: any;
   showHome = true;
   id=1;

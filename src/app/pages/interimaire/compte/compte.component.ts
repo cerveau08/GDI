@@ -156,7 +156,6 @@ export class CompteComponent implements OnInit {
     } else {
       this.showHome = true;
     }
-    this.datas = this.dataService.getData();
   }
 
   evaluation() {

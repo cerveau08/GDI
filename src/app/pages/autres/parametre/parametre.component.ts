@@ -82,7 +82,6 @@ export class ParametreComponent implements OnInit {
     } else {
       this.showHome = true;
     }
-    this.datas = this.dataService.getData();
     this.videos = this.paginationService.getVidoes();
     this.newpasswordForm = new FormGroup({
       password: new FormControl(''),

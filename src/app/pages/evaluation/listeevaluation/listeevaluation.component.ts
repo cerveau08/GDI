@@ -7,6 +7,7 @@ import { ModalService } from 'src/app/modal/_modal';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ErrormodalService } from 'src/app/modal/_errormodals';
 import { HttpClient } from '@angular/common/http';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-listeevaluation',
@@ -43,6 +44,7 @@ export class ListeevaluationComponent implements OnInit {
     private errormodalService: ErrormodalService,
     private router: Router,
     private http: HttpClient,
+    private location: Location,
     private toastr: ToastrService) {
     this.activeroute.queryParams.subscribe(params => {
       this.item = JSON.parse(params["interimaire"]);
@@ -83,6 +85,10 @@ export class ListeevaluationComponent implements OnInit {
     this.gty(this.page);
   }
 
+  backClicked() {
+    this.location.back();
+  }
+
   gty(page: any){
     this.http.get(this.reqUrl + `/listEvaluations/${this.item}?page=${page}&limit=${this.itemsPerPage}`).subscribe((data: any) => {
       this.data = data
@@ -92,7 +98,7 @@ export class ListeevaluationComponent implements OnInit {
   }
 
   addObject() {
-    this.otherService.addObjectifs(this.objectifForm.value).subscribe(
+    this.otherService.addObjectifs(this.objectifForm.value, this.item).subscribe(
       data =>{
         this.data = data;
         this.successMsg = this.data.status

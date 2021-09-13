@@ -2,7 +2,10 @@
     <div class="compte">
         <div class="content-header">
             <div class="content-details">
-                <p class="detail">Détails Contrat de {{prenom}} {{nom}}</p>
+                <div class="content-header-page">
+                    <mat-icon class="bouton-retour" (click)="backClicked()">arrow_back</mat-icon>
+                    <p class="detail">Détails Contrat de {{prenom}} {{nom}}</p>
+                </div>
             </div>
         </div>
         <div class="grid-container" *ngIf="item">
