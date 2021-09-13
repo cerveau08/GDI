@@ -9,6 +9,10 @@
     font-weight: 600;
     cursor: pointer;
 }
+.information{
+    display: grid;
+    grid-template-columns: 1fr 150px;
+}
 .content-header {
     display: grid;
     grid-template-columns: 1fr 110px;
@@ -87,8 +91,8 @@
     margin-top: -35px;
 }
 .grid-container {
-    display: grid;
-    grid-template-columns: 300px  1fr;
+    // display: grid;
+    // grid-template-columns: 300px  1fr;
     grid-gap: 1px;
     margin-top: 5px;
 }
@@ -157,8 +161,24 @@
         font-weight: bold;
     }
 }
+.key-fin{
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.1px;
+    color: #222222;
+    margin-top: 0;
+    margin-bottom: 10px;
+    margin-left: 30px;
+    .value {
+        font-weight: bold;
+    }
+}
 .lot1{
     margin-top: 10px;
+    display: flex;
 }
 .lot2{
     margin-left: 5px;
@@ -237,7 +257,7 @@
     font-style: italic;
 }
 .lesbouton{
-    margin-top: 40px;
+    margin-top: 10px;
 }
 .button1 {
     width: 70px;
@@ -253,7 +273,6 @@
     cursor: pointer;
     outline: none;
     border: 2px solid black;
-    margin-top: 10px;
 }
 .button2 {
     width: 152px;
@@ -269,8 +288,6 @@
     cursor: pointer;
     outline: none;
     border: 2px solid black;
-    margin-left: 10px;
-    margin-top: 10px;
 }
 .button3 {
     width: 108px;
@@ -805,11 +822,17 @@ select {
         margin-top: 10px;
         border-bottom: 1px solid #f5f6f9;
     }
+    .lot1{
+        display: block;
+    }
     .grid-container-aside {
         grid-template-columns: 55px 1fr 55px;
     }
     .grid-container1-aside {
         grid-template-columns: 1fr 125px;
+    }
+    .key-fin{
+        margin-left: 5px;
     }
     .all-container {
         grid-template-columns: 1fr;

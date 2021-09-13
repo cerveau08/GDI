@@ -3,7 +3,7 @@
         <mat-icon class="bouton-retour" (click)="backClicked()">arrow_back</mat-icon>
         <h1 class="titre-objectif">Evaluer {{prenom}} {{nom}}</h1>
     </div>
-    <form action="" [formGroup]="evaluerForm">
+    <form action="" [formGroup]="filterForm">
         <div class="content-other-input-form">
             <div class="content-form-dateDebut">
                 <p class="text-other">
@@ -16,6 +16,8 @@
                 </select>
             </div>
         </div>
+    </form>
+    <form action="" [formGroup]="evaluerForm">
         <div class="content-list-objectif" formArrayName="notation">
             <p class="liste-des-objectifs">Liste des objectifs</p>
             <div class="content-all-objectif" [style.height.px]="heightForm">

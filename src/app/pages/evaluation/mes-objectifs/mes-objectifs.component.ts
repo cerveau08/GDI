@@ -39,6 +39,7 @@ export class MesObjectifsComponent implements OnInit {
   public reqUrl = environment.base_url;
   errorMsg: any;
   periode = null;
+  periodeobjectif: any;
   constructor(private otherService: OthersService,
     private errormodalService: ErrormodalService,
     private http: HttpClient,) {
@@ -57,7 +58,7 @@ export class MesObjectifsComponent implements OnInit {
   gty(page: any){
     this.otherService.getListeObjectif(this.item, page, this.itemsPerPage, this.periode).subscribe((data: any) => {
       this.data = data
-      this.objectif = this.data["data"];
+      this.periodeobjectif = this.data["data"];
     })
   }
 

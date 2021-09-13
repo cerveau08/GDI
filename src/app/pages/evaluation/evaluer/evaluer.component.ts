@@ -24,6 +24,7 @@ export class EvaluerComponent implements OnInit {
   interimaire;
   prenon;
   prenom;
+  filterForm: FormGroup;
   evaluerForm: FormGroup;
   note;
   nom;
@@ -34,7 +35,7 @@ export class EvaluerComponent implements OnInit {
   titremodif;
   descriptionmodif;
   page = 1;
-  itemsPerPage = 2;
+  itemsPerPage = 10;
   totalItems : any;
   dataInter;
   interimConnect;
@@ -45,6 +46,7 @@ export class EvaluerComponent implements OnInit {
   scrWidth: any;
   heightForm: number;
   periodeobjectif: any;
+  periode = null;
   @HostListener('window:resize', ['$event'])
   getScreenSize(event?) {
     this.scrHeight = window.innerHeight;
@@ -110,28 +112,40 @@ export class EvaluerComponent implements OnInit {
       note: new FormControl(''),
       commentaire: new FormControl('')
     });
+    this.filterForm = new FormGroup({
+      periode: new FormControl(''),
+    });
     this.modifierForm = new FormGroup({
       titre: new FormControl(''),
       description: new FormControl('')
     });
     
-    this.gty(this.page);
+    this.onChanges();
+
+    this.gty(this.periode);
+  }
+
+  onChanges(): void {
+    this.filterForm.get('periode').valueChanges.subscribe(val => {
+      if (val) {
+        this.gty(val);
+      }
+    });
   }
 
   backClicked() {
     this.location.back();
   }
 
-  gty(page: any){
-    this.http.get(this.reqUrl + `/listeObjectifs/${this.item}`).subscribe((data: any) => {
+  gty(periode){
+    this.otherService.getListeObjectif(this.item, this.page, this.itemsPerPage, periode).subscribe((data: any) => {
       this.data = data
       this.totalItems = data.total;
       this.objectif = this.data["data"];
       this.evaluerForm = this.formBuilder.group({
         interimaireId: this.item,
         commentaire: ['', Validators.required],
-        dateDebut: ['', Validators.required],
-        dateFin: ['', Validators.required],
+        periode: periode,
         libelle: ['', Validators.required],
         notation: this.formBuilder.array(
           this.objectif.map(x => this.formBuilder.group({
