@@ -18,6 +18,7 @@
                     <p class="label-input" >Valeur Cible</p>
                     <input type="text" [(ngModel)]="itemobjectif.valeurCible" name="vc" formControlName="valeurCible" placeholder="Valeur Cible">
                 </div>
+                <p class="label-input" >Le barème de cet objectif est <span class="bareme-value">{{itemobjectif.bareme}}</span></p>
                 <div class="content-button-submit-objectif">
                     <button (click)="modifierObjectif(itemobjectif.id)" class="button-submit-objectif">Enregistrer</button>
                 </div>

@@ -1,17 +1,18 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, OnInit, Input } from '@angular/core';
+import { FormGroup, FormControl } from '@angular/forms';
 import { OthersService } from 'src/app/services/others.service';
 import { ModalService } from 'src/app/modal/_modal';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ErrormodalService } from 'src/app/modal/_errormodals';
 
 @Component({
-  selector: 'app-modal-modifier',
-  templateUrl: './modal-modifier.component.html',
-  styleUrls: ['./modal-modifier.component.scss']
+  selector: 'app-modal-modifier-objectif',
+  templateUrl: './modal-modifier-objectif.component.html',
+  styleUrls: ['./modal-modifier-objectif.component.scss']
 })
-export class ModalModifierComponent implements OnInit {
+export class ModalModifierObjectifComponent implements OnInit {
 
+  
   @Input('objectifData') itemobjectif;
   modifierForm: FormGroup;
   description;
@@ -59,14 +60,6 @@ export class ModalModifierComponent implements OnInit {
 
   closeModal(id: string) {
     this.modalService.close(id);
-  }
-
-  openErrorModal(id: string) {
-    this.errormodalService.open(id);
-  }
-
-  closeErrorModal(id: string) {
-    this.errormodalService.close(id);
   }
 
 }

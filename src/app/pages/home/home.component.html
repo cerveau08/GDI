@@ -2,7 +2,7 @@
 <div class="all-container" >
     <div class="all" *ngIf="user=='INT'">
         <ngx-loading [show]="loading" [config]="{
-            backdropBackgroundColour: 'rgba(255,255,255,0.3)', backdropBorderRadius: '10px',
+            backdropBackgroundColour: 'white', backdropBorderRadius: '10px',
             primaryColour: '#009393', secondaryColour: '#ff7900', tertiaryColour: '#009393' }">
         </ngx-loading>
         <div class="content-web">
@@ -106,7 +106,7 @@
     </div>
     <div class="main" *ngIf="user!='INT'">
         <ngx-loading [show]="loading" [config]="{
-            backdropBackgroundColour: 'rgba(255,255,255,0.3)', backdropBorderRadius: '10px',
+            backdropBackgroundColour: 'white', backdropBorderRadius: '10px',
             primaryColour: '#009393', secondaryColour: '#ff7900', tertiaryColour: '#009393' }">
         </ngx-loading>
             <p routerLink="/accueil/home" class="bien">Bienvenue {{prenom}}</p>

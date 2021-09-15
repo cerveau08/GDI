@@ -138,8 +138,13 @@ addAgence(data) {
     return this.http.get(`${this.reqUrl}/listeObjectifs/${id}`, {params: data});
   }
 
-  getPeriodeObjectif(id: number){
-    return this.http.get(`${this.reqUrl}/periodeObjectif/${id}`);
+  detailPeriodeObjectif(id: string) {
+    return this.http.get(`${this.reqUrl}/detailPerideObjectif/${id}`);
+  }
+
+  getPeriodeObjectif(page,limit, isEvaluated, id: number){
+    const data = {page: page, limit: limit, isEvaluated: isEvaluated};
+    return this.http.get(`${this.reqUrl}/periodeObjectif/${id}`, {params: data});
   }
 
   addUser(data) {

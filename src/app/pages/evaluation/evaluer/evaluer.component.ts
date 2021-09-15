@@ -36,6 +36,7 @@ export class EvaluerComponent implements OnInit {
   descriptionmodif;
   page = 1;
   itemsPerPage = 10;
+  itemPeriode = 999;
   totalItems : any;
   dataInter;
   interimConnect;
@@ -47,6 +48,7 @@ export class EvaluerComponent implements OnInit {
   heightForm: number;
   periodeobjectif: any;
   periode = null;
+  isEvaluated = false;
   @HostListener('window:resize', ['$event'])
   getScreenSize(event?) {
     this.scrHeight = window.innerHeight;
@@ -67,6 +69,7 @@ export class EvaluerComponent implements OnInit {
     });
     this.getScreenSize();
     this.evaluerForm = this.formBuilder.group({
+      idPeriode: ['', Validators.required],
       interimaireId: ['', Validators.required],
       commentaire: ['', Validators.required],
       dateDebut: ['', Validators.required],
@@ -93,7 +96,7 @@ export class EvaluerComponent implements OnInit {
   ngOnInit() {
     this.role = localStorage.getItem('user');
 
-    this.otherService.getPeriodeObjectif(this.item).subscribe(
+    this.otherService.getPeriodeObjectif(this.page, this.itemPeriode, this.isEvaluated, this.item).subscribe(
       data => {
         this.data = data
         this.periodeobjectif = this.data["data"];
@@ -120,9 +123,8 @@ export class EvaluerComponent implements OnInit {
       description: new FormControl('')
     });
     
-    this.onChanges();
-
     this.gty(this.periode);
+    this.onChanges();
   }
 
   onChanges(): void {
@@ -143,6 +145,7 @@ export class EvaluerComponent implements OnInit {
       this.totalItems = data.total;
       this.objectif = this.data["data"];
       this.evaluerForm = this.formBuilder.group({
+        idPeriode: periode,
         interimaireId: this.item,
         commentaire: ['', Validators.required],
         periode: periode,

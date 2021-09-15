@@ -4,85 +4,16 @@
     margin-top: 0px;
     position: relative;
 }
-.titre-objectif {
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 5px;
-    margin-top: 5px;
-}
-.content-bouton-periode{
-    position: absolute;
-    top: 10px;
-    right: 10px;
-}
-.button-liste {
-    height: 30px;
-    width: 150px;
-    background-color: #ff7900;
-    border: none;
-    cursor: pointer;
-    outline: none;
-    color: white;
-    font-size: 12px;
-    font-weight: bold;
-    margin-top: 5px;
-    margin-right: 10px;
-}
-.button-ajouter {
-    height: 30px;
-    width: 120px;
-    background-color: #009393;
-    border: none;
-    cursor: pointer;
-    outline: none;
-    color: white;
-    font-size: 12px;
-    font-weight: bold;
-    margin-top: 5px;
-}
-.item-objectif {
-    display: grid;
-    grid-template-columns: 1fr 90px;
-    border: 1px solid #000;
-    padding: 10px;
-    margin-bottom: 10px;
-}
-.content-item-object {
-    padding-right: 10px;
-}
-.content-periode-item{
-    display: grid;
-    grid-template-columns: 33% 33% 33%;
-}
-.text-objectif-title {
-    font-size: 13px;
-    margin-top: 5px;
-    margin-bottom: 5px;
-}
-.select-mois{
-    width: 100%;
-    outline: none;
-}
-.content-input-extraction{
-    display: grid;
-    grid-template-columns: 1fr 40px;
-}
-.exporter-content{
-    display: grid;
-    grid-template-columns: 1fr 550px;
-    margin-bottom: 5px;
-}
-.periode-option{
-    font-weight: bold;
-}
-.icon-search{
-    margin-top: 20px;
-    font-size: 30px;
-    cursor: pointer;
-}
 .content-header-page{
     display: grid;
     grid-template-columns: 100px 1fr;
+}
+.titre-objectif {
+    margin-top: 0;
+    margin-bottom: 5px;
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 5px;
 }
 .bouton-retour{
     background-color: #f5f6f9;
@@ -90,44 +21,106 @@
     padding: 5px;
     cursor: pointer;
 }
-.objectif-title-namming{
-    color: #ff7900;
+.button-ajouter {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    height: 30px;
+    width: 120px;
+    background-color: #009393;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    color: white;
+    font-size: 14px;
     font-weight: bold;
-}
-.objectif-title-titre{
-    color: #009393;
-    font-weight: bold;
-}
-.objectif-content-description{
-    font-weight: normal;
-}
-.objectif-content-commentaire{
-    font-style: italic;
-}
-// .content-titre-description-item{
-//     display: grid;
-//     grid-template-columns: 150px 1fr;
-// }
-.text-objectif-content {
-    font-size: 12px;
     margin-top: 5px;
-    margin-bottom: 5px;
+}
+.bouton-add-objectif{
+    background-color: #009393;
+    color: white;
+    height: 35px;
+    width: 35px;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    font-size: 32px;
+    font-weight: 700;
+}
+// .content-all-objectif{
+//    height: 230px;
+//    overflow: scroll;
+// }
+.item-objectif {
+    border: 1px solid #000;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+.content-item-object {
+    padding-right: 10px;
 }
 .objectif-title {
-    font-size: 13px;
+    font-size: 14px;
     font-weight: bold;
     margin-top: 0px;
     margin-bottom: 5px;
 }
 .objectif-content {
-    font-size: 12px;
-    font-weight: bold;
+    font-size: 13px;
+    font-weight: normal;
     margin-top: 5px;
     margin-bottom: 0;
     text-align: justify;
 }
-.note-et-comments {
+.bareme-et-indicateur-et-valeur {
     position: relative;
+    display: grid;
+    grid-template-columns: 150px 1fr 150px;
+}
+.titre-et-description {
+    position: relative;
+    display: grid;
+    grid-template-columns: 150px 1fr;
+}
+.content-form-comment{
+    margin-left: 10px;
+}
+.message-error{
+    color: #ff0000;
+    font-size: 12px;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.bouton-delete-objectif{
+    cursor: pointer;
+    color: #ff0000;
+    font-size: 24px;
+    float: right;
+}
+.input-header{
+    outline: none;
+    border: 1px solid #d8d8d8;
+    background-color: #f5f6f9;
+    width: 100%;
+    font-size: 11px;
+    height: 20px;
+}
+.input-note{
+    outline: none;
+    border: 1px solid #d8d8d8;
+    background-color: #f5f6f9;
+    width: 100%;
+    font-size: 11px;
+    height: 20px;
+}
+.input-commentaire{
+    outline: none;
+    border: 1px solid #d8d8d8;
+    background-color: #f5f6f9;
+    width: 100%;
+    font-size: 11px;
+    height: 20px;
+    margin-left: 5px;
 }
 .voir-plus {
     position: absolute;
@@ -137,8 +130,15 @@
     font-weight: bold;
     cursor: pointer;
 }
-.text-note-comments {
+.text-label-description {
     margin-bottom: 0;
+    margin-top: 5px;
+    margin-left: 5px;
+}
+.text-label-titre{
+    margin-top: 5px;
+    margin-bottom: 0;
+    margin-left: 0;
 }
 .la-note{
     margin-bottom: 0;
@@ -159,12 +159,62 @@
     -webkit-box-orient: vertical;*/
 }
 .comment-title {
-    text-decoration: underline;
     font-size: 13px;
 }
 .note-title {
-    text-decoration: underline;
+    font-size: 13px;
+}
+.content-other-input-form{
+    display: flex;
+    margin-bottom: 5px;
+}
+.content-form-dateFin{
+    margin-left: 10px;
+}
+.content-form-libelle{
+    margin-left: 10px;
+}
+.text-other{
+    margin-top: 0;
+    margin-bottom: 0px;
+}
+.pied-tableau-evaluation{
+    display: grid;
+    grid-template-columns: 1fr 80px;
+}
+.content-commentaire-globale{
+    display: flex;
+    margin-top: 0px;
+}
+.label-commentaire-global{
+    font-size: 12px;
+}
+.input-global-comment{
+    width: 100%;
+    outline: none;
+    font-size: 11px;
+}
+.liste-des-objectifs{
     font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+.content-button-evaluer{
+    width: 80px;
+    margin: 0 auto;
+}
+.button-enregistrer-evaluation{
+    background-color: #ff7900;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    margin-top: 10px;
+    border: none;
+    outline: none;
+    height: 30px;
+    width: 80px;
 }
 .button-evaluer {
     height: 30px;
@@ -222,7 +272,6 @@
 }
 input {
     outline: none;
-    padding: 0 10px;
 }
 .input-titre input{
     width: 500px;
@@ -321,28 +370,13 @@ input {
     outline: none;
     border: solid 1px #ff0000;
 }
-
 @media (max-width: 991px) {
-    .titre-objectif {
-        font-size: 16px;
-        font-weight: bold;
+    .content-other-input-form{
+        display: grid;
+        grid-template-columns: 50% 50%;
+        margin-bottom: 5px;
     }
-    .button-ajouter {
-        position: absolute;
-        top: 50px;
-        right: 10px;
-        height: 30px;
-        width: 120px;
-        background-color: #009393;
-        border: none;
-        cursor: pointer;
-        outline: none;
-        color: white;
-        font-size: 14px;
-        font-weight: bold;
-        margin-top: 5px;
-    }
-    .content-list-objectif {
-        margin-top: 50px;
+    .content-form-libelle{
+        margin-left: 0px;
     }
 }

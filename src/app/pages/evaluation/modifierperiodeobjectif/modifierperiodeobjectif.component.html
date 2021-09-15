@@ -1,7 +1,7 @@
 <div class="objectif-container">
     <div class="content-header-page">
         <mat-icon class="bouton-retour" (click)="backClicked()">arrow_back</mat-icon>
-        <h1 class="titre-objectif">Ajouter une période avec des objectifs pour {{prenom}} {{nom}}</h1>
+        <h1 class="titre-objectif">Ajouter des Objectifs pour {{prenom}} {{nom}}</h1>
     </div>
     <form action="" [formGroup]="objectifsForm">
         <div class="content-other-input-form">
@@ -9,19 +9,19 @@
                 <p class="text-other">
                     <span class="comment-title">Date de Début</span>:
                 </p>
-                <input class="input-header" type="date" formControlName="dateDebut">
+                <!-- <input class="input-header" type="date" [(ngModel)]="dateDebut" formControlName="dateDebut"> -->
             </div>
             <div class="content-form-dateFin">
                 <p class="text-other">
                     <span class="comment-title">Date de Fin</span>:
                 </p>
-                <input class="input-header" type="date" formControlName="dateFin">
+                <!-- <input class="input-header" type="date" [(ngModel)]="dateFin" formControlName="dateFin"> -->
             </div>
             <div class="content-form-libelle">
                 <p class="text-other">
                     <span class="comment-title">Namming</span>:
                 </p>
-                <input class="input-header" type="text" formControlName="namming">
+                <!-- <input class="input-header" type="text" [(ngModel)]="namming" formControlName="namming"> -->
             </div>
         </div>
         <div class="content-list-objectif" formArrayName="objectifs">

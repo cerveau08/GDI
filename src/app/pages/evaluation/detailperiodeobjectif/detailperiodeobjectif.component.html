@@ -1,59 +1,38 @@
 <div class="objectif-container">
     <div class="content-header-page">
         <mat-icon class="bouton-retour" (click)="backClicked()">arrow_back</mat-icon>
-        <h1 class="titre-objectif">Liste des objectifs de {{prenom}} {{nom}}</h1>
+        <h1 class="titre-objectif">Détail de la période {{nomPeriode}} des objectifs de {{prenom}} {{nom}}</h1>
     </div>
     <div class="content-bouton-periode">
-        <button class="button-liste" (click)="openListePeriodeObjectif();">Voir la liste des périodes des objectifs</button>
-        <button *ngIf="role == 'MNG'" class="button-ajouter" (click)="openAddObjectif();">créer une période pour des objectifs</button>
+        <button *ngIf="role == 'MNG'" class="button-ajouter" (click)="openModifierObjectif();">Modifier</button>
     </div>
-    <div class="exporter">
-        <form [formGroup]="filterForm">
-            <div class="exporter-content">
-                <div></div>
-                <div class="content-input-extraction">
-                    <div class="filtrer-mois">
-                        <p class="label-input" for="titre">Période: </p>
-                        <select type="number" formControlName="periode" class="select-mois">
-                            <option value="null">Aucun Choix</option>
-                            <option *ngFor="let data of periodeobjectif"  [value]="data.id_periode">
-                                période: {{data.periode}} du {{data.dateDebut | date: 'dd MMMM yyyy'}} au {{data.dateFin | date: 'dd MMMM yyyy'}}
-                            </option>
-                        </select>
-                    </div>
-                    <div class="content-extraction">
-                        <mat-icon class="icon-search" (click)="gty(page)" fontSet="material-icons-outlined" >search</mat-icon>
-                    </div>
-                </div>
+    <div class="content-info-periode">
+        <p class="text-objectif-title">
+            Nom de la période:
+            <span class="objectif-title-namming">{{nomPeriode}}</span>
+        </p>
+        <div class="content-periode-item">
+            <div class="content-text-objectif-date">
+                <p class="text-objectif-content">
+                    Date de début:
+                    <span class="objectif-content">{{dateDebutPeriode}}</span>
+                </p>
             </div>
-        </form>
+            <div class="content-text-objectif-date">
+                <p class="text-objectif-content">
+                    Date de Fin:
+                    <span class="objectif-content">{{dateFinPeriode}}</span>
+                </p>
+            </div>
+        </div>
     </div>
+    <h1 class="titre-objectif">Liste des objectifs de cette période</h1>
     <div class="content-list-objectif">
         <div class="item-objectif" *ngFor="let p of objectif | paginate: {  itemsPerPage: itemsPerPage,
             currentPage: page,
             totalItems: totalItems
             }; let i = index">
             <div class="content-item-object">
-                <div class="content-periode-item">
-                    <div class="content-text-objectif-periode">
-                        <p class="text-objectif-title">
-                            Nom de la période:
-                            <span class="objectif-title-namming">{{p.periode}}</span>
-                        </p>
-                    </div>
-                    <div class="content-text-objectif-date">
-                        <p class="text-objectif-content">
-                            Date de début:
-                            <span class="objectif-content">{{p.dateDebut}}</span>
-                        </p>
-                    </div>
-                    <div class="content-text-objectif-date">
-                        <p class="text-objectif-content">
-                            Date de Fin:
-                            <span class="objectif-content">{{p.dateFin}}</span>
-                        </p>
-                    </div>
-                </div>
                 <div class="content-titre-description-item">
                     <div class="content-text-objectif-title">
                         <p class="text-objectif-title">
@@ -106,46 +85,13 @@
             <div *ngIf="role == 'MNG'" class="objectif-buttons">
                 <button (click)="openModal('modif-modal-'+p.id);" class="button-evaluer">Modifier</button>
             </div>
-            <!--modal-1-->
-            <div class="modal">
-                <jw-modal id="custom-modal-{{p.id}}">
-                    <mat-icon style="cursor: pointer;" (click)="closeModal('custom-modal-'+p.id);" class="clear">clear</mat-icon>
-                    <div class="all">
-                        <h1 class="titre-objectif">Evaluer l'Interimaire</h1>
-                        <div>
-                            <form [formGroup]="noteForm">
-                                <div class="content-item-object">
-                                    <p class="objectif-title">{{p.titre}}</p>
-                                    <p class="objectif-content">{{p.description}}</p>
-                                </div>
-                                <div class="forms-objectif">
-                                    <div class="content-form"> 
-                                        <div class="input-titre">
-                                            <p class="label-input" for="titre">Note</p>
-                                            <input type="number" formControlName="note" placeholder="Note" >
-                                        </div>
-                                        <div class="input-description">
-                                            <p class="label-input" for="description">Commentaire</p>
-                                            <textarea type="textarea" formControlName="commentaire" placeholder="Commentaires"></textarea>
-                                        </div>
-                                        <div class="content-button-submit-objectif">
-                                            <button (click)="notezObjectif(p.id)" class="button-submit-objectif">Enregistrer</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </jw-modal>
-            </div>
-            <!-- modal-1 -->
             <!--modal-2-->
             <div class="modal">
                 <jw-modal id="modif-modal-{{p.id}}">
                     <mat-icon style="cursor: pointer;" (click)="closeModal('modif-modal-'+p.id);" class="clear">clear</mat-icon>
                     <div class="all">
                         <h1 class="titre-objectif">Modifier l'Objectif</h1>
-                        <app-modal-modifier [objectifData]=p></app-modal-modifier>
+                        <app-modal-modifier-objectif [objectifData]=p></app-modal-modifier-objectif>
                     </div>
                 </jw-modal>
             </div>
@@ -193,20 +139,3 @@
         </jw-modal>
     </div>
 </div>
-
-<!--modal1-->
-<div class="modal">
-    <sonatel-pma-errormodal id="error-modal-1">
-        <div class="error-modal-all" >
-            <mat-icon style="cursor: pointer;" (click)="closeErrorModal('error-modal-1');" class="clear-error">clear</mat-icon>
-            <div class="error-content-image">
-                <div class="error-image"></div>
-            </div>
-            <p class="error-text">{{errorMsg}}</p>
-            <p class="error-message-admin">Veuillez contacter l'administrateur du site à partir de la page paramètre</p> 
-            <div class="error-content-button">
-                <button (click)="closeErrorModal('error-modal-1');" class="error-button">Ok</button>
-            </div>
-        </div>
-    </sonatel-pma-errormodal>
-  </div>

@@ -188,7 +188,6 @@ export class HomeComponent implements OnInit {
       this.interimaireInfo = JSON.parse(localStorage.getItem('currentUser'));
       this.otherService.getDetailsManagerById(this.page, this.itemsPerPage, this.interimaireInfo.manager.id).subscribe( 
         result => {
-          this.loading = false;
           this.data = result;
           this.managerinfo = this.data.data.detail;
           this.prenomManager = this.managerinfo.prenom;
@@ -199,7 +198,6 @@ export class HomeComponent implements OnInit {
       )
       this.otherService.statContratInter(this.interimaireInfo.interimaire.id).subscribe(
         data => {
-          this.loading = false;
           this.infoContrat = data.data;
           this.anneeRestant = this.infoContrat.dureeContratRestant.annees;
           this.moisRestant = this.infoContrat.dureeContratRestant.mois;
@@ -223,7 +221,7 @@ export class HomeComponent implements OnInit {
       );
       this.otherService.lastAttestationInt(this.interimaireInfo.interimaire.id).subscribe(
         data => {
-          console.log(data);
+          this.loading = false;
           this.dataAttestation = data.data;
           this.idAttestation = this.dataAttestation.id;
           this.nbr_jour = this.dataAttestation.jours_absence;
@@ -304,7 +302,6 @@ export class HomeComponent implements OnInit {
       const getDownloadProgress = () => {
         this.otherService.statInterPourcent(id_societe).subscribe(
           data => {
-            this.loading = false;
             this.data = data;
             this.dataStatEffectifGenre = this.data.data[0];
             this.femme= this.dataStatEffectifGenre.femme;

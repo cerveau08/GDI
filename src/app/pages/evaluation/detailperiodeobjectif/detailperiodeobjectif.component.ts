@@ -1,21 +1,22 @@
-import { ToastrService } from 'ngx-toastr';
-import { FormControl, FormGroup } from '@angular/forms';
-import { OthersService } from 'src/app/services/others.service';
-import { Component, ElementRef, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { ModalService } from 'src/app/modal/_modal';
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl } from '@angular/forms';
 import { environment } from 'src/environments/environment';
-import { HttpClient } from '@angular/common/http';
+import { OthersService } from 'src/app/services/others.service';
+import { ModalService } from 'src/app/modal/_modal';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ErrormodalService } from 'src/app/modal/_errormodals';
+import { HttpClient } from '@angular/common/http';
+import { ToastrService } from 'ngx-toastr';
 import {Location} from '@angular/common';
 
 @Component({
-  selector: 'app-objectifs',
-  templateUrl: './objectifs.component.html',
-  styleUrls: ['./objectifs.component.scss']
+  selector: 'app-detailperiodeobjectif',
+  templateUrl: './detailperiodeobjectif.component.html',
+  styleUrls: ['./detailperiodeobjectif.component.scss']
 })
-export class ObjectifsComponent implements OnInit {
+export class DetailperiodeobjectifComponent implements OnInit {
 
+  
   role;
   commentaire;
   objectif;
@@ -43,6 +44,12 @@ export class ObjectifsComponent implements OnInit {
   periodeobjectif: any;
   mesgError: any;
   isEvaluated = null;
+  periodeId: any;
+  detailPeriode: any;
+  nomPeriode: any;
+  dateDebutPeriode: any;
+  dateFinPeriode: any;
+  statutPeriode: any;
   constructor(private otherService: OthersService,
     private modalService: ModalService,
     private activeroute: ActivatedRoute,
@@ -53,11 +60,22 @@ export class ObjectifsComponent implements OnInit {
     private toastr: ToastrService) {
     this.activeroute.queryParams.subscribe(params => {
       this.item = JSON.parse(params["interimaire"]);
+      this.periodeId = JSON.parse(params["periode"]);
     });
   }
 
   ngOnInit() {
     this.role = localStorage.getItem('user');
+    this.otherService.detailPeriodeObjectif(this.periodeId).subscribe(
+      data => {
+        this.data = data
+        this.detailPeriode = this.data["data"][0];
+        this.nomPeriode = this.detailPeriode.namming;
+        this.dateDebutPeriode = this.detailPeriode.dateDebut;
+        this.dateFinPeriode = this.detailPeriode.dateFin;
+        this.statutPeriode = this.detailPeriode.isEvaluated;
+      }
+    );
     this.otherService.getPeriodeObjectif(this.page, this.itemsPerPage, this.isEvaluated, this.item).subscribe(
       data => {
         this.data = data
@@ -102,12 +120,7 @@ export class ObjectifsComponent implements OnInit {
   }
 
   gty(page: any){
-    if(this.filterForm.value.periode) {
-      this.periode = this.filterForm.value.periode
-    } else {
-      this.periode = null
-    }
-    this.otherService.getListeObjectif(this.item, page, this.itemsPerPage, this.periode).subscribe((data: any) => {
+    this.otherService.getListeObjectif(this.item, page, this.itemsPerPage, this.periodeId).subscribe((data: any) => {
       this.data = data
       this.totalItems = data.total;
       this.objectif = this.data["data"];
@@ -178,10 +191,11 @@ export class ObjectifsComponent implements OnInit {
     )
   }
 
-  openAddObjectif() {
-    this.router.navigate(['/accueil/addobjectif/'], {
+  openModifierObjectif() {
+    this.router.navigate(['/accueil/modifperiodeobjectif/'], {
       queryParams: {
         interimaire: JSON.stringify(this.item),
+        periode: JSON.stringify(this.periodeId),
       }
     })
   }
@@ -201,13 +215,4 @@ export class ObjectifsComponent implements OnInit {
   closeModal(id: string) {
     this.modalService.close(id);
   }
-
-  openErrorModal(id: string) {
-    this.errormodalService.open(id);
-  }
-
-  closeErrorModal(id: string) {
-    this.errormodalService.close(id);
-  }
-
 }

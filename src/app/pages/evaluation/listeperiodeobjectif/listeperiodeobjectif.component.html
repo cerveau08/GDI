@@ -1,0 +1,64 @@
+<div class="all-container">
+    <div class="tableau">
+        <div class="content-header-page">
+            <mat-icon class="bouton-retour" (click)="backClicked()">arrow_back</mat-icon>
+            <p class="detail1" id="mydesc">Liste des périodes de {{prenom}} {{nom}}</p>
+        </div>
+        <div class="content-bouton-periode">
+            <button *ngIf="role == 'MNG'" class="button-ajouter" (click)="openAddObjectif();">créer une période avec des objectifs</button>
+            <button class="button-liste" (click)="openListeObjectif();">Voir de tous les objectifs</button>
+        </div>
+        <div class="exporter">
+            <form [formGroup]="filterForm">
+                <div class="exporter">
+                    <div class="content-input-extraction">
+                        <div class="filtrer-mois">
+                            <p class="label-input" for="titre">Statut Evaluation: </p>
+                            <select  formControlName="isEvaluated" class="select-mois" >
+                                <option value="null">Aucun Choix</option>
+                                <option *ngFor="let data of ListeStatut"  [value]="data.value">{{data.label}}</option>
+                            </select>
+                        </div>
+                        <div class="content-extraction">
+                            <button (click)="gty(page)" class="button-extraire">Filtrer</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <table style="overflow-x:auto;"aria-describedby = "mydesc" >
+            <thead>
+                <tr class="head">
+                    <th class="typ" id="prenom">Nom de la période</th>
+                    <th class="typ" id="nom">Date de début</th>
+                    <th  id="direction">Date de Fin</th>
+                    <th  id="direction">Statut</th>
+                    <th  id="agence">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr  *ngFor="let p of periodeobjectif| filter:filterterm | paginate: { 
+                    itemsPerPage: itemsPerPage,
+                    currentPage: page,
+                    totalItems: totalItems
+                    }; let i = index">
+                    <td >{{p.periode}}</td>
+                    <td >{{p.dateDebut | date: 'dd MMMM yyyy'}}</td>
+                    <td >{{p.dateFin | date: 'dd MMMM yyyy'}}</td>
+                    <td >
+                        <span *ngIf="p.isEvaluated == true">évaluéé</span>
+                        <span *ngIf="p.isEvaluated == false">pas évaluéé</span>
+                    </td>
+                    <td >
+                        <mat-icon class="edit-periode" (click)="openModifPeriode(p.id_periode)" style="cursor: pointer;">edit</mat-icon>
+                        <mat-icon class="view-periode" (click)="openDetailPeriode(p.id_periode)" style="cursor: pointer;">visibility</mat-icon>
+                    </td>
+                </tr>
+            </tbody>
+            
+        </table>  
+        <div class="pagination">
+            <pagination-controls (pageChange)="gty(page = $event)" previousLabel="Prcédent" nextLabel="Suivant"></pagination-controls>
+        </div>
+    </div>
+</div>

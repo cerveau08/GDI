@@ -124,6 +124,10 @@ import { DomaineComponent } from './pages/statistiques/domaine/domaine.component
 import { StatsiteComponent } from './pages/statistiques/statsite/statsite.component';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { AddobjectifComponent } from './pages/evaluation/addobjectif/addobjectif.component';
+import { ListeperiodeobjectifComponent } from './pages/evaluation/listeperiodeobjectif/listeperiodeobjectif.component';
+import { ModifierperiodeobjectifComponent } from './pages/evaluation/modifierperiodeobjectif/modifierperiodeobjectif.component';
+import { DetailperiodeobjectifComponent } from './pages/evaluation/detailperiodeobjectif/detailperiodeobjectif.component';
+import { ModalModifierObjectifComponent } from './pages/evaluation/detailperiodeobjectif/modal-modifier-objectif/modal-modifier-objectif.component';
 
 @NgModule({
   declarations: [
@@ -220,6 +224,10 @@ import { AddobjectifComponent } from './pages/evaluation/addobjectif/addobjectif
     DomaineComponent,
     StatsiteComponent,
     AddobjectifComponent,
+    ListeperiodeobjectifComponent,
+    ModifierperiodeobjectifComponent,
+    DetailperiodeobjectifComponent,
+    ModalModifierObjectifComponent,
   ],
   imports: [
     BrowserModule,
