@@ -1,33 +1,59 @@
 <div class="objectif-container">
-    <h1 class="titre-objectif">Evaluer {{prenom}} {{nom}}</h1>
+    <div class="content-header-page">
+        <mat-icon class="bouton-retour" (click)="backClicked()">arrow_back</mat-icon>
+        <h1 class="titre-objectif">
+            Modilification de l'évaluation de 
+            <span class="nom-interimaire">{{prenom}} {{nom}}</span> pour la période: 
+            <span class="date-periode">{{libelle}}</span> du 
+            <span class="date-periode">{{dateDebut}}</span> au 
+            <span class="date-periode">{{dateFin}}</span>
+        </h1>
+    </div>
     <form action="" [formGroup]="evaluerForm">
         <div class="content-other-input-form">
-            <div class="content-form-dateDebut">
-                <p class="text-other">
-                    <span class="comment-title">Date de Début</span>:
-                </p>
-                <input class="input-commentaire" [(ngModel)]="dateDebut" type="date" formControlName="dateDebut">
-            </div>
-            <div class="content-form-dateFin">
-                <p class="text-other">
-                    <span class="comment-title">Date de Fin</span>:
-                </p>
-                <input class="input-commentaire" [(ngModel)]="dateFin" type="date" formControlName="dateFin">
-            </div>
-            <div class="content-form-libelle">
-                <p class="text-other">
-                    <span class="comment-title">Libelle</span>:
-                </p>
-                <input class="input-commentaire" [(ngModel)]="libelle" type="text" formControlName="libelle">
-            </div>
+            <p class="text-note-moyenne">La moyenne globale de cette évaluation est de: 
+                <span class="value-note">{{note}}</span><span class="value-bareme-note">/20</span>
+            </p>
+        </div>
+        <div *ngIf="commentaireInterimaire" class="content-commentaire-inter">
+            <p class="label-commentaire-inter">
+                Le commentaire de l'intérimaire: 
+                "<span type="text" class="interimaire-comment">
+                    {{commentaireInterimaire}}
+                </span>"
+            </p>
+        </div>
+        <div class="content-commentaire-globale">
+            <p class="label-commentaire-global">Commentaire du Manager</p>
+            <textarea type="text" formControlName="commentaire" [(ngModel)]="commentaire" class="input-global-comment" placeholder="Commentaire"></textarea>
         </div>
         <div class="content-list-objectif" formArrayName="notation">
             <p class="liste-des-objectifs">Liste des objectifs</p>
             <div class="content-all-objectif">
                 <div class="item-objectif" *ngFor="let p of notations; let i = index">
                     <div class="content-item-object">
-                        <p class="objectif-title">{{p.objectif.titre}}</p>
-                        <p class="objectif-content">{{p.objectif.description}}</p>
+                        <p class="content-titre-comment">
+                            Titre:
+                            <span class="objectif-title">{{p.objectif.titre}}</span>
+                        </p>
+                        <p class="content-titre-comment">
+                            Description:
+                            <span class="objectif-content">{{p.objectif.description}}</span>
+                        </p>
+                        <div class="content-indicateur-vc">
+                            <p class="content-titre-comment">
+                                Indicateur de mesure:
+                                <span class="objectif-title">{{p.objectif.indicateur}}</span>
+                            </p>
+                            <p class="content-titre-comment">
+                                Valeur Cible:
+                                <span class="objectif-content">{{p.objectif.valeurCible}}</span>
+                            </p>
+                        </div>
+                        <p class="content-titre-comment">
+                            Bareme:
+                            <span class="objectif-content-bareme">{{p.objectif.bareme}}</span>
+                        </p>
                         <div class="note-et-comments" [formGroupName]="i">
                             <div class="content-form-note">
                                 <p class="text-note-comments">
@@ -46,28 +72,8 @@
                 </div>
             </div>
         </div>
-        <div class="content-commentaire-globale">
-            <p class="label-commentaire-global">Commentaire Globale</p>
-            <textarea type="text" formControlName="commentaire" [(ngModel)]="commentaire" class="input-global-comment" placeholder="Commentaire"></textarea>
-        </div>
         <div class="content-button-evaluer">
             <button (click)="evaluer()" class="button-enregistrer-evaluation">Enregistrer</button>
         </div>
     </form>
 </div>
-
-<div class="modal">
-    <sonatel-pma-errormodal id="error-modal-1">
-        <div class="error-modal-all" >
-            <mat-icon style="cursor: pointer;" (click)="closeErrorModal('error-modal-1');" class="clear-error">clear</mat-icon>
-            <div class="error-content-image">
-                <div class="error-image"></div>
-            </div>
-            <p class="error-text">{{errorMsg}}</p>
-            <p class="error-message-admin">Veuillez contacter l'administrateur du site à partir de la page paramètre</p> 
-            <div class="error-content-button">
-                <button (click)="closeErrorModal('error-modal-1');" class="error-button">Ok</button>
-            </div>
-        </div>
-    </sonatel-pma-errormodal>
-  </div>

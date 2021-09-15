@@ -13,11 +13,29 @@
 .objectif-text-title{
     margin-top: 0;
     margin-bottom: 0;
-    font-size: 13px;
+    font-size: 12px;
+}
+.content-info-periode{
+    margin-top: 15px;
+}
+.content-date-periode{
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+.info-periode-title{
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 12px;
+}
+.value-title-periode{
+    font-size: 14px;
+    color: #ff7900;
+    font-weight: bold;
 }
 .objectif-text-bareme{
     margin-top: 5px;
-    font-size: 13px;
+    font-size: 12px;
     margin-bottom: 0;
 }
 .content-header-page{
@@ -26,7 +44,7 @@
 }
 .content-bareme-indicateur-vc{
     display: grid;
-    grid-template-columns: 33% 33% 33%;
+    grid-template-columns: 70% 30%;
 }
 .bouton-retour{
     background-color: #f5f6f9;
@@ -58,7 +76,7 @@
     outline: none;
 }
 .item-objectif {
-    border: 1px solid #000;
+    border: 5px solid #f5f6f9;
     padding: 5px;
     margin-bottom: 10px;
 }
@@ -70,9 +88,31 @@
     font-weight: bold;
     margin-top: 0px;
     margin-bottom: 5px;
+    color: #ff7900;
+}
+.objectif-bareme {
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 0px;
+    margin-bottom: 5px;
+    color: #009393;
+}
+.objectif-vc {
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 0px;
+    margin-bottom: 5px;
+    color: #000;
+}
+.objectif-description {
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 0px;
+    margin-bottom: 5px;
+    color: #000;
 }
 .objectif-content {
-    font-size: 13px;
+    font-size: 12px;
     font-weight: normal;
     margin-top: 5px;
     margin-bottom: 0;

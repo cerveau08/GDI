@@ -4,11 +4,67 @@
     margin-top: 0px;
     position: relative;
 }
+.content-header-page{
+    display: grid;
+    grid-template-columns: 100px 1fr;
+}
+.bouton-retour{
+    background-color: #f5f6f9;
+    border-radius: 50%;
+    padding: 5px;
+    cursor: pointer;
+}
 .titre-objectif {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-size: 14px;
+    font-weight: bold;
+}
+.nom-interimaire{
+    color: #009393;
+}
+.date-periode{
+    color: #ff7900;
+}
+.text-note-moyenne{
+    margin-top: 5px;
+    margin-bottom: 0;
+    font-size: 13px;
+}
+.value-note{
+    color: white;
+    background-color: #009393;
+    font-weight: bold;
+    font-size: 14px;
+    padding: 5px;
+}
+.value-bareme-note{
+    color: black;
+    font-weight: bold;
+    font-size: 14px;
+}
+.content-titre-comment{
     margin-top: 0;
     margin-bottom: 5px;
-    font-size: 18px;
+    font-size: 12px;
+}
+.label-commentaire-inter{
+    margin-top: 10px;
+    margin-bottom: 0;
+    font-size: 13px;
+}
+.objectif-content-bareme{
+    color: #009393;
+    font-size: 14px;
     font-weight: bold;
+}
+.content-indicateur-vc{
+    display: grid;
+    grid-template-columns: 70% 30%;
+}
+.interimaire-comment{
+    color: #5e5b5b;
+    font-style: italic;
 }
 .button-ajouter {
     position: absolute;
@@ -26,7 +82,6 @@
     margin-top: 5px;
 }
 .content-all-objectif{
-  height: 230px;
   overflow: scroll;
 }
 .item-objectif {
@@ -42,6 +97,7 @@
     font-weight: bold;
     margin-top: 0px;
     margin-bottom: 5px;
+    color: #ff7900;
 }
 .objectif-content {
     font-size: 13px;
@@ -67,7 +123,6 @@
     height: 20px;
 }
 .input-commentaire{
-    //width: 500px;
     outline: none;
     border: 1px solid #d8d8d8;
     background-color: #f5f6f9;
@@ -98,12 +153,6 @@
     text-align: justify;
     font-style: italic;
     font-size: 12px;
-   /* width: 90%; 
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;*/
 }
 .comment-title {
     font-size: 13px;
@@ -113,6 +162,7 @@
 }
 .content-other-input-form{
     display: flex;
+    margin-top: 15px;
     margin-bottom: 5px;
 }
 .content-form-dateFin{
@@ -131,7 +181,7 @@
 }
 .content-commentaire-globale{
     display: flex;
-    margin-top: 5px;
+    margin-top: 15px;
 }
 .label-commentaire-global{
     font-size: 12px;

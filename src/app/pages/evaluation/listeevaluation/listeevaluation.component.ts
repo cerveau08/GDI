@@ -44,8 +44,7 @@ export class ListeevaluationComponent implements OnInit {
     private errormodalService: ErrormodalService,
     private router: Router,
     private http: HttpClient,
-    private location: Location,
-    private toastr: ToastrService) {
+    private location: Location,) {
     this.activeroute.queryParams.subscribe(params => {
       this.item = JSON.parse(params["interimaire"]);
     });
@@ -53,33 +52,10 @@ export class ListeevaluationComponent implements OnInit {
 
   ngOnInit() {
     this.role = localStorage.getItem('user');
-    this.objectifForm = new FormGroup({
-      titre: new FormControl(''),
-      description: new FormControl(''),
-      interimaire: new FormControl(''),
-      structure_id: new FormControl(''),
-      bareme: new FormControl(''),
-      date_objectif: new FormControl('')
-    });
-    this.noteForm = new FormGroup({
-      note: new FormControl(''),
-      commentaire: new FormControl('')
-    });
-    this.modifierForm = new FormGroup({
-      titre: new FormControl(''),
-      description: new FormControl('')
-    });
+    
     this.otherService.getOneInterById(this.item).subscribe(
       data =>{
         this.interimaire = data;
-        this.objectifForm.patchValue({
-          structure_id: this.interimaire.data.structure.id,
-          interimaire: this.item
-        });
-      },
-      error=> {
-        this.errorMsg = error;
-        this.errormodalService.open('error-modal-1');
       }
     );
     this.gty(this.page);
@@ -97,64 +73,6 @@ export class ListeevaluationComponent implements OnInit {
     })
   }
 
-  addObject() {
-    this.otherService.addObjectifs(this.objectifForm.value, this.item).subscribe(
-      data =>{
-        this.data = data;
-        this.successMsg = this.data.status
-        if(this.successMsg == true) {
-          this.ngOnInit();
-          this.closeModal('objectif-modal-1');
-        }
-      },
-      error=> {
-        this.errorMsg = error;
-        this.closeModal('objectif-modal-1');
-        this.toastr.error(this.errorMsg, 'Echec', {
-          timeOut: 5000,
-        });
-      }
-    );
-  }
-
-  notezObjectif(id) {
-    this.otherService.notezObjectif(this.noteForm.value, id).subscribe(
-      data =>{
-        this.data = data;
-        this.successMsg = this.data.status
-        if(this.successMsg == true) {
-          this.ngOnInit();
-          this.closeModal('custom-modal-'+id);
-        }
-      },
-      error=> {
-        this.errorMsg = error;
-        this.closeModal('custom-modal-'+id);
-        this.toastr.error(this.errorMsg, 'Echec', {
-          timeOut: 5000,
-        });
-      }
-    )
-  }
-  modifierObjectif(id) {
-    this.otherService.modifierObjectif(this.modifierForm.value, id).subscribe(
-      data =>{
-        this.data = data;
-        this.successMsg = this.data.status
-        if(this.successMsg == true) {
-          this.ngOnInit();
-          this.closeModal('custom-modal-'+id);
-        }
-      },
-      error=> {
-        this.errorMsg = error;
-        this.closeModal('custom-modal-'+id);
-        this.toastr.error(this.errorMsg, 'Echec', {
-          timeOut: 5000,
-        });
-      }
-    )
-  }
 
   openDetail(interim_id, evaluation_id) {
     this.router.navigate(['/accueil/detailevaluation'], {
@@ -172,21 +90,4 @@ export class ListeevaluationComponent implements OnInit {
       }
     })
   }
-
-  openModal(id: string) {
-    this.modalService.open(id);
-  }
-  
-  closeModal(id: string) {
-    this.modalService.close(id);
-  }
-
-  openErrorModal(id: string) {
-    this.errormodalService.open(id);
-  }
-
-  closeErrorModal(id: string) {
-    this.errormodalService.close(id);
-  }
-
 }

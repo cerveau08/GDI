@@ -9,7 +9,7 @@
                 <p class="text-other">
                     <span class="comment-title">Sélectionner la période</span>:
                 </p>
-                <select type="number" formControlName="periode" class="select-mois">
+                <select type="number" [(ngModel)]="periode" formControlName="periode" class="select-mois">
                     <option *ngFor="let data of periodeobjectif"  [value]="data.id_periode">
                         période: {{data.periode}} du {{data.dateDebut | date: 'dd MMMM yyyy'}} au {{data.dateFin | date: 'dd MMMM yyyy'}}
                     </option>
@@ -17,10 +17,27 @@
             </div>
         </div>
     </form>
+    <div class="content-info-periode">
+        <p class="info-periode-title">
+            Nom de la période:
+            <span class="value-title-periode">{{periodeNamming}}</span>
+        </p>
+        <div class="content-date-periode">
+            <p class="info-periode-title">
+                Date de début:
+                <span class="value-title-periode">{{periodeDateDebut}}</span>
+            </p>
+            <p class="info-periode-title">
+                Date de fin:
+                <span class="value-title-periode">{{periodeDateFin}}</span>
+            </p>
+        </div>
+    </div>
     <form action="" [formGroup]="evaluerForm">
         <div class="content-list-objectif" formArrayName="notation">
             <p class="liste-des-objectifs">Liste des objectifs</p>
-            <div class="content-all-objectif" [style.height.px]="heightForm">
+            <!-- <div class="content-all-objectif" [style.height.px]="heightForm"> -->
+            <div class="content-all-objectif">
                 <div class="item-objectif" *ngFor="let p of objectif ; let i = index">
                     <div class="content-item-object">
                         <div class="content-titre-comment">
@@ -36,12 +53,6 @@
                         <div class="content-bareme-indicateur-vc">
                             <div>
                                 <p class="objectif-text-bareme">
-                                    Bareme:
-                                    <span class="objectif-title">{{p.bareme}}</span>
-                                </p>
-                            </div>
-                            <div>
-                                <p class="objectif-text-bareme">
                                     Indicateur de valeur:
                                     <span class="objectif-indicateur">{{p.indicateur}}</span>
                                 </p>
@@ -49,9 +60,15 @@
                             <div>
                                 <p class="objectif-text-bareme">
                                     Valeur Cible:
-                                    <span class="objectif-title">{{p.valeurCible}}</span>
+                                    <span class="objectif-vc">{{p.valeurCible}}</span>
                                 </p>
                             </div>
+                        </div>
+                        <div>
+                            <p class="objectif-text-bareme">
+                                Bareme:
+                                <span class="objectif-bareme">{{p.bareme}}</span>
+                            </p>
                         </div>
                         <div class="note-et-comments" [formGroupName]="i">
                             <div class="content-form-note">
@@ -83,46 +100,3 @@
         </div>
     </form>
 </div>
-<!--modal-2-->
-<!-- <div class="modal">
-    <jw-modal id="modif-modal-8">
-        <mat-icon style="cursor: pointer;" (click)="closeModal('modif-modal-8');" class="clear">clear</mat-icon>
-        <div class="all">
-            <h1 class="titre-objectif">Modifier l'Objectif</h1>
-            <form [formGroup]="modifierForm">
-                <div class="forms-objectif">
-                    <div class="content-form"> 
-                        <div class="input-titre">
-                            <p class="label-input" for="titre">Titre</p>
-                            <input type="text" [(ngModel)]="itemobjectif.titre" id="titre" name="titre" formControlName="titre" placeholder="Titre" >
-                        </div>
-                        <div class="input-description">
-                            <p class="label-input" for="description">Description</p>
-                            <textarea type="textarea" [(ngModel)]="itemobjectif.description" name="description" formControlName="description" placeholder="Description"></textarea>
-                        </div>
-                        <div class="content-button-submit-objectif">
-                            <button (click)="modifierObjectif(itemobjectif.id)" class="button-submit-objectif">Enregistrer</button>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </jw-modal>
-</div> -->
-<!-- modal-2 -->
-<!--modal1-->
-<div class="modal">
-    <sonatel-pma-errormodal id="error-modal-1">
-        <div class="error-modal-all" >
-            <mat-icon style="cursor: pointer;" (click)="closeErrorModal('error-modal-1');" class="clear-error">clear</mat-icon>
-            <div class="error-content-image">
-                <div class="error-image"></div>
-            </div>
-            <p class="error-text">{{errorMsg}}</p>
-            <p class="error-message-admin">Veuillez contacter l'administrateur du site à partir de la page paramètre</p> 
-            <div class="error-content-button">
-                <button (click)="closeErrorModal('error-modal-1');" class="error-button">Ok</button>
-            </div>
-        </div>
-    </sonatel-pma-errormodal>
-  </div>

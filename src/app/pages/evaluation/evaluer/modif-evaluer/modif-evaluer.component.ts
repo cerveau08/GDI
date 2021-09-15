@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ErrormodalService } from 'src/app/modal/_errormodals';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-modif-evaluer',
@@ -46,11 +47,15 @@ export class ModifEvaluerComponent implements OnInit {
   errorMsg: any;
   notations: any;
   detailNotation: any;
+  commentaireManager: any;
+  commentaireInterimaire: any;
+  isUpdated: any;
   constructor(private otherService: OthersService,
     private modalService: ModalService,
     private activeroute: ActivatedRoute,
     private errormodalService: ErrormodalService,
     private router: Router,
+    private location: Location,
     private formBuilder: FormBuilder) {
     this.activeroute.queryParams.subscribe(params => {
       this.interim_id = JSON.parse(params["interimaire"]);
@@ -98,15 +103,14 @@ export class ModifEvaluerComponent implements OnInit {
         this.dateDebut = this.dataEvaluation.dateDebut;
         this.dateFin = this.dataEvaluation.dateFin;
         this.note = this.dataEvaluation.note;
-        this.libelle = this.dataEvaluation.libelle;
-        this.commentaire = this.dataEvaluation.commentaire;
+        this.libelle = this.dataEvaluation.namming;
+        this.commentaire = this.dataEvaluation.commentaireManager;
+        this.commentaireInterimaire = this.dataEvaluation.commentaireInterimaire;
+        this.isUpdated = this.dataEvaluation.isUpdated;
         this.notations = this.dataEvaluation.notation;
         this.evaluerForm = this.formBuilder.group({
           interimaireId: this.interim_id,
           commentaire: ['', Validators.required],
-          dateDebut: ['', Validators.required],
-          dateFin: ['', Validators.required],
-          libelle: ['', Validators.required],
           notation: this.formBuilder.array(
             this.notations.map(x => this.formBuilder.group({
               id: [x.id, [Validators.required, Validators.minLength(1)]],
@@ -120,6 +124,9 @@ export class ModifEvaluerComponent implements OnInit {
     )
   }
 
+  backClicked() {
+    this.location.back();
+  }
 
   evaluer() {
     this.detailNotation = this.evaluerForm.value.notation;

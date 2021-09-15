@@ -47,8 +47,16 @@ export class EvaluerComponent implements OnInit {
   scrWidth: any;
   heightForm: number;
   periodeobjectif: any;
-  periode = null;
+  idPeriode = null;
   isEvaluated = false;
+  periode: any;
+  firstPeriodeAEvaluerNamming: any;
+  firstPeriodeAEvaluerDateDebut: any;
+  firstPeriodeAEvaluerDateFin: any;
+  periodeId: any;
+  periodeNamming: any;
+  periodeDateDebut: any;
+  periodeDateFin: any;
   @HostListener('window:resize', ['$event'])
   getScreenSize(event?) {
     this.scrHeight = window.innerHeight;
@@ -72,9 +80,6 @@ export class EvaluerComponent implements OnInit {
       idPeriode: ['', Validators.required],
       interimaireId: ['', Validators.required],
       commentaire: ['', Validators.required],
-      dateDebut: ['', Validators.required],
-      dateFin: ['', Validators.required],
-      libelle: ['', Validators.required],
       notation: this.formBuilder.array([
         {
           objectifId: new FormControl(''),
@@ -96,13 +101,6 @@ export class EvaluerComponent implements OnInit {
   ngOnInit() {
     this.role = localStorage.getItem('user');
 
-    this.otherService.getPeriodeObjectif(this.page, this.itemPeriode, this.isEvaluated, this.item).subscribe(
-      data => {
-        this.data = data
-        this.periodeobjectif = this.data["data"];
-      }
-    );
-    
     this.objectifForm = new FormGroup({
       titre: new FormControl(''),
       description: new FormControl(''),
@@ -122,8 +120,7 @@ export class EvaluerComponent implements OnInit {
       titre: new FormControl(''),
       description: new FormControl('')
     });
-    
-    this.gty(this.periode);
+    this.gty(this.idPeriode);
     this.onChanges();
   }
 
@@ -139,26 +136,42 @@ export class EvaluerComponent implements OnInit {
     this.location.back();
   }
 
-  gty(periode){
-    this.otherService.getListeObjectif(this.item, this.page, this.itemsPerPage, periode).subscribe((data: any) => {
-      this.data = data
-      this.totalItems = data.total;
-      this.objectif = this.data["data"];
-      this.evaluerForm = this.formBuilder.group({
-        idPeriode: periode,
-        interimaireId: this.item,
-        commentaire: ['', Validators.required],
-        periode: periode,
-        libelle: ['', Validators.required],
-        notation: this.formBuilder.array(
-          this.objectif.map(x => this.formBuilder.group({
-            objectifId: [x.id, [Validators.required, Validators.minLength(1)]],
-            note: [x.note, [Validators.required, Validators.minLength(1)]],
-            commentaire: [x.commentaire, [Validators.required, Validators.minLength(2)]]
-          }))
-        )
-      })
-    })
+  gty(idPeriode){
+    this.otherService.getPeriodeObjectif(this.page, this.itemPeriode, this.isEvaluated, this.item).subscribe(
+      data => {
+        this.data = data
+        this.periodeobjectif = this.data["data"];
+        this.periode = this.periodeobjectif[0].id_periode;
+        this.firstPeriodeAEvaluerNamming = this.periodeobjectif[0].periode;
+        this.firstPeriodeAEvaluerDateDebut = this.periodeobjectif[0].dateDebut;
+        this.firstPeriodeAEvaluerDateFin = this.periodeobjectif[0].dateFin;
+        if(idPeriode == '' || idPeriode == null || idPeriode == undefined){
+          this.periodeId = this.periode;
+        } else {
+          this.periodeId = idPeriode;
+        }
+        this.otherService.getListeObjectif(this.item, this.page, this.itemsPerPage, this.periodeId).subscribe((data: any) => {
+          this.data = data
+          this.totalItems = data.total;
+          this.objectif = this.data["data"];
+          this.periodeNamming = this.objectif[0].periode;
+          this.periodeDateDebut = this.objectif[0].dateDebut;
+          this.periodeDateFin = this.objectif[0].dateFin;
+          this.evaluerForm = this.formBuilder.group({
+            idPeriode: idPeriode,
+            interimaireId: this.item,
+            commentaire: ['', Validators.required],
+            notation: this.formBuilder.array(
+              this.objectif.map(x => this.formBuilder.group({
+                objectifId: [x.id, [Validators.required, Validators.minLength(1)]],
+                note: [x.note, [Validators.required, Validators.minLength(1)]],
+                commentaire: [x.commentaire, [Validators.required, Validators.minLength(2)]]
+              }))
+            )
+          })
+        })
+      }
+    );
   }
 
   addObject() {

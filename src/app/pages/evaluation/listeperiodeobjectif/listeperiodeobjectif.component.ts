@@ -141,7 +141,7 @@ export class ListeperiodeobjectifComponent implements OnInit {
   }
 
   openListeObjectif() {
-    this.router.navigate(['/accueil/objectifs'], {
+    this.router.navigate(['/accueil/objectif'], {
       queryParams: {
         interimaire: JSON.stringify(this.item),
       }

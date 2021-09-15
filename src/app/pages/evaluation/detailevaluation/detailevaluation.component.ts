@@ -8,6 +8,7 @@ import { OthersService } from 'src/app/services/others.service';
 import { NgxFileSaverService } from '@clemox/ngx-file-saver';
 import { ErrormodalService } from 'src/app/modal/_errormodals';
 import { HttpClient } from '@angular/common/http';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-detailevaluation.',
@@ -95,12 +96,16 @@ export class DetailevaluationComponent implements OnInit {
   objectif;
   public reqUrl = environment.base_url;
   errorMsg: any;
+  commentaireInterimaire: any;
+  namming: any;
+  notation: any;
   constructor(private activeroute: ActivatedRoute,
               private modalService: ModalService,
               private otherService: OthersService,
               private errormodalService: ErrormodalService,
               private http: HttpClient,
-              public router: Router, ) { 
+              public router: Router,
+              private location: Location ) { 
     this.activeroute.queryParams.subscribe(params => {
       this.item = JSON.parse(params["evaluation"]);
       this.interim_id = JSON.parse(params["interimaire"]);
@@ -121,23 +126,30 @@ export class DetailevaluationComponent implements OnInit {
         this.dateDebut = this.dataEvaluation.dateDebut;
         this.dateFin = this.dataEvaluation.dateFin;
         this.note = this.dataEvaluation.note;
-        this.commentaire = this.dataEvaluation.commentaire;
+        this.namming = this.dataEvaluation.namming;
+        this.commentaire = this.dataEvaluation.commentaireManager;
+        this.commentaireInterimaire = this.dataEvaluation.commentaireInterimaire;
+        this.notation = this.dataEvaluation.notation;
       }
     )
     
   }
   ngOnInit() {
     this.role = localStorage.getItem('user')
-    this.gty(this.page);
+   // this.gty(this.page);
   }
 
-  gty(page: any){
-    this.http.get(this.reqUrl + `/objectif/${this.interim_id}/${this.item}?page=${page}&limit=${this.itemsPerPage}`).subscribe((data: any) => {
-      this.data = data
-      this.totalItems = data.total;
-      this.objectif = this.data["data"];
-    })
+  backClicked() {
+    this.location.back();
   }
+
+  // gty(page: any){
+  //   this.otherService.getOneEvaluation(this.item).subscribe((data: any) => {
+  //     this.data = data
+  //     this.totalItems = data.total;
+  //     this.objectif = this.data["data"];
+  //   })
+  // }
 
   openModal(id: string) {
     this.modalService.open(id);
