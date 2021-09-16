@@ -50,7 +50,7 @@
                         <span *ngIf="p.isEvaluated == false">pas évaluéé</span>
                     </td>
                     <td >
-                        <mat-icon class="edit-periode" (click)="openModifPeriode(p.id_periode)" style="cursor: pointer;">edit</mat-icon>
+                        <mat-icon *ngIf="p.isEvaluated == false" class="edit-periode" (click)="openModifPeriode(p.id_periode)" style="cursor: pointer;">edit</mat-icon>
                         <mat-icon class="view-periode" (click)="openDetailPeriode(p.id_periode)" style="cursor: pointer;">visibility</mat-icon>
                     </td>
                 </tr>

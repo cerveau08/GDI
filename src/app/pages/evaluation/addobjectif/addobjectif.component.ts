@@ -39,6 +39,8 @@ export class AddobjectifComponent implements OnInit {
   errorMsg: any;
   detailobjectif;
   mesgError: any;
+  nombreMax: number;
+  showAdd = true;
   constructor(private otherService: OthersService,
     private activeroute: ActivatedRoute,
     private errormodalService: ErrormodalService,
@@ -90,6 +92,10 @@ export class AddobjectifComponent implements OnInit {
 
   addObjectif() {
     this.objectifs.push(this.newObjectif());
+    this.nombreMax = this.objectifs.length;
+    if( this.nombreMax === 10) {
+      this.showAdd = false;
+    }
   }
 
   removeobjectif(i:number) {

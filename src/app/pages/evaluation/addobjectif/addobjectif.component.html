@@ -28,8 +28,8 @@
             <p class="liste-des-objectifs">Formulaires des objectifs</p>
             <div class="content-all-objectif">
                 <div class="item-objectif" *ngFor="let skill of objectifs.controls; let i=index">
-                    <div class="content-item-object">
-                        <div class="titre-et-description" [formGroupName]="i">
+                    <div class="content-item-object" [formGroupName]="i">
+                        <div class="titre-et-description" >
                             <div class="content-form-note">
                                 <p class="text-label-titre">
                                     <span class="note-title">Titre</span>:
@@ -43,7 +43,7 @@
                                 <input class="input-commentaire" type="text" formControlName="description">
                             </div>
                         </div>
-                        <div class="bareme-et-indicateur-et-valeur" [formGroupName]="i">
+                        <div class="bareme-et-indicateur-et-valeur">
                             <div class="content-form-note">
                                 <p class="text-label-titre">
                                     <span class="note-title">Bareme</span>:
@@ -62,13 +62,16 @@
                                 </p>
                                 <input class="input-commentaire" type="text" formControlName="valeurCible">
                             </div>
+                        </div>
+                        <div class="content-footer-item">
                             <mat-icon class="bouton-delete-objectif" (click)="removeobjectif(i)">delete</mat-icon>
+                            <p class="text-numero-objectif">Objectif numéro: <span class="numero-objectif">{{i + 1}}</span></p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <button class="bouton-add-objectif" type="button" (click)="addObjectif()">+</button>
+        <button *ngIf="showAdd" class="bouton-add-objectif" type="button" (click)="addObjectif()">+</button>
         <div *ngIf="!successMsg" class="content-message-error">
             <p class="message-error">{{mesgError}}</p>
         </div>

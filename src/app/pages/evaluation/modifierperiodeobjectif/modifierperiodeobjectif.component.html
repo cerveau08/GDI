@@ -73,7 +73,7 @@
                 </div>
             </div>
         </div>
-        <button class="bouton-add-objectif" type="button" (click)="addObjectif()">+</button>
+        <button *ngIf="showAdd" class="bouton-add-objectif" type="button" (click)="addObjectif()">+</button>
         <div *ngIf="!successMsg" class="content-message-error">
             <p class="message-error">{{mesgError}}</p>
         </div>
