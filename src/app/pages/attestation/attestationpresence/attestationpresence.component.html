@@ -56,22 +56,22 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let p of dataAttest | filter:filterterm | paginate: { 
-                        itemsPerPage: 8, currentPage: p }; let i = index" (click)="openDetail(p.id)" style="cursor: pointer;">
-                        <td >{{p.matricule}}</td>
-                        <td>{{p.prenom}}</td>
-                        <td>{{p.nom}}</td>
-                        <td>{{p.reference}}</td>
-                        <td *ngIf="user != 'AGN' && user != 'INT'" >{{p.agence}}</td>
-                        <td >{{p.dateFin  | date:'MMMM yyyy'}}</td>
-                        <td  >{{p.nombreJourAbscence}} jours</td>
-                        <td>{{p.statut}}</td>
+                        itemsPerPage: 8, currentPage: p }; let i = index" style="cursor: pointer;">
+                        <td (click)="openDetail(p.id)">{{p.matricule}}</td>
+                        <td (click)="openDetail(p.id)">{{p.prenom}}</td>
+                        <td (click)="openDetail(p.id)">{{p.nom}}</td>
+                        <td (click)="openDetail(p.id)">{{p.reference}}</td>
+                        <td (click)="openDetail(p.id)" *ngIf="user != 'AGN' && user != 'INT'" >{{p.agence}}</td>
+                        <td (click)="openDetail(p.id)">{{p.dateFin  | date:'MMMM yyyy'}}</td>
+                        <td  (click)="openDetail(p.id)">{{p.nombreJourAbscence}} jours</td>
+                        <td (click)="openDetail(p.id)">{{p.statut}}</td>
                         <td *ngIf="user == 'AGN'" ><input *ngIf="p.etat == 0" type="checkbox"
                             [checked]="p.etat"
                             [(ngModel)]="p.etat"
                             [value]="p.id" 
                             (change)="checkIfAllSelected();"/>
                             <p *ngIf="p.etat == 1">Validé</p>
-                    </td>
+                        </td>
                     </tr>
                 </tbody>
                 

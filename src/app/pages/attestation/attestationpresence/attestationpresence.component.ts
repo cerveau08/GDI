@@ -135,10 +135,15 @@ export class AttestationpresenceComponent implements OnInit {
   }
 
   selectAll() {
+    // for (var i = 0; i < this.dataAttest.length; i++) {
+    //   this.dataAttest[i].etat = this.selectedAll;
+    // }
+    // this.getCheckedItemList();
     for (var i = 0; i < this.dataAttest.length; i++) {
-      this.dataAttest[i].etat = this.selectedAll;
+      if(this.dataAttest[i].etat == 0) {
+        this.dataAttest[i].etat = this.selectedAll;
+      }
     }
-    this.getCheckedItemList();
   }
   checkIfAllSelected() {
     this.selectedAll = this.dataAttest.every(function(item:any) {
