@@ -30,6 +30,7 @@ export class EvaluerComponent implements OnInit {
   nom;
   successMsg;
   objectifForm: FormGroup;
+  evaluationForm: FormGroup;
   noteForm: FormGroup;
   modifierForm: FormGroup;
   titremodif;
@@ -116,6 +117,9 @@ export class EvaluerComponent implements OnInit {
     this.filterForm = new FormGroup({
       periode: new FormControl(''),
     });
+    this.evaluationForm = new FormGroup({
+      evaluationId: new FormControl(''),
+    });
     this.modifierForm = new FormGroup({
       titre: new FormControl(''),
       description: new FormControl('')
@@ -137,38 +141,28 @@ export class EvaluerComponent implements OnInit {
   }
 
   gty(idPeriode){
-    this.otherService.getPeriodeObjectif(this.page, this.itemPeriode, this.isEvaluated, this.item).subscribe(
+    this.otherService.getListeEvaluation(this.item, this.page, this.itemsPerPage, this.isEvaluated).subscribe(
       data => {
         this.data = data
         this.periodeobjectif = this.data["data"];
-        this.periode = this.periodeobjectif[0].id_periode;
-        this.firstPeriodeAEvaluerNamming = this.periodeobjectif[0].periode;
-        this.firstPeriodeAEvaluerDateDebut = this.periodeobjectif[0].dateDebut;
-        this.firstPeriodeAEvaluerDateFin = this.periodeobjectif[0].dateFin;
-        if(idPeriode == '' || idPeriode == null || idPeriode == undefined){
-          this.periodeId = this.periode;
-        } else {
-          this.periodeId = idPeriode;
-        }
-        this.otherService.getListeObjectif(this.item, this.page, this.itemsPerPage, this.periodeId).subscribe((data: any) => {
-          this.data = data
-          this.totalItems = data.total;
-          this.objectif = this.data["data"];
-          this.periodeNamming = this.objectif[0].periode;
-          this.periodeDateDebut = this.objectif[0].dateDebut;
-          this.periodeDateFin = this.objectif[0].dateFin;
-          this.evaluerForm = this.formBuilder.group({
-            idPeriode: idPeriode,
-            interimaireId: this.item,
-            commentaire: ['', Validators.required],
-            notation: this.formBuilder.array(
-              this.objectif.map(x => this.formBuilder.group({
-                objectifId: [x.id, [Validators.required, Validators.minLength(1)]],
-                note: [x.note, [Validators.required, Validators.minLength(1)]],
-                commentaire: [x.commentaire, [Validators.required, Validators.minLength(2)]]
-              }))
-            )
-          })
+        this.periode = this.periodeobjectif[0].id;
+        this.evaluationForm.patchValue({evaluationId: this.periode })
+        this.periodeNamming = this.periodeobjectif[0].libelle;
+        this.periodeDateDebut = this.periodeobjectif[0].dateDebut;
+        this.periodeDateFin = this.periodeobjectif[0].dateFin;
+        this.objectif = this.periodeobjectif[0].notation;
+        this.evaluerForm = this.formBuilder.group({
+          idPeriode: idPeriode,
+          interimaireId: this.item,
+          commentaire: ['', Validators.required],
+          notation: this.formBuilder.array(
+            this.objectif.map(x => this.formBuilder.group({
+              id: [x.id, [Validators.required, Validators.minLength(1)]],
+              objectifId: [x.objectif.id, [Validators.required, Validators.minLength(1)]],
+              note: [x.note, [Validators.required, Validators.minLength(1)]],
+              commentaire: [x.commentaire, [Validators.required, Validators.minLength(2)]]
+            }))
+          )
         })
       }
     );
@@ -200,7 +194,7 @@ export class EvaluerComponent implements OnInit {
           this.detailNotation.splice(index, 1);
       }
     });
-    this.otherService.evaluer(this.evaluerForm.value).subscribe(
+    this.otherService.updateEvaluation(this.evaluerForm.value, this.evaluationForm.value.evaluationId).subscribe(
       data =>{
         this.data = data;
         this.successMsg = this.data.status

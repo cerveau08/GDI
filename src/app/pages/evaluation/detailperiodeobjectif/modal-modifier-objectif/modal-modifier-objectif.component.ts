@@ -29,20 +29,18 @@ export class ModalModifierObjectifComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-    console.log(this.itemobjectif);
     this.modifierForm = new FormGroup({
       titre: new FormControl(''),
       description: new FormControl(''),
       indicateur: new FormControl(''),
       valeurCible: new FormControl(''),
+      idEvaluation: new FormControl(''),
     });
   }
 
   modifierObjectif(id) {
-    console.log(this.modifierForm.value);
     this.otherService.modifierObjectif(this.modifierForm.value, id).subscribe(
       data =>{
-        console.log(data);
         this.data = data;
         this.successMsg = this.data.status
         if(this.successMsg == true) {
@@ -53,7 +51,6 @@ export class ModalModifierObjectifComponent implements OnInit {
         this.errorMsg = error;
         this.closeModal('modif-modal-'+id);
         this.errormodalService.open('error-modal-1');
-        console.log(error)
       }
     )
   }

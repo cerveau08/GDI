@@ -3,7 +3,7 @@
         <mat-icon class="bouton-retour" (click)="backClicked()">arrow_back</mat-icon>
         <h1 class="titre-objectif">Evaluer {{prenom}} {{nom}}</h1>
     </div>
-    <form action="" [formGroup]="filterForm">
+    <!-- <form action="" [formGroup]="filterForm">
         <div class="content-other-input-form">
             <div class="content-form-dateDebut">
                 <p class="text-other">
@@ -16,7 +16,7 @@
                 </select>
             </div>
         </div>
-    </form>
+    </form> -->
     <div class="content-info-periode">
         <p class="info-periode-title">
             Nom de la période:
@@ -43,31 +43,31 @@
                         <div class="content-titre-comment">
                             <p class="objectif-text-title">
                                 Titre:
-                                <span class="objectif-title">{{p.titre}}</span>
+                                <span class="objectif-title">{{p.objectif.titre}}</span>
                             </p>
                             <p class="objectif-content">
                                 Description:
-                                <span class="objectif-description">{{p.description}}</span>
+                                <span class="objectif-description">{{p.objectif.description}}</span>
                             </p>
                         </div>
                         <div class="content-bareme-indicateur-vc">
                             <div>
                                 <p class="objectif-text-bareme">
                                     Indicateur de valeur:
-                                    <span class="objectif-indicateur">{{p.indicateur}}</span>
+                                    <span class="objectif-indicateur">{{p.objectif.indicateur}}</span>
                                 </p>
                             </div>
                             <div>
                                 <p class="objectif-text-bareme">
                                     Valeur Cible:
-                                    <span class="objectif-vc">{{p.valeurCible}}</span>
+                                    <span class="objectif-vc">{{p.objectif.valeurCible}}</span>
                                 </p>
                             </div>
                         </div>
                         <div>
                             <p class="objectif-text-bareme">
                                 Bareme:
-                                <span class="objectif-bareme">{{p.bareme}}</span>
+                                <span class="objectif-bareme">{{p.objectif.bareme}}</span>
                             </p>
                         </div>
                         <div class="note-et-comments" [formGroupName]="i">
@@ -87,9 +87,6 @@
                     </div>
                 </div>
             </div>
-            <!-- <div class="pagination">
-                <pagination-controls (pageChange)="p = $event" previousLabel="Prcédent" nextLabel="Suivant"></pagination-controls>
-            </div> -->
         </div>
         <div class="content-commentaire-globale">
             <p class="label-commentaire-global">Commentaire Globale</p>

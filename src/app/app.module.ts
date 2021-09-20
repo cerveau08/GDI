@@ -128,6 +128,9 @@ import { ListeperiodeobjectifComponent } from './pages/evaluation/listeperiodeob
 import { ModifierperiodeobjectifComponent } from './pages/evaluation/modifierperiodeobjectif/modifierperiodeobjectif.component';
 import { DetailperiodeobjectifComponent } from './pages/evaluation/detailperiodeobjectif/detailperiodeobjectif.component';
 import { ModalModifierObjectifComponent } from './pages/evaluation/detailperiodeobjectif/modal-modifier-objectif/modal-modifier-objectif.component';
+import { ReconduireobjectifComponent } from './pages/evaluation/reconduireobjectif/reconduireobjectif.component';
+import { PeriodedetailComponent } from './pages/evaluation/periodedetail/periodedetail.component';
+import { ModifdetailComponent } from './pages/evaluation/modifdetail/modifdetail.component';
 
 @NgModule({
   declarations: [
@@ -228,6 +231,9 @@ import { ModalModifierObjectifComponent } from './pages/evaluation/detailperiode
     ModifierperiodeobjectifComponent,
     DetailperiodeobjectifComponent,
     ModalModifierObjectifComponent,
+    ReconduireobjectifComponent,
+    PeriodedetailComponent,
+    ModifdetailComponent,
   ],
   imports: [
     BrowserModule,

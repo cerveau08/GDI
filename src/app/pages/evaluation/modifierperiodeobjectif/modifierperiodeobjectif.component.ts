@@ -24,6 +24,7 @@ export class ModifierperiodeobjectifComponent implements OnInit {
   interimaire;
   prenon;
   prenom;
+  evaluationHeadForm: FormGroup;
   objectifsForm: FormGroup;
   note;
   nom;
@@ -48,41 +49,35 @@ export class ModifierperiodeobjectifComponent implements OnInit {
   namming: any;
   dateDebut: any;
   dateFin: any;
+  evaluationForm: FormGroup;
   nombreMax: number;
   showAdd = true;
+  isEvaluated = false;
+  notations: any;
+  libelle: any;
+  evaluationId: any;
   constructor(private otherService: OthersService,
     private activeroute: ActivatedRoute,
-    private errormodalService: ErrormodalService,
-    private http: HttpClient,
     private router: Router,
     private location: Location,
     private formBuilder: FormBuilder,
     private toastr: ToastrService) {
     this.activeroute.queryParams.subscribe(params => {
       this.item = JSON.parse(params["interimaire"]);
-      this.periodeId = JSON.parse(params["periode"]);
+      this.objectifsForm = this.formBuilder.group({
+        dateDebut: ['', Validators.required],
+        interimaireId: ['', Validators.required],
+        idEvaluation: ['', Validators.required],
+        dateFin: ['', Validators.required],
+        namming: ['', Validators.required],
+        objectifs: this.formBuilder.array([]),
+      });
     });
-    this.objectifsForm = this.formBuilder.group({
-      // dateDebut: ['', Validators.required],
-      // dateFin: ['', Validators.required],
-      // namming: ['', Validators.required],
-      idPeriode: ['', Validators.required],
-      objectifs: this.formBuilder.array([]),
-    });
+    
   }
 
   ngOnInit() {
     this.role = localStorage.getItem('user');
-    this.otherService.detailPeriodeObjectif(this.periodeId).subscribe(
-      data => {
-        this.data = data
-        this.detailPeriode = this.data["data"][0];
-        this.namming = this.detailPeriode.namming;
-        this.dateDebut = this.detailPeriode.dateDebut;
-        this.dateFin = this.detailPeriode.dateFin;
-        this.statutPeriode = this.detailPeriode.isEvaluated;
-      }
-    );
     this.otherService.getOneInterById(this.item).subscribe(
       data =>{
         this.data = data;
@@ -91,32 +86,51 @@ export class ModifierperiodeobjectifComponent implements OnInit {
         this.prenom = this.dataInter.prenom;
       }
     );
+
+    this.evaluationForm = new FormGroup({
+      evaluationId: new FormControl(''),
+    });
+
     this.gty(this.page);
+
+    this.evaluationHeadForm = this.formBuilder.group({
+      dateDebut: ['', Validators.required],
+      interimaireId: ['', Validators.required],
+      dateFin: ['', Validators.required],
+      namming: ['', Validators.required],
+    });
   }
 
   gty(page: any){
-    this.otherService.getListeObjectif(this.item, page, this.itemsPerPage, this.periodeId).subscribe((data: any) => {
-      this.data = data
-      this.totalItems = data.total;
-      this.objectif = this.data["data"];
-      this.objectif = this.data["data"];
-      this.objectifsForm = this.formBuilder.group({
-        // dateDebut: this.dateDebut,
-        // dateFin: this.dateDebut,
-        // namming: this.namming,
-        idPeriode: this.periodeId,
-        objectifs: this.formBuilder.array(
-          this.objectif.map(x => this.formBuilder.group({
-            id: [x.id, [Validators.required, Validators.minLength(1)]],
-            bareme: [x.bareme, [Validators.required, Validators.minLength(1)]],
-            titre: [x.titre, [Validators.required, Validators.minLength(1)]],
-            description: [x.description, [Validators.required, Validators.minLength(2)]],
-            indicateur: [x.indicateur, [Validators.required, Validators.minLength(1)]],
-            valeurCible: [x.valeurCible, [Validators.required, Validators.minLength(1)]],
-          }))
-        )
-      })
-    })
+    this.otherService.getListeEvaluation(this.item, page, this.itemsPerPage, this.isEvaluated).subscribe(
+      data => {
+        this.data = data
+        this.detailPeriode = this.data["data"];
+        this.evaluationId = this.detailPeriode[0].id;
+        this.evaluationForm.patchValue({evaluationId: this.evaluationId})
+        this.namming = this.detailPeriode[0].libelle;
+        this.dateDebut = this.detailPeriode[0].dateDebut;
+        this.dateFin = this.detailPeriode[0].dateFin;
+        this.notations = this.detailPeriode[0].notation;
+        this.objectifsForm = this.formBuilder.group({
+          dateDebut: ['', Validators.required],
+          dateFin: ['', Validators.required],
+          namming: ['', Validators.required],
+          interimaireId: this.item,
+          idEvaluation: this.evaluationId,
+          objectifs: this.formBuilder.array(
+            this.notations.map(x => this.formBuilder.group({
+              id: [x.objectif.id, [Validators.required, Validators.minLength(1)]],
+              bareme: [x.objectif.bareme, [Validators.required, Validators.minLength(1)]],
+              titre: [x.objectif.titre, [Validators.required, Validators.minLength(1)]],
+              description: [x.objectif.description, [Validators.required, Validators.minLength(2)]],
+              indicateur: [x.objectif.indicateur, [Validators.required, Validators.minLength(1)]],
+              valeurCible: [x.objectif.valeurCible, [Validators.required, Validators.minLength(1)]],
+            }))
+          )
+        })
+      }
+    );
   }
 
   backClicked() {
@@ -150,9 +164,14 @@ export class ModifierperiodeobjectifComponent implements OnInit {
     this.objectifs.removeAt(i);
   }
 
-  
-
   ajouterObjectifs() {
+    this.objectifsForm.patchValue({
+      dateDebut: this.evaluationHeadForm.value.dateDebut,
+      dateFin: this.evaluationHeadForm.value.dateFin,
+      namming: this.evaluationHeadForm.value.namming,
+    })
+    console.log(this.objectifsForm.value);
+    
     this.otherService.modifierObjectif(this.objectifsForm.value, this.item).subscribe(
       data =>{
         this.data = data;

@@ -12,7 +12,12 @@
 }
 .content-bouton-periode{
     position: absolute;
-    top: 10px;
+    top: 30px;
+    right: 10px;
+}
+.content-bouton-reconduire-periode{
+    position: absolute;
+    top: 65px;
     right: 10px;
 }
 .button-liste {
@@ -31,6 +36,30 @@
 .button-ajouter {
     height: 30px;
     width: 120px;
+    background-color: #ff7900;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    margin-top: 5px;
+}
+.button-liste-periode {
+    height: 30px;
+    width: 170px;
+    background-color: #ff7900;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    margin-top: 5px;
+}
+.button-ajouter-objectif {
+    height: 30px;
+    width: 250px;
     background-color: #009393;
     border: none;
     cursor: pointer;
@@ -38,6 +67,20 @@
     color: white;
     font-size: 12px;
     font-weight: bold;
+    margin-left: 10px;
+    margin-top: 5px;
+}
+.button-reconduire-objectif {
+    height: 30px;
+    width: 180px;
+    background-color: #009393;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    margin-left: 10px;
     margin-top: 5px;
 }
 .item-objectif {

@@ -138,6 +138,11 @@ addAgence(data) {
     return this.http.get(`${this.reqUrl}/listeObjectifs/${id}`, {params: data});
   }
 
+  getListeEvaluation(id, page,limit, isEvaluated) {
+    const data = {page: page, limit: limit, isEvaluated: isEvaluated};
+    return this.http.get(`${this.reqUrl}/listEvaluations/${id}`, {params: data});
+  }
+
   detailPeriodeObjectif(id: string) {
     return this.http.get(`${this.reqUrl}/detailPerideObjectif/${id}`);
   }
@@ -290,8 +295,9 @@ addAgence(data) {
   attestionMesInter(){
     return this.http.get<any>(this.reqUrl + '/attestationMesInterimaires');
   }
-  getOneEvaluation(id: number){
-    return this.http.get<any>(`${this.reqUrl}/evaluation/${id}`);
+  getOneEvaluation(id: number, isEvaluated){
+    const data = {isEvaluated: isEvaluated};
+    return this.http.get<any>(`${this.reqUrl}/evaluation/${id}`, {params: data});
   }
   evaluer(data:any): Observable<any> {
     return this.http.post<any>(`${this.reqUrl}/notation`, data);
@@ -487,10 +493,6 @@ addAgence(data) {
   lastAttestationInt(id: number) {
     return this.http.get<any>(`${this.reqUrl}/lastAttestationInterimaire/${id}`);
   }
-
-  // searchInfoManager(data:any): Observable<any> {
-  //   return this.http.post<any>(`${this.reqUrl}/searchManager`, data);
-  // }
 
   searchInfoManager(matricule){
     const data = {matricule: matricule};

@@ -12,11 +12,15 @@
             <div (click)="openDetail(item, p.id)" class="content-evaluation">
                 <p class="key-evaluation-head">
                     Évaluation: 
-                    <span class="value-evaluation-head">{{p.namming}} </span>
+                    <span class="value-evaluation-head">{{p.libelle}} </span>
                     du
                     <span class="value-evaluation-head">{{p.dateDebut | date:'dd MMMM yyyy'}} </span>
                      au 
                     <span class="value-evaluation-head"> {{p.dateFin | date:'dd MMMM yyyy'}} </span>
+                </p>
+                <p class="key-evaluation">
+                    Nombre d'objectif: 
+                    <span class="value-evaluation-length">{{p.notation.length}} </span>
                 </p>
                 <p class="key-evaluation">
                     Note Globale: 

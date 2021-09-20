@@ -38,6 +38,7 @@ export class ListeevaluationComponent implements OnInit {
   interimConnect;
   public reqUrl = environment.base_url;
   errorMsg: any;
+  isEvaluated = true;
   constructor(private otherService: OthersService,
     private modalService: ModalService,
     private activeroute: ActivatedRoute,
@@ -66,7 +67,7 @@ export class ListeevaluationComponent implements OnInit {
   }
 
   gty(page: any){
-    this.http.get(this.reqUrl + `/listEvaluations/${this.item}?page=${page}&limit=${this.itemsPerPage}`).subscribe((data: any) => {
+    this.otherService.getListeEvaluation(this.item, page, this.itemsPerPage, this.isEvaluated).subscribe((data: any) => {
       this.data = data
       this.evaluations = this.data["data"];
       this.totalItems = data.total;

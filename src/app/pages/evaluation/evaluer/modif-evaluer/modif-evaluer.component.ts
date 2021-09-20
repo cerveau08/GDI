@@ -50,6 +50,7 @@ export class ModifEvaluerComponent implements OnInit {
   commentaireManager: any;
   commentaireInterimaire: any;
   isUpdated: any;
+  isEvaluated: any;
   constructor(private otherService: OthersService,
     private modalService: ModalService,
     private activeroute: ActivatedRoute,
@@ -96,7 +97,7 @@ export class ModifEvaluerComponent implements OnInit {
       bareme: new FormControl(''),
       date_objectif: new FormControl('')
     });
-    this.otherService.getOneEvaluation(this.evaluation_id).subscribe(
+    this.otherService.getOneEvaluation(this.evaluation_id, this.isEvaluated).subscribe(
       data =>{
         this.data = data;
         this.dataEvaluation = this.data.data;

@@ -1,10 +1,15 @@
 <div class="objectif-container">
     <div class="content-header-page">
         <mat-icon class="bouton-retour" (click)="backClicked()">arrow_back</mat-icon>
-        <h1 class="titre-objectif">Détail de la période {{nomPeriode}} des objectifs de {{prenom}} {{nom}}</h1>
+        <h1 class="titre-objectif">Détail de la période d'évaluation {{nomPeriode}} de {{prenom}} {{nom}}</h1>
     </div>
     <div class="content-bouton-periode">
         <button *ngIf="role == 'MNG'" class="button-ajouter" (click)="openModifierObjectif();">Modifier</button>
+        <button *ngIf="role == 'MNG'" class="button-ajouter-objectif" (click)="openAddObjectif();">Créer une nouvelle periode d'objectif</button>
+    </div>
+    <div class="content-bouton-reconduire-periode">
+        <button *ngIf="role == 'MNG'" class="button-liste-periode" (click)="listeperiodeobjectif();">Voir la liste des périodes</button>
+        <button *ngIf="role == 'MNG'" class="button-reconduire-objectif" (click)="reconduireobjectif(idEvaluation);">Reconduire les objectifs</button>
     </div>
     <div class="content-info-periode">
         <p class="text-objectif-title">
@@ -28,22 +33,19 @@
     </div>
     <h1 class="titre-objectif">Liste des objectifs de cette période</h1>
     <div class="content-list-objectif">
-        <div class="item-objectif" *ngFor="let p of objectif | paginate: {  itemsPerPage: itemsPerPage,
-            currentPage: page,
-            totalItems: totalItems
-            }; let i = index">
+        <div class="item-objectif" *ngFor="let p of objectif ">
             <div class="content-item-object">
                 <div class="content-titre-description-item">
                     <div class="content-text-objectif-title">
                         <p class="text-objectif-title">
                             Titre:
-                            <span class="objectif-title-titre">{{p.titre}}</span>
+                            <span class="objectif-title-titre">{{p.objectif.titre}}</span>
                         </p>
                     </div>
                     <div class="content-text-objectif-description">
                         <p class="text-objectif-content">
                             Description:
-                            <span class="objectif-content-description">{{p.description}}</span>
+                            <span class="objectif-content-description">{{p.objectif.description}}</span>
                         </p>
                     </div>
                 </div>
@@ -51,19 +53,19 @@
                     <div class="content-text-objectif-bareme">
                         <p class="text-objectif-title">
                             Bareme:
-                            <span class="objectif-title">{{p.bareme}}</span>
+                            <span class="objectif-title">{{p.objectif.bareme}}</span>
                         </p>
                     </div>
                     <div class="content-text-objectif-indicateur">
                         <p class="text-objectif-content">
                             Indicateur de mesure:
-                            <span class="objectif-content">{{p.indicateur}}</span>
+                            <span class="objectif-content">{{p.objectif.indicateur}}</span>
                         </p>
                     </div>
                     <div class="content-text-objectif-valeur">
                         <p class="text-objectif-content">
                             Valeur Cible:
-                            <span class="objectif-content">{{p.valeurCible}}</span>
+                            <span class="objectif-content">{{p.objectif.valeurCible}}</span>
                         </p>
                     </div>
                 </div>
@@ -91,14 +93,11 @@
                     <mat-icon style="cursor: pointer;" (click)="closeModal('modif-modal-'+p.id);" class="clear">clear</mat-icon>
                     <div class="all">
                         <h1 class="titre-objectif">Modifier l'Objectif</h1>
-                        <app-modal-modifier-objectif [objectifData]=p></app-modal-modifier-objectif>
+                        <app-modal-modifier-objectif [objectifData]=p.objectif></app-modal-modifier-objectif>
                     </div>
                 </jw-modal>
             </div>
             <!-- modal-2 -->
-        </div>
-        <div class="pagination">
-            <pagination-controls (pageChange)="gty(page = $event)" previousLabel="Prcédent" nextLabel="Suivant"></pagination-controls>
         </div>
     </div>
     <div class="modal">

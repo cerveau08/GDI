@@ -1,3 +1,6 @@
+import { PeriodedetailComponent } from './pages/evaluation/periodedetail/periodedetail.component';
+import { ModifdetailComponent } from './pages/evaluation/modifdetail/modifdetail.component';
+import { ReconduireobjectifComponent } from './pages/evaluation/reconduireobjectif/reconduireobjectif.component';
 import { ModifierperiodeobjectifComponent } from './pages/evaluation/modifierperiodeobjectif/modifierperiodeobjectif.component';
 import { DetailperiodeobjectifComponent } from './pages/evaluation/detailperiodeobjectif/detailperiodeobjectif.component';
 import { ListeperiodeobjectifComponent } from './pages/evaluation/listeperiodeobjectif/listeperiodeobjectif.component';
@@ -239,6 +242,10 @@ const routes: Routes = [
       { path: 'detailuser',
         component: DetailuserComponent,
           canActivate: [AuthGuard]
+      },{ 
+        path: 'reconduireobjectif',
+        component: ReconduireobjectifComponent,
+        canActivate: [AuthGuard]
       },
       { path: 'listeuser',
         component: ListuserComponent,
@@ -461,6 +468,14 @@ const routes: Routes = [
       },
       { path: 'detailperiodeobjectif',
         component: DetailperiodeobjectifComponent,
+        canActivate: [AuthGuard]
+      },{ 
+        path: 'modifdetailperiode',
+        component: ModifdetailComponent,
+        canActivate: [AuthGuard]
+      },
+      { path: 'periodedetail',
+        component: PeriodedetailComponent,
         canActivate: [AuthGuard]
       },
       {

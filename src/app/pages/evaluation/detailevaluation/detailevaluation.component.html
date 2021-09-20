@@ -8,6 +8,9 @@
                 </div>
             </div>
         </div>
+        <div class="content-bouton-reconduire-periode">
+            <button *ngIf="role == 'MNG'" class="button-reconduire-objectif" (click)="reconduireobjectif();">Reconduire ces objectifs</button>
+        </div>
         <div class="grid-container" *ngIf="item">
             <div class="information">
                 <div class="info">

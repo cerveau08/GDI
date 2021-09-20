@@ -40,9 +40,9 @@ export class ListeperiodeobjectifComponent implements OnInit {
   listeAdmissible: {}[];
   dataSociete: any;
   item: any;
-  data: Object;
+  data: any;
   periodeobjectif: any;
-  isEvaluated = null;
+  isEvaluated = false;
   moisSelect
   demandeForm: FormGroup;
   page = 1;
@@ -110,15 +110,10 @@ export class ListeperiodeobjectifComponent implements OnInit {
   }
 
   gty(page: any){
-    if(this.filterForm.value.isEvaluated == undefined || this.filterForm.value.isEvaluated == "") {
-      this.isEvaluated = null;
-    } else {
-      this.isEvaluated = this.filterForm.value.isEvaluated;
-    }
-    this.otherService.getPeriodeObjectif(page, this.itemsPerPage, this.isEvaluated, this.item).subscribe(
+    this.otherService.getListeEvaluation(this.item, page, this.itemsPerPage, this.isEvaluated).subscribe(
       data => {
         this.data = data
-        this.periodeobjectif = this.data["data"];
+        this.periodeobjectif = this.data.data;
       }
     );
   }
@@ -132,7 +127,7 @@ export class ListeperiodeobjectifComponent implements OnInit {
   }
 
   openDetailPeriode(data) {
-    this.router.navigate(['/accueil/detailperiodeobjectif'], {
+    this.router.navigate(['/accueil/periodedetail'], {
       queryParams: {
         periode: JSON.stringify(data),
         interimaire: JSON.stringify(this.item),
@@ -149,7 +144,7 @@ export class ListeperiodeobjectifComponent implements OnInit {
   }
 
   openModifPeriode(data) {
-    this.router.navigate(['/accueil/modifperiodeobjectif'], {
+    this.router.navigate(['/accueil/modifdetailperiode'], {
       queryParams: {
         periode: JSON.stringify(data),
         interimaire: JSON.stringify(this.item),

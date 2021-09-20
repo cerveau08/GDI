@@ -4,8 +4,6 @@ import { environment } from 'src/environments/environment';
 import { OthersService } from 'src/app/services/others.service';
 import { ModalService } from 'src/app/modal/_modal';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ErrormodalService } from 'src/app/modal/_errormodals';
-import { HttpClient } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import {Location} from '@angular/common';
 
@@ -43,43 +41,38 @@ export class DetailperiodeobjectifComponent implements OnInit {
   periode = null;
   periodeobjectif: any;
   mesgError: any;
-  isEvaluated = null;
+  isEvaluated = false;
   periodeId: any;
   detailPeriode: any;
   nomPeriode: any;
   dateDebutPeriode: any;
   dateFinPeriode: any;
   statutPeriode: any;
+  notation: any;
+  idEvaluation: any;
   constructor(private otherService: OthersService,
     private modalService: ModalService,
     private activeroute: ActivatedRoute,
-    private errormodalService: ErrormodalService,
-    private http: HttpClient,
     private router: Router,
     private location: Location,
     private toastr: ToastrService) {
     this.activeroute.queryParams.subscribe(params => {
       this.item = JSON.parse(params["interimaire"]);
-      this.periodeId = JSON.parse(params["periode"]);
     });
   }
 
   ngOnInit() {
     this.role = localStorage.getItem('user');
-    this.otherService.detailPeriodeObjectif(this.periodeId).subscribe(
+    this.otherService.getListeEvaluation(this.item, this.page, this.itemsPerPage, this.isEvaluated).subscribe(
       data => {
         this.data = data
-        this.detailPeriode = this.data["data"][0];
-        this.nomPeriode = this.detailPeriode.namming;
-        this.dateDebutPeriode = this.detailPeriode.dateDebut;
-        this.dateFinPeriode = this.detailPeriode.dateFin;
-        this.statutPeriode = this.detailPeriode.isEvaluated;
-      }
-    );
-    this.otherService.getPeriodeObjectif(this.page, this.itemsPerPage, this.isEvaluated, this.item).subscribe(
-      data => {
-        this.data = data
-        this.periodeobjectif = this.data["data"];
+        this.detailPeriode = this.data["data"];
+        this.idEvaluation = this.detailPeriode[0].id;
+        this.nomPeriode = this.detailPeriode[0].libelle;
+        this.dateDebutPeriode = this.detailPeriode[0].dateDebut;
+        this.dateFinPeriode = this.detailPeriode[0].dateFin;
+        this.statutPeriode = this.detailPeriode[0].isEvaluated;
+        this.objectif = this.detailPeriode[0].notation;
       }
     );
     this.objectifForm = new FormGroup({
@@ -112,19 +105,10 @@ export class DetailperiodeobjectifComponent implements OnInit {
         });
       }
     );
-    this.gty(this.page);
   }
 
   backClicked() {
     this.location.back();
-  }
-
-  gty(page: any){
-    this.otherService.getListeObjectif(this.item, page, this.itemsPerPage, this.periodeId).subscribe((data: any) => {
-      this.data = data
-      this.totalItems = data.total;
-      this.objectif = this.data["data"];
-    })
   }
 
   addObject() {
@@ -149,25 +133,6 @@ export class DetailperiodeobjectifComponent implements OnInit {
     );
   }
 
-  notezObjectif(id) {
-    this.otherService.notezObjectif(this.noteForm.value, id).subscribe(
-      data =>{
-        this.data = data;
-        this.successMsg = this.data.status
-        if(this.successMsg == true) {
-          this.ngOnInit();
-          this.closeModal('custom-modal-'+id);
-        }
-      },
-      error=> {
-        this.errorMsg = error;
-        this.closeModal('custom-modal-'+id);
-        this.toastr.error(this.errorMsg, 'Echec', {
-          timeOut: 5000,
-        });
-      }
-    )
-  }
   modifierObjectif(id) {
     this.otherService.modifierObjectif(this.modifierForm.value, id).subscribe(
       data =>{
@@ -193,6 +158,30 @@ export class DetailperiodeobjectifComponent implements OnInit {
 
   openModifierObjectif() {
     this.router.navigate(['/accueil/modifperiodeobjectif/'], {
+      queryParams: {
+        interimaire: JSON.stringify(this.item),
+      }
+    });
+  }
+
+  reconduireobjectif(p) {
+    this.router.navigate(['accueil/reconduireobjectif'], {
+      queryParams: {
+        interimaire: JSON.stringify(this.item),
+        periodeobjectif: JSON.stringify(p),
+      }
+    })
+  }
+
+  listeperiodeobjectif() {
+    this.router.navigate(['accueil/listeperiodeobjectif'], {
+      queryParams: {
+        interimaire: JSON.stringify(this.item),
+      }
+    })
+  }
+  openAddObjectif() {
+    this.router.navigate(['/accueil/addobjectif/'], {
       queryParams: {
         interimaire: JSON.stringify(this.item),
         periode: JSON.stringify(this.periodeId),

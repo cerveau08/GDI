@@ -99,6 +99,7 @@ export class DetailevaluationComponent implements OnInit {
   commentaireInterimaire: any;
   namming: any;
   notation: any;
+  isEvaluated: any;
   constructor(private activeroute: ActivatedRoute,
               private modalService: ModalService,
               private otherService: OthersService,
@@ -119,14 +120,14 @@ export class DetailevaluationComponent implements OnInit {
       );
     })
 
-    this.otherService.getOneEvaluation(this.item).subscribe(
+    this.otherService.getOneEvaluation(this.item, this.isEvaluated).subscribe(
       data =>{
         this.data = data;
         this.dataEvaluation = this.data.data;
         this.dateDebut = this.dataEvaluation.dateDebut;
         this.dateFin = this.dataEvaluation.dateFin;
         this.note = this.dataEvaluation.note;
-        this.namming = this.dataEvaluation.namming;
+        this.namming = this.dataEvaluation.libelle;
         this.commentaire = this.dataEvaluation.commentaireManager;
         this.commentaireInterimaire = this.dataEvaluation.commentaireInterimaire;
         this.notation = this.dataEvaluation.notation;
@@ -166,6 +167,15 @@ export class DetailevaluationComponent implements OnInit {
       }
     })
   } 
+
+  reconduireobjectif() {
+    this.router.navigate(['accueil/reconduireobjectif'], {
+      queryParams: {
+        interimaire: JSON.stringify(this.interim_id),
+        periodeobjectif: JSON.stringify(this.item),
+      }
+    })
+  }
 
   ModifierEvaluation() {
     this.router.navigate(['/accueil/modifevaluer'], {

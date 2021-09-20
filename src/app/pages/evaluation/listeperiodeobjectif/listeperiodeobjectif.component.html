@@ -2,7 +2,7 @@
     <div class="tableau">
         <div class="content-header-page">
             <mat-icon class="bouton-retour" (click)="backClicked()">arrow_back</mat-icon>
-            <p class="detail1" id="mydesc">Liste des périodes de {{prenom}} {{nom}}</p>
+            <p class="detail1" id="mydesc">Liste des périodes d'évaluation de {{prenom}} {{nom}}</p>
         </div>
         <div class="content-bouton-periode">
             <button *ngIf="role == 'MNG'" class="button-ajouter" (click)="openAddObjectif();">créer une période avec des objectifs</button>
@@ -32,7 +32,7 @@
                     <th class="typ" id="prenom">Nom de la période</th>
                     <th class="typ" id="nom">Date de début</th>
                     <th  id="direction">Date de Fin</th>
-                    <th  id="direction">Statut</th>
+                    <th  id="direction">Nombre d'objectif</th>
                     <th  id="agence">Action</th>
             </tr>
             </thead>
@@ -42,16 +42,17 @@
                     currentPage: page,
                     totalItems: totalItems
                     }; let i = index">
-                    <td >{{p.periode}}</td>
+                    <td >{{p.libelle}}</td>
                     <td >{{p.dateDebut | date: 'dd MMMM yyyy'}}</td>
                     <td >{{p.dateFin | date: 'dd MMMM yyyy'}}</td>
-                    <td >
+                    <!-- <td >
                         <span *ngIf="p.isEvaluated == true">évaluéé</span>
                         <span *ngIf="p.isEvaluated == false">pas évaluéé</span>
-                    </td>
+                    </td> -->
+                    <td><span class="nombre-objectif">{{p.notation.length}}</span></td>
                     <td >
-                        <mat-icon *ngIf="p.isEvaluated == false" class="edit-periode" (click)="openModifPeriode(p.id_periode)" style="cursor: pointer;">edit</mat-icon>
-                        <mat-icon class="view-periode" (click)="openDetailPeriode(p.id_periode)" style="cursor: pointer;">visibility</mat-icon>
+                        <mat-icon class="edit-periode" (click)="openModifPeriode(p.id)" style="cursor: pointer;">edit</mat-icon>
+                        <mat-icon class="view-periode" (click)="openDetailPeriode(p.id)" style="cursor: pointer;">visibility</mat-icon>
                     </td>
                 </tr>
             </tbody>

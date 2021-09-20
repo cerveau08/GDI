@@ -408,12 +408,13 @@ export class DetailinterComponent implements OnInit {
     this.location.back();
   }
   objectif() {
-    this.router.navigate(['accueil/listeperiodeobjectif'], {
+    this.router.navigate(['accueil/detailperiodeobjectif'], {
       queryParams: {
         interimaire: JSON.stringify(this.item)
       }
     })
   } 
+  
   evaluation() {
     this.router.navigate(['accueil/listeevaluation'], {
       queryParams: {
