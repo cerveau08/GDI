@@ -34,7 +34,7 @@
                     <mat-icon class="icon-path">list</mat-icon>
                 </div>
             </div>
-            <div (click)="openAddObjectif();" class="content-path-icon">
+            <div *ngIf="role == 'MNG'" (click)="openAddObjectif();" class="content-path-icon">
                 <div class="content-path">
                     <p class="text-path">Créer une nouvelle periode d'objectif</p>
                 </div>
@@ -42,7 +42,7 @@
                     <mat-icon class="icon-path">add_circle</mat-icon>
                 </div>
             </div>
-            <div (click)="reconduireobjectif(idEvaluation);" class="content-path-icon">
+            <div *ngIf="role == 'MNG'" (click)="reconduireobjectif(idEvaluation);" class="content-path-icon">
                 <div class="content-path">
                     <p class="text-path">Reconduire ces objectifs</p>
                 </div>
@@ -50,7 +50,7 @@
                     <mat-icon class="icon-path">reply</mat-icon>
                 </div>
             </div>
-            <div (click)="openModifierObjectif();" class="content-path-icon">
+            <div *ngIf="role == 'MNG'" (click)="openModifierObjectif();" class="content-path-icon">
                 <div class="content-path">
                     <p class="text-path">Modifier</p>
                 </div>
@@ -58,14 +58,6 @@
                     <mat-icon class="icon-path">edit</mat-icon>
                 </div>
             </div>
-            <!-- <div class="content-bouton-periodes">
-                <button *ngIf="role == 'MNG'" class="button-ajouter" (click)="openModifierObjectif();">Modifier</button>
-                <button *ngIf="role == 'MNG'" class="button-ajouter-objectif" (click)="openAddObjectif();">Créer une nouvelle periode d'objectif</button>
-            </div>
-            <div class="content-bouton-reconduire-periodes">
-                <button *ngIf="role == 'MNG'" class="button-liste-periode" (click)="listeperiodeobjectif();">Voir la liste des périodes</button>
-                <button *ngIf="role == 'MNG'" class="button-reconduire-objectif" (click)="reconduireobjectif(idEvaluation);">Reconduire les objectifs</button>
-            </div> -->
         </div>
     </div>
     <div class="content-list-objectif">

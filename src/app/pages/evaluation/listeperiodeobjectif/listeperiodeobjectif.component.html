@@ -4,10 +4,6 @@
             <mat-icon class="bouton-retour" (click)="backClicked()">arrow_back</mat-icon>
             <p class="detail1" id="mydesc">Liste des périodes d'évaluation de {{prenom}} {{nom}}</p>
         </div>
-        <div class="content-bouton-periode">
-            <button *ngIf="role == 'MNG'" class="button-ajouter" (click)="openAddObjectif();">créer une période avec des objectifs</button>
-            <button class="button-liste" (click)="openListeObjectif();">Voir de tous les objectifs</button>
-        </div>
         <div class="exporter">
             <form [formGroup]="filterForm">
                 <div class="exporter">
@@ -25,6 +21,14 @@
                     </div>
                 </div>
             </form>
+        </div>
+        <div class="content-path-icon">
+            <div (click)="openAddObjectif();" *ngIf="role == 'MNG'" class="content-icon-path">
+                <mat-icon class="icon-path">add_circle</mat-icon>
+            </div>
+            <div (click)="openAddObjectif();" *ngIf="role == 'MNG'" class="content-path">
+                <p class="text-path">Créer une nouvelle periode d'objectif</p>
+            </div>
         </div>
         <table style="overflow-x:auto;"aria-describedby = "mydesc" >
             <thead>
@@ -51,7 +55,7 @@
                     </td> -->
                     <td><span class="nombre-objectif">{{p.notation.length}}</span></td>
                     <td >
-                        <mat-icon class="edit-periode" (click)="openModifPeriode(p.id)" style="cursor: pointer;">edit</mat-icon>
+                        <mat-icon *ngIf="role == 'MNG'" class="edit-periode" (click)="openModifPeriode(p.id)" style="cursor: pointer;">edit</mat-icon>
                         <mat-icon class="view-periode" (click)="openDetailPeriode(p.id)" style="cursor: pointer;">visibility</mat-icon>
                     </td>
                 </tr>

@@ -3,35 +3,63 @@
         <mat-icon class="bouton-retour" (click)="backClicked()">arrow_back</mat-icon>
         <h1 class="titre-objectif">Détail de la période d'évaluation {{nomPeriode}} de {{prenom}} {{nom}}</h1>
     </div>
-    <div class="content-bouton-periode">
-        <button *ngIf="role == 'MNG'" class="button-ajouter" (click)="openModifierObjectif();">Modifier</button>
-        <button *ngIf="role == 'MNG'" class="button-ajouter-objectif" (click)="openAddObjectif();">Créer une nouvelle periode d'objectif</button>
-    </div>
-    <div class="content-bouton-reconduire-periode">
-        <button *ngIf="role == 'MNG'" class="button-liste-periode" (click)="listeperiodeobjectif();">Voir la liste des périodes</button>
-        <button *ngIf="role == 'MNG'" class="button-reconduire-objectif" (click)="reconduireobjectif(idEvaluation);">Reconduire les objectifs</button>
-    </div>
-    <div class="content-info-periode">
-        <p class="text-objectif-title">
-            Nom de la période:
-            <span class="objectif-title-namming">{{nomPeriode}}</span>
-        </p>
-        <div class="content-periode-item">
-            <div class="content-text-objectif-date">
-                <p class="text-objectif-content">
-                    Date de début:
-                    <span class="objectif-content">{{dateDebutPeriode}}</span>
-                </p>
+    <div class="content-head-info">
+        <div class="content-info-periode">
+            <p class="text-objectif-title">
+                Nom de la période:
+                <span class="objectif-title-namming">{{nomPeriode}}</span>
+            </p>
+            <div class="content-periode-item">
+                <div class="content-text-objectif-date">
+                    <p class="text-objectif-content">
+                        Date de début:
+                        <span class="objectif-content">{{dateDebutPeriode}}</span>
+                    </p>
+                </div>
+                <div class="content-text-objectif-date">
+                    <p class="text-objectif-content">
+                        Date de Fin:
+                        <span class="objectif-content">{{dateFinPeriode}}</span>
+                    </p>
+                </div>
             </div>
-            <div class="content-text-objectif-date">
-                <p class="text-objectif-content">
-                    Date de Fin:
-                    <span class="objectif-content">{{dateFinPeriode}}</span>
-                </p>
+            <h1 class="titre-objectif-head">Liste des objectifs de cette période</h1>
+        </div>
+        <div class="content-boutons">
+            <div (click)="listeperiodeobjectif();" class="content-path-icon">
+                <div class="content-path">
+                    <p class="text-path">Voir la liste des périodes</p>
+                </div>
+                <div class="content-icon-path">
+                    <mat-icon class="icon-path">list</mat-icon>
+                </div>
+            </div>
+            <div *ngIf="role == 'MNG'" (click)="openAddObjectif();" class="content-path-icon">
+                <div class="content-path">
+                    <p class="text-path">Créer une nouvelle periode d'objectif</p>
+                </div>
+                <div class="content-icon-path">
+                    <mat-icon class="icon-path">add_circle</mat-icon>
+                </div>
+            </div>
+            <div *ngIf="role == 'MNG'" (click)="reconduireobjectif(idEvaluation);" class="content-path-icon">
+                <div class="content-path">
+                    <p class="text-path">Reconduire ces objectifs</p>
+                </div>
+                <div class="content-icon-path">
+                    <mat-icon class="icon-path">reply</mat-icon>
+                </div>
+            </div>
+            <div *ngIf="role == 'MNG'" (click)="openModifierObjectif();" class="content-path-icon">
+                <div class="content-path">
+                    <p class="text-path">Modifier</p>
+                </div>
+                <div class="content-icon-path">
+                    <mat-icon class="icon-path">edit</mat-icon>
+                </div>
             </div>
         </div>
     </div>
-    <h1 class="titre-objectif">Liste des objectifs de cette période</h1>
     <div class="content-list-objectif">
         <div class="item-objectif" *ngFor="let p of objectif ">
             <div class="content-item-object">

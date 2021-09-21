@@ -7,6 +7,39 @@
     display: grid;
     grid-template-columns: 100px 1fr;
 }
+.content-path-icon{
+  display: grid;
+  grid-template-columns: 25px 1fr;
+  cursor: pointer;
+  outline: none;
+  margin-top: 15px;
+  width: 250px;
+}
+.content-path-icon:hover{
+  background-color: #f5f6f9;
+  .icon-path{
+      background-color: white;
+      color: #009393;
+  }
+  .text-path{
+      font-weight: 600;
+      color: #009393;
+  }
+}
+.text-path{
+  margin-top: 7px;
+  margin-bottom: 0;
+  font-size: 12px;
+  margin-left: 5px;
+  font-weight: 500;
+}
+.icon-path{
+  font-size: 23px;
+  background-color: #f5f6f9;
+  color: #ff7900;
+  border-radius: 50%;
+  margin-top: 2px;
+}
 .bouton-retour{
     background-color: #f5f6f9;
     border-radius: 50%;
@@ -305,7 +338,6 @@
   table {
       border-collapse: collapse;;
       width: 100%;
-      margin-top: 45px;
   }
     
   th {
