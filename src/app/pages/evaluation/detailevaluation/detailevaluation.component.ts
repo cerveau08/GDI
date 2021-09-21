@@ -103,6 +103,7 @@ export class DetailevaluationComponent implements OnInit {
   notation: any;
   isEvaluated: any;
   successMsg: any;
+  isUpdated: any;
   constructor(private activeroute: ActivatedRoute,
               private modalService: ModalService,
               private otherService: OthersService,
@@ -137,6 +138,7 @@ export class DetailevaluationComponent implements OnInit {
       data =>{
         this.data = data;
         this.dataEvaluation = this.data.data;
+        this.isUpdated = this.dataEvaluation.isUpdated;
         this.dateDebut = this.dataEvaluation.dateDebut;
         this.dateFin = this.dataEvaluation.dateFin;
         this.note = this.dataEvaluation.note;

@@ -41,8 +41,8 @@
                     </div>
                 </div>
                 <div class="lesbouton">
-                    <button *ngIf="role != 'INT'" class="button1" (click)="ModifierEvaluation()">Modifier</button>
-                    <button *ngIf="role == 'INT'" class="button2" (click)="openModal('custom-modal-6');">Commenter</button>
+                    <button *ngIf="role == 'MNG' && (isUpdated == 0 || isUpdated == 2)" class="button1" (click)="ModifierEvaluation()">Modifier</button>
+                    <button *ngIf="role == 'INT' && isUpdated == 1" class="button2" (click)="openModal('custom-modal-6');">Commenter</button>
                 </div>
             </div>
             <div class="info-evaluation">
