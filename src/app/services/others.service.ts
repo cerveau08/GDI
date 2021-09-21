@@ -498,4 +498,7 @@ addAgence(data) {
     const data = {matricule: matricule};
     return this.http.get<any>(this.reqUrl + '/searchManager', {params: data})
   }
+  commentaireInterimaire(id: number, data:any): Observable<any> {
+    return this.http.post<any>(`${this.reqUrl}/updateEvaluationInterimaire/${id}`, data);
+  }
 }

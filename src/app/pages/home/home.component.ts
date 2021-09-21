@@ -249,8 +249,6 @@ export class HomeComponent implements OnInit {
           this.dataSociete = data["data"];
         }
       );
-      
-    //  this.onChanges();
 
          
       this.otherService.getLastNotification().subscribe(

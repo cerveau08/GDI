@@ -44,7 +44,10 @@ export class PaginationService {
       path: 'home', icon: "home",
     },{
       id: 7,  title: 'Objectifs',
-      path: 'mesobjectif',  icon: "done_all",
+      path: 'detailperiodeobjectif',  icon: "grade",
+    },{
+      id: 7,  title: 'Evaluations',
+      path: 'listeevaluation',  icon: "done_all",
     }, {
       id: 5,  title: 'Mes Demandes',
       path: 'demande',  icon: "local_mall",

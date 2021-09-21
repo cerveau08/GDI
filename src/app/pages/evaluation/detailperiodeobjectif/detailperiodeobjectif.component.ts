@@ -50,6 +50,7 @@ export class DetailperiodeobjectifComponent implements OnInit {
   statutPeriode: any;
   notation: any;
   idEvaluation: any;
+  interimaireInfo: any;
   constructor(private otherService: OthersService,
     private modalService: ModalService,
     private activeroute: ActivatedRoute,
@@ -57,12 +58,16 @@ export class DetailperiodeobjectifComponent implements OnInit {
     private location: Location,
     private toastr: ToastrService) {
     this.activeroute.queryParams.subscribe(params => {
-      this.item = JSON.parse(params["interimaire"]);
+      this.role = localStorage.getItem('user');
+      if(this.role != 'INT') {
+        this.item = JSON.parse(params["interimaire"]);
+      } else {
+        this.item = JSON.parse(localStorage.getItem('currentUser')).interimaire.id;
+      }
     });
   }
 
   ngOnInit() {
-    this.role = localStorage.getItem('user');
     this.otherService.getListeEvaluation(this.item, this.page, this.itemsPerPage, this.isEvaluated).subscribe(
       data => {
         this.data = data
@@ -87,6 +92,7 @@ export class DetailperiodeobjectifComponent implements OnInit {
       note: new FormControl(''),
       commentaire: new FormControl('')
     });
+   
     this.filterForm = new FormGroup({
       periode: new FormControl(''),
     });

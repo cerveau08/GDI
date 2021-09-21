@@ -69,7 +69,12 @@ export class ListeperiodeobjectifComponent implements OnInit {
     ) {  
       this.getScreenSize();
       this.activeroute.queryParams.subscribe(params => {
-        this.item = JSON.parse(params["interimaire"]);
+        this.role = localStorage.getItem('user');
+        if(this.role != 'INT') {
+          this.item = JSON.parse(params["interimaire"]);
+        } else {
+          this.item = JSON.parse(localStorage.getItem('currentUser')).interimaire.id;
+        }
       });
     }
 

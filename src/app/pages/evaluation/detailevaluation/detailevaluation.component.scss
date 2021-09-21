@@ -39,7 +39,7 @@
 }
 .information{
     display: grid;
-    grid-template-columns: 1fr 70px;
+    grid-template-columns: 1fr 100px;
 }
 .content-header {
     display: grid;
@@ -308,11 +308,21 @@
     outline: none;
     border: none;
 }
-.button2 {
-    width: 152px;
+.button-commentaire{
+    width: 90px;
     height: 30px;
-    background-color: white;
-    color: black;
+    background-color: #ff7900;
+    border: none;
+    outline: none;
+    font-size: 13px;
+    font-weight: bold;
+    color: white;
+}
+.button2 {
+    width: 100px;
+    height: 30px;
+    background-color: #009393;
+    color: white;
     padding: 2px 2px;
     text-align: center;
     text-decoration: none;
@@ -321,7 +331,7 @@
     font-size: 14px;
     cursor: pointer;
     outline: none;
-    border: 2px solid black;
+    border: none;
 }
 .button3 {
     width: 108px;
@@ -564,7 +574,7 @@
 
 //modal 3
 .btns3{
-    width: 150px;
+    width: 90px;
     margin: 0 auto;
 }
 //modal-4

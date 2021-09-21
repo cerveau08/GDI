@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { environment } from 'src/environments/environment';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ModalService } from 'src/app/modal/_modal';
@@ -9,6 +9,7 @@ import { NgxFileSaverService } from '@clemox/ngx-file-saver';
 import { ErrormodalService } from 'src/app/modal/_errormodals';
 import { HttpClient } from '@angular/common/http';
 import {Location} from '@angular/common';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-detailevaluation.',
@@ -23,6 +24,7 @@ export class DetailevaluationComponent implements OnInit {
   public nombre = 59;
   public left: any;
   donnees: any;
+  commentaireForm: FormGroup;
   page = 1
   itemsPerPage = 3;
   totalItems;
@@ -100,16 +102,21 @@ export class DetailevaluationComponent implements OnInit {
   namming: any;
   notation: any;
   isEvaluated: any;
+  successMsg: any;
   constructor(private activeroute: ActivatedRoute,
               private modalService: ModalService,
               private otherService: OthersService,
               private errormodalService: ErrormodalService,
-              private http: HttpClient,
               public router: Router,
+              private toastr: ToastrService,
               private location: Location ) { 
     this.activeroute.queryParams.subscribe(params => {
       this.item = JSON.parse(params["evaluation"]);
-      this.interim_id = JSON.parse(params["interimaire"]);
+      if(this.role != 'INT') {
+        this.interim_id = JSON.parse(params["interimaire"]);
+      } else {
+        this.interim_id = JSON.parse(localStorage.getItem('currentUser')).interimaire.id;
+      }
       this.otherService.getOneInterById(this.interim_id).subscribe(
         data =>{
           this.data = data;
@@ -119,7 +126,13 @@ export class DetailevaluationComponent implements OnInit {
         }
       );
     })
-
+    
+  }
+  ngOnInit() {
+    this.role = localStorage.getItem('user');
+    this.commentaireForm = new FormGroup({
+      commentaireInterimaire: new FormControl('')
+    });
     this.otherService.getOneEvaluation(this.item, this.isEvaluated).subscribe(
       data =>{
         this.data = data;
@@ -133,27 +146,37 @@ export class DetailevaluationComponent implements OnInit {
         this.notation = this.dataEvaluation.notation;
       }
     )
-    
-  }
-  ngOnInit() {
-    this.role = localStorage.getItem('user')
-   // this.gty(this.page);
   }
 
   backClicked() {
     this.location.back();
   }
 
-  // gty(page: any){
-  //   this.otherService.getOneEvaluation(this.item).subscribe((data: any) => {
-  //     this.data = data
-  //     this.totalItems = data.total;
-  //     this.objectif = this.data["data"];
-  //   })
-  // }
-
   openModal(id: string) {
     this.modalService.open(id);
+  }
+
+  commenter() {
+    this.otherService.commentaireInterimaire(this.item, this.commentaireForm.value).subscribe(
+      data =>{
+        this.data = data;
+        this.successMsg = this.data.status;
+        if(this.successMsg == true) {
+          this.ngOnInit();
+          this.closeModal('custom-modal-6');
+          this.toastr.success(this.data.message, 'Success', {
+            timeOut: 3000,
+          });
+        }
+      },
+      error=> {
+        this.errorMsg = error;
+        this.closeModal('custom-modal-6');
+        this.toastr.error(this.errorMsg, 'Echec', {
+          timeOut: 5000,
+        });
+      }
+    )
   }
 
   closeModal(id: string) {

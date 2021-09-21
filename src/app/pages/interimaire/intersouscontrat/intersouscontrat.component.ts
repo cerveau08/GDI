@@ -11,6 +11,7 @@ import { OthersService } from 'src/app/services/others.service';
 import { environment } from 'src/environments/environment';
 import { ErrormodalService } from 'src/app/modal/_errormodals';
 import { AuthService } from 'src/app/services/auth.service';
+import { NgxFileSaverService } from '@clemox/ngx-file-saver';
 
 @Component({
   selector: 'app-intersouscontrat',
@@ -32,7 +33,6 @@ export class IntersouscontratComponent implements OnInit {
   itemsPerPageAgence = 100;
   totalItems : any;
   filterterm;
-  public reqUrl = environment.base_url;
   result;
   success;
   successMsg;
@@ -97,14 +97,16 @@ export class IntersouscontratComponent implements OnInit {
   public agence = null;
   public societe = null;
   public direction = null;
-  constructor(public datepipe: DatePipe,
+  public reqUrl = environment.base_url;
+  constructor(
     public router: Router,
     private extractionService: AuthService,
     private modalService: ModalService,
     private otherService: OthersService,
     private errormodalService: ErrormodalService,
     private http: HttpClient,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private fileSaver: NgxFileSaverService,
     ) { }
 
   ngOnInit() {
@@ -250,12 +252,16 @@ export class IntersouscontratComponent implements OnInit {
     if (this.filterForm.value.poste == undefined) {
       this.filterForm.patchValue({poste: ''});
     }
+    if(this.filterForm.value.poste) {
+      this.poste = this.filterForm.value.poste;
+    }
     this.otherService.extraireInterimaire(this.filterForm.value).subscribe(
       data => {
         this.data = data;
         this.successMsg = this.data.status
         if(this.successMsg == true) {
-          window.open(data.data);
+          this.fileSaver.saveUrl(this.reqUrl + '/public' + data.data, 'ExtractionInterimaireSousContrat' + '-' + this.date.getFullYear() + '-' + this.date.getMonth() + '-' + this.date.getDay() + '-' + this.date.getHours()+ '-' + this.date.getMinutes());
+         // window.open(this.reqUrl + this.data.data);
         }
       }
     )

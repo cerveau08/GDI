@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { DataService } from 'src/app/service/data.service';
-import { PaginationService } from 'src/app/service/pagination.service';
 import { ModalService } from 'src/app/modal/_modal';
 import { ErrormodalService } from 'src/app/modal/_errormodals';
 import { environment } from 'src/environments/environment';
@@ -11,6 +9,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { OthersService } from 'src/app/services/others.service';
 import { HttpClient } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
+import { NgxFileSaverService } from '@clemox/ngx-file-saver';
 
 @Component({
   selector: 'app-restauration',
@@ -104,7 +103,8 @@ export class RestaurationComponent implements OnInit {
     private otherService: OthersService,
     private errormodalService: ErrormodalService,
     private http: HttpClient,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private fileSaver: NgxFileSaverService,
     ) { }
 
   ngOnInit() {
@@ -210,7 +210,9 @@ export class RestaurationComponent implements OnInit {
         this.data = data;
         this.successMsg = this.data.status
         if(this.successMsg == true) {
-          window.open(data.data);
+          this.fileSaver.saveUrl(this.reqUrl + '/public' + data.data, 'ListeInterimairePourRestauration' + '-' + this.date.getFullYear() + '-' + this.date.getMonth() + '-' + this.date.getDay() + '-' + this.date.getHours()+ '-' + this.date.getMinutes());
+          console.log(this.reqUrl + data.data);
+        //  window.open(this.reqUrl + data.data);
         }
       }
     )

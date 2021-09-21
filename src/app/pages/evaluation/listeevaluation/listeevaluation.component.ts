@@ -40,20 +40,21 @@ export class ListeevaluationComponent implements OnInit {
   errorMsg: any;
   isEvaluated = true;
   constructor(private otherService: OthersService,
-    private modalService: ModalService,
     private activeroute: ActivatedRoute,
-    private errormodalService: ErrormodalService,
     private router: Router,
-    private http: HttpClient,
     private location: Location,) {
     this.activeroute.queryParams.subscribe(params => {
-      this.item = JSON.parse(params["interimaire"]);
+      this.role = localStorage.getItem('user');
+      if(this.role != 'INT') {
+        this.item = JSON.parse(params["interimaire"]);
+      } else {
+        this.item = JSON.parse(localStorage.getItem('currentUser')).interimaire.id;
+      }
     });
   }
 
   ngOnInit() {
     this.role = localStorage.getItem('user');
-    
     this.otherService.getOneInterById(this.item).subscribe(
       data =>{
         this.interimaire = data;
