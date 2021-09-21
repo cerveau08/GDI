@@ -51,6 +51,7 @@ export class DetailperiodeobjectifComponent implements OnInit {
   notation: any;
   idEvaluation: any;
   interimaireInfo: any;
+  message: string;
   constructor(private otherService: OthersService,
     private modalService: ModalService,
     private activeroute: ActivatedRoute,
@@ -96,10 +97,6 @@ export class DetailperiodeobjectifComponent implements OnInit {
     this.filterForm = new FormGroup({
       periode: new FormControl(''),
     });
-    this.modifierForm = new FormGroup({
-      titre: new FormControl(''),
-      description: new FormControl('')
-    });
     this.otherService.getOneInterById(this.item).subscribe(
       data =>{
         this.interimaire = data;
@@ -111,6 +108,27 @@ export class DetailperiodeobjectifComponent implements OnInit {
         });
       }
     );
+    this.receiveMessage(event);
+  }
+
+  receiveMessage($event) {
+    this.message = $event
+    if(this.message == 'true') {
+      this.ngOnInit();
+    }
+  }
+
+  modifierObjectif(id) {
+    this.otherService.modifierOneObjectif(this.modifierForm.value, id).subscribe(
+      data =>{
+        console.log(id);
+        this.data = data;
+        this.successMsg = this.data.status
+        if(this.successMsg == true) {
+          this.closeModal('modif-modal-'+id);
+        }
+      }
+    )
   }
 
   backClicked() {
@@ -139,28 +157,6 @@ export class DetailperiodeobjectifComponent implements OnInit {
     );
   }
 
-  modifierObjectif(id) {
-    this.otherService.modifierObjectif(this.modifierForm.value, id).subscribe(
-      data =>{
-        this.data = data;
-        this.successMsg = this.data.status
-        if(this.successMsg == true) {
-          this.ngOnInit();
-          this.closeModal('custom-modal-'+id);
-          this.toastr.success(this.data.message, 'Success', {
-            timeOut: 3000,
-          });
-        }
-      },
-      error=> {
-        this.errorMsg = error;
-        this.closeModal('custom-modal-'+id);
-        this.toastr.error(this.errorMsg, 'Echec', {
-          timeOut: 5000,
-        });
-      }
-    )
-  }
 
   openModifierObjectif() {
     this.router.navigate(['/accueil/modifperiodeobjectif/'], {

@@ -10,10 +10,53 @@
     margin-bottom: 5px;
     margin-top: 5px;
 }
+.titre-objectif-head {
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    margin-top: 25px;
+}
 .content-bouton-periode{
     position: absolute;
     top: 30px;
     right: 10px;
+}
+.content-head-info{
+    display: grid;
+    grid-template-columns: 1fr 250px;
+}
+.content-path-icon{
+    display: grid;
+    grid-template-columns: 1fr 25px;
+    cursor: pointer;
+    outline: none;
+}
+.content-path-icon:hover{
+    background-color: #f5f6f9;
+    .icon-path{
+        background-color: white;
+        color: #009393;
+    }
+    .text-path{
+        font-weight: 600;
+        color: #009393;
+    }
+}
+.text-path{
+    margin-top: 5px;
+    margin-bottom: 0;
+    font-size: 12px;
+    text-align: right;
+    margin-right: 5px;
+    font-weight: 500;
+}
+
+.icon-path{
+    font-size: 23px;
+    background-color: #f5f6f9;
+    color: #ff7900;
+    border-radius: 50%;
+    margin-top: 2px;
 }
 .content-bouton-reconduire-periode{
     position: absolute;
@@ -99,7 +142,7 @@
 }
 .text-objectif-title {
     font-size: 13px;
-    margin-top: 5px;
+    margin-top: 25px;
     margin-bottom: 5px;
 }
 .select-mois{

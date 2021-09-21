@@ -47,36 +47,38 @@
             </div>
             <div class="info-evaluation">
                 <p class="title-liste-objectif">Les objectifs de cette évaluation</p>
-                <div class="content-evaluation" *ngFor="let p of notation ">
-                    <p class="key-evaluation-head">
-                        Titre: 
-                        <span class="value-evaluation-head">{{p.objectif.titre}} </span>
-                    </p>
-                    <p class="key-evaluation-head">
-                        Description: 
-                        <span class="value-objectif-description">{{p.objectif.description}}</span>
-                    </p>
-                    <div class="content-bareme-vc">
+                <div class="content-grid-evaluation">
+                    <div class="content-evaluation" *ngFor="let p of notation ">
                         <p class="key-evaluation-head">
-                            Indicateur de mesure: 
-                            <span class="value-objectif-indicateur">{{p.objectif.indicateur}}</span>
+                            Titre: 
+                            <span class="value-evaluation-head">{{p.objectif.titre}} </span>
                         </p>
                         <p class="key-evaluation-head">
-                            Valeur Cible: 
-                            <span class="value-objectif-description">{{p.objectif.valeurCible}}</span>
+                            Description: 
+                            <span class="value-objectif-description">{{p.objectif.description}}</span>
+                        </p>
+                        <div class="content-bareme-vc">
+                            <p class="key-evaluation-head">
+                                Indicateur de mesure: 
+                                <span class="value-objectif-indicateur">{{p.objectif.indicateur}}</span>
+                            </p>
+                            <p class="key-evaluation-head">
+                                Valeur Cible: 
+                                <span class="value-objectif-description">{{p.objectif.valeurCible}}</span>
+                            </p>
+                        </div>
+                        <p class="key-evaluation">
+                            Note: 
+                            <span class="value-objectif-note">{{p.note}}</span>
+                            /{{p.objectif.bareme}}
+                        </p>
+                        <p class="key-evaluation-commentaire">
+                            Commentaire: 
+                            <span class="value-commentaire">
+                                {{p.commentaire}}
+                            </span>
                         </p>
                     </div>
-                    <p class="key-evaluation">
-                        Note: 
-                        <span class="value-objectif-note">{{p.note}}</span>
-                        /{{p.objectif.bareme}}
-                    </p>
-                    <p class="key-evaluation-commentaire">
-                        Commentaire: 
-                        <span class="value-commentaire">
-                            {{p.commentaire}}
-                        </span>
-                    </p>
                 </div>
             </div>
         </div>

@@ -91,7 +91,7 @@ export class HomeComponent implements OnInit {
   showHome = true;
   id=1;
   errorMsg: any;
-  id_societe= 1;
+  id_societe = null;
   pourcentFemme;
   pourcentFemmecercle;
   homme: any;
@@ -136,6 +136,7 @@ export class HomeComponent implements OnInit {
   idAttestation: any;
   totalItems: any;
   totalEnAttente: any;
+  userInfo: any;
   @HostListener('window:resize', ['$event'])
   getScreenSize(event?) {
         this.scrHeight = window.innerHeight;
@@ -164,6 +165,8 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.prenom = localStorage.getItem('prenom');
     this.user = localStorage.getItem('user');
+
+    this.userInfo = JSON.parse(localStorage.getItem('currentUser'));
     if(this.user == 'INT') {
       this.showHome = false;
     } else {
@@ -301,6 +304,7 @@ export class HomeComponent implements OnInit {
         this.otherService.statInterPourcent(id_societe).subscribe(
           data => {
             this.data = data;
+            console.log(data);
             this.dataStatEffectifGenre = this.data.data[0];
             this.femme= this.dataStatEffectifGenre.femme;
             this.homme= this.dataStatEffectifGenre.homme;

@@ -227,6 +227,9 @@ addAgence(data) {
     return this.http.post<any>(`${this.reqUrl}/noterObjectif/${id}`, data);
   }
   modifierObjectif(data:any, id: number): Observable<any> {
+    return this.http.post<any>(`${this.reqUrl}/updateObjectifs/${id}`, data);
+  }
+  modifierOneObjectif(data:any, id: number): Observable<any> {
     return this.http.post<any>(`${this.reqUrl}/updateObjectif/${id}`, data);
   }
   addDemande(data){
@@ -319,8 +322,9 @@ addAgence(data) {
   getLastNotification(): Observable<any> {
     return this.http.get<any>(this.reqUrl + '/latestNotification');
   }
-  statInterPourcent(id_societe: number){
-    return this.http.get<any>(`${this.reqUrl}/statInterimairePourcent/${id_societe}`);
+  statInterPourcent(societe){
+    const data = {societe: societe};
+    return this.http.get<any>(`${this.reqUrl}/statInterimairePourcent`, {params: data});
   }
   statDemandeDirection(id: number){
     return this.http.get<any>(`${this.reqUrl}/statDemandeDirection/${id}`);

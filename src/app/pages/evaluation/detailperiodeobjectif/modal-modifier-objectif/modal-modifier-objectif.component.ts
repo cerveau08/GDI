@@ -1,9 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { OthersService } from 'src/app/services/others.service';
 import { ModalService } from 'src/app/modal/_modal';
-import { ActivatedRoute, Router } from '@angular/router';
-import { ErrormodalService } from 'src/app/modal/_errormodals';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-modal-modifier-objectif',
@@ -14,6 +13,8 @@ export class ModalModifierObjectifComponent implements OnInit {
 
   
   @Input('objectifData') itemobjectif;
+  message = 'true';
+  @Output() messageEvent = new EventEmitter<string>();
   modifierForm: FormGroup;
   description;
   titre;
@@ -23,8 +24,6 @@ export class ModalModifierObjectifComponent implements OnInit {
   errorMsg: any;
   constructor(private otherService: OthersService,
     private modalService: ModalService,
-    private activeroute: ActivatedRoute,
-    private errormodalService: ErrormodalService,
     public router: Router,
     ) { }
 
@@ -34,29 +33,24 @@ export class ModalModifierObjectifComponent implements OnInit {
       description: new FormControl(''),
       indicateur: new FormControl(''),
       valeurCible: new FormControl(''),
-      idEvaluation: new FormControl(''),
     });
   }
 
   modifierObjectif(id) {
-    this.otherService.modifierObjectif(this.modifierForm.value, id).subscribe(
+    this.otherService.modifierOneObjectif(this.modifierForm.value, id).subscribe(
       data =>{
+        console.log(id);
         this.data = data;
         this.successMsg = this.data.status
         if(this.successMsg == true) {
-          this.closeModal('modif-modal-'+id);
+          this.messageEvent.emit(this.message)
         }
-      },
-      error=> {
-        this.errorMsg = error;
-        this.closeModal('modif-modal-'+id);
-        this.errormodalService.open('error-modal-1');
       }
     )
   }
 
   closeModal(id: string) {
     this.modalService.close(id);
+    console.log(id);
   }
-
 }
