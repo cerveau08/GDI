@@ -61,7 +61,7 @@ export class GenreComponent implements OnInit {
   nouveau; 
   fini;
   total;
-  id_societe= 1;
+  id_societe = null;
   date = new Date();
   societe = 1;
   show = 1;
@@ -141,24 +141,8 @@ export class GenreComponent implements OnInit {
     
     this.genrePourcentage(String(this.id_societe));
     this.societeSelectionner(this.annee, this.societe);
-    this.onChangesSociete();
   }
 
-  onChangesSociete(): void {
-    // this.societeForm.get('societe').valueChanges.subscribe(val => {
-    //   if (val) {
-    //     this.societeSelectionner(val);
-    //   }
-    // });
-  }
-
-  // exportAsExcel() {
-  //   const date = new Date();
-  //   const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(this.table.nativeElement, { raw: true });
-  //   const wb: XLSX.WorkBook = XLSX.utils.book_new();
-  //   XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
-  //   XLSX.writeFile(wb, 'reporting-financier-' + date + '.xlsx');
-  // }
 
   exportgenrePourcentage() {
     this.id_societe = this.percentForm.value.id_societe;
