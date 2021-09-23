@@ -3,20 +3,6 @@
         <mat-icon class="bouton-retour" (click)="backClicked()">arrow_back</mat-icon>
         <h1 class="titre-objectif">Evaluer {{prenom}} {{nom}}</h1>
     </div>
-    <!-- <form action="" [formGroup]="filterForm">
-        <div class="content-other-input-form">
-            <div class="content-form-dateDebut">
-                <p class="text-other">
-                    <span class="comment-title">Sélectionner la période</span>:
-                </p>
-                <select type="number" [(ngModel)]="periode" formControlName="periode" class="select-mois">
-                    <option *ngFor="let data of periodeobjectif"  [value]="data.id_periode">
-                        période: {{data.periode}} du {{data.dateDebut | date: 'dd MMMM yyyy'}} au {{data.dateFin | date: 'dd MMMM yyyy'}}
-                    </option>
-                </select>
-            </div>
-        </div>
-    </form> -->
     <div class="content-info-periode">
         <p class="info-periode-title">
             Nom de la période:
@@ -36,7 +22,6 @@
     <form action="" [formGroup]="evaluerForm">
         <div class="content-list-objectif" formArrayName="notation">
             <p class="liste-des-objectifs">Liste des objectifs</p>
-            <!-- <div class="content-all-objectif" [style.height.px]="heightForm"> -->
             <div class="content-all-objectif">
                 <div class="item-objectif" *ngFor="let p of objectif ; let i = index">
                     <div class="content-item-object">

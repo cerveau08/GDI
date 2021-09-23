@@ -67,8 +67,6 @@ export class EvaluerComponent implements OnInit {
   constructor(private otherService: OthersService,
     private modalService: ModalService,
     private activeroute: ActivatedRoute,
-    private errormodalService: ErrormodalService,
-    private http: HttpClient,
     private router: Router,
     private location: Location,
     private formBuilder: FormBuilder,
@@ -85,7 +83,8 @@ export class EvaluerComponent implements OnInit {
         {
           objectifId: new FormControl(''),
           commentaire: new FormControl(''),
-          note: new FormControl('')
+          note: new FormControl(''),
+          bareme: new FormControl('')
         }
       ]),
     });
@@ -160,7 +159,8 @@ export class EvaluerComponent implements OnInit {
               id: [x.id, [Validators.required, Validators.minLength(1)]],
               objectifId: [x.objectif.id, [Validators.required, Validators.minLength(1)]],
               note: [x.note, [Validators.required, Validators.minLength(1)]],
-              commentaire: [x.commentaire, [Validators.required, Validators.minLength(2)]]
+              commentaire: [x.commentaire, [Validators.required, Validators.minLength(2)]],
+              bareme: [x.objectif.bareme, [Validators.required, Validators.minLength(1)]],
             }))
           )
         })
@@ -226,7 +226,7 @@ export class EvaluerComponent implements OnInit {
           this.ngOnInit();
           this.closeModal('custom-modal-'+id);
         }
-      }, error=> {
+      }, error => {
         this.errorMsg = error;
         this.closeModal('custom-modal-'+id);
         this.toastr.error(this.errorMsg, 'Echec', {
@@ -237,7 +237,7 @@ export class EvaluerComponent implements OnInit {
   }
   modifierObjectif(id) {
     this.otherService.modifierObjectif(this.modifierForm.value, id).subscribe(
-      data =>{
+      data => {
         this.data = data;
         this.successMsg = this.data.status
         if(this.successMsg == true) {
@@ -245,7 +245,7 @@ export class EvaluerComponent implements OnInit {
           this.closeModal('custom-modal-'+id);
         }
       },
-      error=> {
+      error => {
         this.errorMsg = error;
         this.closeModal('custom-modal-'+id);
         this.toastr.error(this.errorMsg, 'Echec', {
@@ -260,14 +260,6 @@ export class EvaluerComponent implements OnInit {
   
   closeModal(id: string) {
     this.modalService.close(id);
-  }
-
-  openErrorModal(id: string) {
-    this.errormodalService.open(id);
-  }
-
-  closeErrorModal(id: string) {
-    this.errormodalService.close(id);
   }
 
 }
