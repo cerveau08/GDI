@@ -172,7 +172,7 @@ export class EvaluerComponent implements OnInit {
     this.otherService.addObjectifs(this.objectifForm.value, this.item).subscribe(
       data =>{
         this.data = data;
-        this.successMsg = this.data.status
+        this.successMsg = this.data.status;
         if(this.successMsg == true) {
           this.ngOnInit();
           this.closeModal('objectif-modal-1');

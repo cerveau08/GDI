@@ -13,7 +13,7 @@ FROM registry.tools.orange-sonatel.com/php/php74-ubuntu-apache
 #RUN useradd -m -u 1000 -g 1000 -G www-data -o -s /bin/bash $USER
 #RUN echo "${USER}:${PW}" | chpasswd
 
-COPY dist/* /var/www/html/
+COPY dist/. /var/www/html/
 RUN chown -R www-data:www-data /var/www/html/
 
 #USER $USER
