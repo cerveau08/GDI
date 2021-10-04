@@ -124,6 +124,9 @@ export class PaginationService {
     },{
       id: 5,  title: 'Liste Restauration',
       path: 'restauration',  icon: "restaurant",
+    },{
+      id: 5,  title: 'Manager et Evaluation',
+      path: 'managerevalu',  icon: "note_add",
     }
     ,{
       id: 5,  title: 'Demandes',

@@ -1,3 +1,4 @@
+import { ManagerEvaluComponent } from './pages/evaluation/manager-evalu/manager-evalu.component';
 import { PeriodedetailComponent } from './pages/evaluation/periodedetail/periodedetail.component';
 import { ModifdetailComponent } from './pages/evaluation/modifdetail/modifdetail.component';
 import { ReconduireobjectifComponent } from './pages/evaluation/reconduireobjectif/reconduireobjectif.component';
@@ -476,6 +477,9 @@ const routes: Routes = [
       },
       { path: 'periodedetail',
         component: PeriodedetailComponent,
+        canActivate: [AuthGuard]
+      },{ path: 'managerevalu',
+        component: ManagerEvaluComponent,
         canActivate: [AuthGuard]
       },
       {

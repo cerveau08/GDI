@@ -96,7 +96,7 @@
     <div *ngIf="isAdmissible" class="all1">
       <p class="ajouter">Ajouter</p>
         <div class="form" [formGroup]="interForm">
-          <mat-horizontal-stepper [linear]="isLinear" #stepper labelPosition="bottom">
+          <mat-horizontal-stepper  [linear]="isLinear" #stepper [selectedIndex]="selectedStepIndex" labelPosition="bottom">
             <mat-step [stepControl]="interForm">
               <ng-template matStepLabel>
                   <div class="head">
@@ -191,12 +191,11 @@
                     </div>
                     <div class="buttons">
                       <button class="button1" type="button">Annuler</button>
-                      <button class="button2" matStepperNext type="button" (click)="submitted1()" mat-button >Suivant</button>
+                      <button class="button2" (click)="submitted1()" matStepperNext type="button"  mat-button >Suivant</button>
                     </div>
                   </form>
               </div>
             </mat-step>
-
             <mat-step [stepControl]="interForm" >
               <ng-template matStepLabel>
                   <div class="head">
@@ -234,8 +233,8 @@
                         </div>
                         <div class="contratinput1">
                           <div>
-                            <p class="label-input2">Numero Téléphone Orange Money</p>
-                            <input class="input1" type="number" formControlName="telephoneOM" placeholder="Téléphone OM">
+                            <p class="label-input1">Numero Téléphone Orange Money</p>
+                            <input class="input-telephone-om" type="number" formControlName="telephoneOM" placeholder="Téléphone OM">
                           </div>
                         </div>
                         <div class="contratinput2">
@@ -343,6 +342,14 @@
                           <div class="otherfile" >
                             <input formControlName="fileproceverbal" class="buttonphoto4" type="file" (change)="getProceVerbal($event)" >
                             <p class="fileName">{{proceverbalName}}</p>
+                          </div>
+                          <div class="otherfile" >
+                            <input formControlName="fileCv" class="buttonphotoCv" type="file" (change)="getCv($event)" >
+                            <p class="fileName">{{cvName}}</p>
+                          </div>
+                          <div class="otherfile" >
+                            <input formControlName="fileVisiteContreVisite" class="buttonphotoVisite" type="file" (change)="getVisiteContreVisite($event)" >
+                            <p class="fileName">{{visiteContreVisiteName}}</p>
                           </div>
                         </div>
                         <div class="les-diplomes-content">

@@ -45,7 +45,7 @@ import { DetailagenceComponent } from './pages/agences/detailagence/detailagence
 import { DatePipe, registerLocaleData } from '@angular/common';
 import { NgxFileSaverModule } from '@clemox/ngx-file-saver';
 import { NgxDocViewerModule } from 'ngx-doc-viewer';
-import { MatAutocompleteModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatSidenavModule, MatStepperModule, MatToolbarModule, MatDatepickerModule, MatDialogModule, MatNativeDateModule, MatButtonToggleModule, MatCardModule, MatCheckboxModule, MatChipsModule, MatDividerModule, MatExpansionModule, MatGridListModule, MatIconModule, MatListModule, MatMenuModule, MatPaginatorModule, MatProgressBarModule, MatProgressSpinnerModule, MatRadioModule, MatRippleModule, MatSelectModule, MatSliderModule, MatSlideToggleModule, MatSnackBarModule, MatSortModule, MatTableModule, MatTabsModule, MatTooltipModule } from '@angular/material';
+import { MatAutocompleteModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatSidenavModule, MatToolbarModule, MatDatepickerModule, MatDialogModule, MatNativeDateModule, MatButtonToggleModule, MatCardModule, MatCheckboxModule, MatChipsModule, MatDividerModule, MatExpansionModule, MatGridListModule, MatIconModule, MatListModule, MatMenuModule, MatPaginatorModule, MatProgressBarModule, MatProgressSpinnerModule, MatRadioModule, MatRippleModule, MatSelectModule, MatSliderModule, MatSlideToggleModule, MatSnackBarModule, MatSortModule, MatTableModule, MatTabsModule, MatTooltipModule, MatStepperModule } from '@angular/material';
 import { AgenceComponent } from './pages/agences/agence/agence.component';
 import { OffreComponent } from './pages/autres/offre/offre.component';
 import { NewinterComponent } from './pages/interimaire/newinter/newinter.component';
@@ -131,6 +131,7 @@ import { ModalModifierObjectifComponent } from './pages/evaluation/detailperiode
 import { ReconduireobjectifComponent } from './pages/evaluation/reconduireobjectif/reconduireobjectif.component';
 import { PeriodedetailComponent } from './pages/evaluation/periodedetail/periodedetail.component';
 import { ModifdetailComponent } from './pages/evaluation/modifdetail/modifdetail.component';
+import { ManagerEvaluComponent } from './pages/evaluation/manager-evalu/manager-evalu.component';
 
 @NgModule({
   declarations: [
@@ -234,6 +235,7 @@ import { ModifdetailComponent } from './pages/evaluation/modifdetail/modifdetail
     ReconduireobjectifComponent,
     PeriodedetailComponent,
     ModifdetailComponent,
+    ManagerEvaluComponent,
   ],
   imports: [
     BrowserModule,
@@ -290,7 +292,6 @@ import { ModifdetailComponent } from './pages/evaluation/modifdetail/modifdetail
     MatSlideToggleModule,
     MatSnackBarModule,
     MatSortModule,
-    MatStepperModule,
     MatTableModule,
     MatTabsModule,
     MatToolbarModule,

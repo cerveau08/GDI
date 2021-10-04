@@ -1,14 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Observable, OperatorFunction, Subject, merge } from 'rxjs';
-import { map, startWith, debounceTime, distinctUntilChanged, filter } from 'rxjs/operators';
-import { DataService } from 'src/app/service/data.service';
 import { OthersService } from 'src/app/services/others.service';
-import { ModalService } from 'src/app/modal/_modal/modal.service';
 import { ErrormodalService } from 'src/app/modal/_errormodals';
 import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { MatStepper } from '@angular/material';
 
 @Component({
   selector: 'app-addinter',
@@ -17,6 +14,8 @@ import { NgxSpinnerService } from 'ngx-spinner';
 })
 export class AddinterComponent implements OnInit {
 
+  @ViewChild('stepper', {static: true}) stepper: MatStepper;
+  selectedStepIndex = 0;
   societeSearch;
   typePieceSearch;
   numeroPieceSearch;
@@ -143,6 +142,10 @@ export class AddinterComponent implements OnInit {
   invalideNumber: string;
   invalidEmail: string;
   videEmail: string;
+  fichierCv: any;
+  cvName: any;
+  fichierVisiteContreVisite: any;
+  visiteContreVisiteName: any;
   constructor(private otherService: OthersService,
               private errormodalService: ErrormodalService,
               private toastr: ToastrService,
@@ -173,10 +176,7 @@ export class AddinterComponent implements OnInit {
         universite: new FormControl(''),
         photo: new FormControl(''),
         dateDebut: new FormControl(''),
-        telephoneOM: new FormControl('', Validators.compose([
-          Validators.required,
-          Validators.pattern('7[7-8]{1}[0-9]{7}')
-        ])),
+        telephoneOM: new FormControl(''),
         dateFin: new FormControl(''),
         dateSignature: new FormControl(''),
         categorieId: new FormControl(''),
@@ -194,6 +194,8 @@ export class AddinterComponent implements OnInit {
         fileFicheposte: new FormControl(''),
         fileproceverbal: new FormControl(''),
         fileCni: new FormControl(''),
+        fileCv: new FormControl(''),
+        fileVisiteContreVisite: new FormControl(''),
         typePiece: new FormControl(''),
         diplome1: new FormControl(''),
         diplome2: new FormControl(''),
@@ -355,21 +357,20 @@ export class AddinterComponent implements OnInit {
     }
   }
   submitted1(){
-    // if(this.interForm.value.email.length === 0) {
-    //   this.videEmail = 'Veuillez saisir votre email';
-    // } else {
-    //   this.videEmail = '';
-    // }
-    // if(this.interForm.value.email.length !== 0 && this.interForm.controls.email.status == 'INVALID') {
-    //   this.invalidEmail = 'Le format d\'email que vous avez saisi est incorrecte';
-    // } else {
-    //   this.invalidEmail = '';
-    // }
+    if(this.interForm.value.email.length === 0) {
+      this.videEmail = 'Veuillez saisir votre email';
+    } else {
+      this.videEmail = '';
+    }
+    if(this.interForm.value.email.length !== 0 && this.interForm.controls.email.status == 'INVALID') {
+      this.invalidEmail = 'Le format d\'email que vous avez saisi est incorrecte';
+    } else {
+      this.invalidEmail = '';
+    }
     this.colora = "#f16e00";
     this.colorb = "#ff7900";
     this.color1 = "20px solid #f16e00";
     this.color2 = "20px solid #ff7900";
-    console.log(this.interForm.value);
   }
   submitted2(){
     this.colorb = "#f16e00";
@@ -377,6 +378,7 @@ export class AddinterComponent implements OnInit {
     this.color2 = "20px solid #f16e00";
     this.color3 = "20px solid #ff7900";
   }
+
   submit() {
     if(this.interForm.value.email.length !== 0 && this.interForm.controls.email.status == 'INVALID') {
       this.invalidEmail = 'Le format d\'email que vous avez saisi est incorrecte';
@@ -443,6 +445,12 @@ export class AddinterComponent implements OnInit {
     if(this.fichierProceVerbal != undefined) {
       formdata.append("fileproceverbal",this.fichierProceVerbal);
     }
+    if(this.fichierCv != undefined) {
+      formdata.append("fileCv", this.fichierCv);
+    }
+    if(this.fichierVisiteContreVisite != undefined) {
+      formdata.append("fileVisiteContreVisite",this.fichierVisiteContreVisite);
+    }
     if(this.photo != undefined) {
       formdata.append("photo",this.photo);
     }
@@ -455,6 +463,7 @@ export class AddinterComponent implements OnInit {
     if(this.fichierdiplome3 != undefined) {
       formdata.append("fileDiplome[]",this.fichierdiplome3);
     }
+    
     this.otherService.addInter(formdata).subscribe(
       data => {
         this.loading = false;
@@ -541,12 +550,19 @@ export class AddinterComponent implements OnInit {
     this.fichedeposteName = this.fichierPoste.name;
   }
 
-  
-
   getFileCni(e:any) {
     this.fichierCni= e.target.files.item(0);
     this.cniName = this.fichierCni.name;
-    
+  }
+
+  getCv(e:any) {
+    this.fichierCv= e.target.files.item(0);
+    this.cvName = this.fichierCv.name;
+  }
+
+  getVisiteContreVisite(e:any) {
+    this.fichierVisiteContreVisite= e.target.files.item(0);
+    this.visiteContreVisiteName = this.fichierVisiteContreVisite.name;
   }
 
   removeItem() {
