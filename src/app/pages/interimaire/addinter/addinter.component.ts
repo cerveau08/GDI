@@ -173,6 +173,10 @@ export class AddinterComponent implements OnInit {
         universite: new FormControl(''),
         photo: new FormControl(''),
         dateDebut: new FormControl(''),
+        telephoneOM: new FormControl('', Validators.compose([
+          Validators.required,
+          Validators.pattern('7[7-8]{1}[0-9]{7}')
+        ])),
         dateFin: new FormControl(''),
         dateSignature: new FormControl(''),
         categorieId: new FormControl(''),
@@ -194,7 +198,7 @@ export class AddinterComponent implements OnInit {
         diplome1: new FormControl(''),
         diplome2: new FormControl(''),
         diplome3: new FormControl(''),
-        fonction: new FormControl('')
+        fonction: new FormControl(''),
     });
     this.searchForm = this.formBuilder.group({
       numeroPiece: new FormControl('', Validators.compose([
@@ -209,7 +213,7 @@ export class AddinterComponent implements OnInit {
       ])),
       telephone: new FormControl('', Validators.compose([
         Validators.required,
-        Validators.pattern('7[7-8]{1}[0-9]{7}')
+        Validators.pattern('7[6-7-8]{1}[0-9]{7}')
       ])),
     })
     this.otherService.getAllSociete().subscribe(
@@ -351,20 +355,21 @@ export class AddinterComponent implements OnInit {
     }
   }
   submitted1(){
-    if(this.interForm.value.email.length === 0) {
-      this.videEmail = 'Veuillez saisir votre email';
-    } else {
-      this.videEmail = '';
-    }
-    if(this.interForm.value.email.length !== 0 && this.interForm.controls.email.status == 'INVALID') {
-      this.invalidEmail = 'Le format d\'email que vous avez saisi est incorrecte';
-    } else {
-      this.invalidEmail = '';
-    }
+    // if(this.interForm.value.email.length === 0) {
+    //   this.videEmail = 'Veuillez saisir votre email';
+    // } else {
+    //   this.videEmail = '';
+    // }
+    // if(this.interForm.value.email.length !== 0 && this.interForm.controls.email.status == 'INVALID') {
+    //   this.invalidEmail = 'Le format d\'email que vous avez saisi est incorrecte';
+    // } else {
+    //   this.invalidEmail = '';
+    // }
     this.colora = "#f16e00";
     this.colorb = "#ff7900";
     this.color1 = "20px solid #f16e00";
     this.color2 = "20px solid #ff7900";
+    console.log(this.interForm.value);
   }
   submitted2(){
     this.colorb = "#f16e00";
@@ -389,6 +394,7 @@ export class AddinterComponent implements OnInit {
     formdata.append("numeroPiece",this.interForm.value.numeroPiece);
     formdata.append("nom",this.interForm.value.nom);
     formdata.append("prenom",this.interForm.value.prenom);
+    formdata.append("telephoneOM",this.interForm.value.telephoneOM);
     formdata.append("adresse",this.interForm.value.adresse);
     formdata.append("email",this.interForm.value.email);
     formdata.append("telephone",this.interForm.value.telephone);

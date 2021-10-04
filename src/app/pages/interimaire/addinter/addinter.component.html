@@ -118,10 +118,6 @@
                           <div class="infoinput2">
                             <div>
                               <p class="label-input1">Type de pièce</p>
-                              <!-- <select class="select5"  formControlName="typePiece" [(ngModel)]="typePiece" readonly>
-                                <option class="option" value="" disabled selected hidden>Type Pièce</option>
-                                <option *ngFor="let data of ListePiece" [value]="data.libelle">{{data.libelle}}</option>
-                              </select> -->
                               <input type="text" formControlName="typePiece" [(ngModel)]="typePiece" readonly>
                             </div>
                             <div>
@@ -129,9 +125,6 @@
                               <input class="input3" type="text" formControlName="numeroPiece" [(ngModel)]="numeroPiece" placeholder="Numero Pièce" readonly>
                             </div>
                           </div>
-                          <!-- <div class="infoinput1">
-                            <input type="text" formControlName="numeroPiece" placeholder="Numero Pièce">
-                          </div> -->
                           <div class="infoinput2">
                             <div>
                               <p class="label-input1">Prénom</p>
@@ -198,7 +191,7 @@
                     </div>
                     <div class="buttons">
                       <button class="button1" type="button">Annuler</button>
-                      <button class="button2"  type="button" (click)="submitted1()" mat-button matStepperNext>Suivant</button>
+                      <button class="button2" matStepperNext type="button" (click)="submitted1()" mat-button >Suivant</button>
                     </div>
                   </form>
               </div>
@@ -237,6 +230,12 @@
                           <div>
                             <p class="label-input2">Salaire Brut</p>
                             <input class="input3" type="text" formControlName="salaireBrut" placeholder="Montant Salaire Brut">
+                          </div>
+                        </div>
+                        <div class="contratinput1">
+                          <div>
+                            <p class="label-input2">Numero Téléphone Orange Money</p>
+                            <input class="input1" type="number" formControlName="telephoneOM" placeholder="Téléphone OM">
                           </div>
                         </div>
                         <div class="contratinput2">

@@ -219,10 +219,10 @@ export class DetailinterComponent implements OnInit {
     this.validerForm = this.formBuilder.group({
       matricule: new FormControl(''),
       responsable: new FormControl(''),
-      telephone: new FormControl('', Validators.compose([
-        Validators.required,
-        Validators.pattern('7[7-8]{1}[0-9]{7}')
-      ])),
+      // telephone: new FormControl('', Validators.compose([
+      //   Validators.required,
+      //   Validators.pattern('7[7-8]{1}[0-9]{7}')
+      // ])),
     });
     this.otherService.getAllSociete().subscribe(
       data => {
