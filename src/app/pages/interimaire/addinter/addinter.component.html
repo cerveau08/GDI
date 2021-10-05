@@ -255,16 +255,16 @@
                               <option *ngFor="let data of dataSociete" [value]="data.id">{{data.libelle}}</option>
                             </select>
                           </div>
-                          <div>
+                          <!-- <div>
                             <p class="label-input2">Direction</p>
                             <select class="select6" #direction  formControlName="directionId" (change)="departementListe(direction.value)">
                               <option class="option" value="" disabled selected hidden>Direction</option>
                               <option *ngFor="let data of dataDirection" value="{{data.id}}">{{data.libelle}}</option>
                             </select>
-                          </div>
+                          </div> -->
                         </div>
                         <div class="contratinput2">
-                          <div>
+                          <!-- <div>
                             <p class="label-input1">Département</p>
                             <select class="select5" #departement formControlName="departementId" (change)="serviceListe(departement.value)">
                               <option class="option" value="" disabled selected hidden>Département</option>
@@ -277,7 +277,7 @@
                               <option class="option" value="" disabled selected hidden>Service</option>
                               <option *ngFor="let data of donneeService" value="{{data.id}}">{{data.libelle}}</option>
                             </select> 
-                          </div>
+                          </div> -->
                         </div>
                         <div class="contratinput2">
                           <div>
