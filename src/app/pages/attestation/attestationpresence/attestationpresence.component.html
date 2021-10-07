@@ -46,32 +46,43 @@
                         <th *ngIf="user != 'AGN' && user != 'INT'" id="action">Agence</th>
                         <th id="contrat">Période</th>
                         <th id="contrat">Absence</th>
-                        <th id="action">Etat</th>
-                        <th *ngIf="user == 'AGN'" id="input"><input 
+                        <th id="etat">Etat</th>
+                        <th id="action">Action</th>
+                        <!-- <th *ngIf="user == 'AGN'" id="input"><input 
                             [(ngModel)]="selectedAll"
                             (change)="selectAll();"
                             type="checkbox"/>
-                       </th>
+                       </th> -->
                 </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let p of dataAttest | filter:filterterm | paginate: { 
-                        itemsPerPage: 8, currentPage: p }; let i = index" style="cursor: pointer;">
-                        <td (click)="openDetail(p.id)">{{p.matricule}}</td>
-                        <td (click)="openDetail(p.id)">{{p.prenom}}</td>
-                        <td (click)="openDetail(p.id)">{{p.nom}}</td>
-                        <td (click)="openDetail(p.id)">{{p.reference}}</td>
-                        <td (click)="openDetail(p.id)" *ngIf="user != 'AGN' && user != 'INT'" >{{p.agence}}</td>
-                        <td (click)="openDetail(p.id)">{{p.dateFin  | date:'MMMM yyyy'}}</td>
-                        <td  (click)="openDetail(p.id)">{{p.nombreJourAbscence}} jours</td>
-                        <td (click)="openDetail(p.id)">{{p.statut}}</td>
-                        <td *ngIf="user == 'AGN'" ><input *ngIf="p.etat == 0" type="checkbox"
+                        itemsPerPage: 8, currentPage: p }; let i = index" >
+                        <td style="cursor: pointer;" (click)="openDetail(p.id)">{{p.matricule}}</td>
+                        <td style="cursor: pointer;" (click)="openDetail(p.id)">{{p.prenom}}</td>
+                        <td style="cursor: pointer;" (click)="openDetail(p.id)">{{p.nom}}</td>
+                        <td style="cursor: pointer;" (click)="openDetail(p.id)">{{p.reference}}</td>
+                        <td style="cursor: pointer;" (click)="openDetail(p.id)" *ngIf="user != 'AGN' && user != 'INT'" >{{p.agence}}</td>
+                        <td style="cursor: pointer;" (click)="openDetail(p.id)">{{p.dateFin  | date:'MMMM yyyy'}}</td>
+                        <td style="cursor: pointer;"  (click)="openDetail(p.id)">{{p.nombreJourAbscence}} jours</td>
+                        <td style="cursor: pointer;" (click)="openDetail(p.id)">
+                            <span class="status-attestation-attente" *ngIf="p.statut == 'EN ATTENTE'">{{p.statut}}</span>
+                            <span class="status-attestation-valider" *ngIf="p.statut == 'VALIDER'">{{p.statut}}</span>
+                            <span class="status-attestation-rejeter" *ngIf="p.statut == 'REJETER'">{{p.statut}}</span>
+                        </td>
+                        <td>
+                            <button (click)="valider(p.reference)" *ngIf="p.etat == 0" class="valider-attestation">Valider</button>
+                            <button (click)="rejeter(p.reference)" *ngIf="p.etat == 0" class="rejeter-attestation">Rejeter</button>
+                            <p *ngIf="p.etat == 1">déja validé</p>
+                            <p *ngIf="p.etat == 2">déja rejeté</p>
+                        </td>
+                        <!-- <td *ngIf="user == 'AGN'" ><input *ngIf="p.etat == 0" type="checkbox"
                             [checked]="p.etat"
                             [(ngModel)]="p.etat"
                             [value]="p.id" 
                             (change)="checkIfAllSelected();"/>
                             <p *ngIf="p.etat == 1">Validé</p>
-                        </td>
+                        </td> -->
                     </tr>
                 </tbody>
                 

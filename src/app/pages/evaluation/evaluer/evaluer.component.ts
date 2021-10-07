@@ -5,8 +5,6 @@ import { environment } from 'src/environments/environment';
 import { OthersService } from 'src/app/services/others.service';
 import { ModalService } from 'src/app/modal/_modal';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ErrormodalService } from 'src/app/modal/_errormodals';
-import { HttpClient } from '@angular/common/http';
 import {Location} from '@angular/common';
 
 @Component({
@@ -67,9 +65,9 @@ export class EvaluerComponent implements OnInit {
   constructor(private otherService: OthersService,
     private modalService: ModalService,
     private activeroute: ActivatedRoute,
-    private router: Router,
     private location: Location,
     private formBuilder: FormBuilder,
+    private router: Router,
     private toastr: ToastrService) {
     this.activeroute.queryParams.subscribe(params => {
       this.item = JSON.parse(params["interimaire"]);

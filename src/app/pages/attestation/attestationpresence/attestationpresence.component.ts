@@ -86,6 +86,7 @@ export class AttestationpresenceComponent implements OnInit {
   ];
   currentDate = new Date().getFullYear();
   lastTenYear: { annee: any; }[];
+  valid: number;
   constructor(private extractionService: AuthService,
               private http: HttpClient,
               private errormodalService: ErrormodalService,
@@ -169,6 +170,39 @@ export class AttestationpresenceComponent implements OnInit {
       }
     }
     this.checkedList = this.checkedList;
+  }
+
+  valider(id) {
+    this.otherService.validationAttestation(id, 'valider').subscribe(
+      data => {
+        this.result = data;
+        this.successMsg = data.status;
+        if(this.successMsg = true) {
+          this.ngOnInit();
+        }
+      }, error=> {
+        this.errorMsg = error;
+        this.toastr.error(this.errorMsg, 'Echec', {
+         timeOut: 5000,
+        });
+       }
+    )
+  }
+  rejeter(id) {
+    this.otherService.validationAttestation(id, 'rejeter').subscribe(
+      data => {
+        this.result = data;
+        this.successMsg = data.status;
+        if(this.successMsg = true) {
+          this.ngOnInit();
+        }
+      }, error=> {
+        this.errorMsg = error;
+        this.toastr.error(this.errorMsg, 'Echec', {
+         timeOut: 5000,
+        });
+       }
+    )
   }
 
   openDetail(data) {

@@ -14,7 +14,37 @@
     border: 1px solid #d8d8d8;
   }
 
-
+.valider-attestation{
+    background-color: #009393;
+    color: #fff;
+    font-size: 12px;
+    height: 20px;
+    width: 50px;
+    border: none;
+    outline: none;
+}
+.rejeter-attestation{
+    background-color: #ff0000;
+    color: #fff;
+    font-size: 12px;
+    height: 20px;
+    width: 50px;
+    border: none;
+    outline: none;
+    margin-left: 5px;
+}
+.status-attestation-attente{
+    font-size: 10px;
+    color: #ff7900;
+}
+.status-attestation-valider{
+    font-size: 10px;
+    color: #009393;
+}
+.status-attestation-rejeter{
+    font-size: 10px;
+    color: #ff0000;
+}
   .icon-search{
     margin-top: 20px;
     cursor: pointer;

@@ -505,4 +505,9 @@ addAgence(data) {
   commentaireInterimaire(id: number, data:any): Observable<any> {
     return this.http.post<any>(`${this.reqUrl}/updateEvaluationInterimaire/${id}`, data);
   }
+
+  validationAttestation(id, action){
+    const data = {action: action};
+    return this.http.get<any>(`${this.reqUrl}/validerAttestation/${id}`, {params: data});
+  }
 }

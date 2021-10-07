@@ -765,9 +765,11 @@ input {
 }
 .buttonphotoVisite{
   padding-left: 0;
+  width: 170px;
 }
 .buttonphotoCv{
   padding-left: 0;
+  width: 130px;
 }
 .buttonphotoVisite::before {
   content: 'Visite contre visite';
