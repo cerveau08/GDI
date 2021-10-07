@@ -42,6 +42,7 @@
                         <th id="manager">Matricule</th>
                         <th class="typ" id="prenom">Prénom</th>
                         <th class="typ" id="nom">Nom</th>
+                        <th class="typ" id="reference">Référence</th>
                         <th *ngIf="user != 'AGN' && user != 'INT'" id="action">Agence</th>
                         <th id="contrat">Période</th>
                         <th id="contrat">Absence</th>
@@ -54,6 +55,7 @@
                         <td >{{p.matricule}}</td>
                         <td>{{p.prenom}}</td>
                         <td>{{p.nom}}</td>
+                        <td>{{p.reference}}</td>
                         <td *ngIf="user != 'AGN' && user != 'INT'" >{{p.agence}}</td>
                         <td >{{p.dateFin  | date:'MMMM yyyy'}}</td>
                         <td  >{{p.nombreJourAbscence}} jours</td>
