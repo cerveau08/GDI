@@ -18,7 +18,7 @@ pipeline {
     stages {
         stage('Installation des packets') {
             steps {
-                sh 'set +ex ; export NVM_DIR="$HOME/.nvm"; . ~/.nvm/nvm.sh; . ~/.profile ; nvm use lts/erbium ;npm install; npm run build --prod; set -ex'
+                sh 'set +ex ; export NVM_DIR="$HOME/.nvm"; . ~/.nvm/nvm.sh; . ~/.profile ; nvm use lts/erbium ;npm install; npm run build; set -ex'
                 stash includes: '**/*', name: 'app'
             }
         }
