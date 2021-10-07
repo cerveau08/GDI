@@ -82,7 +82,7 @@
                     <td (click)="openDetail(p.id)">{{p.prenom}}</td>
                     <td (click)="openDetail(p.id)">{{p.nom}}</td>
                     <td *ngIf="user != 'MNG' && scrWidth>991" (click)="openDetail(p.id)">
-                        <img alt="" class="photo" src="{{p.photo}}">
+                        <img alt="" class="photo" src="{{reqUrl + p.photoManager}}">
                     </td>
                     <td (click)="openDetail(p.id)">{{p.poste}}</td>
                     <td *ngIf="user != 'MNG'" (click)="openDetail(p.id)" >{{p.direction}}</td>

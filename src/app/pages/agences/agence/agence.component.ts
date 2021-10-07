@@ -7,6 +7,7 @@ import { DataService } from 'src/app/service/data.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ModalService } from 'src/app/modal/_modal';
 import { ErrormodalService } from 'src/app/modal/_errormodals';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-agence',
@@ -62,7 +63,7 @@ export class AgenceComponent implements OnInit {
   image: string | ArrayBuffer;
   dataprofils: any;
   listeFonction: any;
-
+  public reqUrl = environment.base_url;
   constructor(private fileSaver: NgxFileSaverService,
     private modalService: ModalService,
     private errormodalService: ErrormodalService,
