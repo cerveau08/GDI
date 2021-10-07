@@ -98,7 +98,7 @@ export class DetailcontratComponent implements OnInit {
   procesVerbal;
   doc = '../../../../assets/doc/2.pdf';
   documents: any;
-  fileRead = '../../../../assets/doc/GDI_GestionDesIntérimaires.pdf';
+  fileRead = '../../../../assets/doc/GDI_GestionDesInterimaires.pdf';
   constructor(private activeroute: ActivatedRoute,
               private modalService: ModalService,
               private otherService: OthersService,
