@@ -304,13 +304,24 @@ export class DetailinterComponent implements OnInit {
   public get(p) {
     this.fileSaver.saveUrl(p.pathfile, p.file);
   }
-  public getContrat() {
-    this.fileSaver.saveUrl(this.contratDoc, 'contrat');
+  public getContrat(prenom, nom) {
+    this.fileSaver.saveUrl(this.contratDoc, 'contrat-de-' + prenom + '-' + nom);
   }
 
-  public getFicheDePoste() {
-    this.fileSaver.saveUrl(this.fichePosteDoc, 'fiche de Poste');
+  public getFicheDePoste(prenom, nom) {
+    this.fileSaver.saveUrl(this.fichePosteDoc, 'fiche-de-Poste-' + prenom + '-' + nom);
   }
+  public getCv(prenom, nom) {
+    this.fileSaver.saveUrl(this.contratDoc, 'Cv-de-' + prenom + '-' + nom);
+  }
+
+  public getProcesVerbal(prenom, nom) {
+    this.fileSaver.saveUrl(this.fichePosteDoc, 'proces-verbale-de-' + prenom + '-' + nom);
+  }
+  public getVisiteContreVisite(prenom, nom) {
+    this.fileSaver.saveUrl(this.contratDoc, 'Certificat-viste-contre-visite-' + prenom + '-' + nom);
+  }
+
 
   getwidth() {
     this.restant = this.nombre + "%";

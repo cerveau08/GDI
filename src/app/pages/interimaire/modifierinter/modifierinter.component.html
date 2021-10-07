@@ -151,6 +151,14 @@
                               <input formControlName="fileproceverbal" [(ngModel)]="fileproceverbal" class="buttonphoto4" type="file" (change)="getProceVerbal($event)" >
                               <p class="fileName">{{proceverbalName}}</p>
                             </div>
+                            <div class="photo" >
+                              <input formControlName="fileCv" [(ngModel)]="fileCv" class="buttonphotoCv" type="file" (change)="getCv($event)" >
+                              <p class="fileName">{{cvName}}</p>
+                            </div>
+                            <div class="photo" >
+                              <input formControlName="fileVisiteContreVisite" [(ngModel)]="fileVisiteContreVisite" class="buttonphotoVisite" type="file" (change)="getVisiteContreVisite($event)" >
+                              <p class="fileName">{{visiteContreVisiteName}}</p>
+                            </div>
                           </div>
                           <div class="les-diplomes-content">
                             <div class="diplome-title">

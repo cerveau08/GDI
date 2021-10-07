@@ -17,26 +17,32 @@
                         <p class="key">Domaine: <span class="value">{{domaine}}</span> </p>
                         <p class="key">Date de Début: <span class="value">{{dateDebut | date:'dd MMMM yyyy'}}</span> </p>
                         <p class="key">Date de Fin: <span class="value">{{dateFin | date:'dd MMMM yyyy'}}</span> </p>
-                    </div>
-                    <div class="lot">
-                        <div class="content-structure">
-                            <p class="lot2">Société: <span class="value">{{societe}}</span> </p>
-                            <p class="lot2">Direction: <span class="value">{{direction}}</span> </p>
-                        </div>
-                        <div class="content-structure">
-                            <p class="key">Département: <span class="value">{{departement}}</span> </p>
-                            <p class="key">Service: <span class="value">{{service}}</span> </p>
-                        </div>
+
+                        <p class="lot2">Société: <span class="value">{{societe}}</span> </p>
+                        <p class="key">Direction: <span class="value">{{direction}}</span> </p>
+                        <p class="key">Département: <span class="value">{{departement}}</span> </p>
+                        <p class="key">Service: <span class="value">{{service}}</span> </p>
                     </div>
                 </div>
                 <div class="lesbouton">
-                    <button class="button1" (click)="openModal('custom-modal-1')">Contrat</button>
-                    <button class="button2" (click)="openModal('custom-modal-2')">Procés Verbal</button>
-                    <button class="button3" (click)="openModal('custom-modal-3')">Fiche de poste</button>
+                    <p class="liste-document-contrat">Les documents</p>
+                    <button id="button" class="button1" (click)="readFile(documents.fileContrat)">Contrat</button>
+                    <button id="button" class="button2" (click)="readFile(documents.fileProcesVerbal)">Procés Verbal</button>
+                    <button id="button" class="button3" (click)="readFile(documents.fileFicheDePoste)">Fiche de poste</button>
+                    <button id="button" class="buttoncv" (click)="readFile(documents.fileContrat)">Cv</button>
+                    <button id="button" class="buttonvisite" (click)="readFile(documents.fileContrat)">Certificat Visite Contre Viste</button>
                 </div>
             </div>
             <div class="info-evaluation">
-                <div class="content-evaluation" *ngFor="let p of evaluations | paginate: {  itemsPerPage: itemsPerPage,
+                    <pdf-viewer [src]="fileRead"
+                    [render-text]="true"
+                    [autoresize]="true"
+                    [original-size]="false"
+                    ></pdf-viewer>
+                    <div class="btns2">
+                        <button (click)="getFile(fileRead)"  class="btn2">Télécharger</button>
+                    </div>
+                <!-- <div class="content-evaluation" *ngFor="let p of evaluations | paginate: {  itemsPerPage: itemsPerPage,
                     currentPage: page,
                     totalItems: totalItems
                     }; let i = index">
@@ -59,7 +65,7 @@
                 </div>
                 <div class="pagination">
                     <pagination-controls (pageChange)="gty(page = $event)" previousLabel="Précédent" nextLabel="Suivant"></pagination-controls>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>

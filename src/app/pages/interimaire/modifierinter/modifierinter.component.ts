@@ -134,6 +134,12 @@ export class ModifierinterComponent implements OnInit {
   successMsg: any;
   departementName: any;
   directionName: any;
+  fileVisiteContreVisite: any;
+  fileCv: any;
+  fichierCvUpload: any;
+  cvName: any;
+  fichiervisiteContreVisiteUpload: any;
+  visiteContreVisiteName: any;
   constructor(private activeroute: ActivatedRoute,
     private route: Router,
     private errormodalService: ErrormodalService,
@@ -176,12 +182,10 @@ export class ModifierinterComponent implements OnInit {
             this.fichierPoste = this.dataInter.data.fileFichePoste;
             this.fichierContrat = this.dataInter.data.fileContrat;
             this.fichierProceVerbal = this.dataInter.data.proceverbal;
+            this.fileCv = this.dataInter.data.fileCv;
+            this.fileVisiteContreVisite = this.dataInter.data.fileVisiteContreVisite;
             this.universite = this.dataInter.data.universite;
             this.agence = this.dataInter.data.agence;
-            console.log(this.directionName);
-            console.log(this.departementName);
-            console.log(this.directionId);
-            console.log(this.departementId);
           }
         );
       })
@@ -218,6 +222,8 @@ export class ModifierinterComponent implements OnInit {
         fileCni: new FormControl(''),
         fileFicheposte: new FormControl(''),
         fileproceverbal: new FormControl(''),
+        fileCv: new FormControl(''),
+        fileVisiteContreVisite: new FormControl(''),
         fileDiplome: new FormArray([
           new FormGroup({
             id: new FormControl(''),
@@ -309,6 +315,16 @@ export class ModifierinterComponent implements OnInit {
     this.proceverbalName = this.fichierProceVerbalUpload.name;
   }
 
+  getFileCv(event: any) {
+    this.fichierCvUpload = event.target.files[0];
+    this.cvName = this.fichierCvUpload.name;
+  }
+
+  getVisiteContreVisite(event: any) {
+    this.fichiervisiteContreVisiteUpload = event.target.files[0];
+    this.visiteContreVisiteName = this.fichiervisiteContreVisiteUpload.name;
+  }
+
   //les diplomes
   getDiplome1(event: any) {
     this.fichierdiplome1Upload = event.target.files[0];
@@ -374,6 +390,12 @@ export class ModifierinterComponent implements OnInit {
     }
     if(this.fichierCniUpload != undefined) {
       info.append("fileCni",this.fichierCniUpload);
+    }
+    if(this.fichierCvUpload != undefined) {
+      info.append("fileCv",this.fichierCvUpload);
+    }
+    if(this.fichiervisiteContreVisiteUpload != undefined) {
+      info.append("fileVisiteContreVisite",this.fichiervisiteContreVisiteUpload);
     }
     if(this.photoUpload != undefined) {
       info.append("photo",this.photoUpload);

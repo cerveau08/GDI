@@ -225,7 +225,7 @@ button {
   font-size: 14px;
   cursor: pointer;
   outline: none;
-  border: 2px solid black;
+  border: 1px solid black;
   margin-top: 0px;
   padding-top: 5px;
 }
@@ -264,7 +264,7 @@ button {
 .button1 {
   width: 106px;
   height: 50px;
-  border: solid 2px #000000;
+  border: solid 1px #000000;
   background: white;
   font-size: 18px;
   font-weight: bold;
@@ -349,7 +349,60 @@ button {
   font-size: 14px;
   cursor: pointer;
   outline: none;
-  border: 3px solid black;
+  border: 1px solid black;
+  margin-top: 0px;
+  padding-top: 5px;
+}
+
+.buttonphotoCv::-webkit-file-upload-button {
+  visibility: hidden;
+  outline: none;
+}
+.buttonphotoCv{
+  width: 130px;
+}
+.buttonphotoVisite{
+  width: 150px;
+  height: 70px;
+}
+.buttonphotoCv::before {
+  content: 'Upload Cv';
+  width: 120px;
+  height: 25px;
+  background-color: white;
+  border: none;
+  color: black;
+  text-align: center;
+  text-decoration: none;
+  font-weight: bold;
+  display: inline-block;
+  font-size: 14px;
+  cursor: pointer;
+  outline: none;
+  border: 1px solid black;
+  margin-top: 0px;
+  padding-top: 5px;
+}
+
+.buttonphotoVisite::-webkit-file-upload-button {
+  visibility: hidden;
+  outline: none;
+}
+.buttonphotoVisite::before {
+  content: 'Visite Contre Visite';
+  width: 140px;
+  height: 25px;
+  background-color: white;
+  border: none;
+  color: black;
+  text-align: center;
+  text-decoration: none;
+  font-weight: bold;
+  display: inline-block;
+  font-size: 14px;
+  cursor: pointer;
+  outline: none;
+  border: 1px solid black;
   margin-top: 0px;
   padding-top: 5px;
 }
@@ -401,7 +454,7 @@ select {
 .button1 {
   width: 126px;
   height: 50px;
-  border: solid 2px #000000;
+  border: solid 1px #000000;
   background: white !important;
   font-size: 18px;
   font-weight: bold;
@@ -460,7 +513,7 @@ select {
   font-size: 18px;
   cursor: pointer;
   outline: none;
-  border: 3px solid black;
+  border: 1px solid black;
   margin-top: 20px;
   margin-left: 0px;
 }
@@ -502,7 +555,7 @@ select {
   font-size: 14px;
   cursor: pointer;
   outline: none;
-  border: 2px solid black;
+  border: 1px solid black;
   padding-top: 5px;
 }
 .buttonphoto4::-webkit-file-upload-button {
@@ -523,7 +576,7 @@ select {
   font-size: 14px;
   cursor: pointer;
   outline: none;
-  border: 2px solid black;
+  border: 1px solid black;
   padding-top: 5px;
 }
 .others {
@@ -555,7 +608,7 @@ input {
 .button1 {
   width: 116px;
   height: 30px;
-  border: solid 2px #000000;
+  border: solid 1px #000000;
   background: white;
   font-size: 16px;
   font-weight: bold;
@@ -667,7 +720,7 @@ button {
   border-radius: none;
   margin-top: 30px;
   outline: none;
-  border: 3px solid black;
+  border: 1px solid black;
 }
 .fiche-et-pv {
   display: grid;
@@ -720,7 +773,7 @@ button {
   font-size: 14px;
   cursor: pointer;
   outline: none;
-  border: 2px solid black;
+  border: 1px solid black;
   padding-top: 5px;
 }
 .buttonCNI::-webkit-file-upload-button {
@@ -744,7 +797,7 @@ button {
   font-size: 14px;
   cursor: pointer;
   outline: none;
-  border: 2px solid black;
+  border: 1px solid black;
   padding-top: 5px;
 }
 .buttonphoto2::-webkit-file-upload-button {

@@ -13,6 +13,13 @@
     display: grid;
     grid-template-columns: 100px 1fr;
 }
+.liste-document-contrat{
+    font-size: 16px;
+    margin-top: 15px;
+    margin-bottom: 0;
+    color: #009393;
+    font-weight: 700;
+}
 .bouton-retour{
     background-color: #f5f6f9;
     border-radius: 50%;
@@ -98,7 +105,7 @@
 }
 .grid-container {
     display: grid;
-    grid-template-columns: 300px  1fr;
+    grid-template-columns: 320px  1fr;
     grid-gap: 1px;
     margin-top: 5px;
 }
@@ -187,7 +194,7 @@
 }
 .info-evaluation{
     border: 1px solid #f5f6f9;
-    background-color: #f5f6f9;
+    //background-color: #f5f6f9;
 }
 .content-evaluation{
     margin: 5px;
@@ -231,72 +238,104 @@
     font-style: italic;
 }
 .button1 {
-    width: 60px;
+    width: 70px;
     height: 30px;
-    background-color: white;
+    border-radius: 20px;
+    background-color: #f5f6f9;
     color: black;
     padding: 2px 2px;
     text-align: center;
     text-decoration: none;
-    font-weight: bold;
+    font-weight: 600;
     display: inline-block;
     font-size: 14px;
     cursor: pointer;
     outline: none;
-    border: 2px solid black;
+    border: none;
     margin-top: 10px;
 }
 .button2 {
-    width: 102px;
+    width: 110px;
     height: 30px;
-    background-color: white;
+    border-radius: 20px;
+    background-color: #f5f6f9;
     color: black;
     padding: 2px 2px;
     text-align: center;
     text-decoration: none;
-    font-weight: bold;
+    font-weight: 600;
     display: inline-block;
     font-size: 14px;
     cursor: pointer;
     outline: none;
-    border: 2px solid black;
-    margin-left: 10px;
+    border: none;
     margin-top: 10px;
+    margin-left: 5px;
 }
 .button3 {
-    width: 108px;
+    width: 120px;
     height: 30px;
-    background-color: white;
+    border-radius: 20px;
+    background-color: #f5f6f9;
     color: black;
     padding: 2px 2px;
     text-align: center;
     text-decoration: none;
-    font-weight: bold;
+    font-weight: 600;
     display: inline-block;
     font-size: 14px;
     cursor: pointer;
     outline: none;
-    border: 2px solid black;
-    margin-left: 10px;
+    border: none;
+    margin-top: 10px;
+    margin-left: 5px;
+}
+.buttoncv {
+    width: 50px;
+    height: 30px;
+    border-radius: 20px;
+    background-color: #f5f6f9;
+    color: black;
+    padding: 2px 2px;
+    text-align: center;
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-block;
+    font-size: 14px;
+    cursor: pointer;
+    outline: none;
+    border: none;
     margin-top: 10px;
 }
-.button4 {
-    width: 80px;
+.buttonvisite {
+    width: 200px;
     height: 30px;
-    background-color: white;
+    border-radius: 20px;
+    background-color: #f5f6f9;
     color: black;
     padding: 2px 2px;
     text-align: center;
     text-decoration: none;
-    font-weight: bold;
+    font-weight: 600;
     display: inline-block;
     font-size: 14px;
     cursor: pointer;
     outline: none;
-    border: 2px solid black;
-    margin-left: 10px;
+    border: none;
     margin-top: 10px;
-    margin-bottom: 10px;
+    margin-left: 5px;
+}
+#button:hover {
+    background-color: #009393;
+    color: white;
+}
+#button:focus {
+    background-color: #009393;
+    color: white;
+}
+#button:active {
+    background-color: #009393;
+    color: white;
 }
 .button-historique{
     width: 150px;
@@ -396,13 +435,13 @@
 }
 // modal 1
 .btns2{
-    width: 350px;
+    width: 130px;
     margin: 0 auto;
 }
 .btn2 {
-    width: 142px;
-    height: 50px;
-    font-size: 16px;
+    width: 130px;
+    height: 30px;
+    font-size: 14px;
     font-weight: bold;
     font-stretch: normal;
     font-style: normal;
@@ -412,7 +451,7 @@
     color: #000000;
     border: none;
     background-color: #32c832;
-    margin-top: 7px;
+    margin-top: 0px;
 }
 .btn2a {
     width: 166px;

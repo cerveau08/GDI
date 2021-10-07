@@ -96,6 +96,9 @@ export class DetailcontratComponent implements OnInit {
   totalItems: any;
   interim_id: any;
   procesVerbal;
+  doc = '../../../../assets/doc/2.pdf';
+  documents: any;
+  fileRead = '../../../../assets/doc/GDI_GestionDesIntérimaires.pdf';
   constructor(private activeroute: ActivatedRoute,
               private modalService: ModalService,
               private otherService: OthersService,
@@ -103,11 +106,11 @@ export class DetailcontratComponent implements OnInit {
               private http: HttpClient,
               private location: Location,
               private errormodalService: ErrormodalService,
-              public router: Router, ) { 
+              public router: Router,) { 
     this.activeroute.queryParams.subscribe(params => {
       this.item = JSON.parse(params["contrat"]);
       this.interim_id = JSON.parse(params["interimaire"]);
-      this.otherService.getOneInterById(this.item).subscribe(
+      this.otherService.getOneInterById(this.interim_id).subscribe(
           data =>{
             this.data = data;
             this.dataInter = this.data.data;
@@ -130,6 +133,7 @@ export class DetailcontratComponent implements OnInit {
         this.service = this.dataContrat.structure.service;
         this.categorie = this.dataContrat.categorie;
         this.domaine = this.dataContrat.domaine;
+        this.documents = this.dataContrat.documents;
       })
     
   }
@@ -149,9 +153,15 @@ export class DetailcontratComponent implements OnInit {
       this.totalItems = data.total;
     })
   }
+  
+  readFile(p) {
+    this.fileRead = p;
+  }
 
-  public get(p) {
-    this.fileSaver.saveUrl(p.pathfile, p.file);
+  public getFile(p) {
+    console.log(p);
+    
+    this.fileSaver.saveUrl(p, 'Fichier');
   }
   public getContrat() {
     this.fileSaver.saveUrl(this.contratDoc, 'contrat');
