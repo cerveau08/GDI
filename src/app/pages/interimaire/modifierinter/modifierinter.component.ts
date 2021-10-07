@@ -315,7 +315,7 @@ export class ModifierinterComponent implements OnInit {
     this.proceverbalName = this.fichierProceVerbalUpload.name;
   }
 
-  getFileCv(event: any) {
+  getCv(event: any) {
     this.fichierCvUpload = event.target.files[0];
     this.cvName = this.fichierCvUpload.name;
   }

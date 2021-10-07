@@ -56,7 +56,7 @@
             </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let p of dataInter | filter:filterterm | paginate: { 
+                <tr *ngFor="let p of dataInter | paginate: { 
                     itemsPerPage: itemsPerPage,
                     currentPage: page,
                     totalItems: totalItems
