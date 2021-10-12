@@ -1,3 +1,4 @@
+import { LesnonattestationComponent } from './pages/attestation/lesnonattestation/lesnonattestation.component';
 import { ManagerEvaluComponent } from './pages/evaluation/manager-evalu/manager-evalu.component';
 import { PeriodedetailComponent } from './pages/evaluation/periodedetail/periodedetail.component';
 import { ModifdetailComponent } from './pages/evaluation/modifdetail/modifdetail.component';
@@ -477,6 +478,10 @@ const routes: Routes = [
       },
       { path: 'periodedetail',
         component: PeriodedetailComponent,
+        canActivate: [AuthGuard]
+      },
+      { path: 'lesnonattestation',
+        component: LesnonattestationComponent,
         canActivate: [AuthGuard]
       },{ path: 'managerevalu',
         component: ManagerEvaluComponent,

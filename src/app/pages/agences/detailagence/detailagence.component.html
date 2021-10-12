@@ -3,7 +3,7 @@
         <mat-icon class="bouton-retour" (click)="backClicked()">arrow_back</mat-icon>
         <div class="grid2">
             <div class="img">
-                <img src="{{logo}}" alt="">
+                <img src="{{reqUrl + '/public/' + logo}}" alt="">
             </div>
             <div class="agence">
                 <p class="nom2">{{nom}}</p>
@@ -54,7 +54,7 @@
         <div class="users" >
             <div class="user1" *ngFor="let p of userAgence | slice:0:2;">
                 <div (click)="openDetail(p.id)" class="photo1">
-                    <img src="{{p.avatar}}" alt="">
+                    <img src="{{reqUrl + '/' +p.avatar}}" alt="">
                 </div>
                 <div class="profil">
                     <p (click)="openDetail(p.id)" class="profil1">{{p?.nom}}</p>
@@ -64,6 +64,11 @@
         </div>
         <div class="btns">
             <button class="buttonaffi" (click)="openModal('custom-modal-1')" type="button">Afficher contrat</button>
+            <button class="buttonaffi" (click)="openModal('custom-modal-4')" type="button">Afficher Ninéa</button>
+            <button class="buttonaffi" (click)="openModal('custom-modal-5')"type="button">Afficher RCCM</button>
+            <button class="buttonaffi" (click)="openModal('custom-modal-6')" type="button">Afficher CNI DG</button>
+        </div>
+        <div class="btns">
             <button class="buttonmodif" *ngIf="showupdate" (click)="openModal('custom-modal-2')" type="button">Modifier</button>
             <button class="buttonsupp" *ngIf="showupdate" (click)="delete()" type="button">Supprimer</button>
             <button class="buttonadduser" *ngIf="showupdate" (click)="openModal('custom-modal-3')" type="button">Ajouter Utilisateur</button>
@@ -75,20 +80,69 @@
     <jw-modal id="custom-modal-1">
         <div class="tableau">
             <mat-icon style="cursor: pointer;" (click)="closeModal('custom-modal-1');" class="clear">clear</mat-icon>
-            <p class="dtl1">contrat {{dataAgence?.nom}}</p>
-            <!-- <ngx-doc-viewer 
-               [url]="contratDoc" 
-               [viewer]="viewer" 
-               style="width:100%;height:70vh;">
-            </ngx-doc-viewer> -->
+            <p class="agence-contrat">contrat {{nom}}</p>
             <pdf-viewer [src]="contratDoc"
               [render-text]="true"
               [autoresize]="true"
               [original-size]="false"
             ></pdf-viewer>
             <div class="btns2">
-                <button (click)="getfilemodal()"  class="btn2">Télécharger</button>
+                <button (click)="getfilemodal(nom)"  class="btn2">Télécharger</button>
                 <button   class="btn2a">Arrêter contrat</button>
+            </div>
+        </div>
+    </jw-modal>
+</div>
+
+<!--modal-1-->
+<div class="modal">
+    <jw-modal id="custom-modal-4">
+        <div class="tableau">
+            <mat-icon style="cursor: pointer;" (click)="closeModal('custom-modal-4');" class="clear">clear</mat-icon>
+            <p class="agence-contrat">Ninéa  {{nom}}</p>
+            <pdf-viewer [src]="nineaDoc"
+              [render-text]="true"
+              [autoresize]="true"
+              [original-size]="false"
+            ></pdf-viewer>
+            <div class="btns-other-doc">
+                <button (click)="getfilemodalniea(nom)"  class="btn2">Télécharger</button>
+            </div>
+        </div>
+    </jw-modal>
+</div>
+
+<!--modal-1-->
+<div class="modal">
+    <jw-modal id="custom-modal-5">
+        <div class="tableau">
+            <mat-icon style="cursor: pointer;" (click)="closeModal('custom-modal-5');" class="clear">clear</mat-icon>
+            <p class="agence-contrat">RCCM {{nom}}</p>
+            <pdf-viewer [src]="rccmDoc"
+              [render-text]="true"
+              [autoresize]="true"
+              [original-size]="false"
+            ></pdf-viewer>
+            <div class="btns-other-doc">
+                <button (click)="getfilemodalrccm(nom)"  class="btn2">Télécharger</button>
+            </div>
+        </div>
+    </jw-modal>
+</div>
+
+<!--modal-1-->
+<div class="modal">
+    <jw-modal id="custom-modal-6">
+        <div class="tableau">
+            <mat-icon style="cursor: pointer;" (click)="closeModal('custom-modal-6');" class="clear">clear</mat-icon>
+            <p class="agence-contrat">CNI de {{responsable}}(Directeur de {{nom}})</p>
+            <pdf-viewer [src]="cnidgDoc"
+              [render-text]="true"
+              [autoresize]="true"
+              [original-size]="false"
+            ></pdf-viewer>
+            <div class="btns-other-doc">
+                <button (click)="getfilemodalcnidg(nom)"  class="btn2">Télécharger</button>
             </div>
         </div>
     </jw-modal>

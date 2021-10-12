@@ -51,7 +51,7 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let p of dataAttest | paginate: { 
-                        itemsPerPage: 8, currentPage: p }; let i = index" (click)="openDetail(p.id)" style="cursor: pointer;">
+                        itemsPerPage: 10, currentPage: p }; let i = index" (click)="openDetail(p.id)" style="cursor: pointer;">
                         <td >{{p.matricule}}</td>
                         <td>{{p.prenom}}</td>
                         <td>{{p.nom}}</td>

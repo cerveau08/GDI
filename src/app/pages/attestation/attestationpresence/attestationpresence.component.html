@@ -48,11 +48,6 @@
                         <th id="contrat">Absence</th>
                         <th id="etat">Etat</th>
                         <th id="action">Action</th>
-                        <!-- <th *ngIf="user == 'AGN'" id="input"><input 
-                            [(ngModel)]="selectedAll"
-                            (change)="selectAll();"
-                            type="checkbox"/>
-                       </th> -->
                 </tr>
                 </thead>
                 <tbody>
@@ -76,13 +71,6 @@
                             <p *ngIf="p.etat == 1">déja validé</p>
                             <p *ngIf="p.etat == 2">déja rejeté</p>
                         </td>
-                        <!-- <td *ngIf="user == 'AGN'" ><input *ngIf="p.etat == 0" type="checkbox"
-                            [checked]="p.etat"
-                            [(ngModel)]="p.etat"
-                            [value]="p.id" 
-                            (change)="checkIfAllSelected();"/>
-                            <p *ngIf="p.etat == 1">Validé</p>
-                        </td> -->
                     </tr>
                 </tbody>
                 

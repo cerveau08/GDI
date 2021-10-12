@@ -130,6 +130,7 @@ export class DetailinterComponent implements OnInit {
   structureManager: any;
   invalideNumber: string;
   videNumber: string;
+  listeFonction: any;
   constructor(private activeroute: ActivatedRoute,
               private modalService: ModalService,
               private otherService: OthersService,
@@ -151,7 +152,7 @@ export class DetailinterComponent implements OnInit {
             this.datedenaissance = this.dataInter.datedenaissance;
             this.lieudenaissance = this.dataInter.lieudenaissance;
             this.numeroPiece = this.dataInter.numeroPiece;
-            this.diplome = this.dataInter.diplome;
+            this.diplome = this.dataInter.diplomes;
             this.email = this.dataInter.email;
             this.adresse = this.dataInter.adresse;
             this.profession = this.dataInter.profession;
@@ -168,10 +169,10 @@ export class DetailinterComponent implements OnInit {
             this.dateSignature = this.dataInter.dateSignature;
             this.matricule = this.dataInter.matricule;
             this.sexe = this.dataInter.sexe;
-            this.photo = this.dataInter.photo;
+            this.photo = this.reqUrl + '/public/' + this.dataInter.photo;
             this.etat = this.dataInter.etat;
-            this.contratDoc = this.dataInter.fileContrat;
-            this.fichePosteDoc = this.dataInter.fileFichePoste;
+            this.contratDoc = this.reqUrl + '/public' + this.dataInter.fileContrat;
+            this.fichePosteDoc = this.reqUrl + '/public' + this.dataInter.fileFichePoste;
         }
       );
     })
@@ -306,6 +307,14 @@ export class DetailinterComponent implements OnInit {
   }
   public getContrat(prenom, nom) {
     this.fileSaver.saveUrl(this.contratDoc, 'contrat-de-' + prenom + '-' + nom);
+  }
+
+  public getDiplomes(prenom, nom, item) {
+    this.fileSaver.saveUrl(this.reqUrl + '/public' + item, 'diplomes-de-' + prenom + '-' + nom);
+    // this.diplome.forEach(element => {
+    //   console.log(element);
+    //   this.fileSaver.saveUrl(this.reqUrl + '/public' + element, 'diplomes-de-' + prenom + '-' + nom);
+    // });
   }
 
   public getFicheDePoste(prenom, nom) {
@@ -467,16 +476,6 @@ export class DetailinterComponent implements OnInit {
   }
 
   validerInterimaire() {
-    if(this.validerForm.value.telephone.length === 0) {
-      this.videNumber = 'Veuillez saisir votre numero de téléphone';
-    } else {
-      this.videNumber = '';
-    }
-    if(this.validerForm.value.telephone.length !== 0 && this.validerForm.controls.telephone.status == 'INVALID') {
-      this.invalideNumber = 'Le format de numéro que vous avez saisi est incorrecte';
-    } else {
-      this.invalideNumber = '';
-    }
     if(this.validerForm.valid) {
       this.otherService.validerInterimaire(this.validerForm.value, this.item).subscribe(
         data => {

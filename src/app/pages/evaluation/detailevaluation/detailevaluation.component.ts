@@ -110,7 +110,8 @@ export class DetailevaluationComponent implements OnInit {
               private errormodalService: ErrormodalService,
               public router: Router,
               private toastr: ToastrService,
-              private location: Location ) { 
+              private location: Location,
+              private fileSaver: NgxFileSaverService, ) { 
     this.activeroute.queryParams.subscribe(params => {
       this.item = JSON.parse(params["evaluation"]);
       if(this.role != 'INT') {
@@ -121,6 +122,8 @@ export class DetailevaluationComponent implements OnInit {
       this.otherService.getOneInterById(this.interim_id).subscribe(
         data =>{
           this.data = data;
+          console.log(data);
+          
           this.dataInter = this.data.data;
           this.nom = this.dataInter.nom;
           this.prenom = this.dataInter.prenom;
@@ -137,6 +140,8 @@ export class DetailevaluationComponent implements OnInit {
     this.otherService.getOneEvaluation(this.item, this.isEvaluated).subscribe(
       data =>{
         this.data = data;
+        console.log(data);
+        
         this.dataEvaluation = this.data.data;
         this.isUpdated = this.dataEvaluation.isUpdated;
         this.dateDebut = this.dataEvaluation.dateDebut;
@@ -146,6 +151,18 @@ export class DetailevaluationComponent implements OnInit {
         this.commentaire = this.dataEvaluation.commentaireManager;
         this.commentaireInterimaire = this.dataEvaluation.commentaireInterimaire;
         this.notation = this.dataEvaluation.notation;
+      }
+    )
+  }
+
+  extraire() {
+    this.otherService.extraireEvaluation(this.item).subscribe(
+      data => {
+        this.data = data;
+        this.successMsg = this.data.status
+        if(this.successMsg == true) {
+          this.fileSaver.saveUrl(this.reqUrl + data.data, 'ExtractionEvaluation' + '-' + this.prenom + '-' + this.nom);
+        }
       }
     )
   }

@@ -52,7 +52,6 @@
                     <th class="typ" id="prenom">Prenom</th>
                     <th class="typ" id="nom">Nom</th>
                     <th id="manager">Fonction</th>
-                    <th *ngIf="role != 'AGN'" id="direction">Direction</th>
                     <th *ngIf="role == 'DRH'" id="agence">Agence</th>
                     <th *ngIf="role == 'AGN'" id="direction">Email</th>
                     <th *ngIf="role == 'AGN'" id="direction">Téléphone</th>
@@ -69,7 +68,6 @@
                     <td (click)="openDetail(p.id)">{{p.prenom}}</td>
                     <td (click)="openDetail(p.id)">{{p.nom}}</td>
                     <td (click)="openDetail(p.id)">{{p.poste}}</td>
-                    <td *ngIf="role != 'AGN'" (click)="openDetail(p.id)">{{p.direction}}</td>
                     <td *ngIf="role == 'DRH'" (click)="openDetail(p.id)">{{p.agence}}</td>
                     <td *ngIf="role == 'AGN'" (click)="openDetail(p.id)">{{p.email}}</td>
                     <td *ngIf="role == 'AGN'" (click)="openDetail(p.id)">{{p.telephone}}</td>

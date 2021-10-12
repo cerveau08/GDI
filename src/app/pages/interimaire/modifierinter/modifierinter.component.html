@@ -116,6 +116,12 @@
                               <option *ngFor="let data of donneeService" [value]="data.id">{{data.libelle}}</option>
                             </select>
                           </div>
+                          <div class="contratinput2">
+                            <select class="select5" #departement [(ngModel)]="fonction" formControlName="fonction">
+                              <option class="option" [value]="fonction">{{fonction}}</option>
+                              <option *ngFor="let data of listeFonction" [value]="data.id">{{data.libelle}}</option>
+                            </select>
+                          </div>
                       </div>
                       </div>
                     </div>

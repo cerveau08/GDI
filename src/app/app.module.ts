@@ -132,6 +132,7 @@ import { ReconduireobjectifComponent } from './pages/evaluation/reconduireobject
 import { PeriodedetailComponent } from './pages/evaluation/periodedetail/periodedetail.component';
 import { ModifdetailComponent } from './pages/evaluation/modifdetail/modifdetail.component';
 import { ManagerEvaluComponent } from './pages/evaluation/manager-evalu/manager-evalu.component';
+import { LesnonattestationComponent } from './pages/attestation/lesnonattestation/lesnonattestation.component';
 
 @NgModule({
   declarations: [
@@ -236,6 +237,7 @@ import { ManagerEvaluComponent } from './pages/evaluation/manager-evalu/manager-
     PeriodedetailComponent,
     ModifdetailComponent,
     ManagerEvaluComponent,
+    LesnonattestationComponent,
   ],
   imports: [
     BrowserModule,

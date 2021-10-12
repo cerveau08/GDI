@@ -140,6 +140,8 @@ export class ModifierinterComponent implements OnInit {
   cvName: any;
   fichiervisiteContreVisiteUpload: any;
   visiteContreVisiteName: any;
+  listeFonction: any;
+  fonction: any;
   constructor(private activeroute: ActivatedRoute,
     private route: Router,
     private errormodalService: ErrormodalService,
@@ -165,6 +167,7 @@ export class ModifierinterComponent implements OnInit {
             this.lieuNaissance = this.dataInter.data.lieudenaissance;
             this.dateSignature = this.dataInter.data.contrat.dateSignature;
             this.sexe = this.dataInter.data.sexe;
+            this.fonction = this.dataInter.data.fonction;
             this.dateDebut = this.dataInter.data.contrat.dateDebut;
             this.dateFin = this.dataInter.data.contrat.dateFin;
             this.departementId = this.dataInter.data.structure.departement;
@@ -213,6 +216,7 @@ export class ModifierinterComponent implements OnInit {
         salaireBrut: new FormControl(''),
         structureId: new FormControl(''),
         directionId: new FormControl(''),
+        fonction: new FormControl(),
         societeId: new FormControl(''),
         departementId: new FormControl(''),
         filecontrat: new FormControl(''),
@@ -255,6 +259,7 @@ export class ModifierinterComponent implements OnInit {
         this.dataCategorie = data["data"];
       }
     );
+    this.otherService.getFonctions().subscribe(data => this.listeFonction = data.data);
   }
 
   backClicked() {
@@ -376,6 +381,7 @@ export class ModifierinterComponent implements OnInit {
       info.append("dateSignature",this.interForm.value.dateSignature);
     }
     info.append("poste",this.interForm.value.poste);
+    info.append("fonction",this.interForm.value.fonction);
     info.append("typePiece",this.interForm.value.typePiece);
     info.append("numeroPiece",this.interForm.value.numeroPiece);
     info.append("nom",this.interForm.value.nom);

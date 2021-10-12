@@ -75,6 +75,9 @@ export class DetailagenceComponent implements OnInit {
   errorMsg: any;
   dataMatriculeInter: any;
   successMsg: any;
+  nineaDoc: string;
+  rccmDoc: string;
+  cnidgDoc: string;
   constructor(private activeroute: ActivatedRoute,
     private modalService: ModalService,
     private toastr: ToastrService,
@@ -96,7 +99,10 @@ export class DetailagenceComponent implements OnInit {
           //  this.nomdg = this.dataAgence.nomdg;
             this.email = this.dataAgence.email;
             this.telephone = this.dataAgence.telephone;
-            this.contratDoc = this.dataAgence.contrat;
+            this.contratDoc = this.reqUrl + '/public' + this.dataAgence.contrat;
+            this.nineaDoc = this.reqUrl + '/public' + this.dataAgence.ninea;
+            this.rccmDoc = this.reqUrl + '/public' + this.dataAgence.rccm;
+            this.cnidgDoc = this.reqUrl + '/public' + this.dataAgence.cnidg;
             this.site = this.dataAgence.site;
             this.adresse = this.dataAgence.adresse;
             this.logo = this.dataAgence.logo;
@@ -288,8 +294,17 @@ export class DetailagenceComponent implements OnInit {
     this.cnidgName = this.fichierCnidg.name;
   }
 
-  public getfilemodal() {
-    this.fileSaver.saveUrl(this.contratDoc, 'contrat');
+  public getfilemodal(p) {
+    this.fileSaver.saveUrl(this.contratDoc, 'contrat-de-'+p);
+  }
+  public getfilemodalniea(p) {
+    this.fileSaver.saveUrl(this.nineaDoc, 'ninea-de-'+p);
+  }
+  public getfilemodalrccm(p) {
+    this.fileSaver.saveUrl(this.rccmDoc, 'rccm-de-'+p);
+  }
+  public getfilemodalcnidg(p) {
+    this.fileSaver.saveUrl(this.cnidgDoc, 'cnidg-de-'+p);
   }
 
   openModal(id: string) {

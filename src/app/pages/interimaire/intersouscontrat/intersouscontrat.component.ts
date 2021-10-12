@@ -261,7 +261,6 @@ export class IntersouscontratComponent implements OnInit {
         this.successMsg = this.data.status
         if(this.successMsg == true) {
           this.fileSaver.saveUrl(this.reqUrl + data.data, 'ExtractionInterimaireSousContrat' + '-' + this.date.getFullYear() + '-' + this.date.getMonth() + '-' + this.date.getDay() + '-' + this.date.getHours()+ '-' + this.date.getMinutes());
-         // window.open(this.reqUrl + this.data.data);
         }
       }
     )

@@ -10,6 +10,7 @@
         </div>
         <div class="content-bouton-reconduire-periode">
             <button *ngIf="role == 'MNG'" class="button-reconduire-objectif" (click)="reconduireobjectif();">Reconduire ces objectifs</button>
+            <button class="button-extraction-evaluation" (click)="extraire()" *ngIf="role == 'DRH'">Extraire</button>
         </div>
         <div class="grid-container" *ngIf="item">
             <div class="information">
@@ -51,26 +52,26 @@
                     <div class="content-evaluation" *ngFor="let p of notation ">
                         <p class="key-evaluation-head">
                             Titre: 
-                            <span class="value-evaluation-head">{{p.objectif.titre}} </span>
+                            <span class="value-evaluation-head">{{p.objectifTitre}} </span>
                         </p>
                         <p class="key-evaluation-head">
                             Description: 
-                            <span class="value-objectif-description">{{p.objectif.description}}</span>
+                            <span class="value-objectif-description">{{p.objectifDescription}}</span>
                         </p>
                         <div class="content-bareme-vc">
                             <p class="key-evaluation-head">
                                 Indicateur de mesure: 
-                                <span class="value-objectif-indicateur">{{p.objectif.indicateur}}</span>
+                                <span class="value-objectif-indicateur">{{p.objectifIndicateur}}</span>
                             </p>
                             <p class="key-evaluation-head">
                                 Valeur Cible: 
-                                <span class="value-objectif-description">{{p.objectif.valeurCible}}</span>
+                                <span class="value-objectif-description">{{p.objectifValeurCible}}</span>
                             </p>
                         </div>
                         <p class="key-evaluation">
                             Note: 
                             <span class="value-objectif-note">{{p.note}}</span>
-                            /{{p.objectif.bareme}}
+                            /{{p.objectifBareme}}
                         </p>
                         <p class="key-evaluation-commentaire">
                             Commentaire: 
