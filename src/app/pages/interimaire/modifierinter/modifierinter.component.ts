@@ -6,6 +6,7 @@ import { DataService } from 'src/app/service/data.service';
 import { OthersService } from 'src/app/services/others.service';
 import { ErrormodalService } from 'src/app/modal/_errormodals';
 import {Location} from '@angular/common';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-modifierinter',
@@ -144,8 +145,9 @@ export class ModifierinterComponent implements OnInit {
   fonction: any;
   poste: any;
   posteId: any;
+  public reqUrl = environment.base_url;
   constructor(private activeroute: ActivatedRoute,
-    private route: Router,
+    private router: Router,
     private errormodalService: ErrormodalService,
     private otherService: OthersService,
     private location: Location,
@@ -155,7 +157,7 @@ export class ModifierinterComponent implements OnInit {
         this.otherService.getOneInterById(this.item).subscribe(
           data =>{
             this.dataInter = data;
-            this.photo = this.dataInter.data.photo;
+            this.photo = this.reqUrl + '/public/' + this.dataInter.data.photo;
             this.prenom = this.dataInter.data.prenom;
             this.nom = this.dataInter.data.nom;
             this.adresse = this.dataInter.data.adresse;
@@ -421,6 +423,11 @@ export class ModifierinterComponent implements OnInit {
             this.toastr.success(this.data.message, 'Success', {
               timeOut: 3000,
             });
+            this.router.navigate(['accueil/detailinter'], {
+              queryParams: {
+                user: JSON.stringify(this.item)
+              }
+            })
           }
         }
       }, error=> {
