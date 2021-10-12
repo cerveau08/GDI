@@ -19,7 +19,7 @@
         </div>
         <div style="cursor: pointer;" class="profil d-flex">
           <div (click)="updown()">
-            <img class="img-profil" src="{{photo}}" alt="">
+            <img class="img-profil" src="{{reqUrl + '/public' + photo}}" alt="">
           </div>
           <div (click)="updown()" *ngIf="scrWidth>991" class="nom d-flex" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="10,20">
             {{prenom}}

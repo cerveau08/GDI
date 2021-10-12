@@ -7,6 +7,7 @@ import { Component, HostListener, OnInit } from '@angular/core';
 import { ApexAxisChartSeries, ApexChart, ApexDataLabels, ApexPlotOptions, ApexResponsive, ApexXAxis, ApexYAxis, ApexLegend, ApexFill, ChartComponent } from 'ng-apexcharts';
 import { ErrormodalService } from 'src/app/modal/_errormodals';
 import { FormGroup, FormControl } from '@angular/forms';
+import { environment } from 'src/environments/environment';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -142,7 +143,8 @@ export class HomeComponent implements OnInit {
         this.scrHeight = window.innerHeight;
         this.scrWidth = window.innerWidth;
   }
-
+  
+  public reqUrl = environment.base_url;
   constructor(private errormodalService: ErrormodalService,
     public router: Router,
     private otherService: OthersService,

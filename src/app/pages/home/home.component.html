@@ -255,7 +255,7 @@
                         <tr *ngFor="let p of dataInterFin | filter:filterterm | slice:0:3; let i = index"  (click)="openDetails(p.id)">
                             <td class="id1">{{p.id}}</td>
                             <td> {{p.prenom}} {{p.nom}}</td>
-                            <td *ngIf="scrWidth>991"><img alt="" class="photo" src="{{p.photo}}"></td>
+                            <td *ngIf="scrWidth>991"><img alt="" class="photo" src="{{reqUrl + '/public' + p.photo}}"></td>
                             <td>{{p.direction}}</td>
                             <td>{{p.agence}}</td>
                             <td> <div [style.background]="getColor(p)" class="statut"></div> <p class="stat" [style.color]="getColor(p)"> {{p.isAdmissible}}</p></td>
@@ -299,7 +299,7 @@
                 <div class="list-aside">
                     <div style="cursor: pointer;" class="grid-container-aside" [ngStyle]="{'border-bottom' : ((i > 2) ? 'none' : '1px solid #f5f6f9') }">
                         <div  class="item4-aside" >
-                            <img alt="" class="photo-aside" src="{{p.photo}}">
+                            <img alt="" class="photo-aside" src="{{reqUrl + '/public' + p.photo}}">
                         </div>
                         <div  class="item4-aside" >
                             <p class="prenom-aside"> {{p.prenom}} {{p.nom}} </p>
@@ -320,7 +320,7 @@
                 <div  class="manager-detail-aside">
                     <p class="dernier-aside">Manager</p>
                     <div class="manager-aside">
-                    <img src="{{photoManager}}" alt="">
+                    <img src="{{reqUrl + 'public' + photoManager}}" alt="">
                     </div>
                     <p class="nom-aside">{{prenomManager}} {{nomManager}}</p>
                     <p class="postem-aside">{{posteManager}}</p>
