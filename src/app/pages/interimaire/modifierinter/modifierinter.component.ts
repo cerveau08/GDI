@@ -142,6 +142,8 @@ export class ModifierinterComponent implements OnInit {
   visiteContreVisiteName: any;
   listeFonction: any;
   fonction: any;
+  poste: any;
+  posteId: any;
   constructor(private activeroute: ActivatedRoute,
     private route: Router,
     private errormodalService: ErrormodalService,
@@ -167,7 +169,7 @@ export class ModifierinterComponent implements OnInit {
             this.lieuNaissance = this.dataInter.data.lieudenaissance;
             this.dateSignature = this.dataInter.data.contrat.dateSignature;
             this.sexe = this.dataInter.data.sexe;
-            this.fonction = this.dataInter.data.fonction;
+            this.fonction = this.dataInter.data.posteId;
             this.dateDebut = this.dataInter.data.contrat.dateDebut;
             this.dateFin = this.dataInter.data.contrat.dateFin;
             this.departementId = this.dataInter.data.structure.departement;
@@ -189,6 +191,7 @@ export class ModifierinterComponent implements OnInit {
             this.fileVisiteContreVisite = this.dataInter.data.fileVisiteContreVisite;
             this.universite = this.dataInter.data.universite;
             this.agence = this.dataInter.data.agence;
+            this.poste = this.dataInter.data.poste;
           }
         );
       })

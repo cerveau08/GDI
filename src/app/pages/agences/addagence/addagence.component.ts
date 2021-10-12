@@ -149,7 +149,6 @@ export class AddagenceComponent implements OnInit {
 
   getLogo(e:any) {
     this.logo= e.files.item(0);
-
     let reader = new FileReader();
     reader.readAsDataURL( this.logo)
     reader.onload= ()=>{

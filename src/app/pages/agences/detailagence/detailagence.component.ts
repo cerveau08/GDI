@@ -96,7 +96,6 @@ export class DetailagenceComponent implements OnInit {
             this.nom = this.dataAgence.nom;
             this.responsable  = this.dataAgence.responsable;
             this.numDg = this.dataAgence.numDg;
-          //  this.nomdg = this.dataAgence.nomdg;
             this.email = this.dataAgence.email;
             this.telephone = this.dataAgence.telephone;
             this.contratDoc = this.reqUrl + '/public' + this.dataAgence.contrat;
@@ -270,17 +269,6 @@ export class DetailagenceComponent implements OnInit {
     reader.onload= ()=>{
       this.image= reader.result
     } 
-  }
-
-  //recuperer image pour add user
-  getphoto(event: any) {
-    this.fichierPhoto = event.target.files[0];
-    this.imageName = this.fichierPhoto.name;
-    let reader = new FileReader();
-    reader.readAsDataURL( this.fichierPhoto);
-    reader.onload= ()=>{
-      this.image= reader.result;
-    }
   }
  
    //recuperation du  contrat

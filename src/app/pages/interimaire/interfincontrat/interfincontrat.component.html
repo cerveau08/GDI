@@ -53,18 +53,8 @@
         <table style="overflow-x:auto;"aria-describedby = "mydesc" >
             <thead>
                 <tr class="head">
-                    <th class="typ" id="prenom">
-                        <div class="type">
-                            <p>Prenom</p> 
-                            <mat-icon class="updown" fontSet="material-icons-outlined">unfold_more</mat-icon>
-                        </div>
-                    </th>
-                    <th class="typ" id="nom">
-                        <div class="type2">
-                            <p>Nom</p> 
-                            <mat-icon class="updown" fontSet="material-icons-outlined">unfold_more</mat-icon>
-                        </div>
-                    </th>
+                    <th class="typ" id="prenom">Prenom</th>
+                    <th class="typ" id="nom">Nom</th>
                     <th *ngIf="user != 'MNG' && scrWidth>991"  id="manager">Manager</th>
                     <th  id="agence">Poste</th>
                     <th *ngIf="user != 'MNG'" id="direction">Direction</th>

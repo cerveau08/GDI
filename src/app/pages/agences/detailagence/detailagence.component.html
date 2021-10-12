@@ -158,8 +158,8 @@
                 <div >
                     <div class="grid">
                         <div class="photo">
-                            <img alt="" *ngIf="!url1==true" src="{{image}}">
-                            <img alt="" *ngIf="url1" [src]="url1" height="60">
+                            <img class="image-update" alt="" *ngIf="image" src="{{image}}">
+                            <img class="image-update" alt="" *ngIf="!image" [src]="reqUrl + '/public/' + logo" height="60">
                             <input formControlName="logo" class="buttonphoto1" type="file" (change)="getPhoto($event.target)" >
                         </div>
                         <div class="others">
@@ -222,7 +222,7 @@
                         <div class="image">
                             <div *ngIf="!image" class="content-image-upload"></div>
                             <img class="image-manager" *ngIf="image" [src]="image" alt="">
-                            <input formControlName="avatarUser" class="buttonphoto1" type="file" (change)="getphoto($event)">
+                            <input formControlName="avatarUser" class="buttonphoto1" type="file" (change)="getPhoto($event)">
                         </div>
                         <div>
                             <div class="infoinput2">
