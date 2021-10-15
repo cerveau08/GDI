@@ -61,9 +61,9 @@
                         <td style="cursor: pointer;" (click)="openDetail(p.id)">{{p.dateFin  | date:'MMMM yyyy'}}</td>
                         <td style="cursor: pointer;"  (click)="openDetail(p.id)">{{p.nombreJourAbscence}} jours</td>
                         <td style="cursor: pointer;" (click)="openDetail(p.id)">
-                            <span class="status-attestation-attente" *ngIf="p.statut == 'EN ATTENTE'">{{p.statut}}</span>
-                            <span class="status-attestation-valider" *ngIf="p.statut == 'VALIDER'">{{p.statut}}</span>
-                            <span class="status-attestation-rejeter" *ngIf="p.statut == 'REJETER'">{{p.statut}}</span>
+                            <span class="status-attestation-attente" *ngIf="p.etat == 0">en attente</span>
+                            <span class="status-attestation-valider" *ngIf="p.etat == 1">validé</span>
+                            <span class="status-attestation-rejeter" *ngIf="p.etat == 2">rejeté</span>
                         </td>
                         <td>
                             <button (click)="valider(p.reference)" *ngIf="p.etat == 0" class="valider-attestation">Valider</button>

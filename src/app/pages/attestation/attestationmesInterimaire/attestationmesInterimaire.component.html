@@ -59,7 +59,11 @@
                         <td *ngIf="user != 'AGN' && user != 'INT'" >{{p.agence}}</td>
                         <td >{{p.dateFin  | date:'MMMM yyyy'}}</td>
                         <td  >{{p.nombreJourAbscence}} jours</td>
-                        <td>{{p.statut}}</td>
+                        <td>
+                            <span class="status-attestation-attente" *ngIf="p.etat == 0">en attente</span>
+                            <span class="status-attestation-valider" *ngIf="p.etat == 1">validé</span>
+                            <span class="status-attestation-rejeter" *ngIf="p.etat == 2">rejeté</span>
+                        </td>
                     </tr>
                 </tbody>
             </table>

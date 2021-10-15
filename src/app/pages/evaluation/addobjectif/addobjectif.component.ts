@@ -43,8 +43,6 @@ export class AddobjectifComponent implements OnInit {
   showAdd = true;
   constructor(private otherService: OthersService,
     private activeroute: ActivatedRoute,
-    private errormodalService: ErrormodalService,
-    private http: HttpClient,
     private router: Router,
     private location: Location,
     private formBuilder: FormBuilder,
