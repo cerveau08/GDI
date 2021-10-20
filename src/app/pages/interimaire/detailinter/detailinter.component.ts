@@ -131,6 +131,7 @@ export class DetailinterComponent implements OnInit {
   invalideNumber: string;
   videNumber: string;
   listeFonction: any;
+  idcontrat: any;
   constructor(private activeroute: ActivatedRoute,
               private modalService: ModalService,
               private otherService: OthersService,
@@ -161,6 +162,7 @@ export class DetailinterComponent implements OnInit {
             this.telephone = this.dataInter.telephone;
             this.universite = this.dataInter.universite;
             this.sitmat = this.dataInter.sitmat;
+            this.idcontrat = this.dataInter.contrat.id;
             this.direction = this.dataInter.direction;
             this.departement = this.dataInter.departement;
             this.service = this.dataInter.service;
@@ -348,6 +350,15 @@ export class DetailinterComponent implements OnInit {
 
   closeModal(id: string) {
     this.modalService.close(id);
+  }
+
+  openDocuments(idcontrat) {
+    this.router.navigate(['accueil/detailcontrat'], {
+      queryParams: {
+        contrat: JSON.stringify(idcontrat),
+        interimaire: JSON.stringify(this.item)
+      }
+    })
   }
 
   modifierInter() {

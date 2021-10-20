@@ -1,3 +1,4 @@
+import { DocumentsComponent } from './pages/settings/documents/documents.component';
 import { LesnonattestationComponent } from './pages/attestation/lesnonattestation/lesnonattestation.component';
 import { ManagerEvaluComponent } from './pages/evaluation/manager-evalu/manager-evalu.component';
 import { PeriodedetailComponent } from './pages/evaluation/periodedetail/periodedetail.component';
@@ -485,6 +486,9 @@ const routes: Routes = [
         canActivate: [AuthGuard]
       },{ path: 'managerevalu',
         component: ManagerEvaluComponent,
+        canActivate: [AuthGuard]
+      },{ path: 'adddocument',
+        component: DocumentsComponent,
         canActivate: [AuthGuard]
       },
       {

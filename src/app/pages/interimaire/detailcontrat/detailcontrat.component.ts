@@ -3,7 +3,6 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { environment } from 'src/environments/environment';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ModalService } from 'src/app/modal/_modal';
-import { DataService } from 'src/app/service/data.service';
 import { OthersService } from 'src/app/services/others.service';
 import { NgxFileSaverService } from '@clemox/ngx-file-saver';
 import { ErrormodalService } from 'src/app/modal/_errormodals';
@@ -182,7 +181,16 @@ export class DetailcontratComponent implements OnInit {
   objectif() {
     this.router.navigate(['accueil/objectif'], {
       queryParams: {
-        interimaire: JSON.stringify(this.item)
+        interimaire: JSON.stringify(this.interim_id)
+      }
+    })
+  } 
+
+  adddocument() {
+    this.router.navigate(['accueil/adddocument'], {
+      queryParams: {
+        interimaire: JSON.stringify(this.interim_id),
+        contrat: JSON.stringify(this.item)
       }
     })
   } 

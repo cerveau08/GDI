@@ -32,6 +32,9 @@
                     <button id="button" class="buttoncv" (click)="readFile(documents.fileContrat)">Cv</button>
                     <button id="button" class="buttonvisite" (click)="readFile(documents.fileContrat)">Certificat Visite Contre Viste</button>
                 </div>
+                <div class="content-add-document">
+                    <button (click)="adddocument()" class="add-new-doc">ajouter un document</button>
+                </div>
             </div>
             <div class="info-evaluation">
                     <pdf-viewer [src]="fileRead"
@@ -42,30 +45,6 @@
                     <div class="btns2">
                         <button (click)="getFile(fileRead)"  class="btn2">Télécharger</button>
                     </div>
-                <!-- <div class="content-evaluation" *ngFor="let p of evaluations | paginate: {  itemsPerPage: itemsPerPage,
-                    currentPage: page,
-                    totalItems: totalItems
-                    }; let i = index">
-                    <p class="key-evaluation-head">
-                        Évaluation du: 
-                        <span class="value-evaluation-head">{{p.dateDebut | date:'dd MMMM yyyy'}} </span>
-                         au 
-                        <span class="value-evaluation-head"> {{p.dateFin | date:'dd MMMM yyyy'}} </span>
-                    </p>
-                    <p class="key-evaluation">
-                        Note Globale: 
-                        <span class="value-evaluation-note">{{p.note}} </span>
-                    </p>
-                    <p class="key-evaluation-commentaire">
-                        Commentaire: 
-                        <span class="value-commentaire">
-                            {{p.commentaire}}
-                        </span>
-                    </p>
-                </div>
-                <div class="pagination">
-                    <pagination-controls (pageChange)="gty(page = $event)" previousLabel="Précédent" nextLabel="Suivant"></pagination-controls>
-                </div> -->
             </div>
         </div>
     </div>

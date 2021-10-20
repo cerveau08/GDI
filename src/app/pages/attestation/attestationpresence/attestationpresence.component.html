@@ -52,7 +52,7 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let p of dataAttest | filter:filterterm | paginate: { 
-                        itemsPerPage: 8, currentPage: p }; let i = index" >
+                        itemsPerPage: 10, currentPage: p }; let i = index" >
                         <td style="cursor: pointer;" (click)="openDetail(p.id)">{{p.matricule}}</td>
                         <td style="cursor: pointer;" (click)="openDetail(p.id)">{{p.prenom}}</td>
                         <td style="cursor: pointer;" (click)="openDetail(p.id)">{{p.nom}}</td>
@@ -68,8 +68,8 @@
                         <td>
                             <button (click)="valider(p.reference)" *ngIf="p.etat == 0" class="valider-attestation">Valider</button>
                             <button (click)="rejeter(p.reference)" *ngIf="p.etat == 0" class="rejeter-attestation">Rejeter</button>
-                            <p *ngIf="p.etat == 1">déja validé</p>
-                            <p *ngIf="p.etat == 2">déja rejeté</p>
+                            <span *ngIf="p.etat == 1">déja validé</span>
+                            <span *ngIf="p.etat == 2">déja rejeté</span>
                         </td>
                     </tr>
                 </tbody>

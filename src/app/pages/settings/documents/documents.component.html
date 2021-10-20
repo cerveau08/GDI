@@ -1,0 +1,43 @@
+<div class="all-container">
+    <div class="compte">
+        <div class="content-header">
+            <div class="content-details">
+                <div class="content-header-page">
+                    <mat-icon class="bouton-retour" (click)="backClicked()">arrow_back</mat-icon>
+                    <p class="detail">Ajouter un document pour {{prenom}} {{nom}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="grid-container" *ngIf="item">
+            <div class="information" [formGroup]="documentForm">
+                <div class="info-form">
+                    <div class="content-input">
+                        <p class="label-input-doc">Type de document</p>
+                        <select class="select-input-form" #entite formControlName="typeDocumentId">
+                            <option class="option" value="" disabled selected hidden>type document</option>
+                            <option *ngFor="let data of dataTypeDocument" [value]="data.id">{{data.libelle}}</option>
+                        </select>
+                    </div>
+                    <div class="content-input">
+                        <p class="label-input-doc">Document</p>
+                        <input class="upload-doc" type="file" (change)="addDocument($event.target)">
+                        <p class="nom-document-uploader">{{filename}}</p>
+                    </div>
+                </div>
+                <div class="content-button-upload">
+                    <button (click)="submit()" class="button-enregistrer">enregistrer</button>
+                </div>
+            </div>
+            <div class="info-evaluation">
+                    <pdf-viewer [src]="fileRead"
+                    [render-text]="true"
+                    [autoresize]="true"
+                    [original-size]="false"
+                    ></pdf-viewer>
+                    <div class="btns2">
+                        <button (click)="getFile(fileRead)"  class="btn2">Télécharger</button>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>

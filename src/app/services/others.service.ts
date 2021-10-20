@@ -295,6 +295,12 @@ addAgence(data) {
   extraireEvaluation(id: number){
     return this.http.get<any>(`${this.reqUrl}/extracEvaluation/${id}`);
   }
+  addDocument(data:any): Observable<any> {
+    return this.http.post<any>(`${this.reqUrl}/document/add`, data);
+  }
+  getTypeDocuments() {
+    return this.http.get<any>(`${this.reqUrl}/typeDocuments`);
+  }
   getListAttestation() {
     return this.http.get<any>(`${this.reqUrl}/listeAttestation`);
   }

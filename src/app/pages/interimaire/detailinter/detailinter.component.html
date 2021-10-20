@@ -72,9 +72,10 @@
         <div class="lesbouton">
             <button class="button1" (click)="openModal('custom-modal-1')">Contrat</button>
             <button class="button3" (click)="openModal('custom-modal-3')">Fiche de poste</button>
-            <button class="button2" (click)="openModal('custom-modal-88')">Les diplomes</button>
-            <button class="buttonEvaluation" (click)="evaluation()">Evaluations</button>
-            <button class="button2" (click)="objectif()">Période des objectifs</button>
+            <button id="button-head" class="button2" (click)="openDocuments(idcontrat)">Autres documents</button>
+            <!-- <button class="button2" (click)="openModal('custom-modal-88')">Les diplomes</button> -->
+            <button id="button-head" class="buttonEvaluation" (click)="evaluation()">Evaluations</button>
+            <button id="button-head" class="button2" (click)="objectif()">Période des objectifs</button>
         </div>
         <div class="lesbouton" >
             <button class="button-historique" (click)="historiqueContrat()">Historique Contrat</button>

@@ -133,6 +133,7 @@ import { PeriodedetailComponent } from './pages/evaluation/periodedetail/periode
 import { ModifdetailComponent } from './pages/evaluation/modifdetail/modifdetail.component';
 import { ManagerEvaluComponent } from './pages/evaluation/manager-evalu/manager-evalu.component';
 import { LesnonattestationComponent } from './pages/attestation/lesnonattestation/lesnonattestation.component';
+import { DocumentsComponent } from './pages/settings/documents/documents.component';
 
 @NgModule({
   declarations: [
@@ -238,6 +239,7 @@ import { LesnonattestationComponent } from './pages/attestation/lesnonattestatio
     ModifdetailComponent,
     ManagerEvaluComponent,
     LesnonattestationComponent,
+    DocumentsComponent,
   ],
   imports: [
     BrowserModule,
