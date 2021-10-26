@@ -1,3 +1,4 @@
+import { ExtractionlisteComponent } from './pages/evaluation/extractionliste/extractionliste.component';
 import { DocumentsComponent } from './pages/settings/documents/documents.component';
 import { LesnonattestationComponent } from './pages/attestation/lesnonattestation/lesnonattestation.component';
 import { ManagerEvaluComponent } from './pages/evaluation/manager-evalu/manager-evalu.component';
@@ -489,6 +490,9 @@ const routes: Routes = [
         canActivate: [AuthGuard]
       },{ path: 'adddocument',
         component: DocumentsComponent,
+        canActivate: [AuthGuard]
+      },{ path: 'extractevaluation',
+        component: ExtractionlisteComponent,
         canActivate: [AuthGuard]
       },
       {

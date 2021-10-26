@@ -1,11 +1,9 @@
 import { ToastrService } from 'ngx-toastr';
 import { Component, OnInit, HostListener, ViewChild, ElementRef } from '@angular/core';
-import { NgxFileSaverService } from '@clemox/ngx-file-saver';
 import { ModalService } from 'src/app/modal/_modal/modal.service';
 import { FormGroup, FormControl } from '@angular/forms';
 import { ErrormodalService } from 'src/app/modal/_errormodals';
 import { environment } from 'src/environments/environment';
-import { HttpClient } from '@angular/common/http';
 import { OthersService } from 'src/app/services/others.service';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';

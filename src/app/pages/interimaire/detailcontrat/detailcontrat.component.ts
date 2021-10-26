@@ -8,6 +8,7 @@ import { NgxFileSaverService } from '@clemox/ngx-file-saver';
 import { ErrormodalService } from 'src/app/modal/_errormodals';
 import { HttpClient } from '@angular/common/http';
 import {Location} from '@angular/common';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-detailcontrat',
@@ -58,6 +59,7 @@ export class DetailcontratComponent implements OnInit {
   dateSignature;
   universite;
   sexe;
+  documentUpdateForm: FormGroup;
   contratForm: FormGroup;
   arretForm: FormGroup;
   bannirForm: FormGroup;
@@ -95,30 +97,66 @@ export class DetailcontratComponent implements OnInit {
   totalItems: any;
   interim_id: any;
   procesVerbal;
+  documentForm: FormGroup;
   doc = '../../../../assets/doc/2.pdf';
   documents: any;
   fileRead = '../../../../assets/doc/GDI_GestionDesInterimaires.pdf';
+  document: any;
+  successMsg: any;
+  filename: any;
+  typeDocumentId: any;
+  dataTypeDocument: any;
+  idFile: any;
+  documentUp: any;
+  filenameUp: any;
+  contratFile: any;
+  procesVerbalFile: any;
+  ficheDePosteFile: any;
+  cvFile: any;
+  visiteContreVisiteFile: any;
   constructor(private activeroute: ActivatedRoute,
               private modalService: ModalService,
               private otherService: OthersService,
               private fileSaver: NgxFileSaverService,
               private http: HttpClient,
+              private toastr: ToastrService,
               private location: Location,
               private errormodalService: ErrormodalService,
               public router: Router,) { 
     this.activeroute.queryParams.subscribe(params => {
       this.item = JSON.parse(params["contrat"]);
       this.interim_id = JSON.parse(params["interimaire"]);
-      this.otherService.getOneInterById(this.interim_id).subscribe(
-          data =>{
-            this.data = data;
-            this.dataInter = this.data.data;
-            this.nom = this.dataInter.nom;
-            this.prenom = this.dataInter.prenom;
-        }
-      );
     })
-
+    
+  }
+  ngOnInit() {
+    this.documentForm = new FormGroup({
+      interimareId: new FormControl(''),
+      typeDocumentId: new FormControl(''),
+      document: new FormControl(''),
+      contratId: new FormControl('')
+    })
+    this.documentUpdateForm = new FormGroup({
+      interim_id: new FormControl(''),
+      typeDocument_id: new FormControl(''),
+      documentFile: new FormControl(''),
+      contratId: new FormControl('')
+    })
+    this.role = localStorage.getItem('user')
+    this.gty(this.page);
+    this.otherService.getTypeDocuments().subscribe(
+      result=>{
+        this.dataTypeDocument = result.data;
+      }
+    );
+    this.otherService.getOneInterById(this.interim_id).subscribe(
+        data =>{
+          this.data = data;
+          this.dataInter = this.data.data;
+          this.nom = this.dataInter.nom;
+          this.prenom = this.dataInter.prenom;
+      }
+    );
     this.otherService.getContratById(this.item).subscribe(
       data =>{
         this.data = data;
@@ -133,12 +171,75 @@ export class DetailcontratComponent implements OnInit {
         this.categorie = this.dataContrat.categorie;
         this.domaine = this.dataContrat.domaine;
         this.documents = this.dataContrat.documents;
-      })
-    
+        this.contratFile = this.dataContrat.documents.fileContrat;
+        this.procesVerbalFile = this.dataContrat.documents.fileProcesVerbal;
+        this.ficheDePosteFile = this.dataContrat.documents.fileFicheDePoste;
+        this.cvFile = this.dataContrat.documents.fileCV;
+        this.contratFile = this.dataContrat.documents.fileContrat;
+        this.visiteContreVisiteFile = this.dataContrat.documents.fileVisiteContreVisite;
+        
+      }
+    );
   }
-  ngOnInit() {
-    this.role = localStorage.getItem('user')
-    this.gty(this.page)
+
+  addDocument(e: any) {
+    this.document = e.files.item(0);
+    this.filename = this.document.name;
+  }
+
+  addUpDocument(e: any) {
+    this.documentUp = e.files.item(0);
+    this.filenameUp = this.documentUp.name;
+  }
+
+  submit() {
+    const value = this.documentForm.value;
+    const info = new FormData();
+    info.append("interimaireId", this.interim_id);
+    info.append("typeDocumentId",value.typeDocumentId);
+    info.append("contratId", this.item);
+    info.append("document",this.document);
+    this.otherService.addDocument(info).subscribe(
+      data => {
+        this.data = data;
+        this.successMsg = this.data.status;
+        if (this.successMsg == true) {
+          this.ngOnInit();
+          this.closeModal('custom-modal-3');
+        }
+      },
+      error=> {
+        this.errorMsg = error;
+        this.toastr.error(this.errorMsg, 'Echec', {
+          timeOut: 5000,
+        });
+      }
+    ) 
+  }
+
+  updateDoc(id) {
+    const value = this.documentUpdateForm.value;
+    const info = new FormData();
+    info.append("interim_id", this.interim_id);
+    info.append("typeDocument_id",value.typeDocument_id);
+    info.append("contratId", this.item);
+    info.append("documentFile",this.documentUp);
+    this.otherService.updateDocument(id, info).subscribe(
+      data => {
+        this.data = data;
+        this.successMsg = this.data.status;
+        if (this.successMsg == true) {
+          this.ngOnInit();
+          this.closeModal('custom-modal-4');
+        }
+      },
+      error=> {
+        this.errorMsg = error;
+        this.toastr.error(this.errorMsg, 'Echec', {
+          timeOut: 5000,
+        });
+      }
+    ) 
   }
 
   backClicked() {
@@ -153,8 +254,9 @@ export class DetailcontratComponent implements OnInit {
     })
   }
   
-  readFile(p) {
+  readFile(p, q) {
     this.fileRead = p;
+    this.idFile = q;
   }
 
   public getFile(p) {
@@ -172,6 +274,11 @@ export class DetailcontratComponent implements OnInit {
 
   openModal(id: string) {
     this.modalService.open(id);
+  }
+
+  openUpModal(id: string, q) {
+    this.modalService.open(id);
+    console.log(q);
   }
 
   closeModal(id: string) {

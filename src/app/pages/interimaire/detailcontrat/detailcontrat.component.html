@@ -26,25 +26,35 @@
                 </div>
                 <div class="lesbouton">
                     <p class="liste-document-contrat">Les documents</p>
-                    <button id="button" class="button1" (click)="readFile(documents.fileContrat)">Contrat</button>
-                    <button id="button" class="button2" (click)="readFile(documents.fileProcesVerbal)">Procés Verbal</button>
-                    <button id="button" class="button3" (click)="readFile(documents.fileFicheDePoste)">Fiche de poste</button>
-                    <button id="button" class="buttoncv" (click)="readFile(documents.fileContrat)">Cv</button>
-                    <button id="button" class="buttonvisite" (click)="readFile(documents.fileContrat)">Certificat Visite Contre Viste</button>
+                    <button id="button" *ngIf="contratFile" class="button1" (click)="readFile(documents.fileContrat.file, documents.fileContrat.id)">Contrat</button>
+                    <button id="button" *ngIf="procesVerbalFile" class="button2" (click)="readFile(documents.fileProcesVerbal.file, documents.fileProcesVerbal.id)">Procés Verbal</button>
+                    <button id="button" *ngIf="ficheDePosteFile" class="button3" (click)="readFile(documents.fileFicheDePoste.file, documents.fileFicheDePoste.id)">Fiche de poste</button>
+                    <button id="button" *ngIf="cvFile" class="buttoncv" (click)="readFile(documents.fileCV.file, documents.fileCV.id)">Cv</button>
+                    <button id="button" *ngIf="visiteContreVisiteFile" class="buttonvisite" (click)="readFile(documents.fileVisiteContreVisite.file, documents.fileVisiteContreVisite.id)">Certificat Visite Contre Viste</button>
+                </div>
+                <hr class="ligne-separateur">
+                <div>
+                    <p class="label-non-document">Les documents restants</p>
+                    <button id="button" *ngIf="!contratFile" class="button1" (click)="readFile(documents.fileContrat.file, documents.fileContrat.id)">Contrat</button>
+                    <button id="button" *ngIf="!procesVerbalFile" class="button2" (click)="readFile(documents.fileProcesVerbal.file, documents.fileProcesVerbal.id)">Procés Verbal</button>
+                    <button id="button" *ngIf="!ficheDePosteFile" class="button3" (click)="readFile(documents.fileFicheDePoste.file, documents.fileFicheDePoste.id)">Fiche de poste</button>
+                    <button id="button" *ngIf="!cvFile" class="buttoncv" (click)="readFile(documents.fileCV.file, documents.fileCV.id)">Cv</button>
+                    <button id="button" *ngIf="!visiteContreVisiteFile" class="buttonvisite" (click)="readFile(documents.fileVisiteContreVisite.file, documents.fileVisiteContreVisite.id)">Certificat Visite Contre Viste</button>
                 </div>
                 <div class="content-add-document">
-                    <button (click)="adddocument()" class="add-new-doc">ajouter un document</button>
+                    <button (click)="openModal('custom-modal-3');" class="add-new-doc">ajouter un document</button>
                 </div>
             </div>
             <div class="info-evaluation">
-                    <pdf-viewer [src]="fileRead"
-                    [render-text]="true"
-                    [autoresize]="true"
-                    [original-size]="false"
-                    ></pdf-viewer>
-                    <div class="btns2">
-                        <button (click)="getFile(fileRead)"  class="btn2">Télécharger</button>
-                    </div>
+                <pdf-viewer [src]="reqUrl + '/public' + fileRead"
+                [render-text]="true"
+                [autoresize]="true"
+                [original-size]="false"
+                ></pdf-viewer>
+                <div class="btns2">
+                    <button (click)="getFile(fileRead)" class="btn2">Télécharger</button>
+                    <button *ngIf="idFile" (click)="openUpModal('custom-modal-4', idFile);" class="btn2">Modifier</button>
+                </div>
             </div>
         </div>
     </div>
@@ -89,14 +99,52 @@
     <jw-modal id="custom-modal-3">
         <div class="tableau">
             <mat-icon style="cursor: pointer;" (click)="closeModal('custom-modal-3');" class="clear">clear</mat-icon>
-            <p class="dtl1">Fiche de Poste de {{prenom}} {{nom}}</p>
-            <pdf-viewer [src]="fichePosteDoc"
-              [render-text]="true"
-              [autoresize]="true"
-              [original-size]="false"
-            ></pdf-viewer>
-            <div class="btns3">
-                <button (click)="getFicheDePoste()"  class="btn2">Télécharger</button>
+            <p class="dtl1">Ajouter un document pour {{prenom}} {{nom}}</p>
+            <div class="information" [formGroup]="documentForm">
+                <div class="info-form">
+                    <div class="content-input">
+                        <p class="label-input-doc">Type de document</p>
+                        <select class="select-input-form" #entite formControlName="typeDocumentId">
+                            <option class="option" value="" disabled selected hidden>type document</option>
+                            <option *ngFor="let data of dataTypeDocument" [value]="data.id">{{data.libelle}}</option>
+                        </select>
+                    </div>
+                    <div class="content-input-file">
+                        <input class="upload-doc" type="file" id="uploader" (change)="addDocument($event.target)">
+                    </div>
+                    <p class="nom-document-uploader">{{filename}}</p>
+                </div>
+                <div class="content-button-upload">
+                    <button (click)="submit()" class="button-enregistrer">enregistrer</button>
+                </div>
+            </div>
+        </div>
+    </jw-modal>
+</div>
+
+<!--modal4-->
+<div class="modal">
+    <jw-modal id="custom-modal-4">
+        <div class="tableau">
+            <mat-icon style="cursor: pointer;" (click)="closeModal('custom-modal-4');" class="clear">clear</mat-icon>
+            <p class="dtl1">Modification d'un document</p>
+            <div class="information" [formGroup]="documentUpdateForm">
+                <div class="info-form">
+                    <div class="content-input">
+                        <p class="label-input-doc">Type de document</p>
+                        <select class="select-input-form" #entite [(ngModel)]="typeDocument_id" formControlName="typeDocument_id">
+                            <option class="option" value="" disabled selected hidden>type document</option>
+                            <option *ngFor="let data of dataTypeDocument" [value]="data.id">{{data.libelle}}</option>
+                        </select>
+                    </div>
+                    <div class="content-input-file">
+                        <input class="upload-doc" type="file" id="uploader" (change)="addUpDocument($event.target)">
+                    </div>
+                    <p class="nom-document-uploader">{{filenameUp}}</p>
+                </div>
+                <div class="content-button-upload">
+                    <button (click)="updateDoc(idFile)" class="button-enregistrer">enregistrer</button>
+                </div>
             </div>
         </div>
     </jw-modal>
@@ -118,4 +166,4 @@
             </div>
         </div>
     </sonatel-pma-errormodal>
-  </div>
+</div>

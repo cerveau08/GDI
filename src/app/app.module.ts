@@ -134,6 +134,7 @@ import { ModifdetailComponent } from './pages/evaluation/modifdetail/modifdetail
 import { ManagerEvaluComponent } from './pages/evaluation/manager-evalu/manager-evalu.component';
 import { LesnonattestationComponent } from './pages/attestation/lesnonattestation/lesnonattestation.component';
 import { DocumentsComponent } from './pages/settings/documents/documents.component';
+import { ExtractionlisteComponent } from './pages/evaluation/extractionliste/extractionliste.component';
 
 @NgModule({
   declarations: [
@@ -240,6 +241,7 @@ import { DocumentsComponent } from './pages/settings/documents/documents.compone
     ManagerEvaluComponent,
     LesnonattestationComponent,
     DocumentsComponent,
+    ExtractionlisteComponent,
   ],
   imports: [
     BrowserModule,

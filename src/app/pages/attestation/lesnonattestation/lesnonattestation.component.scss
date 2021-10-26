@@ -56,7 +56,7 @@
 .exporter{
     position: absolute;
     right: 0;
-    top: 20px;
+    top: 10px;
 }
 .content-input-extraction{
     display: flex;
@@ -91,7 +91,7 @@
 table {
     border-collapse: collapse;;
     width: 100%;
-    margin-top: 15px;
+    margin-top: 55px;
 }
   
   th {
@@ -120,6 +120,9 @@ table {
     border-radius: 100%;
     margin-top: 20px;
   }
+tr:hover{
+    background-color: #f5f6f9;
+}
   .head{
       background-color: #f5f6f9;
   }

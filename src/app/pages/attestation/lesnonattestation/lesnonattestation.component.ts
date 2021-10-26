@@ -30,7 +30,6 @@ export class LesnonattestationComponent implements OnInit {
   page = 1;
   demandeForm: FormGroup;
   itemsPerPage = 10;
-  lastTenYear;
   totalItems : any;
   user;
   public reqUrl = environment.base_url;
@@ -84,6 +83,7 @@ export class LesnonattestationComponent implements OnInit {
       libelle: "decembre",
     },
   ];
+  lastTenYear;
   scrHeight:any;
   scrWidth:any;
   public annee = null;
@@ -106,13 +106,41 @@ export class LesnonattestationComponent implements OnInit {
               }
 
   ngOnInit() {
-
+    this.filterForm = new FormGroup({
+      mois: new FormControl(''),
+      annee: new FormControl('')
+    })
     this.user = localStorage.getItem('user');
     this.gty(this.page);
+    this.lastTenYear = [
+      {
+        annee: this.currentDate
+      },{
+        annee: this.currentDate - 1
+      },{
+        annee: this.currentDate - 2
+      },{
+        annee: this.currentDate - 3
+      },{
+        annee: this.currentDate - 4
+      },{
+        annee: this.currentDate - 5
+      },{
+        annee: this.currentDate - 6
+      },{
+        annee: this.currentDate - 7
+      },{
+        annee: this.currentDate - 8
+      },{
+        annee: this.currentDate - 9
+      }
+    ];
   }
 
   gty(page: any){
-    this.otherService.listeInterForAttestation().subscribe(
+    this.annee = this.filterForm.value.annee;
+    this.mois = this.filterForm.value.mois;
+    this.otherService.lesNonAttestation(page, this.itemsPerPage, this.mois, this.annee).subscribe(
       (data: any) => {
         this.dataAttest =  data.data;
         this.totalItems = data.total;
@@ -187,13 +215,13 @@ export class LesnonattestationComponent implements OnInit {
     if(this.filterForm.value.annee) {
       this.annee = this.filterForm.value.annee; 
     }
-    this.otherService.listAttestationFilter(this.page,this.itemsPerPage, this.mois, this.annee, this.reference).subscribe(
+    this.otherService.lesNonAttestation(this.page,this.itemsPerPage, this.mois, this.annee).subscribe(
       (data: any) => {
         this.dataAttest =  data.data[0];
         this.extractionService.exportToCsv(
           this.dataAttest, 
           'ExtractionAttestation' + '-' + this.date.getFullYear() + '-' + this.date.getMonth() + '-' + this.date.getDay() + '-' + this.date.getHours()+ '-' + this.date.getMinutes(),
-          ['reference', 'matricule', 'prenom', 'nom', 'agence', 'nombreJourAbscence', 'dateDebut', 'dateFin', 'prenom_manager', 'nom_manager', 'statut']
+          ['reference', 'matricule', 'prenom', 'nom', 'agence', 'dateDebut', 'dateFin', 'prenom_manager', 'nom_manager', 'statut']
         );
         this.totalItems = data.total;
       }

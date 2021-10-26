@@ -134,7 +134,7 @@ export class DocumentsComponent implements OnInit {
     info.append("typeDocumentId",value.typeDocumentId);
     info.append("contratId", this.item);
     info.append("document",this.document);
-   this.otherService.addDocument(info).subscribe(
+    this.otherService.addDocument(info).subscribe(
       data => {
         this.data = data;
         this.successMsg = this.data.status;
@@ -150,6 +150,6 @@ export class DocumentsComponent implements OnInit {
           timeOut: 5000,
         });
       }
-      ) 
+    ) 
   }
 }

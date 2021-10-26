@@ -298,6 +298,9 @@ addAgence(data) {
   addDocument(data:any): Observable<any> {
     return this.http.post<any>(`${this.reqUrl}/document/add`, data);
   }
+  updateDocument(id, data:any): Observable<any> {
+    return this.http.post<any>(`${this.reqUrl}/updateDocument/${id}`, data);
+  }
   getTypeDocuments() {
     return this.http.get<any>(`${this.reqUrl}/typeDocuments`);
   }
@@ -458,8 +461,8 @@ addAgence(data) {
   listeRegions() {
      return this.http.get<any>(this.reqUrl + '/listeRegions');
   }
-  interimRestau(page, limit){
-    const data = {page: page, limit: limit};
+  interimRestau(page, limit, mois, annee){
+    const data = {page: page, limit: limit, mois: mois, annee: annee};
     return this.http.get<any>(this.reqUrl + '/interimRestau', {params: data})
   }
   listeDirections(id: number) {
@@ -497,6 +500,21 @@ addAgence(data) {
 
   listeInterForAttestation(){
     return this.http.get<any>(`${this.reqUrl}/interimForAttestation`);
+  }
+
+  lesNonAttestation(page, limit, mois, dateFin){
+    const data = {page: page, limit: limit, mois: mois, dateFin: dateFin};
+    return this.http.get<any>(this.reqUrl + '/allInterimForAttestation', {params: data})
+  }
+
+  listAllEvaluations(page, limit, dateDebut, annee){
+    const data = {page: page, limit: limit, dateDebut: dateDebut, annee: annee};
+    return this.http.get<any>(this.reqUrl + '/listAllEvaluations', {params: data})
+  }
+
+  extractEvaluations(page, limit, dateDebut, dateFin){
+    const data = {page: page, limit: limit, dateDebut: dateDebut, dateFin: dateFin};
+    return this.http.get<any>(this.reqUrl + '/extractionsEvaluations', {params: data})
   }
 
   lastEvaluationInt(id: number) {

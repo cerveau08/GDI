@@ -28,6 +28,15 @@
     font-size: 12px;
     color: #ff7900;
 }
+.button-image-uploader{
+    border: none;
+    outline: none;
+    background-color: #fff;
+}
+.image-uploader{
+    height: 35px;
+    width: 35px;
+}
 .button-enregistrer{
     height: 30px;
     width: 120px;
@@ -38,6 +47,7 @@
 .upload-doc {
     width: 200px;
     margin: 0 auto;
+    margin-top: -20px;
 }
 .upload-doc::-webkit-file-upload-button {
     visibility: hidden;
@@ -57,7 +67,7 @@
     font-size: 16px;
     cursor: pointer;
     outline: none;
-    border: 2px solid black;
+    border: none;
     margin-left: 0px;
     padding-top: 5px;
 }

@@ -19,8 +19,10 @@
                         </select>
                     </div>
                     <div class="content-input">
-                        <p class="label-input-doc">Document</p>
-                        <input class="upload-doc" type="file" (change)="addDocument($event.target)">
+                        <button class="button-image-uploader">
+                            <img class="image-uploader"  src="../../../../assets/images/file-upload.png" alt="">
+                        </button>
+                        <input class="upload-doc" type="file" id="uploader" (change)="addDocument($event.target)">
                         <p class="nom-document-uploader">{{filename}}</p>
                     </div>
                 </div>

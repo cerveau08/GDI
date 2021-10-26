@@ -1,13 +1,34 @@
 <div class="all-container">
     <div class="tableau">
-        <p class="detail1" id="mydesc">Liste des interimaires sous contrat</p>
+        <p class="detail1" id="mydesc">Liste des interimaires sous contrat pour la restauration</p>
         <div class="exporter">
-            <form >
+            <form [formGroup]="filterForm">
                 <div class="exporter">
                     <div class="content-input-extraction">
+                        <div class="filtrer-mois">
+                            <p class="label-input" for="titre">Mois: </p>
+                            <select type="number" formControlName="mois" #societe class="select-mois">
+                                <option value="null">Aucun Choix</option>
+                                <option *ngFor="let data of ListeMois"  [value]="data.id">{{data.libelle}}</option>
+                            </select>
+                        </div>
+                        <div class="filtrer-mois">
+                            <p class="label-input" for="titre">Année: </p>
+                            <select  formControlName="annee" class="select-mois" >
+                                <option value="null">Aucun Choix</option>
+                                <option *ngFor="let data of lastTenYear"  [value]="data.annee">{{data.annee}}</option>
+                            </select>
+                        </div>
+                        <div class="content-extraction">
+                            <mat-icon class="icon-search" (click)="gty(page)" fontSet="material-icons-outlined" >search</mat-icon>
+                        </div>
                         <div class="content-extraction">
                             <button (click)="extraireInter()" class="button-extraire">Extraire en CSV</button>
+                            <!-- <button (click)="exportCsv()" class="button-extraire">Extraire en CSV</button> -->
                         </div>
+                    </div>
+                    <div class="content-error-msg" *ngIf="successMsg == false">
+                        <p class="error-alert">{{ data?.message}}: mois et année</p>
                     </div>
                 </div>
             </form>

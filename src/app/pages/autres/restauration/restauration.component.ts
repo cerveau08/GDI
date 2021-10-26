@@ -84,7 +84,7 @@ export class RestaurationComponent implements OnInit {
       libelle: "decembre",
     },
   ];
-  annee: Date;
+  annee = new Date().getFullYear();
   yearOnly;
   errorMsg: any;
   dataSociete;
@@ -96,6 +96,9 @@ export class RestaurationComponent implements OnInit {
   public agence = null;
   public societe = null;
   public direction = null;
+  lastTenYear: any;
+  currentDate = new Date().getFullYear();
+  mois: any;
   constructor(public datepipe: DatePipe,
     public router: Router,
     private extractionService: AuthService,
@@ -125,11 +128,8 @@ export class RestaurationComponent implements OnInit {
       agence: new FormControl(''),
     });
     this.filterForm = new FormGroup({
-      societe: new FormControl(''),
-      direction: new FormControl(''),
-      agence: new FormControl(''),
-      poste: new FormControl(''),
-      matricule: new FormControl(''),
+      mois: new FormControl(''),
+      annee: new FormControl(''),
     });
     this.gty(this.page);
 
@@ -143,7 +143,40 @@ export class RestaurationComponent implements OnInit {
 
     this.http.get(this.reqUrl + `/listeAgence?page=${this.pageAgence}&limit=${this.itemsPerPageAgence}`).subscribe((data: any) => {
       this.dataAgence =  data.data;
-    })
+    });
+    this.lastTenYear = [
+      {
+        annee: this.currentDate
+      },{
+        annee: this.currentDate - 1
+      },{
+        annee: this.currentDate - 2
+      },{
+        annee: this.currentDate - 3
+      },{
+        annee: this.currentDate - 4
+      },{
+        annee: this.currentDate - 5
+      },{
+        annee: this.currentDate - 6
+      },{
+        annee: this.currentDate - 7
+      },{
+        annee: this.currentDate - 8
+      },{
+        annee: this.currentDate - 9
+      },{
+        annee: this.currentDate - 10
+      },{
+        annee: this.currentDate - 11
+      },{
+        annee: this.currentDate - 12
+      },{
+        annee: this.currentDate - 13
+      },{
+        annee: this.currentDate - 14
+      }
+    ];
   }
 
   public saveProfession(e): void {
@@ -161,7 +194,9 @@ export class RestaurationComponent implements OnInit {
   }
 
   gty(page: any){
-    this.otherService.interimRestau(page, this.itemsPerPage).subscribe((data: any) => {
+    this.annee = this.filterForm.value.annee;
+    this.mois = this.filterForm.value.mois;
+    this.otherService.interimRestau(page, this.itemsPerPage, this.mois, this.annee).subscribe((data: any) => {
       console.log(data);
       this.dataInter =  data.data;
       this.totalItems = data.total;
@@ -234,9 +269,11 @@ export class RestaurationComponent implements OnInit {
   }
 
   exportCsv(): void {
-    this.otherService.interimRestau(this.page, this.itemsPerPage).subscribe((data: any) => {
+    this.annee = this.filterForm.value.annee;
+    this.mois = this.filterForm.value.mois;
+    this.otherService.interimRestau(this.page, this.itemsPerPage, this.mois, this.annee).subscribe((data: any) => {
       this.totalItems = data.total;
-      this.otherService.interimRestau(this.page, this.totalItems).subscribe((data: any) => {
+      this.otherService.interimRestau(this.page, this.totalItems, this.mois, this.annee).subscribe((data: any) => {
         this.dataInter = data.data;
         this.extractionService.exportToCsv(
           this.dataInter, 
