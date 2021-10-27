@@ -90,10 +90,11 @@ export class ExtractionlisteComponent implements OnInit {
   dataDirection;
   dataAgence;
   year = this.date.getFullYear();
-  month = this.date.getMonth();
-  day = this.date.getDay();
-  public dateDebut = new Date();
-  public dateFin = new Date();
+  month = this.date.getMonth() + 1;
+  debutmonth = this.date.getMonth() - 3;
+  day = this.date.getDate();
+  public dateDebut = this.year + '-' + this.debutmonth + '-' + this.day;
+  public dateFin = this.year + '-' + this.month + '-' + this.day;
   public reqUrl = environment.base_url;
   constructor(
     public router: Router,
@@ -128,13 +129,10 @@ export class ExtractionlisteComponent implements OnInit {
       dateFin: new FormControl(''),
     });
     this.gty(this.page);
-
-    this.otherService.extraireInterimaire(this.filterForm.value).subscribe(
+    this.otherService.extractEvaluations(this.dateDebut, this.dateFin).subscribe(
       data => {
         this.data = data;
         this.successMsg = this.data.status
-        console.log(this.data);
-        
       }
     )
 
@@ -166,8 +164,12 @@ export class ExtractionlisteComponent implements OnInit {
   }
 
   gty(page: any){
+    if(this.filterForm.value.dateDebut) {
       this.dateDebut = this.filterForm.value.dateDebut;
+    }
+    if(this.filterForm.value.dateFin) {
       this.dateFin = this.filterForm.value.dateFin;
+    }
     this.otherService.listAllEvaluations(page, this.itemsPerPage, this.dateDebut, this.dateFin).subscribe((data: any) => {
       this.dataInter =  data.data;
       this.totalItems = data.total;
@@ -235,12 +237,18 @@ export class ExtractionlisteComponent implements OnInit {
   }
 
   extraireInter() {
-    this.otherService.extraireInterimaire(this.filterForm.value).subscribe(
+    if(this.filterForm.value.dateDebut) {
+      this.dateDebut = this.filterForm.value.dateDebut;
+    }
+    if(this.filterForm.value.dateFin) {
+      this.dateFin = this.filterForm.value.dateFin;
+    }
+    this.otherService.extractEvaluations(this.dateDebut, this.dateFin).subscribe(
       data => {
         this.data = data;
         this.successMsg = this.data.status
         if(this.successMsg == true) {
-          this.fileSaver.saveUrl(this.reqUrl + data.data, 'ExtractionInterimaireSousContrat' + '-' + this.date.getFullYear() + '-' + this.date.getMonth() + '-' + this.date.getDay() + '-' + this.date.getHours()+ '-' + this.date.getMinutes());
+          this.fileSaver.saveUrl(this.reqUrl + data.data, 'ExtractionEvaluationInterimaire' + '-' + this.date.getFullYear() + '-' + this.date.getMonth() + '-' + this.date.getDay() + '-' + this.date.getHours()+ '-' + this.date.getMinutes());
         }
       }
     )
@@ -263,8 +271,12 @@ export class ExtractionlisteComponent implements OnInit {
   }
 
   exportCsv(): void {
-    this.dateDebut = this.filterForm.value.dateDebut;
+    if(this.filterForm.value.dateDebut) {
+      this.dateDebut = this.filterForm.value.dateDebut;
+    }
+    if(this.filterForm.value.dateFin) {
       this.dateFin = this.filterForm.value.dateFin;
+    }
     this.otherService.listAllEvaluations(this.page, this.itemsPerPage, this.dateDebut, this.dateFin).subscribe((data: any) => {
       this.totalItems = data.total;
       this.otherService.listAllEvaluations(this.page, this.totalItems, this.dateDebut, this.dateFin).subscribe((data: any) => {

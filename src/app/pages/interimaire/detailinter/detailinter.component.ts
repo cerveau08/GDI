@@ -222,6 +222,7 @@ export class DetailinterComponent implements OnInit {
     this.validerForm = this.formBuilder.group({
       matricule: new FormControl(''),
       responsable: new FormControl(''),
+      email: new FormControl(''),
       // telephone: new FormControl('', Validators.compose([
       //   Validators.required,
       //   Validators.pattern('7[7-8]{1}[0-9]{7}')

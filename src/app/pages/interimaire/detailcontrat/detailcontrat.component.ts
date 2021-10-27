@@ -138,7 +138,7 @@ export class DetailcontratComponent implements OnInit {
     })
     this.documentUpdateForm = new FormGroup({
       interim_id: new FormControl(''),
-      typeDocument_id: new FormControl(''),
+      typeDocumentId: new FormControl(''),
       documentFile: new FormControl(''),
       contratId: new FormControl('')
     })
@@ -221,7 +221,7 @@ export class DetailcontratComponent implements OnInit {
     const value = this.documentUpdateForm.value;
     const info = new FormData();
     info.append("interim_id", this.interim_id);
-    info.append("typeDocument_id",value.typeDocument_id);
+    info.append("typeDocument_id",value.typeDocumentId);
     info.append("contratId", this.item);
     info.append("documentFile",this.documentUp);
     this.otherService.updateDocument(id, info).subscribe(

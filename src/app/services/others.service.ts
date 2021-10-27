@@ -507,13 +507,13 @@ addAgence(data) {
     return this.http.get<any>(this.reqUrl + '/allInterimForAttestation', {params: data})
   }
 
-  listAllEvaluations(page, limit, dateDebut, annee){
-    const data = {page: page, limit: limit, dateDebut: dateDebut, annee: annee};
+  listAllEvaluations(page, limit, dateDebut, dateFin){
+    const data = {page: page, limit: limit, dateDebut: dateDebut, dateFin: dateFin};
     return this.http.get<any>(this.reqUrl + '/listAllEvaluations', {params: data})
   }
 
-  extractEvaluations(page, limit, dateDebut, dateFin){
-    const data = {page: page, limit: limit, dateDebut: dateDebut, dateFin: dateFin};
+  extractEvaluations(dateDebut, dateFin){
+    const data = {dateDebut: dateDebut, dateFin: dateFin};
     return this.http.get<any>(this.reqUrl + '/extractionsEvaluations', {params: data})
   }
 

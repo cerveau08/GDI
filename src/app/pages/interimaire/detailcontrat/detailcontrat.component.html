@@ -132,7 +132,7 @@
                 <div class="info-form">
                     <div class="content-input">
                         <p class="label-input-doc">Type de document</p>
-                        <select class="select-input-form" #entite [(ngModel)]="typeDocument_id" formControlName="typeDocument_id">
+                        <select class="select-input-form" #entite [(ngModel)]="typeDocumentId" formControlName="typeDocumentId">
                             <option class="option" value="" disabled selected hidden>type document</option>
                             <option *ngFor="let data of dataTypeDocument" [value]="data.id">{{data.libelle}}</option>
                         </select>
