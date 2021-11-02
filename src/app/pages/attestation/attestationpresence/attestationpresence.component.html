@@ -53,14 +53,14 @@
                 <tbody>
                     <tr *ngFor="let p of dataAttest | filter:filterterm | paginate: { 
                         itemsPerPage: 10, currentPage: p }; let i = index" >
-                        <td style="cursor: pointer;" (click)="openDetail(p.id)">{{p.matricule}}</td>
-                        <td style="cursor: pointer;" (click)="openDetail(p.id)">{{p.prenom}}</td>
-                        <td style="cursor: pointer;" (click)="openDetail(p.id)">{{p.nom}}</td>
-                        <td style="cursor: pointer;" (click)="openDetail(p.id)">{{p.reference}}</td>
-                        <td style="cursor: pointer;" (click)="openDetail(p.id)" *ngIf="user != 'AGN' && user != 'INT'" >{{p.agence}}</td>
-                        <td style="cursor: pointer;" (click)="openDetail(p.id)">{{p.dateFin  | date:'MMMM yyyy'}}</td>
-                        <td style="cursor: pointer;"  (click)="openDetail(p.id)">{{p.nombreJourAbscence}} jours</td>
-                        <td style="cursor: pointer;" (click)="openDetail(p.id)">
+                        <td style="cursor: pointer;" (click)="openDetail(p.id, p.etat)">{{p.matricule}}</td>
+                        <td style="cursor: pointer;" (click)="openDetail(p.id, p.etat)">{{p.prenom}}</td>
+                        <td style="cursor: pointer;" (click)="openDetail(p.id, p.etat)">{{p.nom}}</td>
+                        <td style="cursor: pointer;" (click)="openDetail(p.id, p.etat)">{{p.reference}}</td>
+                        <td style="cursor: pointer;" (click)="openDetail(p.id, p.etat)" *ngIf="user != 'AGN' && user != 'INT'" >{{p.agence}}</td>
+                        <td style="cursor: pointer;" (click)="openDetail(p.id, p.etat)">{{p.dateFin  | date:'MMMM yyyy'}}</td>
+                        <td style="cursor: pointer;"  (click)="openDetail(p.id, p.etat)">{{p.nombreJourAbscence}} jours</td>
+                        <td style="cursor: pointer;" (click)="openDetail(p.id, p.etat)">
                             <span class="status-attestation-attente" *ngIf="p.etat == 0">en attente</span>
                             <span class="status-attestation-valider" *ngIf="p.etat == 1">validé</span>
                             <span class="status-attestation-rejeter" *ngIf="p.etat == 2">rejeté</span>

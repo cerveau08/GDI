@@ -125,8 +125,16 @@ export class PaginationService {
       id: 5,  title: 'Liste Restauration',
       path: 'restauration',  icon: "restaurant",
     },{
-      id: 5,  title: 'liste évaluation',
-      path: 'extractevaluation',  icon: "local_mall",
+      id: 5,  title: 'Évaluation',  icon: "local_mall",
+      icon2: "expand_more",  icon3: "expand_less",
+      liste: [  {
+          title: 'liste évaluation',  path: 'extractevaluation',
+        }, {
+          title: 'Pas d\'objectifs',  path: 'pasobjectif',
+        },{
+          title: 'pas d\'évaluation',  path: 'pasevaluation',
+        }
+      ]
     }
     ,{
       id: 5,  title: 'Demandes',
@@ -249,8 +257,16 @@ export class PaginationService {
       id: 5,  title: 'Liste Restauration',
       path: 'restauration',  icon: "restaurant",
     },{
-      id: 5,  title: 'liste évaluation',
-      path: 'extractevaluation',  icon: "local_mall",
+      id: 5,  title: 'Évaluation',  icon: "local_mall",
+      icon2: "expand_more",  icon3: "expand_less",
+      liste: [  {
+          title: 'liste évaluation',  path: 'extractevaluation',
+        }, {
+          title: 'Pas d\'objectifs',  path: 'pasobjectif',
+        },{
+          title: 'pas d\'évaluation',  path: 'pasevaluation',
+        }
+      ]
     }
     ,{
       id: 5,  title: 'Demandes',
@@ -452,8 +468,16 @@ export class PaginationService {
         }
       ]
     },{
-      id: 5,  title: 'liste évaluation',
-      path: 'extractevaluation',  icon: "local_mall",
+      id: 5,  title: 'Évaluation',  icon: "local_mall",
+      icon2: "expand_more",  icon3: "expand_less",
+      liste: [  {
+          title: 'liste évaluation',  path: 'extractevaluation',
+        }, {
+          title: 'Pas d\'objectifs',  path: 'pasobjectif',
+        },{
+          title: 'pas d\'évaluation',  path: 'pasevaluation',
+        }
+      ]
     }
     ,{
       id: 5,  title: 'Demandes',
@@ -573,6 +597,17 @@ export class PaginationService {
           id: 1,  title: 'Ajouter Attestation',  path: 'addattestation',
         },{
           id: 1,  title: 'pas encore d\'attestation',  path: 'lesnonattestation',
+        }
+      ]
+    },{
+      id: 5,  title: 'Évaluation',  icon: "local_mall",
+      icon2: "expand_more",  icon3: "expand_less",
+      liste: [  {
+          title: 'liste évaluation',  path: 'extractevaluation',
+        }, {
+          title: 'Pas d\'objectifs',  path: 'pasobjectif',
+        },{
+          title: 'pas d\'évaluation',  path: 'pasevaluation',
         }
       ]
     }

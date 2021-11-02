@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   base_url: 'http://10.137.16.67:8053'
-
+  //base_url: 'http://localhost:8000'
   //base_url: 'https://gdi-api-dstgestiondesinterimaires-rec.apps.paas.orange-sonatel.com'
 };
 

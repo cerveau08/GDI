@@ -1,3 +1,5 @@
+import { PasevaluationComponent } from './pages/evaluation/pasevaluation/pasevaluation.component';
+import { PasobjectifComponent } from './pages/evaluation/pasobjectif/pasobjectif.component';
 import { ExtractionlisteComponent } from './pages/evaluation/extractionliste/extractionliste.component';
 import { DocumentsComponent } from './pages/settings/documents/documents.component';
 import { LesnonattestationComponent } from './pages/attestation/lesnonattestation/lesnonattestation.component';
@@ -493,6 +495,12 @@ const routes: Routes = [
         canActivate: [AuthGuard]
       },{ path: 'extractevaluation',
         component: ExtractionlisteComponent,
+        canActivate: [AuthGuard]
+      },{ path: 'pasobjectif',
+        component: PasobjectifComponent,
+        canActivate: [AuthGuard]
+      },{ path: 'pasevaluation',
+        component: PasevaluationComponent,
         canActivate: [AuthGuard]
       },
       {

@@ -205,12 +205,18 @@ export class AttestationpresenceComponent implements OnInit {
     )
   }
 
-  openDetail(data) {
-    this.router.navigate(['/accueil/deatilattestation'], {
-      queryParams: {
-        attestation: JSON.stringify(data)
-      }
-    });
+  openDetail(data, etat) {
+    if(etat != 2) {
+      this.router.navigate(['/accueil/deatilattestation'], {
+        queryParams: {
+          attestation: JSON.stringify(data)
+        }
+      });
+    } else {
+      this.toastr.error('Cet intérimaire ne peut pas avoir d\'attestation', 'Message', {
+        timeOut: 5000,
+      });
+    }
   }
 
   openErrorModal(id: string) {

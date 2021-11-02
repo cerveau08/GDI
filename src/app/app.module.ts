@@ -135,6 +135,8 @@ import { ManagerEvaluComponent } from './pages/evaluation/manager-evalu/manager-
 import { LesnonattestationComponent } from './pages/attestation/lesnonattestation/lesnonattestation.component';
 import { DocumentsComponent } from './pages/settings/documents/documents.component';
 import { ExtractionlisteComponent } from './pages/evaluation/extractionliste/extractionliste.component';
+import { PasobjectifComponent } from './pages/evaluation/pasobjectif/pasobjectif.component';
+import { PasevaluationComponent } from './pages/evaluation/pasevaluation/pasevaluation.component';
 
 @NgModule({
   declarations: [
@@ -242,6 +244,8 @@ import { ExtractionlisteComponent } from './pages/evaluation/extractionliste/ext
     LesnonattestationComponent,
     DocumentsComponent,
     ExtractionlisteComponent,
+    PasobjectifComponent,
+    PasevaluationComponent,
   ],
   imports: [
     BrowserModule,

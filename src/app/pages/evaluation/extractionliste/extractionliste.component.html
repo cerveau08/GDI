@@ -33,10 +33,10 @@
                     <th id="manager">Matricule</th>
                     <th class="typ" id="prenom">Prenom</th>
                     <th class="typ" id="nom">Nom</th>
-                    <th *ngIf="role != 'MNG'" id="manager">Email</th>
+                    <th id="manager">Email</th>
                     <th id="manager">Société</th>
-                    <th *ngIf="role != 'MNG'" id="direction">Direction</th>
-                    <th *ngIf="role != 'AGN'" id="agence">Structure</th>
+                    <th id="direction">Direction</th>
+                    <th id="agence">Structure</th>
                     <th id="contrat">Note Général</th>
                     <th id="contrat"> Nombre d'objectifs</th>
             </tr>
@@ -52,8 +52,8 @@
                     <td >{{p.nom}}</td>
                     <td >{{p.emailPro}} </td>
                     <td >{{p.societe}}</td>
-                    <td *ngIf="role != 'MNG'" >{{p.direction}}</td>
-                    <td *ngIf="role != 'AGN'" >{{p.structure}}</td>
+                    <td >{{p.direction}}</td>
+                    <td >{{p.structure}}</td>
                     <td > <p>{{p.noteGenerale}}</p> </td>
                     <td > <p>{{p.nbObjectifs}}</p> </td>
                 </tr>

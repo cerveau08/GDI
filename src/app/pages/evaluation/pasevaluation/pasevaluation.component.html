@@ -1,0 +1,46 @@
+<div class="all-container">
+    <div class="tableau">
+        <p class="detail1" id="mydesc">Liste des interimaires sous contrat</p>
+        <div class="exporter">
+            <div class="exporter">
+                <div class="content-input-extraction">
+                    <div class="content-extraction">
+                        <button (click)="relancer()" class="button-extraire">Rappeler les manager</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <table style="overflow-x:auto;" aria-describedby = "mydesc">
+            <thead>
+                <tr class="head">
+                    <th id="manager">Matricule</th>
+                    <th class="typ" id="prenom">Prenom</th>
+                    <th class="typ" id="nom">Nom</th>
+                    <th id="manager">Email</th>
+                    <th id="manager">Société</th>
+                    <th id="direction">Direction</th>
+                    <th id="agence">Structure</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr style="cursor: pointer;" *ngFor="let p of dataInter | filter:filterterm | paginate: { 
+                    itemsPerPage: itemsPerPage,
+                    currentPage: page,
+                    totalItems: totalItems
+                    }; let i = index">
+                    <td >{{p.matricule}}</td>
+                    <td >{{p.prenom}}</td>
+                    <td >{{p.nom}}</td>
+                    <td >{{p.emailPro}} </td>
+                    <td >{{p.societe}}</td>
+                    <td >{{p.direction}}</td>
+                    <td >{{p.structure}}</td>
+                </tr>
+            </tbody>
+        </table> 
+        <div class="pagination">
+            <pagination-controls (pageChange)="gty(page = $event)" previousLabel="Précédent" nextLabel="Suivant"></pagination-controls>
+        </div>
+    </div>
+</div>
+
