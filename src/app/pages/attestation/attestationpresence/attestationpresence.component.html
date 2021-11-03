@@ -47,7 +47,7 @@
                         <th id="contrat">Période</th>
                         <th id="contrat">Absence</th>
                         <th id="etat">Etat</th>
-                        <th id="action">Action</th>
+                        <th id="action" *ngIf="user == 'AGN'">Action</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -65,7 +65,7 @@
                             <span class="status-attestation-valider" *ngIf="p.etat == 1">validé</span>
                             <span class="status-attestation-rejeter" *ngIf="p.etat == 2">rejeté</span>
                         </td>
-                        <td>
+                        <td *ngIf="user == 'AGN'">
                             <button (click)="valider(p.reference)" *ngIf="p.etat == 0" class="valider-attestation">Valider</button>
                             <button (click)="rejeter(p.reference)" *ngIf="p.etat == 0" class="rejeter-attestation">Rejeter</button>
                             <span *ngIf="p.etat == 1">déja validé</span>
