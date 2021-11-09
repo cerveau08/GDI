@@ -507,6 +507,20 @@ addAgence(data) {
     return this.http.get<any>(this.reqUrl + '/allInterimForAttestation', {params: data})
   }
 
+  listeInterNonEvaluer(page, limit){
+    const data = {page: page, limit: limit};
+    return this.http.get<any>(this.reqUrl + '/listeInterNonEvaluer', {params: data})
+  }
+
+  listeInterimWithoutObjectif(page, limit){
+    const data = {page: page, limit: limit};
+    return this.http.get<any>(this.reqUrl + '/listeInterimWithoutObjectif', {params: data})
+  }
+
+  relanceEvaluationManager(){
+    return this.http.get<any>(this.reqUrl + '/relanceEvaluationManager')
+  }
+
   listAllEvaluations(page, limit, dateDebut, dateFin){
     const data = {page: page, limit: limit, dateDebut: dateDebut, dateFin: dateFin};
     return this.http.get<any>(this.reqUrl + '/listAllEvaluations', {params: data})

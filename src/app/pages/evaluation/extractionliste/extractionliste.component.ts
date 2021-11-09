@@ -112,10 +112,7 @@ export class ExtractionlisteComponent implements OnInit {
     this.attestationForm = new FormGroup({
       interim_id: new FormControl(''),
       mois: new FormControl('', Validators.required),
-      annee: new FormControl('', [
-        Validators.required,
-        Validators.pattern("[^ @]*@[^ @]*")
-      ]),
+      annee: new FormControl('', Validators.required),
       contrat_id: new FormControl(''),
       nbr_jr_absence: new FormControl('', Validators.required),
       prenom: new FormControl(''),

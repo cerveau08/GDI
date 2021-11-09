@@ -98,7 +98,7 @@
 }
 .grid-container {
     display: grid;
-    grid-template-columns: 230px  1fr;
+    grid-template-columns: 230px 1fr;
     grid-gap: 1px;
     margin-top: 10px;
 }
@@ -114,6 +114,8 @@
 .image-contact {
     width: 50px;
     height: 50px;
+    border-radius: 50%;
+    border: 2px solid #fff;
 }
     .im1 {
         position: absolute;
@@ -366,6 +368,11 @@
     margin: 0 auto;
 }
 #button-head:hover{
+    color: white;
+    border: none;
+    background-color: #ff7900;
+}
+#button-head:active{
     color: white;
     border: none;
     background-color: #ff7900;
@@ -706,6 +713,33 @@ select {
     display: grid;
     grid-template-columns: 50% 50%;
     max-width: 350px;
+}
+.content-all-info-personnel{
+    border: 2px solid #009393;
+    max-width: 700px;
+}
+.content-header-title{
+    width: 200px;
+    margin: 0 auto;
+    margin-bottom: 5px;
+}
+.personnelle-information-title{
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff;
+    padding: 5px 0;
+    background-color: #009393;
+    border-radius: 10px;
+    text-align: center !important;
+}
+.content-personnel{
+    display: grid;
+    grid-template-columns:300px 1fr;
+}
+.lot-contrat-information{
+    margin-top: 20px;
 }
 .content-error-msg{
     width: 300px;

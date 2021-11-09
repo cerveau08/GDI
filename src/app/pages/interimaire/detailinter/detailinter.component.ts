@@ -144,39 +144,6 @@ export class DetailinterComponent implements OnInit {
               private toastr: ToastrService) { 
     this.activeroute.queryParams.subscribe(params => {
       this.item = JSON.parse(params["user"]);
-      this.otherService.getOneInterById(this.item).subscribe(
-          data =>{
-            this.data = data;
-            this.dataInter = this.data.data;
-            this.nom = this.dataInter.nom;
-            this.prenom = this.dataInter.prenom;
-            this.datedenaissance = this.dataInter.datedenaissance;
-            this.lieudenaissance = this.dataInter.lieudenaissance;
-            this.numeroPiece = this.dataInter.numeroPiece;
-            this.diplome = this.dataInter.diplomes;
-            this.email = this.dataInter.email;
-            this.adresse = this.dataInter.adresse;
-            this.profession = this.dataInter.profession;
-            this.salaireBrut = this.dataInter.salaireBrut;
-            this.profession = this.dataInter.profession;
-            this.telephone = this.dataInter.telephone;
-            this.universite = this.dataInter.universite;
-            this.sitmat = this.dataInter.sitmat;
-            this.idcontrat = this.dataInter.contrat.id;
-            this.direction = this.dataInter.direction;
-            this.departement = this.dataInter.departement;
-            this.service = this.dataInter.service;
-            this.agence = this.dataInter.agence;
-            this.categorie = this.dataInter.categorie;
-            this.dateSignature = this.dataInter.dateSignature;
-            this.matricule = this.dataInter.matricule;
-            this.sexe = this.dataInter.sexe;
-            this.photo = this.reqUrl + '/public/' + this.dataInter.photo;
-            this.etat = this.dataInter.etat;
-            this.contratDoc = this.reqUrl + '/public' + this.dataInter.fileContrat;
-            this.fichePosteDoc = this.reqUrl + '/public' + this.dataInter.fileFichePoste;
-        }
-      );
     })
     
   }
@@ -187,13 +154,42 @@ export class DetailinterComponent implements OnInit {
     this.otherService.getOneInterById(this.item).subscribe(
       data =>{
         this.data = data;
-        this.societeIdInterim = this.data.data.societe.id;
+        this.dataInter = this.data.data;
+        this.nom = this.dataInter.nom;
+        this.prenom = this.dataInter.prenom;
+        this.datedenaissance = this.dataInter.datedenaissance;
+        this.lieudenaissance = this.dataInter.lieudenaissance;
+        this.numeroPiece = this.dataInter.numeroPiece;
+        this.diplome = this.dataInter.diplomes;
+        this.email = this.dataInter.email;
+        this.adresse = this.dataInter.adresse;
+        this.profession = this.dataInter.profession;
+        this.salaireBrut = this.dataInter.salaireBrut;
+        this.profession = this.dataInter.profession;
+        this.telephone = this.dataInter.telephone;
+        this.universite = this.dataInter.universite;
+        this.sitmat = this.dataInter.sitmat;
+        this.idcontrat = this.dataInter.contrat.id;
+        this.direction = this.dataInter.direction;
+        this.departement = this.dataInter.departement;
+        this.service = this.dataInter.service;
+        this.agence = this.dataInter.agence;
+        this.categorie = this.dataInter.categorie;
+        this.dateSignature = this.dataInter.dateSignature;
+        this.matricule = this.dataInter.matricule;
+        this.sexe = this.dataInter.sexe;
+        this.photo = this.reqUrl + '/public/' + this.dataInter.photo;
+        this.etat = this.dataInter.etat;
+        this.contratDoc = this.reqUrl + '/public' + this.dataInter.fileContrat;
+        this.fichePosteDoc = this.reqUrl + '/public' + this.dataInter.fileFichePoste;
+        this.societeIdInterim = this.dataInter.societe.id;
         if(this.societeIdDrh == this.societeIdInterim) {
           this.sameIdSociete = true;
         } else {
           this.sameIdSociete = false;
         }
-      });
+      }
+    );
     if(this.user == 'DRH') {
       this.showButton = false;
     } else {

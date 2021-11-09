@@ -511,7 +511,6 @@ const routes: Routes = [
       { path: '**', redirectTo: 'accueil/home' },
     ]
   },
-  
   {
     path: '',
     redirectTo: 'login',

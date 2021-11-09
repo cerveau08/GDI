@@ -27,6 +27,8 @@ export class AddinterComponent implements OnInit {
   url3="../assets/images/default.png";
   url4="../assets/images/default.png";
   interForm: FormGroup;
+  contratForm: FormGroup;
+  diplomeForm: FormGroup;
   isLinear = true;
   photo: any;
   fichierDiplome?: File;
@@ -146,6 +148,16 @@ export class AddinterComponent implements OnInit {
   cvName: any;
   fichierVisiteContreVisite: any;
   visiteContreVisiteName: any;
+  videprenom: string;
+  invalidprenom: string;
+  videnom: string;
+  invalidnom: string;
+  videdateN: string;
+  videlieuN: string;
+  videsexe: string;
+  videtelephoneOM: string;
+  invalidtelephoneOM: string;
+  invaliddiplome: string;
   constructor(private otherService: OthersService,
               private errormodalService: ErrormodalService,
               private toastr: ToastrService,
@@ -158,49 +170,68 @@ export class AddinterComponent implements OnInit {
     
   ngOnInit() {
     this.interForm = new FormGroup({
-        numeroPiece: new FormControl(''),
-        prenom: new FormControl(''),
-        nom: new FormControl(''),
-        email: new FormControl('', Validators.compose([
-          Validators.required,
-          Validators.pattern('[A-Za-z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,3}')
-        ])),
-        telephone: new FormControl(''),
-        dateNaissance: new FormControl(''),
-        lieuNaissance: new FormControl(''),
-        sexe: new FormControl(''),
-        sitmat: new FormControl(''),
-        adresse: new FormControl(''),
-        nPassport: new FormControl(''),
-        diplome: new FormControl(''),
-        universite: new FormControl(''),
-        photo: new FormControl(''),
-        dateDebut: new FormControl(''),
-        telephoneOM: new FormControl(''),
-        dateFin: new FormControl(''),
-        dateSignature: new FormControl(''),
-        categorieId: new FormControl(''),
-        salaireBrut: new FormControl(''),
-        //structureId: new FormControl(''),
-        domaineId: new FormControl(''),
-        directionId: new FormControl(''),
-        departementId: new FormControl(''),
-        societeId: new FormControl(''),
-        profession: new FormControl(''),
-        poste: new FormControl(''),
-        site: new FormControl(''),
-        contratDoc: new FormControl(''),
-        matriculeManager: new FormControl(''),
-        fileFicheposte: new FormControl(''),
-        fileproceverbal: new FormControl(''),
-        fileCni: new FormControl(''),
-        fileCv: new FormControl(''),
-        fileVisiteContreVisite: new FormControl(''),
-        typePiece: new FormControl(''),
-        diplome1: new FormControl(''),
-        diplome2: new FormControl(''),
-        diplome3: new FormControl(''),
-        fonction: new FormControl(''),
+      typePiece: new FormControl(''),
+      numeroPiece: new FormControl(''),
+      prenom: new FormControl('', Validators.compose([
+        Validators.required,
+        Validators.minLength(2)
+      ])),
+      nom: new FormControl('', Validators.compose([
+        Validators.required,
+        Validators.minLength(2)
+      ])),
+      email: new FormControl('', Validators.compose([
+        Validators.required,
+        Validators.pattern('[A-Za-z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,3}')
+      ])),
+      telephone: new FormControl(''),
+      dateNaissance: new FormControl('', Validators.compose([
+        Validators.required,
+      ])),
+      lieuNaissance: new FormControl('', Validators.compose([
+        Validators.required,
+        Validators.minLength(2)
+      ])),
+      sexe: new FormControl('', Validators.compose([
+        Validators.required,
+        Validators.minLength(2)
+      ])),
+      sitmat: new FormControl(''),
+      adresse: new FormControl(''),
+      nPassport: new FormControl(''),
+      diplome: new FormControl(''),
+      universite: new FormControl(''),
+      photo: new FormControl(''),
+      //structureId: new FormControl(''),
+      matriculeManager: new FormControl(''),
+      fileFicheposte: new FormControl(''),
+      fileproceverbal: new FormControl(''),
+      fileCni: new FormControl(''),
+      fileCv: new FormControl(''),
+      fileVisiteContreVisite: new FormControl(''),
+      diplome1: new FormControl(''),
+      diplome2: new FormControl(''),
+      diplome3: new FormControl(''),
+      fonction: new FormControl(''),
+      profession: new FormControl(''),
+    });
+    this.contratForm = new FormGroup({
+      dateDebut: new FormControl(''),
+      telephoneOM: new FormControl('', Validators.compose([
+        Validators.required,
+        Validators.pattern('7[05678][0-9]{7}')
+      ])),
+      dateFin: new FormControl(''),
+      dateSignature: new FormControl(''),
+      categorieId: new FormControl(''),
+      salaireBrut: new FormControl(''),
+      domaineId: new FormControl(''),
+      directionId: new FormControl(''),
+      departementId: new FormControl(''),
+      societeId: new FormControl(''),
+      poste: new FormControl(''),
+      site: new FormControl(''),
+      contratDoc: new FormControl(''),
     });
     this.searchForm = this.formBuilder.group({
       numeroPiece: new FormControl('', Validators.compose([
@@ -215,7 +246,7 @@ export class AddinterComponent implements OnInit {
       ])),
       telephone: new FormControl('', Validators.compose([
         Validators.required,
-        Validators.pattern('7[6-7-8]{1}[0-9]{7}')
+        Validators.pattern('7[05678][0-9]{7}')
       ])),
     })
     this.otherService.getAllSociete().subscribe(
@@ -358,7 +389,7 @@ export class AddinterComponent implements OnInit {
   }
   submitted1(){
     if(this.interForm.value.email.length === 0) {
-      this.videEmail = 'Veuillez saisir votre email';
+      this.videEmail = 'Veuillez saisir l\'email';
     } else {
       this.videEmail = '';
     }
@@ -367,12 +398,57 @@ export class AddinterComponent implements OnInit {
     } else {
       this.invalidEmail = '';
     }
+    if(this.interForm.value.prenom.length === 0) {
+      this.videprenom = 'Veuillez saisir le prenom';
+    } else {
+      this.videprenom = '';
+    }
+    if(this.interForm.value.prenom.length !== 0 && this.interForm.controls.prenom.status == 'INVALID') {
+      this.invalidprenom = 'Le format de prenom que vous avez saisi est incorrecte';
+    } else {
+      this.invalidprenom = '';
+    }
+    if(this.interForm.value.nom.length === 0) {
+      this.videnom = 'Veuillez saisir le nom';
+    } else {
+      this.videnom = '';
+    }
+    if(this.interForm.value.nom.length !== 0 && this.interForm.controls.nom.status == 'INVALID') {
+      this.invalidnom = 'Le format de nom que vous avez saisi est incorrecte';
+    } else {
+      this.invalidnom = '';
+    }
+    if(this.interForm.value.dateNaissance.length === 0) {
+      this.videdateN = 'Veuillez saisir la date de naissance';
+    } else {
+      this.videdateN = '';
+    }
+    if(this.interForm.value.lieuNaissance.length === 0) {
+      this.videlieuN = 'Veuillez saisir la lieu de naissance';
+    } else {
+      this.videlieuN = '';
+    }
+    if(this.interForm.value.sexe.length === 0) {
+      this.videsexe = 'Veuillez sélectionner le genre';
+    } else {
+      this.videsexe = '';
+    }
     this.colora = "#f16e00";
     this.colorb = "#ff7900";
     this.color1 = "20px solid #f16e00";
     this.color2 = "20px solid #ff7900";
   }
   submitted2(){
+    if(this.contratForm.value.telephoneOM.length === 0) {
+      this.videtelephoneOM = 'Veuillez saisir le téléphone Orange Money';
+    } else {
+      this.videtelephoneOM = '';
+    }
+    if(this.contratForm.value.telephoneOM.length !== 0 && this.contratForm.controls.telephoneOM.status == 'INVALID') {
+      this.invalidtelephoneOM = 'Le format du téléphone Orange Money que vous avez saisi est incorrecte';
+    } else {
+      this.invalidtelephoneOM = '';
+    }
     this.colorb = "#f16e00";
     this.colorc = "#ff7900";
     this.color2 = "20px solid #f16e00";
@@ -380,23 +456,16 @@ export class AddinterComponent implements OnInit {
   }
 
   submit() {
-    if(this.interForm.value.email.length !== 0 && this.interForm.controls.email.status == 'INVALID') {
-      this.invalidEmail = 'Le format d\'email que vous avez saisi est incorrecte';
-    } else {
-      this.invalidEmail = '';
-    }
-    this.loading = true;
     this.colorc = "#f16e00";
     this.color3 = "20px solid #f16e00";
     const formdata = new FormData();
-    formdata.append("societeId", this.interForm.value.societeId);
-    //formdata.append("structureId",this.interForm.value.structureId);
+    formdata.append("societeId", this.contratForm.value.societeId);
     formdata.append("domaineId",this.interForm.value.domaineId);
     formdata.append("typePiece",this.interForm.value.typePiece);
     formdata.append("numeroPiece",this.interForm.value.numeroPiece);
     formdata.append("nom",this.interForm.value.nom);
     formdata.append("prenom",this.interForm.value.prenom);
-    formdata.append("telephoneOM",this.interForm.value.telephoneOM);
+    formdata.append("telephoneOM",this.contratForm.value.telephoneOM);
     formdata.append("adresse",this.interForm.value.adresse);
     formdata.append("email",this.interForm.value.email);
     formdata.append("telephone",this.interForm.value.telephone);
@@ -409,29 +478,29 @@ export class AddinterComponent implements OnInit {
     formdata.append("dateNaissance",this.interForm.value.dateNaissance);
     formdata.append("lieuNaissance",this.interForm.value.lieuNaissance);
     
-    if(this.interForm.value.categorieId != "") {
-      formdata.append("categorieId", this.interForm.value.categorieId);
+    if(this.contratForm.value.categorieId != "") {
+      formdata.append("categorieId", this.contratForm.value.categorieId);
     }
-    if(this.interForm.value.salaireBrut != "") {
-      formdata.append("salaireBrut", this.interForm.value.salaireBrut);
+    if(this.contratForm.value.salaireBrut != "") {
+      formdata.append("salaireBrut", this.contratForm.value.salaireBrut);
     }
-    if(this.interForm.value.site != "") {
-      formdata.append("siteId", this.interForm.value.site);
+    if(this.contratForm.value.site != "") {
+      formdata.append("siteId", this.contratForm.value.site);
     }
-    if(this.interForm.value.dateDebut != "") {
-      formdata.append("dateDebut", this.interForm.value.dateDebut);
+    if(this.contratForm.value.dateDebut != "") {
+      formdata.append("dateDebut", this.contratForm.value.dateDebut);
     }
-    if(this.interForm.value.dateFin != "") {
-      formdata.append("dateFin", this.interForm.value.dateFin);
+    if(this.contratForm.value.dateFin != "") {
+      formdata.append("dateFin", this.contratForm.value.dateFin);
     }
-    if(this.interForm.value.domaineId != "") {
-      formdata.append("domaineId", this.interForm.value.domaineId);
+    if(this.contratForm.value.domaineId != "") {
+      formdata.append("domaineId", this.contratForm.value.domaineId);
     }
-    if(this.interForm.value.dateSignature != "") {
-      formdata.append("dateSignature", this.interForm.value.dateSignature);
+    if(this.contratForm.value.dateSignature != "") {
+      formdata.append("dateSignature", this.contratForm.value.dateSignature);
     }
-    if(this.interForm.value.poste != "") {
-      formdata.append("fonction", this.interForm.value.poste);
+    if(this.contratForm.value.poste != "") {
+      formdata.append("fonction", this.contratForm.value.poste);
     }
     if(this.fichierContrat != undefined) {
       formdata.append("contratDoc",this.fichierContrat);
@@ -463,25 +532,29 @@ export class AddinterComponent implements OnInit {
     if(this.fichierdiplome3 != undefined) {
       formdata.append("fileDiplome[]",this.fichierdiplome3);
     }
-    
-    this.otherService.addInter(formdata).subscribe(
-      data => {
-        this.loading = false;
-        this.data = data
-        this.successMsg = this.data.status
-        if(this.successMsg == true) {
-          this.toastr.success('L\'intérimaire a été ajouté', 'Success', {
-            timeOut: 3000,
+    if(!this.fichierdiplome1 && !this.fichierdiplome2 && !this.fichierdiplome3) {
+        this.invaliddiplome = 'Veuillez uploader au moins un diplome';
+    } else {
+      this.loading = true;
+      this.otherService.addInter(formdata).subscribe(
+        data => {
+          this.loading = false;
+          this.data = data
+          this.successMsg = this.data.status
+          if(this.successMsg == true) {
+            this.toastr.success('L\'intérimaire a été ajouté', 'Success', {
+              timeOut: 3000,
+            });
+            this.submited = true;
+          }
+        }, error=> {
+          this.errorMsg = error;
+          this.toastr.error(this.errorMsg, 'Echec', {
+            timeOut: 5000,
           });
-          this.submited = true;
         }
-      }, error=> {
-        this.errorMsg = error;
-        this.toastr.error(this.errorMsg, 'Echec', {
-          timeOut: 5000,
-        });
-      }
-    )
+      )
+    }
   }
 
   directionsListe(value) {

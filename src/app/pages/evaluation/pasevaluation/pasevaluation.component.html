@@ -1,11 +1,15 @@
 <div class="all-container">
+    <ngx-loading [show]="loading" [config]="{
+        backdropBackgroundColour: 'rgba(109, 81, 59, 0.616)', backdropBorderRadius: '10px',
+        primaryColour: '#009393', secondaryColour: '#ff7900', tertiaryColour: '#009393' }">
+      </ngx-loading>
     <div class="tableau">
         <p class="detail1" id="mydesc">Liste des interimaires sous contrat</p>
         <div class="exporter">
             <div class="exporter">
                 <div class="content-input-extraction">
                     <div class="content-extraction">
-                        <button (click)="relancer()" class="button-extraire">Rappeler les manager</button>
+                        <button (click)="relancer()" class="button-extraire">Rappeler les managers</button>
                     </div>
                 </div>
             </div>
@@ -19,7 +23,8 @@
                     <th id="manager">Email</th>
                     <th id="manager">Société</th>
                     <th id="direction">Direction</th>
-                    <th id="agence">Structure</th>
+                    <th id="direction">Département</th>
+                    <th id="agence">Service</th>
             </tr>
             </thead>
             <tbody>
@@ -34,7 +39,8 @@
                     <td >{{p.emailPro}} </td>
                     <td >{{p.societe}}</td>
                     <td >{{p.direction}}</td>
-                    <td >{{p.structure}}</td>
+                    <td >{{p.departement}}</td>
+                    <td >{{p.service}}</td>
                 </tr>
             </tbody>
         </table> 

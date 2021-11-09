@@ -56,7 +56,7 @@ export class DetailattestationComponent implements OnInit {
           this.posteManager = this.dataAttestation.posteManager;
           this.prenom_manager = this.dataAttestation.prenom_manager;
           this.nom_manager = this.dataAttestation.nom_manager;
-          this.nombreJourAbsence = this.dataAttestation.nombreJourAbsence;
+          this.nombreJourAbsence = this.dataAttestation.nombreJourAbscence;
           this.matricule_manager = this.dataAttestation.matricule_manager;
           this.societeLibelle = this.dataAttestation.societeLibelle;
           this.annee_periode = this.dataAttestation.annee_periode;

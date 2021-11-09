@@ -44,6 +44,7 @@ export class PasobjectifComponent implements OnInit {
   public dateDebut = this.year + '-' + this.debutmonth + '-' + this.day;
   public dateFin = this.year + '-' + this.month + '-' + this.day;
   public reqUrl = environment.base_url;
+  loading = false;
   constructor(
     public router: Router,
     private otherService: OthersService,
@@ -62,7 +63,7 @@ export class PasobjectifComponent implements OnInit {
   }
 
   gty(page: any){
-    this.otherService.listAllEvaluations(page, this.itemsPerPage, this.dateDebut, this.dateFin).subscribe((data: any) => {
+    this.otherService.listeInterimWithoutObjectif(page, this.itemsPerPage).subscribe((data: any) => {
       this.dataInter =  data.data;
       this.totalItems = data.total;
     }, error=> {
@@ -81,5 +82,23 @@ export class PasobjectifComponent implements OnInit {
     });
   }
 
-  relancer() {}
+  relancer() {
+    this.loading = true;
+    this.otherService.relanceEvaluationManager().subscribe(
+      data => {
+        this.loading = false;
+        this.data = data;
+        this.successMsg = this.data.status;
+        if (this.successMsg == true) {
+          this.toastr.success('Les managers ont été notifiés', 'Success', {
+            timeOut: 150000,
+          });
+        } else {
+          this.toastr.error(this.errorMsg, 'Echec', {
+            timeOut: 5000,
+          });
+        }
+      }
+    )
+  }
 }

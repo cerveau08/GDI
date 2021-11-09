@@ -1,9 +1,9 @@
 <div class="all-container">
+  <ngx-loading [show]="loading" [config]="{
+    backdropBackgroundColour: 'rgba(109, 81, 59, 0.616)', backdropBorderRadius: '10px',
+    primaryColour: '#009393', secondaryColour: '#ff7900', tertiaryColour: '#009393' }">
+  </ngx-loading>
   <div class="all">
-    <ngx-loading [show]="loading" [config]="{
-      backdropBackgroundColour: 'rgba(109, 81, 59, 0.616)', backdropBorderRadius: '10px',
-      primaryColour: '#009393', secondaryColour: '#ff7900', tertiaryColour: '#009393' }">
-    </ngx-loading>
     <div *ngIf="!isAdmissible" class="content-search-inter">
       <div class="content-text-explication">
         <p class="ajouter">Bien lire avant de faire la recherche</p>
@@ -41,7 +41,7 @@
         <div class="content-form">
           <div class="content-row-form">
             <div class="content-input">
-              <p class="label-input">Type de Pièce</p>
+              <p class="label-input">Type de Pièce <span class="signe-obligatoire">*</span></p>
               <select class="select-search"  formControlName="typePiece" required>
                 <option class="option" value="" disabled selected hidden>Choisir le type de Pièce</option>
                 <option *ngFor="let data of ListePiece" [value]="data.libelle">{{data.libelle}}</option>
@@ -49,14 +49,14 @@
               <p class="error-require-input-search" *ngIf="videtypePiece" >Veuillez séléctionner un type de pièce</p>
             </div>
             <div class="content-input">
-              <p class="label-input">Numéro Pièce</p>
+              <p class="label-input">Numéro Pièce <span class="signe-obligatoire">*</span></p>
               <input class="input-search" type="number" formControlName="numeroPiece" placeholder="Numero Pièce" required>
               <p class="error-require-input-search" *ngIf="videnumeroPiece" >Veuillez renseigner le numéro de piéce</p>
             </div>
           </div>
           <div class="content-row-form">
             <div class="content-input">
-              <p class="label-input">Société</p>
+              <p class="label-input">Société <span class="signe-obligatoire">*</span></p>
               <select class="select-search" #entite formControlName="societe" (change)="directionsListe(entite.value)" required>
                 <option class="option" value="" disabled selected hidden>Choisir une société</option>
                 <option *ngFor="let data of dataSociete" [value]="data.id">{{data.libelle}}</option>
@@ -64,7 +64,7 @@
               <p class="error-require-input-search" *ngIf="videsociete" >Veuillez séléctionner une Société</p>
             </div>
             <div class="content-input">
-              <p class="label-input">Numéro Téléphone</p>
+              <p class="label-input">Numéro Téléphone <span class="signe-obligatoire">*</span></p>
               <input class="input-search" type="number" formControlName="telephone" placeholder="Numero Téléphone" required>
               <p class="error-require-input-search" *ngIf="videNumber">{{videNumber}}</p>
               <p class="error-require-input-search" *ngIf="invalideNumber">{{invalideNumber}}</p>
@@ -95,7 +95,7 @@
     </div>
     <div *ngIf="isAdmissible" class="all1">
       <p class="ajouter">Ajouter</p>
-        <div class="form" [formGroup]="interForm">
+        <div class="form" >
           <mat-horizontal-stepper  [linear]="isLinear" #stepper [selectedIndex]="selectedStepIndex" labelPosition="bottom">
             <mat-step [stepControl]="interForm">
               <ng-template matStepLabel>
@@ -117,26 +117,30 @@
                         <div class="others">
                           <div class="infoinput2">
                             <div>
-                              <p class="label-input1">Type de pièce</p>
+                              <p class="label-input1">Type de pièce <span class="signe-obligatoire">*</span></p>
                               <input type="text" formControlName="typePiece" [(ngModel)]="typePiece" readonly>
                             </div>
                             <div>
-                              <p class="label-input2">Numéro de pièce</p>
+                              <p class="label-input2">Numéro de pièce <span class="signe-obligatoire">*</span></p>
                               <input class="input3" type="text" formControlName="numeroPiece" [(ngModel)]="numeroPiece" placeholder="Numero Pièce" readonly>
                             </div>
                           </div>
                           <div class="infoinput2">
                             <div>
-                              <p class="label-input1">Prénom</p>
+                              <p class="label-input1">Prénom <span class="signe-obligatoire">*</span></p>
                               <input type="text" formControlName="prenom" placeholder="Prenom">
+                              <p class="error-require-input-search" *ngIf="videprenom">{{videprenom}}</p>
+                              <p class="error-require-input-search" *ngIf="invalidprenom">{{invalidprenom}}</p>
                             </div>
                             <div>
-                              <p class="label-input2">Nom</p>
+                              <p class="label-input2">Nom <span class="signe-obligatoire">*</span></p>
                               <input class="input3" type="text" formControlName="nom" placeholder="Nom">
+                              <p class="error-require-input-search" *ngIf="videnom">{{videnom}}</p>
+                              <p class="error-require-input-search" *ngIf="invalidnom">{{invalidnom}}</p>
                             </div>
                           </div>
                           <div class="infoinput1">
-                            <p class="label-input1">Email</p>
+                            <p class="label-input1">Email <span class="signe-obligatoire">*</span></p>
                             <input type="email" formControlName="email" placeholder="Email">
                             <p class="error-require-input-search" *ngIf="videEmail">{{videEmail}}</p>
                             <p class="error-require-input-search" *ngIf="invalidEmail">{{invalidEmail}}</p>
@@ -151,21 +155,24 @@
                           </div>
                           <div class="infoinput2">
                             <div>
-                              <p class="label-input1">Date de Naissance</p>
+                              <p class="label-input1">Date de Naissance <span class="signe-obligatoire">*</span></p>
                               <input type="date" formControlName="dateNaissance" placeholder="Date de Naissance">
+                              <p class="error-require-input-search" *ngIf="videdateN">{{videdateN}}</p>
                             </div>
                             <div>
-                              <p class="label-input2">Lieu de Naissance</p>
+                              <p class="label-input2">Lieu de Naissance <span class="signe-obligatoire">*</span></p>
                               <input class="input3" type="text" formControlName="lieuNaissance" placeholder="Lieu de Naissance">
+                              <p class="error-require-input-search" *ngIf="videlieuN">{{videlieuN}}</p>
                             </div>
                           </div>
                           <div class="infoinput2">
                             <div>
-                              <p class="label-input1">Sexe</p>
+                              <p class="label-input1">Sexe <span class="signe-obligatoire">*</span></p>
                               <select class="select5" formControlName="sexe" >
                                 <option class="option" value="" disabled selected hidden>Genre</option>
                                 <option *ngFor="let data of ListeSexe" [value]="data.libelle">{{data.libelle}}</option>
                               </select>
+                              <p class="error-require-input-search" *ngIf="videsexe">{{videsexe}}</p>
                             </div>
                             <div>
                               <p class="label-input2">Situation matrimoniale</p>
@@ -196,7 +203,7 @@
                   </form>
               </div>
             </mat-step>
-            <mat-step [stepControl]="interForm" >
+            <mat-step [stepControl]="contratForm" >
               <ng-template matStepLabel>
                   <div class="head">
                       <div class="header" [style.background]="colorb">
@@ -205,7 +212,7 @@
                   </div> 
                 </ng-template>
               <div>
-                <form [formGroup]="interForm">
+                <form [formGroup]="contratForm">
                     <div>
                     <div class="grid" >
                       <div >
@@ -233,8 +240,10 @@
                         </div>
                         <div class="contratinput1">
                           <div>
-                            <p class="label-input1">Numero Téléphone Orange Money</p>
+                            <p class="label-input1">Numero Téléphone Orange Money <span class="signe-obligatoire">*</span></p>
                             <input class="input-telephone-om" type="number" formControlName="telephoneOM" placeholder="Téléphone OM">
+                            <p class="error-require-input-search" *ngIf="videtelephoneOM">{{videtelephoneOM}}</p>
+                            <p class="error-require-input-search" *ngIf="invalidtelephoneOM">{{invalidtelephoneOM}}</p>
                           </div>
                         </div>
                         <div class="contratinput2">
@@ -249,8 +258,8 @@
                         </div>  
                         <div class="contratinput2">
                           <div>
-                            <p class="label-input1">Société</p>
-                            <select class="select5" #entite formControlName="societeId" [(ngModel)]="societe" (change)="directionsListe(entite.value)">
+                            <p class="label-input1">Société <span class="signe-obligatoire">*</span></p>
+                            <select class="select5" #entite formControlName="societeId" [(ngModel)]="societe" readonly>
                               <option class="option" value="" disabled selected hidden>Societe</option>
                               <option *ngFor="let data of dataSociete" [value]="data.id">{{data.libelle}}</option>
                             </select>
@@ -354,7 +363,8 @@
                         </div>
                         <div class="les-diplomes-content">
                           <div class="diplome-title">
-                            <p class="diplome-title-text">Diplomes</p>
+                            <p class="diplome-title-text">Diplomes <span class="signe-obligatoire">*</span></p>
+                            <p class="error-require-input-search" *ngIf="invaliddiplome">{{invaliddiplome}}</p>
                           </div>
                           <div class="liste-diplome">
                             <div >
@@ -396,8 +406,8 @@
                       <p class="p1">
                         L’agent <span>{{data.data.interimaire.prenom}} {{data.data.interimaire.nom}}
                         </span>  a été ajouté avec succès à la liste des interimaires. <br> 
-                        Une notification sera envoyée à <span>son manageur</span> et à l’<span>
-                          agence d’interim</span>.
+                        Une notification sera envoyée à la <span>Direction des Ressources Humaines</span> du <span>
+                          GROUPE SONATEL</span>.
                       </p>
                     </div>
                   </div>

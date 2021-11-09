@@ -33,6 +33,7 @@ export class PasevaluationComponent implements OnInit {
   result;
   success;
   successMsg;
+  loading = false
   annee: Date;
   yearOnly;
   errorMsg: any;
@@ -62,7 +63,7 @@ export class PasevaluationComponent implements OnInit {
   }
 
   gty(page: any){
-    this.otherService.listAllEvaluations(page, this.itemsPerPage, this.dateDebut, this.dateFin).subscribe((data: any) => {
+    this.otherService.listeInterNonEvaluer(page, this.itemsPerPage).subscribe((data: any) => {
       this.dataInter =  data.data;
       this.totalItems = data.total;
     }, error=> {
@@ -81,6 +82,23 @@ export class PasevaluationComponent implements OnInit {
     });
   }
 
-  relancer() {}
-
+  relancer() {
+    this.loading = true;
+    this.otherService.relanceEvaluationManager().subscribe(
+      data => {
+        this.loading = false;
+        this.data = data;
+        this.successMsg = this.data.status;
+        if (this.successMsg == true) {
+          this.toastr.success('Les managers ont été notifiés', 'Success', {
+            timeOut: 150000,
+          });
+        } else {
+          this.toastr.error(this.errorMsg, 'Echec', {
+            timeOut: 5000,
+          });
+        }
+      }
+    )
+  }
 }
