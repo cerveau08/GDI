@@ -61,10 +61,6 @@ import { ModalModifierComponent } from './pages/evaluation/objectifs/modal-modif
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { InterarchiveComponent } from './pages/interimaire/interarchive/interarchive.component';
 import { InterenattenteComponent } from './pages/interimaire/interenattente/interenattente.component';
-import { MultiDatepickerComponent } from './multidatepicker/multidatepicker.component';
-import { MonthPickerComponent } from './multidatepicker/month-picker-component/month-picker.component';
-import { YearPickerComponent } from './multidatepicker/year-picker-component/year-picker.component';
-import { RegularDatepickerComponent } from './multidatepicker/regular-datepicker-component/regular-datepicker.component';
 import { PasswordResetModule } from './connexion/password-reset/password-reset.module';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { ErrorInterceptor } from './helpers/error.interceptor';
@@ -137,6 +133,7 @@ import { DocumentsComponent } from './pages/settings/documents/documents.compone
 import { ExtractionlisteComponent } from './pages/evaluation/extractionliste/extractionliste.component';
 import { PasobjectifComponent } from './pages/evaluation/pasobjectif/pasobjectif.component';
 import { PasevaluationComponent } from './pages/evaluation/pasevaluation/pasevaluation.component';
+import { MatSelectCountryModule } from '@angular-material-extensions/select-country';
 
 @NgModule({
   declarations: [
@@ -316,6 +313,8 @@ import { PasevaluationComponent } from './pages/evaluation/pasevaluation/paseval
       preventDuplicates: true,
     }),
     NgxSpinnerModule,
+    HttpClientModule, 
+    MatSelectCountryModule
   ],
   providers: [DatePipe,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorService, multi: true },

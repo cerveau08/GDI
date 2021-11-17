@@ -40,7 +40,19 @@
         <p class="ajouter">Rechercher un interimaire</p>
         <div class="content-form">
           <div class="content-row-form">
+            
             <div class="content-input">
+              <p class="label-input">Nationalité <span class="signe-obligatoire">*</span></p>
+              <mat-select-country 
+                          appearance="fill"
+                          placeHolder="nationalité"
+                          class="input-nationalite"
+                          formControlName="nationalite"
+                          (onCountrySelected)="onCountrySelected($event)">
+            </mat-select-country>
+              <p class="error-require-input-search" *ngIf="videNationalite" >Veuillez séléctionner la nationalité</p>
+            </div>
+            <div class="content-input" *ngIf="searchForm.value.nationalite.alpha3Code != 'SEN'">
               <p class="label-input">Type de Pièce <span class="signe-obligatoire">*</span></p>
               <select class="select-search"  formControlName="typePiece" required>
                 <option class="option" value="" disabled selected hidden>Choisir le type de Pièce</option>
@@ -57,7 +69,7 @@
           <div class="content-row-form">
             <div class="content-input">
               <p class="label-input">Société <span class="signe-obligatoire">*</span></p>
-              <select class="select-search" #entite formControlName="societe" (change)="directionsListe(entite.value)" required>
+              <select class="select-search" #entite formControlName="societe" required>
                 <option class="option" value="" disabled selected hidden>Choisir une société</option>
                 <option *ngFor="let data of dataSociete" [value]="data.id">{{data.libelle}}</option>
               </select>
@@ -115,6 +127,10 @@
                           <input formControlName="photo" class="buttonphoto1" type="file" (change)="getPhoto($event.target)">
                         </div>
                         <div class="others">
+                          <div class="infoinput1">
+                            <p class="label-input1">Nationalité<span class="signe-obligatoire">*</span></p>
+                            <input type="text" formControlName="nationalite" placeholder="Nationalité" [(ngModel)]="nationalite" readonly> 
+                          </div>
                           <div class="infoinput2">
                             <div>
                               <p class="label-input1">Type de pièce <span class="signe-obligatoire">*</span></p>
@@ -146,7 +162,7 @@
                             <p class="error-require-input-search" *ngIf="invalidEmail">{{invalidEmail}}</p>
                           </div>
                           <div class="infoinput1">
-                            <p class="label-input1">Téléphone</p>
+                            <p class="label-input1">Téléphone <span class="signe-obligatoire">*</span></p>
                             <input type="text" formControlName="telephone" placeholder="Téléphone" [(ngModel)]="telephone" readonly> 
                           </div>
                           <div class="infoinput1">
@@ -185,6 +201,10 @@
                           <div class="infoinput1">
                             <p class="label-input1">École ou Université</p>
                             <input type="text" formControlName="universite" placeholder="Université ou Ecole">
+                          </div>
+                          <div class="infoinput1">
+                            <p class="label-input1">Diplome le plus élevé</p>
+                            <input type="text" formControlName="diplome_eleve" placeholder="Diplome">
                           </div>
                           <div class="infoinput1">
                             <p class="label-input1">Profession</p>
@@ -236,6 +256,20 @@
                           <div>
                             <p class="label-input2">Salaire Brut</p>
                             <input class="input3" type="text" formControlName="salaireBrut" placeholder="Montant Salaire Brut">
+                          </div>
+                        </div>
+                        <div class="contratinput1">
+                          <div>
+                            <p class="label-input1">Numéro de bon de commande(BC)<span class="signe-obligatoire">*</span></p>
+                            <input type="text" formControlName="num_bon_commande" placeholder="Numéro de bon de commande">
+                            <p class="error-require-input-search" *ngIf="videnumBC">{{videnumBC}}</p>
+                          </div>
+                        </div>
+                        <div class="contratinput1">
+                          <div>
+                            <p class="label-input2">Date de fin de validité du bon de commande(BC)<span class="signe-obligatoire">*</span></p>
+                            <input class="input3" type="date" formControlName="date_bon_commande" placeholder="Date de Fin (BC)">
+                            <p class="error-require-input-search" *ngIf="videdateBC">{{videdateBC}}</p>
                           </div>
                         </div>
                         <div class="contratinput1">

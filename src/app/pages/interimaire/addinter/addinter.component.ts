@@ -6,6 +6,7 @@ import { ErrormodalService } from 'src/app/modal/_errormodals';
 import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { MatStepper } from '@angular/material';
+import { Country } from '@angular-material-extensions/select-country';
 
 @Component({
   selector: 'app-addinter',
@@ -16,9 +17,9 @@ export class AddinterComponent implements OnInit {
 
   @ViewChild('stepper', {static: true}) stepper: MatStepper;
   selectedStepIndex = 0;
-  societeSearch;
-  typePieceSearch;
-  numeroPieceSearch;
+  //societeSearch;
+  //typePieceSearch;
+  //numeroPieceSearch;
   isAdmissible = false;
   isBlackliste = true;
   submited = false;
@@ -155,9 +156,26 @@ export class AddinterComponent implements OnInit {
   videdateN: string;
   videlieuN: string;
   videsexe: string;
+  videdateBC: string;
+  videnumBC: string;
   videtelephoneOM: string;
   invalidtelephoneOM: string;
   invaliddiplome: string;
+  paysSelectionne = 'SEN';
+  senegal: Country = {
+    name: "Senegal",
+    alpha2Code: "SN",
+    alpha3Code: "SEN",
+    numericCode: "686"
+  };
+  nationalite: any;
+  videNationalite: boolean;
+  laSociete = [
+    {
+      id: null,
+      libelle: null
+    }
+  ];
   constructor(private otherService: OthersService,
               private errormodalService: ErrormodalService,
               private toastr: ToastrService,
@@ -170,6 +188,7 @@ export class AddinterComponent implements OnInit {
     
   ngOnInit() {
     this.interForm = new FormGroup({
+      nationalite: new FormControl(''),
       typePiece: new FormControl(''),
       numeroPiece: new FormControl(''),
       prenom: new FormControl('', Validators.compose([
@@ -200,6 +219,7 @@ export class AddinterComponent implements OnInit {
       adresse: new FormControl(''),
       nPassport: new FormControl(''),
       diplome: new FormControl(''),
+      diplome_eleve: new FormControl(''),
       universite: new FormControl(''),
       photo: new FormControl(''),
       //structureId: new FormControl(''),
@@ -216,6 +236,8 @@ export class AddinterComponent implements OnInit {
       profession: new FormControl(''),
     });
     this.contratForm = new FormGroup({
+      num_bon_commande: new FormControl(''),
+      date_bon_commande: new FormControl(''),
       dateDebut: new FormControl(''),
       telephoneOM: new FormControl('', Validators.compose([
         Validators.required,
@@ -234,6 +256,9 @@ export class AddinterComponent implements OnInit {
       contratDoc: new FormControl(''),
     });
     this.searchForm = this.formBuilder.group({
+      nationalite: new FormControl(this.senegal, Validators.compose([
+        Validators.required
+      ])),
       numeroPiece: new FormControl('', Validators.compose([
         Validators.required,
        // Validators.pattern('[0-9]')
@@ -241,7 +266,7 @@ export class AddinterComponent implements OnInit {
       societe: new FormControl('', Validators.compose([
         Validators.required
       ])),
-      typePiece: new FormControl('', Validators.compose([
+      typePiece: new FormControl('cni', Validators.compose([
         Validators.required
       ])),
       telephone: new FormControl('', Validators.compose([
@@ -261,14 +286,17 @@ export class AddinterComponent implements OnInit {
     );
     this.otherService.listeSite(this.page, this.itemParPage, this.region).subscribe(
       data => {
-        console.log(data.data);
         this.dataSite = data.data;
       }
     )
     this.otherService.getDomaine().subscribe(data => this.dataDomaine = data["data"]);
     this.otherService.getFonctions().subscribe(data => this.listeFonction = data.data);
   }
-  
+  onCountrySelected($event: Country) {
+    console.log($event);
+    this.paysSelectionne = $event.alpha3Code;
+    console.log(this.paysSelectionne);
+  }
   public saveProfession(e): void {
     let libelle = e.target.value;
     let list = this.listeFonction.filter(x => x.libelle === libelle)[0];
@@ -297,27 +325,24 @@ export class AddinterComponent implements OnInit {
     } else {
       this.invalideNumber = '';
     }
+    this.videNationalite = !this.searchForm.value.nationalite ? true: false;
+    this.videtypePiece = !this.searchForm.value.typePiece ? true: false;
+    this.videnumeroPiece = !this.searchForm.value.numeroPiece ? true: false;
+    this.videsociete = !this.searchForm.value.societe ? true: false;
+    this.societe = this.searchForm.value.societe;
+    this.nationalite = this.searchForm.value.nationalite.name;
     this.typePiece = this.searchForm.value.typePiece;
     this.numeroPiece = this.searchForm.value.numeroPiece;
     this.telephone = this.searchForm.value.telephone;
-    this.societe = this.searchForm.value.societe;
-    if(!this.typePiece) {
-      this.videtypePiece = true;
-    } else {
-      this.videtypePiece = false;
-    }
-    if(!this.numeroPiece) {
-      this.videnumeroPiece = true;
-    } else {
-      this.videnumeroPiece = false;
-    }
-    if(!this.societe) {
-      this.videsociete = true;
-    } else {
-      this.videsociete = false;
+    let formValid = {
+      societe: this.searchForm.value.societe,
+      nationalite: this.searchForm.value.nationalite.name,
+      typePiece: this.searchForm.value.typePiece,
+      numeroPiece: this.searchForm.value.numeroPiece,
+      telephone: this.searchForm.value.telephone,
     }
     if(this.searchForm.valid) {
-      this.otherService.pieceFilter(this.searchForm.value).subscribe(
+      this.otherService.pieceFilter(formValid).subscribe(
         (response) => {
           this.dataMatriculeInter = response;
           this.isBlackliste = this.dataMatriculeInter.isBlacklisted
@@ -449,6 +474,8 @@ export class AddinterComponent implements OnInit {
     } else {
       this.invalidtelephoneOM = '';
     }
+    this.videnumBC = !this.contratForm.value.num_bon_commande ? 'Veuillez saisir le numéro de bon de commande': '';
+    this.videdateBC = !this.contratForm.value.date_bon_commande ? 'Veuillez saisir la date de fin de validité du de bon de commande': '';
     this.colorb = "#f16e00";
     this.colorc = "#ff7900";
     this.color2 = "20px solid #f16e00";
