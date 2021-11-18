@@ -102,6 +102,25 @@ export class AddinterComponent implements OnInit {
       libelle: "veuf(ve)"
     }
   ];
+  ListeDiplome = [
+    {
+      libelle: "CFEE"
+    },{
+      libelle: "BFEM"
+    },{
+      libelle: "Baccalaurèat"
+    },{
+      libelle: "DUT"
+    },{
+      libelle: "Licence"
+    },{
+      libelle: "DIT"
+    },{
+      libelle: "Master"
+    },{
+      libelle: "Doctorat"
+    }
+  ];
   data;
   successMsg;
   selected1 = false;
@@ -176,6 +195,7 @@ export class AddinterComponent implements OnInit {
       libelle: null
     }
   ];
+  salaireBrut: any;
   constructor(private otherService: OthersService,
               private errormodalService: ErrormodalService,
               private toastr: ToastrService,
@@ -188,7 +208,9 @@ export class AddinterComponent implements OnInit {
     
   ngOnInit() {
     this.interForm = new FormGroup({
-      nationalite: new FormControl(''),
+      nationalite: new FormControl('', Validators.compose([
+        Validators.required
+      ])),
       typePiece: new FormControl(''),
       numeroPiece: new FormControl(''),
       prenom: new FormControl('', Validators.compose([
@@ -236,8 +258,12 @@ export class AddinterComponent implements OnInit {
       profession: new FormControl(''),
     });
     this.contratForm = new FormGroup({
-      num_bon_commande: new FormControl(''),
-      date_bon_commande: new FormControl(''),
+      num_bon_commande: new FormControl('', Validators.compose([
+        Validators.required
+      ])),
+      date_bon_commande: new FormControl('', Validators.compose([
+        Validators.required
+      ])),
       dateDebut: new FormControl(''),
       telephoneOM: new FormControl('', Validators.compose([
         Validators.required,
@@ -291,11 +317,26 @@ export class AddinterComponent implements OnInit {
     )
     this.otherService.getDomaine().subscribe(data => this.dataDomaine = data["data"]);
     this.otherService.getFonctions().subscribe(data => this.listeFonction = data.data);
+    this.onChanges();
   }
+  onChanges(): void {
+    this.contratForm.get('categorieId').valueChanges.subscribe(val => {
+      this.salaireBrut = val;
+      this.otherService.getOneCategorie(val).subscribe(
+        data => {
+          this.data = data;
+          this.salaireBrut = this.data.data.salaireBrute;
+        }
+      )
+    });
+  }
+
+  rechargerPage() {
+    this.ngOnInit();
+  }
+
   onCountrySelected($event: Country) {
-    console.log($event);
     this.paysSelectionne = $event.alpha3Code;
-    console.log(this.paysSelectionne);
   }
   public saveProfession(e): void {
     let libelle = e.target.value;
@@ -487,7 +528,6 @@ export class AddinterComponent implements OnInit {
     this.color3 = "20px solid #f16e00";
     const formdata = new FormData();
     formdata.append("societeId", this.contratForm.value.societeId);
-    formdata.append("domaineId",this.interForm.value.domaineId);
     formdata.append("typePiece",this.interForm.value.typePiece);
     formdata.append("numeroPiece",this.interForm.value.numeroPiece);
     formdata.append("nom",this.interForm.value.nom);
@@ -498,13 +538,14 @@ export class AddinterComponent implements OnInit {
     formdata.append("telephone",this.interForm.value.telephone);
     formdata.append("universite",this.interForm.value.universite);
     formdata.append("sexe",this.interForm.value.sexe);
-    formdata.append("profession",this.interForm.value.profession);
-    formdata.append("categorieId",this.interForm.value.categorieId);
+    //formdata.append("profession",this.interForm.value.profession);
     formdata.append("sitmat",this.interForm.value.sitmat);
-    formdata.append("salaireBrut",this.interForm.value.salaireBrut);
     formdata.append("dateNaissance",this.interForm.value.dateNaissance);
     formdata.append("lieuNaissance",this.interForm.value.lieuNaissance);
-    
+    formdata.append("nationalite",this.interForm.value.nationalite);
+    formdata.append("diplome_eleve",this.interForm.value.diplome_eleve);
+    formdata.append("date_bon_commande",this.contratForm.value.date_bon_commande);
+    formdata.append("num_bon_commande",this.contratForm.value.num_bon_commande);
     if(this.contratForm.value.categorieId != "") {
       formdata.append("categorieId", this.contratForm.value.categorieId);
     }

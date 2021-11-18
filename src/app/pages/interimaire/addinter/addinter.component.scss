@@ -335,6 +335,27 @@ input {
   padding-left: 10px;
   outline: none;
 }
+.select-diplome {
+  width: 333px;
+  height: 24px;
+  margin-bottom: 0px;
+  background-color: #f5f6f9;
+  outline: none;
+  color: black;
+  border: 1px solid #d8d8d8;
+  padding: 0px;
+  option {
+      font-size: 14px;
+      font-weight: normal;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 10px;
+      letter-spacing: 0.07px;
+      color: #000;
+      margin-top: 10px;
+      text-align: left;
+  }
+}
 .infoinput1 input {
   width: 319px;
   height: 20px;

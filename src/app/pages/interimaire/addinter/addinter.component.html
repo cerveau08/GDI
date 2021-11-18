@@ -204,15 +204,18 @@
                           </div>
                           <div class="infoinput1">
                             <p class="label-input1">Diplome le plus élevé</p>
-                            <input type="text" formControlName="diplome_eleve" placeholder="Diplome">
+                            <select class="select-diplome"formControlName="diplome_eleve" >
+                              <option class="option" value="" disabled selected hidden>Sélectionner votre diplome</option>
+                              <option *ngFor="let data of ListeDiplome" [value]="data.libelle">{{data.libelle}}</option>
+                            </select>
                           </div>
-                          <div class="infoinput1">
+                          <!-- <div class="infoinput1">
                             <p class="label-input1">Profession</p>
                             <input type="text"  list="professions" formControlName="profession" placeholder="Votre Profession" (change)="saveProfession($event)">
                             <datalist id="professions">
                               <option *ngFor="let c of listeFonction" [value]="c.libelle" >{{c.libelle}}</option>
                             </datalist>
-                          </div>
+                          </div> -->
                         </div>
                       </div>
                     </div>
@@ -255,20 +258,20 @@
                           </div>
                           <div>
                             <p class="label-input2">Salaire Brut</p>
-                            <input class="input3" type="text" formControlName="salaireBrut" placeholder="Montant Salaire Brut">
+                            <input class="input3" type="text" formControlName="salaireBrut" [(ngModel)]="salaireBrut" placeholder="Montant Salaire Brut" readonly>
                           </div>
                         </div>
                         <div class="contratinput1">
                           <div>
                             <p class="label-input1">Numéro de bon de commande(BC)<span class="signe-obligatoire">*</span></p>
-                            <input type="text" formControlName="num_bon_commande" placeholder="Numéro de bon de commande">
+                            <input class="input-telephone-om" type="text" formControlName="num_bon_commande" placeholder="Numéro de bon de commande">
                             <p class="error-require-input-search" *ngIf="videnumBC">{{videnumBC}}</p>
                           </div>
                         </div>
                         <div class="contratinput1">
                           <div>
-                            <p class="label-input2">Date de fin de validité du bon de commande(BC)<span class="signe-obligatoire">*</span></p>
-                            <input class="input3" type="date" formControlName="date_bon_commande" placeholder="Date de Fin (BC)">
+                            <p class="label-input1">Date de fin de validité du bon de commande(BC)<span class="signe-obligatoire">*</span></p>
+                            <input class="input-telephone-om" type="date" formControlName="date_bon_commande" placeholder="Date de Fin (BC)">
                             <p class="error-require-input-search" *ngIf="videdateBC">{{videdateBC}}</p>
                           </div>
                         </div>
@@ -445,7 +448,7 @@
                       </p>
                     </div>
                   </div>
-                  <button class="button3" type="button" (click)="removeItem()" (click)="stepper.reset()">Ajouter un autre</button>
+                  <button class="button3" type="button" (click)="rechargerPage()">Ajouter un autre</button>
                   <button class="button4" (click)="removeItem()" routerLink="/accueil/interenattente">Liste interimaires</button>
                   <button class="button5" (click)="removeItem()" routerLink="/accueil/homedrh">Tableau de bord</button>
                 </div>

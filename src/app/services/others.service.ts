@@ -112,9 +112,13 @@ addAgence(data) {
   getAllCategorie(){
     return this.http.get(this.reqUrl + '/categories')
   }
+  getOneCategorie(id: number){
+    return this.http.get(`${this.reqUrl}/detailCategorie/${id}`);
+  }
   getAllPoles(id: number){
     return this.http.get(`${this.reqUrl}/poles/${id}`);
   }
+  
   getAllDirection(id: number){
     return this.http.get(`${this.reqUrl}/direction/${id}`);
   }
