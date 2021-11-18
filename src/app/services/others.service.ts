@@ -266,6 +266,9 @@ addAgence(data) {
   validerInterimaire(data:any, id: number): Observable<any> {
     return this.http.post<any>(`${this.reqUrl}/validerInterimaire/${id}`, data);
   }
+  addemailInterimaire(data:any, id: number): Observable<any> {
+    return this.http.post<any>(`${this.reqUrl}/validerInterimaire/${id}`, data);
+  }
   bolquerInter(id: number, data:any): Observable<any> {
     return this.http.post<any>(`${this.reqUrl}/block/${id}`, data);
   }

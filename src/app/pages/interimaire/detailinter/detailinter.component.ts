@@ -132,6 +132,8 @@ export class DetailinterComponent implements OnInit {
   videNumber: string;
   listeFonction: any;
   idcontrat: any;
+  emailForm: FormGroup;
+  emailPro = '';
   constructor(private activeroute: ActivatedRoute,
               private modalService: ModalService,
               private otherService: OthersService,
@@ -157,27 +159,28 @@ export class DetailinterComponent implements OnInit {
         this.dataInter = this.data.data;
         this.nom = this.dataInter.nom;
         this.prenom = this.dataInter.prenom;
-        this.datedenaissance = this.dataInter.datedenaissance;
-        this.lieudenaissance = this.dataInter.lieudenaissance;
-        this.numeroPiece = this.dataInter.numeroPiece;
-        this.diplome = this.dataInter.diplomes;
-        this.email = this.dataInter.email;
-        this.adresse = this.dataInter.adresse;
-        this.profession = this.dataInter.profession;
-        this.salaireBrut = this.dataInter.salaireBrut;
-        this.profession = this.dataInter.profession;
-        this.telephone = this.dataInter.telephone;
-        this.universite = this.dataInter.universite;
-        this.sitmat = this.dataInter.sitmat;
-        this.idcontrat = this.dataInter.contrat.id;
-        this.direction = this.dataInter.direction;
-        this.departement = this.dataInter.departement;
-        this.service = this.dataInter.service;
-        this.agence = this.dataInter.agence;
-        this.categorie = this.dataInter.categorie;
-        this.dateSignature = this.dataInter.dateSignature;
-        this.matricule = this.dataInter.matricule;
-        this.sexe = this.dataInter.sexe;
+        // this.datedenaissance = this.dataInter.datedenaissance;
+        // this.lieudenaissance = this.dataInter.lieudenaissance;
+        // this.numeroPiece = this.dataInter.numeroPiece;
+        // this.diplome = this.dataInter.diplomes;
+        // this.email = this.dataInter.email;
+        this.emailPro = this.dataInter.emailPro;
+        // this.adresse = this.dataInter.adresse;
+        // this.profession = this.dataInter.profession;
+        // this.salaireBrut = this.dataInter.salaireBrut;
+        // this.profession = this.dataInter.profession;
+        // this.telephone = this.dataInter.telephone;
+        // this.universite = this.dataInter.universite;
+        // this.sitmat = this.dataInter.sitmat;
+        // this.idcontrat = this.dataInter.contrat.id;
+        // this.direction = this.dataInter.direction;
+        // this.departement = this.dataInter.departement;
+        // this.service = this.dataInter.service;
+        // this.agence = this.dataInter.agence;
+        // this.categorie = this.dataInter.categorie;
+        // this.dateSignature = this.dataInter.dateSignature;
+        // this.matricule = this.dataInter.matricule;
+        // this.sexe = this.dataInter.sexe;
         this.photo = this.reqUrl + '/public/' + this.dataInter.photo;
         this.etat = this.dataInter.etat;
         this.contratDoc = this.reqUrl + '/public' + this.dataInter.fileContrat;
@@ -214,6 +217,9 @@ export class DetailinterComponent implements OnInit {
     });
     this.searchForm = new FormGroup({
       matricule: new FormControl('')
+    });
+    this.emailForm = new FormGroup({
+      email: new FormControl('')
     });
     this.validerForm = this.formBuilder.group({
       matricule: new FormControl(''),
@@ -491,6 +497,29 @@ export class DetailinterComponent implements OnInit {
           this.successMsgValider = this.dataValidation.status;
           if(this.successMsgValider == true) {
             this.closeModal('custom-modal-8');
+            this.toastr.success(this.dataValidation.message, 'Success', {
+              timeOut: 3000,
+            });
+            this.router.navigate(['accueil/souscontrat']);
+          }
+        }, error=> {
+          this.errorMsg = error;
+          this.toastr.error(this.errorMsg, 'Echec', {
+            timeOut: 5000,
+          });
+        }
+      )
+    }
+  }
+
+  addemailInterimaire() {
+    if(this.emailForm.valid) {
+      this.otherService.addemailInterimaire(this.emailForm.value, this.item).subscribe(
+        data => {
+          this.dataValidation = data;
+          this.successMsgValider = this.dataValidation.status;
+          if(this.successMsgValider == true) {
+            this.closeModal('custom-modal-9');
             this.toastr.success(this.dataValidation.message, 'Success', {
               timeOut: 3000,
             });

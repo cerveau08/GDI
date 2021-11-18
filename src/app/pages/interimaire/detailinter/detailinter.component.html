@@ -10,9 +10,10 @@
             <div class="content-buttons-modifier">
                 <button *ngIf="etat == 'actif' && role == 'DRH'"  (click)="modifierInter()" class="button-modifier">Modifier</button>
                 <div *ngIf="etat == 'En attente'">
-                    <button *ngIf="role == 'AGN'" (click)="openModal('custom-modal-8')" class="button-modifier">Modifier</button>
+                    <button *ngIf="role == 'AGN'" (click)="modifierInter()" class="button-modifier">Modifier</button>
                     <button *ngIf="role == 'DRH'" (click)="openModal('custom-modal-8')" class="button-modifier">Valider</button>
                 </div>
+                <button *ngIf="etat == 'actif' && role == 'MNG' && (!emailPro || emailPro==undefined)"  (click)="openModal('custom-modal-9')" class="button-add-email">Ajouter Email</button>
             </div>
         </div>
         <div class="progres">
@@ -55,7 +56,7 @@
                         </div>
                         <div class="content-personnel">
                             <p class="key">Matricule: <span class="value">{{dataInter?.matricule}}</span> </p>
-                            <p class="key">Téléphone: <span class="value">{{dataInter?.matricule}}</span> </p>
+                            <p class="key">Téléphone: <span class="value">{{dataInter?.telephone}}</span> </p>
                         </div>
                         <div class="content-personnel">
                             <p class="key">Type de pièce: <span class="value">{{dataInter?.typePiece}}</span> </p>
@@ -91,7 +92,7 @@
                             <p class="key">Domaine: <span class="value">{{dataInter?.domaine.libelle}}</span> </p>
                         </div>
                         <div class="content-personnel">
-                            <p class="key">Société: <span class="value">{{dataInter?.structure.libelle}}</span> </p>
+                            <p class="key">Société: <span class="value">{{dataInter?.societe.libelle}}</span> </p>
                             <p class="key">Direction: <span class="value">{{dataInter?.structure.direction?.libelle}}</span> </p>
                         </div>
                         <div class="content-personnel">
@@ -104,6 +105,8 @@
                         </div>
                         <div class="content-personnel">
                             <p class="key">Date signature: <span class="value">{{dataInter?.contrat.dateSignature | date:' dd MMMM yyyy'}}</span> </p>
+                            <p class="key">Agence: <span class="value">{{dataInter?.agence.nom}}</span> </p>
+                            
                         </div>
                     </div>
                 </div>
@@ -438,16 +441,9 @@
                         <p class="libelle-motif">Matricule de l'intérimaire</p>
                         <input class="input-valider" type="text" formControlName="matricule" placeholder="Matricule">
                     </div>
-                    <div class="input-v">
+                    <!-- <div class="input-v">
                         <p class="libelle-motif">Email de l'intérimaire</p>
                         <input class="input-valider" type="text" formControlName="email" placeholder="Email">
-                    </div>
-                    <!-- <div class="input-v">
-                        dataSociete
-                        <p class="libelle-motif">Téléphone OM</p>
-                        <input class="input-valider" type="text" formControlName="telephone" placeholder="Telephone OM">
-                        <p class="error-message-number" *ngIf="videNumber">{{videNumber}}</p>
-                        <p class="error-message-number" *ngIf="invalideNumber">{{invalideNumber}}</p>
                     </div> -->
                     <div class="input-v">
                         <p class="libelle-motif">Matricule Manager</p>
@@ -467,6 +463,45 @@
     </jw-modal>
 </div>
 
+<!--modal 9-->
+<div class="modal">
+    <jw-modal id="custom-modal-9">
+            <div class="tableau">
+                <mat-icon style="cursor: pointer;" (click)="closeModal('custom-modal-9');" class="clear">clear</mat-icon>
+                <p class="dtl1">Ajouter l'email de <span class="nom-interimaire">{{prenom}} {{nom}}</span></p>
+                <div [formGroup]="emailForm">
+                    <!-- <div class="input-v">
+                        <p class="libelle-motif">Matricule de l'intérimaire</p>
+                        <input class="input-valider" type="text" formControlName="matricule" placeholder="Matricule">
+                    </div> -->
+                    <br>
+                    <div class="content-manager-info">
+                        <p class="key">Prénom: <span class="value">{{dataInter?.prenom}}</span> </p>
+                        <p class="key">Nom: <span class="value">{{dataInter?.nom}}</span> </p>
+                        <p class="key">Matricule: <span class="value">{{dataInter?.matricule}}</span> </p>
+                        <p class="key">Téléphone: <span class="value">{{dataInter?.telephone}}</span> </p>
+                    </div>
+                    <div class="input-v">
+                        <p class="libelle-motif">Email professionnel de l'intérimaire</p>
+                        <input class="input-valider" type="text" formControlName="email" placeholder="Email">
+                    </div>
+                    <!-- <div class="input-v">
+                        <p class="libelle-motif">Matricule Manager</p>
+                        <input list="matriculesm" class="input-valider" (change)="saveMatriculeM($event)" type="text" formControlName="responsable" placeholder="Matricule de son manageur">
+                        <datalist id="matriculesm">
+                            <option *ngFor="let c of dataManageur" [value]="c.matricule" >{{c.matricule}}</option>
+                          </datalist>
+                    </div> -->
+                    <div class="content-error-msg" *ngIf="successMsgValider == false">
+                        <p class="error-alert">{{ dataValidation?.message}}</p>
+                    </div>
+                    <div class="btns3">
+                        <button (click)="addemailInterimaire() "  class="button5">Valider</button>
+                    </div>
+                </div>
+            </div>
+    </jw-modal>
+</div>
 <!--modal1-->
 <div class="modal">
     <sonatel-pma-errormodal id="error-modal-1">
