@@ -134,6 +134,10 @@ export class DetailinterComponent implements OnInit {
   idcontrat: any;
   emailForm: FormGroup;
   emailPro = '';
+  totalJourPresent: any;
+  selected1: boolean;
+  selected2: boolean;
+  dureeTotalPresence: any;
   constructor(private activeroute: ActivatedRoute,
               private modalService: ModalService,
               private otherService: OthersService,
@@ -145,7 +149,7 @@ export class DetailinterComponent implements OnInit {
               public formBuilder: FormBuilder, 
               private toastr: ToastrService) { 
     this.activeroute.queryParams.subscribe(params => {
-      this.item = JSON.parse(params["user"]);
+      this.item = JSON.parse(params["interimaire"]);
     })
     
   }
@@ -172,7 +176,7 @@ export class DetailinterComponent implements OnInit {
         // this.telephone = this.dataInter.telephone;
         // this.universite = this.dataInter.universite;
         // this.sitmat = this.dataInter.sitmat;
-        // this.idcontrat = this.dataInter.contrat.id;
+         this.idcontrat = this.dataInter.contrat.id;
         // this.direction = this.dataInter.direction;
         // this.departement = this.dataInter.departement;
         // this.service = this.dataInter.service;
@@ -219,12 +223,13 @@ export class DetailinterComponent implements OnInit {
       matricule: new FormControl('')
     });
     this.emailForm = new FormGroup({
-      email: new FormControl('')
+      email: new FormControl(''),
+      id: new FormControl(this.item)
     });
     this.validerForm = this.formBuilder.group({
       matricule: new FormControl(''),
       responsable: new FormControl(''),
-      email: new FormControl(''),
+      //email: new FormControl(''),
       // telephone: new FormControl('', Validators.compose([
       //   Validators.required,
       //   Validators.pattern('7[7-8]{1}[0-9]{7}')
@@ -258,9 +263,12 @@ export class DetailinterComponent implements OnInit {
           this.jourRestant = this.infoContrat.dureeContratRestant.jours;
           this.totalJour = this.infoContrat.dureeTotalContratEnJours;
           this.totalJourRestatnt = this.infoContrat.dureeTotalContratRestantJours;
+          this.totalJourPresent = this.totalJour - this.totalJourRestatnt;
+          let totalDay = 730;
           this.dateFin = this.infoContrat.dateFinContrat;
-          this.percentRestantwidth = 100 - (this.totalJourRestatnt / this.totalJour) * 100 +'%';
-          this.percentRestantposition = 100 - (this.totalJourRestatnt / this.totalJour) * 100 - 1 +'%';
+          this.dureeTotalPresence = this.infoContrat.dureeTotalPresence;
+          this.percentRestantwidth = (this.totalJourPresent / totalDay) * 100 +'%';
+          this.percentRestantposition = (this.totalJourPresent / totalDay) * 100 - 1 +'%';
         }
       }
     )
@@ -356,6 +364,8 @@ export class DetailinterComponent implements OnInit {
   }
 
   openDocuments(idcontrat) {
+    console.log(idcontrat);
+    
     this.router.navigate(['accueil/detailcontrat'], {
       queryParams: {
         contrat: JSON.stringify(idcontrat),
@@ -496,11 +506,12 @@ export class DetailinterComponent implements OnInit {
           this.dataValidation = data;
           this.successMsgValider = this.dataValidation.status;
           if(this.successMsgValider == true) {
+            this.ngOnInit();
             this.closeModal('custom-modal-8');
             this.toastr.success(this.dataValidation.message, 'Success', {
               timeOut: 3000,
             });
-            this.router.navigate(['accueil/souscontrat']);
+            //this.router.navigate(['accueil/souscontrat']);
           }
         }, error=> {
           this.errorMsg = error;
@@ -514,16 +525,17 @@ export class DetailinterComponent implements OnInit {
 
   addemailInterimaire() {
     if(this.emailForm.valid) {
-      this.otherService.addemailInterimaire(this.emailForm.value, this.item).subscribe(
+      this.otherService.addemailInterimaire(this.emailForm.value).subscribe(
         data => {
           this.dataValidation = data;
           this.successMsgValider = this.dataValidation.status;
           if(this.successMsgValider == true) {
             this.closeModal('custom-modal-9');
+            this.ngOnInit();
             this.toastr.success(this.dataValidation.message, 'Success', {
               timeOut: 3000,
             });
-            this.router.navigate(['accueil/souscontrat']);
+            //this.closeModal('custom-modal-9');
           }
         }, error=> {
           this.errorMsg = error;

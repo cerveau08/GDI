@@ -34,7 +34,7 @@
                             <p class="label-input" for="titre">Poste: </p>
                             <input type="text" class="input-extraction" list="professions" formControlName="poste" [(ngModel)]="poste" (change)="saveProfession($event)">
                             <datalist id="professions">
-                              <option *ngFor="let c of listeFonction" [value]="c.libelle" >{{c.libelle}}</option>
+                              <option *ngFor="let c of listeFonction" [value]="c.id" >{{c.libelle}}</option>
                             </datalist>
                         </div>
                         <div class="content-extraction">

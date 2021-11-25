@@ -18,9 +18,10 @@
         </div>
         <div class="progres">
             <p class="duree">Contrat 
-                <span *ngIf="anneeRestant">{{anneeRestant}} année(s) </span>
-                <span *ngIf="moisRestant"> {{moisRestant}} mois </span>
-                <span> {{jourRestant}} jours</span> restant 
+                <span *ngIf="dureeTotalPresence?.annee">{{dureeTotalPresence.annee}} année(s) </span>
+                <span *ngIf="dureeTotalPresence?.mois"> {{dureeTotalPresence.mois}} mois </span>
+                <span *ngIf="dureeTotalPresence?.semaine"> {{dureeTotalPresence.semaine}} semaines </span> et
+                <span> {{dureeTotalPresence?.jours}} jours</span> restant 
             </p>
             <div class="bar">
                 <div id="progress_bar">
@@ -45,7 +46,7 @@
                         <img class="image-contact" src="../assets/images/mail.png" alt="">
                     </div>
                     <p class="prenom">{{dataInter?.prenom}} {{dataInter?.nom}}</p>
-                    <p class="fonction">{{dataInter?.profession}}</p>
+                    <p class="fonction">{{dataInter?.poste}}</p>
                 </div>
             </div>
             <div class="info">
@@ -55,30 +56,33 @@
                             <p class="personnelle-information-title">Informations personnelles</p>
                         </div>
                         <div class="content-personnel">
-                            <p class="key">Matricule: <span class="value">{{dataInter?.matricule}}</span> </p>
-                            <p class="key">Téléphone: <span class="value">{{dataInter?.telephone}}</span> </p>
+                            <p class="key">Matricule: <span class="value">{{dataInter?.matricule? dataInter?.matricule : 'Non renseigné'}}</span> </p>
+                            <p class="key">Téléphone: <span class="value">{{dataInter?.telephone? dataInter?.telephone : 'Non renseigné'}}</span> </p>
                         </div>
                         <div class="content-personnel">
-                            <p class="key">Type de pièce: <span class="value">{{dataInter?.typePiece}}</span> </p>
-                            <p class="key">Numéro de pièce: <span class="value">{{dataInter?.numeroPiece}}</span> </p>
+                            <p class="key">Type de pièce: <span class="value">{{dataInter?.typePiece? dataInter?.typePiece : 'Non renseigné'}}</span> </p>
+                            <p class="key">Numéro de pièce: <span class="value">{{dataInter?.numeroPiece? dataInter?.numeroPiece : 'Non renseigné'}}</span> </p>
                         </div>
                         <div class="content-personnel">
-                            <p class="key">Date de naissance: <span class="value">{{dataInter?.datedenaissance}}</span> </p>
-                            <p class="key">Lieu de naissance: <span class="value">{{dataInter?.lieudenaissance}}</span> </p>
+                            <p class="key">Date de naissance: <span class="value">{{dataInter?.datedenaissance? dataInter?.datedenaissance : 'Non renseigné'}}</span> </p>
+                            <p class="key">Lieu de naissance: <span class="value">{{dataInter?.lieudenaissance? dataInter?.lieudenaissance : 'Non renseigné'}}</span> </p>
                         </div>
                         <div class="content-personnel">
-                            <p class="key">Genre: <span class="value">{{dataInter?.sexe}}</span> </p>
-                            <p class="key">Situation matrimoniale: <span class="value">{{dataInter?.sitmat}}</span> </p>
+                            <p class="key">Genre: <span class="value">{{dataInter?.sexe? dataInter?.sexe : 'Non renseigné'}}</span> </p>
+                            <p class="key">Situation matrimoniale: <span class="value">{{dataInter?.sitmat? dataInter?.sitmat : 'Non renseigné'}}</span> </p>
                         </div>
                         <div class="content-personnel">
-                            <p class="key">Ecole: <span class="value">{{dataInter?.universite}}</span> </p>
-                            <p class="key">Adresse: <span class="value">{{dataInter?.adresse}}</span> </p>
+                            <p class="key">Ecole: <span class="value">{{dataInter?.universite? dataInter?.universite : 'Non renseigné'}}</span> </p>
+                            <p class="key">Adresse: <span class="value">{{dataInter?.adresse? dataInter?.adresse : 'Non renseigné'}}</span> </p>
+                        </div>
+                        <div class="content-personnel">
+                            <p class="key">Diplome: <span class="value">{{ dataInter?.diplomeEleve? dataInter?.diplomeEleve : 'Non renseigné'}}</span> </p>
                         </div>
                         <div class="content-personnel1">
-                            <p class="key">Email professionnel: <span class="value">{{dataInter?.email}}</span> </p>
+                            <p class="key">Email professionnel: <span class="value">{{dataInter?.emailPro? dataInter?.emailPro : 'Non renseigné'}}</span> </p>
                         </div>
                         <div class="content-personnel1">
-                            <p class="key">Email personnel: <span class="value">{{dataInter?.email}}</span> </p>
+                            <p class="key">Email personnel: <span class="value">{{dataInter?.email? dataInter?.email : 'Non renseigné'}}</span> </p>
                         </div>
                     </div>
                 </div>
@@ -88,16 +92,20 @@
                             <p class="personnelle-information-title">Informations sur son contrat</p>
                         </div>
                         <div class="content-personnel">
-                            <p class="key">Catégorie: <span class="value">{{dataInter?.categorie.libelle}}</span> </p>
-                            <p class="key">Domaine: <span class="value">{{dataInter?.domaine.libelle}}</span> </p>
+                            <p class="key">Catégorie: <span class="value">{{dataInter?.categorie.libelle? dataInter?.categorie.libelle : 'Non renseigné'}}</span> </p>
+                            <p class="key">Domaine: <span class="value">{{dataInter?.domaine.libelle? dataInter?.domaine.libelle : 'Non renseigné'}}</span> </p>
                         </div>
                         <div class="content-personnel">
-                            <p class="key">Société: <span class="value">{{dataInter?.societe.libelle}}</span> </p>
-                            <p class="key">Direction: <span class="value">{{dataInter?.structure.direction?.libelle}}</span> </p>
+                            <p class="key">Numéro Bon Commande: <span class="value">{{dataInter?.numBonCommande? dataInter?.numBonCommande : 'Non renseigné'}}</span> </p>
+                            <p class="key">Date Bon Commande: <span class="value">{{dataInter?.dateBonCommande | date: 'dd MMMM yyyy'}}</span> </p>
                         </div>
                         <div class="content-personnel">
-                            <p class="key">Département: <span class="value">{{dataInter?.structure.departement}}</span> </p>
-                            <p class="key">Service: <span class="value">{{dataInter?.structure.service}}</span> </p>
+                            <p class="key">Société: <span class="value">{{dataInter?.societe.libelle? dataInter?.societe.libelle : 'Non renseigné'}}</span> </p>
+                            <p class="key">Direction: <span class="value">{{dataInter?.structure.direction.libelle? dataInter?.structure.direction.libelle : 'Non renseigné'}}</span> </p>
+                        </div>
+                        <div class="content-personnel">
+                            <p class="key">Département: <span class="value">{{dataInter?.structure.departement? dataInter?.structure.departement : 'Non renseigné'}}</span> </p>
+                            <p class="key">Service: <span class="value">{{dataInter?.structure.service? dataInter?.structure.service : 'Non renseigné'}}</span> </p>
                         </div>
                         <div class="content-personnel">
                             <p class="key">Date de début: <span class="value">{{dataInter?.contrat.dateDebut | date:' dd MMMM yyyy'}}</span> </p>
@@ -105,7 +113,7 @@
                         </div>
                         <div class="content-personnel">
                             <p class="key">Date signature: <span class="value">{{dataInter?.contrat.dateSignature | date:' dd MMMM yyyy'}}</span> </p>
-                            <p class="key">Agence: <span class="value">{{dataInter?.agence.nom}}</span> </p>
+                            <p class="key">Agence: <span class="value">{{dataInter?.agence.nom? dataInter?.agence.nom : 'Non renseigné'}}</span> </p>
                             
                         </div>
                     </div>

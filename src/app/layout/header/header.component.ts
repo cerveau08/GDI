@@ -210,7 +210,7 @@ export class HeaderComponent implements OnInit {
           this.closeModal('custom-modal-50')
           this.route.navigate(['/accueil/detailinter'], {
             queryParams: {
-              user: JSON.stringify(this.donneesSearch['data'][0].id)
+              interimaire: JSON.stringify(this.donneesSearch['data'][0].id)
             }
           });
         } else {

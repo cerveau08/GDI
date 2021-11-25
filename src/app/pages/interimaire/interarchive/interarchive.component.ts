@@ -117,7 +117,7 @@ export class InterarchiveComponent implements OnInit {
   openDetail(data) {
     this.router.navigate(['/accueil/detailinter'], {
       queryParams: {
-        user: JSON.stringify(data)
+        interimaire: JSON.stringify(data)
       }
     })
   }

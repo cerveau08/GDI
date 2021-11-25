@@ -3,19 +3,109 @@
   // grid-template-columns: 1fr 290px;
   background-color: #f5f6f9;
 }
+.content-search-inter{
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.label-input1{
+  font-size: 11px;
+  margin-top: 5px;
+  margin-bottom: 0;
+}
+.label-input2{
+  font-size: 11px;
+  margin-top: 5px;
+  margin-bottom: 0;
+  margin-left: 10px;
+}
+.content-text-explication{
+  padding-right: 15px;
+}
+.error-require-input-search{
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 11px;
+  color: #ff0000;
+}
+.content-form{
+  margin-top: 40px;
+}
+.select-search{
+  width: 390px;
+  height: 24px;
+  background-color: #f5f6f9;
+  outline: none;
+  color: black;
+  border: 1px solid #d8d8d8;
+  padding: 0px;
+  option {
+      font-size: 14px;
+      font-weight: normal;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 10px;
+      letter-spacing: 0.07px;
+      color: #000;
+      margin-top: 10px;
+      text-align: left;
+  }
+}
+.input-search{
+  width: 375px;
+  height: 20px;
+  background-color: #f5f6f9;
+  border-radius: 1px;
+  border: solid 1px #d8d8d8;
+}
+.label-input{
+  font-size: 12px;
+  margin-bottom: 5px;
+  margin-top: 10px;
+}
+.text-explication-libelle{
+  font-size: 12px;
+  text-align: justify;
+}
+.content-button-form{
+  width: 90px;
+  margin: 0 auto;
+}
+.button-rechercher{
+  margin-top: 15px;
+  width: 90px;
+  height: 20px;
+  border: none;
+  outline: none;
+  background-color: #ff7900;
+  color: white;
+  font-size: 13px;
+  font-weight: 600;
+}
+.text-result-search{
+  padding-right: 15px;
+}
+.text-blacklist{
+  font-size: 12px;
+  text-align: justify;
+}
+.inter-blackliste{
+  color: #ff0000;
+}
+.inter-ok{
+  color: #009393;
+}
+.inter-end{
+  color: #ff7900;
+}
 .all {
     background-color: white;
     margin-right: 0px;
     padding: 5px;  
 }
-.bouton-retour{
-  background-color: #f5f6f9;
-  border-radius: 50%;
-  padding: 5px;
-  cursor: pointer;
-}
 .all1 {
-  width: 500px;
+  max-width: 500px;
   margin: 0 auto;
 }
 .ajouter {
@@ -150,7 +240,7 @@ button {
   line-height: normal;
   letter-spacing: -0.1px;
   color: #222222;
-  margin-top: 10px;
+  margin-top: 30px;
   margin-left: 5px;
   span {
       font-weight: bold;
@@ -167,6 +257,15 @@ button {
   margin-left: 0px;
   border-radius: 20px;
   border: solid 3px #009393;
+}
+.content-image-upload {
+  width: 140px;
+  height: 140px;
+  margin-left: 0px;
+  border-radius: 20px;
+  border: solid 3px #009393;
+  background-image: url("../../../../assets/images/default.png");
+  background-size: cover;
 }
 ::-webkit-file-upload-button {
   
@@ -225,7 +324,7 @@ button {
   font-size: 14px;
   cursor: pointer;
   outline: none;
-  border: 1px solid black;
+  border: 2px solid black;
   margin-top: 0px;
   padding-top: 5px;
 }
@@ -236,21 +335,48 @@ input {
   padding-left: 10px;
   outline: none;
 }
+.select-diplome {
+  width: 333px;
+  height: 24px;
+  margin-bottom: 0px;
+  background-color: #f5f6f9;
+  outline: none;
+  color: black;
+  border: 1px solid #d8d8d8;
+  padding: 0px;
+  option {
+      font-size: 14px;
+      font-weight: normal;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 10px;
+      letter-spacing: 0.07px;
+      color: #000;
+      margin-top: 10px;
+      text-align: left;
+  }
+}
 .infoinput1 input {
   width: 319px;
-  height: 30px;
+  height: 20px;
   background-color: #f5f6f9;
   border-radius: 1px;
   border: solid 1px #d8d8d8;
-  margin-bottom: 10px;
+  margin-bottom: 0px;
+}
+.infoinput2{
+  display: flex;
+}
+.contratinput2{
+  display: flex;
 }
 .infoinput2 input {
   width: 147px;
-  height: 30px;
+  height: 20px;
   background-color: #f5f6f9;
   border-radius: 1px;
   border: solid 1px #d8d8d8;
-  margin-bottom: 10px;
+  margin-bottom: 0px;
 }
 .infoinput3 {
   margin-left: 10px;
@@ -264,7 +390,7 @@ button {
 .button1 {
   width: 106px;
   height: 50px;
-  border: solid 1px #000000;
+  border: solid 2px #000000;
   background: white;
   font-size: 18px;
   font-weight: bold;
@@ -331,9 +457,118 @@ button {
   margin-top: 10px;
   margin-left: 20px;
 }
+.buttonphoto1 {
+  width: 130px;
+}
+.buttonphoto2 {
+  width: 130px;
+}
+.buttonphoto3 {
+  width: 130px;
+  padding-left: 0;
+}
+.buttonphoto4 {
+  width: 130px;
+  padding-left: 0;
+}
+.les-diplomes-content {
+//  display: grid;
+//  grid-template-columns: 100px 1fr;
+  border: 1px solid #8e8e8e;
+}
+.diplome-title {
+  border-bottom: 1px solid #8e8e8e;
+}
+.diplome-title-text {
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 10px;
+  text-align: center;
+}
+.liste-diplome-content {
+  display: flex;
+}
+.buttondiplome {
+  width: 130px;
+}
+.buttondiplome::-webkit-file-upload-button {
+  visibility: hidden;
+  outline: none;
+}
+.buttondiplome::before {
+  content: 'uploader';
+  width: 125px;
+  height: 25px;
+  background-color: white;
+  border: none;
+  color: black;
+  text-align: center;
+  text-decoration: none;
+  font-weight: bold;
+  display: inline-block;
+  font-size: 14px;
+  cursor: pointer;
+  outline: none;
+  border: 2px solid black;
+  padding-top: 5px;
+}
+.buttonCNI {
+  width: 130px;
+  padding-left: 0;
+}
+.buttonCNI::-webkit-file-upload-button {
+  visibility: hidden;
+  outline: none;
+}
+.buttonCNI::before {
+  content: 'Fichier Pièce';
+  width: 125px;
+  height: 25px;
+  background-color: white;
+  border: none;
+  color: black;
+  text-align: center;
+  text-decoration: none;
+  font-weight: bold;
+  display: inline-block;
+  font-size: 14px;
+  cursor: pointer;
+  outline: none;
+  border: 2px solid black;
+  padding-top: 5px;
+  margin-top: 0px;
+}
 .buttonphoto2::-webkit-file-upload-button {
   visibility: hidden;
   outline: none;
+}
+.add-diplome {
+  margin-top: 40px;
+
+  cursor: pointer;
+}
+.button-choisir-fichier-image {
+  width: 50px;
+  height: 50px;
+}
+.button-choisir-fichier {
+  width: 100%;
+  height: 90px;
+}
+.diplomename {
+  font-size: 14px;
+  color: #ff7900;
+  margin: 10px;
+  width: 280px !important;
+  margin-top: 30px;
+}
+.fileName {
+  font-size: 14px;
+  color: #ff7900;
+  margin-top: 40px;
+  //margin-left: 10px;
+  margin-bottom: 0;
+  //width: 140px !important;
 }
 .buttonphoto2::before {
   content: 'Upload Contrat';
@@ -349,60 +584,7 @@ button {
   font-size: 14px;
   cursor: pointer;
   outline: none;
-  border: 1px solid black;
-  margin-top: 0px;
-  padding-top: 5px;
-}
-
-.buttonphotoCv::-webkit-file-upload-button {
-  visibility: hidden;
-  outline: none;
-}
-.buttonphotoCv{
-  width: 130px;
-}
-.buttonphotoVisite{
-  width: 150px;
-  height: 70px;
-}
-.buttonphotoCv::before {
-  content: 'Upload Cv';
-  width: 120px;
-  height: 25px;
-  background-color: white;
-  border: none;
-  color: black;
-  text-align: center;
-  text-decoration: none;
-  font-weight: bold;
-  display: inline-block;
-  font-size: 14px;
-  cursor: pointer;
-  outline: none;
-  border: 1px solid black;
-  margin-top: 0px;
-  padding-top: 5px;
-}
-
-.buttonphotoVisite::-webkit-file-upload-button {
-  visibility: hidden;
-  outline: none;
-}
-.buttonphotoVisite::before {
-  content: 'Visite Contre Visite';
-  width: 140px;
-  height: 25px;
-  background-color: white;
-  border: none;
-  color: black;
-  text-align: center;
-  text-decoration: none;
-  font-weight: bold;
-  display: inline-block;
-  font-size: 14px;
-  cursor: pointer;
-  outline: none;
-  border: 1px solid black;
+  border: 3px solid black;
   margin-top: 0px;
   padding-top: 5px;
 }
@@ -415,24 +597,24 @@ input {
 }
 .contratinput2 input {
   width: 145px;
-  height: 30px;
+  height: 20px;
   background-color: #f5f6f9;
   border-radius: 1px;
   border: solid 1px #d8d8d8;
-  margin-bottom: 10px;
+  margin-bottom: 0px;
 }
 .contratinput3 {
   margin-left: 10px;
 }
-select {
+.select5 {
   width: 159px;
-  height: 34px;
-  margin-bottom: 10px;
+  height: 24px;
+  margin-bottom: 0px;
   background-color: #f5f6f9;
   outline: none;
   color: black;
   border: 1px solid #d8d8d8;
-  padding: 5px;
+  padding: 0px;
   option {
       font-size: 14px;
       font-weight: normal;
@@ -442,11 +624,30 @@ select {
       letter-spacing: 0.07px;
       color: #000;
       margin-top: 10px;
-      text-align: center;
+      text-align: left;
   }
 }
 .select6 {
   margin-left: 10px;
+  width: 159px;
+  height: 24px;
+  margin-bottom: 0px;
+  background-color: #f5f6f9;
+  outline: none;
+  color: black;
+  border: 1px solid #d8d8d8;
+  padding: 0px;
+  option {
+      font-size: 14px;
+      font-weight: normal;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 10px;
+      letter-spacing: 0.07px;
+      color: #000;
+      margin-top: 10px;
+      text-align: left;
+  }
 }
 .mat-button, .mat-flat-button, .mat-icon-button, .mat-stroked-button {
   border-radius: 0;
@@ -454,7 +655,7 @@ select {
 .button1 {
   width: 126px;
   height: 50px;
-  border: solid 1px #000000;
+  border: solid 2px #000000;
   background: white !important;
   font-size: 18px;
   font-weight: bold;
@@ -484,9 +685,6 @@ select {
   margin-top: 30px;
   border: none;
 }
-
-
-
 .center {
   margin-top: 5px;
 }
@@ -513,30 +711,11 @@ select {
   font-size: 18px;
   cursor: pointer;
   outline: none;
-  border: 1px solid black;
+  border: 3px solid black;
   margin-top: 20px;
   margin-left: 0px;
 }
-/* for poor sods using IE */
-::-ms-browse {
-  content: 'Ajouter Photo';
-  width: 165px;
-  height: 50px;
-  background-color: white;
-  border: none;
-  color: black;
-  padding: 5px 2px;
-  text-align: center;
-  text-decoration: none;
-  font-weight: bold;
-  display: inline-block;
-  font-size: 18px;
-  cursor: pointer;
-  outline: none;
-  border: 3px solid black;
-  margin-top: 10px;
-  margin-left: 0px;
-}
+
 .buttonphoto3::-webkit-file-upload-button {
   visibility: hidden;
   outline: none;
@@ -555,7 +734,7 @@ select {
   font-size: 14px;
   cursor: pointer;
   outline: none;
-  border: 1px solid black;
+  border: 2px solid black;
   padding-top: 5px;
 }
 .buttonphoto4::-webkit-file-upload-button {
@@ -576,8 +755,60 @@ select {
   font-size: 14px;
   cursor: pointer;
   outline: none;
-  border: 1px solid black;
+  border: 2px solid black;
   padding-top: 5px;
+}
+.buttonphotoCv::-webkit-file-upload-button {
+  visibility: hidden;
+  outline: none;
+}
+.buttonphotoCv::before {
+  content: 'Cv';
+  width: 125px;
+  height: 25px;
+  background-color: white;
+  border: none;
+  color: black;
+  text-align: center;
+  text-decoration: none;
+  font-weight: bold;
+  display: inline-block;
+  font-size: 14px;
+  cursor: pointer;
+  outline: none;
+  border: 2px solid black;
+  padding-top: 5px;
+  padding-left: 0;
+}
+.buttonphotoVisite::-webkit-file-upload-button {
+  visibility: hidden;
+  outline: none;
+}
+.buttonphotoVisite{
+  padding-left: 0;
+  width: 170px;
+}
+.buttonphotoCv{
+  padding-left: 0;
+  width: 130px;
+}
+.buttonphotoVisite::before {
+  content: 'Visite contre visite';
+  width: 155px;
+  height: 25px;
+  background-color: white;
+  border: none;
+  color: black;
+  text-align: center;
+  text-decoration: none;
+  font-weight: bold;
+  display: inline-block;
+  font-size: 14px;
+  cursor: pointer;
+  outline: none;
+  border: 2px solid black;
+  padding-top: 5px;
+  padding-left: 0;
 }
 .others {
   margin-left: 10px;
@@ -585,6 +816,14 @@ select {
 input {
   padding-left: 10px;
   outline: none;
+}
+.input-telephone-om{
+  width: 310px;
+  height: 20px;
+  background-color: #f5f6f9;
+  border-radius: 1px;
+  margin-bottom: 0px;
+  border: solid 1px #d8d8d8;
 }
 .posteinput2 input {
   width: 205px;
@@ -601,6 +840,24 @@ input {
 .select7 {
   margin-left: 10px;
   width: 215px;
+  height: 24px;
+  margin-bottom: 10px;
+  background-color: #f5f6f9;
+  outline: none;
+  color: black;
+  border: 1px solid #d8d8d8;
+  padding: 0px;
+  option {
+      font-size: 14px;
+      font-weight: normal;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 10px;
+      letter-spacing: 0.07px;
+      color: #000;
+      margin-top: 10px;
+      text-align: center;
+  }
 }
 .mat-button, .mat-flat-button, .mat-icon-button, .mat-stroked-button {
   border-radius: 0;
@@ -608,7 +865,7 @@ input {
 .button1 {
   width: 116px;
   height: 30px;
-  border: solid 1px #000000;
+  border: solid 2px #000000;
   background: white;
   font-size: 16px;
   font-weight: bold;
@@ -720,109 +977,20 @@ button {
   border-radius: none;
   margin-top: 30px;
   outline: none;
-  border: 1px solid black;
+  border: 3px solid black;
 }
-.fiche-et-pv {
-  display: grid;
-  grid-template-columns: 50% 50%;
-}
-.les-diplomes-content {
-  display: grid;
-  grid-template-columns: 100px 1fr;
-  border: 1px solid #8e8e8e;
-}
-.diplome-title {
-  border-right: 1px solid #8e8e8e;
-}
-.diplome-title-text {
-  font-size: 16px;
-  font-weight: bold;
-  margin-top: 40px;
-  text-align: center;
-}
-.liste-diplome-content {
+
+.otherfile {
   display: flex;
 }
-.buttondiplome {
-  width: 130px;
+.content-error-msg{
+  width: 300px;
+  margin-left: 0px;
 }
-.buttondiplome::-webkit-file-upload-button {
-  visibility: hidden;
-  outline: none;
+.error-alert{
+  color: #ff0000;
+  font-size: 12px;
 }
-.buttondiplome {
-  width: 130px;
-}
-.buttonphoto3 {
-  width: 130px;
-}
-.buttonphoto4 {
-  width: 130px;
-}
-.buttondiplome::before {
-  content: 'uploader';
-  width: 125px;
-  height: 25px;
-  background-color: white;
-  border: none;
-  color: black;
-  text-align: center;
-  text-decoration: none;
-  font-weight: bold;
-  display: inline-block;
-  font-size: 14px;
-  cursor: pointer;
-  outline: none;
-  border: 1px solid black;
-  padding-top: 5px;
-}
-.buttonCNI::-webkit-file-upload-button {
-  visibility: hidden;
-  outline: none;
-}
-.buttonCNI {
-  width: 130px;
-}
-.buttonCNI::before {
-  content: 'Fichier Pièce';
-  width: 125px;
-  height: 25px;
-  background-color: white;
-  border: none;
-  color: black;
-  text-align: center;
-  text-decoration: none;
-  font-weight: bold;
-  display: inline-block;
-  font-size: 14px;
-  cursor: pointer;
-  outline: none;
-  border: 1px solid black;
-  padding-top: 5px;
-}
-.buttonphoto2::-webkit-file-upload-button {
-  visibility: hidden;
-  outline: none;
-}
-.add-diplome {
-  margin-top: 40px;
-
-  cursor: pointer;
-}
-.diplomename {
-  font-size: 14px;
-  color: #ff7900;
-  margin: 10px;
-  width: 200px !important;
-  margin-top: 30px;
-}
-.fileName {
-  font-size: 14px;
-  color: #ff7900;
-  margin: 10px;
-  width: 140px !important;
-}
-
 .error-content-image{
   width: 150px;
   height: 150px;
@@ -834,6 +1002,18 @@ button {
   background-image: url("../../../../assets/images/error-message.png");
   background-size: cover;
 }
+.blackliste-content-image{
+  width: 200px;
+  height: 120px;
+  margin: 0 auto;
+}
+.blackliste-image {
+  width: 200px;
+  height: 120px;
+  background-image: url("../../../../assets/images/tampon-en-caoutchouc-de-liste-noire-110063540.jpeg");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
 .error-text{
   text-align: center;
   color: #ff0000;
@@ -842,6 +1022,11 @@ button {
 .error-message-admin{
   text-align: center;
   font-size: 18px;
+}
+.blackliste-message-admin{
+  text-align: center;
+  font-size: 18px;
+  margin-top: 0;
 }
 .clear-error {
   width: 10px;
@@ -1016,7 +1201,19 @@ button {
     border-left: 3px solid black;
     margin-left: 0 !important;
   }
-  select {
+  .select5 {
+    width: 133px;
+    height: 35px;
+    font-size: 8px;
+    color: #8e8e8e;
+  }
+  .select6 {
+    width: 133px;
+    height: 35px;
+    font-size: 8px;
+    color: #8e8e8e;
+  }
+  .select7 {
     width: 133px;
     height: 35px;
     font-size: 8px;
@@ -1135,5 +1332,32 @@ button {
   .fiche-et-pv {
     display: grid;
    // grid-template-columns: 1fr;
+  }
+  .content-search-inter{
+    display: block;
+    grid-template-columns: 1fr;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  .content-text-explication{
+    padding-right: 5px;
+  }
+  .content-form{
+    margin-top: 20px;
+  }
+  .select-search{
+    width: 290px;
+    option {
+        font-size: 12px;
+        
+    }
+  }
+  
+  .input-search{
+    width: 275px;
+    height: 20px;
+    background-color: #f5f6f9;
+    border-radius: 1px;
+    border: solid 1px #d8d8d8;
   }
 }

@@ -1,6 +1,6 @@
 import { ToastrService } from 'ngx-toastr';
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from 'src/app/service/data.service';
 import { OthersService } from 'src/app/services/others.service';
@@ -145,7 +145,83 @@ export class ModifierinterComponent implements OnInit {
   fonction: any;
   poste: any;
   posteId: any;
+  videprenom: string;
+  invalidprenom: string;
+  videnom: string;
+  invalidnom: string;
+  videdateN: string;
+  videlieuN: string;
+  videsexe: string;
+  videdateBC: string;
+  videnumBC: string;
+  videtelephoneOM: string;
+  invalidtelephoneOM: string;
+  invaliddiplome: string;
+  ListeDiplome = [
+    {
+      libelle: "CFEE"
+    },{
+      libelle: "BFEM"
+    },{
+      libelle: "Baccalaurèat"
+    },{
+      libelle: "CAP"
+    },{
+      libelle: "BTS"
+    },{
+      libelle: "DUT"
+    },{
+      libelle: "Licence"
+    },{
+      libelle: "DIT"
+    },{
+      libelle: "Master"
+    },{
+      libelle: "Doctorat"
+    }
+  ];
+  ListeSitmat = [
+    {
+      libelle: "marié(e)",
+    },
+    {
+      libelle: "célibataire"
+    },{
+      libelle: "divorcé(e)",
+    },
+    {
+      libelle: "veuf(ve)"
+    }
+  ];
+  ListeSexe = [
+    {
+      libelle: "femme",
+    },
+    {
+      libelle: "homme"
+    }
+  ];
+  videNumber: string;
+  invalideNumber: string;
+  invalidEmail: string;
+  videEmail: string;
   public reqUrl = environment.base_url;
+  contratForm: FormGroup;
+  diplome_eleve: any;
+  nationalite: any;
+  numBonCommande: any;
+  dateBonCommande: any;
+  dataSite: any;
+  page = 1;
+  itemParPage = 900;
+  region = null;
+  selected1: boolean;
+  selected2: boolean;
+  site: any;
+  domaineId: any;
+  telephoneOM: any;
+  date_bon_commande: any;
+  num_bon_commande: any;
   constructor(private activeroute: ActivatedRoute,
     private router: Router,
     private errormodalService: ErrormodalService,
@@ -157,7 +233,7 @@ export class ModifierinterComponent implements OnInit {
         this.otherService.getOneInterById(this.item).subscribe(
           data =>{
             this.dataInter = data;
-            this.photo = this.reqUrl + '/public/' + this.dataInter.data.photo;
+            this.image = this.reqUrl + '/public/' + this.dataInter.data.photo;
             this.prenom = this.dataInter.data.prenom;
             this.nom = this.dataInter.data.nom;
             this.adresse = this.dataInter.data.adresse;
@@ -171,6 +247,10 @@ export class ModifierinterComponent implements OnInit {
             this.lieuNaissance = this.dataInter.data.lieudenaissance;
             this.dateSignature = this.dataInter.data.contrat.dateSignature;
             this.sexe = this.dataInter.data.sexe;
+            this.diplome_eleve = this.dataInter.data.diplomeEleve;
+            this.nationalite = this.dataInter.data.nationalite;
+            this.num_bon_commande = this.dataInter.data.numBonCommande;
+            this.date_bon_commande = this.dataInter.data.dateBonCommande? this.dataInter.data.dateBonCommande.date : null;
             this.fonction = this.dataInter.data.posteId;
             this.dateDebut = this.dataInter.data.contrat.dateDebut;
             this.dateFin = this.dataInter.data.contrat.dateFin;
@@ -194,6 +274,9 @@ export class ModifierinterComponent implements OnInit {
             this.universite = this.dataInter.data.universite;
             this.agence = this.dataInter.data.agence;
             this.poste = this.dataInter.data.poste;
+            this.site = this.dataInter.data.site;
+            this.domaineId = this.dataInter.data.domaine.id;
+            this.telephoneOM = this.dataInter.data.telephone;
           }
         );
       })
@@ -201,52 +284,76 @@ export class ModifierinterComponent implements OnInit {
 
   ngOnInit() {
     this.interForm = new FormGroup({
-        numeroPiece: new FormControl(''),
-        prenom: new FormControl(''),
-        nom: new FormControl(''),
-        email: new FormControl(''),
-        adresse: new FormControl(''),
-        dateNaissance: new FormControl(''),
-        lieuNaissance: new FormControl(''),
-        sexe: new FormControl(''),
-        dateSignature: new FormControl(''),
-        sitmat: new FormControl(''),
-        universite: new FormControl(''),
-        photo: new FormControl(''),
-        typePiece: new FormControl(''),
-        agence: new FormControl(''),
-        dateDebut: new FormControl(''),
-        dateFin: new FormControl(''),
-        categorieId: new FormControl(''),
-        salaireBrut: new FormControl(''),
-        structureId: new FormControl(''),
-        directionId: new FormControl(''),
-        fonction: new FormControl(),
-        societeId: new FormControl(''),
-        departementId: new FormControl(''),
-        filecontrat: new FormControl(''),
-        profession: new FormControl(''),
-        telephone: new FormControl(''),
-        matriculemanager: new FormControl(''),
-        fileCni: new FormControl(''),
-        fileFicheposte: new FormControl(''),
-        fileproceverbal: new FormControl(''),
-        fileCv: new FormControl(''),
-        fileVisiteContreVisite: new FormControl(''),
-        fileDiplome: new FormArray([
-          new FormGroup({
-            id: new FormControl(''),
-            diplome: new FormControl('')
-          }),
-          new FormGroup({
-            id: new FormControl(''),
-            diplome: new FormControl('')
-          }),
-          new FormGroup({
-            id: new FormControl(''),
-            diplome: new FormControl('')
-          }),
-        ])
+      nationalite: new FormControl(''),
+      typePiece: new FormControl(''),
+      numeroPiece: new FormControl(''),
+      prenom: new FormControl('', Validators.compose([
+        Validators.required,
+        Validators.minLength(2)
+      ])),
+      nom: new FormControl('', Validators.compose([
+        Validators.required,
+        Validators.minLength(2)
+      ])),
+      email: new FormControl('', Validators.compose([
+        Validators.required,
+        Validators.pattern('[A-Za-z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,3}')
+      ])),
+      telephone: new FormControl(''),
+      dateNaissance: new FormControl('', Validators.compose([
+        Validators.required,
+      ])),
+      lieuNaissance: new FormControl('', Validators.compose([
+        Validators.required,
+        Validators.minLength(2)
+      ])),
+      sexe: new FormControl('', Validators.compose([
+        Validators.required,
+        Validators.minLength(2)
+      ])),
+      sitmat: new FormControl(''),
+      adresse: new FormControl(''),
+      nPassport: new FormControl(''),
+      diplome: new FormControl(''),
+      diplome_eleve: new FormControl(''),
+      universite: new FormControl(''),
+      photo: new FormControl(''),
+      //structureId: new FormControl(''),
+      matriculeManager: new FormControl(''),
+      fileFicheposte: new FormControl(''),
+      fileproceverbal: new FormControl(''),
+      fileCni: new FormControl(''),
+      fileCv: new FormControl(''),
+      fileVisiteContreVisite: new FormControl(''),
+      diplome1: new FormControl(''),
+      diplome2: new FormControl(''),
+      diplome3: new FormControl(''),
+      fonction: new FormControl(''),
+      profession: new FormControl(''),
+    });
+    this.contratForm = new FormGroup({
+      num_bon_commande: new FormControl('', Validators.compose([
+        Validators.required
+      ])),
+      date_bon_commande: new FormControl('', Validators.compose([
+        Validators.required
+      ])),
+      dateDebut: new FormControl(''),
+      telephoneOM: new FormControl('', Validators.compose([
+        Validators.required,
+        Validators.pattern('7[05678][0-9]{7}')
+      ])),
+      dateFin: new FormControl(''),
+      dateSignature: new FormControl(''),
+      categorieId: new FormControl(''),
+      salaireBrut: new FormControl(''),
+      domaineId: new FormControl(''),
+      directionId: new FormControl(''),
+      departementId: new FormControl(''),
+      societeId: new FormControl(''),
+      poste: new FormControl(''),
+      site: new FormControl(''),
+      contratDoc: new FormControl(''),
     });
 
     this.otherService.getAllSociete().subscribe(
@@ -264,11 +371,35 @@ export class ModifierinterComponent implements OnInit {
         this.dataCategorie = data["data"];
       }
     );
+    this.otherService.listeSite(this.page, this.itemParPage, this.region).subscribe(
+      data => {
+        this.dataSite = data.data;
+      }
+    )
     this.otherService.getFonctions().subscribe(data => this.listeFonction = data.data);
+    this.onChanges();
+  }
+
+  onChanges(): void {
+    this.contratForm.get('categorieId').valueChanges.subscribe(val => {
+      this.salaireBrut = val;
+      this.otherService.getOneCategorie(val).subscribe(
+        data => {
+          this.data = data;
+          this.salaireBrut = this.data.data.salaireBrute;
+        }
+      )
+    });
   }
 
   backClicked() {
     this.location.back();
+  }
+
+  public savePoste(e): void {
+    let libelle = e.target.value;
+    let list = this.listeFonction.filter(x => x.libelle === libelle)[0];
+    this.interForm.patchValue({poste: list.libelle});
   }
 
   get f() { return this.interForm.controls; }
@@ -337,17 +468,17 @@ export class ModifierinterComponent implements OnInit {
 
   //les diplomes
   getDiplome1(event: any) {
-    this.fichierdiplome1Upload = event.target.files[0];
-    
-    this.diplomeName1 = this.fichierdiplome1Upload.name;
+    this.fichierdiplome1 = event.target.files[0];
+    this.diplomeName1 = this.fichierdiplome1.name;
+    console.log(this.diplomeName1);
   }
   getDiplome2(event: any) {
-    this.fichierdiplome2Upload = event.target.files[0];
-    this.diplomeName2 = this.fichierdiplome2Upload.name;
+    this.fichierdiplome2 = event.target.files[0];
+    this.diplomeName2 = this.fichierdiplome2.name;
   }
   getDiplome3(event: any) {
-    this.fichierdiplome3Upload = event.target.files[0];
-    this.diplomeName3 = this.fichierdiplome3Upload.name;
+    this.fichierdiplome3 = event.target.files[0];
+    this.diplomeName3 = this.fichierdiplome3.name;
   }
 
   submit() {
@@ -368,31 +499,58 @@ export class ModifierinterComponent implements OnInit {
       },
     ];
     const info = new FormData();
-    info.append("adresse",this.interForm.value.adresse);
-    info.append("categorieId",this.interForm.value.categorieId);
-    info.append("structureId", this.interForm.value.structureId);
-    info.append("domaineId",this.interForm.value.domaineId);
-    info.append("societeId",this.interForm.value.societeId);
-    info.append("universite",this.interForm.value.universite);
-    info.append("sexe",this.interForm.value.sexe);
-    info.append("profession",this.interForm.value.profession);
-    info.append("sitmat",this.interForm.value.sitmat);
-    info.append("salaireBrut",this.interForm.value.salaireBrut);
-    info.append("dateNaissance",this.interForm.value.dateNaissance);
-    info.append("lieuNaissance",this.interForm.value.lieuNaissance);
-    info.append("dateDebut",this.interForm.value.dateDebut);
-    info.append("dateFin",this.interForm.value.dateFin);
-    if(this.dateSignature != undefined) {
-      info.append("dateSignature",this.interForm.value.dateSignature);
-    }
-    info.append("poste",this.interForm.value.poste);
-    info.append("fonction",this.interForm.value.fonction);
+    info.append("societeId", this.contratForm.value.societeId);
     info.append("typePiece",this.interForm.value.typePiece);
     info.append("numeroPiece",this.interForm.value.numeroPiece);
     info.append("nom",this.interForm.value.nom);
     info.append("prenom",this.interForm.value.prenom);
+    info.append("telephoneOM",this.contratForm.value.telephoneOM);
+    info.append("adresse",this.interForm.value.adresse);
     info.append("email",this.interForm.value.email);
     info.append("telephone",this.interForm.value.telephone);
+    info.append("universite",this.interForm.value.universite);
+    info.append("sexe",this.interForm.value.sexe);
+    info.append("sitmat",this.interForm.value.sitmat);
+    info.append("dateNaissance",this.interForm.value.dateNaissance);
+    info.append("lieuNaissance",this.interForm.value.lieuNaissance);
+    info.append("nationalite",this.interForm.value.nationalite);
+    info.append("diplome_eleve",this.interForm.value.diplome_eleve);
+    info.append("date_bon_commande",this.contratForm.value.date_bon_commande);
+    info.append("num_bon_commande",this.contratForm.value.num_bon_commande);
+    if(this.contratForm.value.categorieId != "") {
+      info.append("categorieId", this.contratForm.value.categorieId);
+    }
+    if(this.contratForm.value.salaireBrut != "") {
+      info.append("salaireBrut", this.contratForm.value.salaireBrut);
+    }
+    if(this.contratForm.value.site != "") {
+      info.append("siteId", this.contratForm.value.site);
+    }
+    if(this.contratForm.value.dateDebut != "") {
+      info.append("dateDebut", this.contratForm.value.dateDebut);
+    }
+    if(this.contratForm.value.dateFin != "") {
+      info.append("dateFin", this.contratForm.value.dateFin);
+    }
+    if(this.contratForm.value.domaineId != "") {
+      info.append("domaineId", this.contratForm.value.domaineId);
+    }
+    if(this.contratForm.value.dateSignature != "") {
+      info.append("dateSignature", this.contratForm.value.dateSignature);
+    }
+    if(this.contratForm.value.poste != "") {
+      info.append("fonction", this.contratForm.value.poste);
+      info.append("poste", this.contratForm.value.poste);
+    }
+    if(this.fichierdiplome1 != undefined) {
+      info.append("fileDiplome[]",this.fichierdiplome1);
+    }
+    if(this.fichierdiplome2 != undefined) {
+      info.append("fileDiplome[]",this.fichierdiplome2);
+    }
+    if(this.fichierdiplome3 != undefined) {
+      info.append("fileDiplome[]",this.fichierdiplome3);
+    }
     if(this.fichierPosteUpload != undefined) {
       info.append("fileFicheposte",this.fichierPosteUpload);
     }
@@ -425,7 +583,7 @@ export class ModifierinterComponent implements OnInit {
             });
             this.router.navigate(['accueil/detailinter'], {
               queryParams: {
-                user: JSON.stringify(this.item)
+                interimaire: JSON.stringify(this.item)
               }
             })
           }
@@ -453,6 +611,19 @@ export class ModifierinterComponent implements OnInit {
         this.dataDepartement = data['data'];
       }
     ); 
+  }
+
+  addDiplome1() {
+    this.selected1 = true;
+  }
+  addDiplome2() {
+    this.selected2 = true;
+  }
+  deleteDiplome2() {
+    this.selected1 = false;
+  }
+  deleteDiplome3() {
+    this.selected2 = false;
   }
 
   serviceListe(value) {

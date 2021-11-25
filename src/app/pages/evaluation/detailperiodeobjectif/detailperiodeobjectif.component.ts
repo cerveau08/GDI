@@ -52,6 +52,7 @@ export class DetailperiodeobjectifComponent implements OnInit {
   idEvaluation: any;
   interimaireInfo: any;
   message: string;
+  videContenu: any;
   constructor(private otherService: OthersService,
     private modalService: ModalService,
     private activeroute: ActivatedRoute,
@@ -72,13 +73,17 @@ export class DetailperiodeobjectifComponent implements OnInit {
     this.otherService.getListeEvaluation(this.item, this.page, this.itemsPerPage, this.isEvaluated).subscribe(
       data => {
         this.data = data
-        this.detailPeriode = this.data["data"];
-        this.idEvaluation = this.detailPeriode[0].id;
-        this.nomPeriode = this.detailPeriode[0].libelle;
-        this.dateDebutPeriode = this.detailPeriode[0].dateDebut;
-        this.dateFinPeriode = this.detailPeriode[0].dateFin;
-        this.statutPeriode = this.detailPeriode[0].isEvaluated;
-        this.objectif = this.detailPeriode[0].notation;
+        if( this.data.satus == true ) {
+          this.detailPeriode = this.data["data"];
+          this.idEvaluation = this.detailPeriode[0].id;
+          this.nomPeriode = this.detailPeriode[0].libelle;
+          this.dateDebutPeriode = this.detailPeriode[0].dateDebut;
+          this.dateFinPeriode = this.detailPeriode[0].dateFin;
+          this.statutPeriode = this.detailPeriode[0].isEvaluated;
+          this.objectif = this.detailPeriode[0].notation;
+        } else {
+          this.videContenu = this.data.message;
+        }
       }
     );
     this.objectifForm = new FormGroup({

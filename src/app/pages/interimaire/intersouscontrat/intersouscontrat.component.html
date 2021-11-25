@@ -34,7 +34,7 @@
                             <p class="label-input" for="titre">Poste: </p>
                             <select  formControlName="poste" class="select-mois" >
                                 <option value="null">Aucun Choix</option>
-                                <option *ngFor="let data of listeFonction"  [value]="data.libelle">{{data.libelle}}</option>
+                                <option *ngFor="let data of listeFonction"  [value]="data.id">{{data.libelle}}</option>
                             </select>
                         </div>
                         <div class="content-extraction">

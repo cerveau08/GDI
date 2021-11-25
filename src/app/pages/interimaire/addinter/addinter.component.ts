@@ -110,6 +110,10 @@ export class AddinterComponent implements OnInit {
     },{
       libelle: "Baccalaurèat"
     },{
+      libelle: "CAP"
+    },{
+      libelle: "BTS"
+    },{
       libelle: "DUT"
     },{
       libelle: "Licence"
@@ -395,7 +399,7 @@ export class AddinterComponent implements OnInit {
                 });
                 this.router.navigate(['/accueil/detailinter'], {
                   queryParams: {
-                    user: JSON.stringify(this.dataMatriculeInter.data.interimaire.id)
+                    interimaire: JSON.stringify(this.dataMatriculeInter.data.interimaire.id)
                   }
                 });
               } else {

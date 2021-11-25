@@ -14,53 +14,112 @@
                   </div>
                 </ng-template>
                 <div>
-                    <form [formGroup]="interForm">
-                        <div>
-                        <p class="matri">Matricule: <span>{{matricule}}</span> </p>
-                        <div class="grid">
-                          <div class="photo">
-                            <img class="image-upload" *ngIf="!image" [src]="photo" alt="">
-                            <img class="image-upload" *ngIf="image" [src]="image"  alt="">
-                            <input formControlName="photo" class="buttonphoto1" type="file" (change)="getPhoto($event.target)">
+                  <form [formGroup]="interForm">
+                    <div>
+                    <div class="grid">
+                      <div class="photo">
+                        <div *ngIf="!image" class="content-image-upload"></div>
+                        <img class="image-upload" *ngIf="image" [src]="image"  alt="">
+                        <input formControlName="photo" class="buttonphoto1" type="file" (change)="getPhoto($event.target)">
+                      </div>
+                      <div class="others">
+                        <div class="infoinput1">
+                          <p class="label-input1">Nationalité<span class="signe-obligatoire">*</span></p>
+                          <input type="text" formControlName="nationalite" placeholder="Nationalité" [(ngModel)]="nationalite" readonly> 
+                        </div>
+                        <div class="infoinput2">
+                          <div>
+                            <p class="label-input1">Type de pièce <span class="signe-obligatoire">*</span></p>
+                            <input type="text" formControlName="typePiece" [(ngModel)]="typePiece" readonly>
                           </div>
-                          <div class="others">
-                            <div class="contratinput2">
-                              <select class="select5" [(ngModel)]="typePiece" formControlName="typePiece">
-                                <option class="option" [value]="typePiece"  hidden>{{typePiece}}</option>
-                                <option *ngFor="let data of ListePiece" [value]="data.libelle">{{data.libelle}}</option>
-                              </select>
-                              <input type="text" class="input3" [(ngModel)]="numeroPiece" formControlName="numeroPiece" placeholder="Numero CNI">
-                            </div>
-                            <div class="infoinput2">
-                              <input type="text" [(ngModel)]="prenom" formControlName="prenom" placeholder="Prenom">
-                              <input class="input3" [(ngModel)]="nom" type="text" formControlName="nom" placeholder="Nom">
-                            </div>
-                            <div class="infoinput1">
-                              <input type="text" [(ngModel)]="email" formControlName="email" placeholder="Email">
-                            </div>
-                            <div class="infoinput1">
-                              <input [(ngModel)]="adresse" formControlName="adresse" placeholder="Adresse">
-                            </div>
-                            <div class="infoinput2">
-                              <input type="text" [(ngModel)]="dateNaissance" formControlName="dateNaissance" placeholder="Date de Naissance">
-                              <input class="input3" [(ngModel)]="lieuNaissance" type="text" formControlName="lieuNaissance" placeholder="Lieu de Naissance">
-                            </div>
-                            <div class="infoinput2">
-                              <input type="text" [(ngModel)]="sexe" formControlName="sexe" placeholder="Genre">
-                              <input class="input3" [(ngModel)]="sitmat" type="text" formControlName="sitmat" placeholder="Situation Matrimoniale">
-                            </div>
-                            <div class="infoinput2">
-                              <input type="text" [(ngModel)]="telephone" formControlName="telephone" placeholder="Telephone">
-                              <input class="input3" [(ngModel)]="universite" type="text" formControlName="universite" placeholder="Université et Ecole">
-                            </div>
+                          <div>
+                            <p class="label-input2">Numéro de pièce <span class="signe-obligatoire">*</span></p>
+                            <input class="input3" type="text" formControlName="numeroPiece" [(ngModel)]="numeroPiece" placeholder="Numero Pièce" readonly>
                           </div>
                         </div>
+                        <div class="infoinput2">
+                          <div>
+                            <p class="label-input1">Prénom <span class="signe-obligatoire">*</span></p>
+                            <input type="text" formControlName="prenom" placeholder="Prenom" [(ngModel)]="prenom">
+                            <p class="error-require-input-search" *ngIf="videprenom">{{videprenom}}</p>
+                            <p class="error-require-input-search" *ngIf="invalidprenom">{{invalidprenom}}</p>
+                          </div>
+                          <div>
+                            <p class="label-input2">Nom <span class="signe-obligatoire">*</span></p>
+                            <input class="input3" type="text" formControlName="nom" placeholder="Nom" [(ngModel)]="nom">
+                            <p class="error-require-input-search" *ngIf="videnom">{{videnom}}</p>
+                            <p class="error-require-input-search" *ngIf="invalidnom">{{invalidnom}}</p>
+                          </div>
+                        </div>
+                        <div class="infoinput1">
+                          <p class="label-input1">Email <span class="signe-obligatoire">*</span></p>
+                          <input type="email" formControlName="email" placeholder="Email" [(ngModel)]="email">
+                          <p class="error-require-input-search" *ngIf="videEmail">{{videEmail}}</p>
+                          <p class="error-require-input-search" *ngIf="invalidEmail">{{invalidEmail}}</p>
+                        </div>
+                        <div class="infoinput1">
+                          <p class="label-input1">Téléphone <span class="signe-obligatoire">*</span></p>
+                          <input type="text" formControlName="telephone" placeholder="Téléphone" [(ngModel)]="telephone" readonly> 
+                        </div>
+                        <div class="infoinput1">
+                          <p class="label-input1">Adresse</p>
+                          <input type="text" formControlName="adresse" placeholder="Adresse" [(ngModel)]="adresse">
+                        </div>
+                        <div class="infoinput2">
+                          <div>
+                            <p class="label-input1">Date de Naissance <span class="signe-obligatoire">*</span></p>
+                            <input type="date" formControlName="dateNaissance" placeholder="Date de Naissance" [(ngModel)]="dateNaissance">
+                            <p class="error-require-input-search" *ngIf="videdateN">{{videdateN}}</p>
+                          </div>
+                          <div>
+                            <p class="label-input2">Lieu de Naissance <span class="signe-obligatoire">*</span></p>
+                            <input class="input3" type="text" formControlName="lieuNaissance" placeholder="Lieu de Naissance" [(ngModel)]="lieuNaissance">
+                            <p class="error-require-input-search" *ngIf="videlieuN">{{videlieuN}}</p>
+                          </div>
+                        </div>
+                        <div class="infoinput2">
+                          <div>
+                            <p class="label-input1">Sexe <span class="signe-obligatoire">*</span></p>
+                            <select class="select5" formControlName="sexe" [(ngModel)]="sexe">
+                              <option class="option" value="" disabled selected hidden>Genre</option>
+                              <option *ngFor="let data of ListeSexe" [value]="data.libelle">{{data.libelle}}</option>
+                            </select>
+                            <p class="error-require-input-search" *ngIf="videsexe">{{videsexe}}</p>
+                          </div>
+                          <div>
+                            <p class="label-input2">Situation matrimoniale</p>
+                            <select class="select6"formControlName="sitmat" [(ngModel)]="sitmat">
+                              <option class="option" value="" disabled selected hidden>Situation Matrimoniale</option>
+                              <option *ngFor="let data of ListeSitmat" [value]="data.libelle">{{data.libelle}}</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="infoinput1">
+                          <p class="label-input1">École ou Université</p>
+                          <input type="text" formControlName="universite" placeholder="Université ou Ecole" [(ngModel)]="universite">
+                        </div>
+                        <div class="infoinput1">
+                          <p class="label-input1">Diplome le plus élevé</p>
+                          <select class="select-diplome"formControlName="diplome_eleve" [(ngModel)]="diplome_eleve">
+                            <option class="option" value="diplome_eleve" disabled selected hidden>{{diplome_eleve}}</option>
+                            <option *ngFor="let data of ListeDiplome" [value]="data.libelle">{{data.libelle}}</option>
+                          </select>
+                        </div>
+                        <!-- <div class="infoinput1">
+                          <p class="label-input1">Profession</p>
+                          <input type="text"  list="professions" formControlName="profession" placeholder="Votre Profession" (change)="saveProfession($event)">
+                          <datalist id="professions">
+                            <option *ngFor="let c of listeFonction" [value]="c.libelle" >{{c.libelle}}</option>
+                          </datalist>
+                        </div> -->
                       </div>
-                      <div class="buttons">
-                        <button class="button1" type="button">Annuler</button>
-                        <button class="button2" (click)="submitted1()" type="submit" mat-button matStepperNext>Suivant</button>
-                      </div>
-                    </form>
+                    </div>
+                  </div>
+                  <div class="buttons">
+                    <button class="button1" type="button">Annuler</button>
+                    <button class="button2" (click)="submitted1()" matStepperNext type="button"  mat-button >Suivant</button>
+                  </div>
+                </form>
                 </div>
               </mat-step>
   
@@ -73,61 +132,131 @@
                     </div> 
                   </ng-template>
                 <div>
-                  <form [formGroup]="interForm">
-                      <div>
-                      <p class="matri">Matricule: <span>{{matricule}}</span> </p>
-                      <div class="grid">
+                  <form [formGroup]="contratForm">
+                    <div>
+                    <div class="grid" >
+                      <div >
                         <div class="photo">
-                          <input formControlName="filecontrat" [(ngModel)]="filecontrat" class="buttonphoto2" type="file" (change)="getFileContrat($event)" >
+                          <button class="button-choisir-fichier" (change)="getFileContrat($event)">
+                            Choisir Contrat <img class="button-choisir-fichier-image" src="../../../assets/images/pdf image.png" alt="">
+                          </button>
+                          <input formControlName="contratDoc"  class="buttonphoto2" type="file" (change)="getFileContrat($event)" >
                           <p class="fileName">{{contratName}}</p>
                         </div>
-                        <div class="others">
-                          <div class="contratinput2">
-                            <select class="select5" [(ngModel)]="categorieId" formControlName="categorieId">
-                              <option class="option" [value]="" hidden>{{categorie}}</option>
+                      </div>
+                      <div class="others">
+                        <div class="contratinput2">
+                          <div>
+                            <p class="label-input1">Catégorie</p>
+                            <select class="select5" formControlName="categorieId" [(ngModel)]="categorieId">
+                              <option class="option" value="" disabled selected hidden>Catégorie</option>
                               <option *ngFor="let data of dataCategorie" [value]="data.id">{{data.libelle}}</option>
                             </select>
-                            <input class="input3" [(ngModel)]="salaireBrut" type="text" formControlName="salaireBrut" placeholder="Montant Salaire Brut">
                           </div>
-                          <div class="contratinput2">
-                            <input type="date" [(ngModel)]="dateDebut" formControlName="dateDebut" placeholder="Date Début">
-                            <input class="input3" [(ngModel)]="dateFin" type="date" formControlName="dateFin" placeholder="Date Fin">
-                          </div> 
-                          <div class="infoinput1">
-                            <input type="date" [(ngModel)]="dateSignature" formControlName="dateSignature" placeholder="Date Signature">
-                          </div> 
-                          <div class="contratinput2">
-                            <select class="select5" #societe [(ngModel)]="societeId" formControlName="societeId" (change)="directionsListe(societe.value)">
-                              <option class="option" [value]="societeId">{{societeName}}</option>
+                          <div>
+                            <p class="label-input2">Salaire Brut</p>
+                            <input class="input3" type="text" formControlName="salaireBrut" [(ngModel)]="salaireBrut" placeholder="Montant Salaire Brut" readonly>
+                          </div>
+                        </div>
+                        <div class="contratinput1">
+                          <div>
+                            <p class="label-input1">Numéro de bon de commande(BC)<span class="signe-obligatoire">*</span></p>
+                            <input class="input-telephone-om" type="text" [(ngModel)]="num_bon_commande" formControlName="num_bon_commande" placeholder="Numéro de bon de commande">
+                            <p class="error-require-input-search" *ngIf="videnumBC">{{videnumBC}}</p>
+                          </div>
+                        </div>
+                        <div class="contratinput1">
+                          <div>
+                            <p class="label-input1">Date de fin de validité du bon de commande(BC)<span class="signe-obligatoire">*</span></p>
+                            <input class="input-telephone-om" type="date" [(ngModel)]="date_bon_commande" formControlName="date_bon_commande" placeholder="Date de Fin (BC)">
+                            <p class="error-require-input-search" *ngIf="videdateBC">{{videdateBC}}</p>
+                          </div>
+                        </div>
+                        <div class="contratinput1">
+                          <div>
+                            <p class="label-input1">Numero Téléphone Orange Money <span class="signe-obligatoire">*</span></p>
+                            <input class="input-telephone-om" type="number" [(ngModel)]="telephoneOM" formControlName="telephoneOM" placeholder="Téléphone OM">
+                            <p class="error-require-input-search" *ngIf="videtelephoneOM">{{videtelephoneOM}}</p>
+                            <p class="error-require-input-search" *ngIf="invalidtelephoneOM">{{invalidtelephoneOM}}</p>
+                          </div>
+                        </div>
+                        <div class="contratinput2">
+                          <div>
+                            <p class="label-input1">Date de début</p>
+                            <input type="date" formControlName="dateDebut" [(ngModel)]="dateDebut" placeholder="Date de Début">
+                          </div>
+                          <div>
+                            <p class="label-input2">Date de fin</p>
+                            <input class="input3" type="date" [(ngModel)]="dateFin" formControlName="dateFin" placeholder="Date de Fin">
+                          </div>
+                        </div>  
+                        <div class="contratinput2">
+                          <div>
+                            <p class="label-input1">Société <span class="signe-obligatoire">*</span></p>
+                            <select class="select5" #entite formControlName="societeId" [(ngModel)]="societeId" readonly>
+                              <option class="option" value="" disabled selected hidden>Societe</option>
                               <option *ngFor="let data of dataSociete" [value]="data.id">{{data.libelle}}</option>
                             </select>
-                            <select class="select6" #direction [(ngModel)]="directionId" formControlName="directionId" (change)="departementListe(direction.value)">
-                              <option class="option" [value]="directionId">{{directionName}}</option>
-                              <option *ngFor="let data of dataDirection" [value]="data.id">{{data.libelle}}</option>
+                          </div>
+                          <!-- <div>
+                            <p class="label-input2">Direction</p>
+                            <select class="select6" #direction  formControlName="directionId" (change)="departementListe(direction.value)">
+                              <option class="option" value="" disabled selected hidden>Direction</option>
+                              <option *ngFor="let data of dataDirection" value="{{data.id}}">{{data.libelle}}</option>
+                            </select>
+                          </div> -->
+                        </div>
+                        <div class="contratinput2">
+                          <!-- <div>
+                            <p class="label-input1">Département</p>
+                            <select class="select5" #departement formControlName="departementId" (change)="serviceListe(departement.value)">
+                              <option class="option" value="" disabled selected hidden>Département</option>
+                              <option *ngFor="let data of dataDepartement" value="{{data.id}}">{{data.libelle}}</option>
                             </select>
                           </div>
-                          <div class="contratinput2">
-                            <select class="select5" #departement [(ngModel)]="departementId" formControlName="departementId" (change)="serviceListe(departement.value)">
-                              <option class="option" [value]="departementId">{{departementName}}</option>
-                              <option *ngFor="let data of dataDepartement" [value]="data.id">{{data.libelle}}</option>
-                            </select>
-                            <select class="select6" [(ngModel)]="structureId" formControlName="structureId">
-                              <option class="option" [value]="structureId">{{structureName}}</option>
-                              <option *ngFor="let data of donneeService" [value]="data.id">{{data.libelle}}</option>
+                          <div>
+                            <p class="label-input2">Service</p>
+                            <select class="select6"  formControlName="structureId">
+                              <option class="option" value="" disabled selected hidden>Service</option>
+                              <option *ngFor="let data of donneeService" value="{{data.id}}">{{data.libelle}}</option>
+                            </select> 
+                          </div> -->
+                        </div>
+                        <div class="contratinput2">
+                          <div>
+                            <p class="label-input1">Domaine</p>
+                            <select class="select5" [(ngModel)]="domaineId" formControlName="domaineId">
+                              <option class="option" value="" disabled selected hidden>Domaine</option>
+                              <option *ngFor="let data of dataDomaine" value="{{data.id}}">{{data.libelle}}</option>
                             </select>
                           </div>
-                          <div class="contratinput2">
-                            <select class="select5" #departement [(ngModel)]="fonction" formControlName="fonction">
-                              <option class="option" [value]="fonction">{{poste}}</option>
-                              <option *ngFor="let data of listeFonction" [value]="data.id">{{data.libelle}}</option>
-                            </select>
+                          <div>
+                            <p class="label-input2">Date signature</p>
+                            <input class="input3" type="date" [(ngModel)]="dateSignature" formControlName="dateSignature" placeholder="Date de Signature">
                           </div>
-                      </div>
-                      </div>
+                        </div>
+                        <div class="contratinput2">
+                          <div>
+                            <p class="label-input1">Poste</p>
+                            <input type="text" list="postes" [(ngModel)]="poste" (change)="savePoste($event)" formControlName="poste" placeholder="Titre du Poste">
+                            <datalist id="postes">
+                              <option *ngFor="let c of listeFonction" [value]="c.libelle" >{{c.libelle}}</option>
+                            </datalist>
+                          </div>
+                          <div>
+                            <p class="label-input2">Site</p>
+                            <select class="select6" [(ngModel)]="site"  formControlName="site">
+                              <option class="option" value="" disabled selected hidden>Site</option>
+                              <option *ngFor="let data of dataSite" value="{{data.id}}">{{data.libelle}}</option>
+                            </select> 
+                          </div>
+                        </div>
                     </div>
-                    <button class="button1"  type="button" mat-button matStepperPrevious>Précédent</button>
-                    <button class="button2" (click)="submitted2()" type="submit"  mat-button matStepperNext>Suivant</button>
-                </form>
+                    </div>
+                  </div>
+                  <button class="button1"  type="button" mat-button matStepperPrevious>Précédent</button>
+                  <button class="button2" (click)="submitted2()" type="button"  mat-button matStepperNext>Suivant</button>
+              </form>
                 </div>
               </mat-step>
   
@@ -145,54 +274,61 @@
                         <div>
                         <div class="center">
                           <div class="fiche-et-pv" >
-                            <div class="photo" >
+                            <div class="otherfile" >
                               <input formControlName="fileCni" [(ngModel)]="fileCni" class="buttonCNI" type="file" (change)="getFileCni($event)" >
                               <p class="fileName">{{cniName}}</p>
                             </div>
-                            <div class="photo" >
+                            <div class="otherfile" >
                               <input formControlName="fileFicheposte" [(ngModel)]="fileFicheposte" class="buttonphoto3" type="file" (change)="getFichePoste($event)" >
                               <p class="fileName">{{fichedeposteName}}</p>
                             </div>
-                            <div class="photo" >
+                            <div class="otherfile" >
                               <input formControlName="fileproceverbal" [(ngModel)]="fileproceverbal" class="buttonphoto4" type="file" (change)="getProceVerbal($event)" >
                               <p class="fileName">{{proceverbalName}}</p>
                             </div>
-                            <div class="photo" >
+                            <div class="otherfile" >
                               <input formControlName="fileCv" [(ngModel)]="fileCv" class="buttonphotoCv" type="file" (change)="getCv($event)" >
                               <p class="fileName">{{cvName}}</p>
                             </div>
-                            <div class="photo" >
+                            <div class="otherfile" >
                               <input formControlName="fileVisiteContreVisite" [(ngModel)]="fileVisiteContreVisite" class="buttonphotoVisite" type="file" (change)="getVisiteContreVisite($event)" >
                               <p class="fileName">{{visiteContreVisiteName}}</p>
                             </div>
                           </div>
                           <div class="les-diplomes-content">
                             <div class="diplome-title">
-                              <p class="diplome-title-text">Diplomes</p>
+                              <p class="diplome-title-text">Diplomes <span class="signe-obligatoire">*</span></p>
+                              <p class="error-require-input-search" *ngIf="invaliddiplome">{{invaliddiplome}}</p>
                             </div>
                             <div class="liste-diplome">
-                              <div formArrayName="fileDiplome">
-                                <div class="liste-diplome-content" formGroupName="0">
-                                  <input formControlName="diplome" [(ngModel)]="diplome" class="buttondiplome" type="file" (change)="getDiplome1($event)" >
+                              <div >
+                                <div class="liste-diplome-content">
+                                  <input fomControlName="diplome1" class="buttondiplome" type="file" (change)="getDiplome1($event)" >
                                   <p class="diplomename">{{diplomeName1}}</p>
-                                  <!-- <mat-icon class="add-diplome" fontSet="material-icons-outlined" (click)="addNameField()">add</mat-icon> -->
+                                  <mat-icon class="add-diplome" fontSet="material-icons-outlined" (click)="addDiplome1()">add</mat-icon>
                                 </div>
-                                <div class="liste-diplome-content" formGroupName="1">
-                                  <input formControlName="diplome" [(ngModel)]="diplome" class="buttondiplome" type="file" (change)="getDiplome2($event)" >
+                                <div class="liste-diplome-content" [style.display]="selected1==true?'flex':'none'">
+                                  <input fomControlName="diplome2" class="buttondiplome" type="file" (change)="getDiplome2($event)" >
                                   <p class="diplomename">{{diplomeName2}}</p>
-                                  <!-- <mat-icon class="add-diplome" fontSet="material-icons-outlined" (click)="addNameField()">add</mat-icon> -->
+                                  <mat-icon class="add-diplome" fontSet="material-icons-outlined" (click)="addDiplome2()">add</mat-icon>
+                                  <mat-icon class="add-diplome"  (click)="deleteDiplome2()">delete</mat-icon>
                                 </div>
-                                <div class="liste-diplome-content" formGroupName="2">
-                                  <input formControlName="diplome" [(ngModel)]="diplome" class="buttondiplome" type="file" (change)="getDiplome3($event)" >
+                                <div class="liste-diplome-content" [style.display]="selected2==true?'flex':'none'">
+                                  <input fomControlName="diplome3" class="buttondiplome" type="file" (change)="getDiplome3($event)" >
                                   <p class="diplomename">{{diplomeName3}}</p>
+                                  <mat-icon class="add-diplome"  (click)="deleteDiplome3()">delete</mat-icon>
                                 </div>
                               </div>
                             </div>
                           </div>
                         </div>
                       </div>
+                      <div class="content-error-msg" *ngIf="successMsg == false">
+                        <p class="error-alert">{{ data?.message}}</p>
+                     </div>
                       <button class="button1" mat-button matStepperPrevious>Précédent</button>
                       <button class="button2" type="button" (click)="submit()" matSteppperNext>Enregistrer</button>
+                      <!-- <ngx-spinner></ngx-spinner> -->
                   </form>
                   </div>
                   <div class="message" *ngIf="submited" >
@@ -202,7 +338,10 @@
                       </div>
                       <div class="text">
                         <p class="p1">
-                          L’agent <span>Mouhamadou Lamine MBODJI</span>  a été ajouté avec succès à la liste des interimaires pour une durée de <span>7 mois</span>. <br> Une notification sera envoyée à <span>son manageur</span> et à l’<span>agence d’interim</span>.
+                          L’agent <span>{{data.data.interimaire.prenom}} {{data.data.interimaire.nom}}
+                          </span>  a été ajouté avec succès à la liste des interimaires. <br> 
+                          Une notification sera envoyée à la <span>Direction des Ressources Humaines</span> du <span>
+                            GROUPE SONATEL</span>.
                         </p>
                       </div>
                     </div>

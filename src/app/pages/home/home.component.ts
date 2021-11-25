@@ -277,7 +277,7 @@ export class HomeComponent implements OnInit {
     openDetails(data) {
       this.router.navigate(['/accueil/detailinter'], {
         queryParams: {
-          user: JSON.stringify(data)
+          interimaire: JSON.stringify(data)
         }
       })
     }
