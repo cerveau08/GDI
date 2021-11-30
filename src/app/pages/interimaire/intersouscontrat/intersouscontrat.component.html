@@ -57,7 +57,6 @@
                     <th id="manager">Matricule</th>
                     <th class="typ" id="prenom">Prenom</th>
                     <th class="typ" id="nom">Nom</th>
-                    <th *ngIf="role != 'MNG'" id="manager">Manager</th>
                     <th id="manager">Poste</th>
                     <th *ngIf="role != 'MNG'" id="direction">Direction</th>
                     <th *ngIf="role != 'AGN'" id="agence">Agence</th>
@@ -74,9 +73,6 @@
                     <td (click)="openDetail(p.id)">{{p.matricule}}</td>
                     <td (click)="openDetail(p.id)">{{p.prenom}}</td>
                     <td (click)="openDetail(p.id)">{{p.nom}}</td>
-                    <td (click)="openDetail(p.id)" *ngIf="role != 'MNG'"> 
-                        <img class="photo" alt="" src="{{reqUrl + '/public' + p.avatar_manager}}">
-                    </td>
                     <td (click)="openDetail(p.id)">{{p.poste}}</td>
                     <td *ngIf="role != 'MNG'" (click)="openDetail(p.id)">{{p.direction}}/{{p.departement}}/{{p.service}}</td>
                     <td *ngIf="role != 'AGN'" (click)="openDetail(p.id)">{{p.agence}}</td>

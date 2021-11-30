@@ -53,9 +53,9 @@
         <table style="overflow-x:auto;"aria-describedby = "mydesc" >
             <thead>
                 <tr class="head">
+                    <th class="typ" id="prenom">Matricule</th>
                     <th class="typ" id="prenom">Prenom</th>
                     <th class="typ" id="nom">Nom</th>
-                    <th *ngIf="user != 'MNG' && scrWidth>991"  id="manager">Manager</th>
                     <th  id="agence">Poste</th>
                     <th *ngIf="user != 'MNG'" id="direction">Direction</th>
                     <th *ngIf="user != 'AGN'" id="agence">Agence</th>
@@ -69,11 +69,9 @@
                     currentPage: page,
                     totalItems: totalItems
                     }; let i = index">
+                    <td (click)="openDetail(p.id)">{{p.matricule}}</td>
                     <td (click)="openDetail(p.id)">{{p.prenom}}</td>
                     <td (click)="openDetail(p.id)">{{p.nom}}</td>
-                    <td *ngIf="user != 'MNG' && scrWidth>991" (click)="openDetail(p.id)">
-                        <img alt="" class="photo" src="{{reqUrl + p.photoManager}}">
-                    </td>
                     <td (click)="openDetail(p.id)">{{p.poste}}</td>
                     <td *ngIf="user != 'MNG'" (click)="openDetail(p.id)" >{{p.direction}}</td>
                     <td *ngIf="user != 'AGN'" (click)="openDetail(p.id)" >{{p.agence}}</td>
