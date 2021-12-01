@@ -392,6 +392,10 @@ margin-bottom: 5px;
   background-color: #fa4c4c;
   border: 4px solid rgb(250, 31, 31) !important;
 }
+.toast-info {
+  background-color: #85e9ec;
+  border: 4px solid rgb(104, 243, 253) !important;
+}
 .mat-form-field-appearance-outline .mat-form-field-wrapper {
   margin: 0 !important;
   padding: 0 !important;
@@ -452,10 +456,6 @@ margin-bottom: 5px;
 }
 .mat-form-field-appearance-outline .mat-form-field-infix {
   padding: 0 !important;
-}
-.toast-info {
-  background-color: #85e9ec;
-  border: 4px solid rgb(104, 243, 253) !important;
 }
 
 @media (max-width: 991px) {

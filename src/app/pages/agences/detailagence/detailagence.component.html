@@ -222,7 +222,7 @@
                         <div class="image">
                             <div *ngIf="!image" class="content-image-upload"></div>
                             <img class="image-manager" *ngIf="image" [src]="image" alt="">
-                            <input formControlName="avatarUser" class="buttonphoto1" type="file" (change)="getPhoto($event)">
+                            <input formControlName="avatarUser" class="buttonphoto2" type="file" (change)="getPhoto($event.target)">
                         </div>
                         <div>
                             <div class="infoinput2">
