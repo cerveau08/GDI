@@ -6,7 +6,7 @@
     <button *ngIf="role == 'MNG' && successMsgO == true" class="button-ajouter" (click)="openEvaluer()">Faire une Evaluation</button>
     <button *ngIf="role == 'MNG' && successMsgO == false" class="button-ajouter" (click)="openObjectif()">Créer des objectifs</button>
     <div  *ngIf="successMsg == false" class="content-vide-objectif">
-        <p class="vide-objectif">Il n'y a aucune d'évalution éffectuée</p>
+        <p class="vide-objectif">Il n'y a aucune évalution éffectuée</p>
     </div>
     <div class="grid-container" *ngIf="successMsg == true">
         <div class="info-evaluation" *ngFor="let p of evaluations | paginate: {  itemsPerPage: itemsPerPage,

@@ -92,6 +92,7 @@ export class AddattestationComponent implements OnInit {
   scrHeight:any;
   scrWidth:any;
   detailinter;
+  successMsgA = false;
   constructor(public datepipe: DatePipe,
     public router: Router,
     private modalService: ModalService,
@@ -144,19 +145,22 @@ export class AddattestationComponent implements OnInit {
   }
   gty(page: any){
     this.otherService.listeInterForAttestation().subscribe((data: any) => {
-      this.dataInter =  data.data;
-      this.totalItems = data.total;
-      this.attestationForm = this.formBuilder.group({
-        annee: ['', Validators.required],
-        mois: ['', Validators.required],
-        interDetail: this.formBuilder.array(
-          this.dataInter.map(x => this.formBuilder.group({
-            interim_id: [x.id, [Validators.required, Validators.minLength(1)]],
-            nbr_jr_absence: [x.nbr_jr_absence, [Validators.required, Validators.minLength(1)]],
-            commentaire: [x.commentaire, [Validators.required, Validators.minLength(2)]]
-          }))
-        )
-      })
+      this.successMsgA = data.status;
+      if(this.successMsgA == true) {
+        this.dataInter =  data.data;
+        this.totalItems = data.total;
+        this.attestationForm = this.formBuilder.group({
+          annee: ['', Validators.required],
+          mois: ['', Validators.required],
+          interDetail: this.formBuilder.array(
+            this.dataInter.map(x => this.formBuilder.group({
+              interim_id: [x.id, [Validators.required, Validators.minLength(1)]],
+              nbr_jr_absence: [x.nbr_jr_absence, [Validators.required, Validators.minLength(1)]],
+              commentaire: [x.commentaire, [Validators.required, Validators.minLength(2)]]
+            }))
+          )
+        })
+      }
     })
   }
 

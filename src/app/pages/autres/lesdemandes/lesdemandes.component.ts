@@ -8,6 +8,7 @@ import { OthersService } from 'src/app/services/others.service';
 import { ModalService } from 'src/app/modal/_modal';
 import { environment } from 'src/environments/environment';
 import { ErrormodalService } from 'src/app/modal/_errormodals';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-lesdemandes',
@@ -52,6 +53,9 @@ export class LesdemandesComponent implements OnInit {
   dataAgence: any;
   etat = null;
   listeEtat: { id: string; etat: string; }[];
+  user: string;
+  successMsg;
+  successCode;
   @HostListener('window:resize', ['$event'])
   getScreenSize(event?) {
         this.scrHeight = window.innerHeight;
@@ -62,6 +66,7 @@ export class LesdemandesComponent implements OnInit {
     private modalService: ModalService,
     private errormodalService: ErrormodalService,
     private otherService: OthersService,
+    private toastr: ToastrService,
     private http: HttpClient,
     public datepipe: DatePipe) {
       this.form = this.fb.group({
@@ -71,6 +76,7 @@ export class LesdemandesComponent implements OnInit {
     }
 
   ngOnInit() {
+    this.user = localStorage.getItem('user');
     this.listeEtat = [
       {
         id: '1',
@@ -113,6 +119,39 @@ export class LesdemandesComponent implements OnInit {
     ); 
   }
 
+  valider(id) {
+    this.http.post(`${this.reqUrl}/validerDemande/${id}`, null).subscribe(
+      data => {
+        this.result = data;
+        this.successMsg = this.result.status;
+        if(this.successMsg = true) {
+          this.ngOnInit();
+        }
+      }, error=> {
+        this.errorMsg = error;
+        this.toastr.error(this.errorMsg, 'Echec', {
+         timeOut: 5000,
+        });
+       }
+    )
+  }
+  rejeter(id) {
+    this.http.post(`${this.reqUrl}/validerDemande/${id}`, null).subscribe(
+      data => {
+        this.result = data;
+        this.successMsg = this.result.status;
+        if(this.successMsg = true) {
+          this.ngOnInit();
+        }
+      }, error=> {
+        this.errorMsg = error;
+        this.toastr.error(this.errorMsg, 'Echec', {
+         timeOut: 5000,
+        });
+       }
+    )
+  }
+
   public saveProfession(e): void {
     let libelle = e.target.value;
     let list = this.listeDemande.filter(x => x.libelle === libelle)[0];
@@ -133,8 +172,11 @@ export class LesdemandesComponent implements OnInit {
       this.etat = this.filterForm.value.etat;
     }
     this.otherService.getListedesDemande(page, this.itemsPerPage, this.type, this.etat).subscribe((data: any) => {
-      this.dd =  data.data;
-      this.totalItems = data.total;
+      this.successCode = data.code;
+      if(this.successCode == 200) {
+        this.dd =  data.data;
+        this.totalItems = data.total;
+      }
     })
   }
   

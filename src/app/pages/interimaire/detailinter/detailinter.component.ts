@@ -163,28 +163,8 @@ export class DetailinterComponent implements OnInit {
         this.dataInter = this.data.data;
         this.nom = this.dataInter.nom;
         this.prenom = this.dataInter.prenom;
-        // this.datedenaissance = this.dataInter.datedenaissance;
-        // this.lieudenaissance = this.dataInter.lieudenaissance;
-        // this.numeroPiece = this.dataInter.numeroPiece;
-        // this.diplome = this.dataInter.diplomes;
-        // this.email = this.dataInter.email;
         this.emailPro = this.dataInter.emailPro;
-        // this.adresse = this.dataInter.adresse;
-        // this.profession = this.dataInter.profession;
-        // this.salaireBrut = this.dataInter.salaireBrut;
-        // this.profession = this.dataInter.profession;
-        // this.telephone = this.dataInter.telephone;
-        // this.universite = this.dataInter.universite;
-        // this.sitmat = this.dataInter.sitmat;
          this.idcontrat = this.dataInter.contrat.id;
-        // this.direction = this.dataInter.direction;
-        // this.departement = this.dataInter.departement;
-        // this.service = this.dataInter.service;
-        // this.agence = this.dataInter.agence;
-        // this.categorie = this.dataInter.categorie;
-        // this.dateSignature = this.dataInter.dateSignature;
-        // this.matricule = this.dataInter.matricule;
-        // this.sexe = this.dataInter.sexe;
         this.photo = this.reqUrl + '/public/' + this.dataInter.photo;
         this.etat = this.dataInter.etat;
         this.contratDoc = this.reqUrl + '/public' + this.dataInter.fileContrat;
@@ -271,9 +251,21 @@ export class DetailinterComponent implements OnInit {
           this.percentRestantposition = (this.totalJourPresent / totalDay) * 100 - 1 +'%';
         }
       }
-    )
+    );
+    this.onChanges();
   }
 
+  onChanges(): void {
+    this.contratForm.get('categorieId').valueChanges.subscribe(val => {
+      this.salaireBrut = val;
+      this.otherService.getOneCategorie(val).subscribe(
+        data => {
+          this.data = data;
+          this.salaireBrut = this.data.data.salaireBrute;
+        }
+      )
+    });
+  }
 
   get errorControl() {
     return this.validerForm.controls;

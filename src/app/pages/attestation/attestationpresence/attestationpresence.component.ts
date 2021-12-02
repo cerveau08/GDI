@@ -87,6 +87,7 @@ export class AttestationpresenceComponent implements OnInit {
   currentDate = new Date().getFullYear();
   lastTenYear: { annee: any; }[];
   valid: number;
+  successMsgA;
   constructor(private extractionService: AuthService,
               private http: HttpClient,
               private errormodalService: ErrormodalService,
@@ -129,8 +130,11 @@ export class AttestationpresenceComponent implements OnInit {
     }
     this.otherService.listAttestationFilter(page,this.itemsPerPage, this.mois, this.annee, this.reference).subscribe(
       (data: any) => {
-        this.dataAttest =  data.data[0];
-        this.totalItems = data.total;
+        this.successMsgA = data.code;
+        if(this.successMsgA == 201) {
+          this.dataAttest =  data.data[0];
+          this.totalItems = data.total;
+        }
       }
     )
   }

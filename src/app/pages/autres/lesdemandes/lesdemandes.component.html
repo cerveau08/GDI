@@ -2,7 +2,10 @@
     <div class="all">
         <div class="tableau">
             <p class="detail1" id="mydesc">Liste des Demandes</p>
-            <div class="exporter">
+            <div  *ngIf="successCode == 202" class="content-vide-objectif">
+                <p class="vide-objectif">Il n'y a aucune demande éffectuée</p>
+            </div>
+            <div *ngIf="successCode == 200" class="exporter">
                 <form [formGroup]="filterForm">
                     <div class="exporter-form">
                         <div class="content-input-extraction">
@@ -28,7 +31,7 @@
                 </form>
             </div>
             
-            <table style="overflow-x:auto;" aria-describedby = "mydesc">
+            <table *ngIf="successCode == 200" style="overflow-x:auto;" aria-describedby = "mydesc">
                 <thead>
                     <tr class="head">
                         <th class="typ" id="prenom">
@@ -45,11 +48,7 @@
                         <th id="attestation">Motif</th>
                         <th id="paiement">Date Debut</th>
                         <th id="date">Date Fin</th>
-                        <th id="input"><input 
-                             [(ngModel)]="selectedAll"
-                             (change)="selectAll();"
-                             type="checkbox"/>
-                        </th>
+                        <th id="input">Action</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -63,13 +62,13 @@
                         <td><button  class="buttons1" (click)="openModal('custom-modal-'+p.id)">Afficher</button></td>
                         <td>{{p.dateDebut | date: 'dd/MM/yyyy'}}</td>
                         <td>{{p.dateFin | date: 'dd/MM/yyyy'}}</td>
-                        <td *ngIf="p.etat == 0"><input type="checkbox"
-                                [checked]="p.etat"
-                                [(ngModel)]="p.etat"
-                                [value]="p.id" 
-                                (change)="checkIfAllSelected();"/>
+                        <td >
+                            <button (click)="valider(p.reference)" *ngIf="user == 'AGN' && p.etat == 0" class="valider-attestation">Valider</button>
+                            <button (click)="rejeter(p.reference)" *ngIf=" user == 'AGN' && p.etat == 0" class="rejeter-attestation">Rejeter</button>
+                            <span *ngIf="p.etat == 1">déja validé</span>
+                            <span *ngIf="p.etat == 2">déja rejeté</span>
+                            <span *ngIf="p.etat == 0 && user != 'AGN'">en attente</span>
                         </td>
-                        <td *ngIf="p.etat == 1">Validé</td>
                         <!--modal1-->
                         <div class="modal">
                             <jw-modal id="custom-modal-{{p.id}}">
@@ -85,31 +84,14 @@
                 </tbody>
                 
             </table>
-            <div class="pagination">
+            <div *ngIf="successCode == 200" class="pagination">
                 <div>
                     <pagination-controls (pageChange)="gty(page = $event)" previousLabel="Précédent" nextLabel="Suivant"></pagination-controls>
                 </div>
-                <div class="button-valider-content">
+                <!-- <div class="button-valider-content">
                     <button class="button-validation-demende" (click)="getCheckedItemList()">Valider</button>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
 </div>
-
-<!--modal1-->
-<div class="modal">
-    <sonatel-pma-errormodal id="error-modal-1">
-        <div class="error-modal-all" >
-            <mat-icon style="cursor: pointer;" (click)="closeErrorModal('error-modal-1');" class="clear-error">clear</mat-icon>
-            <div class="error-content-image">
-                <div class="error-image"></div>
-            </div>
-            <p class="error-text">{{errorMsg}}</p>
-            <p class="error-message-admin">Veuillez contacter l'administrateur du site à partir de la page paramètre</p> 
-            <div class="error-content-button">
-                <button (click)="closeErrorModal('error-modal-1');" class="error-button">Ok</button>
-            </div>
-        </div>
-    </sonatel-pma-errormodal>
-  </div>

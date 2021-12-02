@@ -1,8 +1,11 @@
 <div class="all-container">
     <div class="demande">
         <div class="tableau">
-            <p class="detail1" id="mydesc">Liste des non Attestations</p>
-            <div class="exporter">
+            <p class="detail1" id="mydesc">Liste des intérimaires qui n'ont pas d'attestations</p>
+            <div  *ngIf="successMsgA == false" class="content-vide-objectif">
+                <p class="vide-objectif">Aucune donnée</p>
+            </div>
+            <div class="exporter" *ngIf="successMsgA == true">
                 <form [formGroup]="filterForm">
                     <div class="exporter">
                         <div class="content-input-extraction">
@@ -34,7 +37,7 @@
                     </div>
                 </form>
             </div>
-            <table style="overflow-x:auto;" aria-describedby = "mydesc">
+            <table *ngIf="successMsgA == true" style="overflow-x:auto;" aria-describedby = "mydesc">
                 <thead>
                     <tr class="head">
                         <th id="manager">Matricule</th>
@@ -57,7 +60,7 @@
                     </tr>
                 </tbody>
             </table>
-            <div class="pagination">
+            <div *ngIf="successMsgA == true" class="pagination">
                 <pagination-controls (pageChange)="gty(page = $event)" previousLabel="Précédent" nextLabel="Suivant"></pagination-controls>
             </div>
         </div>

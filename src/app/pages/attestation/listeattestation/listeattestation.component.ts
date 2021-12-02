@@ -89,6 +89,7 @@ export class ListeattestationComponent implements OnInit {
   public annee = null;
   public mois = null;
   public reference = null;
+  successMsgA = 203;
   @ViewChild('htmlData', { static: true }) htmlData:ElementRef;
   @HostListener('window:resize', ['$event'])
   getScreenSize(event?) {
@@ -144,8 +145,11 @@ export class ListeattestationComponent implements OnInit {
     }
     this.otherService.listAttestationFilter(page,this.itemsPerPage, this.mois, this.annee, this.reference).subscribe(
       (data: any) => {
-        this.dataAttest =  data.data[0];
-        this.totalItems = data.total;
+        this.successMsgA = data.code;
+        if(this.successMsgA == 201) {
+          this.dataAttest =  data.data[0];
+          this.totalItems = data.total;
+        }
       }
     )
 

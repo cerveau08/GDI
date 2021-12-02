@@ -16,6 +16,25 @@
 tr:hover{
     background-color: #f5f6f9;
 }
+.valider-attestation{
+    background-color: #009393;
+    color: #fff;
+    font-size: 12px;
+    height: 20px;
+    width: 50px;
+    border: none;
+    outline: none;
+}
+.rejeter-attestation{
+    background-color: #ff0000;
+    color: #fff;
+    font-size: 12px;
+    height: 20px;
+    width: 50px;
+    border: none;
+    outline: none;
+    margin-left: 5px;
+}
 .duree{
     font-size: 18px;
     font-weight: bold;

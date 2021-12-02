@@ -2,7 +2,10 @@
     <div class="demande">
         <div class="tableau">
             <p class="detail1" id="mydesc">Liste des Attestations de Presence</p>
-            <form [formGroup]="filterForm">
+            <div  *ngIf="successMsgA != 201" class="content-vide-objectif">
+                <p class="vide-objectif">Il n'y a aucune attestation de présence</p>
+            </div>
+            <form *ngIf="successMsgA == 201" [formGroup]="filterForm">
                 <div class="exporter">
                     <div class="content-input-extraction">
                         <div class="filtrer-mois">
@@ -36,7 +39,7 @@
                     </div>
                 </div>
             </form>
-            <table style="overflow-x:auto;" aria-describedby = "mydesc">
+            <table *ngIf="successMsgA == 201" style="overflow-x:auto;" aria-describedby = "mydesc">
                 <thead>
                     <tr class="head">
                         <th id="manager">Matricule</th>
@@ -67,26 +70,9 @@
                     </tr>
                 </tbody>
             </table>
-            <div class="pagination">
+            <div *ngIf="successMsgA == 201" class="pagination">
                 <pagination-controls (pageChange)="p = $event" previousLabel="Prcédent" nextLabel="Suivant"></pagination-controls>
             </div>
         </div>
     </div>
 </div>
-
-<!--modal1-->
-<div class="modal">
-    <sonatel-pma-errormodal id="error-modal-1">
-        <div class="error-modal-all" >
-            <mat-icon style="cursor: pointer;" (click)="closeErrorModal('error-modal-1');" class="clear-error">clear</mat-icon>
-            <div class="error-content-image">
-                <div class="error-image"></div>
-            </div>
-            <p class="error-text">{{errorMsg}}</p>
-            <p class="error-message-admin">Veuillez contacter l'administrateur du site à partir de la page paramètre</p> 
-            <div class="error-content-button">
-                <button (click)="closeErrorModal('error-modal-1');" class="error-button">Ok</button>
-            </div>
-        </div>
-    </sonatel-pma-errormodal>
-  </div>

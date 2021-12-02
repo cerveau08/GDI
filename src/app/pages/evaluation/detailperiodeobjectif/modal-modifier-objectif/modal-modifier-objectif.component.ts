@@ -33,6 +33,7 @@ export class ModalModifierObjectifComponent implements OnInit {
       description: new FormControl(''),
       indicateur: new FormControl(''),
       valeurCible: new FormControl(''),
+      id: new FormControl(this.itemobjectif.objectifId),
     });
   }
 

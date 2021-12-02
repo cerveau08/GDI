@@ -89,6 +89,7 @@ export class LesnonattestationComponent implements OnInit {
   public annee = null;
   public mois = null;
   public reference = null;
+  successMsgA = false;
   @ViewChild('htmlData', { static: true }) htmlData:ElementRef;
   @HostListener('window:resize', ['$event'])
   getScreenSize(event?) {
@@ -142,8 +143,11 @@ export class LesnonattestationComponent implements OnInit {
     this.mois = this.filterForm.value.mois;
     this.otherService.lesNonAttestation(page, this.itemsPerPage, this.mois, this.annee).subscribe(
       (data: any) => {
-        this.dataAttest =  data.data;
-        this.totalItems = data.total;
+        this.successMsgA = data.status;
+        if(this.successMsgA == true) {
+          this.dataAttest =  data.data;
+          this.totalItems = data.total;
+        }
       }
     )
   }
