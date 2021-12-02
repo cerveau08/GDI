@@ -25,6 +25,7 @@ export class DetailperiodeobjectifComponent implements OnInit {
   note;
   nom;
   successMsg;
+  successMsgO = false;
   filterForm: FormGroup;
   objectifForm: FormGroup;
   noteForm: FormGroup;
@@ -73,7 +74,8 @@ export class DetailperiodeobjectifComponent implements OnInit {
     this.otherService.getListeEvaluation(this.item, this.page, this.itemsPerPage, this.isEvaluated).subscribe(
       data => {
         this.data = data
-        if( this.data.satus == true ) {
+        this.successMsgO = this.data.status;
+        if(this.successMsgO == true ) {
           this.detailPeriode = this.data["data"];
           this.idEvaluation = this.detailPeriode[0].id;
           this.nomPeriode = this.detailPeriode[0].libelle;

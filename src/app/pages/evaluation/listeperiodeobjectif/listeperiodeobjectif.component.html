@@ -4,7 +4,7 @@
             <mat-icon class="bouton-retour" (click)="backClicked()">arrow_back</mat-icon>
             <p class="detail1" id="mydesc">Liste des périodes d'évaluation de {{prenom}} {{nom}}</p>
         </div>
-        <div class="exporter">
+        <div class="exporter" *ngIf="successMsg == true">
             <form [formGroup]="filterForm">
                 <div class="exporter">
                     <div class="content-input-extraction">
@@ -30,7 +30,7 @@
                 <p class="text-path">Créer une nouvelle periode d'objectif</p>
             </div>
         </div>
-        <table style="overflow-x:auto;"aria-describedby = "mydesc" >
+        <table style="overflow-x:auto;"aria-describedby = "mydesc" *ngIf="successMsg == true">
             <thead>
                 <tr class="head">
                     <th class="typ" id="prenom">Nom de la période</th>
@@ -62,8 +62,11 @@
             </tbody>
             
         </table>  
-        <div class="pagination">
+        <div class="pagination" *ngIf="successMsg == true">
             <pagination-controls (pageChange)="gty(page = $event)" previousLabel="Prcédent" nextLabel="Suivant"></pagination-controls>
+        </div>
+        <div  *ngIf="successMsg == false" class="content-vide-objectif">
+            <p class="vide-objectif">Il n'y a pas d'objectifs</p>
         </div>
     </div>
 </div>

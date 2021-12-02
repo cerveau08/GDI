@@ -119,17 +119,22 @@ export class ReconduireobjectifComponent implements OnInit {
         this.dateDebut = this.detailPeriode.dateDebut;
         this.dateFin = this.detailPeriode.dateFin;
         this.notations = this.detailPeriode.notation;
+        this.evaluationHeadForm = this.formBuilder.group({
+          dateDebut: [this.dateDebut, Validators.required],
+          dateFin: [this.dateFin, Validators.required],
+          namming: [this.namming, Validators.required],
+        });
         this.objectifsForm = this.formBuilder.group({
-          dateDebut: ['', Validators.required],
-          dateFin: ['', Validators.required],
-          namming: ['', Validators.required],
+          dateDebut: [this.dateDebut, Validators.required],
+          dateFin: [this.dateFin, Validators.required],
+          namming: [this.namming, Validators.required],
           objectifs: this.formBuilder.array(
             this.notations.map(x => this.formBuilder.group({
-              bareme: [x.objectif.bareme, [Validators.required, Validators.minLength(1)]],
-              titre: [x.objectif.titre, [Validators.required, Validators.minLength(1)]],
-              description: [x.objectif.description, [Validators.required, Validators.minLength(2)]],
-              indicateur: [x.objectif.indicateur, [Validators.required, Validators.minLength(1)]],
-              valeurCible: [x.objectif.valeurCible, [Validators.required, Validators.minLength(1)]],
+              bareme: [x.objectifBareme, [Validators.required, Validators.minLength(1)]],
+              titre: [x.objectifTitre, [Validators.required, Validators.minLength(1)]],
+              description: [x.objectifDescription, [Validators.required, Validators.minLength(2)]],
+              indicateur: [x.objectifIndicateur, [Validators.required, Validators.minLength(1)]],
+              valeurCible: [x.objectifValeurCible, [Validators.required, Validators.minLength(1)]],
             }))
           )
         })

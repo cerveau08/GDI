@@ -169,7 +169,7 @@ export class InterfincontratComponent implements OnInit {
   openDetail(data) {
     this.router.navigate(['/accueil/detailinter'], {
       queryParams: {
-        usinterimaireer: JSON.stringify(data)
+        interimaire: JSON.stringify(data)
       }
     })
   }

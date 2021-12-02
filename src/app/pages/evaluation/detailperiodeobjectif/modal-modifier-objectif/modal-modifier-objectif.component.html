@@ -3,22 +3,22 @@
         <div class="forms-objectif">
             <div class="content-form"> 
                 <div class="input-titre">
-                    <p class="label-input" >Titre</p>
-                    <input type="text" [(ngModel)]="itemobjectif.titre" id="titre" name="titre" formControlName="titre" placeholder="Titre" >
+                    <p class="label-input">Titre</p>
+                    <input type="text" [(ngModel)]="itemobjectif.objectifTitre" id="titre" name="titre" formControlName="titre" placeholder="Titre" >
                 </div>
                 <div class="input-description">
-                    <p class="label-input" >Description</p>
-                    <textarea type="textarea" [(ngModel)]="itemobjectif.description" name="description" formControlName="description" placeholder="Description"></textarea>
+                    <p class="label-input">Description</p>
+                    <textarea type="textarea" [(ngModel)]="itemobjectif.objectifDescription" name="description" formControlName="description" placeholder="Description"></textarea>
                 </div>
                 <div class="input-titre">
-                    <p class="label-input" >Indicateur de mesure</p>
-                    <input type="text" [(ngModel)]="itemobjectif.indicateur" id="titre" name="indicateur" formControlName="indicateur" placeholder="Indicateur de mesure" >
+                    <p class="label-input">Indicateur de mesure</p>
+                    <input type="text" [(ngModel)]="itemobjectif.objectifIndicateur" id="titre" name="indicateur" formControlName="indicateur" placeholder="Indicateur de mesure" >
                 </div>
                 <div class="input-titre">
-                    <p class="label-input" >Valeur Cible</p>
-                    <input type="text" [(ngModel)]="itemobjectif.valeurCible" name="vc" formControlName="valeurCible" placeholder="Valeur Cible">
+                    <p class="label-input">Valeur Cible</p>
+                    <input type="text" [(ngModel)]="itemobjectif.objectifValeurCible" name="vc" formControlName="valeurCible" placeholder="Valeur Cible">
                 </div>
-                <p class="label-input" >Le barème de cet objectif est <span class="bareme-value">{{itemobjectif.bareme}}</span></p>
+                <p class="label-input">Le barème de cet objectif est <span class="bareme-value">{{itemobjectif.objectifBareme}}</span></p>
                 <div class="content-button-submit-objectif">
                     <button (click)="modifierObjectif(itemobjectif.id)" class="button-submit-objectif">Enregistrer</button>
                 </div>

@@ -115,7 +115,7 @@ export class ModifEvaluerComponent implements OnInit {
           notation: this.formBuilder.array(
             this.notations.map(x => this.formBuilder.group({
               id: [x.id, [Validators.required, Validators.minLength(1)]],
-              objectifId: [x.objectif.id, [Validators.required, Validators.minLength(1)]],
+              objectifId: [x.objectifId, [Validators.required, Validators.minLength(1)]],
               note: [x.note, [Validators.required, Validators.minLength(1)]],
               commentaire: [x.commentaire, [Validators.required, Validators.minLength(2)]]
             }))

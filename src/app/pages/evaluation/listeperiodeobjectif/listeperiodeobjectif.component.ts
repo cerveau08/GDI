@@ -54,6 +54,7 @@ export class ListeperiodeobjectifComponent implements OnInit {
   ListeStatut: {}[];
   interimaire: any;
   role: string;
+  successMsg: boolean = false;
   @HostListener('window:resize', ['$event'])
   getScreenSize(event?) {
         this.scrHeight = window.innerHeight;
@@ -118,7 +119,10 @@ export class ListeperiodeobjectifComponent implements OnInit {
     this.otherService.getListeEvaluation(this.item, page, this.itemsPerPage, this.isEvaluated).subscribe(
       data => {
         this.data = data
-        this.periodeobjectif = this.data.data;
+        this.successMsg = this.data.status;
+        if(this.successMsg == true) {
+          this.periodeobjectif = this.data.data;
+        } 
       }
     );
   }
@@ -132,7 +136,7 @@ export class ListeperiodeobjectifComponent implements OnInit {
   }
 
   openDetailPeriode(data) {
-    this.router.navigate(['/accueil/periodedetail'], {
+    this.router.navigate(['/accueil/detailperiodeobjectif'], {
       queryParams: {
         periode: JSON.stringify(data),
         interimaire: JSON.stringify(this.item),

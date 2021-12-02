@@ -4,7 +4,7 @@
         <h1 class="titre-objectif">Détail de la période d'évaluation {{nomPeriode}} de {{prenom}} {{nom}}</h1>
     </div>
     <div class="content-head-info">
-        <div class="content-info-periode">
+        <div *ngIf="successMsgO == true" class="content-info-periode">
             <p class="text-objectif-title">
                 Nom de la période:
                 <span class="objectif-title-namming">{{nomPeriode}}</span>
@@ -25,6 +25,9 @@
             </div>
             <h1 class="titre-objectif-head">Liste des objectifs de cette période</h1>
         </div>
+        <div  *ngIf="successMsgO == false" class="content-vide-objectif">
+            <p class="vide-objectif">Il n'y a pas d'objectifs en cours</p>
+        </div>
         <div class="content-boutons">
             <div (click)="listeperiodeobjectif();" class="content-path-icon">
                 <div class="content-path">
@@ -42,7 +45,7 @@
                     <mat-icon class="icon-path">add_circle</mat-icon>
                 </div>
             </div>
-            <div *ngIf="role == 'MNG'" (click)="reconduireobjectif(idEvaluation);" class="content-path-icon">
+            <div *ngIf="role == 'MNG' && successMsgO == true" (click)="reconduireobjectif(idEvaluation);" class="content-path-icon">
                 <div class="content-path">
                     <p class="text-path">Reconduire ces objectifs</p>
                 </div>
@@ -50,7 +53,7 @@
                     <mat-icon class="icon-path">reply</mat-icon>
                 </div>
             </div>
-            <div *ngIf="role == 'MNG'" (click)="openModifierObjectif();" class="content-path-icon">
+            <div *ngIf="role == 'MNG' && successMsgO == true" (click)="openModifierObjectif();" class="content-path-icon">
                 <div class="content-path">
                     <p class="text-path">Modifier</p>
                 </div>
@@ -67,13 +70,13 @@
                     <div class="content-text-objectif-title">
                         <p class="text-objectif-title">
                             Titre:
-                            <span class="objectif-title-titre">{{p.objectif.titre}}</span>
+                            <span class="objectif-title-titre">{{p.objectifTitre}}</span>
                         </p>
                     </div>
                     <div class="content-text-objectif-description">
                         <p class="text-objectif-content">
                             Description:
-                            <span class="objectif-content-description">{{p.objectif.description}}</span>
+                            <span class="objectif-content-description">{{p.objectifDescription}}</span>
                         </p>
                     </div>
                 </div>
@@ -81,19 +84,19 @@
                     <div class="content-text-objectif-bareme">
                         <p class="text-objectif-title">
                             Bareme:
-                            <span class="objectif-title">{{p.objectif.bareme}}</span>
+                            <span class="objectif-title">{{p.objectifBareme}}</span>
                         </p>
                     </div>
                     <div class="content-text-objectif-indicateur">
                         <p class="text-objectif-content">
                             Indicateur de mesure:
-                            <span class="objectif-content">{{p.objectif.indicateur}}</span>
+                            <span class="objectif-content">{{p.objectifIndicateur}}</span>
                         </p>
                     </div>
                     <div class="content-text-objectif-valeur">
                         <p class="text-objectif-content">
                             Valeur Cible:
-                            <span class="objectif-content">{{p.objectif.valeurCible}}</span>
+                            <span class="objectif-content">{{p.objectifValeurCible}}</span>
                         </p>
                     </div>
                 </div>
@@ -160,7 +163,7 @@
                     <mat-icon style="cursor: pointer;" (click)="closeModal('modif-modal-'+p.id);" class="clear">clear</mat-icon>
                     <div class="all">
                         <h1 class="titre-objectif">Modifier l'Objectif</h1>
-                        <app-modal-modifier-objectif (messageEvent)="receiveMessage($event)" [objectifData]=p.objectif></app-modal-modifier-objectif>
+                        <app-modal-modifier-objectif (messageEvent)="receiveMessage($event)" [objectifData]=p></app-modal-modifier-objectif>
                     </div>
                 </jw-modal>
             </div>

@@ -121,12 +121,12 @@ export class ModifdetailComponent implements OnInit {
           idEvaluation: this.evaluationId,
           objectifs: this.formBuilder.array(
             this.notations.map(x => this.formBuilder.group({
-              id: [x.objectif.id, [Validators.required, Validators.minLength(1)]],
-              bareme: [x.objectif.bareme, [Validators.required, Validators.minLength(1)]],
-              titre: [x.objectif.titre, [Validators.required, Validators.minLength(1)]],
-              description: [x.objectif.description, [Validators.required, Validators.minLength(2)]],
-              indicateur: [x.objectif.indicateur, [Validators.required, Validators.minLength(1)]],
-              valeurCible: [x.objectif.valeurCible, [Validators.required, Validators.minLength(1)]],
+              id: [x.id, [Validators.required, Validators.minLength(1)]],
+              bareme: [x.objectifBareme, [Validators.required, Validators.minLength(1)]],
+              titre: [x.objectifTitre, [Validators.required, Validators.minLength(1)]],
+              description: [x.objectifDescription, [Validators.required, Validators.minLength(2)]],
+              indicateur: [x.objectifIndicateur, [Validators.required, Validators.minLength(1)]],
+              valeurCible: [x.objectifValeurCible, [Validators.required, Validators.minLength(1)]],
             }))
           )
         })

@@ -26,7 +26,6 @@ export class ListeevaluationComponent implements OnInit {
   prenom;
   note;
   nom;
-  successMsg;
   objectifForm: FormGroup;
   noteForm: FormGroup;
   modifierForm: FormGroup;
@@ -39,6 +38,8 @@ export class ListeevaluationComponent implements OnInit {
   public reqUrl = environment.base_url;
   errorMsg: any;
   isEvaluated = true;
+  successMsg = false;
+  successMsgO = false;
   constructor(private otherService: OthersService,
     private activeroute: ActivatedRoute,
     private router: Router,
@@ -61,6 +62,10 @@ export class ListeevaluationComponent implements OnInit {
       }
     );
     this.gty(this.page);
+    this.otherService.getListeEvaluation(this.item, 1, this.itemsPerPage, false).subscribe((data: any) => {
+      this.data = data
+      this.successMsgO = this.data.status;
+    })
   }
 
   backClicked() {
@@ -70,8 +75,11 @@ export class ListeevaluationComponent implements OnInit {
   gty(page: any){
     this.otherService.getListeEvaluation(this.item, page, this.itemsPerPage, this.isEvaluated).subscribe((data: any) => {
       this.data = data
-      this.evaluations = this.data["data"];
-      this.totalItems = data.total;
+      this.successMsg = this.data.status;
+      if(this.successMsg == true) {
+        this.evaluations = this.data["data"];
+        this.totalItems = data.total;
+      }
     })
   }
 
@@ -87,6 +95,13 @@ export class ListeevaluationComponent implements OnInit {
 
   openEvaluer() {
     this.router.navigate(['/accueil/evaluer'], {
+      queryParams: {
+        interimaire: JSON.stringify(this.item),
+      }
+    })
+  }
+  openObjectif() {
+    this.router.navigate(['/accueil/addobjectif'], {
       queryParams: {
         interimaire: JSON.stringify(this.item),
       }
