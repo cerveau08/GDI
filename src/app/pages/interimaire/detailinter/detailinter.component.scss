@@ -568,21 +568,30 @@
 input {
     outline: none;
 }
-.input2 input {
-    width: 232px;
-    height: 30px;
-    background-color: #f5f6f9;
-    border-radius: 1px;
-    border: solid 1px #d8d8d8;
-    margin-bottom: 10px;
-    padding: 0 10px;
+.content-inputs-form{
+    display: grid;
+    grid-template-columns: 50% 50%;
+     input {
+        width: 232px;
+        height: 25px;
+        background-color: #f5f6f9;
+        border-radius: 1px;
+        border: solid 1px #d8d8d8;
+        margin-bottom: 10px;
+        padding: 0 10px;
+    } 
 }
 .input3 {
-    margin-left: 10px;
+    //margin-left: 10px;
+}
+.label-input1 {
+    margin-bottom: 0;
+    margin-top: 0;
+    font-size: 12px;
 }
 select {
     width: 255px;
-    height: 34px;
+    height: 25px;
     margin-bottom: 10px;
     background-color: #f5f6f9;
     outline: none;

@@ -138,6 +138,10 @@ export class DetailinterComponent implements OnInit {
   selected1: boolean;
   selected2: boolean;
   dureeTotalPresence: any;
+  itemParPage = null;
+  dataSite: any;
+  region = null;
+  dataDomaine: any;
   constructor(private activeroute: ActivatedRoute,
               private modalService: ModalService,
               private otherService: OthersService,
@@ -198,6 +202,10 @@ export class DetailinterComponent implements OnInit {
       fichePoste: new FormControl(''),
       interimaireId: new FormControl(''),
       procesVerbal: new FormControl(''),
+      num_bon_commande: new FormControl(''),
+      date_bon_commande: new FormControl(''),
+      site: new FormControl(''),
+      domaineId: new FormControl(''),
     });
     this.searchForm = new FormGroup({
       matricule: new FormControl('')
@@ -233,7 +241,13 @@ export class DetailinterComponent implements OnInit {
       commentaire: new FormControl(''),
     });
     this.gty(this.page);
-
+    this.otherService.listeSite(this.page, 999, this.region).subscribe(
+      data => {
+        this.dataSite = data.data;
+      }
+    )
+    this.otherService.getDomaine().subscribe(data => this.dataDomaine = data["data"]);
+    this.otherService.getFonctions().subscribe(data => this.listeFonction = data.data);
     this.otherService.statContratInter(this.item).subscribe(
       data => {
         if(data.data) {
@@ -265,6 +279,12 @@ export class DetailinterComponent implements OnInit {
         }
       )
     });
+  }
+
+  public savePoste(e): void {
+    let libelle = e.target.value;
+    let list = this.listeFonction.filter(x => x.libelle === libelle)[0];
+    this.contratForm.patchValue({poste: list.libelle});
   }
 
   get errorControl() {
@@ -375,6 +395,8 @@ export class DetailinterComponent implements OnInit {
   }
   
   renouvelerContrat() {
+    console.log(this.contratForm.value);
+    
     this.contratForm.patchValue({interimaireId: this.item});
     const formdata = new FormData();
     formdata.append("societeId",this.contratForm.value.societeId);
@@ -385,9 +407,12 @@ export class DetailinterComponent implements OnInit {
     formdata.append("categorieId",this.contratForm.value.categorieId);
     formdata.append("dateDebut",this.contratForm.value.dateDebut);
     formdata.append("dateFin",this.contratForm.value.dateFin);
+    formdata.append("categorieId",this.contratForm.value.categorieId);
     formdata.append("dateSignature",this.contratForm.value.dateSignature);
-    formdata.append("profession",this.contratForm.value.profession);
-    formdata.append("poste",this.contratForm.value.poste);
+    formdata.append("siteId",this.contratForm.value.site);
+    formdata.append("num_bon_commande",this.contratForm.value.num_bon_commande);
+    formdata.append("date_bon_commande",this.contratForm.value.date_bon_commande);
+    formdata.append("fonction",this.contratForm.value.poste);
     formdata.append("contrat",this.urlcontrat);
     formdata.append("fichePoste",this.urlfichedeposte);
     formdata.append("procesVerbal",this.urlProcesVerbal);
