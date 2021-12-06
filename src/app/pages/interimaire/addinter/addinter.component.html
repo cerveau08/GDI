@@ -417,6 +417,10 @@
                             </div>
                           </div>
                         </div>
+                        <div class="content-observation-suplementaire">
+                          <p class="label-input2">Observation Suplémentaire</p>
+                          <textarea name="" formControlName="observation" placeholder="Observation Suplémentaire" id="" class="observation-suplementaire"></textarea>
+                        </div>
                       </div>
                     </div>
                     <div class="content-error-msg" *ngIf="successMsg == false">
@@ -434,7 +438,7 @@
                     </div>
                     <div class="text">
                       <p class="p1">
-                        L’agent <span>{{data.data.interimaire.prenom}} {{data.data.interimaire.nom}}
+                        L’agent <span>{{data.data.interimaire?.prenom}} {{data.data.interimaire?.nom}}
                         </span>  a été ajouté avec succès à la liste des interimaires. <br> 
                         Une notification sera envoyée à la <span>Direction des Ressources Humaines</span> du <span>
                           GROUPE SONATEL</span>.

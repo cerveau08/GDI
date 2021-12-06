@@ -260,6 +260,7 @@ export class AddinterComponent implements OnInit {
       diplome3: new FormControl(''),
       fonction: new FormControl(''),
       profession: new FormControl(''),
+      observation: new FormControl('')
     });
     this.contratForm = new FormGroup({
       num_bon_commande: new FormControl('', Validators.compose([
@@ -550,6 +551,7 @@ export class AddinterComponent implements OnInit {
     formdata.append("diplome_eleve",this.interForm.value.diplome_eleve);
     formdata.append("date_bon_commande",this.contratForm.value.date_bon_commande);
     formdata.append("num_bon_commande",this.contratForm.value.num_bon_commande);
+    formdata.append("observation",this.interForm.value.observation);
     if(this.contratForm.value.categorieId != "") {
       formdata.append("categorieId", this.contratForm.value.categorieId);
     }
@@ -614,12 +616,14 @@ export class AddinterComponent implements OnInit {
           this.data = data
           this.successMsg = this.data.status
           if(this.successMsg == true) {
+            this.loading = false;
             this.toastr.success('L\'intérimaire a été ajouté', 'Success', {
               timeOut: 3000,
             });
             this.submited = true;
           }
         }, error=> {
+          this.loading = false;
           this.errorMsg = error;
           this.toastr.error(this.errorMsg, 'Echec', {
             timeOut: 5000,
