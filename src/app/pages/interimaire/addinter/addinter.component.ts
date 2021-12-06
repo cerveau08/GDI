@@ -337,6 +337,7 @@ export class AddinterComponent implements OnInit {
   }
 
   rechargerPage() {
+    window.location.reload();
     this.ngOnInit();
   }
 
