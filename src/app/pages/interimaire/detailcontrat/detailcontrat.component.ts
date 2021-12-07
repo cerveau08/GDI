@@ -100,7 +100,7 @@ export class DetailcontratComponent implements OnInit {
   documentForm: FormGroup;
   doc = '../../../../assets/doc/2.pdf';
   documents: any;
-  fileRead = '../../../../assets/doc/GDI_GestionDesInterimaires.pdf';
+  fileRead = '../assets/doc/GDI_GestionDesInterimaires.pdf';
   document: any;
   successMsg: any;
   filename: any;
@@ -114,6 +114,7 @@ export class DetailcontratComponent implements OnInit {
   ficheDePosteFile: any;
   cvFile: any;
   visiteContreVisiteFile: any;
+  fileBaseDonnees: boolean = false;
   constructor(private activeroute: ActivatedRoute,
               private modalService: ModalService,
               private otherService: OthersService,
@@ -255,6 +256,7 @@ export class DetailcontratComponent implements OnInit {
   }
   
   readFile(p, q) {
+    this.fileBaseDonnees = true;
     this.fileRead = p;
     this.idFile = q;
   }

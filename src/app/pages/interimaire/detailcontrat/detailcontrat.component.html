@@ -46,7 +46,12 @@
                 </div>
             </div>
             <div class="info-evaluation">
-                <pdf-viewer [src]="reqUrl + '/public' + fileRead"
+                <pdf-viewer *ngIf="fileBaseDonnees" [src]="reqUrl + '/public' + fileRead"
+                [render-text]="true"
+                [autoresize]="true"
+                [original-size]="false"
+                ></pdf-viewer>
+                <pdf-viewer *ngIf="!fileBaseDonnees" [src]="fileRead"
                 [render-text]="true"
                 [autoresize]="true"
                 [original-size]="false"
@@ -150,20 +155,3 @@
     </jw-modal>
 </div>
 
-
-<!--modal1-->
-<div class="modal">
-    <sonatel-pma-errormodal id="error-modal-1">
-        <div class="error-modal-all" >
-            <mat-icon style="cursor: pointer;" (click)="closeErrorModal('error-modal-1');" class="clear-error">clear</mat-icon>
-            <div class="error-content-image">
-                <div class="error-image"></div>
-            </div>
-            <p class="error-text">{{errorMsg}}</p>
-            <p class="error-message-admin">Veuillez contacter l'administrateur du site à partir de la page paramètre</p> 
-            <div class="error-content-button">
-                <button (click)="closeErrorModal('error-modal-1');" class="error-button">Ok</button>
-            </div>
-        </div>
-    </sonatel-pma-errormodal>
-</div>
