@@ -50,6 +50,7 @@
                         <th id="contrat">Période</th>
                         <th id="contrat">Absence</th>
                         <th id="action">Etat</th>
+                        <th id="etat">Statut Paiement</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -66,6 +67,13 @@
                             <span class="status-attestation-attente" *ngIf="p.etat == 0">en attente</span>
                             <span class="status-attestation-valider" *ngIf="p.etat == 1">validé</span>
                             <span class="status-attestation-rejeter" *ngIf="p.etat == 2">rejeté</span>
+                            <span class="status-attestation-valider" *ngIf="p.etat == 4">deja payé</span>
+                        </td>
+                        <td style="cursor: pointer;" (click)="openDetail(p.id, p.etat)">
+                            <span class="status-attestation-attente" *ngIf="p.etat == 1">en attente de paiement</span>
+                            <span class="status-attestation-valider" *ngIf="p.etat == 0">en attente de validation</span>
+                            <span class="status-attestation-valider" *ngIf="p.etat == 4">payé</span>
+                            <span class="status-attestation-rejeter" *ngIf="p.etat == 2">pas de paiement</span>
                         </td>
                     </tr>
                 </tbody>

@@ -206,6 +206,7 @@ export class DetailinterComponent implements OnInit {
       date_bon_commande: new FormControl(''),
       site: new FormControl(''),
       domaineId: new FormControl(''),
+      observation: new FormControl('')
     });
     this.searchForm = new FormGroup({
       matricule: new FormControl('')
@@ -336,10 +337,6 @@ export class DetailinterComponent implements OnInit {
 
   public getDiplomes(prenom, nom, item) {
     this.fileSaver.saveUrl(this.reqUrl + '/public' + item, 'diplomes-de-' + prenom + '-' + nom);
-    // this.diplome.forEach(element => {
-    //   console.log(element);
-    //   this.fileSaver.saveUrl(this.reqUrl + '/public' + element, 'diplomes-de-' + prenom + '-' + nom);
-    // });
   }
 
   public getFicheDePoste(prenom, nom) {
@@ -395,8 +392,6 @@ export class DetailinterComponent implements OnInit {
   }
   
   renouvelerContrat() {
-    console.log(this.contratForm.value);
-    
     this.contratForm.patchValue({interimaireId: this.item});
     const formdata = new FormData();
     formdata.append("societeId",this.contratForm.value.societeId);

@@ -13,7 +13,18 @@
     outline: none;
     border: 1px solid #d8d8d8;
   }
-
+  .status-attestation-attente{
+    font-size: 10px;
+    color: #ff7900;
+}
+.status-attestation-valider{
+    font-size: 10px;
+    color: #009393;
+}
+.status-attestation-rejeter{
+    font-size: 10px;
+    color: #ff0000;
+}
 
   .icon-search{
     margin-top: 20px;

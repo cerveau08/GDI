@@ -192,6 +192,22 @@ export class AttestationpresenceComponent implements OnInit {
        }
     )
   }
+  payer(id) {
+    this.otherService.validationAttestation(id, 'payer').subscribe(
+      data => {
+        this.result = data;
+        this.successMsg = data.status;
+        if(this.successMsg = true) {
+          this.ngOnInit();
+        }
+      }, error=> {
+        this.errorMsg = error;
+        this.toastr.error(this.errorMsg, 'Echec', {
+         timeOut: 5000,
+        });
+       }
+    )
+  }
   rejeter(id) {
     this.otherService.validationAttestation(id, 'rejeter').subscribe(
       data => {

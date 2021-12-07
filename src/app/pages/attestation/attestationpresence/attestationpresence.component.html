@@ -51,6 +51,7 @@
                         <th id="contrat">Absence</th>
                         <th id="etat">Etat</th>
                         <th id="action" *ngIf="user == 'AGN'">Action</th>
+                        <th id="etat">Statut Paiement</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -65,14 +66,21 @@
                         <td style="cursor: pointer;" (click)="openDetail(p.id, p.etat)">{{p.nombreJourAbscence}} jours</td>
                         <td style="cursor: pointer;" (click)="openDetail(p.id, p.etat)">
                             <span class="status-attestation-attente" *ngIf="p.etat == 0">en attente</span>
-                            <span class="status-attestation-valider" *ngIf="p.etat == 1">validé</span>
+                            <span class="status-attestation-valider" *ngIf="p.etat == 1 || p.etat == 4">validé</span>
                             <span class="status-attestation-rejeter" *ngIf="p.etat == 2">rejeté</span>
                         </td>
                         <td *ngIf="user == 'AGN'">
                             <button (click)="valider(p.reference)" *ngIf="p.etat == 0" class="valider-attestation">Valider</button>
+                            <button (click)="payer(p.reference)" *ngIf="p.etat == 1" class="payer-attestation">payer</button>
                             <button (click)="rejeter(p.reference)" *ngIf="p.etat == 0" class="rejeter-attestation">Rejeter</button>
-                            <span *ngIf="p.etat == 1">déja validé</span>
-                            <span *ngIf="p.etat == 2">déja rejeté</span>
+                            <span class="status-attestation-valider" *ngIf="p.etat == 4">déja payé</span>
+                            <span class="status-attestation-rejeter" *ngIf="p.etat == 2">déja rejeté</span>
+                        </td>
+                        <td style="cursor: pointer;" (click)="openDetail(p.id, p.etat)">
+                            <span class="status-attestation-attente" *ngIf="p.etat == 1">en attente de paiement</span>
+                            <span class="status-attestation-valider" *ngIf="p.etat == 0">en attente de validation</span>
+                            <span class="status-attestation-valider" *ngIf="p.etat == 4">payé</span>
+                            <span class="status-attestation-rejeter" *ngIf="p.etat == 2">pas de paiement</span>
                         </td>
                     </tr>
                 </tbody>

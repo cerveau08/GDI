@@ -17,7 +17,7 @@
             </div>
         </div>
         <div class="progres">
-            <p class="duree">Temps de présence 
+            <p class="duree">Temps de présence: 
                 <span *ngIf="dureeTotalPresence?.annee">{{dureeTotalPresence.annee}} année(s) </span>
                 <span *ngIf="dureeTotalPresence?.mois"> {{dureeTotalPresence.mois}} mois </span>
                 <span *ngIf="dureeTotalPresence?.semaine"> {{dureeTotalPresence.semaine}} semaines </span> et
@@ -172,10 +172,10 @@
                 [autoresize]="true"
                 [original-size]="false"
                ></pdf-viewer>
-            <div class="btns2">
-              <button (click)="getDiplomes(prenom, nom, item)"  class="btn2">Télécharger</button>
+                <div class="btns2">
+                <button (click)="getDiplomes(prenom, nom, item)"  class="btn2">Télécharger</button>
+                </div>
             </div>
-        </div>
         </div>
     </jw-modal>
 </div>
@@ -185,7 +185,7 @@
     <jw-modal id="custom-modal-2">
         <div class="tableau">
             <mat-icon style="cursor: pointer;" (click)="closeModal('custom-modal-2');" class="clear">clear</mat-icon>
-            <p class="dtl1">Liste des Attestions de présence</p>
+            <p class="dtl1">Liste des Attestations de présence</p>
             <div class="grid" *ngFor="let p of donnees">
                <div>
                    <p class="date">{{p.dateFin | date: "M yyyy"}}</p>

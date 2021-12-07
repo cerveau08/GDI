@@ -115,6 +115,9 @@ export class DetailcontratComponent implements OnInit {
   cvFile: any;
   visiteContreVisiteFile: any;
   fileBaseDonnees: boolean = false;
+  diplomesInter: any;
+  visualiserDiplome: boolean = false;
+  typeDocument: any;
   constructor(private activeroute: ActivatedRoute,
               private modalService: ModalService,
               private otherService: OthersService,
@@ -156,6 +159,7 @@ export class DetailcontratComponent implements OnInit {
           this.dataInter = this.data.data;
           this.nom = this.dataInter.nom;
           this.prenom = this.dataInter.prenom;
+          this.diplomesInter = this.dataInter.diplomes;
       }
     );
     this.otherService.getContratById(this.item).subscribe(
@@ -182,6 +186,11 @@ export class DetailcontratComponent implements OnInit {
       }
     );
   }
+
+  public getDiplomes(prenom, nom, item) {
+    this.fileSaver.saveUrl(this.reqUrl + '/public' + item, 'diplomes-de-' + prenom + '-' + nom);
+  }
+
 
   addDocument(e: any) {
     this.document = e.files.item(0);
@@ -219,6 +228,8 @@ export class DetailcontratComponent implements OnInit {
   }
 
   updateDoc(id) {
+    //console.log(id);
+    //typeDocumentId
     const value = this.documentUpdateForm.value;
     const info = new FormData();
     info.append("interim_id", this.interim_id);
@@ -255,15 +266,20 @@ export class DetailcontratComponent implements OnInit {
     })
   }
   
-  readFile(p, q) {
+  openDiplome() {
+    this.visualiserDiplome = true;
+  }
+
+  readFile(p, q, typeDoc) {
     this.fileBaseDonnees = true;
+    this.visualiserDiplome = false;
     this.fileRead = p;
     this.idFile = q;
+    this.typeDocument =typeDoc;
+    this.typeDocumentId = this.typeDocument.id
   }
 
   public getFile(p) {
-    console.log(p);
-    
     this.fileSaver.saveUrl(p, 'Fichier');
   }
   public getContrat() {

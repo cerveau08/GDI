@@ -9,9 +9,30 @@
             totalItems: totalItems
             }; let i = index">
             <div class="content-item-object">
-                <p class="objectif-title">
-                    <span class="libelle-title">Poste</span>:<span class="la-note"> {{p.poste.libelle}} </span>
-                </p>
+                <div class="content-date">
+                    <div class="content-date-debut">
+                        <p class="objectif-title">
+                            <span class="libelle-title">Société</span>:<span class="la-note"> {{p.societe.libelle}}</span>
+                        </p>
+                    </div>
+                    <div class="content-date-debut">
+                        <p class="objectif-title">
+                            <span class="libelle-title">Site</span>:<span class="la-note"> {{p.site.libelle}}</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="content-date">
+                    <div class="content-date-debut">
+                        <p class="objectif-title">
+                            <span class="libelle-title"></span>Poste:<span class="la-note"> {{p.poste.libelle}}</span>
+                        </p>
+                    </div>
+                    <div class="content-date-debut">
+                        <p class="objectif-title">
+                            <span class="libelle-title">Domaine</span>:<span class="la-note"> {{p.domaine.libelle}}</span>
+                        </p>
+                    </div>
+                </div>
                 <div class="content-date">
                     <div class="content-date-debut">
                         <p class="objectif-title">
@@ -27,30 +48,177 @@
                 <div class="content-date">
                     <div class="content-date-debut">
                         <p class="objectif-title">
-                            <span class="libelle-title">Société</span>:<span class="la-note"> {{p.societe.libelle}}</span>
+                            <span class="libelle-title"></span>Numéro bon de commande:<span class="la-note"> {{p.numBonCommande}}</span>
                         </p>
                     </div>
                     <div class="content-date-debut">
                         <p class="objectif-title">
-                            <span class="libelle-title">Direction</span>:<span class="la-note"> {{p.structure.direction.libelle}}</span>
+                            <span class="libelle-title">Date bon de commande</span>:<span class="la-note"> {{p.dateBonCommande | date:'dd MMMM yyyy'}}</span>
                         </p>
                     </div>
                 </div>
                 <div class="content-date">
                     <div class="content-date-debut">
                         <p class="objectif-title">
-                            <span class="libelle-title">Département</span>:<span class="la-note"> {{p.structure.departement}}</span>
+                            <span class="libelle-title">Direction</span>:<span class="la-note"> {{p.structure.direction.libelle}}</span>
                         </p>
                     </div>
                     <div class="content-date-debut">
                         <p class="objectif-title">
-                            <span class="libelle-title">Service</span>:<span class="la-note"> {{p.structure.service}}</span>
+                            <span class="libelle-title">Département</span>:<span class="la-note"> {{p.structure.departement}}</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="content-date">
+                    <div class="content-date-debut">
+                        <p class="objectif-title">
+                            <span class="libelle-title">Catégorie</span>:<span class="la-note"> {{p.categorie.libelle}}</span>
+                        </p>
+                    </div>
+                    <div class="content-date-debut">
+                        <p class="objectif-title">
+                            <span class="libelle-title">Observation</span>:<span class="la-note"> {{p.observation}}</span>
                         </p>
                     </div>
                 </div>
             </div>
             <div class="objectif-buttons">
                 <button (click)="openDetail(p.id)" class="button-evaluer">Détail</button>
+                <button (click)="openModal('custom-modal-'+p.id)" class="button-evaluer-modif">Modifier</button>
+            </div>
+            <!--modal-4-->
+            <div class="modal">
+                <jw-modal id="custom-modal-{{p.id}}">
+                    <h1 class="modal-renouveler">Modifier le Contrat de {{prenom}} {{nom}}</h1>
+                    <mat-icon style="cursor: pointer;" (click)="closeModal('custom-modal-'+p.id)" class="clear-renouveler">clear</mat-icon>
+                    <div class="form-contrat">
+                        <form [formGroup]="contratForm">
+                            <div class="content-form-contrat">
+                                <div class="content-inputs-form">
+                                    <div>
+                                        <p class="label-input1">Catégorie<span class="signe-obligatoire">*</span></p>
+                                        <select class="select5" [(ngModel)]="p.categorie.id" formControlName="categorieId">
+                                            <option class="option" value="" disabled selected hidden>Catégorie</option>
+                                            <option *ngFor="let data of dataCategorie" [value]="data.id">{{data.libelle}}</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <p class="label-input1">Salaire Brute<span class="signe-obligatoire">*</span></p>
+                                        <input class="input3" [(ngModel)]="salaireBrut" type="text" formControlName="salaireBrut" placeholder="Montant Salaire Brut" readonly>
+                                    </div>
+                                </div>
+                                <div class="content-inputs-form">
+                                    <div>
+                                        <p class="label-input1">Date de début<span class="signe-obligatoire">*</span></p>
+                                        <input [(ngModel)]="p.dateDebut" type="date" formControlName="dateDebut" placeholder="Date Début">
+                                    </div>
+                                    <div>
+                                        <p class="label-input1">Date de fin<span class="signe-obligatoire">*</span></p>
+                                        <input [(ngModel)]="p.dateFin" class="input3" type="date" formControlName="dateFin" placeholder="Date Fin">
+                                    </div>
+                                </div>
+                                <div class="content-inputs-form">
+                                    <div>
+                                        <p class="label-input1">Société<span class="signe-obligatoire">*</span></p>
+                                        <select [(ngModel)]="p.societe.id" class="select5" #societe formControlName="societeId">
+                                            <option class="option" value="" disabled selected hidden>Societe</option>
+                                            <option *ngFor="let data of dataSociete" [value]="data.id">{{data.libelle}}</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <p class="label-input1">Site<span class="signe-obligatoire">*</span></p>
+                                        <select class="input3" [(ngModel)]="p.site.id" formControlName="site" >
+                                            <option class="option" value="" disabled selected hidden>Site</option>
+                                            <option *ngFor="let data of dataSite" value="{{data.id}}">{{data.libelle}}</option>
+                                        </select>
+                                    </div>
+                                    <!-- <div>
+                                        <p class="label-input1">Direction<span class="signe-obligatoire">*</span></p>
+                                        <select class="input3" #direction  formControlName="directionId" (change)="departementListe(direction.value)">
+                                            <option class="option" value="" disabled selected hidden>Direction</option>
+                                            <option *ngFor="let data of dataDirection" value="{{data.id}}">{{data.libelle}}</option>
+                                        </select>
+                                    </div> -->
+                                </div>
+                                <!-- <div class="content-inputs-form">
+                                    <div>
+                                        <p class="label-input1">Département<span class="signe-obligatoire">*</span></p>
+                                        <select class="select5" #departement formControlName="departementId" (change)="serviceListe(departement.value)">
+                                            <option class="option" value="" disabled selected hidden>Département</option>
+                                            <option *ngFor="let data of dataDepartement" value="{{data.id}}">{{data.libelle}}</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <p class="label-input1">Service<span class="signe-obligatoire">*</span></p>
+                                        <select class="input3"  formControlName="structureId" >
+                                            <option class="option" value="" disabled selected hidden>Service</option>
+                                            <option *ngFor="let data of donneeService" value="{{data.id}}">{{data.libelle}}</option>
+                                        </select>
+                                    </div>
+                                </div> -->
+                                <div class="content-inputs-form">
+                                    <div>
+                                        <p class="label-input1">Domaine<span class="signe-obligatoire">*</span></p>
+                                        <select class="input3" [(ngModel)]="p.domaine.id" formControlName="domaineId" >
+                                            <option class="option" value="" disabled selected hidden>Domaine</option>
+                                            <option *ngFor="let data of dataDomaine" value="{{data.id}}">{{data.libelle}}</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <p class="label-input1">Date Signature<span class="signe-obligatoire">*</span></p>
+                                        <input [(ngModel)]="p.dateSignature" type="date" class="input3" formControlName="dateSignature" placeholder="Date Signature">
+                                    </div>
+                                </div>
+                                <div class="content-inputs-form">
+                                    <div>
+                                        <p class="label-input1">Numéro de bon de commande(BC)<span class="signe-obligatoire">*</span></p>
+                                        <input [(ngModel)]="p.numBonCommande" type="text" formControlName="num_bon_commande" placeholder="Numéro bon de commande">
+                                    </div>
+                                    <div>
+                                        <p class="label-input1">Date de bon de commande(BC)<span class="signe-obligatoire">*</span></p>
+                                        <input [(ngModel)]="p.dateBonCommande" type="date" class="input3" formControlName="date_bon_commande" placeholder="Date bon de commande">
+                                    </div>
+                                </div>
+                                <div class="content-inputs-form">
+                                    <div>
+                                        <p class="label-input1">Poste<span class="signe-obligatoire">*</span></p>
+                                        <input type="text" [(ngModel)]="p.poste.libelle" list="postes" (change)="savePoste($event)" formControlName="poste" placeholder="Titre du Poste">
+                                        <datalist id="postes">
+                                        <option *ngFor="let c of listeFonction" [value]="c.libelle" >{{c.libelle}}</option>
+                                        </datalist>
+                                    </div>
+                                    <div>
+                                        <p class="label-input1">Observation<span class="signe-obligatoire">*</span></p>
+                                        <textarea [(ngModel)]="p.observation" type="date" class="obesevation-supplementaire-content" formControlName="observation" placeholder="Observation"></textarea>
+                                    </div>
+                                </div>
+                                <p class="label-input1">Les Documents<span class="signe-obligatoire">*</span></p>
+                                <div class="buttons-fichier">
+                                    <div>
+                                        <input formControlName="contrat"  class="buttoncontrat" type="file" (change)="contrat($event.target)">
+                                        <p class="filename" *ngIf="urlcontrat">{{filenamecontrat}}</p>
+                                    </div>
+                                    <div>
+                                        <input formControlName="fichePoste"  class="buttonficheposte" type="file" (change)="fichedeposte($event.target)">
+                                        <p class="filename" *ngIf="urlfichedeposte">{{filenamefichedeposte}}</p>
+                                    </div>
+                                </div>
+                                <div class="buttons-fichier">
+                                    <div>
+                                        <input formControlName="procesVerbal"  class="buttonprocesVerbal" type="file" (change)="procesVerbal($event.target)">
+                                        <p class="filename" *ngIf="urlProcesVerbal">{{filenameProceVerbal}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="content-error-msg" *ngIf="successMsgRenouveler == false">
+                                <p class="error-alert">{{ dataRenouveler?.message}}</p>
+                            </div>
+                            <div class="buttons-content-valider">
+                            <button class="button-enregistrer-contrat" (click)="renouvelerContrat(p.id)" type="button">Valider</button>
+                            </div>
+                        </form>
+                    </div>
+                </jw-modal>
             </div>
         </div>
         <div class="pagination">
@@ -59,3 +227,4 @@
     </div>
     <div *ngIf="!isData" class="content-non-data"></div>
 </div>
+

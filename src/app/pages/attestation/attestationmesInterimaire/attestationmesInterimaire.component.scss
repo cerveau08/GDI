@@ -7,7 +7,18 @@
     padding: 10px;
     position: relative;
 }
-
+.status-attestation-attente{
+    font-size: 10px;
+    color: #ff7900;
+}
+.status-attestation-valider{
+    font-size: 10px;
+    color: #009393;
+}
+.status-attestation-rejeter{
+    font-size: 10px;
+    color: #ff0000;
+}
 .input-extraction{
     width: 140px;
     outline: none;

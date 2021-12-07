@@ -13,8 +13,8 @@
                 <div class="info">
                     <div class="lot1">
                         <p class="key">Poste: <span class="value">{{poste}}</span> </p>
-                        <p class="key">Catégorie: <span class="value">{{categorie}}</span> </p>
-                        <p class="key">Domaine: <span class="value">{{domaine}}</span> </p>
+                        <p class="key">Catégorie: <span class="value">{{categorie?.libelle}}</span> </p>
+                        <p class="key">Domaine: <span class="value">{{domaine?.libelle}}</span> </p>
                         <p class="key">Date de Début: <span class="value">{{dateDebut | date:'dd MMMM yyyy'}}</span> </p>
                         <p class="key">Date de Fin: <span class="value">{{dateFin | date:'dd MMMM yyyy'}}</span> </p>
 
@@ -26,26 +26,27 @@
                 </div>
                 <div class="lesbouton">
                     <p class="liste-document-contrat">Les documents</p>
-                    <button id="button" *ngIf="contratFile" class="button1" (click)="readFile(documents.fileContrat.file, documents.fileContrat.id)">Contrat</button>
-                    <button id="button" *ngIf="procesVerbalFile" class="button2" (click)="readFile(documents.fileProcesVerbal.file, documents.fileProcesVerbal.id)">Procés Verbal</button>
-                    <button id="button" *ngIf="ficheDePosteFile" class="button3" (click)="readFile(documents.fileFicheDePoste.file, documents.fileFicheDePoste.id)">Fiche de poste</button>
-                    <button id="button" *ngIf="cvFile" class="buttoncv" (click)="readFile(documents.fileCV.file, documents.fileCV.id)">Cv</button>
-                    <button id="button" *ngIf="visiteContreVisiteFile" class="buttonvisite" (click)="readFile(documents.fileVisiteContreVisite.file, documents.fileVisiteContreVisite.id)">Certificat Visite Contre Viste</button>
+                    <button id="button" *ngIf="contratFile" class="button1" (click)="readFile(documents.fileContrat.file, documents.fileContrat.id, documents.fileContrat.typeDocument)">Contrat</button>
+                    <button id="button" *ngIf="procesVerbalFile" class="button2" (click)="readFile(documents.fileProcesVerbal.file, documents.fileProcesVerbal.id, documents.fileContrat.typeDocument)">Procés Verbal</button>
+                    <button id="button" *ngIf="ficheDePosteFile" class="button3" (click)="readFile(documents.fileFicheDePoste.file, documents.fileFicheDePoste.id, documents.fileContrat.typeDocument)">Fiche de poste</button>
+                    <button id="button" *ngIf="cvFile" class="buttoncv" (click)="readFile(documents.fileCV.file, documents.fileCV.id, documents.fileContrat.typeDocument)">Cv</button>
+                    <button id="button" *ngIf="visiteContreVisiteFile" class="buttonvisite" (click)="readFile(documents.fileVisiteContreVisite.file, documents.fileVisiteContreVisite.id, documents.fileContrat.typeDocument)">Certificat Visite Contre Viste</button>
+                    <button id="button" *ngIf="diplomesInter" class="button2" (click)="openDiplome()">Diplomes</button>
                 </div>
                 <hr class="ligne-separateur">
                 <div>
                     <p class="label-non-document">Les documents restants</p>
-                    <button id="button" *ngIf="!contratFile" class="button1" (click)="readFile(documents.fileContrat.file, documents.fileContrat.id)">Contrat</button>
-                    <button id="button" *ngIf="!procesVerbalFile" class="button2" (click)="readFile(documents.fileProcesVerbal.file, documents.fileProcesVerbal.id)">Procés Verbal</button>
-                    <button id="button" *ngIf="!ficheDePosteFile" class="button3" (click)="readFile(documents.fileFicheDePoste.file, documents.fileFicheDePoste.id)">Fiche de poste</button>
-                    <button id="button" *ngIf="!cvFile" class="buttoncv" (click)="readFile(documents.fileCV.file, documents.fileCV.id)">Cv</button>
-                    <button id="button" *ngIf="!visiteContreVisiteFile" class="buttonvisite" (click)="readFile(documents.fileVisiteContreVisite.file, documents.fileVisiteContreVisite.id)">Certificat Visite Contre Viste</button>
+                    <button id="button" *ngIf="!contratFile" class="button1">Contrat</button>
+                    <button id="button" *ngIf="!procesVerbalFile" class="button2">Procés Verbal</button>
+                    <button id="button" *ngIf="!ficheDePosteFile" class="button3">Fiche de poste</button>
+                    <button id="button" *ngIf="!cvFile" class="buttoncv">Cv</button>
+                    <button id="button" *ngIf="!visiteContreVisiteFile" class="buttonvisite">Certificat Visite Contre Viste</button>
                 </div>
-                <div class="content-add-document">
+                <div *ngIf="role == 'AGN'" class="content-add-document">
                     <button (click)="openModal('custom-modal-3');" class="add-new-doc">ajouter un document</button>
                 </div>
             </div>
-            <div class="info-evaluation">
+            <div *ngIf="!visualiserDiplome" class="info-evaluation">
                 <pdf-viewer *ngIf="fileBaseDonnees" [src]="reqUrl + '/public' + fileRead"
                 [render-text]="true"
                 [autoresize]="true"
@@ -58,7 +59,20 @@
                 ></pdf-viewer>
                 <div class="btns2">
                     <button (click)="getFile(fileRead)" class="btn2">Télécharger</button>
-                    <button *ngIf="idFile" (click)="openUpModal('custom-modal-4', idFile);" class="btn2">Modifier</button>
+                    <button *ngIf="idFile && role == 'AGN'" (click)="openUpModal('custom-modal-4', idFile);" class="btn2">Modifier</button>
+                </div>
+            </div>
+            <div *ngIf="visualiserDiplome">
+                <div *ngFor="let item of diplomesInter; let i = index">
+                    <pdf-viewer [src]="reqUrl + '/public' + item"
+                    [render-text]="true"
+                    [autoresize]="true"
+                    [original-size]="false"
+                   ></pdf-viewer>
+                    <div class="btns2">
+                    <button (click)="getDiplomes(prenom, nom, item)"  class="btn2">Télécharger</button>
+                    <button *ngIf="idFile && role == 'AGN'" (click)="openUpModal('custom-modal-4', idFile);" class="btn2">Modifier</button>
+                    </div>
                 </div>
             </div>
         </div>
