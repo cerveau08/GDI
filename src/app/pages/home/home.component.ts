@@ -191,7 +191,7 @@ export class HomeComponent implements OnInit {
     }
     if(this.user == 'INT') {
       this.interimaireInfo = JSON.parse(localStorage.getItem('currentUser'));
-      this.otherService.getDetailsManagerById(this.page, this.itemsPerPage, this.interimaireInfo.manager.id).subscribe( 
+      this.otherService.getDetailsManagerById(this.interimaireInfo.manager.id).subscribe( 
         result => {
           this.data = result;
           this.managerinfo = this.data.data.detail;

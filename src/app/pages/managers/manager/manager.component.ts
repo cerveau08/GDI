@@ -64,7 +64,7 @@ export class ManagerComponent implements OnInit {
   }
 
   gty(page: any){
-    this.otherService.getDetailsManagerById(page, this.itemsPerPage, this.item.data.id).subscribe( 
+    this.otherService.getDetailsManagerById(this.item.data.id).subscribe( 
       result => {
         this.data = result;
         this.managerinfo = this.data.data.detail

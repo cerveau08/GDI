@@ -1,47 +1,86 @@
 <div class="all-container">
     <div class="all">
-        <p class="statt-header">Gestion Direction</p>
-        <div class="liste-sous-header">
-            <div [style.border]="border1" (click)="changeShow1()" class="effectif-content" >
-                <p [style.color]="color1" id="effectis" class="statt-sous-header">Liste</p>
-            </div>
-            <div [style.border]="border2"  (click)="changeShow2()" class="effectif-content">
-                <p [style.color]="color2" id="genre" class="statt-sous-header">Ajouter</p>
-            </div>
-        </div>
-        <div *ngIf="show==1" class="content-all-liste-site">
-            <table style="overflow-x:auto;"aria-describedby = "mydesc" >
+        <p class="statt-header">Gestion des directions</p>
+        
+        <div class="content-all-liste-site">
+            <form [formGroup]="filterForm"  class="forms-filter">
+                <div class="exporter-filter">
+                    <div class="content-input-extraction">
+                        <div class="filtrer-mois">
+                            <p class="label-input" for="titre">Société: </p>
+                            <select type="number" [(ngModel)]="idSociete" formControlName="idSociete" class="select-mois"  >
+                                <option value="null">Aucun Choix</option>
+                                <option  *ngFor="let data of dataRegion"  [value]="data.id" >{{data.libelle}} </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="content-extraction">
+                        <mat-icon class="icon-search" fontSet="material-icons-outlined"  (click)="gty(page)" >search</mat-icon>
+                    </div>
+                </div>
+            </form>
+            <button class="button-add" (click)="openModal('custom-modal-1');">Ajouter une direction</button>
+            <table *ngIf="dataSite" style="overflow-x:auto;"aria-describedby = "mydesc" >
                 <thead>
                     <tr class="head">
-                        <th  id="manager"><b>Libellé</b></th>
-                        <th  id="direction"><b>Societe</b></th>
+                        <th class="typ" id="prenom">Libelle</th>
+                        <th  id="manager"><b>Société</b></th>
+                        <th  id="agence"><b>Action</b></th>
                     </tr>
                 </thead>
-                <tbody *ngFor="let data of dataDir">
-                    <tr  style="cursor: pointer;" >
-                        <td >{{data.libelle}}</td>
-                        <td >{{data.societe}}</td>
+                <tbody *ngFor="let p of dataSite | paginate: { 
+                    itemsPerPage: itemsPerPage,
+                    currentPage: page,
+                    totalItems: totalItems
+                    }; let i = index ">
+                    <tr >
+                        <td >{{p.libelle}}</td>
+                        <td >{{p.societe}}</td>
+                        <td >
+                            <mat-icon (click)="update(p, 'custom-modal-1')" id="mat-icon" class="icon-edit">edit</mat-icon>
+                            <mat-icon (click)="supprimer(p.id)" id="mat-icon" class="icon-delete">delete</mat-icon>
+                        </td>
                     </tr>
                 </tbody>
             </table>
+            <div class="pagination">
+                <pagination-controls (pageChange)="gty(page = $event)" previousLabel="Prcédent" nextLabel="Suivant"></pagination-controls>
+            </div>
         </div>
-        <app-ajoutdirection *ngIf="show==2"></app-ajoutdirection>
+        <!-- <app-ajoutsite *ngIf="show==2"></app-ajoutsite> -->
     </div>
 </div>
-
-<!--modal1-->
-<!-- <div class="modal">
-    <sonatel-pma-errormodal id="error-modal-1">
-        <div class="error-modal-all" >
-            <mat-icon style="cursor: pointer;" (click)="closeErrorModal('error-modal-1');" class="clear-error">clear</mat-icon>
-            <div class="error-content-image">
-                <div class="error-image"></div>
-            </div>
-            <p class="error-text">{{errorMsg}}</p>
-            <p class="error-message-admin">Veuillez contacter l'administrateur du site à partir de la page paramètre</p> 
-            <div class="error-content-button">
-                <button (click)="closeErrorModal('error-modal-1');" class="error-button">Ok</button>
-            </div>
+ <!--modal-4-->
+ <div class="modal">
+    <jw-modal id="custom-modal-1">
+        <h1 class="modal-renouveler">Ajouter une direction</h1>
+        <mat-icon style="cursor: pointer;" (click)="closeModal('custom-modal-1');" class="clear-renouveler">clear</mat-icon>
+        <div class="form-contrat">
+            <form [formGroup]="addForm">
+                <div class="content-form-contrat">
+                    <div class="content-inputs-form">
+                        <div>
+                            <p class="label-input1">Libelle<span class="signe-obligatoire">*</span></p>
+                            <input class="input3" type="text" formControlName="libelle" placeholder="Libelle">
+                        </div>
+                        <div>
+                            <p class="label-input1">Société<span class="signe-obligatoire">*</span></p>
+                            <select class="select5" formControlName="societe">
+                                <option class="option" value="" disabled selected hidden>Société</option>
+                                <option *ngFor="let data of dataRegion" [value]="data.id">{{data.libelle}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-error-msg" *ngIf="successMsg == false">
+                    <p class="error-alert">{{ errorMsg}}</p>
+                </div>
+                <div class="buttons-content-valider">
+                   <button *ngIf="!addForm.value.id" class="button-enregistrer-contrat" (click)="ajouter()" type="button">Ajouter</button>
+                   <button *ngIf="addForm.value.id" class="button-enregistrer-contrat" (click)="modifier()" type="button">Modifier</button>
+                </div>
+            </form>
         </div>
-    </sonatel-pma-errormodal>
-</div> -->
+    </jw-modal>
+</div>
+

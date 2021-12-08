@@ -69,7 +69,7 @@ export class DetailmanagerComponent implements OnInit {
   }
 
   gty(page: any){
-    this.otherService.getDetailsManagerById(page, this.itemsPerPage, this.item).subscribe( 
+    this.otherService.getDetailsManagerById(this.item).subscribe( 
       result => {
         this.data = result;
         this.managerinfo = this.data.data.detail

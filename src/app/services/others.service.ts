@@ -35,9 +35,9 @@ export class OthersService {
     return this.http.get<any>(this.reqUrl + '/managers/list');
   } 
   // details manager
-  getDetailsManagerById(page, limit, id, ) {
-    const data = {page: page, limit: limit};
-    return this.http.get(this.reqUrl + `/manager/${id}`, {params: data});
+  getDetailsManagerById(id) {
+    //const data = {page: page, limit: limit};
+    return this.http.get(this.reqUrl + `/manager/${id}`);
   }
   //liste des demandes
   getListDemandes(): Observable<any> {
@@ -102,9 +102,7 @@ addAgence(data) {
   getListInterFinContrat(id: number): Observable<any> {
     return this.http.get<any>(`${this.reqUrl}/interimFinContrat`);
   }
-  getAllSociete(){
-    return this.http.get(this.reqUrl + '/societe/all');
-  }
+  
 
   getAllRegion(){
     return this.http.get(this.reqUrl + '/listeRegions');
@@ -170,9 +168,6 @@ addAgence(data) {
   }
   verifierPassword(data){
     return this.http.post<any>(`${this.reqUrl}/verifiePassword`, data);
-  }
-  getDomaine() {
-    return this.http.get(`${this.reqUrl}/domaines`);
   }
   postDemande(data) {
     return this.http.post<any>(`${this.reqUrl}/ajoutDemande`, data);
@@ -259,9 +254,6 @@ addAgence(data) {
   }
   detailUser(id: number) {
     return this.http.get(`${this.reqUrl}/users/${id}`);
-  }
-  getFonctions(): Observable<any> {
-    return this.http.get<any>(this.reqUrl + '/fonctions');
   }
   validerInterimaire(data:any, id: number): Observable<any> {
     return this.http.post<any>(`${this.reqUrl}/validerInterimaire/${id}`, data);
@@ -457,12 +449,8 @@ addAgence(data) {
     return this.http.get<any>(`${this.reqUrl}/detailAttestation/${id}`);
   }
 
-  listeSite(page, limit, region) {
-    const data = {page: page, limit: limit ,region: region};
-    return this.http.get<any>(this.reqUrl + '/listeSite', {params: data});
-  }
-  listeProfil(page, limit, code, description) {
-    const data = {page: page, limit: limit ,code: code, description: description};
+  listeProfil(page, limit) {
+    const data = {page: page, limit: limit};
     return this.http.get<any>(this.reqUrl + '/profils', {params: data});
   }
   listeRegions() {
@@ -482,15 +470,101 @@ addAgence(data) {
   addProfil(data){
     return this.http.post<any>(`${this.reqUrl}/profils`, data);
   }
+
+  updateProfil(id, data){
+    return this.http.post<any>(`${this.reqUrl}/profils/update/${id}`, data);
+  }
+
+  deleteProfil(id){
+    return this.http.post<any>(`${this.reqUrl}/profils/delete/${id}`, null);
+  }
+
   addDirection(data){
     return this.http.post<any>(`${this.reqUrl}/direction`, data);
   }
-  addSociete(data){
-    return this.http.post<any>(`${this.reqUrl}/societe`, data);
-  }
+  
   addSite(data){
     return this.http.post<any>(`${this.reqUrl}/addSite`, data);
   }
+
+  listeSite(page, limit, region) {
+    const data = {page: page, limit: limit ,region: region};
+    return this.http.get<any>(this.reqUrl + '/listeSite', {params: data});
+  }
+
+  updateSite(id, data){
+    return this.http.post<any>(`${this.reqUrl}/updateSite/${id}`, data);
+  }
+
+  deleteSite(id){
+    return this.http.delete<any>(`${this.reqUrl}/deleteSite/${id}`);
+  }
+
+  addCategorie(data){
+    return this.http.post<any>(`${this.reqUrl}/new_categorie`, data);
+  }
+
+  listeCategorie() {
+    return this.http.get<any>(this.reqUrl + '/categories');
+  }
+  
+  updateCategorie(id, data){
+    return this.http.post<any>(`${this.reqUrl}/update_categorie`, data);
+  }
+
+  deleteCategorie(id){
+    return this.http.delete<any>(`${this.reqUrl}/deleteCategorie/${id}`);
+  }
+
+
+  getDomaine() {
+    return this.http.get(`${this.reqUrl}/domaines`);
+  }
+
+  addDomaine(data){
+    return this.http.post<any>(`${this.reqUrl}/domaines`, data);
+  }
+  
+  updateDomaine(id, data){
+    return this.http.put<any>(`${this.reqUrl}/domaine/${id}`, data);
+  }
+
+  deleteDomaine(id){
+    return this.http.delete<any>(`${this.reqUrl}/deleteDomaine/${id}`);
+  }
+
+  getFonctions(): Observable<any> {
+    return this.http.get<any>(this.reqUrl + '/fonctions');
+  }
+
+  addfonction(data){
+    return this.http.post<any>(`${this.reqUrl}/fonctions`, data);
+  }
+  
+  updatefonction(id, data){
+    return this.http.put<any>(`${this.reqUrl}/fonction/${id}`, data);
+  }
+
+  deletefonction(id){
+    return this.http.delete<any>(`${this.reqUrl}/deleteFonction/${id}`);
+  }
+
+  getAllSociete(){
+    return this.http.get(this.reqUrl + '/societe/all');
+  }
+
+  addSociete(data){
+    return this.http.post<any>(`${this.reqUrl}/societe`, data);
+  }
+  
+  updateSociete(id, data){
+    return this.http.put<any>(`${this.reqUrl}/societe/${id}`, data);
+  }
+
+  deleteSociete(id){
+    return this.http.delete<any>(`${this.reqUrl}/deleteSociete/${id}`);
+  }
+
   addPeriode(data){
     return this.http.post<any>(`${this.reqUrl}/addPeriode`, data);
   }
@@ -500,6 +574,7 @@ addAgence(data) {
   getProfil(){
     return this.http.get<any>(`${this.reqUrl}/profils`);
   }
+
 
   statContratInter(id: number) {
     return this.http.get<any>(`${this.reqUrl}/interimaireDashboard/${id}`);

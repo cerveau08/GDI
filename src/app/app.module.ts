@@ -86,10 +86,6 @@ import { ModifEvaluerComponent } from './pages/evaluation/evaluer/modif-evaluer/
 import { StatageComponent } from './pages/statistiques/statage/statage.component';
 import { DetailattestationComponent } from './pages/attestation/detailattestation/detailattestation.component';
 import { ListdomaineComponent } from './pages/settings/domaine/listdomaine/listdomaine.component';
-import { AjoutdomaineComponent } from './pages/settings/domaine/ajoutdomaine/ajoutdomaine.component';
-import { ModifdomaineComponent } from './pages/settings/domaine/modifdomaine/modifdomaine.component';
-import { AjoutdirectionComponent } from './pages/settings/direction/ajoutdirection/ajoutdirection.component';
-import { ModifdirectionComponent } from './pages/settings/direction/modifdirection/modifdirection.component';
 import { ListdirectionComponent } from './pages/settings/direction/listdirection/listdirection.component';
 import { ListcommissionComponent } from './pages/settings/commission/listcommission/listcommission.component';
 import { AjoutcommissionComponent } from './pages/settings/commission/ajoutcommission/ajoutcommission.component';
@@ -97,23 +93,15 @@ import { ModifcommissionComponent } from './pages/settings/commission/modifcommi
 import { ModifcategorieComponent } from './pages/settings/categorie/modifcategorie/modifcategorie.component';
 import { AjoutcategorieComponent } from './pages/settings/categorie/ajoutcategorie/ajoutcategorie.component';
 import { ListcategorieComponent } from './pages/settings/categorie/listcategorie/listcategorie.component';
-import { AjoutsiteComponent } from './pages/settings/site/ajoutsite/ajoutsite.component';
 import { ListsiteComponent } from './pages/settings/site/listsite/listsite.component';
-import { ModifsiteComponent } from './pages/settings/site/modifsite/modifsite.component';
 import { ModifperiodeComponent } from './pages/settings/periode/modifperiode/modifperiode.component';
 import { ListperiodeComponent } from './pages/settings/periode/listperiode/listperiode.component';
 import { AjoutperiodeComponent } from './pages/settings/periode/ajoutperiode/ajoutperiode.component';
-import { AjoutprofilComponent } from './pages/settings/profil/ajoutprofil/ajoutprofil.component';
 import { ListprofilComponent } from './pages/settings/profil/listprofil/listprofil.component';
-import { ModifprofilComponent } from './pages/settings/profil/modifprofil/modifprofil.component';
-import { ModifsocieteComponent } from './pages/settings/societe/modifsociete/modifsociete.component';
 import { ListsocieteComponent } from './pages/settings/societe/listsociete/listsociete.component';
-import { AjoutsocieteComponent } from './pages/settings/societe/ajoutsociete/ajoutsociete.component';
 import { AjoutstructureComponent } from './pages/settings/structure/ajoutstructure/ajoutstructure.component';
 import { ListstructureComponent } from './pages/settings/structure/liststructure/liststructure.component';
 import { ModifstructureComponent } from './pages/settings/structure/modifstructure/modifstructure.component';
-import { ModiffonctionComponent } from './pages/settings/fonction/modiffonction/modiffonction.component';
-import { AjoutfonctionComponent } from './pages/settings/fonction/ajoutfonction/ajoutfonction.component';
 import { ListfonctionComponent } from './pages/settings/fonction/listfonction/listfonction.component';
 import { ToastrModule } from 'ngx-toastr';
 import { DomaineComponent } from './pages/statistiques/domaine/domaine.component';
@@ -198,10 +186,6 @@ import { MatSelectCountryModule } from '@angular-material-extensions/select-coun
     StatageComponent,
     DetailattestationComponent,
     ListdomaineComponent,
-    AjoutdomaineComponent,
-    ModifdomaineComponent,
-    AjoutdirectionComponent,
-    ModifdirectionComponent,
     ListdirectionComponent,
     ListcommissionComponent,
     AjoutcommissionComponent,
@@ -209,23 +193,15 @@ import { MatSelectCountryModule } from '@angular-material-extensions/select-coun
     ModifcategorieComponent,
     AjoutcategorieComponent,
     ListcategorieComponent,
-    AjoutsiteComponent,
     ListsiteComponent,
-    ModifsiteComponent,
     ModifperiodeComponent,
     ListperiodeComponent,
     AjoutperiodeComponent,
-    AjoutprofilComponent,
     ListprofilComponent,
-    ModifprofilComponent,
-    ModifsocieteComponent,
     ListsocieteComponent,
-    AjoutsocieteComponent,
     AjoutstructureComponent,
     ListstructureComponent,
     ModifstructureComponent,
-    ModiffonctionComponent,
-    AjoutfonctionComponent,
     ListfonctionComponent,
     DomaineComponent,
     StatsiteComponent,

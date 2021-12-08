@@ -64,12 +64,12 @@ export class MonManagerComponent implements OnInit {
   }
 
   gty(page: any){
-    this.otherService.getDetailsManagerById(page, this.itemsPerPage, this.item.manager.id).subscribe( 
+    this.otherService.getDetailsManagerById(this.item.manager.id).subscribe( 
       result => {
         this.data = result;
         this.managerinfo = this.data.data.detail
         this.datasInter = this.data.data.interimaires
-        this.totalItems = this.data.data.total
+        //this.totalItems = this.data.data.total
       }
     )
   }

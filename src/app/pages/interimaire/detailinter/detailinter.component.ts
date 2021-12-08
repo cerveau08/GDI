@@ -142,6 +142,8 @@ export class DetailinterComponent implements OnInit {
   dataSite: any;
   region = null;
   dataDomaine: any;
+  managerinfo: any;
+  datasInter: any;
   constructor(private activeroute: ActivatedRoute,
               private modalService: ModalService,
               private otherService: OthersService,
@@ -179,6 +181,13 @@ export class DetailinterComponent implements OnInit {
         } else {
           this.sameIdSociete = false;
         }
+        this.otherService.getDetailsManagerById(this.dataInter.idManager).subscribe( 
+          result => {
+            this.data = result;
+            this.managerinfo = this.data.data.detail
+            this.datasInter = this.data.data.interimaires
+          }
+        )
       }
     );
     if(this.user == 'DRH') {

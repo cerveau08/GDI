@@ -180,23 +180,25 @@ export class PaginationService {
       icon2: "expand_more",  icon3: "expand_less",
       liste: [  
         {
-          title: 'Domaine',  path: 'ajoutdomaine',
+          title: 'Domaine',  path: 'listedomaine',
         }, {
-          title: 'Fonction',  path: 'ajoutfonction',
+          title: 'Fonction',  path: 'listefonction',
         },{
           title: 'Site',  path: 'listesite',
         }, {
-          title: 'Catégorie',  path: 'ajoutcategorie',
-        },{
-          title: 'Comission',  path: 'ajoutcommission',
-        },{
+          title: 'Catégorie',  path: 'listcategorie',
+         },
+         //{
+        //   title: 'Comission',  path: 'ajoutcommission',
+        // },
+        {
           title: 'Direction',  path: 'listdirection',
         },{
           title: 'Profil',  path: 'listprofil',
         }
-        ,{
-          title: 'Periode',  path: 'listperiode',
-        }
+        // ,{
+        //   title: 'Periode',  path: 'listperiode',
+        // }
         ,{
           title: 'Societe',  path: 'listsociete',
         }
@@ -312,23 +314,25 @@ export class PaginationService {
       icon2: "expand_more",  icon3: "expand_less",
       liste: [  
         {
-          title: 'Domaine',  path: 'ajoutdomaine',
+          title: 'Domaine',  path: 'listedomaine',
         }, {
-          title: 'Fonction',  path: 'ajoutfonction',
+          title: 'Fonction',  path: 'listefonction',
         },{
           title: 'Site',  path: 'listesite',
         }, {
-          title: 'Catégorie',  path: 'ajoutcategorie',
-        },{
-          title: 'Comission',  path: 'ajoutcommission',
-        },{
+          title: 'Catégorie',  path: 'listcategorie',
+        },
+        //{
+        //   title: 'Comission',  path: 'ajoutcommission',
+        // },
+        {
           title: 'Direction',  path: 'listdirection',
         },{
           title: 'Profil',  path: 'listprofil',
         }
-        ,{
-          title: 'Periode',  path: 'listperiode',
-        }
+        // ,{
+        //   title: 'Periode',  path: 'listperiode',
+        // }
         ,{
           title: 'Societe',  path: 'listsociete',
         }
@@ -523,23 +527,25 @@ export class PaginationService {
       icon2: "expand_more",  icon3: "expand_less",
       liste: [  
         {
-          title: 'Domaine',  path: 'ajoutdomaine',
+          title: 'Domaine',  path: 'listedomaine',
         }, {
-          title: 'Fonction',  path: 'ajoutfonction',
+          title: 'Fonction',  path: 'listefonction',
         },{
           title: 'Site',  path: 'listesite',
         }, {
-          title: 'Catégorie',  path: 'ajoutcategorie',
-        },{
-          title: 'Comission',  path: 'ajoutcommission',
-        },{
+          title: 'Catégorie',  path: 'listcategorie',
+        },
+        //{
+        //   title: 'Comission',  path: 'ajoutcommission',
+        // },
+        {
           title: 'Direction',  path: 'listdirection',
         },{
           title: 'Profil',  path: 'listprofil',
         }
-        ,{
-          title: 'Periode',  path: 'listperiode',
-        }
+        // ,{
+        //   title: 'Periode',  path: 'listperiode',
+        // }
         ,{
           title: 'Societe',  path: 'listsociete',
         }
@@ -655,23 +661,25 @@ export class PaginationService {
       icon2: "expand_more",  icon3: "expand_less",
       liste: [  
         {
-          title: 'Domaine',  path: 'ajoutdomaine',
+          title: 'Domaine',  path: 'listedomaine',
         }, {
-          title: 'Fonction',  path: 'ajoutfonction',
+          title: 'Fonction',  path: 'listefonction',
         },{
           title: 'Site',  path: 'listesite',
         }, {
-          title: 'Catégorie',  path: 'ajoutcategorie',
-        },{
-          title: 'Comission',  path: 'ajoutcommission',
-        },{
+          title: 'Catégorie',  path: 'listcategorie',
+        },
+        //{
+        //   title: 'Comission',  path: 'ajoutcommission',
+        // },
+        {
           title: 'Direction',  path: 'listdirection',
         },{
           title: 'Profil',  path: 'listprofil',
         }
-        ,{
-          title: 'Periode',  path: 'listperiode',
-        }
+        // ,{
+        //   title: 'Periode',  path: 'listperiode',
+        // }
         ,{
           title: 'Societe',  path: 'listsociete',
         }

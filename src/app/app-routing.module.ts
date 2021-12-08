@@ -13,15 +13,9 @@ import { ListeperiodeobjectifComponent } from './pages/evaluation/listeperiodeob
 import { AddobjectifComponent } from './pages/evaluation/addobjectif/addobjectif.component';
 import { StatsiteComponent } from './pages/statistiques/statsite/statsite.component';
 import { ListcommissionComponent } from './pages/settings/commission/listcommission/listcommission.component';
-import { ModiffonctionComponent } from './pages/settings/fonction/modiffonction/modiffonction.component';
-import { AjoutfonctionComponent } from './pages/settings/fonction/ajoutfonction/ajoutfonction.component';
 import { ListfonctionComponent } from './pages/settings/fonction/listfonction/listfonction.component';
-import { ModifdomaineComponent } from './pages/settings/domaine/modifdomaine/modifdomaine.component';
-import { AjoutdomaineComponent } from './pages/settings/domaine/ajoutdomaine/ajoutdomaine.component';
 import { ListdomaineComponent } from './pages/settings/domaine/listdomaine/listdomaine.component';
 import { ListsiteComponent } from './pages/settings/site/listsite/listsite.component';
-import { ModifsiteComponent } from './pages/settings/site/modifsite/modifsite.component';
-import { AjoutsiteComponent } from './pages/settings/site/ajoutsite/ajoutsite.component';
 import { DetailattestationComponent } from './pages/attestation/detailattestation/detailattestation.component';
 import { StatcategorieComponent } from './pages/statistiques/statcategorie/statcategorie.component';
 import { StatagenceComponent } from './pages/statistiques/statagence/statagence.component';
@@ -81,18 +75,12 @@ import { DetailcontratComponent } from './pages/interimaire/detailcontrat/detail
 import { AttestationmesInterimaireComponent } from './pages/attestation/attestationmesInterimaire/attestationmesInterimaire.component';
 import { ModifEvaluerComponent } from './pages/evaluation/evaluer/modif-evaluer/modif-evaluer.component';
 import { StatageComponent } from './pages/statistiques/statage/statage.component';
-import { AjoutdirectionComponent } from './pages/settings/direction/ajoutdirection/ajoutdirection.component';
 import { ListdirectionComponent } from './pages/settings/direction/listdirection/listdirection.component';
-import { ModifdirectionComponent } from './pages/settings/direction/modifdirection/modifdirection.component';
 import { ModifperiodeComponent } from './pages/settings/periode/modifperiode/modifperiode.component';
 import { ListperiodeComponent } from './pages/settings/periode/listperiode/listperiode.component';
 import { AjoutperiodeComponent } from './pages/settings/periode/ajoutperiode/ajoutperiode.component';
-import { ModifprofilComponent } from './pages/settings/profil/modifprofil/modifprofil.component';
-import { AjoutprofilComponent } from './pages/settings/profil/ajoutprofil/ajoutprofil.component';
 import { ListprofilComponent } from './pages/settings/profil/listprofil/listprofil.component';
-import { ModifsocieteComponent } from './pages/settings/societe/modifsociete/modifsociete.component';
 import { ListsocieteComponent } from './pages/settings/societe/listsociete/listsociete.component';
-import { AjoutsocieteComponent } from './pages/settings/societe/ajoutsociete/ajoutsociete.component';
 import { ModifstructureComponent } from './pages/settings/structure/modifstructure/modifstructure.component';
 import { ListstructureComponent } from './pages/settings/structure/liststructure/liststructure.component';
 import { AjoutstructureComponent } from './pages/settings/structure/ajoutstructure/ajoutstructure.component';
@@ -340,24 +328,8 @@ const routes: Routes = [
         component: DetailattestationComponent,
         canActivate: [AuthGuard]
       },
-      { path: 'ajoutsite',
-        component: AjoutsiteComponent,
-        canActivate: [AuthGuard]
-      },
       { path: 'listesite',
         component: ListsiteComponent,
-        canActivate: [AuthGuard]
-      },
-      { path: 'modifsite',
-        component:ModifsiteComponent,
-        canActivate: [AuthGuard]
-      },
-      { path: 'ajoutdomaine',
-        component:AjoutdomaineComponent,
-        canActivate: [AuthGuard]
-      },
-      { path: 'modifdomaine',
-        component:ModifdomaineComponent,
         canActivate: [AuthGuard]
       },
       { path: 'listedomaine',
@@ -366,14 +338,6 @@ const routes: Routes = [
       },
       { path: 'listefonction',
         component:ListfonctionComponent,
-        canActivate: [AuthGuard]
-      },
-      { path: 'ajoutfonction',
-        component:AjoutfonctionComponent,
-        canActivate: [AuthGuard]
-      },
-      { path: 'modiffonction',
-        component:ModiffonctionComponent,
         canActivate: [AuthGuard]
       },
       { path: 'ajoutcategorie',
@@ -400,16 +364,8 @@ const routes: Routes = [
         component:ListcommissionComponent,
         canActivate: [AuthGuard]
       },
-      { path: 'ajoutdirection',
-        component:AjoutdirectionComponent,
-        canActivate: [AuthGuard]
-      },
       { path: 'listdirection',
         component:ListdirectionComponent,
-        canActivate: [AuthGuard]
-      },
-      { path: 'modifdirection',
-        component:ModifdirectionComponent,
         canActivate: [AuthGuard]
       },
       { path: 'ajoutstructure',
@@ -424,28 +380,12 @@ const routes: Routes = [
         component:ModifstructureComponent,
         canActivate: [AuthGuard]
       },
-      { path: 'ajoutsociete',
-        component:AjoutsocieteComponent,
-        canActivate: [AuthGuard]
-      },
       { path: 'listsociete',
         component:ListsocieteComponent,
         canActivate: [AuthGuard]
       },
-      { path: 'modifsociete',
-        component:ModifsocieteComponent,
-        canActivate: [AuthGuard]
-      },
-      { path: 'ajoutprofil',
-      component:AjoutprofilComponent,
-      canActivate: [AuthGuard]
-      },
       { path: 'listprofil',
         component:ListprofilComponent,
-        canActivate: [AuthGuard]
-      },
-      { path: 'modifprofil',
-        component:ModifprofilComponent,
         canActivate: [AuthGuard]
       },
       { path: 'ajoutperiode',

@@ -48,6 +48,20 @@
                     <p class="prenom">{{dataInter?.prenom}} {{dataInter?.nom}}</p>
                     <p class="fonction">{{dataInter?.poste}}</p>
                 </div>
+                <div class="content-manager">
+                    <div class="content-header-title">
+                        <p class="personnelle-information-title">Information Manager</p>
+                    </div>
+                    <div class="content-manger-personnel">
+                        <p class="key">Prénom: <span class="value">{{managerinfo?.prenom? managerinfo?.prenom : 'Non renseigné'}}</span> </p>
+                        <p class="key">nom: <span class="value">{{managerinfo?.nom? managerinfo?.nom : 'Non renseigné'}}</span> </p>
+                    </div>
+                    <div class="content-manger-personnel">
+                        <p class="key">Matricule: <span class="value">{{managerinfo?.matricule? managerinfo?.matricule : 'Non renseigné'}}</span> </p>
+                        <p class="key">email: <span class="value">{{managerinfo?.email? managerinfo?.email : 'Non renseigné'}}</span> </p>
+                        <p class="key">Téléphone: <span class="value">{{managerinfo?.telephone? managerinfo?.telephone : 'Non renseigné'}}</span> </p>
+                    </div>
+                </div>
             </div>
             <div class="info">
                 <div class="lot1">

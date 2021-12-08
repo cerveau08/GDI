@@ -1,35 +1,65 @@
 <div class="all-container">
     <div class="all">
         <p class="statt-header">Gestion Profil</p>
-        <div class="liste-sous-header">
-            <div [style.border]="border1" (click)="changeShow1()" class="effectif-content" >
-                <p [style.color]="color1" id="effectis" class="statt-sous-header">Liste</p>
-            </div>
-            <div [style.border]="border2"  (click)="changeShow2()" class="effectif-content">
-                <p [style.color]="color2" id="genre" class="statt-sous-header">Ajouter</p>
-            </div>
-        </div>
-        <div *ngIf="show==1" class="content-all-liste-site">
-
+        
+        <div class="content-all-liste-site">
+            <button class="button-add" (click)="openModal('custom-modal-1');">Ajouter un profil</button>
             <table style="overflow-x:auto;"aria-describedby = "mydesc" >
                 <thead>
                     <tr class="head">
-                        <th  id="manager"><b>Libellé</b></th>
-                        <th  id="direction"><b>code</b></th>
-                        <th  id="agence"><b>Description</b></th>
-                </tr>
+                        <th class="typ" id="prenom">Libelle</th>
+                        <th  id="manager"><b>Code</b></th>
+                        <th  id="direction"><b>Description</b></th>
+                        <th  id="agence"><b>Action</b></th>
+                    </tr>
                 </thead>
-                <tbody *ngFor="let data of dataProfil">
-                    <tr  style="cursor: pointer;" >
-                        <td >{{data.libelle}}</td>
-                        <td >{{data.code}}</td>
-                        <td >{{data.description}}</td>
+                <tbody *ngFor="let p of dataSite let i = index ">
+                    <tr >
+                        <td >{{p.libelle}}</td>
+                        <td >{{p.code}}</td>
+                        <td >{{p.description}}</td>
+                        <td >
+                            <mat-icon (click)="update(p, 'custom-modal-1')" id="mat-icon" class="icon-edit">edit</mat-icon>
+                            <mat-icon (click)="supprimer(p.id)" id="mat-icon" class="icon-delete">delete</mat-icon>
+                        </td>
                     </tr>
                 </tbody>
-                
             </table>
         </div>
-        <app-ajoutprofil *ngIf="show==2"></app-ajoutprofil>
     </div>
-</div> 
-    
+</div>
+ <!--modal-4-->
+ <div class="modal">
+    <jw-modal id="custom-modal-1">
+        <h1 class="modal-renouveler">Ajouter un profil</h1>
+        <mat-icon style="cursor: pointer;" (click)="closeModal('custom-modal-1');" class="clear-renouveler">clear</mat-icon>
+        <div class="form-contrat">
+            <form [formGroup]="addForm">
+                <div class="content-form-contrat">
+                    <div class="content-inputs-form">
+                        <div>
+                            <p class="label-input1">Libelle<span class="signe-obligatoire">*</span></p>
+                            <input class="input3" type="text" formControlName="libelle" placeholder="Libelle">
+                        </div>
+                        <div>
+                            <p class="label-input1">Code<span class="signe-obligatoire">*</span></p>
+                            <input type="text" formControlName="code" placeholder="Code">
+                        </div>
+                    </div>
+                    <div>
+                        <p class="label-input1">Description<span class="signe-obligatoire">*</span></p>
+                        <textarea class="textarea-form" type="text" formControlName="description" placeholder="Description"></textarea>
+                    </div>
+                </div>
+                <div class="content-error-msg" *ngIf="successMsg == false">
+                    <p class="error-alert">{{ errorMsg}}</p>
+                </div>
+                <div class="buttons-content-valider">
+                   <button *ngIf="!addForm.value.id" class="button-enregistrer-contrat" (click)="ajouter()" type="button">Ajouter</button>
+                   <button *ngIf="addForm.value.id" class="button-enregistrer-contrat" (click)="modifier()" type="button">Modifier</button>
+                </div>
+            </form>
+        </div>
+    </jw-modal>
+</div>
+

@@ -1,6 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, HostListener } from '@angular/core';
+import { FormGroup, FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { ErrormodalService } from 'src/app/modal/_errormodals/errormodal.service';
+import { ModalService } from 'src/app/modal/_modal';
 import { OthersService } from 'src/app/services/others.service';
 import { environment } from 'src/environments/environment';
 
@@ -10,114 +14,144 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./liststructure.component.scss']
 })
 export class ListstructureComponent implements OnInit {
-
-  scrHeight: number;
-  scrWidth: number;
-  progress: number;
-  intervalId;
-  dataStatistique: any;
-  public reqUrl = environment.base_url;
-  show = 1;
-  color: string;
-  jan: string;
-  show1: boolean;
-  color1 = "#ff7900";
-  border1 = "1px solid #ff7900";
-  color2 = "#000";
-  border2= "1px solid #000";
-  dataStructure;page = 1;
-  itemsPerPage = 8;
-  totalItems : any;
-  
+  page = 1;
+  filterForm: FormGroup;
+  itemsPerPage = 10;
+  totalItems: any;
+  public region = null;
+  dataSite;
+  dataRegion;
+  addForm: FormGroup;
+  UpdateForm: FormGroup;
+  data: any;
+  successMsg: any;
+  errorMsg: any;
   constructor(
-    private errormodalService: ErrormodalService,
-              private http: HttpClient,
+    private modalService: ModalService,
+    private router: Router,
+    private toastr: ToastrService,
               private otherService: OthersService) {
-    this.getScreenSize();
-  }
-  @HostListener('window:resize', ['$event'])
-  getScreenSize(event?) {
-        this.scrHeight = window.innerHeight;
-        this.scrWidth = window.innerWidth;
-  }
-  ngOnInit() {
-    const getDownloadProgress = () => {
-      if (this.progress <= 99) {
-        this.progress = 30;
-        this.progress = this.progress - 2;
-      } else {
-        clearInterval(this.intervalId);
-      }
-    };
-    this.intervalId = setInterval(getDownloadProgress, 1000);
-    this.http.get(this.reqUrl + `/structure/all?page=1&limit=100`).subscribe((data: any) => {
-      this.dataStructure =  data.data;
-    })
-  }
- 
-  changeshow1() {
-    this.show = 1;
-    return this.show;
-  }
-  changeshow2() {  
-    this.show = 2;
-    return this.show;
-  }
-  changeshow3() {  
-    this.show = 3;
-    return this.show;
-  }
-  changeshow4() {  
-    this.show = 4;
-    return this.show;
-  }
-  ngOnDestroy() {
-    clearInterval(this.intervalId);
-  }
-
-  getColor(p) {
-    if(p.statut == "oui") {
-      this.color = "#6dd400";
-    } else if (p.statut == "non") {
-      this.color = "#f03737";
+      this.addForm = new FormGroup({
+        libelle: new FormControl(''),
+        code: new FormControl(''),
+        adresse: new FormControl(''),
+        regionId: new FormControl(''),
+        id: new FormControl('')
+      })
     }
-    return this.color;
+  ngOnInit() {
+    this.filterForm = new FormGroup({
+      region: new FormControl('')
+    })
+    this.gty(this.page);
+    this.regionListe();
+  }
+  
+  update(data, id) {
+    this.addForm = new FormGroup({
+      libelle: new FormControl(data.libelle),
+      code: new FormControl(data.code),
+      adresse: new FormControl(data.adresse),
+      regionId: new FormControl(data.region.id),
+      id: new FormControl(data.id)
+    })
+    this.modalService.open(id);
   }
 
- 
-  getHeight2(p) {
-    if(p.id == 2) {
-      var total = p.total * 0.145 
-      this.jan = total + "px"
+  regionListe() {
+    this.otherService.getAllRegion().subscribe(
+      data => {
+        this.dataRegion = data["data"];
+      }
+    );
+  }
+
+  gty(page: any){
+    this.region=this.filterForm.value.region;
+    if(this.region =='') {
+      this.region = null;
     } 
-    return this.jan;
-  } 
-
-  openErrorModal(id: string) {
-    this.errormodalService.open(id);
+    this.otherService.getAllStructure().subscribe(
+      data => {
+        this.data = data;
+        this.dataSite = this.data.data;
+        this.totalItems = this.data.total
+      }
+    )
   }
 
-  closeErrorModal(id: string) {
-    this.errormodalService.close(id);
+  ajouter() {
+    this.otherService.addSite(this.addForm.value).subscribe(
+      data =>{
+        this.data = data;
+        this.successMsg = this.data.status
+        if(this.successMsg == true) {
+          this.toastr.success(this.data.message, 'Success', {
+            timeOut: 3000,
+          });
+          this.closeModal('custom-modal-1');
+          this.ngOnInit();
+        }
+      },
+        error=> {
+          this.errorMsg = error;
+          this.toastr.error(this.errorMsg, 'Echec', {
+          timeOut: 5000,
+          });
+        }
+    )
   }
 
-  changeShow1() {
-    this.show = 1;
-    this.color1 = "#ff7900";
-    this.border1 = "1px solid #ff7900";
-    this.color2 = "#000";
-    this.border2= "1px solid #000";
-    return this.show1;
+  modifier() {
+    this.otherService.updateSite(this.addForm.value.id, this.addForm.value).subscribe(
+      data =>{
+        this.data = data;
+        this.successMsg = this.data.status
+        if(this.successMsg == true) {
+          this.toastr.success(this.data.message, 'Success', {
+            timeOut: 3000,
+          });
+          this.closeModal('custom-modal-1');
+          this.ngOnInit();
+        }
+      },
+        error=> {
+          this.errorMsg = error;
+          this.toastr.error(this.errorMsg, 'Echec', {
+          timeOut: 5000,
+          });
+        }
+    )
   }
-  changeShow2() {  
-    this.show = 2;
-    this.color1 = "#000";
-    this.border1 = "1px solid #000";
-    this.border2 = "1px solid #ff7900";
-    this.color2 = "#ff7900";
-    return this.show1;
+
+  supprimer(id) {
+    this.otherService.deleteSite(id).subscribe(
+      data =>{
+        this.data = data;
+        this.successMsg = this.data.status
+        if(this.successMsg == true) {
+          this.toastr.success(this.data.message, 'Success', {
+            timeOut: 3000,
+          });
+          //this.closeModal('custom-modal-1');
+          this.ngOnInit();
+        }
+      },
+        error=> {
+          this.errorMsg = error;
+          this.toastr.error(this.errorMsg, 'Echec', {
+          timeOut: 5000,
+          });
+        }
+    )
   }
 
+  openModal(id: string) {
+    this.modalService.open(id);
+  }
 
-
+  closeModal(id: string) {
+    this.modalService.close(id);
+    this.addForm.reset()
+  }
 }
