@@ -497,7 +497,7 @@ addAgence(data) {
   }
 
   deleteSite(id){
-    return this.http.delete<any>(`${this.reqUrl}/deleteSite/${id}`);
+    return this.http.get<any>(`${this.reqUrl}/deleteSite/${id}`);
   }
 
   addCategorie(data){
@@ -513,7 +513,7 @@ addAgence(data) {
   }
 
   deleteCategorie(id){
-    return this.http.delete<any>(`${this.reqUrl}/deleteCategorie/${id}`);
+    return this.http.get<any>(`${this.reqUrl}/deleteCategorie/${id}`);
   }
 
 
@@ -530,7 +530,8 @@ addAgence(data) {
   }
 
   deleteDomaine(id){
-    return this.http.delete<any>(`${this.reqUrl}/deleteDomaine/${id}`);
+    let data = {id: id}
+    return this.http.get<any>(`${this.reqUrl}/deleteDomaine`, {params: data});
   }
 
   getFonctions(): Observable<any> {
@@ -538,7 +539,7 @@ addAgence(data) {
   }
 
   addfonction(data){
-    return this.http.post<any>(`${this.reqUrl}/fonctions`, data);
+    return this.http.post<any>(`${this.reqUrl}/ajoutFonction`, data);
   }
   
   updatefonction(id, data){

@@ -239,20 +239,18 @@
                             </div>
                             <div class="infoinput2">
                                 <input type="number" formControlName="telephoneUser"  placeholder="Téléphone">
-                                <select class="select6" #profil formControlName="profil">
+                                <!-- <select class="select6" #profil formControlName="profil">
                                     <option class="option" value="" disabled selected hidden>Profil</option>
                                     <option *ngFor="let data of dataprofils" value="{{data.id}}">{{data.libelle}}</option>
-                                </select>
+                                </select> -->
+                                <input class="input3"  type="text" formControlName="fonction"  placeholder="Fonction">
                             </div>
-                            <div *ngIf="user == 'DRH'" class="infoinput2">
-                                <input type="text" formControlName="fonction"  placeholder="Fonction">
-                            </div>
-                            <div *ngIf="user != 'DRH'" class="infoinput1">
+                            <!-- <div *ngIf="user != 'DRH'" class="infoinput1">
                                 <input type="text" list="fonctions" formControlName="fonction" (change)="saveFonction($event)"  placeholder="Fonction">
                                 <datalist id="fonctions">
                                     <option *ngFor="let c of listeFonction" [value]="c.libelle" >{{c.libelle}}</option>
                                 </datalist>
-                            </div>
+                            </div> -->
                             <div class="content-error-msg" *ngIf="successMsg == false">
                                 <p class="error-alert">{{ data?.message}}</p>
                             </div>

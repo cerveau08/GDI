@@ -208,7 +208,7 @@ export class StatcategorieComponent implements OnInit {
       data => {
       this.data = data;
       this.dataStatEffectifSociete = this.data.data;
-      this.directions = this.dataStatEffectifSociete.map(valueOfDirection => valueOfDirection.direction);
+      this.directions = this.dataStatEffectifSociete.map(valueOfDirection => valueOfDirection.direction.libelle);
       this.hommes = this.dataStatEffectifSociete.map(valueOfHomme => valueOfHomme.AM1);
       this.femmes = this.dataStatEffectifSociete.map(valueOfFemme => valueOfFemme.AM2);
       this.chartOptions2 = {
@@ -305,7 +305,7 @@ export class StatcategorieComponent implements OnInit {
         this.data = data;
         this.dataStatEffectifGenre = this.data.data;
     this.directs = this.dataStatEffectifGenre;
-    this.categorie = this.dataStatEffectifGenre.map(valueOfDirection => valueOfDirection.categorie);
+    this.categorie = this.dataStatEffectifGenre.map(valueOfDirection => valueOfDirection.categorie.libelle);
     this.hommes = this.dataStatEffectifGenre.map(valueOfHomme => valueOfHomme.hommes);
     this.femmes = this.dataStatEffectifGenre.map(valueOfFemmes => valueOfFemmes.femmes);
     

@@ -54,7 +54,7 @@ export class ListfonctionComponent implements OnInit {
   }
 
   ajouter() {
-    this.otherService.addDomaine(this.addForm.value).subscribe(
+    this.otherService.addfonction(this.addForm.value).subscribe(
       data =>{
         this.data = data;
         this.successMsg = this.data.status
@@ -76,7 +76,7 @@ export class ListfonctionComponent implements OnInit {
   }
 
   modifier() {
-    this.otherService.updateDomaine(this.addForm.value.id, this.addForm.value).subscribe(
+    this.otherService.updatefonction(this.addForm.value.id, this.addForm.value).subscribe(
       data =>{
         this.data = data;
         this.successMsg = this.data.status
@@ -98,7 +98,7 @@ export class ListfonctionComponent implements OnInit {
   }
 
   supprimer(id) {
-    this.otherService.deleteDomaine(id).subscribe(
+    this.otherService.deletefonction(id).subscribe(
       data =>{
         this.data = data;
         this.successMsg = this.data.status

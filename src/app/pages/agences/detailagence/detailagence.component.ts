@@ -219,7 +219,8 @@ export class DetailagenceComponent implements OnInit {
           this.toastr.success('L\'utilisateur a été ajouté', 'Sucess', {
             timeOut: 3000,
           });
-          this.route.navigate(['/accueil/listeuser']);
+          //this.route.navigate(['/accueil/listeuser']);
+          this.ngOnInit();
         }
       },
       error=> {

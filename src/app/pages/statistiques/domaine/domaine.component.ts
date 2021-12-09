@@ -159,7 +159,7 @@ export class DomaineComponent implements OnInit {
         console.log(this.dataYear.data);
         
         this.dataStatEffectifAnnee = this.dataYear.data;
-          this.donneeAbscisse = this.dataStatEffectifAnnee.map(valueOfDirection => valueOfDirection.domaine);
+          this.donneeAbscisse = this.dataStatEffectifAnnee.map(valueOfDirection => valueOfDirection.domaine.libelle);
           this.nouveau = this.dataStatEffectifAnnee.map(valueOfNouveau => valueOfNouveau.homme);
           this.fini = this.dataStatEffectifAnnee.map(valueOfFini => valueOfFini.femme);
         //  this.total = this.dataStatEffectifAnnee.map(valueOfTotal => valueOfTotal.total);
