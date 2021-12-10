@@ -138,7 +138,7 @@ export class CompteComponent implements OnInit {
     },
   );
   
-  this.otherService.statContratInter(this.currentUser.interimaire.id).subscribe(
+  this.otherService.statContratInter(this.currentUser.interimaire.id, null).subscribe(
     data => {
       this.infoContrat = data.data;
       this.anneeRestant = this.infoContrat.dureeContratRestant.annees;

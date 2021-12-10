@@ -200,6 +200,7 @@ export class AddinterComponent implements OnInit {
     }
   ];
   salaireBrut: any;
+  codeRetour: any;
   constructor(private otherService: OthersService,
               private errormodalService: ErrormodalService,
               private toastr: ToastrService,
@@ -382,7 +383,7 @@ export class AddinterComponent implements OnInit {
     this.numeroPiece = this.searchForm.value.numeroPiece;
     this.telephone = this.searchForm.value.telephone;
     let formValid = {
-      societe: this.searchForm.value.societe,
+      societe_id: Number(this.searchForm.value.societe),
       nationalite: this.searchForm.value.nationalite.name,
       typePiece: this.searchForm.value.typePiece,
       numeroPiece: this.searchForm.value.numeroPiece,
@@ -393,12 +394,24 @@ export class AddinterComponent implements OnInit {
         (response) => {
           this.dataMatriculeInter = response;
           this.isBlackliste = this.dataMatriculeInter.isBlacklisted
+          this.codeRetour = this.dataMatriculeInter.code
           if(this.isBlackliste == false) {
-            if(this.dataMatriculeInter.data) {
+            if(this.codeRetour == 206) {
+              this.prenom = "cette";
+              this.nom = "personne";
+              this.openErrorModal('blacklist-modal-2');
+            }
+            if(this.codeRetour == 202) {
+              this.toastr.success('Vous pouvez ajouter cette personne comme interimaire', 'Success', {
+                timeOut: 3000,
+              });
+              this.isAdmissible = true;
+            } else if(this.codeRetour == 204 && this.dataMatriculeInter.data) {
               if(this.dataMatriculeInter.data.interimaire) {
                 this.toastr.info('Cette personne existe deja comme interimaire veuillez l\'ajouter un contrat à partir de la page détail intérimaire', 'Information', {
                   timeOut: 10000,
                 });
+                this.otherService.societe_id = Number(this.searchForm.value.societe);
                 this.router.navigate(['/accueil/detailinter'], {
                   queryParams: {
                     interimaire: JSON.stringify(this.dataMatriculeInter.data.interimaire.id)
@@ -418,13 +431,8 @@ export class AddinterComponent implements OnInit {
               this.isAdmissible = true;
             }
           } else if(this.isBlackliste == true) {
-            if(this.dataMatriculeInter.data.personne) {
-              this.prenom = this.dataMatriculeInter.data.personne.prenom;
-              this.nom = this.dataMatriculeInter.data.personne.nom;
-            } else {
-              this.prenom = "cette";
-              this.nom = "personne";
-            }
+            this.prenom = "cette";
+            this.nom = "personne";
             this.openErrorModal('blacklist-modal-1');
           }
         }

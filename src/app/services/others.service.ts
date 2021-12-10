@@ -8,6 +8,7 @@ import {HttpClient} from '@angular/common/http';
 })
 export class OthersService {
   public reqUrl = environment.base_url;
+  public societe_id: any;
   constructor(private http: HttpClient) { }
 
 // recupere la liste des interimaire sous contrat
@@ -159,9 +160,6 @@ addAgence(data) {
   }
   renouvelerContrat(data) {
     return this.http.post<any>(`${this.reqUrl}/ajoutContrat`, data);
-  }
-  getAllStructure() {
-    return this.http.get(`${this.reqUrl}/structure/all`);
   }
   resetPassword(token, data){
     return this.http.post<any>(`${this.reqUrl}/reset/${token}`, data);
@@ -542,12 +540,12 @@ addAgence(data) {
     return this.http.post<any>(`${this.reqUrl}/ajoutFonction`, data);
   }
   
-  updatefonction(id, data){
-    return this.http.put<any>(`${this.reqUrl}/fonction/${id}`, data);
+  updatefonction(data){
+    return this.http.post<any>(`${this.reqUrl}/updateFonction`, data);
   }
 
   deletefonction(id){
-    return this.http.delete<any>(`${this.reqUrl}/deleteFonction/${id}`);
+    return this.http.get<any>(`${this.reqUrl}/deleteFonction/${id}`);
   }
 
   getAllSociete(){
@@ -566,19 +564,35 @@ addAgence(data) {
     return this.http.delete<any>(`${this.reqUrl}/deleteSociete/${id}`);
   }
 
+
+  getAllStructure(page, limit, direction, type) {
+    let data = {page: page, limit: limit} 
+    let donnee = {direction_id: direction, typeStructure_id: type}
+    return this.http.post(`${this.reqUrl}/structure/all`, donnee, {params: data});
+  }
+
   addPeriode(data){
     return this.http.post<any>(`${this.reqUrl}/addPeriode`, data);
   }
   addStructure(data){
     return this.http.post<any>(`${this.reqUrl}/structure/create`, data);
   }
+  updateStructure(id, data){
+    return this.http.post<any>(`${this.reqUrl}/structure/update/${id}`, data);
+  }
+
+  deleteStructure(id){
+    return this.http.get<any>(`${this.reqUrl}/structure/delete/${id}`);
+  }
+
   getProfil(){
     return this.http.get<any>(`${this.reqUrl}/profils`);
   }
 
 
-  statContratInter(id: number) {
-    return this.http.get<any>(`${this.reqUrl}/interimaireDashboard/${id}`);
+  statContratInter(id: number, societe_id) {
+    let data = {societe_id: societe_id}
+    return this.http.get<any>(`${this.reqUrl}/interimaireDashboard/${id}`, {params: data});
   }
 
   listeInterForAttestation(){

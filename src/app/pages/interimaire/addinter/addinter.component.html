@@ -496,3 +496,23 @@
       </div>
   </sonatel-pma-errormodal>
 </div>
+
+<!--modal2-->
+<div class="modal">
+  <sonatel-pma-errormodal id="blacklist-modal-2">
+      <div class="error-modal-all" >
+          <mat-icon style="cursor: pointer;" (click)="closeErrorModal('blacklist-modal-2');" class="clear-error">clear</mat-icon>
+          <div class="blackliste-content-image">
+            <div class="blackliste-image2"></div>
+        </div>
+          <p class="blackliste-message-admin">
+            Vous ne pouvez pas ajouter <span class="inter-blackliste">{{prenom}} {{nom}}
+            </span> comme intérimaire dans une société liée à la SONATEL.
+            Il se trouve dans une autre agence.
+          </p> 
+          <div class="error-content-button">
+              <button (click)="closeErrorModal('blacklist-modal-2');" class="error-button">Ok</button>
+          </div>
+      </div>
+  </sonatel-pma-errormodal>
+</div>

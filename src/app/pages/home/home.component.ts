@@ -201,7 +201,7 @@ export class HomeComponent implements OnInit {
           this.posteManager = this.managerinfo.fonction;
         }
       )
-      this.otherService.statContratInter(this.interimaireInfo.interimaire.id).subscribe(
+      this.otherService.statContratInter(this.interimaireInfo.interimaire.id, null).subscribe(
         data => {
           this.infoContrat = data.data;
           this.anneeRestant = this.infoContrat.dureeContratRestant.annees;

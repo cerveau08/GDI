@@ -57,9 +57,9 @@ export class ListfonctionComponent implements OnInit {
     this.otherService.addfonction(this.addForm.value).subscribe(
       data =>{
         this.data = data;
-        this.successMsg = this.data.status
+        this.successMsg = this.data[0].status
         if(this.successMsg == true) {
-          this.toastr.success(this.data.message, 'Success', {
+          this.toastr.success(this.data[0].message, 'Success', {
             timeOut: 3000,
           });
           this.closeModal('custom-modal-1');
@@ -76,12 +76,12 @@ export class ListfonctionComponent implements OnInit {
   }
 
   modifier() {
-    this.otherService.updatefonction(this.addForm.value.id, this.addForm.value).subscribe(
+    this.otherService.updatefonction(this.addForm.value).subscribe(
       data =>{
         this.data = data;
-        this.successMsg = this.data.status
+        this.successMsg = this.data[0].status
         if(this.successMsg == true) {
-          this.toastr.success(this.data.message, 'Success', {
+          this.toastr.success(this.data[0].message, 'Success', {
             timeOut: 3000,
           });
           this.closeModal('custom-modal-1');
@@ -101,9 +101,9 @@ export class ListfonctionComponent implements OnInit {
     this.otherService.deletefonction(id).subscribe(
       data =>{
         this.data = data;
-        this.successMsg = this.data.status
+        this.successMsg = this.data[0].status
         if(this.successMsg == true) {
-          this.toastr.success(this.data.message, 'Success', {
+          this.toastr.success(this.data[0].message, 'Success', {
             timeOut: 3000,
           });
           this.ngOnInit();

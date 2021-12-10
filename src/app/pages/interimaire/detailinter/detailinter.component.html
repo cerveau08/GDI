@@ -270,7 +270,7 @@
                     <div class="content-inputs-form">
                         <div>
                             <p class="label-input1">Société<span class="signe-obligatoire">*</span></p>
-                            <select class="select5" #societe formControlName="societeId" (change)="directionsListe(societe.value)">
+                            <select class="select5" formControlName="societeId" #societe (change)="directionsListe(societe.value)">
                                 <option class="option" value="" disabled selected hidden>Societe</option>
                                 <option *ngFor="let data of dataSociete" [value]="data.id">{{data.libelle}}</option>
                             </select>

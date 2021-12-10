@@ -102,9 +102,9 @@ export class ListdomaineComponent implements OnInit {
     this.otherService.deleteDomaine(id).subscribe(
       data =>{
         this.data = data;
-        this.successMsg = this.data.status
+        this.successMsg = this.data[0].status
         if(this.successMsg == true) {
-          this.toastr.success(this.data.message, 'Success', {
+          this.toastr.success(this.data[0].message, 'Success', {
             timeOut: 3000,
           });
           this.ngOnInit();

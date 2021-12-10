@@ -7,14 +7,14 @@
         </ngx-loading>
         <div class="content-web">
             <p routerLink="/accueil/homedrh" class="bien">Bienvenue {{prenom}}</p>
-            <p class="alert">Vous n’avez pas encore fait votre demande de suvention restauration.
+            <!-- <p class="alert">Vous n’avez pas encore fait votre demande de suvention restauration.
                  <span routerLink="/accueil/alertes" style="cursor: pointer; outline: none;">Je fais ma demande</span>
-            </p>
+            </p> -->
             <div class="progres">
-                <p class="duree">Contrat: 
+                <p class="duree">Temps de présence: 
                     <span *ngIf="anneeRestant">{{anneeRestant}} année(s) </span>
                     <span *ngIf="moisRestant"> {{moisRestant}} mois </span>
-                    <span> {{jourRestant}} jours</span> restant 
+                    <span> {{jourRestant}}</span> jours.
                 </p>
                 <div class="barcontrat">
                     <div id="progress_bar">

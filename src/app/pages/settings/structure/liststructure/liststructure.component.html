@@ -1,16 +1,30 @@
-<!-- <div class="all-container">
+<div class="all-container">
     <div class="all">
-        <p class="statt-header">Gestion Site</p>
+        <p class="statt-header">Gestion Structure</p>
         
         <div class="content-all-liste-site">
             <form [formGroup]="filterForm"  class="forms-filter">
                 <div class="exporter-filter">
                     <div class="content-input-extraction">
                         <div class="filtrer-mois">
-                            <p class="label-input" for="titre">Région: </p>
-                            <select type="number" formControlName="region" class="select-mois"  >
+                            <p class="label-input" for="titre">Société: </p>
+                            <select type="number" formControlName="societe" class="select-mois" #societe (change)="directionsListe(societe.value)" >
                                 <option value="null">Aucun Choix</option>
-                                <option  *ngFor="let data of dataRegion"  [value]="data.id" >{{data.libelle}} </option>
+                                <option  *ngFor="let data of dataSociete"  [value]="data.id" >{{data.libelle}} </option>
+                            </select>
+                        </div>
+                        <div class="filtrer-mois">
+                            <p class="label-input" for="titre">Direction: </p>
+                            <select type="number" formControlName="direction_id" class="select-mois"  >
+                                <option value="null">Aucun Choix</option>
+                                <option  *ngFor="let data of dataDirection"  [value]="data.id" >{{data.libelle}} </option>
+                            </select>
+                        </div>
+                        <div class="filtrer-mois">
+                            <p class="label-input" for="titre">Type de structure: </p>
+                            <select type="number" formControlName="typeStructure_id" class="select-mois"  >
+                                <option value="null">Aucun Choix</option>
+                                <option  *ngFor="let data of listeStructure"  [value]="data.id" >{{data.libelle}} </option>
                             </select>
                         </div>
                     </div>
@@ -24,9 +38,9 @@
                 <thead>
                     <tr class="head">
                         <th class="typ" id="prenom">Libelle</th>
-                        <th  id="manager"><b>Région</b></th>
-                        <th  id="direction"><b>code</b></th>
-                        <th  id="agence"><b>Adresse</b></th>
+                        <th  id="manager"><b>Type de Structure</b></th>
+                        <th  id="direction"><b>Parent</b></th>
+                        <th  id="agence"><b>Direction</b></th>
                         <th  id="agence"><b>Action</b></th>
                     </tr>
                 </thead>
@@ -36,10 +50,10 @@
                     totalItems: totalItems
                     }; let i = index ">
                     <tr >
-                        <td >{{p.libelle}}</td>
-                        <td >{{p.region.libelle}}</td>
-                        <td >{{p.code}}</td>
-                        <td >{{p.adresse}}</td>
+                        <td >{{p.libelle? p.libelle : 'Non renseigné'}}</td>
+                        <td >{{p.typeStructure? p.typeStructure.libelle: 'Non renseigné'}}</td>
+                        <td >{{p.parent? p.parent.libelle: 'Non renseigné'}}</td>
+                        <td >{{p.direction? p.direction.libelle: 'Non renseigné'}}</td>
                         <td >
                             <mat-icon (click)="update(p, 'custom-modal-1')" id="mat-icon" class="icon-edit">edit</mat-icon>
                             <mat-icon (click)="supprimer(p.id)" id="mat-icon" class="icon-delete">delete</mat-icon>
@@ -66,21 +80,56 @@
                             <input class="input3" type="text" formControlName="libelle" placeholder="Libelle">
                         </div>
                         <div>
-                            <p class="label-input1">Code<span class="signe-obligatoire">*</span></p>
-                            <input type="text" formControlName="code" placeholder="Code">
+                            <p class="label-input1">Type de Sctructure<span class="signe-obligatoire">*</span></p>
+                            <select type="number" class="select5" formControlName="typeStructure_id">
+                                <option class="option" value="" disabled selected hidden>Type de Sctructure</option>
+                                <option *ngFor="let data of listeStructure" [value]="data.id">{{data.libelle}}</option>
+                            </select>
                         </div>
                     </div>
                     <div class="content-inputs-form">
                         <div>
-                            <p class="label-input1">Adresse<span class="signe-obligatoire">*</span></p>
-                            <input class="input3" type="text" formControlName="adresse" placeholder="Adresse">
+                            <p class="label-input1">Société<span class="signe-obligatoire">*</span></p>
+                            <select type="number" class="select5" formControlName="societe" #societeId (change)="directionsListe(societeId.value)">
+                                <option class="option" value="" disabled selected hidden>Société</option>
+                                <option *ngFor="let data of dataSociete" [value]="data.id">{{data.libelle}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="content-inputs-form">
+                        <div>
+                            <p class="label-input1">Direction<span class="signe-obligatoire">*</span></p>
+                            <select type="number" class="select5" formControlName="directionId" #direction (change)="parentListe(direction.value)">
+                                <option class="option" value="" disabled selected hidden>Direction</option>
+                                <option *ngFor="let data of dataDirection" [value]="data.id">{{data.libelle}}</option>
+                            </select>
                         </div>
                         <div>
-                            <p class="label-input1">Région<span class="signe-obligatoire">*</span></p>
-                            <select class="select5" formControlName="regionId">
-                                <option class="option" value="" disabled selected hidden>Région</option>
-                                <option *ngFor="let data of dataRegion" [value]="data.id">{{data.libelle}}</option>
+                            <p class="label-input1">Parent<span class="signe-obligatoire">*</span></p>
+                            <select type="number" class="select5" formControlName="parentId">
+                                <option class="option" value="" disabled selected hidden>Parent</option>
+                                <option *ngFor="let data of dataParent" [value]="data.id">{{data.libelle}}</option>
                             </select>
+                        </div>
+                    </div>
+                    <div class="content-inputs-form">
+                        <div>
+                            <p class="label-input1">Département<span class="signe-obligatoire">*</span></p>
+                            <input class="input3" type="text" formControlName="departement" placeholder="Département">
+                        </div>
+                        <div>
+                            <p class="label-input1">Service<span class="signe-obligatoire">*</span></p>
+                            <input type="text" formControlName="service" placeholder="Service">
+                        </div>
+                    </div>
+                    <div class="content-inputs-form">
+                        <div>
+                            <p class="label-input1">Pole<span class="signe-obligatoire">*</span></p>
+                            <input class="input3" type="text" formControlName="pole" placeholder="Pole">
+                        </div>
+                        <div>
+                            <p class="label-input1">Bu<span class="signe-obligatoire">*</span></p>
+                            <input type="text" formControlName="bu" placeholder="bu">
                         </div>
                     </div>
                 </div>
@@ -94,5 +143,5 @@
             </form>
         </div>
     </jw-modal>
-</div> -->
+</div>
 

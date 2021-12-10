@@ -144,6 +144,7 @@ export class DetailinterComponent implements OnInit {
   dataDomaine: any;
   managerinfo: any;
   datasInter: any;
+  societe_id = null;
   constructor(private activeroute: ActivatedRoute,
               private modalService: ModalService,
               private otherService: OthersService,
@@ -160,6 +161,9 @@ export class DetailinterComponent implements OnInit {
     
   }
   ngOnInit() {
+    if(this.otherService.societe_id) {
+      this.societe_id = this.otherService.societe_id;
+    }
     this.role = localStorage.getItem('user');
     this.societeData = JSON.parse(localStorage.getItem('currentUser'));
     this.societeIdDrh=this.societeData.data.societeId;
@@ -227,11 +231,6 @@ export class DetailinterComponent implements OnInit {
     this.validerForm = this.formBuilder.group({
       matricule: new FormControl(''),
       responsable: new FormControl(''),
-      //email: new FormControl(''),
-      // telephone: new FormControl('', Validators.compose([
-      //   Validators.required,
-      //   Validators.pattern('7[7-8]{1}[0-9]{7}')
-      // ])),
     });
     this.otherService.getAllSociete().subscribe(
       data => {
@@ -258,7 +257,7 @@ export class DetailinterComponent implements OnInit {
     )
     this.otherService.getDomaine().subscribe(data => this.dataDomaine = data["data"]);
     this.otherService.getFonctions().subscribe(data => this.listeFonction = data.data);
-    this.otherService.statContratInter(this.item).subscribe(
+    this.otherService.statContratInter(this.item, this.societe_id).subscribe(
       data => {
         if(data.data) {
           this.infoContrat = data.data;

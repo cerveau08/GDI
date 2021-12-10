@@ -167,7 +167,7 @@ export class DetailagenceComponent implements OnInit {
       }
     );
 
-    this.otherService.getAllStructure().subscribe(data => {
+    this.otherService.getAllStructure(1, 9999, null, null).subscribe(data => {
       this.dataStructure = data['data'];
     })
 

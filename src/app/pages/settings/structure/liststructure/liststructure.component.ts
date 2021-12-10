@@ -26,6 +26,12 @@ export class ListstructureComponent implements OnInit {
   data: any;
   successMsg: any;
   errorMsg: any;
+  listeStructure: any;
+  dataSociete: any;
+  dataDirection: any;
+  direction_id: any;
+  typeStructure_id: any;
+  dataParent: any;
   constructor(
     private modalService: ModalService,
     private router: Router,
@@ -33,26 +39,66 @@ export class ListstructureComponent implements OnInit {
               private otherService: OthersService) {
       this.addForm = new FormGroup({
         libelle: new FormControl(''),
-        code: new FormControl(''),
-        adresse: new FormControl(''),
-        regionId: new FormControl(''),
+        societe: new FormControl(''),
+        parentId: new FormControl(''),
+        directionId: new FormControl(''),
+        typeStructure_id: new FormControl(''),
+        service: new FormControl(''),
+        departement: new FormControl(''),
+        bu: new FormControl(''),
+        pole: new FormControl(''),
         id: new FormControl('')
       })
     }
   ngOnInit() {
+    this.listeStructure = [
+      {id: 1, libelle: "département"},
+      {id: 2, libelle: "pole"},
+      {id: 3, libelle: "bu"},
+      {id: 4, libelle: "service"},
+    ];
+    this.otherService.getAllSociete().subscribe(
+      data => {
+        this.dataSociete = data["data"];
+      }
+    );
     this.filterForm = new FormGroup({
-      region: new FormControl('')
+      societe: new FormControl(''),
+      direction_id: new FormControl(''),
+      typeStructure_id: new FormControl(''),
     })
     this.gty(this.page);
     this.regionListe();
+  }
+
+  directionsListe(value) {
+    console.log(value);
+    this.otherService.getAllDirection(value).subscribe(
+      data => {
+        this.dataDirection = data['data'];
+       }
+    ); 
+  }
+
+  parentListe(value) {
+    this.otherService.getAllStructure(1, 9999, value, null).subscribe(
+      data => {
+        this.dataParent = data['data'];
+       }
+    ); 
   }
   
   update(data, id) {
     this.addForm = new FormGroup({
       libelle: new FormControl(data.libelle),
-      code: new FormControl(data.code),
-      adresse: new FormControl(data.adresse),
-      regionId: new FormControl(data.region.id),
+      societe: new FormControl(data.societe),
+      parentId: new FormControl(data.parent.id),
+      directionId: new FormControl(data.direction.id),
+      typeStructure_id: new FormControl(data.typeStructure.id),
+      service: new FormControl(data.service),
+      departement: new FormControl(data.departement),
+      bu: new FormControl(data.bu),
+      pole: new FormControl(data.pole),
       id: new FormControl(data.id)
     })
     this.modalService.open(id);
@@ -67,11 +113,15 @@ export class ListstructureComponent implements OnInit {
   }
 
   gty(page: any){
-    this.region=this.filterForm.value.region;
-    if(this.region =='') {
-      this.region = null;
+    this.direction_id=Number(this.filterForm.value.direction_id);
+    if(this.direction_id =='') {
+      this.direction_id = null;
     } 
-    this.otherService.getAllStructure().subscribe(
+    this.typeStructure_id=Number(this.filterForm.value.typeStructure_id);
+    if(this.typeStructure_id =='') {
+      this.typeStructure_id = null;
+    }
+    this.otherService.getAllStructure(page, this.itemsPerPage, this.direction_id, this.typeStructure_id).subscribe(
       data => {
         this.data = data;
         this.dataSite = this.data.data;
@@ -81,7 +131,18 @@ export class ListstructureComponent implements OnInit {
   }
 
   ajouter() {
-    this.otherService.addSite(this.addForm.value).subscribe(
+    let formValue = {
+      libelle: this.addForm.value.libelle,
+     // societe: this.addForm.value.libelle,
+      parentId: Number(this.addForm.value.parentId),
+      directionId: Number(this.addForm.value.directionId),
+      typeStructureId: Number(this.addForm.value.typeStructure_id),
+      service: this.addForm.value.service,
+      departement: this.addForm.value.departement,
+      bu: this.addForm.value.bu,
+      pole: this.addForm.value.pole,
+    }
+    this.otherService.addStructure(formValue).subscribe(
       data =>{
         this.data = data;
         this.successMsg = this.data.status
@@ -103,7 +164,7 @@ export class ListstructureComponent implements OnInit {
   }
 
   modifier() {
-    this.otherService.updateSite(this.addForm.value.id, this.addForm.value).subscribe(
+    this.otherService.updateStructure(this.addForm.value.id, this.addForm.value).subscribe(
       data =>{
         this.data = data;
         this.successMsg = this.data.status
@@ -125,7 +186,7 @@ export class ListstructureComponent implements OnInit {
   }
 
   supprimer(id) {
-    this.otherService.deleteSite(id).subscribe(
+    this.otherService.deleteStructure(id).subscribe(
       data =>{
         this.data = data;
         this.successMsg = this.data.status
