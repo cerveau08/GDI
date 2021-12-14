@@ -121,6 +121,11 @@ addAgence(data) {
   getAllDirection(id: number){
     return this.http.get(`${this.reqUrl}/direction/${id}`);
   }
+  getListDirection(id: number){
+    let data = {societe_id: id}
+    return this.http.post(`${this.reqUrl}/listDirection`, data);
+  }
+  
   getAllService(id: number){
     return this.http.get(`${this.reqUrl}/services/${id}`);
   }
@@ -478,7 +483,7 @@ addAgence(data) {
   }
 
   addDirection(data){
-    return this.http.post<any>(`${this.reqUrl}/direction`, data);
+    return this.http.post<any>(`${this.reqUrl}/addDirection`, data);
   }
   
   addSite(data){
@@ -492,6 +497,14 @@ addAgence(data) {
 
   updateSite(id, data){
     return this.http.post<any>(`${this.reqUrl}/updateSite/${id}`, data);
+  }
+
+  updateDirection(data){
+    return this.http.post<any>(`${this.reqUrl}/updateDirection`, data);
+  }
+
+  deleteDirection(id){
+    return this.http.get<any>(`${this.reqUrl}/deleteDirection/${id}`);
   }
 
   deleteSite(id){

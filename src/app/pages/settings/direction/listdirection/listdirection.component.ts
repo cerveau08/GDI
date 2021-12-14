@@ -66,20 +66,20 @@ export class ListdirectionComponent implements OnInit {
   gty(page: any){
     console.log(this.idSociete);
     this.idSociete = this.filterForm.value.region;
-    if(this.idSociete == '') {
+    if(this.idSociete == '' || this.idSociete == undefined) {
       this.idSociete = null;
     } 
-    this.otherService.getAllDirection(this.idSociete).subscribe(
+    this.otherService.getListDirection(this.idSociete).subscribe(
       data => {
         this.data = data;
-        this.dataSite = this.data.data;
-        this.totalItems = this.data.total;
+        this.dataSite = this.data[0].data;
+        this.totalItems = this.data[0].total;
       }
     )
   }
 
   ajouter() {
-    this.otherService.addSite(this.addForm.value).subscribe(
+    this.otherService.addDirection(this.addForm.value).subscribe(
       data =>{
         this.data = data;
         this.successMsg = this.data.status
@@ -101,7 +101,7 @@ export class ListdirectionComponent implements OnInit {
   }
 
   modifier() {
-    this.otherService.updateSite(this.addForm.value.id, this.addForm.value).subscribe(
+    this.otherService.updateDirection(this.addForm.value).subscribe(
       data =>{
         this.data = data;
         this.successMsg = this.data.status
