@@ -17,7 +17,6 @@ export class ErrorInterceptor implements HttpInterceptor {
             if ([401, 403].includes(err.status) && this.authService.currentUserValue) {
                 this.authService.logout();
             } 
-            console.error(err);
             return throwError(error);
         }))
     }
