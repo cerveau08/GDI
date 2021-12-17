@@ -194,7 +194,7 @@ export class DetailinterComponent implements OnInit {
         )
       }
     );
-    if(this.user == 'DRH') {
+    if(this.user == 'DRH' || this.user == 'RH_GDI') {
       this.showButton = false;
     } else {
       this.showButton = true;

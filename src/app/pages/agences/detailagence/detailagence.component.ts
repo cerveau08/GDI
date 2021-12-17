@@ -125,7 +125,7 @@ export class DetailagenceComponent implements OnInit {
 
   ngOnInit() {
     this.user = localStorage.getItem('user');
-    if(this.user == 'AGN' || this.user == 'DRH') {
+    if(this.user == 'AGN' || this.user == 'DRH' || this.user == 'RH_GDI') {
       this.showupdate = true;
     } else {
       this.showupdate = false;

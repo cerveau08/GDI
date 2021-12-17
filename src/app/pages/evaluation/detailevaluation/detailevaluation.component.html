@@ -10,7 +10,7 @@
         </div>
         <div class="content-bouton-reconduire-periode">
             <button *ngIf="role == 'MNG'" class="button-reconduire-objectif" (click)="reconduireobjectif();">Reconduire ces objectifs</button>
-            <button class="button-extraction-evaluation" (click)="extraire()" *ngIf="role == 'DRH'">Extraire</button>
+            <button class="button-extraction-evaluation" (click)="extraire()" *ngIf="role == 'DRH' || role == 'RH_GDI'">Extraire</button>
         </div>
         <div class="grid-container" *ngIf="item">
             <div class="information">

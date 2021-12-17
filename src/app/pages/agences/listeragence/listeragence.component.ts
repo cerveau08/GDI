@@ -42,7 +42,7 @@ export class ListeragenceComponent implements OnInit {
 
   ngOnInit() {
     this.user = localStorage.getItem('user');
-    if(this.user == 'drh') {
+    if(this.user == 'DRH' || this.user != 'RH_GDI') {
       this.showupdate = true;
     } else {
       this.showupdate = false;

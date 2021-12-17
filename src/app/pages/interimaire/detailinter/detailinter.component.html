@@ -11,7 +11,7 @@
                 <button *ngIf="etat == 'actif' && role == 'AGN'"  (click)="modifierInter()" class="button-modifier">Modifier</button>
                 <div *ngIf="etat == 'En attente'">
                     <button *ngIf="role == 'AGN'" (click)="modifierInter()" class="button-modifier">Modifier</button>
-                    <button *ngIf="role == 'DRH'" (click)="openModal('custom-modal-8')" class="button-modifier">Valider</button>
+                    <button *ngIf="role == 'DRH' || role == 'RH_GDI'" (click)="openModal('custom-modal-8')" class="button-modifier">Valider</button>
                 </div>
                 <button *ngIf="etat == 'actif' && role == 'MNG' && (!emailPro || emailPro==undefined)"  (click)="openModal('custom-modal-9')" class="button-add-email">Ajouter Email</button>
             </div>
@@ -153,8 +153,8 @@
             <button class="button-historique" (click)="historiqueContrat()">Historique Contrat</button>
             <button *ngIf="role == 'AGN'" class="button5" (click)="openModal('custom-modal-4')">Ajouter contrat</button>
             <button *ngIf="role == 'AGN'" class="button6" (click)="openModal('custom-modal-5')">Reconduire contrat</button>
-            <button *ngIf="role == 'DRH' && sameIdSociete" class="button7" (click)="openModal('custom-modal-6')">Arrêter contrat</button>
-            <button *ngIf="role == 'DRH' && sameIdSociete" class="button8" (click)="openModal('custom-modal-7')">Bannir Interimaire</button>
+            <button *ngIf="(role == 'DRH' || role == 'RH_GDI') && sameIdSociete" class="button7" (click)="openModal('custom-modal-6')">Arrêter contrat</button>
+            <button *ngIf="(role == 'DRH' || role == 'RH_GDI') && sameIdSociete" class="button8" (click)="openModal('custom-modal-7')">Bannir Interimaire</button>
         </div>
     </div>
 </div>

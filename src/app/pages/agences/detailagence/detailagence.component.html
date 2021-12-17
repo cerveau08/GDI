@@ -245,7 +245,7 @@
                                 </select> -->
                                 <input class="input3"  type="text" formControlName="fonction"  placeholder="Fonction">
                             </div>
-                            <!-- <div *ngIf="user != 'DRH'" class="infoinput1">
+                            <!-- <div *ngIf="user != 'DRH' || user != 'RH_GDI'" class="infoinput1">
                                 <input type="text" list="fonctions" formControlName="fonction" (change)="saveFonction($event)"  placeholder="Fonction">
                                 <datalist id="fonctions">
                                     <option *ngFor="let c of listeFonction" [value]="c.libelle" >{{c.libelle}}</option>

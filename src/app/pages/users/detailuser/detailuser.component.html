@@ -33,7 +33,7 @@
         </div>
         <div *ngIf="role != 'INT'" class="lesbouton">
             <button *ngIf="role != 'MNG'" class="button1" (click)="modifierUser()">Modifier</button>
-            <div *ngIf="role == 'DRH'">
+            <div *ngIf="role == 'DRH' || role == 'RH_GDI'">
                 <button *ngIf="dataUser?.isBlocked == false" (click)="openModal('custom-modal-7');" class="button-desactiver-user" >Désactiver Utilisateur</button>
                 <button *ngIf="dataUser?.isBlocked == true" (click)="openModal('custom-modal-8');" class="button-activer-user" >Activer Utilisateur</button>
             </div>
