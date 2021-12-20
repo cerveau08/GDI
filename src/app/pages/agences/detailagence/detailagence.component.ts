@@ -89,41 +89,40 @@ export class DetailagenceComponent implements OnInit {
     private route: Router) { 
       this.activeroute.queryParams.subscribe(params => {
         this.item = JSON.parse(params["agence"]);
-        this.otherService.getOneAgenceById(this.item).subscribe(
-          data =>{
-            this.data = data;
-            this.dataAgence = this.data.data;
-            this.nom = this.dataAgence.nom;
-            this.responsable  = this.dataAgence.responsable;
-            this.numDg = this.dataAgence.numDg;
-            this.email = this.dataAgence.email;
-            this.telephone = this.dataAgence.telephone;
-            this.contratDoc = this.reqUrl + '/public' + this.dataAgence.contrat;
-            this.nineaDoc = this.reqUrl + '/public' + this.dataAgence.ninea;
-            this.rccmDoc = this.reqUrl + '/public' + this.dataAgence.rccm;
-            this.cnidgDoc = this.reqUrl + '/public' + this.dataAgence.cnidg;
-            this.site = this.dataAgence.site;
-            this.adresse = this.dataAgence.adresse;
-            this.logo = this.dataAgence.logo;
-            this.contrat = this.dataAgence.contrat;
-          //  this.cnidg = this.dataAgence.data.cnidg;
-            this.userAgence = this.dataAgence['user'];
-            
-          }
-        );
       })
 
-      this.otherService.getTotalAgenceActifInactif(this.item).subscribe(
-        data =>{
-          this.data = data;
-          this.dataTotalAgence = this.data;
-          this.total = this.dataTotalAgence.total;
-          this.actifs = this.dataTotalAgence.actifs;
-          this.inactifs = this.dataTotalAgence.inactifs;
-        });
     }
 
   ngOnInit() {
+    this.otherService.getOneAgenceById(this.item).subscribe(
+      data =>{
+        this.data = data;
+        this.dataAgence = this.data.data;
+        this.nom = this.dataAgence.nom;
+        this.responsable  = this.dataAgence.responsable;
+        this.numDg = this.dataAgence.numDg;
+        this.email = this.dataAgence.email;
+        this.telephone = this.dataAgence.telephone;
+        this.contratDoc = this.reqUrl + '/public' + this.dataAgence.contrat;
+        this.nineaDoc = this.reqUrl + '/public' + this.dataAgence.ninea;
+        this.rccmDoc = this.reqUrl + '/public' + this.dataAgence.rccm;
+        this.cnidgDoc = this.reqUrl + '/public' + this.dataAgence.cnidg;
+        this.site = this.dataAgence.site;
+        this.adresse = this.dataAgence.adresse;
+        this.logo = this.dataAgence.logo;
+        this.contrat = this.dataAgence.contrat;
+        this.userAgence = this.dataAgence['user'];
+      }
+    );
+    this.otherService.getTotalAgenceActifInactif(this.item).subscribe(
+      data =>{
+        this.data = data;
+        this.dataTotalAgence = this.data;
+        this.total = this.dataTotalAgence.total;
+        this.actifs = this.dataTotalAgence.actifs;
+        this.inactifs = this.dataTotalAgence.inactifs;
+      }
+    );
     this.user = localStorage.getItem('user');
     if(this.user == 'AGN' || this.user == 'DRH' || this.user == 'RH_GDI') {
       this.showupdate = true;
@@ -219,6 +218,7 @@ export class DetailagenceComponent implements OnInit {
           this.toastr.success('L\'utilisateur a été ajouté', 'Sucess', {
             timeOut: 3000,
           });
+          this.ngOnInit();
           this.closeModal('custom-modal-3');
           //this.route.navigate(['/accueil/listeuser']);
           this.ngOnInit();
