@@ -13,7 +13,7 @@
                     <button *ngIf="role == 'AGN'" (click)="modifierInter()" class="button-modifier">Modifier</button>
                     <button *ngIf="role == 'DRH' || role == 'RH_GDI'" (click)="openModal('custom-modal-8')" class="button-modifier">Valider</button>
                 </div>
-                <button *ngIf="etat == 'actif' && role == 'MNG' && (!emailPro || emailPro==undefined)"  (click)="openModal('custom-modal-9')" class="button-add-email">Ajouter Email</button>
+                <button *ngIf="etat == 'actif' && isManager == true && (!emailPro || emailPro==undefined)"  (click)="openModal('custom-modal-9')" class="button-add-email">Ajouter Email</button>
             </div>
         </div>
         <div class="progres">
