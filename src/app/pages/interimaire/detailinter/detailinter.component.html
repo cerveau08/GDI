@@ -32,7 +32,7 @@
             </div>
             <div class="date">
                 <p class="datedebut">{{dataInter?.contrat.dateDebut | date:' dd MMMM yyyy'}}</p>
-                <p class="datefin">{{dateFin | date:' dd MMMM yyyy'}}</p>
+                <p class="datefin">{{dataInter?.contrat.dateFin | date: 'dd MMMM yyyy'}}</p>
             </div>
         </div>
         <div class="grid-container" *ngIf="item">
