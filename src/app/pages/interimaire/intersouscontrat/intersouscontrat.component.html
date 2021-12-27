@@ -1,5 +1,9 @@
 <div class="all-container">
     <div class="tableau">
+        <ngx-loading [show]="loading" [config]="{
+            backdropBackgroundColour: 'white', backdropBorderRadius: '10px',
+            primaryColour: '#009393', secondaryColour: '#ff7900', tertiaryColour: '#009393' }">
+        </ngx-loading>
         <p class="detail1" id="mydesc">Liste des interimaires sous contrat</p>
         <div class="exporter">
             <form [formGroup]="filterForm">

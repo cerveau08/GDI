@@ -18,6 +18,7 @@ import { ErrormodalService } from 'src/app/modal/_errormodals';
 })
 export class InterarchiveComponent implements OnInit {
 
+  loading = false;
   public datas: any;
   pager: any = {};
   id;
@@ -98,6 +99,7 @@ export class InterarchiveComponent implements OnInit {
 
 
   gty(page: any){
+    this.loading = true;
     if(this.filterForm.value.admissible == undefined || this.filterForm.value.admissible == "") {
       this.admissible = null;
     } else {
@@ -109,8 +111,13 @@ export class InterarchiveComponent implements OnInit {
       this.societe = this.filterForm.value.societe;
     }
     this.otherService.listArchivedFilter(page, this.itemsPerPage, this.admissible, this.societe).subscribe((data: any) => {
-      this.dataInterArchiv =  data.data;
-      this.totalItems = data.total;
+      if(data.status == true) {
+        this.loading = false;
+        this.dataInterArchiv =  data.data;
+        this.totalItems = data.total;
+      } else {
+        this.loading = false;
+      }
     })
   }
 

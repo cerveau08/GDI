@@ -137,6 +137,8 @@ export class InterenattenteComponent implements OnInit {
         this.loading = false;
         this.dataInter =  data.data;
         this.totalItems = data.total;
+      } else {
+        this.loading = false;
       }
     })
   }

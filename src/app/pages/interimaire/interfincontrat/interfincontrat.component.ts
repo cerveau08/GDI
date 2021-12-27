@@ -18,6 +18,7 @@ import { ErrormodalService } from 'src/app/modal/_errormodals';
 })
 export class InterfincontratComponent implements OnInit {
 
+  loading = false;
   public datas: any;
   pager: any = {};
   id;
@@ -143,6 +144,7 @@ export class InterfincontratComponent implements OnInit {
   }
 
   gty(page: any){
+    this.loading = true;
     if (this.filterForm.value.poste == undefined) {
       this.filterForm.patchValue({poste: ''});
     }
@@ -162,8 +164,13 @@ export class InterfincontratComponent implements OnInit {
       this.direction = this.filterForm.value.direction;
     }
     this.otherService.getInterimaireFinContrat(page, this.itemsPerPage, this.matricule, this.poste, this.agence, this.societe, this.direction).subscribe((data: any) => {
-      this.dataFinContrat =  data.data;
-      this.totalItems = data.total;
+      if(data.status == true) {
+        this.loading = false;
+        this.dataFinContrat =  data.data;
+        this.totalItems = data.total;
+      } else {
+        this.loading = false;
+      }
     })
   }
   openDetail(data) {

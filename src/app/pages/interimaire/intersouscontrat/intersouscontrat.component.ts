@@ -19,6 +19,7 @@ import { NgxFileSaverService } from '@clemox/ngx-file-saver';
   styleUrls: ['./intersouscontrat.component.scss']
 })
 export class IntersouscontratComponent implements OnInit {
+  loading = false;
   public data; any;
   date = new Date();
   public datas: any;
@@ -172,6 +173,7 @@ export class IntersouscontratComponent implements OnInit {
   }
 
   gty(page: any){
+    this.loading = true;
     if (this.filterForm.value.poste == undefined) {
       this.filterForm.patchValue({poste: ''});
     }
@@ -183,9 +185,15 @@ export class IntersouscontratComponent implements OnInit {
       this.societe = this.filterForm.value.societe;
       this.direction = this.filterForm.value.direction;
     this.otherService.getInterimaireSousContrat(page, this.itemsPerPage, this.matricule, this.poste, this.agence, this.societe, this.direction).subscribe((data: any) => {
-      this.dataInter =  data.data;
-      this.totalItems = data.total;
+      if(data.status == true) {
+        this.loading = false;
+        this.dataInter =  data.data;
+        this.totalItems = data.total;
+      } else {
+        this.loading = false;
+      }
     }, error=> {
+      this.loading = false;
       this.errorMsg = error;
       this.toastr.error(this.errorMsg, 'Echec', {
         timeOut: 5000,
