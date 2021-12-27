@@ -65,7 +65,7 @@
                         </div>
                         <div>
                             <p class="label-input1">Société<span class="signe-obligatoire">*</span></p>
-                            <select class="select5" formControlName="societe">
+                            <select class="select5" formControlName="societe_id">
                                 <option class="option" value="" disabled selected hidden>Société</option>
                                 <option *ngFor="let data of dataRegion" [value]="data.id">{{data.libelle}}</option>
                             </select>

@@ -32,7 +32,7 @@
             </div>
         </div>
         <div *ngIf="role != 'INT'" class="lesbouton">
-            <button *ngIf="role != 'MNG'" class="button1" (click)="modifierUser()">Modifier</button>
+            <button *ngIf="role != 'MNG'" class="button1" (click)="openModal('custom-modal-1');">Modifier</button>
             <div *ngIf="role == 'DRH' || role == 'RH_GDI'">
                 <button *ngIf="dataUser?.isBlocked == false" (click)="openModal('custom-modal-7');" class="button-desactiver-user" >Désactiver Utilisateur</button>
                 <button *ngIf="dataUser?.isBlocked == true" (click)="openModal('custom-modal-8');" class="button-activer-user" >Activer Utilisateur</button>
@@ -41,46 +41,51 @@
     </div>
 </div>
 
-<!--modal 8-->
-<!-- <div class="modal">
+<!--modal-3-->
+<div class="modal">
     <jw-modal id="custom-modal-1">
-        <form [formGroup]="userForm">
-            <div class="tableau">
-                <mat-icon style="cursor: pointer;" (click)="closeModal('custom-modal-1');" class="clear">clear</mat-icon>
-                <p class="dtl1">Modifier Utilisateur</p>
-                <div class="grid-container-detail-user">
-                    <div class="content-image">
-                        <img src="../../../assets/images/default.png" alt="">
-                        <img src="" alt="">
-                        <input type="file">
+        <h1 class="detail">Modifier Utilisateur</h1>
+        <mat-icon style="cursor: pointer;" (click)="closeModal('custom-modal-1');" class="clear">clear</mat-icon>
+        <div>
+            <div class="form-add-user-agent">
+                <form [formGroup]="userAgentForm">
+                    <div class="content-form-add-user">
+                        <div class="image">
+                            <!-- <div *ngIf="!image" class="content-image-upload"></div> -->
+                            <img class="image-manager" *ngIf="!image" [src]="photo" alt="">
+                            <img class="image-manager" *ngIf="image" [src]="image" alt="">
+                            <input formControlName="avatarUser" class="buttonphoto2" type="file" (change)="getPhoto($event.target)">
+                        </div>
+                        <div>
+                            <div class="infoinput2">
+                                <input type="text" [(ngModel)]="prenom" formControlName="prenomUser"  placeholder="Prénom">
+                                <input class="input3" [(ngModel)]="nom" type="text" formControlName="nomUser" placeholder="Nom">
+                            </div>
+                            <div class="infoinput1">
+                                <input type="text" [(ngModel)]="email" formControlName="emailUser" placeholder="Email">
+                                <div class="form-control-feedback"
+                                    *ngIf="userAgentForm.controls['emailUser'].errors && (userAgentForm.controls['emailUser'].dirty || userAgentForm.controls['emailUser'].touched)">
+                                    <p class="error-alert" *ngIf="userAgentForm.controls['emailUser'].errors.required">l'email est obligatoire</p>
+                                    <p class="error-alert" *ngIf="userAgentForm.controls['emailUser'].errors.pattern">l'email doit ètre de ce format example@domaine.nom</p>
+                                </div>
+                            </div>
+                            <div class="infoinput2">
+                                <input type="number" [(ngModel)]="telephone" formControlName="telephoneUser"  placeholder="Téléphone">
+                                <input class="input3" [(ngModel)]="fonction" type="text" formControlName="fonction"  placeholder="Fonction">
+                            </div>
+                            <div class="content-error-msg" *ngIf="successMsg == false">
+                                <p class="error-alert">{{ data?.message}}</p>
+                            </div>
+                            <div class="content-button">
+                                <button (click)="ajouterUser()" class="buttob-envoyer">Valider</button>
+                            </div>
+                        </div>
                     </div>
-                    <div>
-                        <div class="input-v">
-                            <p class="libelle-motif">Matricule</p>
-                            <input class="input-valider" type="text" formControlName="matricule" placeholder="Matricule">
-                        </div>
-                        <div class="input-v">
-                            <p class="libelle-motif">Email</p>
-                            <input class="input-valider" type="text" formControlName="email" placeholder="Email">
-                        </div>
-                        <div class="input-v">
-                            <p class="libelle-motif">Matricule</p>
-                            <input class="input-valider" type="text" formControlName="matricule" placeholder="Matricule">
-                        </div>
-                        <div class="input-v">
-                            <p class="libelle-motif">Email</p>
-                            <input class="input-valider" type="text" formControlName="email" placeholder="Email">
-                        </div>
-                    </div>
-                    <div class="btns3">
-                        <button (click)="validerInterimaire() "  class="button5">Valider</button>
-                    </div>
-                </div>
+                </form>
             </div>
-        </form>
+        </div>
     </jw-modal>
-</div> -->
-
+</div>
 
 <!--modal7-->
 <div class="modal">
@@ -165,19 +170,3 @@
     </form>
     </jw-modal>
 </div>
-<!--modal1-->
-<div class="modal">
-    <sonatel-pma-errormodal id="error-modal-1">
-        <div class="error-modal-all" >
-            <mat-icon style="cursor: pointer;" (click)="closeErrorModal('error-modal-1');" class="clear-error">clear</mat-icon>
-            <div class="error-content-image">
-                <div class="error-image"></div>
-            </div>
-            <p class="error-text">{{errorMsg}}</p>
-            <p class="error-message-admin">Veuillez contacter l'administrateur du site à partir de la page paramètre</p> 
-            <div class="error-content-button">
-                <button (click)="closeErrorModal('error-modal-1');" class="error-button">Ok</button>
-            </div>
-        </div>
-    </sonatel-pma-errormodal>
-  </div>

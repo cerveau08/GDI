@@ -264,10 +264,10 @@ export class DetailagenceComponent implements OnInit {
     } 
 
     //recuperation de l'image
- getPhoto(e:any) {
-    this.logo= e.files.item(0);
+  getPhoto(e:any) {
+    this.fichierPhoto = e.files[0];
     let reader = new FileReader();
-    reader.readAsDataURL(this.logo)
+    reader.readAsDataURL(this.fichierPhoto)
     reader.onload= ()=>{
       this.image= reader.result
     } 

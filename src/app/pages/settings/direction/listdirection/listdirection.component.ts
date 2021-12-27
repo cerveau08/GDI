@@ -33,7 +33,7 @@ export class ListdirectionComponent implements OnInit {
               private otherService: OthersService) {
       this.addForm = new FormGroup({
         libelle: new FormControl(''),
-        societe: new FormControl(''),
+        societe_id: new FormControl(''),
         id: new FormControl('')
       })
     }
@@ -82,9 +82,9 @@ export class ListdirectionComponent implements OnInit {
     this.otherService.addDirection(this.addForm.value).subscribe(
       data =>{
         this.data = data;
-        this.successMsg = this.data.status
+        this.successMsg = this.data[0].status
         if(this.successMsg == true) {
-          this.toastr.success(this.data.message, 'Success', {
+          this.toastr.success(this.data[0].message, 'Success', {
             timeOut: 3000,
           });
           this.closeModal('custom-modal-1');
@@ -104,9 +104,9 @@ export class ListdirectionComponent implements OnInit {
     this.otherService.updateDirection(this.addForm.value).subscribe(
       data =>{
         this.data = data;
-        this.successMsg = this.data.status
+        this.successMsg = this.data[0].status
         if(this.successMsg == true) {
-          this.toastr.success(this.data.message, 'Success', {
+          this.toastr.success(this.data[0].message, 'Success', {
             timeOut: 3000,
           });
           this.closeModal('custom-modal-1');

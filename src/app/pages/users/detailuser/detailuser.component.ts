@@ -1,6 +1,6 @@
 import { ToastrService } from 'ngx-toastr';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { OthersService } from 'src/app/services/others.service';
 import { ModalService } from 'src/app/modal/_modal';
@@ -57,6 +57,8 @@ export class DetailuserComponent implements OnInit {
   successMsgBannir: any;
   dataBannir: any;
   successMsg: any;
+  userAgentForm: FormGroup;
+  logo: any;
   constructor(private activeroute: ActivatedRoute,
               private modalService: ModalService,
               private otherService: OthersService,
@@ -66,7 +68,21 @@ export class DetailuserComponent implements OnInit {
     this.activeroute.queryParams.subscribe(params => {
       this.item = JSON.parse(params["user"]);
     })
-    
+    this.userAgentForm = new FormGroup({
+      prenomUser: new FormControl('', Validators.required,),
+      nomUser: new FormControl('', Validators.required,),
+      emailUser: new FormControl('', [
+        Validators.required,
+        Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
+      ]),
+      telephoneUser: new FormControl('', Validators.required,),
+      fonction: new FormControl('', Validators.required,),
+      login: new FormControl(''),
+      profil: new FormControl(''),
+      avatarUser: new FormControl(''),
+      agenceId: new FormControl(''),
+      id: new FormControl(this.item)
+    })
   }
   ngOnInit() {
     this.role = localStorage.getItem('user');
@@ -78,10 +94,9 @@ export class DetailuserComponent implements OnInit {
        this.prenom = this.dataUser.prenom;
        this.email = this.dataUser.email;
        this.fonction = this.dataUser.fonction;
-      this.telephone = this.dataUser.telephone;
-       //this.agence = this.dataUser.agence;
+       this.telephone = this.dataUser.telephone;
        this.matricule = this.dataUser.matricule;
-       this.photo = this.dataUser.photo;
+       this.photo = this.reqUrl + this.dataUser.avatar;
       }
     );
     this.contratForm = new FormGroup({
@@ -123,42 +138,38 @@ export class DetailuserComponent implements OnInit {
     });
   }
 
-  getPhoto(event: any) {
-    this.fichierPhoto = event.target.files[0];
-    this.photoName = this.fichierPhoto.name;
+  getPhoto(e:any) {
+    this.fichierPhoto= e.files[0];
     let reader = new FileReader();
-    reader.readAsDataURL( this.fichierPhoto);
+    reader.readAsDataURL(this.fichierPhoto)
     reader.onload= ()=>{
-      this.image= reader.result;
-    }
+      this.image= reader.result
+    } 
   }
 
   ajouterUser() {
     const formdata = new FormData(); 
-    formdata.append("prenom",this.userForm.value.prenom);
-    formdata.append("nom",this.userForm.value.nom);
-    formdata.append("profil",this.userForm.value.profil);
-    formdata.append("fonction",this.userForm.value.fonction);
-    formdata.append("agenceId",this.userForm.value.agenceId);
-    formdata.append("email",this.userForm.value.email);
-    formdata.append("telephone",this.userForm.value.telephone);
-    if(this.userForm.value.matricule != undefined) {
-      formdata.append("matricule",this.userForm.value.matricule);
-    }
-    formdata.append("interimaireId",this.userForm.value.interimaireId);
-    formdata.append("structureId",this.userForm.value.structureId);
+    formdata.append("prenom",this.userAgentForm.value.prenomUser);
+    formdata.append("nom",this.userAgentForm.value.nomUser);
+    //formdata.append("profil",this.userAgentForm.value.profil);
+    formdata.append("fonction",this.userAgentForm.value.fonction);
+    //formdata.append("agenceId",this.item);
+    formdata.append("email",this.userAgentForm.value.emailUser);
+    formdata.append("telephone",this.userAgentForm.value.telephoneUser);
     formdata.append("avatar",this.fichierPhoto);
-    this.otherService.addUser(formdata).subscribe(
+    this.otherService.updateUser(formdata, this.item).subscribe(
       (response) =>{
         this.data = response;
         this.successMsg = this.data.status
-        if (this.successMsg == true) {
-          this.toastr.success(this.data.message, 'Success', {
+        if(this.successMsg == true) {
+          this.toastr.success('L\'utilisateur a été ajouté', 'Sucess', {
             timeOut: 3000,
           });
-          this.router.navigate(['/accueil/listeuser']);
+          this.ngOnInit();
+          this.closeModal('custom-modal-1');
         }
-      }, error=> {
+      },
+      error=> {
         this.errorMsg = error;
         this.toastr.error(this.errorMsg, 'Echec', {
           timeOut: 5000,

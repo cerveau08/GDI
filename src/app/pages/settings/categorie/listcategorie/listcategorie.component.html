@@ -3,7 +3,7 @@
         <p class="statt-header">Gestion Catégorie</p>
         
         <div class="content-all-liste-site">
-            <button class="button-add" (click)="openModal('custom-modal-1');">Ajouter un catégorie</button>
+            <button class="button-add" (click)="openModal('custom-modal-1');">Ajouter une catégorie</button>
             <table style="overflow-x:auto;"aria-describedby = "mydesc" >
                 <thead>
                     <tr class="head">
@@ -29,7 +29,7 @@
  <!--modal-4-->
  <div class="modal">
     <jw-modal id="custom-modal-1">
-        <h1 class="modal-renouveler">Ajouter un catégorie</h1>
+        <h1 class="modal-renouveler">Ajouter une catégorie</h1>
         <mat-icon style="cursor: pointer;" (click)="closeModal('custom-modal-1');" class="clear-renouveler">clear</mat-icon>
         <div class="form-contrat">
             <form [formGroup]="addForm">

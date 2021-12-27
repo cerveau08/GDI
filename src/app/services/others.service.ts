@@ -163,6 +163,8 @@ addAgence(data) {
   addUser(data) {
     return this.http.post<any>(`${this.reqUrl}/users/create`, data);
   }
+
+  
   renouvelerContrat(data) {
     return this.http.post<any>(`${this.reqUrl}/ajoutContrat`, data);
   }

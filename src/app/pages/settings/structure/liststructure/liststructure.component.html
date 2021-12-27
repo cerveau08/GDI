@@ -33,7 +33,7 @@
                     </div>
                 </div>
             </form>
-            <button class="button-add" (click)="openModal('custom-modal-1');">Ajouter un site</button>
+            <button class="button-add" (click)="openModal('custom-modal-1');">Ajouter une structure</button>
             <table style="overflow-x:auto;"aria-describedby = "mydesc" >
                 <thead>
                     <tr class="head">
@@ -69,7 +69,7 @@
 </div>
  <div class="modal">
     <jw-modal id="custom-modal-1">
-        <h1 class="modal-renouveler">Ajouter un Site</h1>
+        <h1 class="modal-renouveler">Ajouter une structure</h1>
         <mat-icon style="cursor: pointer;" (click)="closeModal('custom-modal-1');" class="clear-renouveler">clear</mat-icon>
         <div class="form-contrat">
             <form [formGroup]="addForm">
