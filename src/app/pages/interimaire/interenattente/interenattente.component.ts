@@ -26,7 +26,7 @@ export class InterenattenteComponent implements OnInit {
   attestationForm: FormGroup;
   page = 1;
   itemsPerPage = 10;
-  itemsParPage = null;
+  itemsParPage = '';
   totalItems : any;
   form: FormGroup;
   checkedList:any;
