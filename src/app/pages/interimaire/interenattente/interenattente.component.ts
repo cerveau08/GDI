@@ -17,6 +17,7 @@ import { ErrormodalService } from 'src/app/modal/_errormodals';
 })
 export class InterenattenteComponent implements OnInit {
 
+  loading = false;
   public data; any;
   public datas: any;
   date: any;
@@ -25,6 +26,7 @@ export class InterenattenteComponent implements OnInit {
   attestationForm: FormGroup;
   page = 1;
   itemsPerPage = 10;
+  itemsParPage = null;
   totalItems : any;
   form: FormGroup;
   checkedList:any;
@@ -46,7 +48,6 @@ export class InterenattenteComponent implements OnInit {
   dataDirection: any;
   constructor(public datepipe: DatePipe,
     public router: Router,
-    private fb: FormBuilder,
     private modalService: ModalService,
     private otherService: OthersService,
     private errormodalService: ErrormodalService,
@@ -92,7 +93,7 @@ export class InterenattenteComponent implements OnInit {
 
     this.otherService.getFonctions().subscribe(data => this.listeFonction = data.data);
 
-    this.http.get(this.reqUrl + `/listeAgence?page=1&limit=100`).subscribe((data: any) => {
+    this.otherService.listeAgence(this.page, this.itemsParPage).subscribe((data: any) => {
       this.dataAgence =  data.data;
     })
   }
@@ -112,6 +113,7 @@ export class InterenattenteComponent implements OnInit {
   }
   
   gty(page: any){
+    this.loading = true;
     if (this.filterForm.value.poste == undefined) {
       this.filterForm.patchValue({poste: ''});
     }
@@ -131,8 +133,11 @@ export class InterenattenteComponent implements OnInit {
       this.direction = this.filterForm.value.direction;
     }
     this.otherService.getInterimaireEnattente(page, this.itemsPerPage, this.cni, this.poste, this.agence, this.societe, this.direction).subscribe((data: any) => {
-      this.dataInter =  data.data;
-      this.totalItems = data.total;
+      if(data.status == true) {
+        this.loading = false;
+        this.dataInter =  data.data;
+        this.totalItems = data.total;
+      }
     })
   }
 
@@ -142,6 +147,8 @@ export class InterenattenteComponent implements OnInit {
     }
     this.otherService.extraireInterimaire(this.filterForm.value).subscribe(
       data => {
+        console.log(data);
+        
         this.data = data;
         this.successMsg = this.data.status
         if(this.successMsg == true) {

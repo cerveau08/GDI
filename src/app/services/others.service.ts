@@ -366,6 +366,11 @@ addAgence(data) {
     return this.http.get<any>(this.reqUrl + '/interimSousContrat', {params: data});
   }
 
+  listeAgence(page, limit) {
+    const data = {page: page, limit: limit};
+    return this.http.get<any>(this.reqUrl + '/listeAgence', {params: data});
+  }
+
   listAttestationFilter(page,limit, mois, annee, reference) {
     const data = {page: page, limit: limit, mois: mois,  annee: annee ,reference: reference};
     return this.http.get<any>(this.reqUrl + '/listeAttestation', {params: data});
