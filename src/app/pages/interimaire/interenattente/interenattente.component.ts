@@ -53,27 +53,27 @@ export class InterenattenteComponent implements OnInit {
     private http: HttpClient,
     private toastr: ToastrService
     ) {
-      this.form = this.fb.group({
-        checkArray: this.fb.array([])
-      });
+      // this.form = this.fb.group({
+      //   checkArray: this.fb.array([])
+      // });
     }
 
   ngOnInit() {
     this.role = localStorage.getItem('user')
-    this.attestationForm = new FormGroup({
-      interim_id: new FormControl(''),
-      dateDebut: new FormControl(''),
-      dateFin: new FormControl(''),
-      contrat_id: new FormControl(''),
-      nbr_jr_absence: new FormControl(''),
-      periode_id: new FormControl(''),
-      statut_id: new FormControl(''),
-      prenom: new FormControl(''),
-      nom: new FormControl(''),
-      poste: new FormControl(''),
-      matricule: new FormControl(''),
-      agence: new FormControl(''),
-    });
+    // this.attestationForm = new FormGroup({
+    //   interim_id: new FormControl(''),
+    //   dateDebut: new FormControl(''),
+    //   dateFin: new FormControl(''),
+    //   contrat_id: new FormControl(''),
+    //   nbr_jr_absence: new FormControl(''),
+    //   periode_id: new FormControl(''),
+    //   statut_id: new FormControl(''),
+    //   prenom: new FormControl(''),
+    //   nom: new FormControl(''),
+    //   poste: new FormControl(''),
+    //   matricule: new FormControl(''),
+    //   agence: new FormControl(''),
+    // });
 
     this.filterForm = new FormGroup({
       societe: new FormControl(''),
