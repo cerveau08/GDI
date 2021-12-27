@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {environment} from '../../environments/environment';
 import {Observable} from 'rxjs';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -9,10 +9,13 @@ import {HttpClient} from '@angular/common/http';
 export class OthersService {
   public reqUrl = environment.base_url;
   public societe_id: any;
+
+  
   constructor(private http: HttpClient) { }
 
 // recupere la liste des interimaire sous contrat
   getInterSousContrat(): Observable<any> {
+    
     return this.http.get<any>(this.reqUrl + '/interimSousContrat');
   }
   // recupere la liste des users 
@@ -393,8 +396,15 @@ addAgence(data) {
   }
 
   getInterimaireEnattente(page, limit, cni, poste, agence, societe, direction) {
+    var reqHeader = new HttpHeaders({
+      'Cache-Control':  'no-cache',
+      'Pragma': 'no-cache',
+      'Expires': '0'
+    });
     const data = {page: page, limit: limit, cni: cni, poste: poste, agence: agence, societe: societe, direction: direction};
-    return this.http.get<any>(this.reqUrl + '/interimEnAttente', {params: data});
+    return this.http.get<any>(this.reqUrl + '/interimEnAttente', {params: data}, 
+    //{headers: reqHeader}
+    );
   }
 
   getListedesDemande(page, limit, type, etat) {

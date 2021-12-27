@@ -35,6 +35,7 @@ export class DetailattestationComponent implements OnInit {
   public posteManager;
   public dataAttestation;
   errorMsg: any;
+  public dateAuj;
   constructor(private activeroute: ActivatedRoute,
               private modalService: ModalService,
               private otherService: OthersService,
@@ -70,7 +71,7 @@ export class DetailattestationComponent implements OnInit {
     
   }
   ngOnInit() {
-    
+    this.dateAuj = new Date()
   }
 
   public openPDF(prenom, nom):void {

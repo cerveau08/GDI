@@ -189,7 +189,7 @@ export class AddattestationComponent implements OnInit {
      this.otherService.addAttestationEnMasse(this.attestationForm.value).subscribe(
       data => {
         this.result = data
-        this.successMsg = this.result.status
+        this.successMsg = this.result.status;
         if(this.successMsg == true) {
           this.toastr.success('Attestation ajouté avec success', 'Succes', {
             timeOut: 3000,

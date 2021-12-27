@@ -122,6 +122,7 @@ import { ExtractionlisteComponent } from './pages/evaluation/extractionliste/ext
 import { PasobjectifComponent } from './pages/evaluation/pasobjectif/pasobjectif.component';
 import { PasevaluationComponent } from './pages/evaluation/pasevaluation/pasevaluation.component';
 import { MatSelectCountryModule } from '@angular-material-extensions/select-country';
+import { CacheInterceptor } from './helpers/cache.interceptor';
 
 
 @NgModule({
@@ -296,7 +297,7 @@ import { MatSelectCountryModule } from '@angular-material-extensions/select-coun
   providers: [DatePipe,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorService, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-    // { provide: HTTP_INTERCEPTORS, useClass: CacheInterceptor, multi: true },
+    //  { provide: HTTP_INTERCEPTORS, useClass: CacheInterceptor, multi: true },
     {provide: LocationStrategy, useClass: HashLocationStrategy},
     { provide: LOCALE_ID, useValue: 'fr-FR'}
   ],
