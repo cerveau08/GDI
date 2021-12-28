@@ -4,9 +4,9 @@
 
 export const environment = {
   production: false,
-  //base_url: 'http://10.137.16.67:8053'
+  base_url: 'http://10.137.16.67:8053'
   //base_url: 'http://localhost:8000'
-  base_url: 'https://backend-dstgestiondesinterimaires-rec.apps.malaaw-rec.orange-sonatel.com'
+  //base_url: 'https://backend-dstgestiondesinterimaires-rec.apps.malaaw-rec.orange-sonatel.com'
 };
 
 /*

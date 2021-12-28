@@ -153,8 +153,8 @@
             <button class="button-historique" (click)="historiqueContrat()">Historique Contrat</button>
             <button *ngIf="role == 'AGN'" class="button5" (click)="openModal('custom-modal-4')">Ajouter contrat</button>
             <button *ngIf="role == 'AGN'" class="button6" (click)="openModal('custom-modal-5')">Reconduire contrat</button>
-            <button *ngIf="(role == 'DRH' || role == 'RH_GDI') && sameIdSociete" class="button7" (click)="openModal('custom-modal-6')">Arrêter contrat</button>
-            <button *ngIf="(role == 'DRH' || role == 'RH_GDI') && sameIdSociete" class="button8" (click)="openModal('custom-modal-7')">Bannir Interimaire</button>
+            <button *ngIf="role == 'DRH' || role == 'RH_GDI'" class="button7" (click)="openModal('custom-modal-6')">Arrêter contrat</button>
+            <button *ngIf="role == 'DRH' || role == 'RH_GDI'" class="button8" (click)="openModal('custom-modal-7')">Bannir Interimaire</button>
         </div>
     </div>
 </div>

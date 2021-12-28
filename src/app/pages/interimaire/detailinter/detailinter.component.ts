@@ -167,7 +167,6 @@ export class DetailinterComponent implements OnInit {
     }
     this.role = localStorage.getItem('user');
     this.societeData = JSON.parse(localStorage.getItem('currentUser'));
-    console.log(this.societeData);
     this.isManager = this.societeData.data.isManager;
     this.societeIdDrh=this.societeData.data.societeId;
     this.otherService.getOneInterById(this.item).subscribe(
