@@ -98,6 +98,7 @@ export class RestaurationComponent implements OnInit {
   public direction = null;
   lastTenYear: any;
   currentDate = new Date().getFullYear();
+  currentMonth = new Date().getMonth();
   mois: any;
   constructor(public datepipe: DatePipe,
     public router: Router,
@@ -128,8 +129,8 @@ export class RestaurationComponent implements OnInit {
       agence: new FormControl(''),
     });
     this.filterForm = new FormGroup({
-      mois: new FormControl(''),
-      annee: new FormControl(''),
+      mois: new FormControl(this.currentMonth + 1),
+      annee: new FormControl(this.currentDate),
     });
     this.gty(this.page);
 
@@ -145,6 +146,9 @@ export class RestaurationComponent implements OnInit {
       this.dataAgence =  data.data;
     });
     this.lastTenYear = [
+      {
+        annee: this.currentDate + 1
+      },
       {
         annee: this.currentDate
       },{
