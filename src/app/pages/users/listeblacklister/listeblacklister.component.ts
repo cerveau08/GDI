@@ -129,5 +129,4 @@ export class ListeblacklisterComponent implements OnInit {
   closeErrorModal(id: string) {
     this.errormodalService.close(id);
   }
-
 }

@@ -146,6 +146,11 @@ export class DetailinterComponent implements OnInit {
   datasInter: any;
   societe_id = null;
   isManager: any;
+  dataSearch: any;
+  successMsgSearch: any;
+  tab = false;
+  formBannir: FormGroup;
+  managerForm: FormGroup;
   constructor(private activeroute: ActivatedRoute,
               private modalService: ModalService,
               private otherService: OthersService,
@@ -159,7 +164,11 @@ export class DetailinterComponent implements OnInit {
     this.activeroute.queryParams.subscribe(params => {
       this.item = JSON.parse(params["interimaire"]);
     })
-    
+    this.formBannir = new FormGroup({
+      typePiece: new FormControl(''),
+      numeroPiece: new FormControl(''),
+      telephone: new FormControl(''),
+    })
   }
   ngOnInit() {
     if(this.otherService.societe_id) {
@@ -176,12 +185,17 @@ export class DetailinterComponent implements OnInit {
         this.nom = this.dataInter.nom;
         this.prenom = this.dataInter.prenom;
         this.emailPro = this.dataInter.emailPro;
-         this.idcontrat = this.dataInter.contrat.id;
+        this.idcontrat = this.dataInter.contrat.id;
         this.photo = this.reqUrl + '/public/' + this.dataInter.photo;
         this.etat = this.dataInter.etat;
         this.contratDoc = this.reqUrl + '/public' + this.dataInter.fileContrat;
         this.fichePosteDoc = this.reqUrl + '/public' + this.dataInter.fileFichePoste;
         this.societeIdInterim = this.dataInter.societe.id;
+        this.formBannir.patchValue({
+          typePiece: this.dataInter.typePiece,
+          numeroPiece: this.dataInter.numeroPiece,
+          telephone: this.dataInter.telephone,
+        });
         if(this.societeIdDrh == this.societeIdInterim) {
           this.sameIdSociete = true;
         } else {
@@ -226,13 +240,16 @@ export class DetailinterComponent implements OnInit {
     this.searchForm = new FormGroup({
       matricule: new FormControl('')
     });
+    this.managerForm = new FormGroup({
+      manager_id: new FormControl('')
+    });
     this.emailForm = new FormGroup({
       email: new FormControl(''),
       id: new FormControl(this.item)
     });
     this.validerForm = this.formBuilder.group({
-      matricule: new FormControl(''),
-      responsable: new FormControl(''),
+      matricule: new FormControl('', Validators.required),
+      responsable: new FormControl('', Validators.required),
     });
     this.otherService.getAllSociete().subscribe(
       data => {
@@ -499,18 +516,19 @@ export class DetailinterComponent implements OnInit {
   searchManager() {
     this.otherService.searchInfoManager(this.searchForm.value.matricule).subscribe(
       data => {
-        this.dataValidation = data;
-        this.successMsgValider = this.dataValidation.status;
-        if(this.successMsgValider == true) {
+        this.dataSearch = data;
+        this.successMsgSearch = this.dataSearch.status;
+        if(this.successMsgSearch == true) {
           this.validerForm.patchValue({responsable: this.searchForm.value.matricule});
-          this.prenomManager = this.dataValidation.data.prenom;
-          this.nomManager = this.dataValidation.data.nom;
-          this.emailManager = this.dataValidation.data.email;
-          this.telephoneManager = this.dataValidation.data.telephone;
-          this.posteManager = this.dataValidation.data.poste;
-          this.structureManager = this.dataValidation.data.structure;
+          this.managerForm.patchValue({manager_id: this.dataSearch.data.id});
+          this.prenomManager = this.dataSearch.data.prenom;
+          this.nomManager = this.dataSearch.data.nom;
+          this.emailManager = this.dataSearch.data.email;
+          this.telephoneManager = this.dataSearch.data.telephone;
+          this.posteManager = this.dataSearch.data.poste;
+          this.structureManager = this.dataSearch.data.structure;
         } else {
-          this.messageVide = this.dataValidation.message;
+          this.messageVide = this.dataSearch.message;
         }
       }, error=> {
         this.errorMsg = error;
@@ -533,7 +551,33 @@ export class DetailinterComponent implements OnInit {
             this.toastr.success(this.dataValidation.message, 'Success', {
               timeOut: 3000,
             });
-            //this.router.navigate(['accueil/souscontrat']);
+          }
+        }, error=> {
+          this.errorMsg = error;
+          this.toastr.error(this.errorMsg, 'Echec', {
+            timeOut: 5000,
+          });
+        }
+      )
+    }
+  }
+
+  changeManager() {
+    if(this.validerForm.value.responsable) {
+      let form = {
+        manager_id: this.managerForm.value.manager_id,
+        interim_id: this.item
+      }
+      this.otherService.changeManager(form).subscribe(
+        data => {
+          this.dataValidation = data;
+          this.successMsgValider = this.dataValidation.status;
+          if(this.successMsgValider == true) {
+            this.ngOnInit();
+            this.closeModal('custom-modal-10');
+            this.toastr.success(this.dataValidation.message, 'Success', {
+              timeOut: 3000,
+            });
           }
         }, error=> {
           this.errorMsg = error;
@@ -643,11 +687,40 @@ export class DetailinterComponent implements OnInit {
       }
     );
   }
+  blacklister() {
+    this.otherService.blacklister(this.formBannir.value).subscribe(
+      (response) =>{
+        this.dataBannir = response;
+        this.successMsgBannir = this.dataBannir.status;
+        if(this.successMsgBannir == true) {
+          this.closeModal('custom-modal-7');
+          this.ngOnInit();
+          this.toastr.success(this.dataBannir.message, 'Success', {
+            timeOut: 3000,
+          });
+        }
+      }, error=> {
+        this.errorMsg = error;
+        this.toastr.error(this.errorMsg, 'Echec', {
+          timeOut: 5000,
+        });
+      }
+    );
+  }
   openErrorModal(id: string) {
     this.errormodalService.open(id);
   }
 
   closeErrorModal(id: string) {
     this.errormodalService.close(id);
+  }
+
+  functionCss() {
+    var x = document.getElementById("myDIV");
+    if (x.style.display === "block") {
+      x.style.display = "none";
+    } else {
+      x.style.display = "block";
+    }
   }
 }

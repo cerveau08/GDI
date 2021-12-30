@@ -28,7 +28,7 @@
                             <th class="col-matricule" id="manager">Matricule</th>
                             <th class="col-prenom" id="prenom">Prenom </th>
                             <th class="col-nom" id="nom">Nom</th>
-                            <th class="col-agence" *ngIf="scrWidth>991" id="agence">Agence</th>
+                            <th class="col-agence" id="agence">Agence</th>
                             <th class="col-abscence" id="contrat">Absence</th>
                             <th class="col-commentaire" id="contrat">Commentaire</th>
                             <th class="col-action" id="contrat">Action</th>
@@ -40,7 +40,7 @@
                             <td class="col-matricule" >{{p.matricule}}</td>
                             <td class="col-prenom" >{{p.prenom}}</td>
                             <td class="col-nom">{{p.nom}}</td>
-                            <td class="col-agence" *ngIf="scrWidth>991" >{{p.agence}}</td>
+                            <td class="col-agence" >{{p.agence_name}}</td>
                             <td class="col-abscence" >
                                 <input type="number" formControlName="nbr_jr_absence" class="nombre-jour-absent">
                                 jours

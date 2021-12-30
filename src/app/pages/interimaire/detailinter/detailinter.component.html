@@ -1,5 +1,23 @@
 <div class="all-container">
     <div class="compte">
+        <div *ngIf="etat == 'actif'" class="content-button-action">
+            <div>
+                <div id="myDIV" class="content-items-action">
+                    <p class="button-action" *ngIf="role == 'AGN'" (click)="modifierInter()">Modifier</p>
+                    <p class="button-action" *ngIf="role == 'DRH' || role == 'RH_GDI'" (click)="openModal('custom-modal-10');">Changer Manager</p>
+                    <p class="button-action" (click)="historiqueContrat()">Historique Contrat</p>
+                    <p class="button-action" *ngIf="role == 'DRH' || role == 'RH_GDI'" (click)="openModal('custom-modal-6');">Arréter Contrat</p>
+                    <p class="button-action" *ngIf="role == 'DRH' || role == 'RH_GDI'" (click)="openModal('custom-modal-11');">Blocker Intérimaire</p>
+                    <p class="button-action" *ngIf="role == 'DRH' || role == 'RH_GDI'" (click)="openModal('custom-modal-7');">Bannir</p>
+                    <p class="button-action" *ngIf="role == 'AGN'" (click)="openModal('custom-modal-4');">Renouveler Contrat</p>
+                    <p class="button-action" *ngIf="role == 'AGN'" (click)="openModal('custom-modal-5');">Reconduire Contrat</p>
+                </div>
+            </div>
+            <div (click)="functionCss()" class="content-action-menu">
+                <button class="button-option-action">Option</button>
+                <mat-icon class="icon-option-action">more_vert</mat-icon>
+            </div>
+        </div>
         <div class="content-header">
             <div class="content-details">
                 <div class="content-header-page">
@@ -8,12 +26,12 @@
                 </div>
             </div>
             <div class="content-buttons-modifier">
-                <button *ngIf="etat == 'actif' && role == 'AGN'"  (click)="modifierInter()" class="button-modifier">Modifier</button>
+                <!-- <button *ngIf="etat == 'actif' && role == 'AGN'"  (click)="modifierInter()" class="button-modifier">Modifier</button> -->
                 <div *ngIf="etat == 'En attente'">
                     <button *ngIf="role == 'AGN'" (click)="modifierInter()" class="button-modifier">Modifier</button>
                     <button *ngIf="role == 'DRH' || role == 'RH_GDI'" (click)="openModal('custom-modal-8')" class="button-modifier">Valider</button>
                 </div>
-                <button *ngIf="etat == 'actif' && isManager == true && (!emailPro || emailPro==undefined)"  (click)="openModal('custom-modal-9')" class="button-add-email">Ajouter Email</button>
+                <!-- <button *ngIf="etat == 'actif' && isManager == true && (!emailPro || emailPro==undefined)"  (click)="openModal('custom-modal-9')" class="button-add-email">Ajouter Email</button> -->
             </div>
         </div>
         <div class="progres">
@@ -149,13 +167,13 @@
             <button id="button-head" class="buttonEvaluation" (click)="evaluation()">Evaluations</button>
             <button id="button-head" class="button2" (click)="objectif()">Période des objectifs</button>
         </div>
-        <div class="lesbouton" >
+        <!-- <div class="lesbouton" >
             <button class="button-historique" (click)="historiqueContrat()">Historique Contrat</button>
             <button *ngIf="role == 'AGN'" class="button5" (click)="openModal('custom-modal-4')">Ajouter contrat</button>
             <button *ngIf="role == 'AGN'" class="button6" (click)="openModal('custom-modal-5')">Reconduire contrat</button>
             <button *ngIf="role == 'DRH' || role == 'RH_GDI'" class="button7" (click)="openModal('custom-modal-6')">Arrêter contrat</button>
             <button *ngIf="role == 'DRH' || role == 'RH_GDI'" class="button8" (click)="openModal('custom-modal-7')">Bannir Interimaire</button>
-        </div>
+        </div> -->
     </div>
 </div>
 <!--modal1-->
@@ -441,16 +459,6 @@
                     reiciendis doloremque voluptate nemo quae unde deserunt temporibus 
                     exercitationem aperiam, corporis recusandae incidunt ratione maxime?
                 </p>
-                <p class="text-droit">
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
-                    Doloribus harum sapiente a voluptatum inventore consectetur 
-                    in ipsa explicabo est nulla at tempora doloremque eaque 
-                    veritatis consequuntur necessitatibus, eligendi recusandae quia!
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                    Laudantium molestiae alias dolores suscipit at voluptatibus
-                    reiciendis doloremque voluptate nemo quae unde deserunt temporibus 
-                    exercitationem aperiam, corporis recusandae incidunt ratione maxime?
-                </p>
                 <div class="content-motif">
                     <p class="libelle-motif">Motif de l'arrêt du contrat</p>
                     <textarea class="textarea-motif" formControlName="motif" name="motif"  placeholder="Motif de l'arrêt du contrat"></textarea>
@@ -483,6 +491,21 @@
                     reiciendis doloremque voluptate nemo quae unde deserunt temporibus 
                     exercitationem aperiam, corporis recusandae incidunt ratione maxime?
                 </p>
+                <div class="btns3">
+                    <button (click)="blacklister()"  class="button8">Bannir</button>
+                </div>
+            </form>
+        </div>
+    </jw-modal>
+</div>
+
+<!--modal11-->
+<div class="modal">
+    <jw-modal id="custom-modal-11">
+        <div class="tableau">
+            <mat-icon style="cursor: pointer;" (click)="closeModal('custom-modal-11');" class="clear">clear</mat-icon>
+            <form [formGroup]="bannirForm">
+                <p class="dtl1">Bannir {{prenom}} {{nom}}</p>
                 <p class="text-droit">
                     Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
                     Doloribus harum sapiente a voluptatum inventore consectetur 
@@ -511,7 +534,6 @@
         </div>
     </jw-modal>
 </div>
-
 <!--modal 8-->
 <div class="modal">
     <jw-modal id="custom-modal-8">
@@ -529,11 +551,14 @@
                             <button (click)="searchManager()" class="bouton-search-manager">rechercher</button>
                         </div>
                     </div>
-                    <div class="content-manager-info">
+                    <div *ngIf="successMsgSearch" class="content-manager-info">
                         <p class="info-manager">Prénom: {{prenomManager}}<span></span></p>
                         <p class="info-manager">Nom: {{nomManager}}<span></span></p>
-                        <p class="info-manager">Structure: {{structureManager}}<span></span></p>
-                        <p class="info-manager">Poste: {{posteManager}}<span></span></p>
+                        <p class="info-manager">Email: {{emailManager}}<span></span></p>
+                        <p class="info-manager">Téléphone: {{telephoneManager}}<span></span></p>
+                    </div>
+                    <div *ngIf="!successMsgSearch" class="content-manager-info">
+                        <p class="info-manager">{{messageVide}}<span></span></p>
                     </div>
                 </div>
                 <div [formGroup]="validerForm">
@@ -575,7 +600,7 @@
                         <input class="input-valider" type="text" formControlName="matricule" placeholder="Matricule">
                     </div> -->
                     <br>
-                    <div class="content-manager-info">
+                    <div  class="content-manager-info">
                         <p class="key">Prénom: <span class="value">{{dataInter?.prenom}}</span> </p>
                         <p class="key">Nom: <span class="value">{{dataInter?.nom}}</span> </p>
                         <p class="key">Matricule: <span class="value">{{dataInter?.matricule}}</span> </p>
@@ -602,19 +627,63 @@
             </div>
     </jw-modal>
 </div>
-<!--modal1-->
+
+<!--modal 10-->
 <div class="modal">
-    <sonatel-pma-errormodal id="error-modal-1">
-        <div class="error-modal-all" >
-            <mat-icon style="cursor: pointer;" (click)="closeErrorModal('error-modal-1');" class="clear-error">clear</mat-icon>
-            <div class="error-content-image">
-                <div class="error-image"></div>
+    <jw-modal id="custom-modal-10">
+            <div class="tableau">
+                <mat-icon style="cursor: pointer;" (click)="closeModal('custom-modal-10');" class="clear">clear</mat-icon>
+                <p class="dtl1">Changement de manager pour <span class="nom-interimaire">{{prenom}} {{nom}}</span></p>
+                <p class="info-actuel-manager">Son manager actuel est 
+                    <span class="manager-prenom-nom">{{managerinfo?.prenom? managerinfo?.prenom : 'Non renseigné'}} </span>
+                    <span class="manager-prenom-nom">{{managerinfo?.nom? managerinfo?.nom : 'Non renseigné'}}</span>
+                    matricule:
+                    <span class="manager-prenom-nom">{{managerinfo?.matricule? managerinfo?.matricule : 'Non renseigné'}}</span>
+                </p>
+                <p class="text-title-search">Rechercher un manager</p>
+                <div [formGroup]="searchForm" class="content-manager-search">
+                    <div class="content-manager-input-search">
+                        <div class="content-input-search">
+                            <p class="label-input-search">Entrer le matricule du manager</p>
+                            <input formControlName="matricule" class="input-search-manager" type="text" placeholder="Matricule">
+                        </div>
+                        <div class="content-bouton-valider">
+                            <button (click)="searchManager()" class="bouton-search-manager">rechercher</button>
+                        </div>
+                    </div>
+                    <div *ngIf="successMsgSearch" class="content-manager-info">
+                        <p class="info-manager">Prénom: {{prenomManager}}<span></span></p>
+                        <p class="info-manager">Nom: {{nomManager}}<span></span></p>
+                        <p class="info-manager">Email: {{emailManager}}<span></span></p>
+                        <p class="info-manager">Téléphone: {{telephoneManager}}<span></span></p>
+                    </div>
+                    <div *ngIf="!successMsgSearch" class="content-manager-info">
+                        <p class="info-manager">{{messageVide}}<span></span></p>
+                    </div>
+                </div>
+                <div [formGroup]="validerForm">
+                    <!-- <div class="input-v">
+                        <p class="libelle-motif">Matricule de l'intérimaire</p>
+                        <input class="input-valider" type="text" formControlName="matricule" placeholder="Matricule">
+                    </div> -->
+                    <!-- <div class="input-v">
+                        <p class="libelle-motif">Email de l'intérimaire</p>
+                        <input class="input-valider" type="text" formControlName="email" placeholder="Email">
+                    </div> -->
+                    <!-- <div class="input-v">
+                        <p class="libelle-motif">Matricule Manager</p>
+                        <input list="matriculesm" class="input-valider" (change)="saveMatriculeM($event)" type="text" formControlName="responsable" placeholder="Matricule de son manageur">
+                        <datalist id="matriculesm">
+                            <option *ngFor="let c of dataManageur" [value]="c.matricule" >{{c.matricule}}</option>
+                          </datalist>
+                    </div>
+                    <div class="content-error-msg" *ngIf="successMsgValider == false">
+                        <p class="error-alert">{{ dataValidation?.message}}</p>
+                    </div> -->
+                    <div class="btns3">
+                        <button (click)="changeManager() "  class="button5">Valider</button>
+                    </div>
+                </div>
             </div>
-            <p class="error-text">{{errorMsg}}</p>
-            <p class="error-message-admin">Veuillez contacter l'administrateur du site à partir de la page paramètre</p> 
-            <div class="error-content-button">
-                <button (click)="closeErrorModal('error-modal-1');" class="error-button">Ok</button>
-            </div>
-        </div>
-    </sonatel-pma-errormodal>
-  </div>
+    </jw-modal>
+</div>

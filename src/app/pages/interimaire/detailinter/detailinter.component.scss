@@ -43,6 +43,62 @@
     background-color: white;
     margin-right: 0px;
     padding: 10px;
+    position: relative;
+}
+.content-button-action {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    display: grid;
+    grid-template-columns: 1fr 70px;
+}
+.button-action {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 12px;
+    width: 120px;
+    cursor: pointer;
+}
+#myDIV {
+    display: none;
+}
+.manager-prenom-nom {
+    color: #009393;
+    font-size: 15px;
+    font-weight: bold;
+}
+.info-actuel-manager {
+    font-size: 15px;
+}
+.button-action:hover {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 12px;
+    font-weight: bold;
+    color: #009393;
+}
+.content-action-menu{
+    display: flex;
+    margin-top: 20px;
+    font-weight: bold;
+}
+.button-option-action {
+    border: none;
+    background-color: white;
+    height: 30px;
+    padding: 0;
+}
+.icon-option-action {
+    border: none;
+    background-color: white;
+    margin-top: 3px;
+    cursor: pointer;
+}
+.icon-option-action:hover {
+    font-weight: bold;
+}
+.button-option-action:hover {
+    font-weight: bold;
 }
 .detail{
     font-size: 18px;
@@ -201,7 +257,7 @@
     width: 70px;
     height: 30px;
     background-color: white;
-    color: black;
+    color: #ff7900;
     padding: 2px 2px;
     text-align: center;
     text-decoration: none;
@@ -210,14 +266,14 @@
     font-size: 14px;
     cursor: pointer;
     outline: none;
-    border: 2px solid black;
+    border: 2px solid #ff7900;
     margin-top: 10px;
 }
 .button2 {
     width: 182px;
     height: 30px;
     background-color: white;
-    color: black;
+    color: #ff7900;
     padding: 2px 2px;
     text-align: center;
     text-decoration: none;
@@ -226,7 +282,7 @@
     font-size: 14px;
     cursor: pointer;
     outline: none;
-    border: 2px solid black;
+    border: 2px solid #ff7900;
     margin-left: 10px;
     margin-top: 10px;
 }
@@ -234,7 +290,7 @@
     width: 115px;
     height: 30px;
     background-color: white;
-    color: black;
+    color: #ff7900;
     padding: 2px 2px;
     text-align: center;
     text-decoration: none;
@@ -243,7 +299,7 @@
     font-size: 14px;
     cursor: pointer;
     outline: none;
-    border: 2px solid black;
+    border: 2px solid #ff7900;
     margin-left: 10px;
     margin-top: 10px;
 }
@@ -269,7 +325,7 @@
     width: 90px;
     height: 30px;
     background-color: white;
-    color: black;
+    color: #ff7900;
     padding: 2px 2px;
     text-align: center;
     text-decoration: none;
@@ -278,7 +334,7 @@
     font-size: 14px;
     cursor: pointer;
     outline: none;
-    border: 2px solid black;
+    border: 2px solid #ff7900;
     margin-left: 10px;
     margin-top: 10px;
     margin-bottom: 10px;

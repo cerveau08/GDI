@@ -266,6 +266,10 @@ addAgence(data) {
   validerInterimaire(data:any, id: number): Observable<any> {
     return this.http.post<any>(`${this.reqUrl}/validerInterimaire/${id}`, data);
   }
+
+  changeManager(data:any): Observable<any> {
+    return this.http.post<any>(`${this.reqUrl}/changeManager`, data);
+  }
   addemailInterimaire(data:any): Observable<any> {
     return this.http.post<any>(`${this.reqUrl}/ajoutEmailInter`, data);
   }
@@ -282,7 +286,10 @@ addAgence(data) {
     return this.http.post<any>(`${this.reqUrl}/users/activeDesactive/${id}`, data);
   }
   blacklist(){
-    return this.http.get<any>(this.reqUrl + '/blacklist');
+    return this.http.get<any>(this.reqUrl + '/liste_blacklist');
+  }
+  blacklister(data){
+    return this.http.post<any>(this.reqUrl + '/blackList', data);
   }
   deleteInterblacklister(id: string){
     return this.http.delete<any>(`${this.reqUrl} + '/interimBlacklist/${id}`);
@@ -414,7 +421,7 @@ addAgence(data) {
 
   getListeNoire(page, limit, telephone, typePiece, numeroPiece) {
     const data = {page: page, limit: limit, telephone: telephone, typepiece: typePiece, numpiece: numeroPiece};
-    return this.http.get<any>(this.reqUrl + '/blacklist', {params: data});
+    return this.http.get<any>(this.reqUrl + '/list_blacklist', {params: data});
   }
 
   exportStatInterimByYear(annee) {
