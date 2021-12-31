@@ -13,9 +13,10 @@
                     <p class="button-action" *ngIf="role == 'AGN'" (click)="openModal('custom-modal-5');">Reconduire Contrat</p>
                 </div>
             </div>
-            <div (click)="functionCss()" class="content-action-menu">
-                <button class="button-option-action">Option</button>
-                <mat-icon class="icon-option-action">more_vert</mat-icon>
+            <div (click)="functionCss()" id="divMenu" class="content-action-menu">
+                <mat-icon id="arrow-left" class="icon-option-action-left">keyboard_arrow_left</mat-icon>
+                <mat-icon id="arrow-down" class="icon-option-action-down">keyboard_arrow_down</mat-icon>
+                <button id="buttonOption" class="button-option-action">Option</button>
             </div>
         </div>
         <div class="content-header">

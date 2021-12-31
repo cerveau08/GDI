@@ -50,7 +50,7 @@
     top: 5px;
     right: 10px;
     display: grid;
-    grid-template-columns: 1fr 70px;
+    grid-template-columns: 1fr 80px;
 }
 .button-action {
     margin-top: 0;
@@ -81,12 +81,18 @@
     display: flex;
     margin-top: 20px;
     font-weight: bold;
+    background-color: #f5f6f9;
+    border-radius: 15px;
+    width: 80px;
+    height: 30px;
 }
+
 .button-option-action {
     border: none;
     background-color: white;
     height: 30px;
     padding: 0;
+    background-color: #f5f6f9;
 }
 .icon-option-action {
     border: none;
@@ -94,11 +100,30 @@
     margin-top: 3px;
     cursor: pointer;
 }
-.icon-option-action:hover {
+.icon-option-action-left {
+    border: none;
+    background-color: white;
+    margin-top: 3px;
+    cursor: pointer;
     font-weight: bold;
+    display: none;
+    background-color: #f5f6f9;
+    margin-left: 5px;
+}
+.icon-option-action-down {
+    border: none;
+    background-color: white;
+    margin-top: 3px;
+    cursor: pointer;
+    font-weight: bold;
+    background-color: #f5f6f9;
+    margin-left: 5px;
 }
 .button-option-action:hover {
     font-weight: bold;
+}
+.content-button-action:hover #myDIV {
+    display: block;
 }
 .detail{
     font-size: 18px;
